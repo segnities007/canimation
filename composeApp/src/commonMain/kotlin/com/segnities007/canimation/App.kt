@@ -42,6 +42,7 @@ import com.segnities007.canimation.navigation.CanimationNavHost
 import com.segnities007.canimation.navigation.CustomSpecLabRoute
 import com.segnities007.canimation.navigation.DiagnosticsRoute
 import com.segnities007.canimation.navigation.HomeRoute
+import com.segnities007.canimation.navigation.DocsRoute
 import com.segnities007.canimation.navigation.ExamplesRoute
 import com.segnities007.canimation.navigation.PresetGalleryRoute
 import com.segnities007.canimation.navigation.TokenReferenceRoute
@@ -94,6 +95,7 @@ fun App() {
                                 modifier = Modifier.horizontalScroll(rememberScrollState()),
                             ) {
                                 listOf(
+                                    Triple("Docs", DocsRoute, "DocsRoute"),
                                     Triple("Presets", PresetGalleryRoute, "PresetGalleryRoute"),
                                     Triple("Examples", ExamplesRoute, "ExamplesRoute"),
                                     Triple("Lab", CustomSpecLabRoute, "CustomSpecLabRoute"),

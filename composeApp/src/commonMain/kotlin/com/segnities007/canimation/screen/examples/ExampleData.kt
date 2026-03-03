@@ -8,6 +8,7 @@ data class ExampleCategory(
     val subtitle: String,
     val accentLabel: String,
     val examples: List<ExampleItem>,
+    val tags: List<String> = emptyList(),
 )
 
 /**
@@ -240,6 +241,7 @@ val exampleCategories: List<ExampleCategory> = listOf(
         title = "Fading",
         subtitle = "Smooth opacity transitions with optional movement",
         accentLabel = "ENTRANCE",
+        tags = listOf("entrance", "fade", "opacity", "preset"),
         examples = listOf(
             vis(CanimationPreset.Fade, "Simple alpha crossfade"),
             vis(CanimationPreset.FadeUp, "Fade in with upward slide"),
@@ -1475,6 +1477,437 @@ val width by animateFloatAsState(
     if (expanded) 240f else 48f, spring()
 )
 Surface(Modifier.width(width.dp).height(48.dp), shape = CircleShape)"""),
+        ),
+    ),
+
+    // ─── New standalone animations (batch 3) ─── Card variants & unique ───
+
+    ExampleCategory(
+        id = "card-border-trace",
+        title = "Card Border Trace",
+        subtitle = "Animated border that traces around card edges",
+        accentLabel = "CARD",
+        tags = listOf("card", "border", "animation", "canvas"),
+        examples = listOf(
+            component("cardBorderTrace", "Border traces around card perimeter continuously",
+                """// Card border trace
+val progress by infiniteTransition.animateFloat(0f, 1f)
+Canvas(Modifier.size(160.dp, 100.dp)) {
+    val path = Path()
+    path.addRoundRect(roundRect)
+    drawPath(path, primary, style = Stroke(3.dp))
+}"""),
+        ),
+    ),
+    ExampleCategory(
+        id = "card-lift-hover",
+        title = "Card Lift on Hover",
+        subtitle = "Card lifts with shadow and translate on hover",
+        accentLabel = "CARD",
+        tags = listOf("card", "hover", "elevation", "shadow"),
+        examples = listOf(
+            component("cardLiftHover", "Card elevates and translates Y with spring animation",
+                """// Card lift hover
+val elevation by animateFloatAsState(if (hovered) 16f else 2f, spring())
+val ty by animateFloatAsState(if (hovered) -8f else 0f, spring())
+Surface(shadowElevation = elevation.dp,
+    Modifier.graphicsLayer { translationY = ty })"""),
+        ),
+    ),
+    ExampleCategory(
+        id = "card-gradient-border",
+        title = "Card Gradient Border",
+        subtitle = "Card with animated sweeping gradient border",
+        accentLabel = "CARD",
+        tags = listOf("card", "gradient", "border", "color"),
+        examples = listOf(
+            component("cardGradientBorder", "Sweep gradient rotates around card border",
+                """// Gradient border card
+Box(Modifier.clip(shape).background(sweepGradient).padding(2.dp)
+    .clip(shape).background(surface))"""),
+        ),
+    ),
+    ExampleCategory(
+        id = "card-expand-collapse",
+        title = "Card Expand / Collapse",
+        subtitle = "Card animates between compact and expanded states",
+        accentLabel = "CARD",
+        tags = listOf("card", "expand", "collapse", "height"),
+        examples = listOf(
+            component("cardExpandCollapse", "Height animates with spring between 48dp and 120dp",
+                """// Card expand/collapse
+val height by animateFloatAsState(if (expanded) 120f else 48f, spring())
+Surface(Modifier.height(height.dp)) { content }"""),
+        ),
+    ),
+    ExampleCategory(
+        id = "card-parallax-tilt",
+        title = "Card Parallax Tilt",
+        subtitle = "3D parallax tilt with rotation X and Y",
+        accentLabel = "CARD",
+        tags = listOf("card", "3d", "tilt", "parallax"),
+        examples = listOf(
+            component("cardParallaxTilt", "Card rotates on X and Y axes with different timing",
+                """// Parallax tilt
+val rotX by infiniteTransition.animateFloat(-10f, 10f)
+val rotY by infiniteTransition.animateFloat(-10f, 10f)
+Surface(Modifier.graphicsLayer {
+    rotationX = rotX; rotationY = rotY; cameraDistance = 12f * density
+})"""),
+        ),
+    ),
+    ExampleCategory(
+        id = "card-glassmorphism",
+        title = "Card Glassmorphism",
+        subtitle = "Frosted glass effect with moving background blob",
+        accentLabel = "CARD",
+        tags = listOf("card", "glass", "blur", "effect"),
+        examples = listOf(
+            component("cardGlassmorphism", "Semi-transparent card over animated moving blob",
+                """// Glassmorphism
+Box { // Moving blob behind
+    Box(Modifier.offset(animatedOffset).clip(CircleShape).background(blob))
+    // Glass card
+    Surface(color = surface.copy(alpha = 0.7f)) { content }
+}"""),
+        ),
+    ),
+    ExampleCategory(
+        id = "card-reveal-wipe",
+        title = "Card Reveal Wipe",
+        subtitle = "Content revealed with a horizontal wipe animation",
+        accentLabel = "CARD",
+        tags = listOf("card", "reveal", "wipe", "clip"),
+        examples = listOf(
+            component("cardRevealWipe", "fillMaxWidth fraction animates from 0 to 1",
+                """// Reveal wipe
+val clip by infiniteTransition.animateFloat(0f, 1f)
+Box(Modifier.fillMaxWidth(clip).background(primaryContainer)) {
+    Text("Revealed")
+}"""),
+        ),
+    ),
+    ExampleCategory(
+        id = "card-fan-stack",
+        title = "Card Fan Stack",
+        subtitle = "Cards spread out like a fan with rotation",
+        accentLabel = "CARD",
+        tags = listOf("card", "stack", "fan", "rotation"),
+        examples = listOf(
+            component("cardFanStack", "Cards rotate from 0 to spread angles with animation",
+                """// Fan stack
+val spread by infiniteTransition.animateFloat(0f, 1f)
+cards.forEachIndexed { i, _ ->
+    Surface(Modifier.graphicsLayer { rotationZ = (i - 1) * 15f * spread })
+}"""),
+        ),
+    ),
+    ExampleCategory(
+        id = "card-magnetic-snap",
+        title = "Card Magnetic Snap",
+        subtitle = "Card snaps between positions with bouncy spring",
+        accentLabel = "CARD",
+        tags = listOf("card", "snap", "spring", "magnetic"),
+        examples = listOf(
+            component("cardMagneticSnap", "Card translates with bouncy spring between snap points",
+                """// Magnetic snap
+val offsetX by animateFloatAsState(targets[pos],
+    spring(dampingRatio = DampingRatioMediumBouncy))
+Surface(Modifier.graphicsLayer { translationX = offsetX })"""),
+        ),
+    ),
+    ExampleCategory(
+        id = "notification-badge",
+        title = "Notification Badge",
+        subtitle = "Animated badge count with spring pop",
+        accentLabel = "UI",
+        tags = listOf("badge", "notification", "count", "spring"),
+        examples = listOf(
+            component("notificationBadge", "Badge number increments with spring scale on change",
+                """// Notification badge
+val scale by animateFloatAsState(1f, spring(bouncy))
+Surface(CircleShape, error, Modifier.graphicsLayer { scaleX = scale }) {
+    Text(count.toString())
+}"""),
+        ),
+    ),
+    ExampleCategory(
+        id = "glow-progress",
+        title = "Glow Progress Bar",
+        subtitle = "Linear progress with gradient glow effect",
+        accentLabel = "LOADING",
+        tags = listOf("progress", "loading", "gradient", "glow"),
+        examples = listOf(
+            component("glowProgress", "Animated fillMaxWidth with gradient brush progress bar",
+                """// Glow progress
+val progress by infiniteTransition.animateFloat(0f, 1f)
+Box(Modifier.fillMaxWidth(progress).background(
+    Brush.horizontalGradient(listOf(primary, primary.copy(0.6f)))
+))"""),
+        ),
+    ),
+    ExampleCategory(
+        id = "spring-toggle",
+        title = "Spring Toggle",
+        subtitle = "Toggle switch with bouncy spring thumb animation",
+        accentLabel = "UI",
+        tags = listOf("toggle", "switch", "spring", "interaction"),
+        examples = listOf(
+            component("springToggle", "Thumb slides with spring animation and track color transitions",
+                """// Spring toggle
+val thumbX by animateFloatAsState(if (on) 24f else 0f,
+    spring(dampingRatio = DampingRatioMediumBouncy))
+val color by animateColorAsState(if (on) primary else surfaceVariant)
+Box(Modifier.background(color)) { Thumb(Modifier.offset(thumbX)) }"""),
+        ),
+    ),
+    ExampleCategory(
+        id = "pulse-radar",
+        title = "Pulse Radar",
+        subtitle = "Expanding radar circles with fading alpha",
+        accentLabel = "CANVAS",
+        tags = listOf("radar", "pulse", "canvas", "expanding"),
+        examples = listOf(
+            component("pulseRadar", "Two staggered expanding circles on canvas with center dot",
+                """// Pulse radar
+Canvas(Modifier) {
+    pulses.forEach { p ->
+        drawCircle(primary.copy(alpha = (1f-p)*0.4f), radius = maxR * p)
+    }
+    drawCircle(primary, radius = 6.dp)
+}"""),
+        ),
+    ),
+    ExampleCategory(
+        id = "morph-progress",
+        title = "Morph Progress Indicator",
+        subtitle = "Shape morphs between circle and line indicator",
+        accentLabel = "LOADING",
+        tags = listOf("morph", "progress", "loading", "shape"),
+        examples = listOf(
+            component("morphProgress", "Indicator morphs from circle to line and back",
+                """// Morph progress
+val phase by infiniteTransition.animateFloat(0f, 2f)
+Canvas(Modifier) {
+    when { phase < 1f -> drawLine(); else -> drawCircle() }
+}"""),
+        ),
+    ),
+    ExampleCategory(
+        id = "step-indicator",
+        title = "Step Indicator",
+        subtitle = "Sequential step dots with connecting lines",
+        accentLabel = "UI",
+        tags = listOf("step", "indicator", "navigation", "progress"),
+        examples = listOf(
+            component("stepIndicator", "Dots fill and scale as steps progress",
+                """// Step indicator
+steps.forEachIndexed { i, _ ->
+    val color by animateColorAsState(if (i <= step) primary else surface)
+    val scale by animateFloatAsState(if (i == step) 1.2f else 1f)
+    Dot(color, scale); if (i < last) Line()
+}"""),
+        ),
+    ),
+    ExampleCategory(
+        id = "animated-underline",
+        title = "Animated Underline",
+        subtitle = "Text with animated expanding underline",
+        accentLabel = "TEXT",
+        tags = listOf("text", "underline", "hover", "animation"),
+        examples = listOf(
+            component("animatedUnderline", "Underline width animates between 0% and 100%",
+                """// Animated underline
+val width by infiniteTransition.animateFloat(0f, 1f)
+Text("Hover me")
+Box(Modifier.fillMaxWidth(width).height(2.dp).background(primary))"""),
+        ),
+    ),
+    ExampleCategory(
+        id = "blinking-cursor",
+        title = "Blinking Cursor",
+        subtitle = "Text input cursor blinking animation",
+        accentLabel = "TEXT",
+        tags = listOf("text", "cursor", "blink", "input"),
+        examples = listOf(
+            component("blinkingCursor", "Cursor alpha oscillates between 0 and 1",
+                """// Blinking cursor
+val alpha by infiniteTransition.animateFloat(1f, 0f)
+Row { Text("Type here"); Box(Modifier.alpha(alpha).width(2.dp)) }"""),
+        ),
+    ),
+    ExampleCategory(
+        id = "spring-chip",
+        title = "Spring Chip",
+        subtitle = "Tag/chip appearing with bouncy spring scale",
+        accentLabel = "UI",
+        tags = listOf("chip", "tag", "spring", "scale"),
+        examples = listOf(
+            component("springChip", "Chip scales from 0 to 1 with bouncy spring",
+                """// Spring chip
+val scale by animateFloatAsState(if (visible) 1f else 0f,
+    spring(dampingRatio = DampingRatioMediumBouncy))
+Surface(Modifier.graphicsLayer { scaleX = scale; scaleY = scale }) {
+    Text("New ✨")
+}"""),
+        ),
+    ),
+    ExampleCategory(
+        id = "coin-flip",
+        title = "Coin Flip",
+        subtitle = "Spinning coin with front/back toggle",
+        accentLabel = "3D",
+        tags = listOf("3d", "coin", "flip", "rotation"),
+        examples = listOf(
+            component("coinFlip", "Circle rotates on Y axis showing front 'H' or back 'T'",
+                """// Coin flip
+val rotY by infiniteTransition.animateFloat(0f, 360f)
+val showFront = cos(rotY * PI / 180) > 0
+Surface(CircleShape, Modifier.graphicsLayer { rotationY = rotY }) {
+    Text(if (showFront) "H" else "T")
+}"""),
+        ),
+    ),
+    ExampleCategory(
+        id = "dna-helix",
+        title = "DNA Double Helix",
+        subtitle = "Double helix animation with sin/cos dots",
+        accentLabel = "CANVAS",
+        tags = listOf("canvas", "dna", "helix", "science"),
+        examples = listOf(
+            component("dnaHelix", "Two rows of dots connected by lines forming a double helix",
+                """// DNA helix
+Canvas(Modifier) {
+    for (i in 0..16) {
+        val y1 = cy + sin(phase + i * 0.5f) * amp
+        val y2 = cy - sin(phase + i * 0.5f) * amp
+        drawCircle(primary, 4.dp, Offset(x, y1))
+        drawCircle(secondary, 4.dp, Offset(x, y2))
+    }
+}"""),
+        ),
+    ),
+    ExampleCategory(
+        id = "animated-pie",
+        title = "Animated Pie Chart",
+        subtitle = "Pie chart segments drawing in with easing",
+        accentLabel = "CANVAS",
+        tags = listOf("canvas", "chart", "pie", "data"),
+        examples = listOf(
+            component("animatedPie", "Pie chart arcs sweep from 0 to full with easing",
+                """// Animated pie chart
+Canvas(Modifier) {
+    slices.forEach { (fraction, color) ->
+        drawArc(color, startAngle, sweep = 360f * fraction * progress)
+    }
+}"""),
+        ),
+    ),
+    ExampleCategory(
+        id = "pendulum-swing",
+        title = "Pendulum Swing",
+        subtitle = "Pendulum swinging back and forth",
+        accentLabel = "PHYSICS",
+        tags = listOf("physics", "pendulum", "swing", "canvas"),
+        examples = listOf(
+            component("pendulumSwing", "Canvas rod + bob swinging with sine motion",
+                """// Pendulum
+val angle by infiniteTransition.animateFloat(-30f, 30f)
+Canvas(Modifier) {
+    val bobX = pivotX + sin(radians) * rodLen
+    drawLine(pivot, bob); drawCircle(bob)
+}"""),
+        ),
+    ),
+    ExampleCategory(
+        id = "bouncing-ball",
+        title = "Bouncing Ball",
+        subtitle = "Ball bouncing with gravity and shadow",
+        accentLabel = "PHYSICS",
+        tags = listOf("physics", "bounce", "ball", "gravity"),
+        examples = listOf(
+            component("bouncingBall", "Ball bounces with quadratic easing simulating gravity + shadow",
+                """// Bouncing ball
+val y = bounce * bounce // quadratic for gravity
+Canvas(Modifier) {
+    drawOval(shadow, bottom); drawCircle(ball, ballY)
+}"""),
+        ),
+    ),
+    ExampleCategory(
+        id = "circular-menu",
+        title = "Circular Menu",
+        subtitle = "Menu items orbit out from center with spring",
+        accentLabel = "UI",
+        tags = listOf("menu", "circular", "orbit", "spring"),
+        examples = listOf(
+            component("circularMenu", "5 items orbit out from center button with spring radius",
+                """// Circular menu
+val radius by animateFloatAsState(if (expanded) 35f else 0f, spring())
+repeat(5) { i ->
+    val angle = i * 72f - 90f
+    Dot(Modifier.offset(cos(angle) * radius, sin(angle) * radius))
+}"""),
+        ),
+    ),
+    ExampleCategory(
+        id = "animated-bar-chart",
+        title = "Animated Bar Chart",
+        subtitle = "Bar chart bars growing from 0 with spring bounce",
+        accentLabel = "CANVAS",
+        tags = listOf("chart", "bar", "data", "spring"),
+        examples = listOf(
+            component("animatedBarChart", "Bars animate height from 0 to target with spring",
+                """// Bar chart
+bars.forEach { target ->
+    val h by animateFloatAsState(if (animate) target * 60f else 0f,
+        spring(dampingRatio = LowBouncy))
+    Box(Modifier.height(h.dp).width(16.dp))
+}"""),
+        ),
+    ),
+    ExampleCategory(
+        id = "slinky-spring",
+        title = "Slinky Spring",
+        subtitle = "Spring coil stretching and compressing",
+        accentLabel = "PHYSICS",
+        tags = listOf("physics", "spring", "slinky", "canvas"),
+        examples = listOf(
+            component("slinkySpring", "Canvas lines drawing coils that stretch/compress",
+                """// Slinky spring
+val stretch by infiniteTransition.animateFloat(0.4f, 1f)
+Canvas(Modifier) {
+    repeat(coils) { drawLine(left, right, strokeWidth = 2.dp) }
+}"""),
+        ),
+    ),
+    ExampleCategory(
+        id = "typewriter-delete",
+        title = "Typewriter with Delete",
+        subtitle = "Text types forward then deletes backward",
+        accentLabel = "TEXT",
+        tags = listOf("text", "typewriter", "delete", "cursor"),
+        examples = listOf(
+            component("typewriterDelete", "Characters appear one by one, then delete in reverse",
+                """// Typewriter delete
+for (i in 1..text.length) { count = i; delay(100) }
+delay(1500)
+for (i in text.length downTo 0) { count = i; delay(60) }"""),
+        ),
+    ),
+    ExampleCategory(
+        id = "animated-gradient-text",
+        title = "Animated Gradient Text",
+        subtitle = "Text with scrolling gradient color",
+        accentLabel = "TEXT",
+        tags = listOf("text", "gradient", "color", "effect"),
+        examples = listOf(
+            component("animatedGradientText", "Horizontal gradient shifts across text with brush",
+                """// Animated gradient text
+val offset by infiniteTransition.animateFloat(0f, 300f)
+Text(text, style = style.copy(
+    brush = Brush.horizontalGradient(colors, startX = offset)
+))"""),
         ),
     ),
 )

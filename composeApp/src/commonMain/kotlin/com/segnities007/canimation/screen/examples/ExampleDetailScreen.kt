@@ -225,6 +225,35 @@ private fun ExampleCard(
                 "verticalTicker" -> ComponentDemoSurface { VerticalTicker() }
                 "heartbeatLine" -> ComponentDemoSurface { HeartbeatLine() }
                 "expandingSearch" -> ComponentDemoSurface { ExpandingSearch() }
+                // Batch 3
+                "cardBorderTrace" -> ComponentDemoSurface { CardBorderTrace() }
+                "cardLiftHover" -> ComponentDemoSurface { CardLiftHover() }
+                "cardGradientBorder" -> ComponentDemoSurface { CardGradientBorder() }
+                "cardExpandCollapse" -> ComponentDemoSurface(height = 140) { CardExpandCollapse() }
+                "cardParallaxTilt" -> ComponentDemoSurface { CardParallaxTilt() }
+                "cardGlassmorphism" -> ComponentDemoSurface { CardGlassmorphism() }
+                "cardRevealWipe" -> ComponentDemoSurface { CardRevealWipe() }
+                "cardFanStack" -> ComponentDemoSurface { CardFanStack() }
+                "cardMagneticSnap" -> ComponentDemoSurface { CardMagneticSnap() }
+                "notificationBadge" -> ComponentDemoSurface { NotificationBadge() }
+                "glowProgress" -> ComponentDemoSurface { GlowProgressBar() }
+                "springToggle" -> ComponentDemoSurface { SpringToggle() }
+                "pulseRadar" -> ComponentDemoSurface { PulseRadar() }
+                "morphProgress" -> ComponentDemoSurface { MorphProgressIndicator() }
+                "stepIndicator" -> ComponentDemoSurface { StepIndicator() }
+                "animatedUnderline" -> ComponentDemoSurface { AnimatedUnderlineText() }
+                "blinkingCursor" -> ComponentDemoSurface { BlinkingCursor() }
+                "springChip" -> ComponentDemoSurface { SpringChip() }
+                "coinFlip" -> ComponentDemoSurface { CoinFlip() }
+                "dnaHelix" -> ComponentDemoSurface { DnaHelix() }
+                "animatedPie" -> ComponentDemoSurface { AnimatedPieChart() }
+                "pendulumSwing" -> ComponentDemoSurface { PendulumSwing() }
+                "bouncingBall" -> ComponentDemoSurface { BouncingBall() }
+                "circularMenu" -> ComponentDemoSurface { CircularMenu() }
+                "animatedBarChart" -> ComponentDemoSurface { AnimatedBarChart() }
+                "slinkySpring" -> ComponentDemoSurface { SlinkySpring() }
+                "typewriterDelete" -> ComponentDemoSurface { TypewriterDelete() }
+                "animatedGradientText" -> ComponentDemoSurface { AnimatedGradientText() }
                 else -> VisibilityDemo(example.preset, index)
             }
 

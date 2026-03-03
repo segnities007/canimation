@@ -1,6 +1,7 @@
 package com.segnities007.canimation.screen.examples
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -15,14 +16,23 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.FilterChip
+import androidx.compose.material3.FilterChipDefaults
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -38,11 +48,34 @@ import io.github.canimation.core.CanimationProvider
 import io.github.canimation.core.CanimationVisibility
 import kotlinx.coroutines.delay
 
+private val accentLabels = listOf(
+    "ALL", "ENTRANCE", "EMPHASIS", "PATTERN", "INTERACTION",
+    "CARD", "TEXT", "LOADING", "CANVAS", "PHYSICS",
+    "3D", "UI", "SPECIAL", "MATERIAL", "DIRECTION",
+)
+
 @Composable
 fun ExamplesScreen(
     onCategoryClick: (String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
+    var searchQuery by remember { mutableStateOf("") }
+    var selectedTag by remember { mutableStateOf("ALL") }
+
+    val filteredCategories by remember(searchQuery, selectedTag) {
+        derivedStateOf {
+            exampleCategories.filter { cat ->
+                val matchesSearch = searchQuery.isBlank() ||
+                    cat.title.contains(searchQuery, ignoreCase = true) ||
+                    cat.subtitle.contains(searchQuery, ignoreCase = true) ||
+                    cat.accentLabel.contains(searchQuery, ignoreCase = true) ||
+                    cat.tags.any { it.contains(searchQuery, ignoreCase = true) }
+                val matchesTag = selectedTag == "ALL" || cat.accentLabel == selectedTag
+                matchesSearch && matchesTag
+            }
+        }
+    }
+
     CanimationProvider(policy = CanimationPolicy.AlwaysFull) {
         Box(
             modifier = modifier.fillMaxSize(),
@@ -62,7 +95,7 @@ fun ExamplesScreen(
                 item(span = { GridItemSpan(maxLineSpan) }) {
                     Column(
                         modifier = Modifier.padding(bottom = 8.dp),
-                        verticalArrangement = Arrangement.spacedBy(8.dp),
+                        verticalArrangement = Arrangement.spacedBy(12.dp),
                     ) {
                         Text(
                             text = "EXAMPLES",
@@ -80,11 +113,67 @@ fun ExamplesScreen(
                             style = MaterialTheme.typography.bodyMedium,
                             color = MaterialTheme.colorScheme.onSurfaceVariant,
                         )
+
+                        // Search bar
+                        OutlinedTextField(
+                            value = searchQuery,
+                            onValueChange = { searchQuery = it },
+                            placeholder = { Text("Search animations...") },
+                            leadingIcon = {
+                                Icon(
+                                    Icons.Default.Search,
+                                    contentDescription = "Search",
+                                    tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                                )
+                            },
+                            singleLine = true,
+                            shape = RoundedCornerShape(12.dp),
+                            colors = OutlinedTextFieldDefaults.colors(
+                                focusedBorderColor = MaterialTheme.colorScheme.primary,
+                                unfocusedBorderColor = MaterialTheme.colorScheme.outline,
+                                focusedContainerColor = MaterialTheme.colorScheme.surface,
+                                unfocusedContainerColor = MaterialTheme.colorScheme.surface,
+                            ),
+                            modifier = Modifier.fillMaxWidth(),
+                        )
+
+                        // Tag filter chips
+                        Row(
+                            horizontalArrangement = Arrangement.spacedBy(8.dp),
+                            modifier = Modifier.horizontalScroll(rememberScrollState()),
+                        ) {
+                            accentLabels.forEach { label ->
+                                FilterChip(
+                                    selected = selectedTag == label,
+                                    onClick = { selectedTag = if (selectedTag == label) "ALL" else label },
+                                    label = {
+                                        Text(
+                                            text = label,
+                                            style = MaterialTheme.typography.labelSmall,
+                                            fontWeight = if (selectedTag == label) FontWeight.Bold else FontWeight.Normal,
+                                        )
+                                    },
+                                    colors = FilterChipDefaults.filterChipColors(
+                                        selectedContainerColor = MaterialTheme.colorScheme.primaryContainer,
+                                        selectedLabelColor = MaterialTheme.colorScheme.onPrimaryContainer,
+                                    ),
+                                )
+                            }
+                        }
+
+                        // Results count
+                        if (searchQuery.isNotBlank() || selectedTag != "ALL") {
+                            Text(
+                                text = "${filteredCategories.size} categories found",
+                                style = MaterialTheme.typography.labelSmall,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                            )
+                        }
                     }
                 }
 
                 // Category cards
-                items(exampleCategories, key = { it.id }) { category ->
+                items(filteredCategories, key = { it.id }) { category ->
                     CategoryCard(
                         category = category,
                         onClick = { onCategoryClick(category.id) },
@@ -128,7 +217,6 @@ private fun CategoryCard(
             ) {
                 val isComponent = category.examples.firstOrNull()?.demoType in standaloneDemoTypes
                 if (isComponent) {
-                    // Render actual component animation (scaled down) for standalone categories
                     Box(
                         modifier = Modifier
                             .fillMaxWidth()
@@ -252,6 +340,17 @@ private val standaloneDemoTypes = setOf(
     "rollingDigits", "springChain", "glitchText", "expandingRings",
     "stackedCards", "countdownTimer", "verticalTicker", "heartbeatLine",
     "expandingSearch",
+    // Batch 3
+    "cardBorderTrace", "cardLiftHover", "cardGradientBorder",
+    "cardExpandCollapse", "cardParallaxTilt", "cardGlassmorphism",
+    "cardRevealWipe", "cardFanStack", "cardMagneticSnap",
+    "notificationBadge", "glowProgress", "springToggle",
+    "pulseRadar", "morphProgress", "stepIndicator",
+    "animatedUnderline", "blinkingCursor", "springChip",
+    "coinFlip", "dnaHelix", "animatedPie",
+    "pendulumSwing", "bouncingBall", "circularMenu",
+    "animatedBarChart", "slinkySpring", "typewriterDelete",
+    "animatedGradientText",
 )
 
 @Composable
@@ -308,5 +407,34 @@ private fun ComponentPreviewCell(demoType: String) {
         "verticalTicker" -> VerticalTicker()
         "heartbeatLine" -> HeartbeatLine()
         "expandingSearch" -> ExpandingSearch()
+        // Batch 3
+        "cardBorderTrace" -> CardBorderTrace()
+        "cardLiftHover" -> CardLiftHover()
+        "cardGradientBorder" -> CardGradientBorder()
+        "cardExpandCollapse" -> CardExpandCollapse()
+        "cardParallaxTilt" -> CardParallaxTilt()
+        "cardGlassmorphism" -> CardGlassmorphism()
+        "cardRevealWipe" -> CardRevealWipe()
+        "cardFanStack" -> CardFanStack()
+        "cardMagneticSnap" -> CardMagneticSnap()
+        "notificationBadge" -> NotificationBadge()
+        "glowProgress" -> GlowProgressBar()
+        "springToggle" -> SpringToggle()
+        "pulseRadar" -> PulseRadar()
+        "morphProgress" -> MorphProgressIndicator()
+        "stepIndicator" -> StepIndicator()
+        "animatedUnderline" -> AnimatedUnderlineText()
+        "blinkingCursor" -> BlinkingCursor()
+        "springChip" -> SpringChip()
+        "coinFlip" -> CoinFlip()
+        "dnaHelix" -> DnaHelix()
+        "animatedPie" -> AnimatedPieChart()
+        "pendulumSwing" -> PendulumSwing()
+        "bouncingBall" -> BouncingBall()
+        "circularMenu" -> CircularMenu()
+        "animatedBarChart" -> AnimatedBarChart()
+        "slinkySpring" -> SlinkySpring()
+        "typewriterDelete" -> TypewriterDelete()
+        "animatedGradientText" -> AnimatedGradientText()
     }
 }

@@ -21,6 +21,9 @@ data object DiagnosticsRoute
 data object TokenReferenceRoute
 
 @Serializable
+data object DocsRoute
+
+@Serializable
 data object ExamplesRoute
 
 @Serializable

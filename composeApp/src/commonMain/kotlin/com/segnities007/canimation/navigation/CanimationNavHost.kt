@@ -14,6 +14,7 @@ import androidx.navigation.toRoute
 import com.segnities007.canimation.screen.A11yDemoScreen
 import com.segnities007.canimation.screen.CustomSpecLabScreen
 import com.segnities007.canimation.screen.DiagnosticsScreen
+import com.segnities007.canimation.screen.DocsScreen
 import com.segnities007.canimation.screen.HomeScreen
 import com.segnities007.canimation.screen.PresetGalleryScreen
 import com.segnities007.canimation.screen.TokenReferenceScreen
@@ -54,10 +55,12 @@ fun CanimationNavHost(
                         "diagnostics" -> navController.navigate(DiagnosticsRoute)
                         "tokens" -> navController.navigate(TokenReferenceRoute)
                         "examples" -> navController.navigate(ExamplesRoute)
+                        "docs" -> navController.navigate(DocsRoute)
                     }
                 },
             )
         }
+        composable<DocsRoute> { DocsScreen() }
         composable<PresetGalleryRoute> { PresetGalleryScreen() }
         composable<CustomSpecLabRoute> { CustomSpecLabScreen() }
         composable<A11yDemoRoute> { A11yDemoScreen() }

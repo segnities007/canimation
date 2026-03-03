@@ -147,11 +147,11 @@ private fun HeroSection(stage: Int, presetCount: Int, onNavigate: (String) -> Un
                 Spacer(Modifier.height(12.dp))
 
                 Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-                    Button(onClick = { onNavigate("presets") }) {
+                    Button(onClick = { onNavigate("docs") }) {
                         Text("Get Started")
                     }
-                    FilledTonalButton(onClick = { onNavigate("tokens") }) {
-                        Text("Documentation")
+                    FilledTonalButton(onClick = { onNavigate("examples") }) {
+                        Text("Examples")
                     }
                 }
             }
