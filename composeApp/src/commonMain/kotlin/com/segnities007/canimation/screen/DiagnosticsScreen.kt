@@ -21,6 +21,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import io.github.canimation.core.CanimationPreset
 import io.github.canimation.core.canimationEmphasize
@@ -39,11 +40,7 @@ fun DiagnosticsScreen(modifier: Modifier = Modifier) {
         Text(
             text = "Diagnostics",
             style = MaterialTheme.typography.headlineMedium,
-        )
-        Text(
-            text = "Real-time performance overlay showing FPS, p95 frame time, and jank count.",
-            style = MaterialTheme.typography.bodyMedium,
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
+            fontWeight = FontWeight.Bold,
         )
 
         // Overlay toggle

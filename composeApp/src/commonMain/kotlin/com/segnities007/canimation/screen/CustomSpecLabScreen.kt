@@ -10,12 +10,14 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Slider
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -25,6 +27,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.segnities007.canimation.component.PresetSelector
 import io.github.canimation.core.CanimationDpRange
@@ -60,11 +65,7 @@ fun CustomSpecLabScreen(modifier: Modifier = Modifier) {
         Text(
             text = "Custom Spec Lab",
             style = MaterialTheme.typography.headlineMedium,
-        )
-        Text(
-            text = "Adjust parameters to build a custom CanimationSpec and see it in action.",
-            style = MaterialTheme.typography.bodyMedium,
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
+            fontWeight = FontWeight.Bold,
         )
 
         // Duration slider
@@ -165,27 +166,26 @@ fun CustomSpecLabScreen(modifier: Modifier = Modifier) {
         }
 
         // Generated code display
-        Card(
+        Surface(
+            shape = RoundedCornerShape(12.dp),
+            color = Color(0xFF1E1E2E),
             modifier = Modifier.fillMaxWidth(),
-            colors = CardDefaults.cardColors(
-                containerColor = MaterialTheme.colorScheme.surface,
-            ),
         ) {
-            Column(modifier = Modifier.padding(16.dp)) {
-                Text("Generated Spec", style = MaterialTheme.typography.titleSmall)
-                Text(
-                    text = buildString {
-                        appendLine("CanimationSpec(")
-                        appendLine("    durationMs = ${durationMs.toInt()},")
-                        appendLine("    easing = EasingTokens.Default.standard,")
-                        appendLine("    alpha = CanimationRange(${alphaFrom}f, ${alphaTo}f),")
-                        if (offsetY != 0f) appendLine("    offsetY = CanimationDpRange(${offsetY.toInt()}.dp, 0.dp),")
-                        if (scaleFactor != 1f) appendLine("    scale = CanimationRange(${scaleFactor}f, 1f),")
-                        append(")")
-                    },
-                    style = MaterialTheme.typography.bodySmall,
-                )
-            }
+            Text(
+                text = buildString {
+                    appendLine("CanimationSpec(")
+                    appendLine("    durationMs = ${durationMs.toInt()},")
+                    appendLine("    easing = EasingTokens.Default.standard,")
+                    appendLine("    alpha = CanimationRange(${alphaFrom}f, ${alphaTo}f),")
+                    if (offsetY != 0f) appendLine("    offsetY = CanimationDpRange(${offsetY.toInt()}.dp, 0.dp),")
+                    if (scaleFactor != 1f) appendLine("    scale = CanimationRange(${scaleFactor}f, 1f),")
+                    append(")")
+                },
+                modifier = Modifier.padding(20.dp),
+                fontFamily = FontFamily.Monospace,
+                style = MaterialTheme.typography.bodySmall,
+                color = Color(0xFFCDD6F4),
+            )
         }
     }
 }

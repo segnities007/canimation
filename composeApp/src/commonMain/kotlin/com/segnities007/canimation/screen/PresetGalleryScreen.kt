@@ -42,6 +42,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalClipboardManager
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.text.font.FontWeight
 import com.segnities007.canimation.component.AnimationShowcase
 import com.segnities007.canimation.component.PresetPreviewTuning
 import com.segnities007.canimation.component.tunePresetSpec
@@ -126,13 +127,9 @@ fun PresetGalleryScreen(modifier: Modifier = Modifier) {
         item(span = { GridItemSpan(maxLineSpan) }) {
             Column(modifier = Modifier.padding(horizontal = 4.dp, vertical = 8.dp)) {
                 Text(
-                    text = "Preset Gallery",
+                    text = "${CanimationPreset.entries.size} Presets",
                     style = MaterialTheme.typography.headlineSmall,
-                )
-                Text(
-                    text = "${CanimationPreset.entries.size} presets · Inspired by Motion.dev, Animate.css, Framer Motion, AnimXYZ, Material Motion",
-                    style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    fontWeight = FontWeight.Bold,
                 )
                 FlowRow(
                     horizontalArrangement = Arrangement.spacedBy(8.dp),
@@ -147,21 +144,6 @@ fun PresetGalleryScreen(modifier: Modifier = Modifier) {
                         )
                     }
                 }
-                Text(
-                    text = "Showing ${filteredPresets.size} presets",
-                    style = MaterialTheme.typography.labelSmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                )
-                Text(
-                    text = "Preview policy: AlwaysFull (visibility-first)",
-                    style = MaterialTheme.typography.labelSmall,
-                    color = MaterialTheme.colorScheme.primary,
-                )
-                Text(
-                    text = "Tap a preset card to open a copyable code sample.",
-                    style = MaterialTheme.typography.labelSmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                )
             }
         }
 
@@ -262,11 +244,6 @@ fun PresetGalleryScreen(modifier: Modifier = Modifier) {
                 verticalArrangement = Arrangement.spacedBy(8.dp),
             ) {
                 Text("Similar preset comparison", style = MaterialTheme.typography.titleSmall)
-                Text(
-                    text = "Tap any preset card to set the left preset and open its code sample. Then choose a similar preset to compare differences.",
-                    style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                )
 
                 FlowRow(
                     horizontalArrangement = Arrangement.spacedBy(8.dp),

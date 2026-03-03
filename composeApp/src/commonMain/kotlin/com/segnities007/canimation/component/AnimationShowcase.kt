@@ -148,22 +148,11 @@ fun AnimationShowcase(
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 maxLines = 2,
             )
-            Text(
-                text = "full ${previewSpec.fullEnter.durationMs}ms / reduced ${previewSpec.reducedEnter.durationMs}ms",
-                style = MaterialTheme.typography.labelSmall,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-            )
-            Text(
-                text = channelSummary(previewSpec.fullEnter),
-                style = MaterialTheme.typography.labelSmall,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                maxLines = 1,
-            )
 
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(96.dp),
+                    .height(120.dp),
                 contentAlignment = Alignment.Center,
             ) {
                 Box(
@@ -199,11 +188,6 @@ fun AnimationShowcase(
                     }
                 }
             }
-            Text(
-                text = "Tap card to view/copy code sample",
-                style = MaterialTheme.typography.labelSmall,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-            )
         }
     }
 }
