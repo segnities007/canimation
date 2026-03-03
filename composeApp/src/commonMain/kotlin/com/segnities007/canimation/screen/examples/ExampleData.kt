@@ -21,7 +21,15 @@ data class ExampleCategory(
  *   "hover" = hover/pointer to trigger emphasis,
  *   "longPress" = long press to trigger emphasis,
  *   "toggle" = tap to switch between A/B states,
- *   "drag" = horizontal drag to reveal/hide
+ *   "drag" = horizontal drag to reveal/hide,
+ *   --- Standalone component animations (no CanimationPreset) ---
+ *   "counter" / "numberTrend" / "typewriter" / "scramble" /
+ *   "wavy" / "pulseDots" / "jumpingDots" / "shimmer" /
+ *   "tabs" / "accordion" / "flipCard" / "colorMorph" /
+ *   "progressRing" / "holdConfirm" / "splitReveal" /
+ *   "staggerCenter" / "ticker" / "bouncyList" /
+ *   "spinner" / "ripple" / "swipeActions" / "tiltCard" /
+ *   "priceSwitcher" / "engagementStats" / "multiStateBadge"
  */
 data class ExampleItem(
     val preset: CanimationPreset,
@@ -209,6 +217,18 @@ Box(Modifier.draggable(
     ) { content() }
 }""",
     "drag",
+)
+
+// Helper for standalone component animations (no CanimationPreset needed)
+private fun component(
+    demoType: String,
+    desc: String,
+    code: String,
+) = ExampleItem(
+    preset = CanimationPreset.Fade, // unused placeholder
+    description = desc,
+    codeSnippet = code,
+    demoType = demoType,
 )
 
 val exampleCategories: List<ExampleCategory> = listOf(
@@ -666,6 +686,433 @@ val exampleCategories: List<ExampleCategory> = listOf(
             drag(CanimationPreset.Pop, "Swipe to pop"),
             drag(CanimationPreset.BounceIn, "Swipe to bounce"),
             drag(CanimationPreset.SpringIn, "Swipe to spring"),
+        ),
+    ),
+
+    // ===== STANDALONE COMPONENT ANIMATIONS =====
+    // These are unique animation patterns beyond enter/exit/emphasis presets.
+    // Inspired by Motion.dev examples, Animate.css, and modern web animation patterns.
+
+    ExampleCategory(
+        id = "text-counter",
+        title = "Number Counter",
+        subtitle = "Animated counting with eased interpolation",
+        accentLabel = "TEXT",
+        examples = listOf(
+            component("counter", "Counting up to 1234 with easing",
+                """// Animated counter
+var current by remember { mutableIntStateOf(0) }
+LaunchedEffect(Unit) {
+    for (i in 1..60) {
+        val eased = FastOutSlowInEasing.transform(i / 60f)
+        current = (1234 * eased).roundToInt()
+        delay(33)
+    }
+}
+Text(current.toString())"""),
+        ),
+    ),
+    ExampleCategory(
+        id = "text-trend",
+        title = "Number Trend",
+        subtitle = "Live value with up/down color indicators",
+        accentLabel = "TEXT",
+        examples = listOf(
+            component("numberTrend", "Value trending up and down with color",
+                """// Number trend with color
+val color by animateColorAsState(
+    if (diff > 0) Color.Green else Color.Red,
+    tween(400)
+)
+Text(value.toString(), color = color)"""),
+        ),
+    ),
+    ExampleCategory(
+        id = "text-typewriter",
+        title = "Typewriter",
+        subtitle = "Character-by-character text reveal with cursor",
+        accentLabel = "TEXT",
+        examples = listOf(
+            component("typewriter", "Text appearing one character at a time",
+                """// Typewriter effect
+var count by remember { mutableIntStateOf(0) }
+LaunchedEffect(Unit) {
+    for (i in 1..text.length) {
+        count = i; delay(80)
+    }
+}
+Text(text.take(count) + "▌")"""),
+        ),
+    ),
+    ExampleCategory(
+        id = "text-scramble",
+        title = "Scramble Text",
+        subtitle = "Random characters resolving to final text",
+        accentLabel = "TEXT",
+        examples = listOf(
+            component("scramble", "Characters scramble then resolve left to right",
+                """// Scramble text
+repeat(3) {
+    display = resolved + randomChars(remaining)
+    delay(40)
+}
+resolvedCount++"""),
+        ),
+    ),
+    ExampleCategory(
+        id = "text-wavy",
+        title = "Wavy Text",
+        subtitle = "Sine-wave motion on each character",
+        accentLabel = "TEXT",
+        examples = listOf(
+            component("wavy", "Characters oscillating in a sine wave",
+                """// Wavy text
+val phase by infiniteTransition.animateFloat(0f, 2π)
+text.forEachIndexed { i, ch ->
+    val y = sin(phase + i * 0.5f) * 8f
+    Text(ch, Modifier.offset { IntOffset(0, -y.roundToInt()) })
+}"""),
+        ),
+    ),
+    ExampleCategory(
+        id = "text-split",
+        title = "Split Text Reveal",
+        subtitle = "Words appearing one by one with spring physics",
+        accentLabel = "TEXT",
+        examples = listOf(
+            component("splitReveal", "Words fade in sequentially from below",
+                """// Split text reveal
+words.forEachIndexed { i, word ->
+    val alpha by animateFloatAsState(if (i < count) 1f else 0f)
+    val y by animateFloatAsState(if (i < count) 0f else 20f, spring())
+    Text(word, Modifier.graphicsLayer { alpha; translationY = y })
+}"""),
+        ),
+    ),
+    ExampleCategory(
+        id = "text-price",
+        title = "Price Switcher",
+        subtitle = "Animated price toggle between monthly/yearly",
+        accentLabel = "TEXT",
+        examples = listOf(
+            component("priceSwitcher", "Price animates between $9.99/mo and $99.99/yr",
+                """// Price switcher
+val anim = remember { Animatable(9.99f) }
+LaunchedEffect(isMonthly) {
+    anim.animateTo(if (isMonthly) 9.99f else 99.99f, spring())
+}
+Text("${'$'}%.2f".format(anim.value))"""),
+        ),
+    ),
+    ExampleCategory(
+        id = "text-engagement",
+        title = "Engagement Stats",
+        subtitle = "Staggered animated counters (views, likes, shares)",
+        accentLabel = "TEXT",
+        examples = listOf(
+            component("engagementStats", "Multiple stats counting up with stagger delay",
+                """// Engagement stats
+stats.forEachIndexed { i, (label, target) ->
+    LaunchedEffect(Unit) {
+        delay(i * 200L)
+        for (step in 1..40) {
+            current = (target * eased(step/40f)).roundToInt()
+            delay(30)
+        }
+    }
+    Text("12.8K")
+}"""),
+        ),
+    ),
+    ExampleCategory(
+        id = "loading-dots",
+        title = "Pulse Dots",
+        subtitle = "Loading dots with staggered scale pulsing",
+        accentLabel = "LOADING",
+        examples = listOf(
+            component("pulseDots", "Three dots pulsing with staggered timing",
+                """// Pulse loading dots
+repeat(3) { i ->
+    val scale by infiniteTransition.animateFloat(
+        0.5f, 1.2f,
+        infiniteRepeatable(tween(600, delayMillis = i * 200), Reverse)
+    )
+    Box(Modifier.size(12.dp).scale(scale).clip(CircleShape).background(primary))
+}"""),
+        ),
+    ),
+    ExampleCategory(
+        id = "loading-jumping",
+        title = "Jumping Dots",
+        subtitle = "Dots bouncing up and down in sequence",
+        accentLabel = "LOADING",
+        examples = listOf(
+            component("jumpingDots", "Dots with staggered vertical bounce",
+                """// Jumping dots
+repeat(3) { i ->
+    val y by infiniteTransition.animateFloat(
+        0f, -16f,
+        infiniteRepeatable(tween(400, delayMillis = i * 150), Reverse)
+    )
+    Box(Modifier.offset { IntOffset(0, y.roundToInt()) }.clip(CircleShape))
+}"""),
+        ),
+    ),
+    ExampleCategory(
+        id = "loading-shimmer",
+        title = "Shimmer / Skeleton",
+        subtitle = "Skeleton loading with animated gradient sweep",
+        accentLabel = "LOADING",
+        examples = listOf(
+            component("shimmer", "Gradient sweeps across skeleton placeholder",
+                """// Shimmer effect
+val offset by infiniteTransition.animateFloat(-1f, 2f,
+    infiniteRepeatable(tween(1500, easing = LinearEasing)))
+Box(Modifier.background(Brush.horizontalGradient(
+    listOf(base, shimmer, base),
+    startX = offset * 300f,
+    endX = (offset + 1f) * 300f,
+)))"""),
+        ),
+    ),
+    ExampleCategory(
+        id = "loading-spinner",
+        title = "Loading Spinner",
+        subtitle = "Rotating arc spinner with continuous animation",
+        accentLabel = "LOADING",
+        examples = listOf(
+            component("spinner", "Arc spinner with smooth rotation",
+                """// Spinner
+val rotation by infiniteTransition.animateFloat(0f, 360f,
+    infiniteRepeatable(tween(1000, easing = LinearEasing)))
+Canvas(Modifier.size(48.dp).graphicsLayer { rotationZ = rotation }) {
+    drawArc(color, 0f, 90f, false, style = Stroke(4.dp.toPx()))
+}"""),
+        ),
+    ),
+    ExampleCategory(
+        id = "loading-ripple",
+        title = "Loading Ripple",
+        subtitle = "Expanding concentric circles fading out",
+        accentLabel = "LOADING",
+        examples = listOf(
+            component("ripple", "Three circles expanding and fading with stagger",
+                """// Ripple loading
+repeat(3) { i ->
+    val scale by infiniteTransition.animateFloat(0.3f, 1.5f,
+        infiniteRepeatable(tween(1500, delayMillis = i * 500)))
+    val alpha by infiniteTransition.animateFloat(0.6f, 0f, ...)
+    Box(Modifier.scale(scale).alpha(alpha).clip(CircleShape).background(primary))
+}"""),
+        ),
+    ),
+    ExampleCategory(
+        id = "loading-progress",
+        title = "Progress Ring",
+        subtitle = "Circular progress indicator filling up",
+        accentLabel = "LOADING",
+        examples = listOf(
+            component("progressRing", "Circular ring with percentage counting",
+                """// Progress ring
+Canvas(Modifier.size(64.dp)) {
+    drawArc(gray, 0f, 360f, false, style = Stroke(6.dp.toPx()))
+    drawArc(primary, -90f, 360f * progress, false,
+        style = Stroke(6.dp.toPx(), cap = StrokeCap.Round))
+}
+Text("${'$'}{(progress * 100).roundToInt()}%")"""),
+        ),
+    ),
+    ExampleCategory(
+        id = "interactive-tabs",
+        title = "Animated Tabs",
+        subtitle = "Smooth tab selection with spring indicator",
+        accentLabel = "INTERACTION",
+        examples = listOf(
+            component("tabs", "Tab indicator transitions with spring physics",
+                """// Animated tabs
+val bgAlpha by animateFloatAsState(
+    if (selected) 1f else 0f,
+    spring(stiffness = StiffnessLow)
+)
+Surface(color = primary.copy(alpha = bgAlpha * 0.15f)) {
+    Text(label)
+}"""),
+        ),
+    ),
+    ExampleCategory(
+        id = "interactive-accordion",
+        title = "Accordion",
+        subtitle = "Expandable/collapsible sections with animation",
+        accentLabel = "INTERACTION",
+        examples = listOf(
+            component("accordion", "FAQ-style expand/collapse with spring",
+                """// Accordion
+val contentHeight by animateFloatAsState(
+    if (expanded) 1f else 0f,
+    spring(stiffness = StiffnessMediumLow)
+)
+Column {
+    Text(question)
+    if (contentHeight > 0.01f)
+        Text(answer, Modifier.graphicsLayer { scaleY = contentHeight })
+}"""),
+        ),
+    ),
+    ExampleCategory(
+        id = "interactive-flip",
+        title = "Flip Card",
+        subtitle = "3D card flip with front/back sides",
+        accentLabel = "3D",
+        examples = listOf(
+            component("flipCard", "Card rotates 180° to reveal back side",
+                """// 3D flip card
+val rotationY by animateFloatAsState(
+    if (flipped) 180f else 0f,
+    spring(stiffness = StiffnessLow)
+)
+Box(Modifier.graphicsLayer {
+    this.rotationY = rotationY
+    cameraDistance = 12f * density
+}) {
+    Surface { Text(if (rotationY <= 90f) "Front" else "Back") }
+}"""),
+        ),
+    ),
+    ExampleCategory(
+        id = "interactive-color",
+        title = "Color Morph",
+        subtitle = "Smooth color transitions between states",
+        accentLabel = "INTERACTION",
+        examples = listOf(
+            component("colorMorph", "Background cycles through colors with smooth transition",
+                """// Color morph
+val color by animateColorAsState(
+    colors[index], tween(800)
+)
+Box(Modifier.background(color).clip(RoundedCornerShape(16.dp)))"""),
+        ),
+    ),
+    ExampleCategory(
+        id = "interactive-hold",
+        title = "Hold to Confirm",
+        subtitle = "Press-and-hold progress confirmation",
+        accentLabel = "INTERACTION",
+        examples = listOf(
+            component("holdConfirm", "Progress bar fills while button is held",
+                """// Hold to confirm
+Box(Modifier.pointerInput(Unit) {
+    detectTapGestures(onLongPress = { confirmed = true })
+}) {
+    Box(Modifier.fillMaxWidth(progress).background(green))
+    Text(if (confirmed) "✓ Confirmed" else "Hold to confirm")
+}"""),
+        ),
+    ),
+    ExampleCategory(
+        id = "interactive-swipe",
+        title = "Swipe Actions",
+        subtitle = "Swipe to reveal action behind list item",
+        accentLabel = "INTERACTION",
+        examples = listOf(
+            component("swipeActions", "Item slides right to reveal action underneath",
+                """// Swipe actions
+val offsetX by animateFloatAsState(
+    if (swiped) 80f else 0f,
+    spring(stiffness = StiffnessMediumLow)
+)
+Box {
+    Box { Text("✓ Done") } // action behind
+    Surface(Modifier.graphicsLayer { translationX = offsetX }) {
+        Text("Swipe me →")
+    }
+}"""),
+        ),
+    ),
+    ExampleCategory(
+        id = "interactive-tilt",
+        title = "Tilt Card",
+        subtitle = "3D perspective tilt effect",
+        accentLabel = "3D",
+        examples = listOf(
+            component("tiltCard", "Card tilts in 3D with continuous motion",
+                """// 3D tilt card
+val rotX by infiniteTransition.animateFloat(-8f, 8f,
+    infiniteRepeatable(tween(3000), Reverse))
+val rotY by infiniteTransition.animateFloat(8f, -8f,
+    infiniteRepeatable(tween(4000), Reverse))
+Surface(Modifier.graphicsLayer {
+    rotationX = rotX; rotationY = rotY
+    cameraDistance = 12f * density
+})"""),
+        ),
+    ),
+    ExampleCategory(
+        id = "stagger-center",
+        title = "Stagger From Center",
+        subtitle = "Items reveal outward from the center",
+        accentLabel = "PATTERN",
+        examples = listOf(
+            component("staggerCenter", "Bars appear from center outward with spring bounce",
+                """// Stagger from center
+val center = count / 2
+repeat(count) { i ->
+    val dist = abs(i - center)
+    LaunchedEffect(visible) {
+        if (visible) { delay(dist * 100L); itemVisible = true }
+    }
+    Box(Modifier.scale(animateFloat(if (itemVisible) 1f else 0f, spring())))
+}"""),
+        ),
+    ),
+    ExampleCategory(
+        id = "ticker-marquee",
+        title = "Ticker / Marquee",
+        subtitle = "Continuous horizontal scrolling text",
+        accentLabel = "PATTERN",
+        examples = listOf(
+            component("ticker", "Text scrolls infinitely from right to left",
+                """// Ticker marquee
+val offset by infiniteTransition.animateFloat(0f, -1f,
+    infiniteRepeatable(tween(8000, easing = LinearEasing)))
+Text(repeatedText, Modifier.offset {
+    IntOffset((offset * totalWidth).roundToInt(), 0)
+})"""),
+        ),
+    ),
+    ExampleCategory(
+        id = "bouncy-list",
+        title = "Bouncy Spring List",
+        subtitle = "List items slide in with spring physics bounce",
+        accentLabel = "PATTERN",
+        examples = listOf(
+            component("bouncyList", "Items spring in from the left with stagger",
+                """// Bouncy spring list
+items.forEachIndexed { i, label ->
+    val x by animateFloatAsState(
+        if (visible) 0f else -200f,
+        spring(DampingRatioMediumBouncy, StiffnessLow)
+    )
+    Surface(Modifier.graphicsLayer { translationX = x }) {
+        Text(label)
+    }
+}"""),
+        ),
+    ),
+    ExampleCategory(
+        id = "badge-state",
+        title = "Multi-state Badge",
+        subtitle = "Badge transitions between states with bounce",
+        accentLabel = "PATTERN",
+        examples = listOf(
+            component("multiStateBadge", "Badge color and label change with spring scale",
+                """// Multi-state badge
+val color by animateColorAsState(states[i].color, tween(400))
+val scale = remember { Animatable(1f) }
+LaunchedEffect(stateIndex) {
+    scale.animateTo(1.2f, spring(stiffness = StiffnessHigh))
+    scale.animateTo(1f, spring(dampingRatio = DampingRatioMediumBouncy))
+}
+Surface(color = color, Modifier.scale(scale.value)) { Text(label) }"""),
         ),
     ),
 )

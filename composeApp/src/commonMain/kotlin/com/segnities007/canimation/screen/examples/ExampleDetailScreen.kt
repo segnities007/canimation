@@ -173,6 +173,32 @@ private fun ExampleCard(
                 "longPress" -> LongPressDemo(example.preset)
                 "toggle" -> ToggleDemo(example.preset)
                 "drag" -> DragDemo(example.preset)
+                // Standalone component animations
+                "counter" -> ComponentDemoSurface { AnimatedCounter() }
+                "numberTrend" -> ComponentDemoSurface { NumberTrend() }
+                "typewriter" -> ComponentDemoSurface { TypewriterText() }
+                "scramble" -> ComponentDemoSurface { ScrambleText() }
+                "wavy" -> ComponentDemoSurface { WavyText() }
+                "pulseDots" -> ComponentDemoSurface { PulseLoadingDots() }
+                "jumpingDots" -> ComponentDemoSurface { JumpingDots() }
+                "shimmer" -> ComponentDemoSurface(height = 140) { ShimmerEffect() }
+                "tabs" -> ComponentDemoSurface { AnimatedTabs() }
+                "accordion" -> ComponentDemoSurface(height = 200) { ExpandableAccordion() }
+                "flipCard" -> ComponentDemoSurface { FlipCard() }
+                "colorMorph" -> ComponentDemoSurface { ColorMorph() }
+                "progressRing" -> ComponentDemoSurface { ProgressRing() }
+                "holdConfirm" -> ComponentDemoSurface { HoldToConfirm() }
+                "splitReveal" -> ComponentDemoSurface { SplitTextReveal() }
+                "staggerCenter" -> ComponentDemoSurface { StaggerFromCenter() }
+                "ticker" -> ComponentDemoSurface { TickerMarquee() }
+                "bouncyList" -> ComponentDemoSurface(height = 220) { BouncySpringList() }
+                "spinner" -> ComponentDemoSurface { LoadingSpinner() }
+                "ripple" -> ComponentDemoSurface { LoadingRipple() }
+                "swipeActions" -> ComponentDemoSurface { SwipeActions() }
+                "tiltCard" -> ComponentDemoSurface { TiltCard() }
+                "priceSwitcher" -> ComponentDemoSurface { PriceSwitcher() }
+                "engagementStats" -> ComponentDemoSurface { EngagementStats() }
+                "multiStateBadge" -> ComponentDemoSurface { MultiStateBadge() }
                 else -> VisibilityDemo(example.preset, index)
             }
 
@@ -661,6 +687,32 @@ private fun DragDemo(preset: CanimationPreset) {
             ) {
                 DemoBox()
             }
+        }
+    }
+}
+
+@Composable
+private fun ComponentDemoSurface(
+    height: Int = 120,
+    content: @Composable () -> Unit,
+) {
+    Surface(
+        shape = RoundedCornerShape(12.dp),
+        color = MaterialTheme.colorScheme.surface,
+        border = BorderStroke(
+            1.dp,
+            MaterialTheme.colorScheme.tertiary.copy(alpha = 0.3f),
+        ),
+        modifier = Modifier.fillMaxWidth(),
+    ) {
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(height.dp)
+                .padding(8.dp),
+            contentAlignment = Alignment.Center,
+        ) {
+            content()
         }
     }
 }
