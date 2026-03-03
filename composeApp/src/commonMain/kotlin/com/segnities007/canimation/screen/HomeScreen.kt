@@ -1,5 +1,8 @@
 package com.segnities007.canimation.screen
 
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.background
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -9,14 +12,12 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -30,15 +31,29 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import io.github.canimation.core.CanimationPolicy
 import io.github.canimation.core.CanimationPreset
+import io.github.canimation.core.CanimationProvider
 import io.github.canimation.core.CanimationVisibility
 import io.github.canimation.core.canimationEnter
 import kotlinx.coroutines.delay
+
+// Motion.dev-inspired dark palette
+private val DarkBg = Color(0xFF0A0A12)
+private val DarkSurface = Color(0xFF12121A)
+private val DarkCard = Color(0xFF1A1A24)
+private val AccentPurple = Color(0xFF9B8AFF)
+private val AccentCyan = Color(0xFF64D8CB)
+private val TextPrimary = Color(0xFFE8E6F0)
+private val TextSecondary = Color(0xFFA0A0B0)
+private val TextMuted = Color(0xFF6A6A7A)
+private val CardBorder = Color(0xFF2A2A3A)
 
 @Composable
 fun HomeScreen(
@@ -49,79 +64,99 @@ fun HomeScreen(
     var stage by remember { mutableIntStateOf(-1) }
 
     LaunchedEffect(Unit) {
-        for (i in 0..6) {
-            delay(80)
-            stage = i
-        }
+        for (i in 0..11) { delay(70); stage = i }
     }
 
-    Column(
-        modifier = modifier
-            .fillMaxSize()
-            .verticalScroll(rememberScrollState()),
-    ) {
-        Box(Modifier.canimationEnter(visible = stage >= 0, preset = CanimationPreset.FadeUp)) {
-            HeroSection(presetCount = presetCount, onNavigate = onNavigate)
-        }
-        Box(Modifier.canimationEnter(visible = stage >= 1, preset = CanimationPreset.FadeUp)) {
-            CodeExampleSection()
-        }
-        Box(Modifier.canimationEnter(visible = stage >= 2, preset = CanimationPreset.FadeUp)) {
-            InteractiveDemoSection()
-        }
-        Box(Modifier.canimationEnter(visible = stage >= 3, preset = CanimationPreset.FadeUp)) {
-            FeaturesSection(presetCount = presetCount)
-        }
-        Box(Modifier.canimationEnter(visible = stage >= 4, preset = CanimationPreset.FadeUp)) {
+    CanimationProvider(policy = CanimationPolicy.AlwaysFull) {
+        Column(
+            modifier = modifier
+                .fillMaxSize()
+                .background(DarkBg)
+                .verticalScroll(rememberScrollState()),
+        ) {
+            HeroSection(stage = stage, presetCount = presetCount, onNavigate = onNavigate)
+            LiveShowcaseSection(stage = stage)
+            FeaturesSection(stage = stage, presetCount = presetCount)
+            CodeExampleSection(stage = stage)
             ExploreSection(presetCount = presetCount, onNavigate = onNavigate)
-        }
-        Box(Modifier.canimationEnter(visible = stage >= 5, preset = CanimationPreset.FadeUp)) {
-            PlatformSection()
-        }
-        Box(Modifier.canimationEnter(visible = stage >= 6, preset = CanimationPreset.FadeUp)) {
+            PlatformSection(stage = stage)
             FooterSection()
         }
     }
 }
 
+// ======= HERO =======
+
 @Composable
-private fun HeroSection(presetCount: Int, onNavigate: (String) -> Unit) {
-    Surface(
-        color = MaterialTheme.colorScheme.primaryContainer,
-        modifier = Modifier.fillMaxWidth(),
+private fun HeroSection(stage: Int, presetCount: Int, onNavigate: (String) -> Unit) {
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(
+                Brush.verticalGradient(listOf(Color(0xFF0E0E1A), DarkBg)),
+            ),
     ) {
-        Box(
-            modifier = Modifier.fillMaxWidth(),
-            contentAlignment = Alignment.Center,
-        ) {
+        Box(Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
             Column(
                 modifier = Modifier
-                    .widthIn(max = 800.dp)
-                    .padding(horizontal = 32.dp, vertical = 56.dp),
+                    .widthIn(max = 900.dp)
+                    .padding(horizontal = 32.dp, vertical = 80.dp),
                 horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.spacedBy(16.dp),
+                verticalArrangement = Arrangement.spacedBy(20.dp),
             ) {
-                Text(
-                    text = "canimation",
-                    style = MaterialTheme.typography.displayLarge,
-                    fontWeight = FontWeight.Bold,
-                    color = MaterialTheme.colorScheme.onPrimaryContainer,
-                )
-                Text(
-                    text = "Accessible. Composable. Multiplatform.",
-                    style = MaterialTheme.typography.headlineMedium,
-                    color = MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.85f),
-                    textAlign = TextAlign.Center,
-                )
-                Text(
-                    text = "Token-based animations with $presetCount presets, accessibility support, " +
-                        "diagnostics overlay, and deterministic testing — " +
-                        "across Android, iOS, Desktop, and Web.",
-                    style = MaterialTheme.typography.bodyLarge,
-                    color = MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.7f),
-                    textAlign = TextAlign.Center,
-                )
-                Spacer(Modifier.height(8.dp))
+                Box(Modifier.canimationEnter(visible = stage >= 0, preset = CanimationPreset.FadeUp)) {
+                    Text(
+                        text = "canimation",
+                        style = MaterialTheme.typography.displayLarge.copy(
+                            brush = Brush.linearGradient(
+                                listOf(AccentPurple, Color(0xFFD0BCFF), AccentCyan),
+                            ),
+                        ),
+                        fontWeight = FontWeight.Bold,
+                    )
+                }
+
+                Box(Modifier.canimationEnter(visible = stage >= 1, preset = CanimationPreset.FadeUp)) {
+                    Text(
+                        text = "A production-grade animation library\nfor Compose Multiplatform.",
+                        style = MaterialTheme.typography.headlineSmall,
+                        color = TextSecondary,
+                        textAlign = TextAlign.Center,
+                    )
+                }
+
+                Spacer(Modifier.height(4.dp))
+
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    modifier = Modifier.horizontalScroll(rememberScrollState()),
+                ) {
+                    listOf(
+                        "$presetCount Presets" to CanimationPreset.FadeUp,
+                        "Accessible" to CanimationPreset.ScaleIn,
+                        "Multiplatform" to CanimationPreset.BounceIn,
+                        "Testable" to CanimationPreset.SlideLeft,
+                        "Open Source" to CanimationPreset.Pop,
+                    ).forEachIndexed { index, (label, preset) ->
+                        Box(Modifier.canimationEnter(visible = stage >= 2 + index, preset = preset)) {
+                            Surface(
+                                shape = RoundedCornerShape(20.dp),
+                                color = Color.White.copy(alpha = 0.06f),
+                                border = BorderStroke(1.dp, CardBorder),
+                            ) {
+                                Text(
+                                    text = label,
+                                    modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
+                                    style = MaterialTheme.typography.labelMedium,
+                                    color = TextSecondary,
+                                )
+                            }
+                        }
+                    }
+                }
+
+                Spacer(Modifier.height(12.dp))
+
                 Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
                     Button(onClick = { onNavigate("presets") }) {
                         Text("Get Started")
@@ -135,85 +170,48 @@ private fun HeroSection(presetCount: Int, onNavigate: (String) -> Unit) {
     }
 }
 
-@Composable
-private fun CodeExampleSection() {
-    CenteredSection {
-        Text(
-            text = "Quick Start",
-            style = MaterialTheme.typography.headlineSmall,
-            fontWeight = FontWeight.Bold,
-        )
-        Surface(
-            shape = RoundedCornerShape(12.dp),
-            color = Color(0xFF1E1E2E),
-            modifier = Modifier.fillMaxWidth(),
-        ) {
-            Text(
-                text = """
-                    |@Composable
-                    |fun App() {
-                    |    CanimationProvider(
-                    |        policy = CanimationPolicy.SystemAware
-                    |    ) {
-                    |        CanimationVisibility(
-                    |            visible = isVisible,
-                    |            enterPreset = CanimationPreset.FadeUp,
-                    |        ) {
-                    |            Text("Hello, canimation!")
-                    |        }
-                    |    }
-                    |}
-                """.trimMargin(),
-                modifier = Modifier.padding(20.dp),
-                fontFamily = FontFamily.Monospace,
-                style = MaterialTheme.typography.bodyMedium,
-                color = Color(0xFFCDD6F4),
-            )
-        }
-    }
-}
+// ======= LIVE SHOWCASE =======
 
 @Composable
-private fun InteractiveDemoSection() {
-    Surface(
-        color = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.3f),
-        modifier = Modifier.fillMaxWidth(),
-    ) {
-        CenteredSection {
-            Text(
-                text = "Try it",
-                style = MaterialTheme.typography.headlineSmall,
-                fontWeight = FontWeight.Bold,
-            )
-            var heroVisible by remember { mutableStateOf(false) }
-            ElevatedCard(
-                onClick = { heroVisible = !heroVisible },
-                modifier = Modifier.fillMaxWidth(),
-            ) {
-                Column(
-                    modifier = Modifier.padding(24.dp),
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                ) {
+private fun LiveShowcaseSection(stage: Int) {
+    Box(modifier = Modifier.fillMaxWidth().background(DarkSurface)) {
+        DarkCenteredSection {
+            Box(Modifier.canimationEnter(visible = stage >= 7, preset = CanimationPreset.FadeUp)) {
+                Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                     Text(
-                        "Tap to preview FadeUp animation",
-                        style = MaterialTheme.typography.labelLarge,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        text = "SHOWCASE",
+                        style = MaterialTheme.typography.labelMedium,
+                        color = AccentPurple,
+                        fontWeight = FontWeight.Bold,
                     )
-                    Spacer(Modifier.height(16.dp))
-                    CanimationVisibility(
-                        visible = heroVisible,
-                        enterPreset = CanimationPreset.FadeUp,
+                    Text(
+                        text = "Animations that move",
+                        style = MaterialTheme.typography.headlineMedium,
+                        fontWeight = FontWeight.Bold,
+                        color = TextPrimary,
+                    )
+                }
+            }
+
+            Spacer(Modifier.height(8.dp))
+
+            val showcasePresets = listOf(
+                CanimationPreset.FadeUp, CanimationPreset.ScaleIn,
+                CanimationPreset.BounceIn, CanimationPreset.SlideLeft,
+                CanimationPreset.SpinIn, CanimationPreset.FlipIn,
+                CanimationPreset.SpringIn, CanimationPreset.EmphasizedEntry,
+            )
+            Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
+                showcasePresets.chunked(4).forEachIndexed { rowIndex, row ->
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.spacedBy(12.dp),
                     ) {
-                        Card(
-                            colors = CardDefaults.cardColors(
-                                containerColor = MaterialTheme.colorScheme.primaryContainer,
-                            ),
-                        ) {
-                            Text(
-                                text = "Hello, canimation! 🎬",
-                                modifier = Modifier.padding(16.dp),
-                                style = MaterialTheme.typography.titleLarge,
-                                color = MaterialTheme.colorScheme.onPrimaryContainer,
+                        row.forEachIndexed { colIndex, preset ->
+                            AnimatedPresetCell(
+                                preset = preset,
+                                delayMs = ((rowIndex * 4 + colIndex) * 250L),
+                                modifier = Modifier.weight(1f),
                             )
                         }
                     }
@@ -224,190 +222,403 @@ private fun InteractiveDemoSection() {
 }
 
 @Composable
-private fun FeaturesSection(presetCount: Int) {
-    CenteredSection {
-        Text(
-            text = "Why canimation?",
-            style = MaterialTheme.typography.headlineSmall,
-            fontWeight = FontWeight.Bold,
-        )
+private fun AnimatedPresetCell(
+    preset: CanimationPreset,
+    delayMs: Long,
+    modifier: Modifier = Modifier,
+) {
+    var visible by remember { mutableStateOf(false) }
+
+    LaunchedEffect(Unit) {
+        delay(delayMs)
+        while (true) {
+            visible = true
+            delay(2200)
+            visible = false
+            delay(600)
+        }
+    }
+
+    Surface(
+        shape = RoundedCornerShape(12.dp),
+        color = DarkCard,
+        border = BorderStroke(1.dp, CardBorder),
+        modifier = modifier,
+    ) {
+        Column(
+            modifier = Modifier.padding(12.dp).height(100.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+        ) {
+            Box(
+                modifier = Modifier.weight(1f).fillMaxWidth(),
+                contentAlignment = Alignment.Center,
+            ) {
+                CanimationVisibility(
+                    visible = visible,
+                    enterPreset = preset,
+                    exitPreset = preset,
+                ) {
+                    Surface(
+                        shape = RoundedCornerShape(8.dp),
+                        color = AccentPurple.copy(alpha = 0.25f),
+                        border = BorderStroke(1.dp, AccentPurple.copy(alpha = 0.4f)),
+                    ) {
+                        Box(Modifier.size(40.dp))
+                    }
+                }
+            }
+            Text(
+                text = preset.name,
+                style = MaterialTheme.typography.labelSmall,
+                color = TextMuted,
+            )
+        }
+    }
+}
+
+// ======= FEATURES WITH LIVE DEMOS =======
+
+@Composable
+private fun FeaturesSection(stage: Int, presetCount: Int) {
+    DarkCenteredSection {
+        Box(Modifier.canimationEnter(visible = stage >= 8, preset = CanimationPreset.FadeUp)) {
+            Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                Text(
+                    text = "WHY CANIMATION",
+                    style = MaterialTheme.typography.labelMedium,
+                    color = AccentCyan,
+                    fontWeight = FontWeight.Bold,
+                )
+                Text(
+                    text = "Built for every use case",
+                    style = MaterialTheme.typography.headlineMedium,
+                    fontWeight = FontWeight.Bold,
+                    color = TextPrimary,
+                )
+            }
+        }
+
+        Spacer(Modifier.height(8.dp))
+
         Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(12.dp),
             ) {
-                FeatureCard("🎯", "$presetCount Presets", "Bounce, Spring, Flip, Material Motion and more — with Full & Reduced variants", Modifier.weight(1f))
-                FeatureCard("♿", "Accessibility First", "System-aware Reduce Motion with Full, Reduced, and Off policies", Modifier.weight(1f))
-                FeatureCard("📊", "Diagnostics", "Real-time FPS, frame time, and jank overlay for performance monitoring", Modifier.weight(1f))
+                LiveFeatureCard(
+                    title = "$presetCount Presets",
+                    subtitle = "Bounce, Spring, Flip, Material Motion and more",
+                    demoPreset = CanimationPreset.BounceIn,
+                    demoDelay = 0L,
+                    modifier = Modifier.weight(1f),
+                )
+                LiveFeatureCard(
+                    title = "Accessibility",
+                    subtitle = "System-aware Reduce Motion policies",
+                    demoPreset = CanimationPreset.GentleFade,
+                    demoDelay = 400L,
+                    modifier = Modifier.weight(1f),
+                )
+                LiveFeatureCard(
+                    title = "Diagnostics",
+                    subtitle = "Real-time FPS and jank overlay",
+                    demoPreset = CanimationPreset.Pulse,
+                    demoDelay = 800L,
+                    modifier = Modifier.weight(1f),
+                )
             }
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(12.dp),
             ) {
-                FeatureCard("🧪", "Testable", "Deterministic test clock for reliable animation assertions", Modifier.weight(1f))
-                FeatureCard("🌍", "Multiplatform", "Android, iOS, Desktop (JVM), and Web (JS / WasmJs) support", Modifier.weight(1f))
-                FeatureCard("🎛️", "Token System", "Duration, easing, distance, and spring tokens for consistent design", Modifier.weight(1f))
+                LiveFeatureCard(
+                    title = "Testable",
+                    subtitle = "Deterministic test clock for assertions",
+                    demoPreset = CanimationPreset.Snap,
+                    demoDelay = 200L,
+                    modifier = Modifier.weight(1f),
+                )
+                LiveFeatureCard(
+                    title = "Multiplatform",
+                    subtitle = "Android, iOS, Desktop, and Web",
+                    demoPreset = CanimationPreset.SpringSlideUp,
+                    demoDelay = 600L,
+                    modifier = Modifier.weight(1f),
+                )
+                LiveFeatureCard(
+                    title = "Token System",
+                    subtitle = "Duration, easing, distance, spring tokens",
+                    demoPreset = CanimationPreset.SharedAxisY,
+                    demoDelay = 1000L,
+                    modifier = Modifier.weight(1f),
+                )
             }
         }
     }
 }
 
 @Composable
-private fun ExploreSection(presetCount: Int, onNavigate: (String) -> Unit) {
-    Surface(
-        color = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.3f),
-        modifier = Modifier.fillMaxWidth(),
-    ) {
-        CenteredSection {
-            Text(
-                text = "Explore",
-                style = MaterialTheme.typography.headlineSmall,
-                fontWeight = FontWeight.Bold,
-            )
-            listOf(
-                Triple("Preset Gallery", "All $presetCount built-in presets with interactive demos", "presets"),
-                Triple("Custom Spec Lab", "Build your own animation specs with live preview", "custom"),
-                Triple("Accessibility", "Full / Reduced / Off motion policy comparison", "a11y"),
-                Triple("Diagnostics", "FPS overlay and performance monitoring tools", "diagnostics"),
-                Triple("Token Reference", "Duration, easing, distance, and spring design tokens", "tokens"),
-            ).forEach { (title, description, route) ->
-                ElevatedCard(
-                    onClick = { onNavigate(route) },
-                    modifier = Modifier.fillMaxWidth(),
-                ) {
-                    Row(
-                        modifier = Modifier.padding(20.dp),
-                        verticalAlignment = Alignment.CenterVertically,
-                    ) {
-                        Column(modifier = Modifier.weight(1f)) {
-                            Text(
-                                text = title,
-                                style = MaterialTheme.typography.titleMedium,
-                                fontWeight = FontWeight.Bold,
-                            )
-                            Text(
-                                text = description,
-                                style = MaterialTheme.typography.bodyMedium,
-                                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                            )
-                        }
-                        Text(
-                            "→",
-                            style = MaterialTheme.typography.titleLarge,
-                            color = MaterialTheme.colorScheme.primary,
-                        )
-                    }
-                }
-            }
-        }
-    }
-}
-
-@Composable
-private fun PlatformSection() {
-    Box(
-        modifier = Modifier.fillMaxWidth(),
-        contentAlignment = Alignment.Center,
-    ) {
-        Column(
-            modifier = Modifier
-                .widthIn(max = 800.dp)
-                .padding(horizontal = 32.dp, vertical = 48.dp),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(12.dp),
-        ) {
-            Text(
-                text = "Built for every platform",
-                style = MaterialTheme.typography.headlineSmall,
-                fontWeight = FontWeight.Bold,
-            )
-            Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
-                listOf("Android", "iOS", "Desktop", "Web").forEach { platform ->
-                    Surface(
-                        shape = RoundedCornerShape(8.dp),
-                        color = MaterialTheme.colorScheme.secondaryContainer,
-                    ) {
-                        Text(
-                            text = platform,
-                            modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
-                            style = MaterialTheme.typography.labelLarge,
-                            color = MaterialTheme.colorScheme.onSecondaryContainer,
-                        )
-                    }
-                }
-            }
-        }
-    }
-}
-
-@Composable
-private fun FooterSection() {
-    Surface(
-        color = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.3f),
-        modifier = Modifier.fillMaxWidth(),
-    ) {
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(vertical = 24.dp),
-            horizontalAlignment = Alignment.CenterHorizontally,
-        ) {
-            Text(
-                text = "Apache License 2.0 · canimation contributors",
-                style = MaterialTheme.typography.bodySmall,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-            )
-        }
-    }
-}
-
-@Composable
-private fun CenteredSection(content: @Composable () -> Unit) {
-    Box(
-        modifier = Modifier.fillMaxWidth(),
-        contentAlignment = Alignment.Center,
-    ) {
-        Column(
-            modifier = Modifier
-                .widthIn(max = 800.dp)
-                .padding(horizontal = 32.dp, vertical = 48.dp),
-            verticalArrangement = Arrangement.spacedBy(16.dp),
-        ) {
-            content()
-        }
-    }
-}
-
-@Composable
-private fun FeatureCard(
-    emoji: String,
+private fun LiveFeatureCard(
     title: String,
-    description: String,
+    subtitle: String,
+    demoPreset: CanimationPreset,
+    demoDelay: Long,
     modifier: Modifier = Modifier,
 ) {
-    Card(
+    var visible by remember { mutableStateOf(false) }
+
+    LaunchedEffect(Unit) {
+        delay(demoDelay + 500L)
+        while (true) { visible = true; delay(2000); visible = false; delay(700) }
+    }
+
+    Surface(
+        shape = RoundedCornerShape(12.dp),
+        color = DarkCard,
+        border = BorderStroke(1.dp, CardBorder),
         modifier = modifier,
-        colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.surfaceVariant,
-        ),
     ) {
-        Column(modifier = Modifier.padding(16.dp)) {
-            Text(
-                text = emoji,
-                style = MaterialTheme.typography.headlineMedium,
-            )
-            Spacer(Modifier.height(8.dp))
+        Column(
+            modifier = Modifier.padding(16.dp),
+            verticalArrangement = Arrangement.spacedBy(12.dp),
+        ) {
+            Box(
+                modifier = Modifier.fillMaxWidth().height(64.dp),
+                contentAlignment = Alignment.Center,
+            ) {
+                CanimationVisibility(
+                    visible = visible,
+                    enterPreset = demoPreset,
+                    exitPreset = demoPreset,
+                ) {
+                    Surface(
+                        shape = RoundedCornerShape(8.dp),
+                        color = AccentPurple.copy(alpha = 0.15f),
+                        border = BorderStroke(1.dp, AccentPurple.copy(alpha = 0.3f)),
+                    ) {
+                        Box(Modifier.size(width = 48.dp, height = 32.dp))
+                    }
+                }
+            }
             Text(
                 text = title,
                 style = MaterialTheme.typography.titleMedium,
                 fontWeight = FontWeight.Bold,
+                color = TextPrimary,
             )
-            Spacer(Modifier.height(4.dp))
             Text(
-                text = description,
-                style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                text = subtitle,
+                style = MaterialTheme.typography.bodySmall,
+                color = TextMuted,
             )
+        }
+    }
+}
+
+// ======= CODE EXAMPLE =======
+
+@Composable
+private fun CodeExampleSection(stage: Int) {
+    Box(modifier = Modifier.fillMaxWidth().background(DarkSurface)) {
+        DarkCenteredSection {
+            Box(Modifier.canimationEnter(visible = stage >= 9, preset = CanimationPreset.FadeUp)) {
+                Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                    Text(
+                        text = "QUICK START",
+                        style = MaterialTheme.typography.labelMedium,
+                        color = AccentPurple,
+                        fontWeight = FontWeight.Bold,
+                    )
+                    Text(
+                        text = "Simple, expressive API",
+                        style = MaterialTheme.typography.headlineMedium,
+                        fontWeight = FontWeight.Bold,
+                        color = TextPrimary,
+                    )
+                }
+            }
+
+            Spacer(Modifier.height(8.dp))
+
+            Surface(
+                shape = RoundedCornerShape(12.dp),
+                color = Color(0xFF0D0D15),
+                border = BorderStroke(1.dp, CardBorder),
+                modifier = Modifier.fillMaxWidth(),
+            ) {
+                Text(
+                    text = """
+                        |@Composable
+                        |fun App() {
+                        |    CanimationProvider(
+                        |        policy = CanimationPolicy.SystemAware
+                        |    ) {
+                        |        CanimationVisibility(
+                        |            visible = isVisible,
+                        |            enterPreset = CanimationPreset.FadeUp,
+                        |        ) {
+                        |            Text("Hello, canimation!")
+                        |        }
+                        |    }
+                        |}
+                    """.trimMargin(),
+                    modifier = Modifier.padding(24.dp),
+                    fontFamily = FontFamily.Monospace,
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = Color(0xFFCDD6F4),
+                )
+            }
+        }
+    }
+}
+
+// ======= EXPLORE =======
+
+@Composable
+private fun ExploreSection(presetCount: Int, onNavigate: (String) -> Unit) {
+    DarkCenteredSection {
+        Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+            Text(
+                text = "EXPLORE",
+                style = MaterialTheme.typography.labelMedium,
+                color = AccentCyan,
+                fontWeight = FontWeight.Bold,
+            )
+            Text(
+                text = "Dive deeper",
+                style = MaterialTheme.typography.headlineMedium,
+                fontWeight = FontWeight.Bold,
+                color = TextPrimary,
+            )
+        }
+
+        Spacer(Modifier.height(8.dp))
+
+        listOf(
+            Triple("Preset Gallery", "All $presetCount built-in presets with interactive demos", "presets"),
+            Triple("Custom Spec Lab", "Build your own animation specs with live preview", "custom"),
+            Triple("Accessibility", "Full / Reduced / Off motion policy comparison", "a11y"),
+            Triple("Diagnostics", "FPS overlay and performance monitoring tools", "diagnostics"),
+            Triple("Token Reference", "Duration, easing, distance, and spring design tokens", "tokens"),
+        ).forEach { (title, description, route) ->
+            Surface(
+                onClick = { onNavigate(route) },
+                shape = RoundedCornerShape(12.dp),
+                color = DarkCard,
+                border = BorderStroke(1.dp, CardBorder),
+                modifier = Modifier.fillMaxWidth(),
+            ) {
+                Row(
+                    modifier = Modifier.padding(20.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    Column(modifier = Modifier.weight(1f)) {
+                        Text(
+                            text = title,
+                            style = MaterialTheme.typography.titleMedium,
+                            fontWeight = FontWeight.Bold,
+                            color = TextPrimary,
+                        )
+                        Spacer(Modifier.height(4.dp))
+                        Text(
+                            text = description,
+                            style = MaterialTheme.typography.bodyMedium,
+                            color = TextMuted,
+                        )
+                    }
+                    Text(
+                        "→",
+                        style = MaterialTheme.typography.titleLarge,
+                        color = AccentPurple,
+                    )
+                }
+            }
+        }
+    }
+}
+
+// ======= PLATFORM =======
+
+@Composable
+private fun PlatformSection(stage: Int) {
+    Box(modifier = Modifier.fillMaxWidth().background(DarkSurface)) {
+        Box(
+            modifier = Modifier.fillMaxWidth(),
+            contentAlignment = Alignment.Center,
+        ) {
+            Column(
+                modifier = Modifier
+                    .widthIn(max = 900.dp)
+                    .padding(horizontal = 32.dp, vertical = 56.dp),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.spacedBy(16.dp),
+            ) {
+                Text(
+                    text = "Built for every platform",
+                    style = MaterialTheme.typography.headlineSmall,
+                    fontWeight = FontWeight.Bold,
+                    color = TextPrimary,
+                )
+                Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+                    listOf("Android", "iOS", "Desktop", "Web").forEachIndexed { index, platform ->
+                        Box(Modifier.canimationEnter(
+                            visible = stage >= 8 + index,
+                            preset = CanimationPreset.BounceIn,
+                        )) {
+                            Surface(
+                                shape = RoundedCornerShape(8.dp),
+                                color = AccentPurple.copy(alpha = 0.1f),
+                                border = BorderStroke(1.dp, AccentPurple.copy(alpha = 0.3f)),
+                            ) {
+                                Text(
+                                    text = platform,
+                                    modifier = Modifier.padding(horizontal = 20.dp, vertical = 10.dp),
+                                    style = MaterialTheme.typography.labelLarge,
+                                    color = AccentPurple,
+                                )
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+// ======= FOOTER =======
+
+@Composable
+private fun FooterSection() {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(DarkBg)
+            .padding(vertical = 32.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+    ) {
+        Text(
+            text = "Apache License 2.0 · canimation contributors",
+            style = MaterialTheme.typography.bodySmall,
+            color = TextMuted,
+        )
+    }
+}
+
+// ======= HELPERS =======
+
+@Composable
+private fun DarkCenteredSection(content: @Composable () -> Unit) {
+    Box(
+        modifier = Modifier.fillMaxWidth(),
+        contentAlignment = Alignment.Center,
+    ) {
+        Column(
+            modifier = Modifier
+                .widthIn(max = 900.dp)
+                .padding(horizontal = 32.dp, vertical = 56.dp),
+            verticalArrangement = Arrangement.spacedBy(16.dp),
+        ) {
+            content()
         }
     }
 }

@@ -4,13 +4,16 @@ html, body {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #FFFBFE;
+    background-color: #1C1B1F;
+}
+
+@media (prefers-color-scheme: light) {
+    html, body {
+        background-color: #FFFBFE;
+    }
 }
 
 @media (prefers-color-scheme: dark) {
-    html, body {
-        background-color: #1C1B1F;
-    }
     #loading svg circle:last-child {
         stroke: #D0BCFF;
     }

@@ -36,7 +36,7 @@ import io.github.canimation.core.CanimationProvider
 @Composable
 fun App() {
     var policy by remember { mutableStateOf<CanimationPolicy>(CanimationPolicy.SystemAware) }
-    var darkOverride by remember { mutableStateOf<Boolean?>(null) }
+    var darkOverride by remember { mutableStateOf<Boolean?>(true) }
     val isDarkMode = darkOverride ?: isSystemInDarkTheme()
 
     CanimationTheme(darkTheme = isDarkMode) {
