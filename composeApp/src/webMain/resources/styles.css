@@ -4,7 +4,7 @@ html, body {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #1C1B1F;
+    background-color: #0A0A12;
 }
 
 @media (prefers-color-scheme: light) {

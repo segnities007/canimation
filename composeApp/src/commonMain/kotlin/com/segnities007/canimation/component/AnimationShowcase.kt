@@ -134,7 +134,7 @@ fun AnimationShowcase(
         border = if (selectedForCompare) {
             BorderStroke(2.dp, MaterialTheme.colorScheme.primary)
         } else {
-            null
+            BorderStroke(1.dp, MaterialTheme.colorScheme.outline)
         },
     ) {
         Column(modifier = Modifier.padding(12.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {

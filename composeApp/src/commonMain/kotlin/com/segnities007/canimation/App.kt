@@ -1,5 +1,6 @@
 package com.segnities007.canimation
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -49,7 +50,7 @@ fun App() {
                 topBar = {
                     Surface(
                         color = MaterialTheme.colorScheme.surface,
-                        shadowElevation = 1.dp,
+                        border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline),
                     ) {
                         Row(
                             modifier = Modifier

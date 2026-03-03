@@ -127,6 +127,12 @@ fun PresetGalleryScreen(modifier: Modifier = Modifier) {
         item(span = { GridItemSpan(maxLineSpan) }) {
             Column(modifier = Modifier.padding(horizontal = 4.dp, vertical = 8.dp)) {
                 Text(
+                    text = "GALLERY",
+                    style = MaterialTheme.typography.labelMedium,
+                    color = MaterialTheme.colorScheme.primary,
+                    fontWeight = FontWeight.Bold,
+                )
+                Text(
                     text = "${CanimationPreset.entries.size} Presets",
                     style = MaterialTheme.typography.headlineSmall,
                     fontWeight = FontWeight.Bold,
@@ -152,8 +158,9 @@ fun PresetGalleryScreen(modifier: Modifier = Modifier) {
             modifier = Modifier
                 .fillMaxWidth(),
             colors = CardDefaults.cardColors(
-                containerColor = MaterialTheme.colorScheme.surface,
+                containerColor = MaterialTheme.colorScheme.surfaceVariant,
             ),
+            border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline),
         ) {
             Column(
                 modifier = Modifier.padding(12.dp),
@@ -236,8 +243,9 @@ fun PresetGalleryScreen(modifier: Modifier = Modifier) {
                 .padding(vertical = 2.dp)
                 .fillMaxWidth(),
             colors = CardDefaults.cardColors(
-                containerColor = MaterialTheme.colorScheme.surface,
+                containerColor = MaterialTheme.colorScheme.surfaceVariant,
             ),
+            border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline),
         ) {
             Column(
                 modifier = Modifier.padding(12.dp),
