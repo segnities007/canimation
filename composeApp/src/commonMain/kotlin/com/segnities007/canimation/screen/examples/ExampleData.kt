@@ -1117,4 +1117,364 @@ LaunchedEffect(stateIndex) {
 Surface(color = color, Modifier.scale(scale.value)) { Text(label) }"""),
         ),
     ),
+
+    // ─── New standalone animations (batch 2) ───
+    ExampleCategory(
+        id = "shape-morph",
+        title = "Morphing Shapes",
+        subtitle = "Shape morphs between circle and rounded square",
+        accentLabel = "SHAPE",
+        examples = listOf(
+            component("morphShapes", "Corner radius animates from circle to square and back",
+                """// Morphing shape
+val progress by infiniteTransition.animateFloat(0f, 1f)
+val radius = lerp(50f, 10f, progress)
+Box(Modifier.clip(RoundedCornerShape(radius.percent)))"""),
+        ),
+    ),
+    ExampleCategory(
+        id = "gradient-shift",
+        title = "Gradient Shift",
+        subtitle = "Animated gradient cycling through theme colors",
+        accentLabel = "COLOR",
+        examples = listOf(
+            component("gradientShift", "Horizontal gradient shifts through primary/secondary/tertiary",
+                """// Gradient shift
+val offset by infiniteTransition.animateFloat(0f, 1f)
+Box(Modifier.background(Brush.horizontalGradient(
+    colors, startX = -width * offset
+)))"""),
+        ),
+    ),
+    ExampleCategory(
+        id = "skeleton-loader",
+        title = "Skeleton Loader",
+        subtitle = "Placeholder loading with shimmer sweep",
+        accentLabel = "LOADING",
+        examples = listOf(
+            component("skeletonLoader", "Skeleton bars with translating gradient shimmer",
+                """// Skeleton loader
+val offset by infiniteTransition.animateFloat(-1f, 2f)
+Box(Modifier.background(Brush.horizontalGradient(
+    colors, startX = offset * width
+)))"""),
+        ),
+    ),
+    ExampleCategory(
+        id = "elastic-pull",
+        title = "Elastic Pull",
+        subtitle = "Circle stretches and squashes with spring physics",
+        accentLabel = "PHYSICS",
+        examples = listOf(
+            component("elasticPull", "scaleX/scaleY alternate with spring animation",
+                """// Elastic pull
+val sx by animateFloatAsState(if (phase) 1.3f else 0.8f, spring())
+val sy by animateFloatAsState(if (phase) 0.8f else 1.3f, spring())
+Box(Modifier.graphicsLayer { scaleX = sx; scaleY = sy })"""),
+        ),
+    ),
+    ExampleCategory(
+        id = "parallax-layers",
+        title = "Parallax Layers",
+        subtitle = "Layered elements moving at different speeds",
+        accentLabel = "SCROLL",
+        examples = listOf(
+            component("parallaxLayers", "Three layers with different parallax speed factors",
+                """// Parallax layers
+val phase by infiniteTransition.animateFloat(0f, 2π)
+layers.forEachIndexed { i, color ->
+    Box(Modifier.graphicsLayer {
+        translationX = sin(phase) * speed[i]
+    })
+}"""),
+        ),
+    ),
+    ExampleCategory(
+        id = "orbit-animation",
+        title = "Orbit Animation",
+        subtitle = "Elements orbiting around a center point",
+        accentLabel = "PATTERN",
+        examples = listOf(
+            component("orbitAnim", "Small circles orbit using sin/cos with animated phase",
+                """// Orbit animation
+val angle by infiniteTransition.animateFloat(0f, 360f)
+val x = cos(angle.toRadians()) * radius
+val y = sin(angle.toRadians()) * radius
+Box(Modifier.offset { IntOffset(x, y) })"""),
+        ),
+    ),
+    ExampleCategory(
+        id = "breathing-glow",
+        title = "Breathing Glow",
+        subtitle = "Pulsating glow with sine-based interpolation",
+        accentLabel = "EFFECT",
+        examples = listOf(
+            component("breathingGlow", "Circle pulsates in scale and alpha like breathing",
+                """// Breathing glow
+val phase by infiniteTransition.animateFloat(0f, 2π)
+val scale = 0.8f + sin(phase) * 0.2f
+val alpha = 0.5f + sin(phase) * 0.3f
+Box(Modifier.graphicsLayer { scaleX = scale; alpha = alpha })"""),
+        ),
+    ),
+    ExampleCategory(
+        id = "path-tracer",
+        title = "Path Tracer",
+        subtitle = "Arc drawing from 0° to 360° in a loop",
+        accentLabel = "CANVAS",
+        examples = listOf(
+            component("pathTracer", "Canvas drawArc sweeps from 0° to 360° and resets",
+                """// Path tracer
+val sweep by infiniteTransition.animateFloat(0f, 360f)
+Canvas(Modifier) {
+    drawArc(color, startAngle = -90f, sweepAngle = sweep)
+}"""),
+        ),
+    ),
+    ExampleCategory(
+        id = "text-gradient",
+        title = "Text Gradient Animation",
+        subtitle = "Text with animated horizontal gradient",
+        accentLabel = "TEXT",
+        examples = listOf(
+            component("textGradient", "Gradient brush shifts horizontally across text",
+                """// Text gradient
+val offset by infiniteTransition.animateFloat(-width, width)
+Text(text, style = style.copy(
+    brush = Brush.horizontalGradient(colors, startX = offset)
+))"""),
+        ),
+    ),
+    ExampleCategory(
+        id = "card-shuffle",
+        title = "Card Shuffle",
+        subtitle = "Overlapping cards dealing/shuffling in a cycle",
+        accentLabel = "INTERACTION",
+        examples = listOf(
+            component("cardShuffle", "Cards animate translationX and rotationZ in sequence",
+                """// Card shuffle
+val tx by animateFloatAsState(targets[phase].x)
+val rz by animateFloatAsState(targets[phase].rotation)
+Card(Modifier.graphicsLayer { translationX = tx; rotationZ = rz })"""),
+        ),
+    ),
+    ExampleCategory(
+        id = "confetti",
+        title = "Confetti Explosion",
+        subtitle = "Colored particles burst outward and fade",
+        accentLabel = "EFFECT",
+        examples = listOf(
+            component("confetti", "Particles animate translationX/Y, rotation, and alpha",
+                """// Confetti
+particles.forEach { p ->
+    Box(Modifier.graphicsLayer {
+        translationX = p.x.value; translationY = p.y.value
+        rotationZ = p.rot.value; alpha = p.alpha.value
+    })
+}"""),
+        ),
+    ),
+    ExampleCategory(
+        id = "wave-effect",
+        title = "Wave Effect",
+        subtitle = "Bars oscillating with phase offset",
+        accentLabel = "PATTERN",
+        examples = listOf(
+            component("waveEffect", "Vertical bars with sin-based height creating a wave",
+                """// Wave effect
+bars.forEachIndexed { i, _ ->
+    val h = baseHeight + sin(phase + i * 0.5f) * amplitude
+    Box(Modifier.height(h.dp).width(barWidth))
+}"""),
+        ),
+    ),
+    ExampleCategory(
+        id = "progress-steps",
+        title = "Progress Steps",
+        subtitle = "Sequential step indicator filling in one by one",
+        accentLabel = "NAVIGATION",
+        examples = listOf(
+            component("progressSteps", "Steps fill with color and connecting lines grow",
+                """// Progress steps
+steps.forEachIndexed { i, _ ->
+    val filled = i <= currentStep
+    val color by animateColorAsState(if (filled) primary else outline)
+    Circle(color); if (i < last) Line(progressWidth)
+}"""),
+        ),
+    ),
+    ExampleCategory(
+        id = "liquid-fill",
+        title = "Liquid Fill",
+        subtitle = "Circular container filling from bottom to top",
+        accentLabel = "LOADING",
+        examples = listOf(
+            component("liquidFill", "Clipped box with animated height inside a circle",
+                """// Liquid fill
+val fillHeight by animateFloatAsState(targetLevel * height)
+Box(Modifier.clip(CircleShape)) {
+    Box(Modifier.fillMaxWidth().height(fillHeight.dp)
+        .align(BottomCenter).background(primary))
+}"""),
+        ),
+    ),
+    ExampleCategory(
+        id = "sliding-reveal",
+        title = "Sliding Reveal",
+        subtitle = "Text reveals letter by letter with clipping",
+        accentLabel = "TEXT",
+        examples = listOf(
+            component("slidingReveal", "Text appears as if a curtain is pulled aside via clipToBounds",
+                """// Sliding reveal
+val revealWidth by animateFloatAsState(targetFraction)
+Box(Modifier.fillMaxWidth(revealWidth).clipToBounds()) {
+    Text(text)
+}"""),
+        ),
+    ),
+    ExampleCategory(
+        id = "focus-blur",
+        title = "Focus Blur Effect",
+        subtitle = "Labels cycle through focused/dimmed states",
+        accentLabel = "TEXT",
+        examples = listOf(
+            component("focusBlur", "One label is alpha=1, others fade to 0.2, cycling",
+                """// Focus blur
+labels.forEachIndexed { i, label ->
+    val alpha by animateFloatAsState(if (i == focus) 1f else 0.2f)
+    Text(label, Modifier.alpha(alpha))
+}"""),
+        ),
+    ),
+    ExampleCategory(
+        id = "rolling-digits",
+        title = "Rolling Digits",
+        subtitle = "Slot machine digit roller animation",
+        accentLabel = "TEXT",
+        examples = listOf(
+            component("rollingDigits", "Digits roll using translationY to random targets",
+                """// Rolling digits
+val offset by animateFloatAsState(-target * digitHeight, spring())
+Column(Modifier.graphicsLayer { translationY = offset }) {
+    (0..9).forEach { Text(it.toString()) }
+}"""),
+        ),
+    ),
+    ExampleCategory(
+        id = "spring-chain",
+        title = "Spring Chain",
+        subtitle = "Connected elements with cascading spring animation",
+        accentLabel = "PHYSICS",
+        examples = listOf(
+            component("springChain", "Row of circles with staggered spring offsets",
+                """// Spring chain
+circles.forEachIndexed { i, _ ->
+    val y by animateFloatAsState(
+        targetY, spring(dampingRatio = 0.3f), delay = i * 60
+    )
+    Box(Modifier.offset { IntOffset(0, y.toInt()) })
+}"""),
+        ),
+    ),
+    ExampleCategory(
+        id = "glitch-text",
+        title = "Glitch Text",
+        subtitle = "Text with periodic glitch distortion effect",
+        accentLabel = "TEXT",
+        examples = listOf(
+            component("glitchText", "Text briefly offsets horizontally with shifted copies",
+                """// Glitch text
+if (isGlitching) {
+    Text(text, Modifier.offset(x = 3.dp), color = red.copy(0.7f))
+    Text(text, Modifier.offset(x = -3.dp), color = cyan.copy(0.7f))
+}
+Text(text, Modifier.offset(x = if (isGlitching) 2.dp else 0.dp))"""),
+        ),
+    ),
+    ExampleCategory(
+        id = "expanding-rings",
+        title = "Expanding Rings",
+        subtitle = "Concentric circles expanding with fading alpha",
+        accentLabel = "CANVAS",
+        examples = listOf(
+            component("expandingRings", "Canvas drawCircle with expanding radius and fading alpha",
+                """// Expanding rings
+Canvas(Modifier) {
+    rings.forEach { ring ->
+        drawCircle(primary, radius = ring.radius, alpha = ring.alpha)
+    }
+}"""),
+        ),
+    ),
+    ExampleCategory(
+        id = "stacked-cards",
+        title = "Stacked Cards",
+        subtitle = "Card deck where front card animates away",
+        accentLabel = "INTERACTION",
+        examples = listOf(
+            component("stackedCards", "Front card slides out, next becomes front, cycles",
+                """// Stacked cards
+cards.forEachIndexed { i, card ->
+    val tx by animateFloatAsState(if (i == front) dismissX else offsets[i])
+    Card(Modifier.graphicsLayer { translationX = tx; rotationZ = angles[i] })
+}"""),
+        ),
+    ),
+    ExampleCategory(
+        id = "countdown-timer",
+        title = "Countdown Timer",
+        subtitle = "Circular countdown with decreasing arc",
+        accentLabel = "CANVAS",
+        examples = listOf(
+            component("countdownTimer", "Canvas drawArc showing remaining time as arc progress",
+                """// Countdown timer
+Canvas(Modifier) {
+    drawArc(trackColor, 0f, 360f)
+    drawArc(primary, -90f, sweepAngle = progress * 360f)
+}
+Text(remaining.toString(), Modifier.center())"""),
+        ),
+    ),
+    ExampleCategory(
+        id = "vertical-ticker",
+        title = "Vertical Ticker",
+        subtitle = "Text cycles by sliding vertically",
+        accentLabel = "TEXT",
+        examples = listOf(
+            component("verticalTicker", "Old word slides up out, new word slides up in",
+                """// Vertical ticker
+val offset by animateFloatAsState(-currentIndex * lineHeight)
+Column(Modifier.clipToBounds().height(lineHeight)) {
+    words.forEach { Text(it, Modifier.offset { IntOffset(0, offset) }) }
+}"""),
+        ),
+    ),
+    ExampleCategory(
+        id = "heartbeat-line",
+        title = "Heartbeat Line",
+        subtitle = "ECG-style heartbeat line drawn on canvas",
+        accentLabel = "CANVAS",
+        examples = listOf(
+            component("heartbeatLine", "Canvas drawLine progressing with heartbeat spike pattern",
+                """// Heartbeat line
+Canvas(Modifier) {
+    val path = buildHeartbeatPath(progress, width, height)
+    drawPath(path, primary, style = Stroke(2.dp))
+}"""),
+        ),
+    ),
+    ExampleCategory(
+        id = "expanding-search",
+        title = "Expanding Search",
+        subtitle = "Circle icon expands into a search bar shape",
+        accentLabel = "INTERACTION",
+        examples = listOf(
+            component("expandingSearch", "Animated width from circle to wide bar with spring",
+                """// Expanding search
+val width by animateFloatAsState(
+    if (expanded) 240f else 48f, spring()
+)
+Surface(Modifier.width(width.dp).height(48.dp), shape = CircleShape)"""),
+        ),
+    ),
 )

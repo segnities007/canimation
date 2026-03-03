@@ -244,6 +244,14 @@ private val standaloneDemoTypes = setOf(
     "splitReveal", "staggerCenter", "ticker", "bouncyList",
     "spinner", "ripple", "swipeActions", "tiltCard",
     "priceSwitcher", "engagementStats", "multiStateBadge",
+    // Batch 2
+    "morphShapes", "gradientShift", "skeletonLoader", "elasticPull",
+    "parallaxLayers", "orbitAnim", "breathingGlow", "pathTracer",
+    "textGradient", "cardShuffle", "confetti", "waveEffect",
+    "progressSteps", "liquidFill", "slidingReveal", "focusBlur",
+    "rollingDigits", "springChain", "glitchText", "expandingRings",
+    "stackedCards", "countdownTimer", "verticalTicker", "heartbeatLine",
+    "expandingSearch",
 )
 
 @Composable
@@ -274,5 +282,31 @@ private fun ComponentPreviewCell(demoType: String) {
         "priceSwitcher" -> PriceSwitcher()
         "engagementStats" -> EngagementStats()
         "multiStateBadge" -> MultiStateBadge()
+        // Batch 2
+        "morphShapes" -> MorphingShapes()
+        "gradientShift" -> GradientShift()
+        "skeletonLoader" -> SkeletonLoader()
+        "elasticPull" -> ElasticPull()
+        "parallaxLayers" -> ParallaxLayers()
+        "orbitAnim" -> OrbitAnimation()
+        "breathingGlow" -> BreathingGlow()
+        "pathTracer" -> PathTracer()
+        "textGradient" -> TextGradientAnim()
+        "cardShuffle" -> CardShuffle()
+        "confetti" -> ConfettiExplosion()
+        "waveEffect" -> WaveEffect()
+        "progressSteps" -> ProgressSteps()
+        "liquidFill" -> LiquidFill()
+        "slidingReveal" -> SlidingReveal()
+        "focusBlur" -> FocusBlurEffect()
+        "rollingDigits" -> RollingDigits()
+        "springChain" -> SpringChain()
+        "glitchText" -> GlitchText()
+        "expandingRings" -> ExpandingRings()
+        "stackedCards" -> StackedCards()
+        "countdownTimer" -> CountdownTimer()
+        "verticalTicker" -> VerticalTicker()
+        "heartbeatLine" -> HeartbeatLine()
+        "expandingSearch" -> ExpandingSearch()
     }
 }

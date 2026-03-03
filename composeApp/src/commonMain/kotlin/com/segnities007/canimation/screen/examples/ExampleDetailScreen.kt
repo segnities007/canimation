@@ -199,6 +199,32 @@ private fun ExampleCard(
                 "priceSwitcher" -> ComponentDemoSurface { PriceSwitcher() }
                 "engagementStats" -> ComponentDemoSurface { EngagementStats() }
                 "multiStateBadge" -> ComponentDemoSurface { MultiStateBadge() }
+                // Standalone component animations (batch 2)
+                "morphShapes" -> ComponentDemoSurface { MorphingShapes() }
+                "gradientShift" -> ComponentDemoSurface { GradientShift() }
+                "skeletonLoader" -> ComponentDemoSurface(height = 140) { SkeletonLoader() }
+                "elasticPull" -> ComponentDemoSurface { ElasticPull() }
+                "parallaxLayers" -> ComponentDemoSurface { ParallaxLayers() }
+                "orbitAnim" -> ComponentDemoSurface { OrbitAnimation() }
+                "breathingGlow" -> ComponentDemoSurface { BreathingGlow() }
+                "pathTracer" -> ComponentDemoSurface { PathTracer() }
+                "textGradient" -> ComponentDemoSurface { TextGradientAnim() }
+                "cardShuffle" -> ComponentDemoSurface(height = 200) { CardShuffle() }
+                "confetti" -> ComponentDemoSurface(height = 200) { ConfettiExplosion() }
+                "waveEffect" -> ComponentDemoSurface { WaveEffect() }
+                "progressSteps" -> ComponentDemoSurface { ProgressSteps() }
+                "liquidFill" -> ComponentDemoSurface { LiquidFill() }
+                "slidingReveal" -> ComponentDemoSurface { SlidingReveal() }
+                "focusBlur" -> ComponentDemoSurface { FocusBlurEffect() }
+                "rollingDigits" -> ComponentDemoSurface { RollingDigits() }
+                "springChain" -> ComponentDemoSurface { SpringChain() }
+                "glitchText" -> ComponentDemoSurface { GlitchText() }
+                "expandingRings" -> ComponentDemoSurface { ExpandingRings() }
+                "stackedCards" -> ComponentDemoSurface(height = 200) { StackedCards() }
+                "countdownTimer" -> ComponentDemoSurface { CountdownTimer() }
+                "verticalTicker" -> ComponentDemoSurface { VerticalTicker() }
+                "heartbeatLine" -> ComponentDemoSurface { HeartbeatLine() }
+                "expandingSearch" -> ComponentDemoSurface { ExpandingSearch() }
                 else -> VisibilityDemo(example.preset, index)
             }
 
