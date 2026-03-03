@@ -1,6 +1,7 @@
 package com.segnities007.canimation.screen
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -16,7 +17,9 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -25,11 +28,18 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import io.github.canimation.core.CanimationPreset
 import io.github.canimation.core.canimationEmphasize
+import io.github.canimation.core.canimationEnter
 import io.github.canimation.diagnostics.CanimationDiagnosticsOverlay
+import kotlinx.coroutines.delay
 
 @Composable
 fun DiagnosticsScreen(modifier: Modifier = Modifier) {
     var overlayEnabled by remember { mutableStateOf(true) }
+    var entryStage by remember { mutableIntStateOf(-1) }
+
+    LaunchedEffect(Unit) {
+        for (i in 0..2) { delay(100); entryStage = i }
+    }
 
     Column(
         modifier = modifier
@@ -37,13 +47,16 @@ fun DiagnosticsScreen(modifier: Modifier = Modifier) {
             .padding(24.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
+        Box(Modifier.canimationEnter(visible = entryStage >= 0, preset = CanimationPreset.FadeUp)) {
         Text(
             text = "Diagnostics",
             style = MaterialTheme.typography.headlineMedium,
             fontWeight = FontWeight.Bold,
         )
+        }
 
         // Overlay toggle
+        Box(Modifier.fillMaxWidth().canimationEnter(visible = entryStage >= 1, preset = CanimationPreset.FadeUp)) {
         Card(
             modifier = Modifier.fillMaxWidth(),
             colors = CardDefaults.cardColors(
@@ -59,8 +72,10 @@ fun DiagnosticsScreen(modifier: Modifier = Modifier) {
                 )
             }
         }
+        }
 
         // Stress test grid with diagnostics overlay
+        Box(Modifier.fillMaxWidth().canimationEnter(visible = entryStage >= 2, preset = CanimationPreset.FadeUp)) {
         CanimationDiagnosticsOverlay(
             enabled = overlayEnabled,
             showFps = true,
@@ -102,6 +117,7 @@ fun DiagnosticsScreen(modifier: Modifier = Modifier) {
                     }
                 }
             }
+        }
         }
     }
 }

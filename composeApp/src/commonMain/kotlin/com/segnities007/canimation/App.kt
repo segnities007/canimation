@@ -2,6 +2,7 @@ package com.segnities007.canimation
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.horizontalScroll
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -35,8 +36,10 @@ import io.github.canimation.core.CanimationProvider
 @Composable
 fun App() {
     var policy by remember { mutableStateOf<CanimationPolicy>(CanimationPolicy.SystemAware) }
+    var darkOverride by remember { mutableStateOf<Boolean?>(null) }
+    val isDarkMode = darkOverride ?: isSystemInDarkTheme()
 
-    CanimationTheme {
+    CanimationTheme(darkTheme = isDarkMode) {
         CanimationProvider(policy = policy) {
             val navController = rememberNavController()
             val backStackEntry by navController.currentBackStackEntryAsState()
@@ -99,6 +102,12 @@ fun App() {
                                         )
                                     }
                                 }
+                            }
+                            TextButton(onClick = { darkOverride = !isDarkMode }) {
+                                Text(
+                                    text = if (isDarkMode) "☀️" else "🌙",
+                                    style = MaterialTheme.typography.titleMedium,
+                                )
                             }
                         }
                     }

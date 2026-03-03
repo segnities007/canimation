@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
@@ -33,26 +34,39 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import io.github.canimation.core.CanimationDpRange
 import io.github.canimation.core.CanimationPolicy
+import io.github.canimation.core.CanimationPreset
 import io.github.canimation.core.CanimationProvider
 import io.github.canimation.core.CanimationRange
 import io.github.canimation.core.CanimationSpec
 import io.github.canimation.core.CanimationTokens
 import io.github.canimation.core.CanimationVisibility
 import io.github.canimation.core.EasingTokens
+import io.github.canimation.core.canimationEnter
 import kotlinx.coroutines.delay
 
 @Composable
 fun TokenReferenceScreen(modifier: Modifier = Modifier) {
     val tokens = CanimationTokens.Default
     var replayTrigger by remember { mutableIntStateOf(0) }
+    var entryStage by remember { mutableIntStateOf(-1) }
 
+    LaunchedEffect(Unit) {
+        for (i in 0..4) { delay(100); entryStage = i }
+    }
+
+    Box(
+        modifier = modifier.fillMaxSize(),
+        contentAlignment = Alignment.TopCenter,
+    ) {
     Column(
-        modifier = modifier
-            .fillMaxSize()
+        modifier = Modifier
+            .widthIn(max = 960.dp)
+            .fillMaxWidth()
             .verticalScroll(rememberScrollState())
             .padding(24.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
+        Box(Modifier.fillMaxWidth().canimationEnter(visible = entryStage >= 0, preset = CanimationPreset.FadeUp)) {
         Row(
             modifier = Modifier.fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically,
@@ -67,23 +81,32 @@ fun TokenReferenceScreen(modifier: Modifier = Modifier) {
                 Text("▶ Replay")
             }
         }
+        }
 
         // Duration demo
+        Box(Modifier.fillMaxWidth().canimationEnter(visible = entryStage >= 1, preset = CanimationPreset.FadeUp)) {
         TokenDemoCard(title = "Duration") {
             DurationDemo(replayTrigger = replayTrigger)
         }
+        }
 
         // Easing demo
+        Box(Modifier.fillMaxWidth().canimationEnter(visible = entryStage >= 2, preset = CanimationPreset.FadeUp)) {
         TokenDemoCard(title = "Easing") {
             EasingDemo(replayTrigger = replayTrigger)
         }
+        }
 
         // Distance demo
+        Box(Modifier.fillMaxWidth().canimationEnter(visible = entryStage >= 3, preset = CanimationPreset.FadeUp)) {
         TokenDemoCard(title = "Distance") {
             DistanceDemo(replayTrigger = replayTrigger)
         }
+        }
 
         // Reference tables
+        Box(Modifier.fillMaxWidth().canimationEnter(visible = entryStage >= 4, preset = CanimationPreset.FadeUp)) {
+        Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
         Spacer(Modifier.height(8.dp))
         Text(
             text = "Reference",
@@ -123,6 +146,9 @@ fun TokenReferenceScreen(modifier: Modifier = Modifier) {
             TokenRow("alpha", "→ unchanged")
             TokenRow("easing", "→ decelerate")
         }
+        }
+        }
+    }
     }
 }
 

@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
@@ -32,52 +33,74 @@ import io.github.canimation.core.CanimationPolicy
 import io.github.canimation.core.CanimationPreset
 import io.github.canimation.core.CanimationProvider
 import io.github.canimation.core.CanimationVisibility
+import io.github.canimation.core.canimationEnter
 import kotlinx.coroutines.delay
 
 @Composable
 fun A11yDemoScreen(modifier: Modifier = Modifier) {
     var replayTrigger by remember { mutableIntStateOf(0) }
+    var entryStage by remember { mutableIntStateOf(-1) }
 
-    Column(
-        modifier = modifier
-            .fillMaxSize()
-            .verticalScroll(rememberScrollState())
-            .padding(24.dp),
-        verticalArrangement = Arrangement.spacedBy(24.dp),
-        horizontalAlignment = Alignment.CenterHorizontally,
+    LaunchedEffect(Unit) {
+        for (i in 0..2) { delay(100); entryStage = i }
+    }
+
+    Box(
+        modifier = modifier.fillMaxSize(),
+        contentAlignment = Alignment.TopCenter,
     ) {
-        Text(
-            text = "See the difference",
-            style = MaterialTheme.typography.headlineMedium,
-            fontWeight = FontWeight.Bold,
-        )
-
-        Button(onClick = { replayTrigger++ }) {
-            Text("▶ Replay All")
-        }
-
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.spacedBy(12.dp),
+        Column(
+            modifier = Modifier
+                .widthIn(max = 960.dp)
+                .fillMaxWidth()
+                .verticalScroll(rememberScrollState())
+                .padding(24.dp),
+            verticalArrangement = Arrangement.spacedBy(24.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            PolicyColumn(
-                label = "Full",
-                policy = CanimationPolicy.AlwaysFull,
-                replayTrigger = replayTrigger,
-                modifier = Modifier.weight(1f),
-            )
-            PolicyColumn(
-                label = "Reduced",
-                policy = CanimationPolicy.AlwaysReduced,
-                replayTrigger = replayTrigger,
-                modifier = Modifier.weight(1f),
-            )
-            PolicyColumn(
-                label = "Off",
-                policy = CanimationPolicy.AlwaysOff,
-                replayTrigger = replayTrigger,
-                modifier = Modifier.weight(1f),
-            )
+            Box(Modifier.canimationEnter(visible = entryStage >= 0, preset = CanimationPreset.FadeUp)) {
+                Text(
+                    text = "See the difference",
+                    style = MaterialTheme.typography.headlineMedium,
+                    fontWeight = FontWeight.Bold,
+                )
+            }
+
+            Box(Modifier.canimationEnter(visible = entryStage >= 1, preset = CanimationPreset.FadeUp)) {
+                Button(onClick = { replayTrigger++ }) {
+                    Text("▶ Replay All")
+                }
+            }
+
+            Box(
+                Modifier
+                    .fillMaxWidth()
+                    .canimationEnter(visible = entryStage >= 2, preset = CanimationPreset.FadeUp),
+            ) {
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(12.dp),
+                ) {
+                    PolicyColumn(
+                        label = "Full",
+                        policy = CanimationPolicy.AlwaysFull,
+                        replayTrigger = replayTrigger,
+                        modifier = Modifier.weight(1f),
+                    )
+                    PolicyColumn(
+                        label = "Reduced",
+                        policy = CanimationPolicy.AlwaysReduced,
+                        replayTrigger = replayTrigger,
+                        modifier = Modifier.weight(1f),
+                    )
+                    PolicyColumn(
+                        label = "Off",
+                        policy = CanimationPolicy.AlwaysOff,
+                        replayTrigger = replayTrigger,
+                        modifier = Modifier.weight(1f),
+                    )
+                }
+            }
         }
     }
 }

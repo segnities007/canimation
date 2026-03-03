@@ -1,5 +1,10 @@
 package com.segnities007.canimation.navigation
 
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.slideInVertically
+import androidx.compose.animation.slideOutVertically
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
@@ -21,6 +26,20 @@ fun CanimationNavHost(
         navController = navController,
         startDestination = HomeRoute,
         modifier = modifier,
+        enterTransition = {
+            fadeIn(animationSpec = tween(300)) +
+                slideInVertically(animationSpec = tween(300)) { it / 16 }
+        },
+        exitTransition = {
+            fadeOut(animationSpec = tween(200))
+        },
+        popEnterTransition = {
+            fadeIn(animationSpec = tween(300))
+        },
+        popExitTransition = {
+            fadeOut(animationSpec = tween(200)) +
+                slideOutVertically(animationSpec = tween(200)) { it / 16 }
+        },
     ) {
         composable<HomeRoute> {
             HomeScreen(

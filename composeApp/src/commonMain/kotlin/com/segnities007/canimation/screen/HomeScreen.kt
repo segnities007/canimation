@@ -22,7 +22,9 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -35,6 +37,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import io.github.canimation.core.CanimationPreset
 import io.github.canimation.core.CanimationVisibility
+import io.github.canimation.core.canimationEnter
+import kotlinx.coroutines.delay
 
 @Composable
 fun HomeScreen(
@@ -42,19 +46,41 @@ fun HomeScreen(
     modifier: Modifier = Modifier,
 ) {
     val presetCount = CanimationPreset.entries.size
+    var stage by remember { mutableIntStateOf(-1) }
+
+    LaunchedEffect(Unit) {
+        for (i in 0..6) {
+            delay(80)
+            stage = i
+        }
+    }
 
     Column(
         modifier = modifier
             .fillMaxSize()
             .verticalScroll(rememberScrollState()),
     ) {
-        HeroSection(presetCount = presetCount, onNavigate = onNavigate)
-        CodeExampleSection()
-        InteractiveDemoSection()
-        FeaturesSection(presetCount = presetCount)
-        ExploreSection(presetCount = presetCount, onNavigate = onNavigate)
-        PlatformSection()
-        FooterSection()
+        Box(Modifier.canimationEnter(visible = stage >= 0, preset = CanimationPreset.FadeUp)) {
+            HeroSection(presetCount = presetCount, onNavigate = onNavigate)
+        }
+        Box(Modifier.canimationEnter(visible = stage >= 1, preset = CanimationPreset.FadeUp)) {
+            CodeExampleSection()
+        }
+        Box(Modifier.canimationEnter(visible = stage >= 2, preset = CanimationPreset.FadeUp)) {
+            InteractiveDemoSection()
+        }
+        Box(Modifier.canimationEnter(visible = stage >= 3, preset = CanimationPreset.FadeUp)) {
+            FeaturesSection(presetCount = presetCount)
+        }
+        Box(Modifier.canimationEnter(visible = stage >= 4, preset = CanimationPreset.FadeUp)) {
+            ExploreSection(presetCount = presetCount, onNavigate = onNavigate)
+        }
+        Box(Modifier.canimationEnter(visible = stage >= 5, preset = CanimationPreset.FadeUp)) {
+            PlatformSection()
+        }
+        Box(Modifier.canimationEnter(visible = stage >= 6, preset = CanimationPreset.FadeUp)) {
+            FooterSection()
+        }
     }
 }
 

@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
@@ -20,8 +21,10 @@ import androidx.compose.material3.Slider
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -38,6 +41,7 @@ import io.github.canimation.core.CanimationRange
 import io.github.canimation.core.CanimationSpec
 import io.github.canimation.core.EasingTokens
 import io.github.canimation.core.canimationEnter
+import kotlinx.coroutines.delay
 
 private fun Float.fmt2(): String {
     val r = kotlin.math.round(this * 100).toInt()
@@ -54,21 +58,35 @@ fun CustomSpecLabScreen(modifier: Modifier = Modifier) {
     var offsetY by remember { mutableFloatStateOf(16f) }
     var scaleFactor by remember { mutableFloatStateOf(1f) }
     var visible by remember { mutableStateOf(true) }
+    var entryStage by remember { mutableIntStateOf(-1) }
 
+    LaunchedEffect(Unit) {
+        for (i in 0..3) { delay(100); entryStage = i }
+    }
+
+    Box(
+        modifier = modifier.fillMaxSize(),
+        contentAlignment = Alignment.TopCenter,
+    ) {
     Column(
-        modifier = modifier
-            .fillMaxSize()
+        modifier = Modifier
+            .widthIn(max = 960.dp)
+            .fillMaxWidth()
             .verticalScroll(rememberScrollState())
             .padding(24.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
+        Box(Modifier.canimationEnter(visible = entryStage >= 0, preset = CanimationPreset.FadeUp)) {
         Text(
             text = "Custom Spec Lab",
             style = MaterialTheme.typography.headlineMedium,
             fontWeight = FontWeight.Bold,
         )
+        }
 
         // Duration slider
+        Box(Modifier.fillMaxWidth().canimationEnter(visible = entryStage >= 1, preset = CanimationPreset.FadeUp)) {
+        Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
         LabeledSlider(
             label = "Duration",
             value = durationMs,
@@ -110,8 +128,11 @@ fun CustomSpecLabScreen(modifier: Modifier = Modifier) {
             valueRange = 0.5f..1.5f,
             displayValue = scaleFactor.fmt2(),
         )
+        }
+        }
 
         // Preview
+        Box(Modifier.fillMaxWidth().canimationEnter(visible = entryStage >= 2, preset = CanimationPreset.FadeUp)) {
         val customSpec = CanimationSpec(
             durationMs = durationMs.toInt(),
             easing = EasingTokens.Default.standard,
@@ -165,7 +186,10 @@ fun CustomSpecLabScreen(modifier: Modifier = Modifier) {
             }
         }
 
+        }
+
         // Generated code display
+        Box(Modifier.fillMaxWidth().canimationEnter(visible = entryStage >= 3, preset = CanimationPreset.FadeUp)) {
         Surface(
             shape = RoundedCornerShape(12.dp),
             color = Color(0xFF1E1E2E),
@@ -187,6 +211,8 @@ fun CustomSpecLabScreen(modifier: Modifier = Modifier) {
                 color = Color(0xFFCDD6F4),
             )
         }
+        }
+    }
     }
 }
 
