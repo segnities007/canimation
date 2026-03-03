@@ -7,25 +7,25 @@ import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 
-// Light theme
+// Light theme — polished to match dark theme accent palette
 private val LightColorScheme = lightColorScheme(
     primary = Color(0xFF6750A4),
     onPrimary = Color(0xFFFFFFFF),
     primaryContainer = Color(0xFFEADDFF),
     onPrimaryContainer = Color(0xFF21005E),
-    secondary = Color(0xFF625B71),
+    secondary = Color(0xFF00897B),
     onSecondary = Color(0xFFFFFFFF),
-    secondaryContainer = Color(0xFFE8DEF8),
+    secondaryContainer = Color(0xFFB2DFDB),
     tertiary = Color(0xFF00897B),
     onTertiary = Color(0xFFFFFFFF),
-    tertiaryContainer = Color(0xFFA7F3EB),
+    tertiaryContainer = Color(0xFFB2DFDB),
     onTertiaryContainer = Color(0xFF002019),
-    surface = Color(0xFFFFFBFE),
+    surface = Color(0xFFFCFCFF),
     onSurface = Color(0xFF1C1B1F),
-    surfaceVariant = Color(0xFFE7E0EC),
+    surfaceVariant = Color(0xFFF0EDF4),
     onSurfaceVariant = Color(0xFF49454F),
-    outline = Color(0xFF79747E),
-    outlineVariant = Color(0xFFCAC4D0),
+    outline = Color(0xFFCAC4D0),
+    outlineVariant = Color(0xFFE0DDE4),
     background = Color(0xFFFFFBFE),
     onBackground = Color(0xFF1C1B1F),
 )

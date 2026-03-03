@@ -1,5 +1,6 @@
 package com.segnities007.canimation.screen
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -14,9 +15,9 @@ import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -51,112 +52,117 @@ fun TokenReferenceScreen(modifier: Modifier = Modifier) {
     var entryStage by remember { mutableIntStateOf(-1) }
 
     LaunchedEffect(Unit) {
-        for (i in 0..4) { delay(100); entryStage = i }
+        for (i in 0..5) { delay(80); entryStage = i }
     }
 
     Box(
         modifier = modifier.fillMaxSize(),
         contentAlignment = Alignment.TopCenter,
     ) {
-    Column(
-        modifier = Modifier
-            .widthIn(max = 960.dp)
-            .fillMaxWidth()
-            .verticalScroll(rememberScrollState())
-            .padding(24.dp),
-        verticalArrangement = Arrangement.spacedBy(16.dp),
-    ) {
-        Box(Modifier.fillMaxWidth().canimationEnter(visible = entryStage >= 0, preset = CanimationPreset.FadeUp)) {
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween,
+        Column(
+            modifier = Modifier
+                .widthIn(max = 960.dp)
+                .fillMaxWidth()
+                .verticalScroll(rememberScrollState())
+                .padding(horizontal = 32.dp, vertical = 40.dp),
+            verticalArrangement = Arrangement.spacedBy(20.dp),
         ) {
-            Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                Text(
-                    text = "DESIGN TOKENS",
-                    style = MaterialTheme.typography.labelMedium,
-                    color = MaterialTheme.colorScheme.primary,
-                    fontWeight = FontWeight.Bold,
-                )
-                Text(
-                    text = "Tokens in Action",
-                    style = MaterialTheme.typography.headlineMedium,
-                    fontWeight = FontWeight.Bold,
-                )
+            // Header
+            Box(Modifier.fillMaxWidth().canimationEnter(visible = entryStage >= 0, preset = CanimationPreset.FadeUp)) {
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                ) {
+                    Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                        Text(
+                            text = "DESIGN TOKENS",
+                            style = MaterialTheme.typography.labelMedium,
+                            color = MaterialTheme.colorScheme.primary,
+                            fontWeight = FontWeight.Bold,
+                        )
+                        Text(
+                            text = "Tokens in action",
+                            style = MaterialTheme.typography.headlineMedium,
+                            fontWeight = FontWeight.Bold,
+                        )
+                        Text(
+                            text = "See how duration, easing, and distance tokens affect animations",
+                            style = MaterialTheme.typography.bodyMedium,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        )
+                    }
+                    FilledTonalButton(onClick = { replayTrigger++ }) {
+                        Text("▶  Replay")
+                    }
+                }
             }
-            Button(onClick = { replayTrigger++ }) {
-                Text("▶ Replay")
+
+            // Duration demo
+            Box(Modifier.fillMaxWidth().canimationEnter(visible = entryStage >= 1, preset = CanimationPreset.FadeUp)) {
+                TokenDemoCard(title = "Duration") {
+                    DurationDemo(replayTrigger = replayTrigger)
+                }
+            }
+
+            // Easing demo
+            Box(Modifier.fillMaxWidth().canimationEnter(visible = entryStage >= 2, preset = CanimationPreset.FadeUp)) {
+                TokenDemoCard(title = "Easing") {
+                    EasingDemo(replayTrigger = replayTrigger)
+                }
+            }
+
+            // Distance demo
+            Box(Modifier.fillMaxWidth().canimationEnter(visible = entryStage >= 3, preset = CanimationPreset.FadeUp)) {
+                TokenDemoCard(title = "Distance") {
+                    DistanceDemo(replayTrigger = replayTrigger)
+                }
+            }
+
+            // Reference tables
+            Box(Modifier.fillMaxWidth().canimationEnter(visible = entryStage >= 4, preset = CanimationPreset.FadeUp)) {
+                Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
+                    Text(
+                        text = "Reference",
+                        style = MaterialTheme.typography.titleLarge,
+                        fontWeight = FontWeight.Bold,
+                    )
+
+                    TokenCard(title = "Duration Tokens") {
+                        TokenRow("short", tokens.duration.short.toString())
+                        TokenRow("medium", tokens.duration.medium.toString())
+                        TokenRow("long", tokens.duration.long.toString())
+                    }
+
+                    TokenCard(title = "Easing Tokens") {
+                        TokenRow("standard", "CubicBezier(0.2, 0.0, 0.0, 1.0)")
+                        TokenRow("emphasizedDecelerate", "CubicBezier(0.05, 0.7, 0.1, 1.0)")
+                        TokenRow("emphasizedAccelerate", "CubicBezier(0.3, 0.0, 0.8, 0.15)")
+                        TokenRow("decelerate", "CubicBezier(0.0, 0.0, 0.0, 1.0)")
+                        TokenRow("accelerate", "CubicBezier(0.3, 0.0, 1.0, 1.0)")
+                    }
+
+                    TokenCard(title = "Distance Tokens") {
+                        TokenRow("small", tokens.distance.small.toString())
+                        TokenRow("medium", tokens.distance.medium.toString())
+                        TokenRow("large", tokens.distance.large.toString())
+                    }
+
+                    TokenCard(title = "Spring Tokens") {
+                        TokenRow("gentle", "damping=0.85, stiffness=280f")
+                        TokenRow("snappy", "damping=0.80, stiffness=420f")
+                    }
+
+                    TokenCard(title = "Reduced Motion") {
+                        TokenRow("duration", "→ 120ms (short)")
+                        TokenRow("offset", "→ × 0.25 (1/4 distance)")
+                        TokenRow("scale", "→ compress toward 1.0 by 75%")
+                        TokenRow("alpha", "→ unchanged")
+                        TokenRow("easing", "→ decelerate")
+                    }
+                }
             }
         }
-        }
-
-        // Duration demo
-        Box(Modifier.fillMaxWidth().canimationEnter(visible = entryStage >= 1, preset = CanimationPreset.FadeUp)) {
-        TokenDemoCard(title = "Duration") {
-            DurationDemo(replayTrigger = replayTrigger)
-        }
-        }
-
-        // Easing demo
-        Box(Modifier.fillMaxWidth().canimationEnter(visible = entryStage >= 2, preset = CanimationPreset.FadeUp)) {
-        TokenDemoCard(title = "Easing") {
-            EasingDemo(replayTrigger = replayTrigger)
-        }
-        }
-
-        // Distance demo
-        Box(Modifier.fillMaxWidth().canimationEnter(visible = entryStage >= 3, preset = CanimationPreset.FadeUp)) {
-        TokenDemoCard(title = "Distance") {
-            DistanceDemo(replayTrigger = replayTrigger)
-        }
-        }
-
-        // Reference tables
-        Box(Modifier.fillMaxWidth().canimationEnter(visible = entryStage >= 4, preset = CanimationPreset.FadeUp)) {
-        Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
-        Spacer(Modifier.height(8.dp))
-        Text(
-            text = "Reference",
-            style = MaterialTheme.typography.titleLarge,
-            fontWeight = FontWeight.Bold,
-        )
-
-        TokenCard(title = "Duration Tokens") {
-            TokenRow("short", tokens.duration.short.toString())
-            TokenRow("medium", tokens.duration.medium.toString())
-            TokenRow("long", tokens.duration.long.toString())
-        }
-
-        TokenCard(title = "Easing Tokens") {
-            TokenRow("standard", "CubicBezier(0.2, 0.0, 0.0, 1.0)")
-            TokenRow("emphasizedDecelerate", "CubicBezier(0.05, 0.7, 0.1, 1.0)")
-            TokenRow("emphasizedAccelerate", "CubicBezier(0.3, 0.0, 0.8, 0.15)")
-            TokenRow("decelerate", "CubicBezier(0.0, 0.0, 0.0, 1.0)")
-            TokenRow("accelerate", "CubicBezier(0.3, 0.0, 1.0, 1.0)")
-        }
-
-        TokenCard(title = "Distance Tokens") {
-            TokenRow("small", tokens.distance.small.toString())
-            TokenRow("medium", tokens.distance.medium.toString())
-            TokenRow("large", tokens.distance.large.toString())
-        }
-
-        TokenCard(title = "Spring Tokens") {
-            TokenRow("gentle", "damping=0.85, stiffness=280f")
-            TokenRow("snappy", "damping=0.80, stiffness=420f")
-        }
-
-        TokenCard(title = "Reduced Motion Rules") {
-            TokenRow("duration", "→ 120ms (short)")
-            TokenRow("offset", "→ × 0.25 (1/4 distance)")
-            TokenRow("scale", "→ compress toward 1.0 by 75%")
-            TokenRow("alpha", "→ unchanged")
-            TokenRow("easing", "→ decelerate")
-        }
-        }
-        }
-    }
     }
 }
 
@@ -204,12 +210,14 @@ private fun DurationDemo(replayTrigger: Int) {
                             Surface(
                                 shape = RoundedCornerShape(6.dp),
                                 color = MaterialTheme.colorScheme.primary,
+                                border = BorderStroke(1.dp, MaterialTheme.colorScheme.primary),
                             ) {
                                 Text(
                                     text = "${ms}ms",
                                     modifier = Modifier.padding(horizontal = 16.dp, vertical = 6.dp),
                                     style = MaterialTheme.typography.labelMedium,
                                     color = MaterialTheme.colorScheme.onPrimary,
+                                    fontWeight = FontWeight.Bold,
                                 )
                             }
                         }
@@ -268,12 +276,14 @@ private fun EasingDemo(replayTrigger: Int) {
                             Surface(
                                 shape = RoundedCornerShape(6.dp),
                                 color = MaterialTheme.colorScheme.tertiary,
+                                border = BorderStroke(1.dp, MaterialTheme.colorScheme.tertiary),
                             ) {
                                 Text(
                                     text = name,
                                     modifier = Modifier.padding(horizontal = 16.dp, vertical = 6.dp),
                                     style = MaterialTheme.typography.labelMedium,
                                     color = MaterialTheme.colorScheme.onTertiary,
+                                    fontWeight = FontWeight.Bold,
                                 )
                             }
                         }
@@ -328,12 +338,14 @@ private fun DistanceDemo(replayTrigger: Int) {
                             Surface(
                                 shape = RoundedCornerShape(6.dp),
                                 color = MaterialTheme.colorScheme.secondary,
+                                border = BorderStroke(1.dp, MaterialTheme.colorScheme.secondary),
                             ) {
                                 Text(
                                     text = "${dp}dp",
                                     modifier = Modifier.padding(horizontal = 16.dp, vertical = 6.dp),
                                     style = MaterialTheme.typography.labelMedium,
                                     color = MaterialTheme.colorScheme.onSecondary,
+                                    fontWeight = FontWeight.Bold,
                                 )
                             }
                         }
@@ -354,8 +366,9 @@ private fun TokenDemoCard(
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.surfaceVariant,
         ),
+        border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline),
     ) {
-        Column(modifier = Modifier.padding(16.dp)) {
+        Column(modifier = Modifier.padding(20.dp)) {
             Text(
                 text = title,
                 style = MaterialTheme.typography.titleMedium,
@@ -377,11 +390,16 @@ private fun TokenCard(
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.surfaceVariant,
         ),
+        border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline),
     ) {
-        Column(modifier = Modifier.padding(16.dp)) {
-            Text(title, style = MaterialTheme.typography.titleMedium)
+        Column(modifier = Modifier.padding(20.dp)) {
+            Text(
+                title,
+                style = MaterialTheme.typography.titleMedium,
+                fontWeight = FontWeight.Bold,
+            )
             Spacer(Modifier.height(8.dp))
-            HorizontalDivider()
+            HorizontalDivider(color = MaterialTheme.colorScheme.outline)
             Spacer(Modifier.height(8.dp))
             content()
         }
@@ -400,6 +418,7 @@ private fun TokenRow(name: String, value: String) {
             text = name,
             style = MaterialTheme.typography.bodyMedium,
             color = MaterialTheme.colorScheme.primary,
+            fontWeight = FontWeight.Bold,
         )
         Text(
             text = value,

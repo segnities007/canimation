@@ -32,7 +32,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -44,16 +43,6 @@ import io.github.canimation.core.CanimationVisibility
 import io.github.canimation.core.canimationEnter
 import kotlinx.coroutines.delay
 
-// Motion.dev-inspired dark palette
-private val DarkBg = Color(0xFF0A0A12)
-private val DarkSurface = Color(0xFF12121A)
-private val DarkCard = Color(0xFF1A1A24)
-private val AccentPurple = Color(0xFF9B8AFF)
-private val AccentCyan = Color(0xFF64D8CB)
-private val TextPrimary = Color(0xFFE8E6F0)
-private val TextSecondary = Color(0xFFA0A0B0)
-private val TextMuted = Color(0xFF6A6A7A)
-private val CardBorder = Color(0xFF2A2A3A)
 
 @Composable
 fun HomeScreen(
@@ -71,7 +60,7 @@ fun HomeScreen(
         Column(
             modifier = modifier
                 .fillMaxSize()
-                .background(DarkBg)
+                .background(MaterialTheme.colorScheme.background)
                 .verticalScroll(rememberScrollState()),
         ) {
             HeroSection(stage = stage, presetCount = presetCount, onNavigate = onNavigate)
@@ -93,7 +82,7 @@ private fun HeroSection(stage: Int, presetCount: Int, onNavigate: (String) -> Un
         modifier = Modifier
             .fillMaxWidth()
             .background(
-                Brush.verticalGradient(listOf(Color(0xFF0E0E1A), DarkBg)),
+                Brush.verticalGradient(listOf(MaterialTheme.colorScheme.surface, MaterialTheme.colorScheme.background)),
             ),
     ) {
         Box(Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
@@ -109,7 +98,7 @@ private fun HeroSection(stage: Int, presetCount: Int, onNavigate: (String) -> Un
                         text = "canimation",
                         style = MaterialTheme.typography.displayLarge.copy(
                             brush = Brush.linearGradient(
-                                listOf(AccentPurple, Color(0xFFD0BCFF), AccentCyan),
+                                listOf(MaterialTheme.colorScheme.primary, MaterialTheme.colorScheme.onPrimaryContainer, MaterialTheme.colorScheme.secondary),
                             ),
                         ),
                         fontWeight = FontWeight.Bold,
@@ -120,7 +109,7 @@ private fun HeroSection(stage: Int, presetCount: Int, onNavigate: (String) -> Un
                     Text(
                         text = "A production-grade animation library\nfor Compose Multiplatform.",
                         style = MaterialTheme.typography.headlineSmall,
-                        color = TextSecondary,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
                         textAlign = TextAlign.Center,
                     )
                 }
@@ -141,14 +130,14 @@ private fun HeroSection(stage: Int, presetCount: Int, onNavigate: (String) -> Un
                         Box(Modifier.canimationEnter(visible = stage >= 2 + index, preset = preset)) {
                             Surface(
                                 shape = RoundedCornerShape(20.dp),
-                                color = Color.White.copy(alpha = 0.06f),
-                                border = BorderStroke(1.dp, CardBorder),
+                                color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.06f),
+                                border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline),
                             ) {
                                 Text(
                                     text = label,
                                     modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
                                     style = MaterialTheme.typography.labelMedium,
-                                    color = TextSecondary,
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant,
                                 )
                             }
                         }
@@ -174,21 +163,21 @@ private fun HeroSection(stage: Int, presetCount: Int, onNavigate: (String) -> Un
 
 @Composable
 private fun LiveShowcaseSection(stage: Int) {
-    Box(modifier = Modifier.fillMaxWidth().background(DarkSurface)) {
+    Box(modifier = Modifier.fillMaxWidth().background(MaterialTheme.colorScheme.surface)) {
         DarkCenteredSection {
             Box(Modifier.canimationEnter(visible = stage >= 7, preset = CanimationPreset.FadeUp)) {
                 Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                     Text(
                         text = "SHOWCASE",
                         style = MaterialTheme.typography.labelMedium,
-                        color = AccentPurple,
+                        color = MaterialTheme.colorScheme.primary,
                         fontWeight = FontWeight.Bold,
                     )
                     Text(
                         text = "Animations that move",
                         style = MaterialTheme.typography.headlineMedium,
                         fontWeight = FontWeight.Bold,
-                        color = TextPrimary,
+                        color = MaterialTheme.colorScheme.onBackground,
                     )
                 }
             }
@@ -241,8 +230,8 @@ private fun AnimatedPresetCell(
 
     Surface(
         shape = RoundedCornerShape(12.dp),
-        color = DarkCard,
-        border = BorderStroke(1.dp, CardBorder),
+        color = MaterialTheme.colorScheme.surfaceVariant,
+        border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline),
         modifier = modifier,
     ) {
         Column(
@@ -260,8 +249,8 @@ private fun AnimatedPresetCell(
                 ) {
                     Surface(
                         shape = RoundedCornerShape(8.dp),
-                        color = AccentPurple.copy(alpha = 0.25f),
-                        border = BorderStroke(1.dp, AccentPurple.copy(alpha = 0.4f)),
+                        color = MaterialTheme.colorScheme.primary.copy(alpha = 0.25f),
+                        border = BorderStroke(1.dp, MaterialTheme.colorScheme.primary.copy(alpha = 0.4f)),
                     ) {
                         Box(Modifier.size(40.dp))
                     }
@@ -270,7 +259,7 @@ private fun AnimatedPresetCell(
             Text(
                 text = preset.name,
                 style = MaterialTheme.typography.labelSmall,
-                color = TextMuted,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
         }
     }
@@ -286,14 +275,14 @@ private fun FeaturesSection(stage: Int, presetCount: Int) {
                 Text(
                     text = "WHY CANIMATION",
                     style = MaterialTheme.typography.labelMedium,
-                    color = AccentCyan,
+                    color = MaterialTheme.colorScheme.secondary,
                     fontWeight = FontWeight.Bold,
                 )
                 Text(
                     text = "Built for every use case",
                     style = MaterialTheme.typography.headlineMedium,
                     fontWeight = FontWeight.Bold,
-                    color = TextPrimary,
+                    color = MaterialTheme.colorScheme.onBackground,
                 )
             }
         }
@@ -374,8 +363,8 @@ private fun LiveFeatureCard(
 
     Surface(
         shape = RoundedCornerShape(12.dp),
-        color = DarkCard,
-        border = BorderStroke(1.dp, CardBorder),
+        color = MaterialTheme.colorScheme.surfaceVariant,
+        border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline),
         modifier = modifier,
     ) {
         Column(
@@ -393,8 +382,8 @@ private fun LiveFeatureCard(
                 ) {
                     Surface(
                         shape = RoundedCornerShape(8.dp),
-                        color = AccentPurple.copy(alpha = 0.15f),
-                        border = BorderStroke(1.dp, AccentPurple.copy(alpha = 0.3f)),
+                        color = MaterialTheme.colorScheme.primary.copy(alpha = 0.15f),
+                        border = BorderStroke(1.dp, MaterialTheme.colorScheme.primary.copy(alpha = 0.3f)),
                     ) {
                         Box(Modifier.size(width = 48.dp, height = 32.dp))
                     }
@@ -404,12 +393,12 @@ private fun LiveFeatureCard(
                 text = title,
                 style = MaterialTheme.typography.titleMedium,
                 fontWeight = FontWeight.Bold,
-                color = TextPrimary,
+                color = MaterialTheme.colorScheme.onBackground,
             )
             Text(
                 text = subtitle,
                 style = MaterialTheme.typography.bodySmall,
-                color = TextMuted,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
         }
     }
@@ -419,21 +408,21 @@ private fun LiveFeatureCard(
 
 @Composable
 private fun CodeExampleSection(stage: Int) {
-    Box(modifier = Modifier.fillMaxWidth().background(DarkSurface)) {
+    Box(modifier = Modifier.fillMaxWidth().background(MaterialTheme.colorScheme.surface)) {
         DarkCenteredSection {
             Box(Modifier.canimationEnter(visible = stage >= 9, preset = CanimationPreset.FadeUp)) {
                 Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                     Text(
                         text = "QUICK START",
                         style = MaterialTheme.typography.labelMedium,
-                        color = AccentPurple,
+                        color = MaterialTheme.colorScheme.primary,
                         fontWeight = FontWeight.Bold,
                     )
                     Text(
                         text = "Simple, expressive API",
                         style = MaterialTheme.typography.headlineMedium,
                         fontWeight = FontWeight.Bold,
-                        color = TextPrimary,
+                        color = MaterialTheme.colorScheme.onBackground,
                     )
                 }
             }
@@ -442,8 +431,8 @@ private fun CodeExampleSection(stage: Int) {
 
             Surface(
                 shape = RoundedCornerShape(12.dp),
-                color = Color(0xFF0D0D15),
-                border = BorderStroke(1.dp, CardBorder),
+                color = MaterialTheme.colorScheme.surfaceVariant,
+                border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline),
                 modifier = Modifier.fillMaxWidth(),
             ) {
                 Text(
@@ -465,7 +454,7 @@ private fun CodeExampleSection(stage: Int) {
                     modifier = Modifier.padding(24.dp),
                     fontFamily = FontFamily.Monospace,
                     style = MaterialTheme.typography.bodyMedium,
-                    color = Color(0xFFCDD6F4),
+                    color = MaterialTheme.colorScheme.onSurface,
                 )
             }
         }
@@ -481,14 +470,14 @@ private fun ExploreSection(presetCount: Int, onNavigate: (String) -> Unit) {
             Text(
                 text = "EXPLORE",
                 style = MaterialTheme.typography.labelMedium,
-                color = AccentCyan,
+                color = MaterialTheme.colorScheme.secondary,
                 fontWeight = FontWeight.Bold,
             )
             Text(
                 text = "Dive deeper",
                 style = MaterialTheme.typography.headlineMedium,
                 fontWeight = FontWeight.Bold,
-                color = TextPrimary,
+                color = MaterialTheme.colorScheme.onBackground,
             )
         }
 
@@ -504,8 +493,8 @@ private fun ExploreSection(presetCount: Int, onNavigate: (String) -> Unit) {
             Surface(
                 onClick = { onNavigate(route) },
                 shape = RoundedCornerShape(12.dp),
-                color = DarkCard,
-                border = BorderStroke(1.dp, CardBorder),
+                color = MaterialTheme.colorScheme.surfaceVariant,
+                border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline),
                 modifier = Modifier.fillMaxWidth(),
             ) {
                 Row(
@@ -517,19 +506,19 @@ private fun ExploreSection(presetCount: Int, onNavigate: (String) -> Unit) {
                             text = title,
                             style = MaterialTheme.typography.titleMedium,
                             fontWeight = FontWeight.Bold,
-                            color = TextPrimary,
+                            color = MaterialTheme.colorScheme.onBackground,
                         )
                         Spacer(Modifier.height(4.dp))
                         Text(
                             text = description,
                             style = MaterialTheme.typography.bodyMedium,
-                            color = TextMuted,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
                         )
                     }
                     Text(
                         "→",
                         style = MaterialTheme.typography.titleLarge,
-                        color = AccentPurple,
+                        color = MaterialTheme.colorScheme.primary,
                     )
                 }
             }
@@ -541,7 +530,7 @@ private fun ExploreSection(presetCount: Int, onNavigate: (String) -> Unit) {
 
 @Composable
 private fun PlatformSection(stage: Int) {
-    Box(modifier = Modifier.fillMaxWidth().background(DarkSurface)) {
+    Box(modifier = Modifier.fillMaxWidth().background(MaterialTheme.colorScheme.surface)) {
         Box(
             modifier = Modifier.fillMaxWidth(),
             contentAlignment = Alignment.Center,
@@ -557,7 +546,7 @@ private fun PlatformSection(stage: Int) {
                     text = "Built for every platform",
                     style = MaterialTheme.typography.headlineSmall,
                     fontWeight = FontWeight.Bold,
-                    color = TextPrimary,
+                    color = MaterialTheme.colorScheme.onBackground,
                 )
                 Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
                     listOf("Android", "iOS", "Desktop", "Web").forEachIndexed { index, platform ->
@@ -567,14 +556,14 @@ private fun PlatformSection(stage: Int) {
                         )) {
                             Surface(
                                 shape = RoundedCornerShape(8.dp),
-                                color = AccentPurple.copy(alpha = 0.1f),
-                                border = BorderStroke(1.dp, AccentPurple.copy(alpha = 0.3f)),
+                                color = MaterialTheme.colorScheme.primary.copy(alpha = 0.1f),
+                                border = BorderStroke(1.dp, MaterialTheme.colorScheme.primary.copy(alpha = 0.3f)),
                             ) {
                                 Text(
                                     text = platform,
                                     modifier = Modifier.padding(horizontal = 20.dp, vertical = 10.dp),
                                     style = MaterialTheme.typography.labelLarge,
-                                    color = AccentPurple,
+                                    color = MaterialTheme.colorScheme.primary,
                                 )
                             }
                         }
@@ -592,14 +581,14 @@ private fun FooterSection() {
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .background(DarkBg)
+            .background(MaterialTheme.colorScheme.background)
             .padding(vertical = 32.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Text(
             text = "Apache License 2.0 · canimation contributors",
             style = MaterialTheme.typography.bodySmall,
-            color = TextMuted,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
         )
     }
 }

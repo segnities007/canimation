@@ -2,6 +2,7 @@ package com.segnities007.canimation.screen
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
@@ -11,6 +12,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.foundation.verticalScroll
@@ -117,15 +119,22 @@ fun PresetGalleryScreen(modifier: Modifier = Modifier) {
     }
 
     CanimationProvider(policy = CanimationPolicy.AlwaysFull) {
+        Box(
+            modifier = modifier.fillMaxSize(),
+            contentAlignment = Alignment.TopCenter,
+        ) {
         LazyVerticalGrid(
             columns = GridCells.Adaptive(minSize = 220.dp),
-            modifier = modifier,
-            contentPadding = PaddingValues(horizontal = 12.dp, vertical = 4.dp),
+            modifier = Modifier.widthIn(max = 1200.dp),
+            contentPadding = PaddingValues(horizontal = 24.dp, vertical = 8.dp),
             horizontalArrangement = Arrangement.spacedBy(8.dp),
             verticalArrangement = Arrangement.spacedBy(8.dp),
         ) {
         item(span = { GridItemSpan(maxLineSpan) }) {
-            Column(modifier = Modifier.padding(horizontal = 4.dp, vertical = 8.dp)) {
+            Column(
+                modifier = Modifier.padding(horizontal = 4.dp, vertical = 8.dp),
+                verticalArrangement = Arrangement.spacedBy(4.dp),
+            ) {
                 Text(
                     text = "GALLERY",
                     style = MaterialTheme.typography.labelMedium,
@@ -136,6 +145,11 @@ fun PresetGalleryScreen(modifier: Modifier = Modifier) {
                     text = "${CanimationPreset.entries.size} Presets",
                     style = MaterialTheme.typography.headlineSmall,
                     fontWeight = FontWeight.Bold,
+                )
+                Text(
+                    text = "Browse, compare, and tune every built-in animation",
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
                 FlowRow(
                     horizontalArrangement = Arrangement.spacedBy(8.dp),
@@ -319,6 +333,7 @@ fun PresetGalleryScreen(modifier: Modifier = Modifier) {
                 spec = dialogSpec,
                 onDismiss = { codeDialogPreset = null },
             )
+        }
         }
     }
 }

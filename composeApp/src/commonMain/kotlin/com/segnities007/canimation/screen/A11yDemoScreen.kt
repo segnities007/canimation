@@ -1,20 +1,23 @@
 package com.segnities007.canimation.screen
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -42,7 +45,7 @@ fun A11yDemoScreen(modifier: Modifier = Modifier) {
     var entryStage by remember { mutableIntStateOf(-1) }
 
     LaunchedEffect(Unit) {
-        for (i in 0..2) { delay(100); entryStage = i }
+        for (i in 0..3) { delay(80); entryStage = i }
     }
 
     Box(
@@ -54,12 +57,16 @@ fun A11yDemoScreen(modifier: Modifier = Modifier) {
                 .widthIn(max = 960.dp)
                 .fillMaxWidth()
                 .verticalScroll(rememberScrollState())
-                .padding(24.dp),
+                .padding(horizontal = 32.dp, vertical = 40.dp),
             verticalArrangement = Arrangement.spacedBy(24.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
+            // Header
             Box(Modifier.canimationEnter(visible = entryStage >= 0, preset = CanimationPreset.FadeUp)) {
-                Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                Column(
+                    verticalArrangement = Arrangement.spacedBy(8.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                ) {
                     Text(
                         text = "ACCESSIBILITY",
                         style = MaterialTheme.typography.labelMedium,
@@ -67,19 +74,26 @@ fun A11yDemoScreen(modifier: Modifier = Modifier) {
                         fontWeight = FontWeight.Bold,
                     )
                     Text(
-                        text = "See the difference",
+                        text = "Motion policies in action",
                         style = MaterialTheme.typography.headlineMedium,
                         fontWeight = FontWeight.Bold,
+                    )
+                    Text(
+                        text = "Compare how animations adapt across Full, Reduced, and Off policies",
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
                     )
                 }
             }
 
+            // Replay button
             Box(Modifier.canimationEnter(visible = entryStage >= 1, preset = CanimationPreset.FadeUp)) {
-                Button(onClick = { replayTrigger++ }) {
-                    Text("▶ Replay All")
+                FilledTonalButton(onClick = { replayTrigger++ }) {
+                    Text("▶  Replay All")
                 }
             }
 
+            // Three-column comparison
             Box(
                 Modifier
                     .fillMaxWidth()
@@ -109,6 +123,49 @@ fun A11yDemoScreen(modifier: Modifier = Modifier) {
                     )
                 }
             }
+
+            // Auto-replay showcase
+            Box(
+                Modifier
+                    .fillMaxWidth()
+                    .canimationEnter(visible = entryStage >= 3, preset = CanimationPreset.FadeUp),
+            ) {
+                Card(
+                    modifier = Modifier.fillMaxWidth(),
+                    colors = CardDefaults.cardColors(
+                        containerColor = MaterialTheme.colorScheme.surfaceVariant,
+                    ),
+                    border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline),
+                ) {
+                    Column(
+                        modifier = Modifier.padding(20.dp),
+                        verticalArrangement = Arrangement.spacedBy(16.dp),
+                    ) {
+                        Text(
+                            text = "Continuous Demo",
+                            style = MaterialTheme.typography.titleMedium,
+                            fontWeight = FontWeight.Bold,
+                        )
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.spacedBy(12.dp),
+                        ) {
+                            listOf(
+                                "Full" to CanimationPolicy.AlwaysFull,
+                                "Reduced" to CanimationPolicy.AlwaysReduced,
+                            ).forEach { (label, policy) ->
+                                CanimationProvider(policy = policy) {
+                                    AutoReplayCell(
+                                        label = label,
+                                        preset = CanimationPreset.SpringIn,
+                                        modifier = Modifier.weight(1f),
+                                    )
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }
@@ -121,32 +178,44 @@ private fun PolicyColumn(
     modifier: Modifier = Modifier,
 ) {
     CanimationProvider(policy = policy) {
-        Column(
+        Card(
             modifier = modifier,
-            verticalArrangement = Arrangement.spacedBy(8.dp),
-            horizontalAlignment = Alignment.CenterHorizontally,
+            colors = CardDefaults.cardColors(
+                containerColor = MaterialTheme.colorScheme.surfaceVariant,
+            ),
+            border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline),
         ) {
-            Surface(
-                shape = RoundedCornerShape(8.dp),
-                color = MaterialTheme.colorScheme.primaryContainer,
+            Column(
+                modifier = Modifier.padding(12.dp),
+                verticalArrangement = Arrangement.spacedBy(8.dp),
+                horizontalAlignment = Alignment.CenterHorizontally,
             ) {
-                Text(
-                    text = label,
-                    modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
-                    style = MaterialTheme.typography.labelLarge,
-                    fontWeight = FontWeight.Bold,
-                    color = MaterialTheme.colorScheme.onPrimaryContainer,
-                )
-            }
+                Surface(
+                    shape = RoundedCornerShape(8.dp),
+                    color = MaterialTheme.colorScheme.primaryContainer,
+                    border = BorderStroke(1.dp, MaterialTheme.colorScheme.primary.copy(alpha = 0.3f)),
+                ) {
+                    Text(
+                        text = label,
+                        modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
+                        style = MaterialTheme.typography.labelLarge,
+                        fontWeight = FontWeight.Bold,
+                        color = MaterialTheme.colorScheme.onPrimaryContainer,
+                    )
+                }
 
-            listOf(
-                CanimationPreset.FadeUp,
-                CanimationPreset.ScaleIn,
-                CanimationPreset.SlideLeft,
-                CanimationPreset.BounceIn,
-                CanimationPreset.SpinIn,
-            ).forEach { preset ->
-                A11yPreviewCard(preset = preset, replayTrigger = replayTrigger)
+                listOf(
+                    CanimationPreset.FadeUp,
+                    CanimationPreset.ScaleIn,
+                    CanimationPreset.BounceIn,
+                    CanimationPreset.SpinIn,
+                    CanimationPreset.SlideLeft,
+                    CanimationPreset.SpringIn,
+                    CanimationPreset.FlipIn,
+                    CanimationPreset.EmphasizedEntry,
+                ).forEach { preset ->
+                    A11yPreviewCard(preset = preset, replayTrigger = replayTrigger)
+                }
             }
         }
     }
@@ -170,28 +239,91 @@ private fun A11yPreviewCard(
         visible = true
     }
 
-    Box(
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(52.dp),
-        contentAlignment = Alignment.Center,
+    Surface(
+        shape = RoundedCornerShape(8.dp),
+        color = MaterialTheme.colorScheme.surface,
+        border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline),
+        modifier = Modifier.fillMaxWidth(),
     ) {
-        CanimationVisibility(
-            visible = visible,
-            enterPreset = preset,
-            exitPreset = preset,
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(48.dp),
+            contentAlignment = Alignment.Center,
         ) {
-            Card(
-                colors = CardDefaults.cardColors(
-                    containerColor = MaterialTheme.colorScheme.secondaryContainer,
-                ),
+            CanimationVisibility(
+                visible = visible,
+                enterPreset = preset,
+                exitPreset = preset,
             ) {
-                Text(
-                    text = preset.name,
-                    modifier = Modifier.padding(horizontal = 12.dp, vertical = 8.dp),
-                    style = MaterialTheme.typography.labelMedium,
-                    color = MaterialTheme.colorScheme.onSecondaryContainer,
-                )
+                Surface(
+                    shape = RoundedCornerShape(6.dp),
+                    color = MaterialTheme.colorScheme.primaryContainer,
+                    border = BorderStroke(1.dp, MaterialTheme.colorScheme.primary.copy(alpha = 0.3f)),
+                ) {
+                    Text(
+                        text = preset.name,
+                        modifier = Modifier.padding(horizontal = 10.dp, vertical = 4.dp),
+                        style = MaterialTheme.typography.labelSmall,
+                        color = MaterialTheme.colorScheme.onPrimaryContainer,
+                    )
+                }
+            }
+        }
+    }
+}
+
+@Composable
+private fun AutoReplayCell(
+    label: String,
+    preset: CanimationPreset,
+    modifier: Modifier = Modifier,
+) {
+    var visible by remember { mutableStateOf(false) }
+
+    LaunchedEffect(Unit) {
+        while (true) {
+            visible = true
+            delay(2000)
+            visible = false
+            delay(600)
+        }
+    }
+
+    Surface(
+        shape = RoundedCornerShape(12.dp),
+        color = MaterialTheme.colorScheme.surface,
+        border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline),
+        modifier = modifier,
+    ) {
+        Column(
+            modifier = Modifier.padding(16.dp).height(100.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.spacedBy(8.dp),
+        ) {
+            Text(
+                text = label,
+                style = MaterialTheme.typography.labelMedium,
+                fontWeight = FontWeight.Bold,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
+            Box(
+                modifier = Modifier.weight(1f).fillMaxWidth(),
+                contentAlignment = Alignment.Center,
+            ) {
+                CanimationVisibility(
+                    visible = visible,
+                    enterPreset = preset,
+                    exitPreset = preset,
+                ) {
+                    Surface(
+                        shape = RoundedCornerShape(8.dp),
+                        color = MaterialTheme.colorScheme.primary.copy(alpha = 0.2f),
+                        border = BorderStroke(1.dp, MaterialTheme.colorScheme.primary.copy(alpha = 0.4f)),
+                    ) {
+                        Box(Modifier.size(40.dp))
+                    }
+                }
             }
         }
     }
