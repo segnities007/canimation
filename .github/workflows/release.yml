@@ -1,0 +1,90 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  release-secrets-check:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Validate required secrets
+        run: |
+          missing=()
+          [ -z "${{ secrets.CANIMATION_MAVEN_URL }}" ] && missing+=("CANIMATION_MAVEN_URL")
+          [ -z "${{ secrets.CANIMATION_MAVEN_USERNAME }}" ] && missing+=("CANIMATION_MAVEN_USERNAME")
+          [ -z "${{ secrets.CANIMATION_MAVEN_PASSWORD }}" ] && missing+=("CANIMATION_MAVEN_PASSWORD")
+          [ -z "${{ secrets.CANIMATION_SIGNING_KEY }}" ] && missing+=("CANIMATION_SIGNING_KEY")
+          [ -z "${{ secrets.CANIMATION_SIGNING_PASSWORD }}" ] && missing+=("CANIMATION_SIGNING_PASSWORD")
+          [ -z "${{ secrets.CANIMATION_SIGNING_KEY_ID }}" ] && missing+=("CANIMATION_SIGNING_KEY_ID")
+          if [ ${#missing[@]} -ne 0 ]; then
+            echo "::error::Missing required secrets: ${missing[*]}"
+            exit 1
+          fi
+          echo "All required secrets are configured."
+
+  check:
+    needs: release-secrets-check
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - uses: gradle/actions/setup-gradle@v4
+      - name: Run tests
+        run: ./gradlew check allTests
+
+  sign:
+    needs: check
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - uses: gradle/actions/setup-gradle@v4
+      - name: Sign publications
+        env:
+          CANIMATION_SIGNING_KEY: ${{ secrets.CANIMATION_SIGNING_KEY }}
+          CANIMATION_SIGNING_PASSWORD: ${{ secrets.CANIMATION_SIGNING_PASSWORD }}
+          CANIMATION_SIGNING_KEY_ID: ${{ secrets.CANIMATION_SIGNING_KEY_ID }}
+        run: ./gradlew signAllPublications
+
+  publish:
+    needs: sign
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - uses: gradle/actions/setup-gradle@v4
+      - name: Publish
+        env:
+          CANIMATION_MAVEN_URL: ${{ secrets.CANIMATION_MAVEN_URL }}
+          CANIMATION_MAVEN_USERNAME: ${{ secrets.CANIMATION_MAVEN_USERNAME }}
+          CANIMATION_MAVEN_PASSWORD: ${{ secrets.CANIMATION_MAVEN_PASSWORD }}
+        run: ./gradlew publish
+
+  docs-deploy:
+    needs: publish
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - uses: gradle/actions/setup-gradle@v4
+      - name: Generate API docs
+        run: ./gradlew dokkaHtml
+      - name: Upload API docs
+        uses: actions/upload-artifact@v4
+        with:
+          name: api-docs
+          path: build/dokka/html
