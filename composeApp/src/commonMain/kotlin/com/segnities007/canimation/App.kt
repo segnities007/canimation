@@ -28,6 +28,7 @@ import com.segnities007.canimation.navigation.CanimationNavHost
 import com.segnities007.canimation.navigation.CustomSpecLabRoute
 import com.segnities007.canimation.navigation.DiagnosticsRoute
 import com.segnities007.canimation.navigation.HomeRoute
+import com.segnities007.canimation.navigation.ExamplesRoute
 import com.segnities007.canimation.navigation.PresetGalleryRoute
 import com.segnities007.canimation.navigation.TokenReferenceRoute
 import com.segnities007.canimation.theme.CanimationTheme
@@ -78,6 +79,7 @@ fun App() {
                             ) {
                                 listOf(
                                     Triple("Presets", PresetGalleryRoute, "PresetGalleryRoute"),
+                                    Triple("Examples", ExamplesRoute, "ExamplesRoute"),
                                     Triple("Lab", CustomSpecLabRoute, "CustomSpecLabRoute"),
                                     Triple("A11y", A11yDemoRoute, "A11yDemoRoute"),
                                     Triple("Diagnostics", DiagnosticsRoute, "DiagnosticsRoute"),

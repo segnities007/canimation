@@ -485,6 +485,7 @@ private fun ExploreSection(presetCount: Int, onNavigate: (String) -> Unit) {
 
         listOf(
             Triple("Preset Gallery", "All $presetCount built-in presets with interactive demos", "presets"),
+            Triple("Examples", "Categorized interactive examples — fade, scale, spring, attention seekers & more", "examples"),
             Triple("Custom Spec Lab", "Build your own animation specs with live preview", "custom"),
             Triple("Accessibility", "Full / Reduced / Off motion policy comparison", "a11y"),
             Triple("Diagnostics", "FPS overlay and performance monitoring tools", "diagnostics"),
