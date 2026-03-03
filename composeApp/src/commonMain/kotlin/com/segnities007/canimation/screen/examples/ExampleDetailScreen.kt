@@ -1,6 +1,12 @@
 package com.segnities007.canimation.screen.examples
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.combinedClickable
+import androidx.compose.foundation.gestures.Orientation
+import androidx.compose.foundation.gestures.draggable
+import androidx.compose.foundation.gestures.rememberDraggableState
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -29,6 +35,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.input.pointer.PointerEventType
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -159,6 +167,12 @@ private fun ExampleCard(
                 "stagger" -> StaggerDemo(example.preset, index)
                 "enterExit" -> EnterExitDemo(example.preset, index)
                 "grid" -> GridDemo(example.preset, index)
+                "tap" -> TapDemo(example.preset)
+                "tapEmphasis" -> TapEmphasisDemo(example.preset)
+                "hover" -> HoverDemo(example.preset)
+                "longPress" -> LongPressDemo(example.preset)
+                "toggle" -> ToggleDemo(example.preset)
+                "drag" -> DragDemo(example.preset)
                 else -> VisibilityDemo(example.preset, index)
             }
 
@@ -414,6 +428,270 @@ private fun GridDemo(preset: CanimationPreset, index: Int) {
                         }
                     }
                 }
+            }
+        }
+    }
+}
+
+// ===== Interactive Demo Renderers =====
+
+@Composable
+private fun TapDemo(preset: CanimationPreset) {
+    var visible by remember { mutableStateOf(false) }
+
+    InteractiveDemoSurface(hint = "Tap to toggle") {
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .clickable { visible = !visible },
+            contentAlignment = Alignment.Center,
+        ) {
+            DemoDot()
+            CanimationVisibility(
+                visible = visible,
+                enterPreset = preset,
+                exitPreset = preset,
+            ) {
+                DemoBox()
+            }
+        }
+    }
+}
+
+@Composable
+private fun TapEmphasisDemo(preset: CanimationPreset) {
+    var active by remember { mutableStateOf(false) }
+
+    LaunchedEffect(active) {
+        if (active) {
+            delay(1200)
+            active = false
+        }
+    }
+
+    InteractiveDemoSurface(hint = "Tap to emphasize") {
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .clickable { active = true },
+            contentAlignment = Alignment.Center,
+        ) {
+            Surface(
+                shape = RoundedCornerShape(10.dp),
+                color = MaterialTheme.colorScheme.primaryContainer,
+                border = BorderStroke(1.dp, MaterialTheme.colorScheme.primary.copy(alpha = 0.4f)),
+                modifier = Modifier.canimationEmphasize(active = active, preset = preset),
+            ) {
+                Box(
+                    modifier = Modifier.size(width = 64.dp, height = 48.dp),
+                    contentAlignment = Alignment.Center,
+                ) {
+                    Text(
+                        text = "A",
+                        style = MaterialTheme.typography.titleMedium,
+                        fontWeight = FontWeight.Bold,
+                        color = MaterialTheme.colorScheme.onPrimaryContainer,
+                    )
+                }
+            }
+        }
+    }
+}
+
+@Composable
+private fun HoverDemo(preset: CanimationPreset) {
+    var hovered by remember { mutableStateOf(false) }
+
+    InteractiveDemoSurface(hint = "Hover / pointer over") {
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .pointerInput(Unit) {
+                    awaitPointerEventScope {
+                        while (true) {
+                            val event = awaitPointerEvent()
+                            when (event.type) {
+                                PointerEventType.Enter -> hovered = true
+                                PointerEventType.Exit -> hovered = false
+                            }
+                        }
+                    }
+                },
+            contentAlignment = Alignment.Center,
+        ) {
+            Surface(
+                shape = RoundedCornerShape(10.dp),
+                color = MaterialTheme.colorScheme.primaryContainer,
+                border = BorderStroke(1.dp, MaterialTheme.colorScheme.primary.copy(alpha = 0.4f)),
+                modifier = Modifier.canimationEmphasize(active = hovered, preset = preset),
+            ) {
+                Box(
+                    modifier = Modifier.size(width = 64.dp, height = 48.dp),
+                    contentAlignment = Alignment.Center,
+                ) {
+                    Text(
+                        text = "A",
+                        style = MaterialTheme.typography.titleMedium,
+                        fontWeight = FontWeight.Bold,
+                        color = MaterialTheme.colorScheme.onPrimaryContainer,
+                    )
+                }
+            }
+        }
+    }
+}
+
+@OptIn(ExperimentalFoundationApi::class)
+@Composable
+private fun LongPressDemo(preset: CanimationPreset) {
+    var active by remember { mutableStateOf(false) }
+
+    LaunchedEffect(active) {
+        if (active) {
+            delay(1200)
+            active = false
+        }
+    }
+
+    InteractiveDemoSurface(hint = "Long press") {
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .combinedClickable(
+                    onClick = {},
+                    onLongClick = { active = true },
+                ),
+            contentAlignment = Alignment.Center,
+        ) {
+            Surface(
+                shape = RoundedCornerShape(10.dp),
+                color = MaterialTheme.colorScheme.primaryContainer,
+                border = BorderStroke(1.dp, MaterialTheme.colorScheme.primary.copy(alpha = 0.4f)),
+                modifier = Modifier.canimationEmphasize(active = active, preset = preset),
+            ) {
+                Box(
+                    modifier = Modifier.size(width = 64.dp, height = 48.dp),
+                    contentAlignment = Alignment.Center,
+                ) {
+                    Text(
+                        text = "A",
+                        style = MaterialTheme.typography.titleMedium,
+                        fontWeight = FontWeight.Bold,
+                        color = MaterialTheme.colorScheme.onPrimaryContainer,
+                    )
+                }
+            }
+        }
+    }
+}
+
+@Composable
+private fun ToggleDemo(preset: CanimationPreset) {
+    var stateA by remember { mutableStateOf(true) }
+
+    InteractiveDemoSurface(hint = "Tap to switch A ↔ B") {
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .clickable { stateA = !stateA },
+            contentAlignment = Alignment.Center,
+        ) {
+            CanimationVisibility(
+                visible = stateA,
+                enterPreset = preset,
+                exitPreset = preset,
+            ) {
+                DemoBox(label = "A")
+            }
+            CanimationVisibility(
+                visible = !stateA,
+                enterPreset = preset,
+                exitPreset = preset,
+            ) {
+                DemoBox(label = "B")
+            }
+        }
+    }
+}
+
+@Composable
+private fun DragDemo(preset: CanimationPreset) {
+    var revealed by remember { mutableStateOf(false) }
+    val draggableState = rememberDraggableState { delta ->
+        if (delta > 8f) revealed = true
+        if (delta < -8f) revealed = false
+    }
+
+    InteractiveDemoSurface(hint = "Drag → to reveal, ← to hide") {
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .draggable(
+                    state = draggableState,
+                    orientation = Orientation.Horizontal,
+                ),
+            contentAlignment = Alignment.Center,
+        ) {
+            // Track indicator
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(4.dp),
+            ) {
+                Text(
+                    text = "←",
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.outline.copy(alpha = 0.5f),
+                )
+                Surface(
+                    shape = RoundedCornerShape(2.dp),
+                    color = MaterialTheme.colorScheme.outline.copy(alpha = 0.15f),
+                    modifier = Modifier.size(width = 60.dp, height = 4.dp),
+                ) {}
+                Text(
+                    text = "→",
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.outline.copy(alpha = 0.5f),
+                )
+            }
+
+            CanimationVisibility(
+                visible = revealed,
+                enterPreset = preset,
+                exitPreset = preset,
+            ) {
+                DemoBox()
+            }
+        }
+    }
+}
+
+@Composable
+private fun InteractiveDemoSurface(
+    hint: String,
+    content: @Composable () -> Unit,
+) {
+    Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
+        Text(
+            text = hint,
+            style = MaterialTheme.typography.labelSmall,
+            color = MaterialTheme.colorScheme.secondary,
+            fontWeight = FontWeight.Bold,
+        )
+        Surface(
+            shape = RoundedCornerShape(12.dp),
+            color = MaterialTheme.colorScheme.surface,
+            border = BorderStroke(
+                1.dp,
+                MaterialTheme.colorScheme.secondary.copy(alpha = 0.4f),
+            ),
+            modifier = Modifier.fillMaxWidth(),
+        ) {
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(120.dp),
+            ) {
+                content()
             }
         }
     }

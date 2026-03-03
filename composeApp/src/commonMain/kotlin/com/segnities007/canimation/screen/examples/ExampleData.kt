@@ -15,7 +15,13 @@ data class ExampleCategory(
  *   "emphasis" = canimationEmphasize continuous loop,
  *   "stagger" = multiple items with staggered timing,
  *   "enterExit" = enter → hold → exit → pause cycle,
- *   "grid" = 2x2 grid of staggered items
+ *   "grid" = 2x2 grid of staggered items,
+ *   "tap" = tap to toggle visibility,
+ *   "tapEmphasis" = tap to trigger emphasis,
+ *   "hover" = hover/pointer to trigger emphasis,
+ *   "longPress" = long press to trigger emphasis,
+ *   "toggle" = tap to switch between A/B states,
+ *   "drag" = horizontal drag to reveal/hide
  */
 data class ExampleItem(
     val preset: CanimationPreset,
@@ -98,6 +104,111 @@ LazyVerticalGrid(columns = Fixed(2)) {
     }
 }""",
     "grid",
+)
+
+private fun tap(
+    preset: CanimationPreset,
+    desc: String,
+) = ExampleItem(
+    preset, desc,
+    """// Tap to toggle
+var visible by remember { mutableStateOf(false) }
+Box(Modifier.clickable { visible = !visible }) {
+    CanimationVisibility(
+        visible = visible,
+        enterPreset = CanimationPreset.${preset.name},
+    ) { content() }
+}""",
+    "tap",
+)
+
+private fun tapEmphasis(
+    preset: CanimationPreset,
+    desc: String,
+) = ExampleItem(
+    preset, desc,
+    """// Tap to emphasize
+var active by remember { mutableStateOf(false) }
+Box(
+    Modifier
+        .clickable { active = !active }
+        .canimationEmphasize(active, CanimationPreset.${preset.name})
+) { content() }""",
+    "tapEmphasis",
+)
+
+private fun hover(
+    preset: CanimationPreset,
+    desc: String,
+) = ExampleItem(
+    preset, desc,
+    """// Hover to emphasize
+var hovered by remember { mutableStateOf(false) }
+Box(
+    Modifier
+        .onPointerEvent(PointerEventType.Enter) { hovered = true }
+        .onPointerEvent(PointerEventType.Exit) { hovered = false }
+        .canimationEmphasize(hovered, CanimationPreset.${preset.name})
+) { content() }""",
+    "hover",
+)
+
+private fun longPress(
+    preset: CanimationPreset,
+    desc: String,
+) = ExampleItem(
+    preset, desc,
+    """// Long press to trigger
+var active by remember { mutableStateOf(false) }
+Box(
+    Modifier.combinedClickable(
+        onLongClick = { active = !active }
+    ) { }
+        .canimationEmphasize(active, CanimationPreset.${preset.name})
+) { content() }""",
+    "longPress",
+)
+
+private fun toggle(
+    preset: CanimationPreset,
+    desc: String,
+) = ExampleItem(
+    preset, desc,
+    """// Tap to toggle between two states
+var state by remember { mutableStateOf(false) }
+Box(Modifier.clickable { state = !state }) {
+    CanimationVisibility(visible = state,
+        enterPreset = CanimationPreset.${preset.name},
+        exitPreset = CanimationPreset.${preset.name},
+    ) { ContentA() }
+    CanimationVisibility(visible = !state,
+        enterPreset = CanimationPreset.${preset.name},
+        exitPreset = CanimationPreset.${preset.name},
+    ) { ContentB() }
+}""",
+    "toggle",
+)
+
+private fun drag(
+    preset: CanimationPreset,
+    desc: String,
+) = ExampleItem(
+    preset, desc,
+    """// Drag to reveal
+var revealed by remember { mutableStateOf(false) }
+Box(Modifier.draggable(
+    state = rememberDraggableState { delta ->
+        if (delta > 10f) revealed = true
+        if (delta < -10f) revealed = false
+    },
+    orientation = Orientation.Horizontal,
+)) {
+    CanimationVisibility(
+        visible = revealed,
+        enterPreset = CanimationPreset.${preset.name},
+    ) { content() }
+}""",
+    "drag",
 )
 
 val exampleCategories: List<ExampleCategory> = listOf(
@@ -445,6 +556,116 @@ val exampleCategories: List<ExampleCategory> = listOf(
             mod(CanimationPreset.LightSpeedInRight, "Lightspeed from right"),
             mod(CanimationPreset.LightSpeedInLeft, "Lightspeed from left"),
             mod(CanimationPreset.RollIn, "Rolling from far left"),
+        ),
+    ),
+
+    // ===== INTERACTIVE / GESTURE EXAMPLES =====
+    ExampleCategory(
+        id = "tap-toggle",
+        title = "Tap to Show/Hide",
+        subtitle = "Tap the demo area to toggle visibility",
+        accentLabel = "TAP",
+        examples = listOf(
+            tap(CanimationPreset.Fade, "Tap to fade in/out"),
+            tap(CanimationPreset.FadeUp, "Tap to fade up/down"),
+            tap(CanimationPreset.ScaleIn, "Tap to scale in/out"),
+            tap(CanimationPreset.ZoomIn, "Tap to zoom in/out"),
+            tap(CanimationPreset.Pop, "Tap to pop in/out"),
+            tap(CanimationPreset.SlideLeft, "Tap to slide left"),
+            tap(CanimationPreset.SlideRight, "Tap to slide right"),
+            tap(CanimationPreset.BounceIn, "Tap to bounce in/out"),
+            tap(CanimationPreset.FlipIn, "Tap to flip in/out"),
+            tap(CanimationPreset.SpringIn, "Tap to spring in/out"),
+            tap(CanimationPreset.RotateIn, "Tap to rotate in/out"),
+            tap(CanimationPreset.DropIn, "Tap to drop in/out"),
+        ),
+    ),
+    ExampleCategory(
+        id = "tap-emphasis",
+        title = "Tap to Emphasize",
+        subtitle = "Tap to trigger emphasis animation",
+        accentLabel = "TAP",
+        examples = listOf(
+            tapEmphasis(CanimationPreset.Pulse, "Tap for pulse"),
+            tapEmphasis(CanimationPreset.HeartBeat, "Tap for heartbeat"),
+            tapEmphasis(CanimationPreset.Tada, "Tap for tada"),
+            tapEmphasis(CanimationPreset.Wobble, "Tap for wobble"),
+            tapEmphasis(CanimationPreset.Swing, "Tap for swing"),
+            tapEmphasis(CanimationPreset.RubberBand, "Tap for rubber band"),
+            tapEmphasis(CanimationPreset.Bounce, "Tap for bounce"),
+            tapEmphasis(CanimationPreset.Flash, "Tap for flash"),
+            tapEmphasis(CanimationPreset.ShakeX, "Tap for shake-x"),
+            tapEmphasis(CanimationPreset.ShakeY, "Tap for shake-y"),
+            tapEmphasis(CanimationPreset.Jello, "Tap for jello"),
+            tapEmphasis(CanimationPreset.HeadShake, "Tap for head shake"),
+        ),
+    ),
+    ExampleCategory(
+        id = "hover-interactive",
+        title = "Hover Effects",
+        subtitle = "Hover/pointer over to trigger emphasis",
+        accentLabel = "HOVER",
+        examples = listOf(
+            hover(CanimationPreset.Pulse, "Hover pulse"),
+            hover(CanimationPreset.HeartBeat, "Hover heartbeat"),
+            hover(CanimationPreset.Tada, "Hover tada"),
+            hover(CanimationPreset.Wobble, "Hover wobble"),
+            hover(CanimationPreset.Swing, "Hover swing"),
+            hover(CanimationPreset.RubberBand, "Hover rubber band"),
+            hover(CanimationPreset.Bounce, "Hover bounce"),
+            hover(CanimationPreset.ShakeX, "Hover shake-x"),
+            hover(CanimationPreset.Jello, "Hover jello"),
+            hover(CanimationPreset.ScaleIn, "Hover scale"),
+        ),
+    ),
+    ExampleCategory(
+        id = "long-press",
+        title = "Long Press",
+        subtitle = "Long press to trigger animation",
+        accentLabel = "PRESS",
+        examples = listOf(
+            longPress(CanimationPreset.Pulse, "Long press pulse"),
+            longPress(CanimationPreset.HeartBeat, "Long press heartbeat"),
+            longPress(CanimationPreset.Tada, "Long press tada"),
+            longPress(CanimationPreset.RubberBand, "Long press rubber band"),
+            longPress(CanimationPreset.Bounce, "Long press bounce"),
+            longPress(CanimationPreset.ShakeX, "Long press shake-x"),
+            longPress(CanimationPreset.ShakeY, "Long press shake-y"),
+            longPress(CanimationPreset.Wobble, "Long press wobble"),
+        ),
+    ),
+    ExampleCategory(
+        id = "toggle-state",
+        title = "State Toggle",
+        subtitle = "Tap to switch between two animated states",
+        accentLabel = "TOGGLE",
+        examples = listOf(
+            toggle(CanimationPreset.Fade, "Fade crossfade toggle"),
+            toggle(CanimationPreset.FadeUp, "Slide-up toggle"),
+            toggle(CanimationPreset.FadeDown, "Slide-down toggle"),
+            toggle(CanimationPreset.ScaleIn, "Scale toggle"),
+            toggle(CanimationPreset.ZoomIn, "Zoom toggle"),
+            toggle(CanimationPreset.FlipIn, "Flip toggle"),
+            toggle(CanimationPreset.RotateIn, "Rotate toggle"),
+            toggle(CanimationPreset.SpringIn, "Spring toggle"),
+            toggle(CanimationPreset.FadeThrough, "Material fade-through toggle"),
+            toggle(CanimationPreset.SharedAxisX, "Shared-axis X toggle"),
+        ),
+    ),
+    ExampleCategory(
+        id = "drag-reveal",
+        title = "Drag & Swipe",
+        subtitle = "Drag horizontally to reveal/hide content",
+        accentLabel = "DRAG",
+        examples = listOf(
+            drag(CanimationPreset.Fade, "Swipe to fade"),
+            drag(CanimationPreset.FadeInLeft, "Swipe to slide from left"),
+            drag(CanimationPreset.FadeInRight, "Swipe to slide from right"),
+            drag(CanimationPreset.ScaleIn, "Swipe to scale"),
+            drag(CanimationPreset.ZoomIn, "Swipe to zoom"),
+            drag(CanimationPreset.Pop, "Swipe to pop"),
+            drag(CanimationPreset.BounceIn, "Swipe to bounce"),
+            drag(CanimationPreset.SpringIn, "Swipe to spring"),
         ),
     ),
 )
