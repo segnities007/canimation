@@ -38,15 +38,11 @@ internal object CanimationSpecResolver {
         fullSpec: CanimationSpec,
         reducedSpec: CanimationSpec,
     ): CanimationSpec {
+        // fullSpec/reducedSpec are already direction-specific specs provided by the caller.
+        // Do not reverse here; reversing at this layer breaks custom Exit behavior.
         return when (level) {
-            CanimationLevel.Full -> when (direction) {
-                AnimationDirection.Enter -> fullSpec
-                AnimationDirection.Exit -> fullSpec.reversed()
-            }
-            CanimationLevel.Reduced -> when (direction) {
-                AnimationDirection.Enter -> reducedSpec
-                AnimationDirection.Exit -> reducedSpec.reversed()
-            }
+            CanimationLevel.Full -> fullSpec
+            CanimationLevel.Reduced -> reducedSpec
             CanimationLevel.Off -> fullSpec.copy(durationMs = 0)
         }
     }

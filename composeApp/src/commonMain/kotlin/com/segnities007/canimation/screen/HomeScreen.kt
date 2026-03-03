@@ -91,9 +91,10 @@ fun HomeScreen(
 
         // Navigation cards
         Text("Explore", style = MaterialTheme.typography.titleLarge)
+        val presetCount = CanimationPreset.entries.size
 
         val sections = listOf(
-            Triple("Preset Gallery", "All 50 built-in presets with interactive demos", "presets"),
+            Triple("Preset Gallery", "All $presetCount built-in presets with interactive demos", "presets"),
             Triple("Custom Spec Lab", "Build your own animation specs with live preview", "custom"),
             Triple("Accessibility", "Full / Reduced / Off motion comparison", "a11y"),
             Triple("Diagnostics", "FPS overlay and performance monitoring", "diagnostics"),
@@ -125,7 +126,7 @@ fun HomeScreen(
             horizontalArrangement = Arrangement.spacedBy(12.dp),
         ) {
             listOf(
-                "🎯 83 Presets" to "Bounce, Spring, Flip, Material Motion and more",
+                "🎯 $presetCount Presets" to "Bounce, Spring, Flip, Material Motion and more",
                 "♿ A11y" to "System-aware Reduce Motion",
                 "📊 Diagnostics" to "Real-time FPS & jank overlay",
             ).forEach { (title, desc) ->

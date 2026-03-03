@@ -10,7 +10,7 @@ object GentleFadePreset {
     val spec = CanimationPresetSpec(
         fullEnter = CanimationSpec(durationMs = 600, easing = gentleEasing, alpha = CanimationRange(0f, 1f)),
         fullExit = CanimationSpec(durationMs = 600, easing = gentleEasing, alpha = CanimationRange(1f, 0f)),
-        reducedEnter = CanimationSpec(durationMs = 200, easing = InternalEasings.decelerate, alpha = CanimationRange(0f, 1f)),
-        reducedExit = CanimationSpec(durationMs = 200, easing = InternalEasings.accelerate, alpha = CanimationRange(1f, 0f)),
+        reducedEnter = CanimationSpec(durationMs = 120, easing = InternalEasings.decelerate, alpha = CanimationRange(0f, 1f)),
+        reducedExit = CanimationSpec(durationMs = 120, easing = InternalEasings.accelerate, alpha = CanimationRange(1f, 0f)),
     )
 }

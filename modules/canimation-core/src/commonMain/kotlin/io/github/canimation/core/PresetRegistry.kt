@@ -7,7 +7,7 @@ import androidx.compose.ui.unit.dp
 /**
  * Registry mapping [CanimationPreset] to their [CanimationPresetSpec].
  *
- * The [Default] instance contains the 15 built-in presets with values from the spec.
+ * The [Default] instance contains built-in presets with values from the spec.
  * Users can create custom registries to override or extend preset definitions.
  */
 @Stable
@@ -104,7 +104,7 @@ class PresetRegistry private constructor(
         )
 
         /**
-         * Default registry containing all 5 built-in presets.
+         * Default registry containing built-in presets.
          */
         val Default: PresetRegistry = PresetRegistry(
             specs = mapOf(

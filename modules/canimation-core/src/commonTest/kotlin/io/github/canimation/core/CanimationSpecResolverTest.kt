@@ -66,4 +66,45 @@ class CanimationSpecResolverTest {
         )
         assertEquals(120, result.durationMs)
     }
+
+    @Test
+    fun resolveCustomFullExitReturnsProvidedExitSpecWithoutReversing() {
+        val exitSpec = CanimationSpec(
+            durationMs = 280,
+            easing = EasingTokens.Default.accelerate,
+            alpha = CanimationRange(1f, 0f),
+        )
+        val result = CanimationSpecResolver.resolveCustom(
+            level = CanimationLevel.Full,
+            direction = AnimationDirection.Exit,
+            fullSpec = exitSpec,
+            reducedSpec = exitSpec.toReduced(),
+        )
+        assertEquals(280, result.durationMs)
+        assertEquals(1f, result.alpha?.from)
+        assertEquals(0f, result.alpha?.to)
+    }
+
+    @Test
+    fun resolveCustomReducedExitReturnsProvidedReducedExitSpecWithoutReversing() {
+        val exitSpec = CanimationSpec(
+            durationMs = 260,
+            easing = EasingTokens.Default.accelerate,
+            alpha = CanimationRange(1f, 0f),
+        )
+        val reducedExit = CanimationSpec(
+            durationMs = 120,
+            easing = EasingTokens.Default.accelerate,
+            alpha = CanimationRange(1f, 0f),
+        )
+        val result = CanimationSpecResolver.resolveCustom(
+            level = CanimationLevel.Reduced,
+            direction = AnimationDirection.Exit,
+            fullSpec = exitSpec,
+            reducedSpec = reducedExit,
+        )
+        assertEquals(120, result.durationMs)
+        assertEquals(1f, result.alpha?.from)
+        assertEquals(0f, result.alpha?.to)
+    }
 }
