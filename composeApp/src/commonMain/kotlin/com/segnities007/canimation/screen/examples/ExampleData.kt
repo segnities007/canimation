@@ -36,6 +36,7 @@ data class ExampleItem(
     val description: String,
     val codeSnippet: String,
     val demoType: String = "visibility",
+    val title: String = preset.name,
 )
 
 // Helper for concise visibility examples
@@ -229,6 +230,7 @@ private fun component(
     description = desc,
     codeSnippet = code,
     demoType = demoType,
+    title = desc,
 )
 
 val exampleCategories: List<ExampleCategory> = listOf(

@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -17,7 +16,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -41,11 +39,10 @@ import kotlinx.coroutines.delay
 
 @Composable
 fun A11yDemoScreen(modifier: Modifier = Modifier) {
-    var replayTrigger by remember { mutableIntStateOf(0) }
     var entryStage by remember { mutableIntStateOf(-1) }
 
     LaunchedEffect(Unit) {
-        for (i in 0..3) { delay(80); entryStage = i }
+        for (i in 0..2) { delay(80); entryStage = i }
     }
 
     Box(
@@ -74,61 +71,42 @@ fun A11yDemoScreen(modifier: Modifier = Modifier) {
                         fontWeight = FontWeight.Bold,
                     )
                     Text(
-                        text = "Motion policies in action",
+                        text = "Motion policies",
                         style = MaterialTheme.typography.headlineMedium,
                         fontWeight = FontWeight.Bold,
                     )
                     Text(
-                        text = "Compare how animations adapt across Full, Reduced, and Off policies",
+                        text = "CanimationPolicy adapts animations for users who prefer reduced motion",
                         style = MaterialTheme.typography.bodyMedium,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                     )
                 }
             }
 
-            // Replay button
-            Box(Modifier.canimationEnter(visible = entryStage >= 1, preset = CanimationPreset.FadeUp)) {
-                FilledTonalButton(onClick = { replayTrigger++ }) {
-                    Text("▶  Replay All")
+            // Policy showcase cards
+            Box(
+                Modifier
+                    .fillMaxWidth()
+                    .canimationEnter(visible = entryStage >= 1, preset = CanimationPreset.FadeUp),
+            ) {
+                Column(
+                    verticalArrangement = Arrangement.spacedBy(16.dp),
+                ) {
+                    listOf(
+                        Triple("Full Motion", CanimationPolicy.AlwaysFull, "All animations play at full intensity"),
+                        Triple("Reduced Motion", CanimationPolicy.AlwaysReduced, "Animations use shorter, simpler transitions"),
+                        Triple("Motion Off", CanimationPolicy.AlwaysOff, "Animations are disabled entirely"),
+                    ).forEach { (label, policy, desc) ->
+                        PolicyShowcaseCard(label = label, policy = policy, description = desc)
+                    }
                 }
             }
 
-            // Three-column comparison
+            // Code example
             Box(
                 Modifier
                     .fillMaxWidth()
                     .canimationEnter(visible = entryStage >= 2, preset = CanimationPreset.FadeUp),
-            ) {
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.spacedBy(12.dp),
-                ) {
-                    PolicyColumn(
-                        label = "Full",
-                        policy = CanimationPolicy.AlwaysFull,
-                        replayTrigger = replayTrigger,
-                        modifier = Modifier.weight(1f),
-                    )
-                    PolicyColumn(
-                        label = "Reduced",
-                        policy = CanimationPolicy.AlwaysReduced,
-                        replayTrigger = replayTrigger,
-                        modifier = Modifier.weight(1f),
-                    )
-                    PolicyColumn(
-                        label = "Off",
-                        policy = CanimationPolicy.AlwaysOff,
-                        replayTrigger = replayTrigger,
-                        modifier = Modifier.weight(1f),
-                    )
-                }
-            }
-
-            // Auto-replay showcase
-            Box(
-                Modifier
-                    .fillMaxWidth()
-                    .canimationEnter(visible = entryStage >= 3, preset = CanimationPreset.FadeUp),
             ) {
                 Card(
                     modifier = Modifier.fillMaxWidth(),
@@ -139,29 +117,32 @@ fun A11yDemoScreen(modifier: Modifier = Modifier) {
                 ) {
                     Column(
                         modifier = Modifier.padding(20.dp),
-                        verticalArrangement = Arrangement.spacedBy(16.dp),
+                        verticalArrangement = Arrangement.spacedBy(8.dp),
                     ) {
                         Text(
-                            text = "Continuous Demo",
+                            text = "Usage",
                             style = MaterialTheme.typography.titleMedium,
                             fontWeight = FontWeight.Bold,
                         )
-                        Row(
+                        Surface(
+                            shape = RoundedCornerShape(8.dp),
+                            color = MaterialTheme.colorScheme.surface,
+                            border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline),
                             modifier = Modifier.fillMaxWidth(),
-                            horizontalArrangement = Arrangement.spacedBy(12.dp),
                         ) {
-                            listOf(
-                                "Full" to CanimationPolicy.AlwaysFull,
-                                "Reduced" to CanimationPolicy.AlwaysReduced,
-                            ).forEach { (label, policy) ->
-                                CanimationProvider(policy = policy) {
-                                    AutoReplayCell(
-                                        label = label,
-                                        preset = CanimationPreset.SpringIn,
-                                        modifier = Modifier.weight(1f),
-                                    )
-                                }
-                            }
+                            Text(
+                                text = """CanimationProvider(
+    policy = CanimationPolicy.AlwaysReduced
+) {
+    // All child animations adapt automatically
+    CanimationVisibility(
+        visible = isVisible,
+        enterPreset = CanimationPreset.BounceIn,
+    ) { content() }
+}""",
+                                modifier = Modifier.padding(16.dp),
+                                style = MaterialTheme.typography.bodySmall,
+                            )
                         }
                     }
                 }
@@ -171,102 +152,52 @@ fun A11yDemoScreen(modifier: Modifier = Modifier) {
 }
 
 @Composable
-private fun PolicyColumn(
+private fun PolicyShowcaseCard(
     label: String,
     policy: CanimationPolicy,
-    replayTrigger: Int,
-    modifier: Modifier = Modifier,
+    description: String,
 ) {
     CanimationProvider(policy = policy) {
         Card(
-            modifier = modifier,
+            modifier = Modifier.fillMaxWidth(),
             colors = CardDefaults.cardColors(
                 containerColor = MaterialTheme.colorScheme.surfaceVariant,
             ),
             border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline),
         ) {
             Column(
-                modifier = Modifier.padding(12.dp),
-                verticalArrangement = Arrangement.spacedBy(8.dp),
-                horizontalAlignment = Alignment.CenterHorizontally,
+                modifier = Modifier.padding(20.dp),
+                verticalArrangement = Arrangement.spacedBy(12.dp),
             ) {
-                Surface(
-                    shape = RoundedCornerShape(8.dp),
-                    color = MaterialTheme.colorScheme.primaryContainer,
-                    border = BorderStroke(1.dp, MaterialTheme.colorScheme.primary.copy(alpha = 0.3f)),
-                ) {
+                Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
                     Text(
                         text = label,
-                        modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
-                        style = MaterialTheme.typography.labelLarge,
+                        style = MaterialTheme.typography.titleMedium,
                         fontWeight = FontWeight.Bold,
-                        color = MaterialTheme.colorScheme.onPrimaryContainer,
                     )
-                }
-
-                listOf(
-                    CanimationPreset.FadeUp,
-                    CanimationPreset.ScaleIn,
-                    CanimationPreset.BounceIn,
-                    CanimationPreset.SpinIn,
-                    CanimationPreset.SlideLeft,
-                    CanimationPreset.SpringIn,
-                    CanimationPreset.FlipIn,
-                    CanimationPreset.EmphasizedEntry,
-                ).forEach { preset ->
-                    A11yPreviewCard(preset = preset, replayTrigger = replayTrigger)
-                }
-            }
-        }
-    }
-}
-
-@Composable
-private fun A11yPreviewCard(
-    preset: CanimationPreset,
-    replayTrigger: Int,
-) {
-    var visible by remember { mutableStateOf(false) }
-
-    LaunchedEffect(replayTrigger) {
-        visible = false
-        delay(200)
-        visible = true
-    }
-
-    LaunchedEffect(Unit) {
-        delay(400)
-        visible = true
-    }
-
-    Surface(
-        shape = RoundedCornerShape(8.dp),
-        color = MaterialTheme.colorScheme.surface,
-        border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline),
-        modifier = Modifier.fillMaxWidth(),
-    ) {
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(48.dp),
-            contentAlignment = Alignment.Center,
-        ) {
-            CanimationVisibility(
-                visible = visible,
-                enterPreset = preset,
-                exitPreset = preset,
-            ) {
-                Surface(
-                    shape = RoundedCornerShape(6.dp),
-                    color = MaterialTheme.colorScheme.primaryContainer,
-                    border = BorderStroke(1.dp, MaterialTheme.colorScheme.primary.copy(alpha = 0.3f)),
-                ) {
                     Text(
-                        text = preset.name,
-                        modifier = Modifier.padding(horizontal = 10.dp, vertical = 4.dp),
-                        style = MaterialTheme.typography.labelSmall,
-                        color = MaterialTheme.colorScheme.onPrimaryContainer,
+                        text = description,
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
                     )
+                }
+
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                ) {
+                    listOf(
+                        CanimationPreset.FadeUp,
+                        CanimationPreset.ScaleIn,
+                        CanimationPreset.BounceIn,
+                        CanimationPreset.SpringIn,
+                    ).forEach { preset ->
+                        AutoReplayCell(
+                            label = preset.name,
+                            preset = preset,
+                            modifier = Modifier.weight(1f),
+                        )
+                    }
                 }
             }
         }

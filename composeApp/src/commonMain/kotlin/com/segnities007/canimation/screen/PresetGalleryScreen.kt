@@ -37,7 +37,6 @@ import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -48,17 +47,13 @@ import androidx.compose.ui.text.font.FontWeight
 import com.segnities007.canimation.component.AnimationShowcase
 import com.segnities007.canimation.component.PresetPreviewTuning
 import com.segnities007.canimation.component.tunePresetSpec
-import io.github.canimation.core.CanimationDpRange
 import io.github.canimation.core.CanimationPreset
 import io.github.canimation.core.CanimationPresetSpec
-import io.github.canimation.core.CanimationRange
 import io.github.canimation.core.CanimationSpec
 import io.github.canimation.core.CanimationPolicy
 import io.github.canimation.core.CanimationProvider
-import io.github.canimation.core.canimationTransition
 import io.github.canimation.presets.PresetsExtensionRegistry
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 import kotlin.math.abs
 import kotlin.math.roundToInt
 
@@ -74,8 +69,6 @@ fun PresetGalleryScreen(modifier: Modifier = Modifier) {
     var autoPlayTick by remember { mutableIntStateOf(0) }
     var motionFilter by remember { mutableStateOf(MotionFilter.All) }
 
-    var selectedPreset by remember { mutableStateOf(CanimationPreset.FadeUp) }
-    var comparePreset by remember { mutableStateOf(CanimationPreset.FadeDown) }
     var codeDialogPreset by remember { mutableStateOf<CanimationPreset?>(null) }
 
     val tuning = remember(durationScale, distanceScale, scaleIntensity, rotationScale) {
@@ -88,14 +81,6 @@ fun PresetGalleryScreen(modifier: Modifier = Modifier) {
     }
 
     val allPresetSpecs = PresetsExtensionRegistry.allPresetSpecs
-    val similarOptions = remember(selectedPreset) { similarPresets(selectedPreset) }
-
-    LaunchedEffect(selectedPreset, similarOptions) {
-        if (comparePreset == selectedPreset || comparePreset !in similarOptions) {
-            comparePreset = similarOptions.firstOrNull()
-                ?: CanimationPreset.entries.first { it != selectedPreset }
-        }
-    }
 
     LaunchedEffect(autoPlayEnabled, cycleMs) {
         if (autoPlayEnabled) {
@@ -106,12 +91,6 @@ fun PresetGalleryScreen(modifier: Modifier = Modifier) {
         }
     }
 
-    val selectedSpec = remember(selectedPreset, tuning) {
-        tunePresetSpec(allPresetSpecs.getValue(selectedPreset), tuning)
-    }
-    val compareSpec = remember(comparePreset, tuning) {
-        tunePresetSpec(allPresetSpecs.getValue(comparePreset), tuning)
-    }
     val filteredPresets = remember(allPresetSpecs, motionFilter) {
         CanimationPreset.entries.filter { preset ->
             matchesMotionFilter(allPresetSpecs.getValue(preset).fullEnter, motionFilter)
@@ -251,63 +230,6 @@ fun PresetGalleryScreen(modifier: Modifier = Modifier) {
         }
         }
 
-        item(span = { GridItemSpan(maxLineSpan) }) {
-            Card(
-            modifier = Modifier
-                .padding(vertical = 2.dp)
-                .fillMaxWidth(),
-            colors = CardDefaults.cardColors(
-                containerColor = MaterialTheme.colorScheme.surfaceVariant,
-            ),
-            border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline),
-        ) {
-            Column(
-                modifier = Modifier.padding(12.dp),
-                verticalArrangement = Arrangement.spacedBy(8.dp),
-            ) {
-                Text("Similar preset comparison", style = MaterialTheme.typography.titleSmall)
-
-                FlowRow(
-                    horizontalArrangement = Arrangement.spacedBy(8.dp),
-                    verticalArrangement = Arrangement.spacedBy(8.dp),
-                ) {
-                    similarOptions.forEach { preset ->
-                        FilterChip(
-                            selected = comparePreset == preset,
-                            onClick = { comparePreset = preset },
-                            label = { Text(preset.name) },
-                        )
-                    }
-                }
-
-                Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                    ComparisonPreviewTile(
-                        label = "Base",
-                        preset = selectedPreset,
-                        spec = selectedSpec,
-                        autoPlayEnabled = autoPlayEnabled,
-                        autoPlayTick = autoPlayTick,
-                        modifier = Modifier.weight(1f),
-                    )
-                    ComparisonPreviewTile(
-                        label = "Compare",
-                        preset = comparePreset,
-                        spec = compareSpec,
-                        autoPlayEnabled = autoPlayEnabled,
-                        autoPlayTick = autoPlayTick,
-                        modifier = Modifier.weight(1f),
-                    )
-                }
-
-                Text(
-                    text = buildDiffSummary(selectedPreset, selectedSpec.fullEnter, comparePreset, compareSpec.fullEnter),
-                    style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                )
-            }
-        }
-        }
-
         items(filteredPresets, key = { it.name }) { preset ->
             AnimationShowcase(
                 title = presetDescription(preset),
@@ -316,9 +238,8 @@ fun PresetGalleryScreen(modifier: Modifier = Modifier) {
                     tuning = tuning,
                     autoPlayEnabled = autoPlayEnabled,
                     autoPlayTick = autoPlayTick,
-                    selectedForCompare = preset == selectedPreset || preset == comparePreset,
+                    selectedForCompare = false,
                     onCardClick = { tapped ->
-                        selectedPreset = tapped
                         codeDialogPreset = tapped
                     },
                 )
@@ -432,86 +353,6 @@ private fun StringBuilder.appendSpecFields(spec: CanimationSpec) {
 }
 
 @Composable
-private fun ComparisonPreviewTile(
-    label: String,
-    preset: CanimationPreset,
-    spec: CanimationPresetSpec,
-    autoPlayEnabled: Boolean,
-    autoPlayTick: Int,
-    modifier: Modifier = Modifier,
-) {
-    var visible by remember(preset) { mutableStateOf(false) }
-    val scope = rememberCoroutineScope()
-
-    suspend fun replay() {
-        visible = false
-        delay(220)
-        visible = true
-    }
-
-    LaunchedEffect(preset) {
-        replay()
-    }
-
-    LaunchedEffect(autoPlayEnabled, autoPlayTick) {
-        if (autoPlayEnabled) {
-            replay()
-        }
-    }
-
-    Card(
-        modifier = modifier,
-        colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.surfaceVariant,
-        ),
-        border = BorderStroke(1.dp, MaterialTheme.colorScheme.outlineVariant),
-    ) {
-        Column(
-            modifier = Modifier.padding(10.dp),
-            verticalArrangement = Arrangement.spacedBy(6.dp),
-        ) {
-            Text("$label: ${preset.name}", style = MaterialTheme.typography.labelLarge)
-            Text(
-                text = "${spec.fullEnter.durationMs}ms / ${spec.reducedEnter.durationMs}ms",
-                style = MaterialTheme.typography.labelSmall,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-            )
-
-            Card(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(80.dp)
-                    .canimationTransition(
-                        visible = visible,
-                        enterFullSpec = spec.fullEnter,
-                        enterReducedSpec = spec.reducedEnter,
-                        exitFullSpec = spec.fullExit,
-                        exitReducedSpec = spec.reducedExit,
-                    ),
-                colors = CardDefaults.cardColors(
-                    containerColor = MaterialTheme.colorScheme.primaryContainer,
-                ),
-            ) {
-                Row(
-                    modifier = Modifier.fillMaxSize(),
-                    horizontalArrangement = Arrangement.Center,
-                    verticalAlignment = Alignment.CenterVertically,
-                ) {
-                    Text("Preview", color = MaterialTheme.colorScheme.onPrimaryContainer)
-                }
-            }
-
-            OutlinedButton(
-                onClick = { scope.launch { replay() } },
-                modifier = Modifier.fillMaxWidth(),
-            ) {
-                Text("Replay")
-            }
-        }
-    }
-}
-
-@Composable
 private fun LabeledSlider(
     label: String,
     value: Float,
@@ -534,92 +375,6 @@ private fun LabeledSlider(
         )
     }
 }
-
-private fun buildDiffSummary(
-    leftPreset: CanimationPreset,
-    left: CanimationSpec,
-    rightPreset: CanimationPreset,
-    right: CanimationSpec,
-): String {
-    return buildString {
-        append("Compare ")
-        append(leftPreset.name)
-        append(" vs ")
-        append(rightPreset.name)
-        append(": ")
-        append("duration ")
-        append(left.durationMs)
-        append("ms/")
-        append(right.durationMs)
-        append("ms, ")
-        append("offsetX ")
-        append(rangeDiff(left.offsetX, right.offsetX))
-        append(", offsetY ")
-        append(rangeDiff(left.offsetY, right.offsetY))
-        append(", scale ")
-        append(rangeDiff(left.scale, right.scale))
-        append(", rotation ")
-        append(rangeDiff(left.rotation, right.rotation))
-    }
-}
-
-private fun rangeDiff(left: CanimationDpRange?, right: CanimationDpRange?): String {
-    if (left == null && right == null) return "none"
-    val l = left?.let { "${it.from.value.fmt2()}->${it.to.value.fmt2()}dp" } ?: "none"
-    val r = right?.let { "${it.from.value.fmt2()}->${it.to.value.fmt2()}dp" } ?: "none"
-    return "$l / $r"
-}
-
-private fun rangeDiff(left: CanimationRange?, right: CanimationRange?): String {
-    if (left == null && right == null) return "none"
-    val l = left?.let { "${it.from.fmt2()}->${it.to.fmt2()}" } ?: "none"
-    val r = right?.let { "${it.from.fmt2()}->${it.to.fmt2()}" } ?: "none"
-    return "$l / $r"
-}
-
-private fun similarPresets(preset: CanimationPreset): List<CanimationPreset> {
-    val family = presetFamily(preset)
-    val sameFamily = CanimationPreset.entries.filter { it != preset && presetFamily(it) == family }
-    if (sameFamily.isNotEmpty()) return sameFamily
-
-    val fallback = CanimationPreset.entries.filter { it != preset }
-    return fallback.take(8)
-}
-
-private fun presetFamily(preset: CanimationPreset): String {
-    val name = preset.name
-    return when {
-        name.startsWith("FadeIn") -> "fade-in-directional"
-        name.startsWith("ZoomIn") -> "zoom-in"
-        name.startsWith("BackIn") -> "back-in"
-        name.startsWith("BounceIn") -> "bounce-in"
-        name.startsWith("RotateIn") -> "rotate-in"
-        name.startsWith("LightSpeedIn") -> "light-speed"
-        name.startsWith("Slide") -> "slide"
-        name.startsWith("Flip") -> "flip"
-        name.startsWith("SharedAxis") -> "shared-axis"
-        name.startsWith("Spring") -> "spring"
-        preset in attentionPresets -> "attention"
-        name.startsWith("Fade") -> "fade"
-        name.startsWith("Scale") -> "scale"
-        else -> name.replace(Regex("(In|Out|Up|Down|Left|Right|Big|Small|Clockwise)$"), "")
-    }
-}
-
-private val attentionPresets = setOf(
-    CanimationPreset.Pulse,
-    CanimationPreset.HeartBeat,
-    CanimationPreset.Tada,
-    CanimationPreset.Wobble,
-    CanimationPreset.Swing,
-    CanimationPreset.RubberBand,
-    CanimationPreset.Bounce,
-    CanimationPreset.Flash,
-    CanimationPreset.ShakeX,
-    CanimationPreset.ShakeY,
-    CanimationPreset.HeadShake,
-    CanimationPreset.Jello,
-)
 
 private fun Float.fmt2(): String {
     val rounded = (this * 100).roundToInt()

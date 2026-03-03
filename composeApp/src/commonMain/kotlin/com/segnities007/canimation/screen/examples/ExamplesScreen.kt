@@ -29,6 +29,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clipToBounds
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import io.github.canimation.core.CanimationPolicy
@@ -117,26 +119,49 @@ private fun CategoryCard(
                 fontWeight = FontWeight.Bold,
             )
 
-            // Live preview: first 3 presets auto-replaying
+            // Live preview: actual animations
             Surface(
                 shape = RoundedCornerShape(12.dp),
                 color = MaterialTheme.colorScheme.surface,
                 border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline),
                 modifier = Modifier.fillMaxWidth(),
             ) {
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(80.dp)
-                        .padding(8.dp),
-                    horizontalArrangement = Arrangement.SpaceEvenly,
-                    verticalAlignment = Alignment.CenterVertically,
-                ) {
-                    category.examples.take(3).forEachIndexed { index, example ->
-                        PreviewCell(
-                            preset = example.preset,
-                            delayMs = index * 300L,
-                        )
+                val isComponent = category.examples.firstOrNull()?.demoType in standaloneDemoTypes
+                if (isComponent) {
+                    // Render actual component animation (scaled down) for standalone categories
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(80.dp)
+                            .clipToBounds(),
+                        contentAlignment = Alignment.Center,
+                    ) {
+                        Box(
+                            modifier = Modifier.graphicsLayer {
+                                scaleX = 0.6f
+                                scaleY = 0.6f
+                            },
+                        ) {
+                            ComponentPreviewCell(
+                                demoType = category.examples.first().demoType,
+                            )
+                        }
+                    }
+                } else {
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(80.dp)
+                            .padding(8.dp),
+                        horizontalArrangement = Arrangement.SpaceEvenly,
+                        verticalAlignment = Alignment.CenterVertically,
+                    ) {
+                        category.examples.take(3).forEachIndexed { index, example ->
+                            PreviewCell(
+                                preset = example.preset,
+                                delayMs = index * 300L,
+                            )
+                        }
                     }
                 }
             }
@@ -209,5 +234,45 @@ private fun PreviewCell(
                 Box(Modifier.size(32.dp))
             }
         }
+    }
+}
+
+private val standaloneDemoTypes = setOf(
+    "counter", "numberTrend", "typewriter", "scramble", "wavy",
+    "pulseDots", "jumpingDots", "shimmer", "tabs", "accordion",
+    "flipCard", "colorMorph", "progressRing", "holdConfirm",
+    "splitReveal", "staggerCenter", "ticker", "bouncyList",
+    "spinner", "ripple", "swipeActions", "tiltCard",
+    "priceSwitcher", "engagementStats", "multiStateBadge",
+)
+
+@Composable
+private fun ComponentPreviewCell(demoType: String) {
+    when (demoType) {
+        "counter" -> AnimatedCounter()
+        "numberTrend" -> NumberTrend()
+        "typewriter" -> TypewriterText()
+        "scramble" -> ScrambleText()
+        "wavy" -> WavyText()
+        "pulseDots" -> PulseLoadingDots()
+        "jumpingDots" -> JumpingDots()
+        "shimmer" -> ShimmerEffect()
+        "tabs" -> AnimatedTabs()
+        "accordion" -> ExpandableAccordion()
+        "flipCard" -> FlipCard()
+        "colorMorph" -> ColorMorph()
+        "progressRing" -> ProgressRing()
+        "holdConfirm" -> HoldToConfirm()
+        "splitReveal" -> SplitTextReveal()
+        "staggerCenter" -> StaggerFromCenter()
+        "ticker" -> TickerMarquee()
+        "bouncyList" -> BouncySpringList()
+        "spinner" -> LoadingSpinner()
+        "ripple" -> LoadingRipple()
+        "swipeActions" -> SwipeActions()
+        "tiltCard" -> TiltCard()
+        "priceSwitcher" -> PriceSwitcher()
+        "engagementStats" -> EngagementStats()
+        "multiStateBadge" -> MultiStateBadge()
     }
 }

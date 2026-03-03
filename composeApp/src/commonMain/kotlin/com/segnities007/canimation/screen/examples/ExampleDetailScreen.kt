@@ -119,7 +119,7 @@ fun ExampleDetailScreen(
                 // Example items
                 itemsIndexed(
                     items = category.examples,
-                    key = { _, item -> "${category.id}-${item.preset.name}" },
+                    key = { idx, item -> "${category.id}-$idx" },
                 ) { index, example ->
                     ExampleCard(
                         example = example,
@@ -150,7 +150,7 @@ private fun ExampleCard(
             // Title
             Column(verticalArrangement = Arrangement.spacedBy(2.dp)) {
                 Text(
-                    text = example.preset.name,
+                    text = example.title,
                     style = MaterialTheme.typography.titleMedium,
                     fontWeight = FontWeight.Bold,
                 )
