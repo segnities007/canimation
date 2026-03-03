@@ -351,6 +351,14 @@ private val standaloneDemoTypes = setOf(
     "pendulumSwing", "bouncingBall", "circularMenu",
     "animatedBarChart", "slinkySpring", "typewriterDelete",
     "animatedGradientText",
+    // Batch 4
+    "megaMenuReveal", "smoothTabIndicator", "numberCounter", "revealText",
+    "scatterText", "infiniteLoadingList", "cardStackSwipe", "horizontalScrollGallery",
+    "iosSlider", "checkboxAnim", "switchAnim", "toastNotification",
+    "accordionMenu", "magneticButton", "rippleButton", "floatingParticles",
+    "scrollDirectionHeader", "textLineReveal", "zoomHeroImage", "progressScrubber",
+    "verticalCarousel", "waterfallGrid", "pulsingAvatar", "segmentedControl",
+    "elasticDrawer",
 )
 
 @Composable
@@ -436,5 +444,31 @@ private fun ComponentPreviewCell(demoType: String) {
         "slinkySpring" -> SlinkySpring()
         "typewriterDelete" -> TypewriterDelete()
         "animatedGradientText" -> AnimatedGradientText()
+        // Batch 4
+        "megaMenuReveal" -> MegaMenuReveal()
+        "smoothTabIndicator" -> SmoothTabIndicator()
+        "numberCounter" -> NumberCounter()
+        "revealText" -> RevealTextEffect()
+        "scatterText" -> ScatterText()
+        "infiniteLoadingList" -> InfiniteLoadingList()
+        "cardStackSwipe" -> CardStackSwipe()
+        "horizontalScrollGallery" -> HorizontalScrollGallery()
+        "iosSlider" -> IOSSlider()
+        "checkboxAnim" -> CheckboxAnimation()
+        "switchAnim" -> SwitchAnimation()
+        "toastNotification" -> ToastNotification()
+        "accordionMenu" -> AccordionMenu()
+        "magneticButton" -> MagneticButton()
+        "rippleButton" -> RippleButton()
+        "floatingParticles" -> FloatingParticles()
+        "scrollDirectionHeader" -> ScrollDirectionHeader()
+        "textLineReveal" -> TextLineReveal()
+        "zoomHeroImage" -> ZoomHeroImage()
+        "progressScrubber" -> ProgressScrubber()
+        "verticalCarousel" -> VerticalCarousel()
+        "waterfallGrid" -> WaterfallGrid()
+        "pulsingAvatar" -> PulsingAvatar()
+        "segmentedControl" -> SegmentedControl()
+        "elasticDrawer" -> ElasticDrawer()
     }
 }

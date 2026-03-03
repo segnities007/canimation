@@ -1910,4 +1910,367 @@ Text(text, style = style.copy(
 ))"""),
         ),
     ),
+    // ===== Batch 4: Navigation, Forms, Interaction =====
+    ExampleCategory(
+        id = "mega-menu-reveal",
+        title = "Mega Menu Reveal",
+        subtitle = "Staggered menu items slide in from the left",
+        accentLabel = "NAVIGATION",
+        tags = listOf("navigation", "menu", "stagger", "slide"),
+        examples = listOf(
+            component("megaMenuReveal", "Menu items appear with staggered slide+fade from left",
+                """// Staggered menu reveal
+items.forEachIndexed { i, item ->
+    delay(i * 80L)
+    visibleItems.add(item)
+}"""),
+        ),
+    ),
+    ExampleCategory(
+        id = "smooth-tab-indicator",
+        title = "Smooth Tab Indicator",
+        subtitle = "Tabs with spring-animated sliding underline",
+        accentLabel = "NAVIGATION",
+        tags = listOf("navigation", "tabs", "indicator", "spring"),
+        examples = listOf(
+            component("smoothTabIndicator", "Underline slides to active tab with spring physics",
+                """// Smooth tab indicator
+val indicatorOffset by animateDpAsState(
+    targetValue = selectedTab * tabWidth,
+    animationSpec = spring(dampingRatio = 0.7f)
+)"""),
+        ),
+    ),
+    ExampleCategory(
+        id = "number-counter",
+        title = "Number Counter",
+        subtitle = "Large number counts up with easing",
+        accentLabel = "TEXT",
+        tags = listOf("text", "number", "counter", "easing"),
+        examples = listOf(
+            component("numberCounter", "Number animates from 0 to target with smooth easing",
+                """// Number counter
+val animatedValue by animateIntAsState(
+    targetValue = if (started) 8742 else 0,
+    animationSpec = tween(2000, easing = FastOutSlowInEasing)
+)"""),
+        ),
+    ),
+    ExampleCategory(
+        id = "reveal-text",
+        title = "Reveal Text Effect",
+        subtitle = "Text reveals character by character with highlight bar",
+        accentLabel = "TEXT",
+        tags = listOf("text", "reveal", "character", "highlight"),
+        examples = listOf(
+            component("revealText", "Characters appear one by one with a moving highlight",
+                """// Reveal text with highlight
+for (i in 0..text.length) {
+    revealCount = i; delay(60)
+}"""),
+        ),
+    ),
+    ExampleCategory(
+        id = "scatter-text",
+        title = "Scatter Text",
+        subtitle = "Characters explode outward then reassemble",
+        accentLabel = "TEXT",
+        tags = listOf("text", "scatter", "explosion", "physics"),
+        examples = listOf(
+            component("scatterText", "Text characters scatter randomly then reassemble",
+                """// Scatter text effect
+chars.forEach { char ->
+    offset(random(-50, 50), random(-50, 50))
+    animate back to (0, 0)
+}"""),
+        ),
+    ),
+    ExampleCategory(
+        id = "infinite-loading-list",
+        title = "Infinite Loading List",
+        subtitle = "Items fade in from bottom simulating infinite scroll",
+        accentLabel = "LISTS",
+        tags = listOf("list", "loading", "infinite", "scroll"),
+        examples = listOf(
+            component("infiniteLoadingList", "Items appear in batches from the bottom with fade+slide",
+                """// Infinite loading list
+while (true) {
+    items.add(newItem)
+    delay(800)
+}"""),
+        ),
+    ),
+    ExampleCategory(
+        id = "card-stack-swipe",
+        title = "Card Stack Swipe",
+        subtitle = "Tinder-style cards that auto-swipe away",
+        accentLabel = "CARDS",
+        tags = listOf("card", "swipe", "stack", "tinder"),
+        examples = listOf(
+            component("cardStackSwipe", "Cards swipe left/right one by one from a stack",
+                """// Card stack swipe
+animateOffsetTo(if (direction) 400f else -400f)
+delay(1200)
+resetAndSwipeNext()"""),
+        ),
+    ),
+    ExampleCategory(
+        id = "horizontal-scroll-gallery",
+        title = "Horizontal Scroll Gallery",
+        subtitle = "Thumbnails scroll with parallax offset",
+        accentLabel = "SCROLL",
+        tags = listOf("scroll", "gallery", "parallax", "horizontal"),
+        examples = listOf(
+            component("horizontalScrollGallery", "Horizontal thumbnails with subtle parallax effect",
+                """// Parallax gallery
+LazyRow {
+    items(photos) { photo ->
+        offset(scrollPosition * parallaxFactor)
+    }
+}"""),
+        ),
+    ),
+    ExampleCategory(
+        id = "ios-slider",
+        title = "iOS Slider",
+        subtitle = "iOS-style slider with animated track fill",
+        accentLabel = "FORMS",
+        tags = listOf("form", "slider", "ios", "input"),
+        examples = listOf(
+            component("iosSlider", "Slider with smooth animated fill track and rounded thumb",
+                """// iOS slider
+Box {
+    // Track background
+    // Animated fill
+    // Draggable thumb
+}"""),
+        ),
+    ),
+    ExampleCategory(
+        id = "checkbox-animation",
+        title = "Checkbox Animation",
+        subtitle = "Checkbox draws a checkmark path when toggled",
+        accentLabel = "FORMS",
+        tags = listOf("form", "checkbox", "check", "path"),
+        examples = listOf(
+            component("checkboxAnim", "Checkmark draws itself with animated path progress",
+                """// Checkbox animation
+val progress by animateFloatAsState(if (checked) 1f else 0f)
+drawPath(checkmarkPath, pathMeasure, progress)"""),
+        ),
+    ),
+    ExampleCategory(
+        id = "switch-animation",
+        title = "Switch Animation",
+        subtitle = "Material switch with bouncy thumb",
+        accentLabel = "FORMS",
+        tags = listOf("form", "switch", "toggle", "spring"),
+        examples = listOf(
+            component("switchAnim", "Toggle switch with spring-animated thumb position",
+                """// Bouncy switch
+val thumbOffset by animateDpAsState(
+    targetValue = if (on) maxOffset else 0.dp,
+    animationSpec = spring(dampingRatio = 0.5f)
+)"""),
+        ),
+    ),
+    ExampleCategory(
+        id = "toast-notification",
+        title = "Toast Notification",
+        subtitle = "Toast slides in from top, stays, then slides out",
+        accentLabel = "DIALOG",
+        tags = listOf("dialog", "toast", "notification", "slide"),
+        examples = listOf(
+            component("toastNotification", "Toast appears from top, lingers, then exits upward",
+                """// Toast notification
+visible = true; delay(2500); visible = false"""),
+        ),
+    ),
+    ExampleCategory(
+        id = "accordion-menu",
+        title = "Accordion Menu",
+        subtitle = "Expandable menu with spring animation",
+        accentLabel = "NAVIGATION",
+        tags = listOf("navigation", "accordion", "expand", "spring"),
+        examples = listOf(
+            component("accordionMenu", "Menu sections expand/collapse with spring physics",
+                """// Accordion menu
+val height by animateDpAsState(
+    targetValue = if (expanded) fullHeight else 0.dp,
+    animationSpec = spring(dampingRatio = 0.8f)
+)"""),
+        ),
+    ),
+    ExampleCategory(
+        id = "magnetic-button",
+        title = "Magnetic Button",
+        subtitle = "Button that subtly drifts toward touch position",
+        accentLabel = "BUTTONS",
+        tags = listOf("button", "magnetic", "interactive", "hover"),
+        examples = listOf(
+            component("magneticButton", "Button shifts position slightly as if magnetically attracted",
+                """// Magnetic button
+val offsetX by animateFloatAsState(attractionX * factor)
+val offsetY by animateFloatAsState(attractionY * factor)"""),
+        ),
+    ),
+    ExampleCategory(
+        id = "ripple-button",
+        title = "Ripple Button",
+        subtitle = "Material ripple radiating from center",
+        accentLabel = "BUTTONS",
+        tags = listOf("button", "ripple", "material", "effect"),
+        examples = listOf(
+            component("rippleButton", "Circular ripple expands from button center on press",
+                """// Ripple button
+val rippleRadius by animateFloatAsState(if (pressed) maxRadius else 0f)
+drawCircle(rippleColor, radius = rippleRadius)"""),
+        ),
+    ),
+    ExampleCategory(
+        id = "floating-particles",
+        title = "Floating Particles",
+        subtitle = "Small particles float upward like embers",
+        accentLabel = "EFFECTS",
+        tags = listOf("effect", "particles", "float", "embers"),
+        examples = listOf(
+            component("floatingParticles", "Glowing particles drift upward and fade out",
+                """// Floating particles
+particles.forEach { p ->
+    p.y -= p.speed
+    p.alpha -= fadeRate
+    drawCircle(color, radius = p.size, alpha = p.alpha)
+}"""),
+        ),
+    ),
+    ExampleCategory(
+        id = "scroll-direction-header",
+        title = "Scroll Direction Header",
+        subtitle = "Header hides on scroll down, reveals on scroll up",
+        accentLabel = "SCROLL",
+        tags = listOf("scroll", "header", "hide", "reveal"),
+        examples = listOf(
+            component("scrollDirectionHeader", "Header slides up when scrolling down, back when scrolling up",
+                """// Scroll direction header
+val headerOffset by animateDpAsState(
+    if (scrollingDown) (-headerHeight) else 0.dp
+)"""),
+        ),
+    ),
+    ExampleCategory(
+        id = "text-line-reveal",
+        title = "Text Line Reveal",
+        subtitle = "Lines slide in from right with stagger",
+        accentLabel = "TEXT",
+        tags = listOf("text", "reveal", "stagger", "line"),
+        examples = listOf(
+            component("textLineReveal", "Each line of text slides in from the right with a delay",
+                """// Text line reveal
+lines.forEachIndexed { i, line ->
+    delay(i * 200L)
+    lineVisible[i] = true
+}"""),
+        ),
+    ),
+    ExampleCategory(
+        id = "zoom-hero-image",
+        title = "Zoom Hero Image",
+        subtitle = "Image zooms from thumbnail to hero size",
+        accentLabel = "EFFECTS",
+        tags = listOf("effect", "zoom", "image", "hero"),
+        examples = listOf(
+            component("zoomHeroImage", "Thumbnail springs to full hero size with smooth zoom",
+                """// Zoom hero
+val scale by animateFloatAsState(
+    targetValue = if (expanded) 1f else 0.4f,
+    animationSpec = spring(stiffness = Spring.StiffnessLow)
+)"""),
+        ),
+    ),
+    ExampleCategory(
+        id = "progress-scrubber",
+        title = "Progress Scrubber",
+        subtitle = "Media player progress bar with animated thumb",
+        accentLabel = "FORMS",
+        tags = listOf("form", "progress", "scrubber", "media"),
+        examples = listOf(
+            component("progressScrubber", "Progress bar with a smooth animated scrubber thumb",
+                """// Progress scrubber
+val progress by animateFloatAsState(currentPosition / duration)
+Slider(value = progress)"""),
+        ),
+    ),
+    ExampleCategory(
+        id = "vertical-carousel",
+        title = "Vertical Carousel",
+        subtitle = "Items cycle vertically with 3D rotation",
+        accentLabel = "CAROUSEL",
+        tags = listOf("carousel", "vertical", "3d", "rotation"),
+        examples = listOf(
+            component("verticalCarousel", "Items rotate in Y-axis perspective as they cycle vertically",
+                """// Vertical carousel
+items.forEach { item ->
+    rotationX = calculateAngle(index, scroll)
+    translationY = calculateOffset(index, scroll)
+}"""),
+        ),
+    ),
+    ExampleCategory(
+        id = "waterfall-grid",
+        title = "Waterfall Grid",
+        subtitle = "Items fall into place in staggered waterfall pattern",
+        accentLabel = "LAYOUT",
+        tags = listOf("layout", "grid", "waterfall", "stagger"),
+        examples = listOf(
+            component("waterfallGrid", "Grid items drop into place one by one from the top",
+                """// Waterfall grid
+items.forEachIndexed { i, _ ->
+    delay(i * 80L)
+    itemVisible[i] = true
+}"""),
+        ),
+    ),
+    ExampleCategory(
+        id = "pulsing-avatar",
+        title = "Pulsing Avatar",
+        subtitle = "Avatar with pulsing 'live' ring indicator",
+        accentLabel = "EFFECTS",
+        tags = listOf("effect", "avatar", "pulse", "live"),
+        examples = listOf(
+            component("pulsingAvatar", "Avatar circle with expanding/fading pulse ring",
+                """// Pulsing avatar
+val pulseScale by infiniteTransition.animateFloat(1f, 1.4f)
+val pulseAlpha by infiniteTransition.animateFloat(0.6f, 0f)"""),
+        ),
+    ),
+    ExampleCategory(
+        id = "segmented-control",
+        title = "Segmented Control",
+        subtitle = "iOS-style segmented control with sliding indicator",
+        accentLabel = "FORMS",
+        tags = listOf("form", "segmented", "ios", "indicator"),
+        examples = listOf(
+            component("segmentedControl", "Selection indicator slides smoothly between segments",
+                """// Segmented control
+val indicatorOffset by animateDpAsState(
+    targetValue = selectedIndex * segmentWidth,
+    animationSpec = spring(dampingRatio = 0.7f)
+)"""),
+        ),
+    ),
+    ExampleCategory(
+        id = "elastic-drawer",
+        title = "Elastic Drawer",
+        subtitle = "Side drawer with elastic overshoot spring",
+        accentLabel = "NAVIGATION",
+        tags = listOf("navigation", "drawer", "elastic", "spring"),
+        examples = listOf(
+            component("elasticDrawer", "Drawer opens with spring overshoot, closes with snap",
+                """// Elastic drawer
+val drawerOffset by animateDpAsState(
+    targetValue = if (open) 0.dp else (-drawerWidth),
+    animationSpec = spring(dampingRatio = 0.6f)
+)"""),
+        ),
+    ),
 )

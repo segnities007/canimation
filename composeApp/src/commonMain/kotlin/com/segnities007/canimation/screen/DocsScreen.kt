@@ -33,10 +33,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import io.github.canimation.core.Canimation
+import io.github.canimation.core.CanimationEffect
 import io.github.canimation.core.CanimationPolicy
 import io.github.canimation.core.CanimationPreset
 import io.github.canimation.core.CanimationProvider
 import io.github.canimation.core.CanimationVisibility
+import io.github.canimation.core.canimation
 import io.github.canimation.core.canimationEmphasize
 import io.github.canimation.core.canimationEnter
 import kotlinx.coroutines.delay
@@ -48,7 +51,7 @@ fun DocsScreen(
     var entryStage by remember { mutableIntStateOf(-1) }
 
     LaunchedEffect(Unit) {
-        for (i in 0..6) { delay(60); entryStage = i }
+        for (i in 0..9) { delay(60); entryStage = i }
     }
 
     Box(
@@ -208,6 +211,78 @@ CanimationVisibility(
 // CanimationPolicy.AlwaysReduced  — Reduced motion for all
 // CanimationPolicy.AlwaysOff      — Disable all animations""")
                         PolicyDemo()
+                    }
+                }
+            }
+
+            // NEW: Modifier.canimation() — recommended API
+            Box(Modifier.canimationEnter(visible = entryStage >= 7, preset = CanimationPreset.FadeUp)) {
+                DocSection(
+                    title = "Modifier.canimation() ✨",
+                    description = "Recommended API — composable effects with the + operator",
+                ) {
+                    Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
+                        CodeBlock("""// Compose effects with the + operator
+val effect = CanimationEffect.fade() + CanimationEffect.slideUp(16.dp)
+Modifier.canimation(visible = true, effect = effect)
+
+// Or use the hierarchical namespace
+Modifier.canimation(visible = true, effect = Canimation.Fade.Up)
+Modifier.canimation(visible = true, effect = Canimation.Scale.Pop)
+
+// Combine any effects freely
+Modifier.canimation(
+    visible = true,
+    effect = Canimation.Fade.In + Canimation.Scale.In + CanimationEffect.rotate(-10f),
+)""")
+                        ParamTable(listOf(
+                            Triple("visible", "Boolean", "Controls enter/exit animation"),
+                            Triple("effect", "CanimationEffect", "Composable effect — combine with + operator"),
+                        ))
+                        CanimationEffectDemo()
+                    }
+                }
+            }
+
+            // NEW: CanimationEffect reference
+            Box(Modifier.canimationEnter(visible = entryStage >= 8, preset = CanimationPreset.FadeUp)) {
+                DocSection(
+                    title = "CanimationEffect Builder",
+                    description = "Build effects from primitives — fade, slide, scale, rotate, zoom, bounce",
+                ) {
+                    Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
+                        CodeBlock("""// Primitives
+CanimationEffect.fade(from = 0f, to = 1f)
+CanimationEffect.slideUp(offset = 16.dp)
+CanimationEffect.slideDown(offset = 16.dp)
+CanimationEffect.slideLeft(offset = 24.dp)
+CanimationEffect.slideRight(offset = 24.dp)
+CanimationEffect.scale(from = 0.92f, to = 1f)
+CanimationEffect.pop(from = 0.8f)
+CanimationEffect.rotate(fromDegrees = -15f)
+CanimationEffect.spin(fromDegrees = -360f)
+CanimationEffect.zoom(from = 0.5f)
+CanimationEffect.bounce()
+CanimationEffect.duration(ms = 400)
+CanimationEffect.easing(EmphasizedDecelerateEasing)""")
+                    }
+                }
+            }
+
+            // NEW: Canimation namespace
+            Box(Modifier.canimationEnter(visible = entryStage >= 9, preset = CanimationPreset.FadeUp)) {
+                DocSection(
+                    title = "Canimation Namespace",
+                    description = "Pre-built effect combos — discoverable via IDE autocomplete",
+                ) {
+                    Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
+                        EffectNamespaceRow("Canimation.Fade", listOf(".In", ".Up", ".Down", ".Left", ".Right", ".Gentle", ".UpBig", ".DownBig"))
+                        EffectNamespaceRow("Canimation.Scale", listOf(".In", ".Up", ".Pop", ".Zoom", ".Expand", ".Shrink"))
+                        EffectNamespaceRow("Canimation.Slide", listOf(".Left", ".Right", ".Up", ".Down", ".LeftBig", ".RightBig"))
+                        EffectNamespaceRow("Canimation.Rotate", listOf(".In", ".Clockwise", ".Spin"))
+                        EffectNamespaceRow("Canimation.Bounce", listOf(".In", ".Down", ".Up"))
+                        EffectNamespaceRow("Canimation.Spring", listOf(".In", ".Up"))
+                        EffectNamespaceRow("Canimation.Flip", listOf(".In", ".Up"))
                     }
                 }
             }
@@ -528,6 +603,86 @@ private fun PresetCategoryRow(category: String, presets: List<String>) {
                         fontFamily = FontFamily.Monospace,
                         style = MaterialTheme.typography.labelSmall,
                         color = MaterialTheme.colorScheme.onSurface,
+                    )
+                }
+            }
+        }
+    }
+}
+
+@Composable
+private fun EffectNamespaceRow(namespace: String, members: List<String>) {
+    Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
+        Text(
+            text = namespace,
+            fontFamily = FontFamily.Monospace,
+            style = MaterialTheme.typography.labelMedium,
+            fontWeight = FontWeight.Bold,
+            color = MaterialTheme.colorScheme.tertiary,
+        )
+        Row(
+            horizontalArrangement = Arrangement.spacedBy(6.dp),
+            modifier = Modifier.horizontalScroll(rememberScrollState()),
+        ) {
+            members.forEach { member ->
+                Surface(
+                    shape = RoundedCornerShape(6.dp),
+                    color = MaterialTheme.colorScheme.surface,
+                    border = BorderStroke(1.dp, MaterialTheme.colorScheme.tertiary.copy(alpha = 0.3f)),
+                ) {
+                    Text(
+                        text = member,
+                        modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp),
+                        fontFamily = FontFamily.Monospace,
+                        style = MaterialTheme.typography.labelSmall,
+                        color = MaterialTheme.colorScheme.tertiary,
+                    )
+                }
+            }
+        }
+    }
+}
+
+@Composable
+private fun CanimationEffectDemo() {
+    val effects = listOf(
+        "Fade.Up" to Canimation.Fade.Up,
+        "Scale.Pop" to Canimation.Scale.Pop,
+        "Slide.Left + Fade" to (Canimation.Slide.Left + Canimation.Fade.In),
+    )
+    var cycle by remember { mutableIntStateOf(0) }
+    var visible by remember { mutableStateOf(false) }
+    LaunchedEffect(Unit) {
+        while (true) { visible = true; delay(2500); visible = false; delay(800); cycle++ }
+    }
+    Surface(
+        shape = RoundedCornerShape(12.dp),
+        color = MaterialTheme.colorScheme.surface,
+        border = BorderStroke(1.dp, MaterialTheme.colorScheme.tertiary.copy(alpha = 0.3f)),
+        modifier = Modifier.fillMaxWidth(),
+    ) {
+        Row(
+            modifier = Modifier.fillMaxWidth().padding(16.dp),
+            horizontalArrangement = Arrangement.SpaceEvenly,
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            effects.forEachIndexed { i, (label, effect) ->
+                var itemVisible by remember { mutableStateOf(false) }
+                LaunchedEffect(visible) {
+                    if (visible) { delay(i * 150L); itemVisible = true } else { itemVisible = false }
+                }
+                Surface(
+                    shape = RoundedCornerShape(8.dp),
+                    color = MaterialTheme.colorScheme.tertiaryContainer,
+                    border = BorderStroke(1.dp, MaterialTheme.colorScheme.tertiary.copy(alpha = 0.4f)),
+                    modifier = Modifier.canimation(visible = itemVisible, effect = effect),
+                ) {
+                    Text(
+                        text = label,
+                        modifier = Modifier.padding(horizontal = 12.dp, vertical = 8.dp),
+                        style = MaterialTheme.typography.labelSmall,
+                        fontFamily = FontFamily.Monospace,
+                        color = MaterialTheme.colorScheme.onTertiaryContainer,
                     )
                 }
             }

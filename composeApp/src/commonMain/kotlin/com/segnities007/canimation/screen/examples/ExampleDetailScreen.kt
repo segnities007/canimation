@@ -254,6 +254,32 @@ private fun ExampleCard(
                 "slinkySpring" -> ComponentDemoSurface { SlinkySpring() }
                 "typewriterDelete" -> ComponentDemoSurface { TypewriterDelete() }
                 "animatedGradientText" -> ComponentDemoSurface { AnimatedGradientText() }
+                // Batch 4
+                "megaMenuReveal" -> ComponentDemoSurface { MegaMenuReveal() }
+                "smoothTabIndicator" -> ComponentDemoSurface { SmoothTabIndicator() }
+                "numberCounter" -> ComponentDemoSurface { NumberCounter() }
+                "revealText" -> ComponentDemoSurface { RevealTextEffect() }
+                "scatterText" -> ComponentDemoSurface { ScatterText() }
+                "infiniteLoadingList" -> ComponentDemoSurface { InfiniteLoadingList() }
+                "cardStackSwipe" -> ComponentDemoSurface { CardStackSwipe() }
+                "horizontalScrollGallery" -> ComponentDemoSurface { HorizontalScrollGallery() }
+                "iosSlider" -> ComponentDemoSurface { IOSSlider() }
+                "checkboxAnim" -> ComponentDemoSurface { CheckboxAnimation() }
+                "switchAnim" -> ComponentDemoSurface { SwitchAnimation() }
+                "toastNotification" -> ComponentDemoSurface { ToastNotification() }
+                "accordionMenu" -> ComponentDemoSurface { AccordionMenu() }
+                "magneticButton" -> ComponentDemoSurface { MagneticButton() }
+                "rippleButton" -> ComponentDemoSurface { RippleButton() }
+                "floatingParticles" -> ComponentDemoSurface { FloatingParticles() }
+                "scrollDirectionHeader" -> ComponentDemoSurface { ScrollDirectionHeader() }
+                "textLineReveal" -> ComponentDemoSurface { TextLineReveal() }
+                "zoomHeroImage" -> ComponentDemoSurface { ZoomHeroImage() }
+                "progressScrubber" -> ComponentDemoSurface { ProgressScrubber() }
+                "verticalCarousel" -> ComponentDemoSurface { VerticalCarousel() }
+                "waterfallGrid" -> ComponentDemoSurface { WaterfallGrid() }
+                "pulsingAvatar" -> ComponentDemoSurface { PulsingAvatar() }
+                "segmentedControl" -> ComponentDemoSurface { SegmentedControl() }
+                "elasticDrawer" -> ComponentDemoSurface { ElasticDrawer() }
                 else -> VisibilityDemo(example.preset, index)
             }
 
