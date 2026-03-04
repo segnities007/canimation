@@ -40,8 +40,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clipToBounds
-import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import io.github.canimation.core.Canimation
@@ -53,9 +51,8 @@ import io.github.canimation.core.CanimationPreset
 import kotlinx.coroutines.delay
 
 private val accentLabels = listOf(
-    "ALL", "ENTRANCE", "EMPHASIS", "PATTERN", "INTERACTION",
-    "CARD", "TEXT", "LOADING", "CANVAS", "PHYSICS",
-    "3D", "UI", "SPECIAL", "MATERIAL", "DIRECTION",
+    "ALL", "ENTRANCE", "EMPHASIS", "PATTERN",
+    "MATERIAL", "DIRECTION", "3D", "UI",
 )
 
 @Composable
@@ -77,7 +74,8 @@ fun ExamplesScreen(
                     cat.subtitle.contains(searchQuery, ignoreCase = true) ||
                     cat.accentLabel.contains(searchQuery, ignoreCase = true) ||
                     cat.tags.any { it.contains(searchQuery, ignoreCase = true) }
-                val matchesTag = selectedTag == "ALL" || cat.accentLabel == selectedTag
+                val matchesTag = selectedTag == "ALL" || cat.accentLabel == selectedTag ||
+                    selectedTag in cat.tags
                 matchesSearch && matchesTag
             }
         }
@@ -226,41 +224,19 @@ private fun CategoryCardContent(
             border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline),
             modifier = Modifier.fillMaxWidth(),
         ) {
-            val isComponent = category.examples.firstOrNull()?.demoType in standaloneDemoTypes
-            if (isComponent) {
-                Box(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(80.dp)
-                        .clipToBounds(),
-                    contentAlignment = Alignment.Center,
-                ) {
-                    Box(
-                        modifier = Modifier.graphicsLayer {
-                            scaleX = 0.6f
-                            scaleY = 0.6f
-                        },
-                    ) {
-                        ComponentPreviewCell(
-                            demoType = category.examples.first().demoType,
-                        )
-                    }
-                }
-            } else {
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(80.dp)
-                        .padding(8.dp),
-                    horizontalArrangement = Arrangement.SpaceEvenly,
-                    verticalAlignment = Alignment.CenterVertically,
-                ) {
-                    category.examples.take(3).forEachIndexed { index, example ->
-                        PreviewCell(
-                            preset = example.preset,
-                            delayMs = index * 300L,
-                        )
-                    }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(80.dp)
+                    .padding(8.dp),
+                horizontalArrangement = Arrangement.SpaceEvenly,
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                category.examples.take(3).forEachIndexed { index, example ->
+                    PreviewCell(
+                        preset = example.preset,
+                        delayMs = index * 300L,
+                    )
                 }
             }
         }
@@ -335,150 +311,3 @@ private fun PreviewCell(
     }
 }
 
-private val standaloneDemoTypes = setOf(
-    "counter", "numberTrend", "typewriter", "scramble", "wavy",
-    "pulseDots", "jumpingDots", "shimmer", "tabs", "accordion",
-    "flipCard", "colorMorph", "progressRing", "holdConfirm",
-    "splitReveal", "staggerCenter", "ticker", "bouncyList",
-    "spinner", "ripple", "swipeActions", "tiltCard",
-    "priceSwitcher", "engagementStats", "multiStateBadge",
-    // Batch 2
-    "morphShapes", "gradientShift", "skeletonLoader", "elasticPull",
-    "parallaxLayers", "orbitAnim", "breathingGlow", "pathTracer",
-    "textGradient", "cardShuffle", "confetti", "waveEffect",
-    "progressSteps", "liquidFill", "slidingReveal", "focusBlur",
-    "rollingDigits", "springChain", "glitchText", "expandingRings",
-    "stackedCards", "countdownTimer", "verticalTicker", "heartbeatLine",
-    "expandingSearch",
-    // Batch 3
-    "cardBorderTrace", "cardLiftHover", "cardGradientBorder",
-    "cardExpandCollapse", "cardParallaxTilt", "cardGlassmorphism",
-    "cardRevealWipe", "cardFanStack", "cardMagneticSnap",
-    "notificationBadge", "glowProgress", "springToggle",
-    "pulseRadar", "morphProgress", "stepIndicator",
-    "animatedUnderline", "blinkingCursor", "springChip",
-    "coinFlip", "dnaHelix", "animatedPie",
-    "pendulumSwing", "bouncingBall", "circularMenu",
-    "animatedBarChart", "slinkySpring", "typewriterDelete",
-    "animatedGradientText",
-    // Batch 4
-    "megaMenuReveal", "smoothTabIndicator", "numberCounter", "revealText",
-    "scatterText", "infiniteLoadingList", "cardStackSwipe", "horizontalScrollGallery",
-    "iosSlider", "checkboxAnim", "switchAnim", "toastNotification",
-    "accordionMenu", "magneticButton", "rippleButton", "floatingParticles",
-    "scrollDirectionHeader", "textLineReveal", "zoomHeroImage", "progressScrubber",
-    "verticalCarousel", "waterfallGrid", "pulsingAvatar", "segmentedControl",
-    "elasticDrawer",
-)
-
-@Composable
-private fun ComponentPreviewCell(demoType: String) {
-    when (demoType) {
-        "counter" -> AnimatedCounter()
-        "numberTrend" -> NumberTrend()
-        "typewriter" -> TypewriterText()
-        "scramble" -> ScrambleText()
-        "wavy" -> WavyText()
-        "pulseDots" -> PulseLoadingDots()
-        "jumpingDots" -> JumpingDots()
-        "shimmer" -> ShimmerEffect()
-        "tabs" -> AnimatedTabs()
-        "accordion" -> ExpandableAccordion()
-        "flipCard" -> FlipCard()
-        "colorMorph" -> ColorMorph()
-        "progressRing" -> ProgressRing()
-        "holdConfirm" -> HoldToConfirm()
-        "splitReveal" -> SplitTextReveal()
-        "staggerCenter" -> StaggerFromCenter()
-        "ticker" -> TickerMarquee()
-        "bouncyList" -> BouncySpringList()
-        "spinner" -> LoadingSpinner()
-        "ripple" -> LoadingRipple()
-        "swipeActions" -> SwipeActions()
-        "tiltCard" -> TiltCard()
-        "priceSwitcher" -> PriceSwitcher()
-        "engagementStats" -> EngagementStats()
-        "multiStateBadge" -> MultiStateBadge()
-        // Batch 2
-        "morphShapes" -> MorphingShapes()
-        "gradientShift" -> GradientShift()
-        "skeletonLoader" -> SkeletonLoader()
-        "elasticPull" -> ElasticPull()
-        "parallaxLayers" -> ParallaxLayers()
-        "orbitAnim" -> OrbitAnimation()
-        "breathingGlow" -> BreathingGlow()
-        "pathTracer" -> PathTracer()
-        "textGradient" -> TextGradientAnim()
-        "cardShuffle" -> CardShuffle()
-        "confetti" -> ConfettiExplosion()
-        "waveEffect" -> WaveEffect()
-        "progressSteps" -> ProgressSteps()
-        "liquidFill" -> LiquidFill()
-        "slidingReveal" -> SlidingReveal()
-        "focusBlur" -> FocusBlurEffect()
-        "rollingDigits" -> RollingDigits()
-        "springChain" -> SpringChain()
-        "glitchText" -> GlitchText()
-        "expandingRings" -> ExpandingRings()
-        "stackedCards" -> StackedCards()
-        "countdownTimer" -> CountdownTimer()
-        "verticalTicker" -> VerticalTicker()
-        "heartbeatLine" -> HeartbeatLine()
-        "expandingSearch" -> ExpandingSearch()
-        // Batch 3
-        "cardBorderTrace" -> CardBorderTrace()
-        "cardLiftHover" -> CardLiftHover()
-        "cardGradientBorder" -> CardGradientBorder()
-        "cardExpandCollapse" -> CardExpandCollapse()
-        "cardParallaxTilt" -> CardParallaxTilt()
-        "cardGlassmorphism" -> CardGlassmorphism()
-        "cardRevealWipe" -> CardRevealWipe()
-        "cardFanStack" -> CardFanStack()
-        "cardMagneticSnap" -> CardMagneticSnap()
-        "notificationBadge" -> NotificationBadge()
-        "glowProgress" -> GlowProgressBar()
-        "springToggle" -> SpringToggle()
-        "pulseRadar" -> PulseRadar()
-        "morphProgress" -> MorphProgressIndicator()
-        "stepIndicator" -> StepIndicator()
-        "animatedUnderline" -> AnimatedUnderlineText()
-        "blinkingCursor" -> BlinkingCursor()
-        "springChip" -> SpringChip()
-        "coinFlip" -> CoinFlip()
-        "dnaHelix" -> DnaHelix()
-        "animatedPie" -> AnimatedPieChart()
-        "pendulumSwing" -> PendulumSwing()
-        "bouncingBall" -> BouncingBall()
-        "circularMenu" -> CircularMenu()
-        "animatedBarChart" -> AnimatedBarChart()
-        "slinkySpring" -> SlinkySpring()
-        "typewriterDelete" -> TypewriterDelete()
-        "animatedGradientText" -> AnimatedGradientText()
-        // Batch 4
-        "megaMenuReveal" -> MegaMenuReveal()
-        "smoothTabIndicator" -> SmoothTabIndicator()
-        "numberCounter" -> NumberCounter()
-        "revealText" -> RevealTextEffect()
-        "scatterText" -> ScatterText()
-        "infiniteLoadingList" -> InfiniteLoadingList()
-        "cardStackSwipe" -> CardStackSwipe()
-        "horizontalScrollGallery" -> HorizontalScrollGallery()
-        "iosSlider" -> IOSSlider()
-        "checkboxAnim" -> CheckboxAnimation()
-        "switchAnim" -> SwitchAnimation()
-        "toastNotification" -> ToastNotification()
-        "accordionMenu" -> AccordionMenu()
-        "magneticButton" -> MagneticButton()
-        "rippleButton" -> RippleButton()
-        "floatingParticles" -> FloatingParticles()
-        "scrollDirectionHeader" -> ScrollDirectionHeader()
-        "textLineReveal" -> TextLineReveal()
-        "zoomHeroImage" -> ZoomHeroImage()
-        "progressScrubber" -> ProgressScrubber()
-        "verticalCarousel" -> VerticalCarousel()
-        "waterfallGrid" -> WaterfallGrid()
-        "pulsingAvatar" -> PulsingAvatar()
-        "segmentedControl" -> SegmentedControl()
-        "elasticDrawer" -> ElasticDrawer()
-    }
-}

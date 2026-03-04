@@ -47,7 +47,9 @@ import io.github.canimation.core.CanimationVisibility
 import io.github.canimation.core.canimationEmphasize
 import io.github.canimation.core.canimationEnter
 import io.github.canimation.core.Canimation
+import io.github.canimation.core.CanimationEffect
 import io.github.canimation.core.canimation
+import io.github.canimation.core.canimationTransition
 import kotlinx.coroutines.delay
 
 @Composable
@@ -165,8 +167,12 @@ private fun ExampleCard(
 
             // Live demo area — renders based on demoType
             when (example.demoType) {
+                "effect" -> EffectDemo(example.effect!!)
+                "transition" -> TransitionDemo(example.enterEffect!!, example.exitEffect)
+                "composition" -> EffectDemo(example.effect!!)
+                "stagger" -> StaggerEffectDemo(example.effect!!)
+                "realWorld" -> RealWorldDemo(example.effect ?: Canimation.Fade.Up, example.title)
                 "emphasis" -> EmphasisDemo(example.preset)
-                "stagger" -> StaggerDemo(example.preset, index)
                 "enterExit" -> EnterExitDemo(example.preset, index)
                 "grid" -> GridDemo(example.preset, index)
                 "tap" -> TapDemo(example.preset)
@@ -175,113 +181,7 @@ private fun ExampleCard(
                 "longPress" -> LongPressDemo(example.preset)
                 "toggle" -> ToggleDemo(example.preset)
                 "drag" -> DragDemo(example.preset)
-                // Standalone component animations
-                "counter" -> ComponentDemoSurface { AnimatedCounter() }
-                "numberTrend" -> ComponentDemoSurface { NumberTrend() }
-                "typewriter" -> ComponentDemoSurface { TypewriterText() }
-                "scramble" -> ComponentDemoSurface { ScrambleText() }
-                "wavy" -> ComponentDemoSurface { WavyText() }
-                "pulseDots" -> ComponentDemoSurface { PulseLoadingDots() }
-                "jumpingDots" -> ComponentDemoSurface { JumpingDots() }
-                "shimmer" -> ComponentDemoSurface(height = 140) { ShimmerEffect() }
-                "tabs" -> ComponentDemoSurface { AnimatedTabs() }
-                "accordion" -> ComponentDemoSurface(height = 200) { ExpandableAccordion() }
-                "flipCard" -> ComponentDemoSurface { FlipCard() }
-                "colorMorph" -> ComponentDemoSurface { ColorMorph() }
-                "progressRing" -> ComponentDemoSurface { ProgressRing() }
-                "holdConfirm" -> ComponentDemoSurface { HoldToConfirm() }
-                "splitReveal" -> ComponentDemoSurface { SplitTextReveal() }
-                "staggerCenter" -> ComponentDemoSurface { StaggerFromCenter() }
-                "ticker" -> ComponentDemoSurface { TickerMarquee() }
-                "bouncyList" -> ComponentDemoSurface(height = 220) { BouncySpringList() }
-                "spinner" -> ComponentDemoSurface { LoadingSpinner() }
-                "ripple" -> ComponentDemoSurface { LoadingRipple() }
-                "swipeActions" -> ComponentDemoSurface { SwipeActions() }
-                "tiltCard" -> ComponentDemoSurface { TiltCard() }
-                "priceSwitcher" -> ComponentDemoSurface { PriceSwitcher() }
-                "engagementStats" -> ComponentDemoSurface { EngagementStats() }
-                "multiStateBadge" -> ComponentDemoSurface { MultiStateBadge() }
-                // Standalone component animations (batch 2)
-                "morphShapes" -> ComponentDemoSurface { MorphingShapes() }
-                "gradientShift" -> ComponentDemoSurface { GradientShift() }
-                "skeletonLoader" -> ComponentDemoSurface(height = 140) { SkeletonLoader() }
-                "elasticPull" -> ComponentDemoSurface { ElasticPull() }
-                "parallaxLayers" -> ComponentDemoSurface { ParallaxLayers() }
-                "orbitAnim" -> ComponentDemoSurface { OrbitAnimation() }
-                "breathingGlow" -> ComponentDemoSurface { BreathingGlow() }
-                "pathTracer" -> ComponentDemoSurface { PathTracer() }
-                "textGradient" -> ComponentDemoSurface { TextGradientAnim() }
-                "cardShuffle" -> ComponentDemoSurface(height = 200) { CardShuffle() }
-                "confetti" -> ComponentDemoSurface(height = 200) { ConfettiExplosion() }
-                "waveEffect" -> ComponentDemoSurface { WaveEffect() }
-                "progressSteps" -> ComponentDemoSurface { ProgressSteps() }
-                "liquidFill" -> ComponentDemoSurface { LiquidFill() }
-                "slidingReveal" -> ComponentDemoSurface { SlidingReveal() }
-                "focusBlur" -> ComponentDemoSurface { FocusBlurEffect() }
-                "rollingDigits" -> ComponentDemoSurface { RollingDigits() }
-                "springChain" -> ComponentDemoSurface { SpringChain() }
-                "glitchText" -> ComponentDemoSurface { GlitchText() }
-                "expandingRings" -> ComponentDemoSurface { ExpandingRings() }
-                "stackedCards" -> ComponentDemoSurface(height = 200) { StackedCards() }
-                "countdownTimer" -> ComponentDemoSurface { CountdownTimer() }
-                "verticalTicker" -> ComponentDemoSurface { VerticalTicker() }
-                "heartbeatLine" -> ComponentDemoSurface { HeartbeatLine() }
-                "expandingSearch" -> ComponentDemoSurface { ExpandingSearch() }
-                // Batch 3
-                "cardBorderTrace" -> ComponentDemoSurface { CardBorderTrace() }
-                "cardLiftHover" -> ComponentDemoSurface { CardLiftHover() }
-                "cardGradientBorder" -> ComponentDemoSurface { CardGradientBorder() }
-                "cardExpandCollapse" -> ComponentDemoSurface(height = 140) { CardExpandCollapse() }
-                "cardParallaxTilt" -> ComponentDemoSurface { CardParallaxTilt() }
-                "cardGlassmorphism" -> ComponentDemoSurface { CardGlassmorphism() }
-                "cardRevealWipe" -> ComponentDemoSurface { CardRevealWipe() }
-                "cardFanStack" -> ComponentDemoSurface { CardFanStack() }
-                "cardMagneticSnap" -> ComponentDemoSurface { CardMagneticSnap() }
-                "notificationBadge" -> ComponentDemoSurface { NotificationBadge() }
-                "glowProgress" -> ComponentDemoSurface { GlowProgressBar() }
-                "springToggle" -> ComponentDemoSurface { SpringToggle() }
-                "pulseRadar" -> ComponentDemoSurface { PulseRadar() }
-                "morphProgress" -> ComponentDemoSurface { MorphProgressIndicator() }
-                "stepIndicator" -> ComponentDemoSurface { StepIndicator() }
-                "animatedUnderline" -> ComponentDemoSurface { AnimatedUnderlineText() }
-                "blinkingCursor" -> ComponentDemoSurface { BlinkingCursor() }
-                "springChip" -> ComponentDemoSurface { SpringChip() }
-                "coinFlip" -> ComponentDemoSurface { CoinFlip() }
-                "dnaHelix" -> ComponentDemoSurface { DnaHelix() }
-                "animatedPie" -> ComponentDemoSurface { AnimatedPieChart() }
-                "pendulumSwing" -> ComponentDemoSurface { PendulumSwing() }
-                "bouncingBall" -> ComponentDemoSurface { BouncingBall() }
-                "circularMenu" -> ComponentDemoSurface { CircularMenu() }
-                "animatedBarChart" -> ComponentDemoSurface { AnimatedBarChart() }
-                "slinkySpring" -> ComponentDemoSurface { SlinkySpring() }
-                "typewriterDelete" -> ComponentDemoSurface { TypewriterDelete() }
-                "animatedGradientText" -> ComponentDemoSurface { AnimatedGradientText() }
-                // Batch 4
-                "megaMenuReveal" -> ComponentDemoSurface { MegaMenuReveal() }
-                "smoothTabIndicator" -> ComponentDemoSurface { SmoothTabIndicator() }
-                "numberCounter" -> ComponentDemoSurface { NumberCounter() }
-                "revealText" -> ComponentDemoSurface { RevealTextEffect() }
-                "scatterText" -> ComponentDemoSurface { ScatterText() }
-                "infiniteLoadingList" -> ComponentDemoSurface { InfiniteLoadingList() }
-                "cardStackSwipe" -> ComponentDemoSurface { CardStackSwipe() }
-                "horizontalScrollGallery" -> ComponentDemoSurface { HorizontalScrollGallery() }
-                "iosSlider" -> ComponentDemoSurface { IOSSlider() }
-                "checkboxAnim" -> ComponentDemoSurface { CheckboxAnimation() }
-                "switchAnim" -> ComponentDemoSurface { SwitchAnimation() }
-                "toastNotification" -> ComponentDemoSurface { ToastNotification() }
-                "accordionMenu" -> ComponentDemoSurface { AccordionMenu() }
-                "magneticButton" -> ComponentDemoSurface { MagneticButton() }
-                "rippleButton" -> ComponentDemoSurface { RippleButton() }
-                "floatingParticles" -> ComponentDemoSurface { FloatingParticles() }
-                "scrollDirectionHeader" -> ComponentDemoSurface { ScrollDirectionHeader() }
-                "textLineReveal" -> ComponentDemoSurface { TextLineReveal() }
-                "zoomHeroImage" -> ComponentDemoSurface { ZoomHeroImage() }
-                "progressScrubber" -> ComponentDemoSurface { ProgressScrubber() }
-                "verticalCarousel" -> ComponentDemoSurface { VerticalCarousel() }
-                "waterfallGrid" -> ComponentDemoSurface { WaterfallGrid() }
-                "pulsingAvatar" -> ComponentDemoSurface { PulsingAvatar() }
-                "segmentedControl" -> ComponentDemoSurface { SegmentedControl() }
-                "elasticDrawer" -> ComponentDemoSurface { ElasticDrawer() }
+                "visibility" -> VisibilityDemo(example.preset, index)
                 else -> VisibilityDemo(example.preset, index)
             }
 
@@ -775,31 +675,143 @@ private fun DragDemo(preset: CanimationPreset) {
 }
 
 @Composable
-private fun ComponentDemoSurface(
-    height: Int = 120,
-    content: @Composable () -> Unit,
-) {
+private fun EffectDemo(effect: CanimationEffect) {
     var visible by remember { mutableStateOf(false) }
-    LaunchedEffect(Unit) { visible = true }
-    Surface(
-        shape = RoundedCornerShape(12.dp),
-        color = MaterialTheme.colorScheme.surface,
-        border = BorderStroke(
-            1.dp,
-            MaterialTheme.colorScheme.tertiary.copy(alpha = 0.3f),
-        ),
-        modifier = Modifier
-            .fillMaxWidth()
-            .canimation(visible = visible, effect = Canimation.Fade.Up),
+    LaunchedEffect(Unit) {
+        delay(300)
+        while (true) {
+            visible = true
+            delay(2000)
+            visible = false
+            delay(800)
+        }
+    }
+    Box(
+        modifier = Modifier.fillMaxWidth().height(120.dp),
+        contentAlignment = Alignment.Center,
     ) {
-        Box(
+        Surface(
+            shape = RoundedCornerShape(12.dp),
+            color = MaterialTheme.colorScheme.primaryContainer,
+            modifier = Modifier
+                .size(80.dp)
+                .canimation(visible = visible, effect = effect),
+        ) {
+            Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                Text("\u2726", style = MaterialTheme.typography.headlineMedium)
+            }
+        }
+    }
+}
+
+@Composable
+private fun TransitionDemo(enter: CanimationEffect, exit: CanimationEffect?) {
+    var visible by remember { mutableStateOf(false) }
+    LaunchedEffect(Unit) {
+        delay(300)
+        while (true) {
+            visible = true
+            delay(2000)
+            visible = false
+            delay(800)
+        }
+    }
+    Box(
+        modifier = Modifier.fillMaxWidth().height(120.dp),
+        contentAlignment = Alignment.Center,
+    ) {
+        Surface(
+            shape = RoundedCornerShape(12.dp),
+            color = MaterialTheme.colorScheme.secondaryContainer,
+            modifier = Modifier
+                .size(80.dp)
+                .canimationTransition(visible = visible, enter = enter, exit = exit),
+        ) {
+            Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                Text("\u21C4", style = MaterialTheme.typography.headlineMedium)
+            }
+        }
+    }
+}
+
+@Composable
+private fun StaggerEffectDemo(effect: CanimationEffect) {
+    val items = remember { listOf("Item A", "Item B", "Item C", "Item D", "Item E") }
+    Column(
+        modifier = Modifier.fillMaxWidth().padding(8.dp),
+        verticalArrangement = Arrangement.spacedBy(6.dp),
+    ) {
+        items.forEachIndexed { i, label ->
+            var visible by remember { mutableStateOf(false) }
+            LaunchedEffect(Unit) {
+                delay(i * Canimation.Stagger.Normal.toLong() + 300L)
+                visible = true
+            }
+            Surface(
+                shape = RoundedCornerShape(8.dp),
+                color = MaterialTheme.colorScheme.surfaceVariant,
+                border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .canimation(visible = visible, effect = effect),
+            ) {
+                Text(
+                    text = label,
+                    modifier = Modifier.padding(12.dp),
+                    style = MaterialTheme.typography.bodyMedium,
+                )
+            }
+        }
+    }
+}
+
+@Composable
+private fun RealWorldDemo(effect: CanimationEffect, pattern: String) {
+    var visible by remember { mutableStateOf(false) }
+    LaunchedEffect(Unit) {
+        delay(300)
+        while (true) {
+            visible = true
+            delay(2500)
+            visible = false
+            delay(800)
+        }
+    }
+    Box(
+        modifier = Modifier.fillMaxWidth().height(140.dp).padding(8.dp),
+        contentAlignment = Alignment.Center,
+    ) {
+        Card(
+            shape = RoundedCornerShape(16.dp),
+            colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),
+            border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline),
             modifier = Modifier
                 .fillMaxWidth()
-                .height(height.dp)
-                .padding(8.dp),
-            contentAlignment = Alignment.Center,
+                .canimation(visible = visible, effect = effect),
         ) {
-            content()
+            Row(
+                modifier = Modifier.padding(16.dp),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(12.dp),
+            ) {
+                Surface(
+                    shape = RoundedCornerShape(8.dp),
+                    color = MaterialTheme.colorScheme.primary.copy(alpha = 0.15f),
+                    modifier = Modifier.size(48.dp),
+                ) {
+                    Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                        Text("\u2726", style = MaterialTheme.typography.titleMedium)
+                    }
+                }
+                Column {
+                    Text(pattern, style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold)
+                    Text(
+                        "Canimation effect demo",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    )
+                }
+            }
         }
     }
 }
