@@ -1,6 +1,5 @@
 package com.segnities007.canimation.screen
 
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -21,19 +20,14 @@ import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material3.AlertDialog
-import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedButton
-import androidx.compose.material3.Slider
-import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -53,43 +47,28 @@ import io.github.canimation.core.CanimationSpec
 import io.github.canimation.core.CanimationPolicy
 import io.github.canimation.core.CanimationProvider
 import io.github.canimation.presets.PresetsExtensionRegistry
-import kotlinx.coroutines.delay
 import kotlin.math.abs
 import kotlin.math.roundToInt
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
-fun PresetGalleryScreen(modifier: Modifier = Modifier) {
-    var autoPlayEnabled by remember { mutableStateOf(true) }
-    var cycleMs by remember { mutableFloatStateOf(1400f) }
-    var durationScale by remember { mutableFloatStateOf(1f) }
-    var distanceScale by remember { mutableFloatStateOf(1f) }
-    var scaleIntensity by remember { mutableFloatStateOf(1f) }
-    var rotationScale by remember { mutableFloatStateOf(1f) }
-    var autoPlayTick by remember { mutableIntStateOf(0) }
+fun PresetGalleryScreen(
+    modifier: Modifier = Modifier,
+    autoPlayEnabled: Boolean = true,
+    autoPlayTick: Int = 0,
+    tuning: PresetPreviewTuning = PresetPreviewTuning(),
+) {
+    var autoPlayTickLocal by remember { mutableIntStateOf(0) }
     var motionFilter by remember { mutableStateOf(MotionFilter.All) }
 
     var codeDialogPreset by remember { mutableStateOf<CanimationPreset?>(null) }
 
-    val tuning = remember(durationScale, distanceScale, scaleIntensity, rotationScale) {
-        PresetPreviewTuning(
-            durationScale = durationScale,
-            distanceScale = distanceScale,
-            scaleIntensity = scaleIntensity,
-            rotationScale = rotationScale,
-        )
+    // Sync external tick
+    LaunchedEffect(autoPlayTick) {
+        autoPlayTickLocal = autoPlayTick
     }
 
     val allPresetSpecs = PresetsExtensionRegistry.allPresetSpecs
-
-    LaunchedEffect(autoPlayEnabled, cycleMs) {
-        if (autoPlayEnabled) {
-            while (true) {
-                autoPlayTick += 1
-                delay(cycleMs.toLong().coerceAtLeast(350L))
-            }
-        }
-    }
 
     val filteredPresets = remember(allPresetSpecs, motionFilter) {
         CanimationPreset.entries.filter { preset ->
@@ -146,90 +125,6 @@ fun PresetGalleryScreen(modifier: Modifier = Modifier) {
             }
         }
 
-        item(span = { GridItemSpan(maxLineSpan) }) {
-            Card(
-            modifier = Modifier
-                .fillMaxWidth(),
-            colors = CardDefaults.cardColors(
-                containerColor = MaterialTheme.colorScheme.surfaceVariant,
-            ),
-            border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline),
-        ) {
-            Column(
-                modifier = Modifier.padding(12.dp),
-                verticalArrangement = Arrangement.spacedBy(8.dp),
-            ) {
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                ) {
-                    Text("Auto play all presets", style = MaterialTheme.typography.titleSmall)
-                    Switch(
-                        checked = autoPlayEnabled,
-                        onCheckedChange = { autoPlayEnabled = it },
-                    )
-                }
-
-                LabeledSlider(
-                    label = "Cycle interval",
-                    value = cycleMs,
-                    onValueChange = { cycleMs = it },
-                    valueRange = 350f..2500f,
-                    displayValue = "${cycleMs.toInt()}ms",
-                )
-                LabeledSlider(
-                    label = "Duration scale",
-                    value = durationScale,
-                    onValueChange = { durationScale = it },
-                    valueRange = 0.5f..2.0f,
-                    displayValue = "${durationScale.fmt2()}x",
-                )
-                LabeledSlider(
-                    label = "Distance scale",
-                    value = distanceScale,
-                    onValueChange = { distanceScale = it },
-                    valueRange = 0.2f..2.5f,
-                    displayValue = "${distanceScale.fmt2()}x",
-                )
-                LabeledSlider(
-                    label = "Scale intensity",
-                    value = scaleIntensity,
-                    onValueChange = { scaleIntensity = it },
-                    valueRange = 0.2f..2.5f,
-                    displayValue = "${scaleIntensity.fmt2()}x",
-                )
-                LabeledSlider(
-                    label = "Rotation scale",
-                    value = rotationScale,
-                    onValueChange = { rotationScale = it },
-                    valueRange = 0.2f..2.5f,
-                    displayValue = "${rotationScale.fmt2()}x",
-                )
-
-                Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                    OutlinedButton(
-                        onClick = { autoPlayTick += 1 },
-                        modifier = Modifier.weight(1f),
-                    ) {
-                        Text("Replay all once")
-                    }
-                    OutlinedButton(
-                        onClick = {
-                            durationScale = 1f
-                            distanceScale = 1f
-                            scaleIntensity = 1f
-                            rotationScale = 1f
-                        },
-                        modifier = Modifier.weight(1f),
-                    ) {
-                        Text("Reset params")
-                    }
-                }
-            }
-        }
-        }
-
         items(filteredPresets, key = { it.name }) { preset ->
             AnimationShowcase(
                 title = presetDescription(preset),
@@ -237,7 +132,7 @@ fun PresetGalleryScreen(modifier: Modifier = Modifier) {
                 baseSpec = allPresetSpecs.getValue(preset),
                     tuning = tuning,
                     autoPlayEnabled = autoPlayEnabled,
-                    autoPlayTick = autoPlayTick,
+                    autoPlayTick = autoPlayTickLocal,
                     selectedForCompare = false,
                     onCardClick = { tapped ->
                         codeDialogPreset = tapped
@@ -350,30 +245,6 @@ private fun StringBuilder.appendSpecFields(spec: CanimationSpec) {
     spec.offsetY?.let { appendLine("    offsetY = CanimationDpRange(${it.from.value.fmt2()}.dp, ${it.to.value.fmt2()}.dp),") }
     spec.scale?.let { appendLine("    scale = CanimationRange(${it.from.fmt2()}f, ${it.to.fmt2()}f),") }
     spec.rotation?.let { appendLine("    rotation = CanimationRange(${it.from.fmt2()}f, ${it.to.fmt2()}f),") }
-}
-
-@Composable
-private fun LabeledSlider(
-    label: String,
-    value: Float,
-    onValueChange: (Float) -> Unit,
-    valueRange: ClosedFloatingPointRange<Float>,
-    displayValue: String,
-) {
-    Column {
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween,
-        ) {
-            Text(label, style = MaterialTheme.typography.bodyMedium)
-            Text(displayValue, style = MaterialTheme.typography.bodySmall)
-        }
-        Slider(
-            value = value,
-            onValueChange = onValueChange,
-            valueRange = valueRange,
-        )
-    }
 }
 
 private fun Float.fmt2(): String {

@@ -11,6 +11,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.toRoute
+import com.segnities007.canimation.component.PresetPreviewTuning
 import com.segnities007.canimation.screen.A11yDemoScreen
 import com.segnities007.canimation.screen.CustomSpecLabScreen
 import com.segnities007.canimation.screen.DiagnosticsScreen
@@ -25,6 +26,9 @@ import com.segnities007.canimation.screen.examples.ExamplesScreen
 fun CanimationNavHost(
     navController: NavHostController,
     modifier: Modifier = Modifier,
+    autoPlayEnabled: Boolean = true,
+    autoPlayTick: Int = 0,
+    tuning: PresetPreviewTuning = PresetPreviewTuning(),
 ) {
     NavHost(
         navController = navController,
@@ -61,7 +65,13 @@ fun CanimationNavHost(
             )
         }
         composable<DocsRoute> { DocsScreen() }
-        composable<PresetGalleryRoute> { PresetGalleryScreen() }
+        composable<PresetGalleryRoute> {
+            PresetGalleryScreen(
+                autoPlayEnabled = autoPlayEnabled,
+                autoPlayTick = autoPlayTick,
+                tuning = tuning,
+            )
+        }
         composable<CustomSpecLabRoute> { CustomSpecLabScreen() }
         composable<A11yDemoRoute> { A11yDemoScreen() }
         composable<DiagnosticsRoute> { DiagnosticsScreen() }

@@ -25,6 +25,7 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Slider
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
@@ -37,6 +38,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.segnities007.canimation.component.PresetPreviewTuning
 import com.segnities007.canimation.navigation.A11yDemoRoute
 import com.segnities007.canimation.navigation.CanimationNavHost
 import com.segnities007.canimation.navigation.CustomSpecLabRoute
@@ -49,6 +51,7 @@ import com.segnities007.canimation.navigation.TokenReferenceRoute
 import com.segnities007.canimation.theme.CanimationTheme
 import io.github.canimation.core.CanimationPolicy
 import io.github.canimation.core.CanimationProvider
+import kotlinx.coroutines.delay
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -58,11 +61,39 @@ fun App() {
     val isDarkMode = darkOverride ?: isSystemInDarkTheme()
     var showSettings by remember { mutableStateOf(false) }
 
+    // Preset gallery tuning state (hoisted for settings bottom sheet)
+    var autoPlayEnabled by remember { mutableStateOf(true) }
+    var cycleMs by remember { mutableFloatStateOf(1400f) }
+    var durationScale by remember { mutableFloatStateOf(1f) }
+    var distanceScale by remember { mutableFloatStateOf(1f) }
+    var scaleIntensity by remember { mutableFloatStateOf(1f) }
+    var rotationScale by remember { mutableFloatStateOf(1f) }
+    var autoPlayTick by remember { mutableIntStateOf(0) }
+
+    val tuning = remember(durationScale, distanceScale, scaleIntensity, rotationScale) {
+        PresetPreviewTuning(
+            durationScale = durationScale,
+            distanceScale = distanceScale,
+            scaleIntensity = scaleIntensity,
+            rotationScale = rotationScale,
+        )
+    }
+
+    LaunchedEffect(autoPlayEnabled, cycleMs) {
+        if (autoPlayEnabled) {
+            while (true) {
+                autoPlayTick += 1
+                delay(cycleMs.toLong().coerceAtLeast(350L))
+            }
+        }
+    }
+
     CanimationTheme(darkTheme = isDarkMode) {
         CanimationProvider(policy = policy) {
             val navController = rememberNavController()
             val backStackEntry by navController.currentBackStackEntryAsState()
             val route = backStackEntry?.destination?.route
+            val isOnPresetGallery = route?.contains("PresetGalleryRoute") == true
 
             Scaffold(
                 topBar = {
@@ -140,6 +171,9 @@ fun App() {
                     modifier = Modifier
                         .fillMaxSize()
                         .padding(innerPadding),
+                    autoPlayEnabled = autoPlayEnabled,
+                    autoPlayTick = autoPlayTick,
+                    tuning = tuning,
                 )
             }
 
@@ -150,6 +184,23 @@ fun App() {
                     policy = policy,
                     onPolicyChange = { policy = it },
                     onDismiss = { showSettings = false },
+                    showPresetTuning = isOnPresetGallery,
+                    autoPlayEnabled = autoPlayEnabled,
+                    onAutoPlayChange = { autoPlayEnabled = it },
+                    cycleMs = cycleMs,
+                    onCycleMsChange = { cycleMs = it },
+                    durationScale = durationScale,
+                    onDurationScaleChange = { durationScale = it },
+                    distanceScale = distanceScale,
+                    onDistanceScaleChange = { distanceScale = it },
+                    scaleIntensity = scaleIntensity,
+                    onScaleIntensityChange = { scaleIntensity = it },
+                    rotationScale = rotationScale,
+                    onRotationScaleChange = { rotationScale = it },
+                    onResetParams = {
+                        durationScale = 1f; distanceScale = 1f
+                        scaleIntensity = 1f; rotationScale = 1f
+                    },
                 )
             }
         }
@@ -164,6 +215,20 @@ private fun SettingsBottomSheet(
     policy: CanimationPolicy,
     onPolicyChange: (CanimationPolicy) -> Unit,
     onDismiss: () -> Unit,
+    showPresetTuning: Boolean = false,
+    autoPlayEnabled: Boolean = true,
+    onAutoPlayChange: (Boolean) -> Unit = {},
+    cycleMs: Float = 1400f,
+    onCycleMsChange: (Float) -> Unit = {},
+    durationScale: Float = 1f,
+    onDurationScaleChange: (Float) -> Unit = {},
+    distanceScale: Float = 1f,
+    onDistanceScaleChange: (Float) -> Unit = {},
+    scaleIntensity: Float = 1f,
+    onScaleIntensityChange: (Float) -> Unit = {},
+    rotationScale: Float = 1f,
+    onRotationScaleChange: (Float) -> Unit = {},
+    onResetParams: () -> Unit = {},
 ) {
     val sheetState = rememberModalBottomSheetState()
 
@@ -289,6 +354,68 @@ private fun SettingsBottomSheet(
                     }
                 }
             }
+
+            // Preset Gallery Tuning (only shown on Presets page)
+            if (showPresetTuning) {
+                HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant)
+
+                Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                    Text(
+                        text = "Preset Gallery",
+                        style = MaterialTheme.typography.bodyLarge,
+                        fontWeight = FontWeight.Medium,
+                    )
+
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically,
+                    ) {
+                        Text("Auto play all presets", style = MaterialTheme.typography.bodyMedium)
+                        Switch(
+                            checked = autoPlayEnabled,
+                            onCheckedChange = onAutoPlayChange,
+                        )
+                    }
+
+                    SettingsSlider("Cycle interval", cycleMs, onCycleMsChange, 350f..2500f, "${cycleMs.toInt()}ms")
+                    SettingsSlider("Duration scale", durationScale, onDurationScaleChange, 0.5f..2.0f, "${fmtFloat(durationScale)}x")
+                    SettingsSlider("Distance scale", distanceScale, onDistanceScaleChange, 0.2f..2.5f, "${fmtFloat(distanceScale)}x")
+                    SettingsSlider("Scale intensity", scaleIntensity, onScaleIntensityChange, 0.2f..2.5f, "${fmtFloat(scaleIntensity)}x")
+                    SettingsSlider("Rotation scale", rotationScale, onRotationScaleChange, 0.2f..2.5f, "${fmtFloat(rotationScale)}x")
+
+                    TextButton(onClick = onResetParams) {
+                        Text("Reset parameters")
+                    }
+                }
+            }
         }
     }
+}
+
+@Composable
+private fun SettingsSlider(
+    label: String,
+    value: Float,
+    onValueChange: (Float) -> Unit,
+    valueRange: ClosedFloatingPointRange<Float>,
+    displayValue: String,
+) {
+    Column {
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween,
+        ) {
+            Text(label, style = MaterialTheme.typography.bodySmall)
+            Text(displayValue, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+        }
+        Slider(value = value, onValueChange = onValueChange, valueRange = valueRange)
+    }
+}
+
+private fun fmtFloat(v: Float): String {
+    val rounded = (v * 100).toInt()
+    val sign = if (rounded < 0) "-" else ""
+    val abs = if (rounded < 0) -rounded else rounded
+    return "$sign${abs / 100}.${(abs % 100).toString().padStart(2, '0')}"
 }
