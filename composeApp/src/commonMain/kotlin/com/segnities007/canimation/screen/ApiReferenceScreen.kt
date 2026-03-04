@@ -602,6 +602,43 @@ CanimationPolicy.AlwaysOff     // Disable all animations""",
     ns("Playful", "Twirl", "Twirling entry", Canimation.Playful.Twirl)
     ns("Playful", "Boing", "Spring boing", Canimation.Playful.Boing)
 
+    ns("Diagonal", "TopLeft", "Enter from top-left", Canimation.Diagonal.TopLeft)
+    ns("Diagonal", "TopRight", "Enter from top-right", Canimation.Diagonal.TopRight)
+    ns("Diagonal", "BottomLeft", "Enter from bottom-left", Canimation.Diagonal.BottomLeft)
+    ns("Diagonal", "BottomRight", "Enter from bottom-right", Canimation.Diagonal.BottomRight)
+    ns("Diagonal", "Subtle", "Subtle diagonal entry", Canimation.Diagonal.Subtle)
+
+    ns("Shrink", "Out", "Shrink from oversized", Canimation.Shrink.Out)
+    ns("Shrink", "Subtle", "Subtle shrink entry", Canimation.Shrink.Subtle)
+    ns("Shrink", "Rotate", "Shrink with rotation", Canimation.Shrink.Rotate)
+    ns("Shrink", "FadeDown", "Shrink and drift down", Canimation.Shrink.FadeDown)
+
+    ns("Tilt", "Left", "Tilt from left", Canimation.Tilt.Left)
+    ns("Tilt", "Right", "Tilt from right", Canimation.Tilt.Right)
+    ns("Tilt", "Up", "Tilt from above", Canimation.Tilt.Up)
+    ns("Tilt", "Down", "Tilt from below", Canimation.Tilt.Down)
+    ns("Tilt", "Swing", "Swinging tilt", Canimation.Tilt.Swing)
+
+    ns("Float", "Up", "Gentle float up", Canimation.Float.Up)
+    ns("Float", "Down", "Gentle float down", Canimation.Float.Down)
+    ns("Float", "Gentle", "Very gentle float", Canimation.Float.Gentle)
+    ns("Float", "ScaleUp", "Float with scale", Canimation.Float.ScaleUp)
+
+    ns("Drop", "In", "Standard drop entry", Canimation.Drop.In)
+    ns("Drop", "Heavy", "Heavy slam drop", Canimation.Drop.Heavy)
+    ns("Drop", "Light", "Light feather drop", Canimation.Drop.Light)
+    ns("Drop", "Rotate", "Drop with rotation", Canimation.Drop.Rotate)
+
+    ns("Rise", "In", "Standard rise entry", Canimation.Rise.In)
+    ns("Rise", "Slow", "Slow rising entry", Canimation.Rise.Slow)
+    ns("Rise", "Scale", "Rise with scale", Canimation.Rise.Scale)
+    ns("Rise", "Rotate", "Rise with rotation", Canimation.Rise.Rotate)
+
+    ns("Stretch", "Horizontal", "Horizontal stretch", Canimation.Stretch.Horizontal)
+    ns("Stretch", "Vertical", "Vertical stretch", Canimation.Stretch.Vertical)
+    ns("Stretch", "Both", "Stretch both axes", Canimation.Stretch.Both)
+    ns("Stretch", "Snap", "Stretch with snap", Canimation.Stretch.Snap)
+
     // Stagger (these are constants, not effects)
     add(ApiEntry(
         name = "Canimation.Stagger",
