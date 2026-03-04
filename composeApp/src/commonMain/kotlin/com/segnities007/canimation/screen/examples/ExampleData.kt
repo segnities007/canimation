@@ -1733,180 +1733,163 @@ val exampleCategories: List<ExampleCategory> = listOf(
                 description = "Characters appear one by one like a typewriter",
                 demoType = "component",
                 componentKey = "TypewriterText",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: TypewriterText with live demo""",
+                codeSnippet = """TypewriterText(
+    text = "Welcome to my app!",
+    typingSpeed = 50L,
+    modifier = Modifier.fillMaxWidth(),
+)""",
             ),
             ExampleItem(
                 title = "Scramble Text",
                 description = "Random characters resolve into target text",
                 demoType = "component",
                 componentKey = "ScrambleText",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: ScrambleText with live demo""",
+                codeSnippet = """ScrambleText(
+    targetText = "Hello, World!",
+    scrambleDuration = 1200,
+    modifier = Modifier.fillMaxWidth(),
+)""",
             ),
             ExampleItem(
                 title = "Wavy Text",
                 description = "Letters oscillate in a wave pattern",
                 demoType = "component",
                 componentKey = "WavyText",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: WavyText with live demo""",
+                codeSnippet = """WavyText(
+    text = "Animated Wave",
+    waveAmplitude = 10f,
+    modifier = Modifier.padding(16.dp),
+)""",
             ),
             ExampleItem(
                 title = "Split Text Reveal",
                 description = "Text splits and reveals with staggered animation",
                 demoType = "component",
                 componentKey = "SplitTextReveal",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: SplitTextReveal with live demo""",
+                codeSnippet = """SplitTextReveal(
+    text = "Split Reveal",
+    delayPerChar = 80L,
+    modifier = Modifier.fillMaxWidth(),
+)""",
             ),
             ExampleItem(
                 title = "Glitch Text",
                 description = "Digital glitch distortion effect on text",
                 demoType = "component",
                 componentKey = "GlitchText",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: GlitchText with live demo""",
+                codeSnippet = """GlitchText(
+    text = "SYSTEM ERROR",
+    glitchIntensity = 0.3f,
+    modifier = Modifier.padding(8.dp),
+)""",
             ),
             ExampleItem(
                 title = "Text Gradient Anim",
                 description = "Animated gradient sweep across text",
                 demoType = "component",
                 componentKey = "TextGradientAnim",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: TextGradientAnim with live demo""",
+                codeSnippet = """TextGradientAnim(
+    text = "Gradient Text",
+    colors = listOf(Color.Cyan, Color.Magenta),
+    modifier = Modifier.fillMaxWidth(),
+)""",
             ),
             ExampleItem(
                 title = "Rolling Digits",
                 description = "Digits roll like a slot machine",
                 demoType = "component",
                 componentKey = "RollingDigits",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: RollingDigits with live demo""",
+                codeSnippet = """RollingDigits(
+    targetValue = 42,
+    modifier = Modifier.padding(16.dp),
+)""",
             ),
             ExampleItem(
                 title = "Vertical Ticker",
                 description = "Text scrolls vertically through values",
                 demoType = "component",
                 componentKey = "VerticalTicker",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: VerticalTicker with live demo""",
+                codeSnippet = """VerticalTicker(
+    items = listOf("First", "Second", "Third"),
+    modifier = Modifier.height(48.dp),
+)""",
             ),
             ExampleItem(
                 title = "Animated Underline Text",
                 description = "Underline draws beneath text on appear",
                 demoType = "component",
                 componentKey = "AnimatedUnderlineText",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: AnimatedUnderlineText with live demo""",
+                codeSnippet = """AnimatedUnderlineText(
+    text = "Hover Me",
+    underlineColor = Color.Blue,
+    modifier = Modifier.padding(8.dp),
+)""",
             ),
             ExampleItem(
                 title = "Blinking Cursor",
                 description = "Terminal-style blinking cursor animation",
                 demoType = "component",
                 componentKey = "BlinkingCursor",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: BlinkingCursor with live demo""",
+                codeSnippet = """BlinkingCursor(
+    cursorChar = "|",
+    blinkInterval = 500L,
+    modifier = Modifier.padding(4.dp),
+)""",
             ),
             ExampleItem(
                 title = "Animated Gradient Text",
                 description = "Gradient colors animate across text",
                 demoType = "component",
                 componentKey = "AnimatedGradientText",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: AnimatedGradientText with live demo""",
+                codeSnippet = """AnimatedGradientText(
+    text = "Shimmering Label",
+    colors = listOf(Color.Red, Color.Yellow, Color.Green),
+    modifier = Modifier.fillMaxWidth(),
+)""",
             ),
             ExampleItem(
                 title = "Reveal Text Effect",
                 description = "Text reveals with a sliding mask",
                 demoType = "component",
                 componentKey = "RevealTextEffect",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: RevealTextEffect with live demo""",
+                codeSnippet = """RevealTextEffect(
+    text = "Revealed!",
+    revealDuration = 1000,
+    modifier = Modifier.fillMaxWidth(),
+)""",
             ),
             ExampleItem(
                 title = "Scatter Text",
                 description = "Characters scatter and reassemble",
                 demoType = "component",
                 componentKey = "ScatterText",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: ScatterText with live demo""",
+                codeSnippet = """ScatterText(
+    text = "Scatter Me",
+    scatterRadius = 100f,
+    modifier = Modifier.size(200.dp),
+)""",
             ),
             ExampleItem(
                 title = "Text Line Reveal",
                 description = "Text lines reveal one at a time",
                 demoType = "component",
                 componentKey = "TextLineReveal",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: TextLineReveal with live demo""",
+                codeSnippet = """TextLineReveal(
+    lines = listOf("Line one", "Line two", "Line three"),
+    delayPerLine = 200L,
+    modifier = Modifier.fillMaxWidth(),
+)""",
             ),
             ExampleItem(
                 title = "Typewriter Delete",
                 description = "Characters delete one by one in reverse",
                 demoType = "component",
                 componentKey = "TypewriterDelete",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: TypewriterDelete with live demo""",
+                codeSnippet = """TypewriterDelete(
+    text = "Deleting this text...",
+    deleteSpeed = 40L,
+    modifier = Modifier.fillMaxWidth(),
+)""",
             ),
         ),
     ),
@@ -1924,168 +1907,158 @@ Modifier.canimation(
                 description = "3D card flip between front and back",
                 demoType = "component",
                 componentKey = "FlipCard",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: FlipCard with live demo""",
+                codeSnippet = """FlipCard(
+    frontText = "Product Name",
+    backText = "Product Details",
+    modifier = Modifier.size(200.dp),
+)""",
             ),
             ExampleItem(
                 title = "Tilt Card",
                 description = "Card tilts toward pointer on hover",
                 demoType = "component",
                 componentKey = "TiltCard",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: TiltCard with live demo""",
+                codeSnippet = """TiltCard(
+    content = { Text("Tilt Me") },
+    maxTiltDegrees = 15f,
+    modifier = Modifier.size(200.dp),
+)""",
             ),
             ExampleItem(
                 title = "Card Border Trace",
                 description = "Animated border traces around the card",
                 demoType = "component",
                 componentKey = "CardBorderTrace",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: CardBorderTrace with live demo""",
+                codeSnippet = """CardBorderTrace(
+    borderColor = Color.Cyan,
+    traceDuration = 2000,
+    modifier = Modifier.size(200.dp),
+)""",
             ),
             ExampleItem(
                 title = "Card Lift Hover",
                 description = "Card elevates with shadow on hover",
                 demoType = "component",
                 componentKey = "CardLiftHover",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: CardLiftHover with live demo""",
+                codeSnippet = """CardLiftHover(
+    elevation = 12.dp,
+    modifier = Modifier
+        .fillMaxWidth()
+        .height(120.dp),
+)""",
             ),
             ExampleItem(
                 title = "Card Gradient Border",
                 description = "Animated gradient border effect",
                 demoType = "component",
                 componentKey = "CardGradientBorder",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: CardGradientBorder with live demo""",
+                codeSnippet = """CardGradientBorder(
+    colors = listOf(Color.Magenta, Color.Cyan),
+    borderWidth = 2.dp,
+    modifier = Modifier.size(180.dp),
+)""",
             ),
             ExampleItem(
                 title = "Card Expand Collapse",
                 description = "Card smoothly expands and collapses",
                 demoType = "component",
                 componentKey = "CardExpandCollapse",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: CardExpandCollapse with live demo""",
+                codeSnippet = """CardExpandCollapse(
+    title = "Tap to Expand",
+    expandedContent = { Text("Expanded details here") },
+    modifier = Modifier.fillMaxWidth(),
+)""",
             ),
             ExampleItem(
                 title = "Card Parallax Tilt",
                 description = "Parallax layers tilt with pointer movement",
                 demoType = "component",
                 componentKey = "CardParallaxTilt",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: CardParallaxTilt with live demo""",
+                codeSnippet = """CardParallaxTilt(
+    parallaxIntensity = 20f,
+    modifier = Modifier
+        .fillMaxWidth()
+        .height(200.dp),
+)""",
             ),
             ExampleItem(
                 title = "Card Glassmorphism",
                 description = "Frosted glass card with blur effect",
                 demoType = "component",
                 componentKey = "CardGlassmorphism",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: CardGlassmorphism with live demo""",
+                codeSnippet = """CardGlassmorphism(
+    blurRadius = 20.dp,
+    tintColor = Color.White.copy(alpha = 0.2f),
+    modifier = Modifier.size(200.dp),
+)""",
             ),
             ExampleItem(
                 title = "Card Reveal Wipe",
                 description = "Content reveals with a wipe transition",
                 demoType = "component",
                 componentKey = "CardRevealWipe",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: CardRevealWipe with live demo""",
+                codeSnippet = """CardRevealWipe(
+    revealDirection = RevealDirection.Left,
+    duration = 800,
+    modifier = Modifier.size(200.dp),
+)""",
             ),
             ExampleItem(
                 title = "Card Fan Stack",
                 description = "Cards fan out from a stack",
                 demoType = "component",
                 componentKey = "CardFanStack",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: CardFanStack with live demo""",
+                codeSnippet = """CardFanStack(
+    cardCount = 5,
+    fanAngle = 30f,
+    modifier = Modifier.size(250.dp),
+)""",
             ),
             ExampleItem(
                 title = "Card Magnetic Snap",
                 description = "Card snaps to position with magnetic feel",
                 demoType = "component",
                 componentKey = "CardMagneticSnap",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: CardMagneticSnap with live demo""",
+                codeSnippet = """CardMagneticSnap(
+    snapThreshold = 50.dp,
+    modifier = Modifier
+        .fillMaxWidth()
+        .height(150.dp),
+)""",
             ),
             ExampleItem(
                 title = "Card Shuffle",
                 description = "Cards shuffle like a deck",
                 demoType = "component",
                 componentKey = "CardShuffle",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: CardShuffle with live demo""",
+                codeSnippet = """CardShuffle(
+    cardCount = 4,
+    shuffleDuration = 600,
+    modifier = Modifier.size(200.dp),
+)""",
             ),
             ExampleItem(
                 title = "Stacked Cards",
                 description = "Cards stacked with depth perspective",
                 demoType = "component",
                 componentKey = "StackedCards",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: StackedCards with live demo""",
+                codeSnippet = """StackedCards(
+    cardCount = 3,
+    offsetStep = 8.dp,
+    modifier = Modifier.size(200.dp),
+)""",
             ),
             ExampleItem(
                 title = "Card Stack Swipe",
                 description = "Swipeable card stack like a dating app",
                 demoType = "component",
                 componentKey = "CardStackSwipe",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: CardStackSwipe with live demo""",
+                codeSnippet = """CardStackSwipe(
+    onSwipe = { direction -> /* handle */ },
+    modifier = Modifier
+        .fillMaxWidth()
+        .height(300.dp),
+)""",
             ),
         ),
     ),
@@ -2103,156 +2076,148 @@ Modifier.canimation(
                 description = "Dots pulse in sequence to indicate loading",
                 demoType = "component",
                 componentKey = "PulseLoadingDots",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: PulseLoadingDots with live demo""",
+                codeSnippet = """PulseLoadingDots(
+    dotCount = 3,
+    dotSize = 12.dp,
+    color = Color.Blue,
+    modifier = Modifier.padding(16.dp),
+)""",
             ),
             ExampleItem(
                 title = "Jumping Dots",
                 description = "Dots jump up and down in sequence",
                 demoType = "component",
                 componentKey = "JumpingDots",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: JumpingDots with live demo""",
+                codeSnippet = """JumpingDots(
+    dotCount = 3,
+    jumpHeight = 20.dp,
+    modifier = Modifier.padding(16.dp),
+)""",
             ),
             ExampleItem(
                 title = "Shimmer Effect",
                 description = "Shimmering placeholder for loading content",
                 demoType = "component",
                 componentKey = "ShimmerEffect",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: ShimmerEffect with live demo""",
+                codeSnippet = """ShimmerEffect(
+    modifier = Modifier
+        .fillMaxWidth()
+        .height(200.dp),
+)""",
             ),
             ExampleItem(
                 title = "Loading Spinner",
                 description = "Classic spinning loader animation",
                 demoType = "component",
                 componentKey = "LoadingSpinner",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: LoadingSpinner with live demo""",
+                codeSnippet = """LoadingSpinner(
+    strokeWidth = 4.dp,
+    color = Color.Blue,
+    modifier = Modifier.size(48.dp),
+)""",
             ),
             ExampleItem(
                 title = "Loading Ripple",
                 description = "Ripple rings expand outward from center",
                 demoType = "component",
                 componentKey = "LoadingRipple",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: LoadingRipple with live demo""",
+                codeSnippet = """LoadingRipple(
+    rippleColor = Color.Cyan,
+    rippleCount = 3,
+    modifier = Modifier.size(80.dp),
+)""",
             ),
             ExampleItem(
                 title = "Skeleton Loader",
                 description = "Skeleton placeholder with shimmer",
                 demoType = "component",
                 componentKey = "SkeletonLoader",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: SkeletonLoader with live demo""",
+                codeSnippet = """SkeletonLoader(
+    shape = SkeletonShape.RoundedRect,
+    modifier = Modifier
+        .fillMaxWidth()
+        .height(20.dp),
+)""",
             ),
             ExampleItem(
                 title = "Progress Ring",
                 description = "Circular progress indicator with animation",
                 demoType = "component",
                 componentKey = "ProgressRing",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: ProgressRing with live demo""",
+                codeSnippet = """ProgressRing(
+    progress = 0.75f,
+    strokeWidth = 8.dp,
+    color = Color.Green,
+    modifier = Modifier.size(64.dp),
+)""",
             ),
             ExampleItem(
                 title = "Progress Steps",
                 description = "Step-by-step progress with transitions",
                 demoType = "component",
                 componentKey = "ProgressSteps",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: ProgressSteps with live demo""",
+                codeSnippet = """ProgressSteps(
+    totalSteps = 5,
+    currentStep = 3,
+    modifier = Modifier.fillMaxWidth(),
+)""",
             ),
             ExampleItem(
                 title = "Liquid Fill",
                 description = "Liquid-style fill animation in a circle",
                 demoType = "component",
                 componentKey = "LiquidFill",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: LiquidFill with live demo""",
+                codeSnippet = """LiquidFill(
+    fillPercent = 0.6f,
+    liquidColor = Color.Blue,
+    modifier = Modifier.size(120.dp),
+)""",
             ),
             ExampleItem(
                 title = "Glow Progress Bar",
                 description = "Progress bar with glowing edge effect",
                 demoType = "component",
                 componentKey = "GlowProgressBar",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: GlowProgressBar with live demo""",
+                codeSnippet = """GlowProgressBar(
+    progress = 0.8f,
+    glowColor = Color.Cyan,
+    modifier = Modifier
+        .fillMaxWidth()
+        .height(8.dp),
+)""",
             ),
             ExampleItem(
                 title = "Morph Progress Indicator",
                 description = "Progress indicator that morphs between shapes",
                 demoType = "component",
                 componentKey = "MorphProgressIndicator",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: MorphProgressIndicator with live demo""",
+                codeSnippet = """MorphProgressIndicator(
+    progress = 0.5f,
+    shape = MorphShape.Circle,
+    modifier = Modifier.size(60.dp),
+)""",
             ),
             ExampleItem(
                 title = "Step Indicator",
                 description = "Multi-step progress indicator",
                 demoType = "component",
                 componentKey = "StepIndicator",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: StepIndicator with live demo""",
+                codeSnippet = """StepIndicator(
+    steps = listOf("Cart", "Address", "Payment"),
+    currentStep = 1,
+    modifier = Modifier.fillMaxWidth(),
+)""",
             ),
             ExampleItem(
                 title = "Progress Scrubber",
                 description = "Draggable progress scrubber control",
                 demoType = "component",
                 componentKey = "ProgressScrubber",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: ProgressScrubber with live demo""",
+                codeSnippet = """ProgressScrubber(
+    progress = 0.4f,
+    onProgressChange = { newVal -> /* update */ },
+    modifier = Modifier.fillMaxWidth(),
+)""",
             ),
         ),
     ),
@@ -2270,72 +2235,68 @@ Modifier.canimation(
                 description = "Number animates up to target value",
                 demoType = "component",
                 componentKey = "AnimatedCounter",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: AnimatedCounter with live demo""",
+                codeSnippet = """AnimatedCounter(
+    targetValue = 1234,
+    label = "Total Users",
+    modifier = Modifier.padding(16.dp),
+)""",
             ),
             ExampleItem(
                 title = "Number Trend",
                 description = "Number with up/down trend indicator",
                 demoType = "component",
                 componentKey = "NumberTrend",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: NumberTrend with live demo""",
+                codeSnippet = """NumberTrend(
+    value = 85.5f,
+    trend = TrendDirection.Up,
+    modifier = Modifier.padding(12.dp),
+)""",
             ),
             ExampleItem(
                 title = "Number Counter",
                 description = "Simple animated number counter",
                 demoType = "component",
                 componentKey = "NumberCounter",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: NumberCounter with live demo""",
+                codeSnippet = """NumberCounter(
+    from = 0,
+    to = 9999,
+    duration = 2000,
+    modifier = Modifier.padding(16.dp),
+)""",
             ),
             ExampleItem(
                 title = "Countdown Timer",
                 description = "Animated countdown from a start value",
                 demoType = "component",
                 componentKey = "CountdownTimer",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: CountdownTimer with live demo""",
+                codeSnippet = """CountdownTimer(
+    totalSeconds = 120,
+    onFinished = { /* timer done */ },
+    modifier = Modifier.padding(16.dp),
+)""",
             ),
             ExampleItem(
                 title = "Engagement Stats",
                 description = "Animated social engagement statistics",
                 demoType = "component",
                 componentKey = "EngagementStats",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: EngagementStats with live demo""",
+                codeSnippet = """EngagementStats(
+    likes = 1200,
+    comments = 340,
+    shares = 89,
+    modifier = Modifier.fillMaxWidth(),
+)""",
             ),
             ExampleItem(
                 title = "Price Switcher",
                 description = "Animated price toggle between plans",
                 demoType = "component",
                 componentKey = "PriceSwitcher",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: PriceSwitcher with live demo""",
+                codeSnippet = """PriceSwitcher(
+    monthlyPrice = 9.99f,
+    yearlyPrice = 99.99f,
+    modifier = Modifier.fillMaxWidth(),
+)""",
             ),
         ),
     ),
@@ -2353,108 +2314,100 @@ Modifier.canimation(
                 description = "Tab bar with animated selection indicator",
                 demoType = "component",
                 componentKey = "AnimatedTabs",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: AnimatedTabs with live demo""",
+                codeSnippet = """AnimatedTabs(
+    tabs = listOf("Home", "Search", "Profile"),
+    selectedIndex = 0,
+    onTabSelected = { index -> /* navigate */ },
+    modifier = Modifier.fillMaxWidth(),
+)""",
             ),
             ExampleItem(
                 title = "Expandable Accordion",
                 description = "Accordion sections expand and collapse",
                 demoType = "component",
                 componentKey = "ExpandableAccordion",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: ExpandableAccordion with live demo""",
+                codeSnippet = """ExpandableAccordion(
+    title = "FAQ Section",
+    content = { Text("Detailed answer here") },
+    modifier = Modifier.fillMaxWidth(),
+)""",
             ),
             ExampleItem(
                 title = "Mega Menu Reveal",
                 description = "Large dropdown menu with reveal animation",
                 demoType = "component",
                 componentKey = "MegaMenuReveal",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: MegaMenuReveal with live demo""",
+                codeSnippet = """MegaMenuReveal(
+    menuItems = listOf("Products", "Services", "About"),
+    revealDuration = 400,
+    modifier = Modifier.fillMaxWidth(),
+)""",
             ),
             ExampleItem(
                 title = "Accordion Menu",
                 description = "Nested accordion menu with smooth transitions",
                 demoType = "component",
                 componentKey = "AccordionMenu",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: AccordionMenu with live demo""",
+                codeSnippet = """AccordionMenu(
+    sections = listOf("General", "Account", "Privacy"),
+    modifier = Modifier.fillMaxWidth(),
+)""",
             ),
             ExampleItem(
                 title = "Smooth Tab Indicator",
                 description = "Tab indicator slides smoothly between tabs",
                 demoType = "component",
                 componentKey = "SmoothTabIndicator",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: SmoothTabIndicator with live demo""",
+                codeSnippet = """SmoothTabIndicator(
+    tabs = listOf("All", "Active", "Archived"),
+    selectedIndex = 0,
+    modifier = Modifier.fillMaxWidth(),
+)""",
             ),
             ExampleItem(
                 title = "Circular Menu",
                 description = "Menu items arranged in a circle with animation",
                 demoType = "component",
                 componentKey = "CircularMenu",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: CircularMenu with live demo""",
+                codeSnippet = """CircularMenu(
+    items = listOf("Share", "Edit", "Delete"),
+    radius = 80.dp,
+    modifier = Modifier.size(200.dp),
+)""",
             ),
             ExampleItem(
                 title = "Segmented Control",
                 description = "iOS-style segmented control with animation",
                 demoType = "component",
                 componentKey = "SegmentedControl",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: SegmentedControl with live demo""",
+                codeSnippet = """SegmentedControl(
+    segments = listOf("Day", "Week", "Month"),
+    selectedIndex = 0,
+    onSegmentSelected = { index -> /* update */ },
+    modifier = Modifier.fillMaxWidth(),
+)""",
             ),
             ExampleItem(
                 title = "Elastic Drawer",
                 description = "Side drawer with elastic spring animation",
                 demoType = "component",
                 componentKey = "ElasticDrawer",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: ElasticDrawer with live demo""",
+                codeSnippet = """ElasticDrawer(
+    drawerWidth = 280.dp,
+    elasticity = 0.3f,
+    modifier = Modifier.fillMaxHeight(),
+)""",
             ),
             ExampleItem(
                 title = "Scroll Direction Header",
                 description = "Header hides/shows based on scroll direction",
                 demoType = "component",
                 componentKey = "ScrollDirectionHeader",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: ScrollDirectionHeader with live demo""",
+                codeSnippet = """ScrollDirectionHeader(
+    title = "My Feed",
+    collapseOnScroll = true,
+    modifier = Modifier.fillMaxWidth(),
+)""",
             ),
         ),
     ),
@@ -2472,180 +2425,171 @@ Modifier.canimation(
                 description = "Long-press button with progress confirmation",
                 demoType = "component",
                 componentKey = "HoldToConfirm",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: HoldToConfirm with live demo""",
+                codeSnippet = """HoldToConfirm(
+    text = "Hold to Delete",
+    holdDuration = 2000L,
+    onConfirmed = { /* delete item */ },
+    modifier = Modifier.fillMaxWidth(),
+)""",
             ),
             ExampleItem(
                 title = "Swipe Actions",
                 description = "Swipe to reveal action buttons",
                 demoType = "component",
                 componentKey = "SwipeActions",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: SwipeActions with live demo""",
+                codeSnippet = """SwipeActions(
+    onSwipeLeft = { /* archive */ },
+    onSwipeRight = { /* delete */ },
+    modifier = Modifier.fillMaxWidth(),
+)""",
             ),
             ExampleItem(
                 title = "Multi State Badge",
                 description = "Badge transitions between multiple states",
                 demoType = "component",
                 componentKey = "MultiStateBadge",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: MultiStateBadge with live demo""",
+                codeSnippet = """MultiStateBadge(
+    state = BadgeState.New,
+    text = "3 new",
+    modifier = Modifier.padding(4.dp),
+)""",
             ),
             ExampleItem(
                 title = "Elastic Pull",
                 description = "Elastic pull-to-refresh interaction",
                 demoType = "component",
                 componentKey = "ElasticPull",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: ElasticPull with live demo""",
+                codeSnippet = """ElasticPull(
+    onRefresh = { /* reload data */ },
+    elasticity = 0.5f,
+    modifier = Modifier.fillMaxSize(),
+)""",
             ),
             ExampleItem(
                 title = "Expanding Search",
                 description = "Search bar expands from icon on tap",
                 demoType = "component",
                 componentKey = "ExpandingSearch",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: ExpandingSearch with live demo""",
+                codeSnippet = """ExpandingSearch(
+    placeholder = "Search...",
+    onSearch = { query -> /* filter */ },
+    modifier = Modifier.fillMaxWidth(),
+)""",
             ),
             ExampleItem(
                 title = "iOS Slider",
                 description = "iOS-style slider with smooth animation",
                 demoType = "component",
                 componentKey = "IOSSlider",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: IOSSlider with live demo""",
+                codeSnippet = """IOSSlider(
+    value = 0.5f,
+    onValueChange = { newVal -> /* update */ },
+    modifier = Modifier.fillMaxWidth(),
+)""",
             ),
             ExampleItem(
                 title = "Checkbox Animation",
                 description = "Animated checkbox with check mark draw",
                 demoType = "component",
                 componentKey = "CheckboxAnimation",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: CheckboxAnimation with live demo""",
+                codeSnippet = """CheckboxAnimation(
+    checked = true,
+    onCheckedChange = { isChecked -> /* update */ },
+    modifier = Modifier.size(24.dp),
+)""",
             ),
             ExampleItem(
                 title = "Switch Animation",
                 description = "Animated toggle switch with spring physics",
                 demoType = "component",
                 componentKey = "SwitchAnimation",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: SwitchAnimation with live demo""",
+                codeSnippet = """SwitchAnimation(
+    checked = false,
+    onCheckedChange = { isOn -> /* toggle */ },
+    modifier = Modifier.padding(8.dp),
+)""",
             ),
             ExampleItem(
                 title = "Magnetic Button",
                 description = "Button attracted to pointer with magnetic effect",
                 demoType = "component",
                 componentKey = "MagneticButton",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: MagneticButton with live demo""",
+                codeSnippet = """MagneticButton(
+    text = "Hover Me",
+    magneticRadius = 40.dp,
+    onClick = { /* action */ },
+    modifier = Modifier.padding(16.dp),
+)""",
             ),
             ExampleItem(
                 title = "Ripple Button",
                 description = "Button with material ripple on tap",
                 demoType = "component",
                 componentKey = "RippleButton",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: RippleButton with live demo""",
+                codeSnippet = """RippleButton(
+    text = "Tap Me",
+    rippleColor = Color.White,
+    onClick = { /* action */ },
+    modifier = Modifier.padding(16.dp),
+)""",
             ),
             ExampleItem(
                 title = "Spring Toggle",
                 description = "Toggle with spring bounce animation",
                 demoType = "component",
                 componentKey = "SpringToggle",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: SpringToggle with live demo""",
+                codeSnippet = """SpringToggle(
+    isOn = true,
+    onToggle = { isOn -> /* update */ },
+    modifier = Modifier.padding(8.dp),
+)""",
             ),
             ExampleItem(
                 title = "Spring Chip",
                 description = "Chip component with spring selection animation",
                 demoType = "component",
                 componentKey = "SpringChip",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: SpringChip with live demo""",
+                codeSnippet = """SpringChip(
+    label = "Selected",
+    selected = true,
+    onClick = { /* toggle */ },
+    modifier = Modifier.padding(4.dp),
+)""",
             ),
             ExampleItem(
                 title = "Notification Badge",
                 description = "Animated notification badge with count",
                 demoType = "component",
                 componentKey = "NotificationBadge",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: NotificationBadge with live demo""",
+                codeSnippet = """NotificationBadge(
+    count = 5,
+    badgeColor = Color.Red,
+    modifier = Modifier.size(20.dp),
+)""",
             ),
             ExampleItem(
                 title = "Toast Notification",
                 description = "Animated toast notification popup",
                 demoType = "component",
                 componentKey = "ToastNotification",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: ToastNotification with live demo""",
+                codeSnippet = """ToastNotification(
+    message = "Item saved successfully!",
+    duration = 3000L,
+    modifier = Modifier
+        .fillMaxWidth()
+        .padding(16.dp),
+)""",
             ),
             ExampleItem(
                 title = "Coin Flip",
                 description = "3D coin flip animation",
                 demoType = "component",
                 componentKey = "CoinFlip",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: CoinFlip with live demo""",
+                codeSnippet = """CoinFlip(
+    frontContent = { Text("Heads") },
+    backContent = { Text("Tails") },
+    modifier = Modifier.size(100.dp),
+)""",
             ),
         ),
     ),
@@ -2663,168 +2607,161 @@ Modifier.canimation(
                 description = "Smooth color morphing transitions",
                 demoType = "component",
                 componentKey = "ColorMorph",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: ColorMorph with live demo""",
+                codeSnippet = """ColorMorph(
+    colors = listOf(Color.Red, Color.Blue, Color.Green),
+    duration = 3000,
+    modifier = Modifier.size(150.dp),
+)""",
             ),
             ExampleItem(
                 title = "Morphing Shapes",
                 description = "Shapes morph smoothly between forms",
                 demoType = "component",
                 componentKey = "MorphingShapes",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: MorphingShapes with live demo""",
+                codeSnippet = """MorphingShapes(
+    fromShape = MorphShape.Circle,
+    toShape = MorphShape.Star,
+    modifier = Modifier.size(120.dp),
+)""",
             ),
             ExampleItem(
                 title = "Gradient Shift",
                 description = "Animated gradient color shifting",
                 demoType = "component",
                 componentKey = "GradientShift",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: GradientShift with live demo""",
+                codeSnippet = """GradientShift(
+    colors = listOf(Color.Magenta, Color.Cyan),
+    shiftSpeed = 2000,
+    modifier = Modifier.fillMaxWidth(),
+)""",
             ),
             ExampleItem(
                 title = "Breathing Glow",
                 description = "Element pulses with a breathing glow",
                 demoType = "component",
                 componentKey = "BreathingGlow",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: BreathingGlow with live demo""",
+                codeSnippet = """BreathingGlow(
+    glowColor = Color.Blue,
+    glowRadius = 20.dp,
+    modifier = Modifier.size(100.dp),
+)""",
             ),
             ExampleItem(
                 title = "Path Tracer",
                 description = "Animated path drawing on canvas",
                 demoType = "component",
                 componentKey = "PathTracer",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: PathTracer with live demo""",
+                codeSnippet = """PathTracer(
+    pathColor = Color.Cyan,
+    strokeWidth = 3.dp,
+    modifier = Modifier.size(200.dp),
+)""",
             ),
             ExampleItem(
                 title = "Confetti Explosion",
                 description = "Burst of confetti particles on trigger",
                 demoType = "component",
                 componentKey = "ConfettiExplosion",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: ConfettiExplosion with live demo""",
+                codeSnippet = """ConfettiExplosion(
+    particleCount = 100,
+    colors = listOf(Color.Red, Color.Yellow, Color.Blue),
+    modifier = Modifier.fillMaxSize(),
+)""",
             ),
             ExampleItem(
                 title = "Wave Effect",
                 description = "Audio visualizer-style wave bars",
                 demoType = "component",
                 componentKey = "WaveEffect",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: WaveEffect with live demo""",
+                codeSnippet = """WaveEffect(
+    waveColor = Color.Blue,
+    amplitude = 20f,
+    frequency = 2f,
+    modifier = Modifier
+        .fillMaxWidth()
+        .height(100.dp),
+)""",
             ),
             ExampleItem(
                 title = "Sliding Reveal",
                 description = "Content reveals with a sliding mask",
                 demoType = "component",
                 componentKey = "SlidingReveal",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: SlidingReveal with live demo""",
+                codeSnippet = """SlidingReveal(
+    direction = RevealDirection.Left,
+    duration = 800,
+    modifier = Modifier
+        .fillMaxWidth()
+        .height(200.dp),
+)""",
             ),
             ExampleItem(
                 title = "Focus Blur Effect",
                 description = "Focus shifts with blur transitions",
                 demoType = "component",
                 componentKey = "FocusBlurEffect",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: FocusBlurEffect with live demo""",
+                codeSnippet = """FocusBlurEffect(
+    blurRadius = 10.dp,
+    focusArea = FocusArea.Center,
+    modifier = Modifier.fillMaxSize(),
+)""",
             ),
             ExampleItem(
                 title = "Expanding Rings",
                 description = "Concentric rings expand outward",
                 demoType = "component",
                 componentKey = "ExpandingRings",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: ExpandingRings with live demo""",
+                codeSnippet = """ExpandingRings(
+    ringCount = 3,
+    ringColor = Color.Cyan,
+    modifier = Modifier.size(150.dp),
+)""",
             ),
             ExampleItem(
                 title = "Floating Particles",
                 description = "Ambient floating particles background",
                 demoType = "component",
                 componentKey = "FloatingParticles",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: FloatingParticles with live demo""",
+                codeSnippet = """FloatingParticles(
+    particleCount = 30,
+    particleColor = Color.White,
+    modifier = Modifier.fillMaxSize(),
+)""",
             ),
             ExampleItem(
                 title = "Pulsing Avatar",
                 description = "Avatar with pulsing ring animation",
                 demoType = "component",
                 componentKey = "PulsingAvatar",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: PulsingAvatar with live demo""",
+                codeSnippet = """PulsingAvatar(
+    imageSize = 64.dp,
+    pulseColor = Color.Green,
+    modifier = Modifier.size(80.dp),
+)""",
             ),
             ExampleItem(
                 title = "Pulse Radar",
                 description = "Radar-style pulse scanning animation",
                 demoType = "component",
                 componentKey = "PulseRadar",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: PulseRadar with live demo""",
+                codeSnippet = """PulseRadar(
+    radarColor = Color.Green,
+    pulseCount = 3,
+    modifier = Modifier.size(200.dp),
+)""",
             ),
             ExampleItem(
                 title = "Heartbeat Line",
                 description = "ECG-style heartbeat line animation",
                 demoType = "component",
                 componentKey = "HeartbeatLine",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: HeartbeatLine with live demo""",
+                codeSnippet = """HeartbeatLine(
+    lineColor = Color.Red,
+    strokeWidth = 2.dp,
+    modifier = Modifier
+        .fillMaxWidth()
+        .height(60.dp),
+)""",
             ),
         ),
     ),
@@ -2842,120 +2779,114 @@ Modifier.canimation(
                 description = "List items enter with spring bounce",
                 demoType = "component",
                 componentKey = "BouncySpringList",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: BouncySpringList with live demo""",
+                codeSnippet = """BouncySpringList(
+    items = listOf("Item 1", "Item 2", "Item 3"),
+    stiffness = Spring.StiffnessLow,
+    modifier = Modifier.fillMaxWidth(),
+)""",
             ),
             ExampleItem(
                 title = "Stagger From Center",
                 description = "Items stagger outward from center",
                 demoType = "component",
                 componentKey = "StaggerFromCenter",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: StaggerFromCenter with live demo""",
+                codeSnippet = """StaggerFromCenter(
+    itemCount = 7,
+    staggerDelay = 100L,
+    modifier = Modifier.fillMaxWidth(),
+)""",
             ),
             ExampleItem(
                 title = "Ticker Marquee",
                 description = "Scrolling ticker text marquee",
                 demoType = "component",
                 componentKey = "TickerMarquee",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: TickerMarquee with live demo""",
+                codeSnippet = """TickerMarquee(
+    text = "Breaking News: Jetpack Compose is awesome!",
+    speed = 60.dp,
+    modifier = Modifier.fillMaxWidth(),
+)""",
             ),
             ExampleItem(
                 title = "Spring Chain",
                 description = "Chain of elements connected by springs",
                 demoType = "component",
                 componentKey = "SpringChain",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: SpringChain with live demo""",
+                codeSnippet = """SpringChain(
+    nodeCount = 5,
+    stiffness = Spring.StiffnessMedium,
+    modifier = Modifier.fillMaxWidth(),
+)""",
             ),
             ExampleItem(
                 title = "Orbit Animation",
                 description = "Objects orbit around a center point",
                 demoType = "component",
                 componentKey = "OrbitAnimation",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: OrbitAnimation with live demo""",
+                codeSnippet = """OrbitAnimation(
+    orbitRadius = 80.dp,
+    orbitSpeed = 3000L,
+    modifier = Modifier.size(200.dp),
+)""",
             ),
             ExampleItem(
                 title = "Parallax Layers",
                 description = "Layered parallax scrolling effect",
                 demoType = "component",
                 componentKey = "ParallaxLayers",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: ParallaxLayers with live demo""",
+                codeSnippet = """ParallaxLayers(
+    layerCount = 3,
+    depthFactor = 0.5f,
+    modifier = Modifier.fillMaxSize(),
+)""",
             ),
             ExampleItem(
                 title = "DNA Helix",
                 description = "Animated double helix DNA structure",
                 demoType = "component",
                 componentKey = "DnaHelix",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: DnaHelix with live demo""",
+                codeSnippet = """DnaHelix(
+    helixColor = Color.Cyan,
+    rotationSpeed = 4000L,
+    modifier = Modifier
+        .fillMaxWidth()
+        .height(200.dp),
+)""",
             ),
             ExampleItem(
                 title = "Pendulum Swing",
                 description = "Pendulum swinging back and forth",
                 demoType = "component",
                 componentKey = "PendulumSwing",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: PendulumSwing with live demo""",
+                codeSnippet = """PendulumSwing(
+    swingAngle = 30f,
+    period = 2000L,
+    modifier = Modifier.size(200.dp),
+)""",
             ),
             ExampleItem(
                 title = "Bouncing Ball",
                 description = "Ball bouncing with gravity physics",
                 demoType = "component",
                 componentKey = "BouncingBall",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: BouncingBall with live demo""",
+                codeSnippet = """BouncingBall(
+    ballSize = 24.dp,
+    bounceHeight = 100.dp,
+    modifier = Modifier.size(200.dp),
+)""",
             ),
             ExampleItem(
                 title = "Slinky Spring",
                 description = "Slinky-style cascading spring animation",
                 demoType = "component",
                 componentKey = "SlinkySpring",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: SlinkySpring with live demo""",
+                codeSnippet = """SlinkySpring(
+    coilCount = 8,
+    springColor = Color.Gray,
+    modifier = Modifier
+        .fillMaxWidth()
+        .height(150.dp),
+)""",
             ),
         ),
     ),
@@ -2973,24 +2904,24 @@ Modifier.canimation(
                 description = "Pie chart with animated segment reveals",
                 demoType = "component",
                 componentKey = "AnimatedPieChart",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: AnimatedPieChart with live demo""",
+                codeSnippet = """AnimatedPieChart(
+    data = listOf(30f, 25f, 20f, 15f, 10f),
+    colors = listOf(Color.Red, Color.Blue, Color.Green, Color.Yellow, Color.Cyan),
+    modifier = Modifier.size(200.dp),
+)""",
             ),
             ExampleItem(
                 title = "Animated Bar Chart",
                 description = "Bar chart with animated bar growth",
                 demoType = "component",
                 componentKey = "AnimatedBarChart",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: AnimatedBarChart with live demo""",
+                codeSnippet = """AnimatedBarChart(
+    data = listOf(80f, 45f, 90f, 60f, 75f),
+    barColor = Color.Blue,
+    modifier = Modifier
+        .fillMaxWidth()
+        .height(200.dp),
+)""",
             ),
         ),
     ),
@@ -3008,60 +2939,59 @@ Modifier.canimation(
                 description = "List that loads more items on scroll",
                 demoType = "component",
                 componentKey = "InfiniteLoadingList",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: InfiniteLoadingList with live demo""",
+                codeSnippet = """InfiniteLoadingList(
+    onLoadMore = { /* fetch next page */ },
+    modifier = Modifier.fillMaxSize(),
+)""",
             ),
             ExampleItem(
                 title = "Horizontal Scroll Gallery",
                 description = "Horizontally scrolling image gallery",
                 demoType = "component",
                 componentKey = "HorizontalScrollGallery",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: HorizontalScrollGallery with live demo""",
+                codeSnippet = """HorizontalScrollGallery(
+    itemCount = 10,
+    itemWidth = 150.dp,
+    modifier = Modifier
+        .fillMaxWidth()
+        .height(200.dp),
+)""",
             ),
             ExampleItem(
                 title = "Vertical Carousel",
                 description = "Vertically scrolling carousel with snap",
                 demoType = "component",
                 componentKey = "VerticalCarousel",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: VerticalCarousel with live demo""",
+                codeSnippet = """VerticalCarousel(
+    itemCount = 5,
+    itemHeight = 200.dp,
+    modifier = Modifier.fillMaxSize(),
+)""",
             ),
             ExampleItem(
                 title = "Waterfall Grid",
                 description = "Pinterest-style waterfall grid layout",
                 demoType = "component",
                 componentKey = "WaterfallGrid",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: WaterfallGrid with live demo""",
+                codeSnippet = """WaterfallGrid(
+    columns = 2,
+    spacing = 8.dp,
+    modifier = Modifier
+        .fillMaxWidth()
+        .padding(8.dp),
+)""",
             ),
             ExampleItem(
                 title = "Zoom Hero Image",
                 description = "Image zooms to hero view on tap",
                 demoType = "component",
                 componentKey = "ZoomHeroImage",
-                codeSnippet = """// Entry animation with Canimation API
-Modifier.canimation(
-    visible = entered,
-    effect = Canimation.Fade.Up,
-)
-// Internal: ZoomHeroImage with live demo""",
+                codeSnippet = """ZoomHeroImage(
+    maxZoom = 3f,
+    modifier = Modifier
+        .fillMaxWidth()
+        .height(300.dp),
+)""",
             ),
         ),
     ),
@@ -3079,9 +3009,12 @@ Modifier.canimation(
                 description = "Animated audio waveform bars",
                 demoType = "component",
                 componentKey = "WaveformVisualizer",
-                codeSnippet = """Modifier.canimation(
-    visible = entryVisible,
-    effect = Canimation.Fade.Up,
+                codeSnippet = """WaveformVisualizer(
+    barCount = 20,
+    barColor = Color.Cyan,
+    modifier = Modifier
+        .fillMaxWidth()
+        .height(100.dp),
 )""",
             ),
             ExampleItem(
@@ -3089,9 +3022,10 @@ Modifier.canimation(
                 description = "Columns of cascading characters",
                 demoType = "component",
                 componentKey = "MatrixRain",
-                codeSnippet = """Modifier.canimation(
-    visible = entryVisible,
-    effect = Canimation.Fade.Up,
+                codeSnippet = """MatrixRain(
+    columnCount = 15,
+    rainColor = Color.Green,
+    modifier = Modifier.fillMaxSize(),
 )""",
             ),
             ExampleItem(
@@ -3099,9 +3033,12 @@ Modifier.canimation(
                 description = "Animated equalizer bars",
                 demoType = "component",
                 componentKey = "MusicEqualizer",
-                codeSnippet = """Modifier.canimation(
-    visible = entryVisible,
-    effect = Canimation.Fade.Up,
+                codeSnippet = """MusicEqualizer(
+    barCount = 5,
+    barColor = Color.Magenta,
+    modifier = Modifier
+        .fillMaxWidth()
+        .height(60.dp),
 )""",
             ),
             ExampleItem(
@@ -3109,9 +3046,10 @@ Modifier.canimation(
                 description = "Water droplet ripple effect",
                 demoType = "component",
                 componentKey = "WaterDroplet",
-                codeSnippet = """Modifier.canimation(
-    visible = entryVisible,
-    effect = Canimation.Blur.Soft,
+                codeSnippet = """WaterDroplet(
+    dropColor = Color.Cyan,
+    rippleRadius = 40.dp,
+    modifier = Modifier.size(120.dp),
 )""",
             ),
         ),
@@ -3130,9 +3068,11 @@ Modifier.canimation(
                 description = "Button that pulses when idle",
                 demoType = "component",
                 componentKey = "PulseButton",
-                codeSnippet = """Modifier.canimation(
-    visible = entryVisible,
-    effect = Canimation.Fade.Up,
+                codeSnippet = """PulseButton(
+    text = "Tap Me",
+    pulseColor = Color.Blue,
+    onClick = { /* action */ },
+    modifier = Modifier.padding(16.dp),
 )""",
             ),
             ExampleItem(
@@ -3140,9 +3080,10 @@ Modifier.canimation(
                 description = "Card with animated shadow depth",
                 demoType = "component",
                 componentKey = "NeumorphismCard",
-                codeSnippet = """Modifier.canimation(
-    visible = entryVisible,
-    effect = Canimation.Blur.Soft,
+                codeSnippet = """NeumorphismCard(
+    shadowColor = Color.Gray,
+    elevation = 8.dp,
+    modifier = Modifier.size(200.dp),
 )""",
             ),
             ExampleItem(
@@ -3150,9 +3091,10 @@ Modifier.canimation(
                 description = "Card with animated gradient border",
                 demoType = "component",
                 componentKey = "GradientBorderCard",
-                codeSnippet = """Modifier.canimation(
-    visible = entryVisible,
-    effect = Canimation.Reveal.Center,
+                codeSnippet = """GradientBorderCard(
+    colors = listOf(Color.Magenta, Color.Cyan),
+    borderWidth = 2.dp,
+    modifier = Modifier.size(200.dp),
 )""",
             ),
             ExampleItem(
@@ -3160,9 +3102,10 @@ Modifier.canimation(
                 description = "Digit flip counter",
                 demoType = "component",
                 componentKey = "FlipCounter",
-                codeSnippet = """Modifier.canimation(
-    visible = entryVisible,
-    effect = Canimation.Fade.Up,
+                codeSnippet = """FlipCounter(
+    targetValue = 42,
+    digitCount = 2,
+    modifier = Modifier.padding(16.dp),
 )""",
             ),
             ExampleItem(
@@ -3170,9 +3113,10 @@ Modifier.canimation(
                 description = "Chip that expands with content",
                 demoType = "component",
                 componentKey = "ExpandableChip",
-                codeSnippet = """Modifier.canimation(
-    visible = entryVisible,
-    effect = Canimation.Micro.Pulse,
+                codeSnippet = """ExpandableChip(
+    label = "Details",
+    expandedContent = { Text("Extra info") },
+    modifier = Modifier.padding(8.dp),
 )""",
             ),
             ExampleItem(
@@ -3180,9 +3124,10 @@ Modifier.canimation(
                 description = "Stacked notification cards",
                 demoType = "component",
                 componentKey = "StackedNotifications",
-                codeSnippet = """Modifier.canimation(
-    visible = entryVisible,
-    effect = Canimation.Swipe.Right,
+                codeSnippet = """StackedNotifications(
+    notifications = listOf("New message", "Update available"),
+    maxVisible = 3,
+    modifier = Modifier.fillMaxWidth(),
 )""",
             ),
             ExampleItem(
@@ -3190,9 +3135,10 @@ Modifier.canimation(
                 description = "Custom toggle switch with sliding animation",
                 demoType = "component",
                 componentKey = "SlidingToggle",
-                codeSnippet = """Modifier.canimation(
-    visible = entryVisible,
-    effect = Canimation.Fade.Up,
+                codeSnippet = """SlidingToggle(
+    checked = true,
+    onCheckedChange = { isOn -> /* toggle */ },
+    modifier = Modifier.padding(8.dp),
 )""",
             ),
             ExampleItem(
@@ -3200,9 +3146,9 @@ Modifier.canimation(
                 description = "Card with circular reveal animation",
                 demoType = "component",
                 componentKey = "CircularRevealCard",
-                codeSnippet = """Modifier.canimation(
-    visible = entryVisible,
-    effect = Canimation.Reveal.Center,
+                codeSnippet = """CircularRevealCard(
+    revealDuration = 600,
+    modifier = Modifier.size(200.dp),
 )""",
             ),
             ExampleItem(
@@ -3210,9 +3156,10 @@ Modifier.canimation(
                 description = "Chat typing indicator (3 bouncing dots)",
                 demoType = "component",
                 componentKey = "TypingIndicator",
-                codeSnippet = """Modifier.canimation(
-    visible = entryVisible,
-    effect = Canimation.Fade.Up,
+                codeSnippet = """TypingIndicator(
+    dotCount = 3,
+    dotColor = Color.Gray,
+    modifier = Modifier.padding(8.dp),
 )""",
             ),
             ExampleItem(
@@ -3220,9 +3167,10 @@ Modifier.canimation(
                 description = "Skeleton loading for text content",
                 demoType = "component",
                 componentKey = "SkeletonText",
-                codeSnippet = """Modifier.canimation(
-    visible = entryVisible,
-    effect = Canimation.Fade.Up,
+                codeSnippet = """SkeletonText(
+    lineCount = 3,
+    lineHeight = 16.dp,
+    modifier = Modifier.fillMaxWidth(),
 )""",
             ),
             ExampleItem(
@@ -3230,9 +3178,12 @@ Modifier.canimation(
                 description = "Card that can be swiped away",
                 demoType = "component",
                 componentKey = "SwipeCard",
-                codeSnippet = """Modifier.canimation(
-    visible = entryVisible,
-    effect = Canimation.Swipe.Left,
+                codeSnippet = """SwipeCard(
+    onSwipeLeft = { /* dismiss */ },
+    onSwipeRight = { /* accept */ },
+    modifier = Modifier
+        .fillMaxWidth()
+        .height(200.dp),
 )""",
             ),
             ExampleItem(
@@ -3240,9 +3191,10 @@ Modifier.canimation(
                 description = "Animated checkmark with circle",
                 demoType = "component",
                 componentKey = "AnimatedCheckmark",
-                codeSnippet = """Modifier.canimation(
-    visible = entryVisible,
-    effect = Canimation.Reveal.Center,
+                codeSnippet = """AnimatedCheckmark(
+    checked = true,
+    checkColor = Color.Green,
+    modifier = Modifier.size(48.dp),
 )""",
             ),
             ExampleItem(
@@ -3250,9 +3202,10 @@ Modifier.canimation(
                 description = "2D representation of a rotating cube",
                 demoType = "component",
                 componentKey = "RotatingCube",
-                codeSnippet = """Modifier.canimation(
-    visible = entryVisible,
-    effect = Canimation.Fade.Up,
+                codeSnippet = """RotatingCube(
+    cubeSize = 100.dp,
+    rotationSpeed = 3000L,
+    modifier = Modifier.size(150.dp),
 )""",
             ),
             ExampleItem(
@@ -3260,9 +3213,10 @@ Modifier.canimation(
                 description = "Simple slot machine with rolling numbers",
                 demoType = "component",
                 componentKey = "SlotMachine",
-                codeSnippet = """Modifier.canimation(
-    visible = entryVisible,
-    effect = Canimation.Page.BottomSheet,
+                codeSnippet = """SlotMachine(
+    reelCount = 3,
+    spinDuration = 2000L,
+    modifier = Modifier.padding(16.dp),
 )""",
             ),
             ExampleItem(
@@ -3270,9 +3224,11 @@ Modifier.canimation(
                 description = "Blinking cursor with text typing effect",
                 demoType = "component",
                 componentKey = "TypewriterCursor",
-                codeSnippet = """Modifier.canimation(
-    visible = entryVisible,
-    effect = Canimation.Fade.Up,
+                codeSnippet = """TypewriterCursor(
+    text = "Typing effect...",
+    cursorChar = "_",
+    typingSpeed = 80L,
+    modifier = Modifier.fillMaxWidth(),
 )""",
             ),
             ExampleItem(
@@ -3280,9 +3236,11 @@ Modifier.canimation(
                 description = "Circular progress with animated arc",
                 demoType = "component",
                 componentKey = "RadialProgress",
-                codeSnippet = """Modifier.canimation(
-    visible = entryVisible,
-    effect = Canimation.Fade.Up,
+                codeSnippet = """RadialProgress(
+    progress = 0.7f,
+    strokeWidth = 6.dp,
+    color = Color.Blue,
+    modifier = Modifier.size(80.dp),
 )""",
             ),
         ),
