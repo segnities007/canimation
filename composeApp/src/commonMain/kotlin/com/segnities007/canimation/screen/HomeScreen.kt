@@ -504,7 +504,8 @@ private fun ExploreSection(onNavigate: (String) -> Unit) {
         listOf(
             Triple("Preset Gallery", "All built-in presets with interactive demos", "presets"),
             Triple("Examples", "Categorized interactive examples — fade, scale, spring, attention seekers & more", "examples"),
-            Triple("Documentation", "API reference, Atomic Design guide, and interactive playground", "docs"),
+            Triple("API Reference", "Complete documentation of every Modifier, Composable, data class, and namespace effect", "api"),
+            Triple("Documentation", "Getting started guide, Atomic Design concepts, and interactive playground", "docs"),
         ).forEach { (title, description, route) ->
             Surface(
                 onClick = { onNavigate(route) },

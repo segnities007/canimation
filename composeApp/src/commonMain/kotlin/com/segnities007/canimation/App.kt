@@ -41,6 +41,7 @@ import androidx.navigation.compose.rememberNavController
 import com.segnities007.canimation.component.PresetPreviewTuning
 import com.segnities007.canimation.navigation.CanimationNavHost
 import com.segnities007.canimation.navigation.HomeRoute
+import com.segnities007.canimation.navigation.ApiReferenceRoute
 import com.segnities007.canimation.navigation.DocsRoute
 import com.segnities007.canimation.navigation.ExamplesRoute
 import com.segnities007.canimation.navigation.PresetGalleryRoute
@@ -132,6 +133,7 @@ fun App() {
                             ) {
                                 listOf(
                                     Triple("Docs", DocsRoute, "DocsRoute"),
+                                    Triple("API", ApiReferenceRoute, "ApiReferenceRoute"),
                                     Triple("Presets", PresetGalleryRoute, "PresetGalleryRoute"),
                                     Triple("Examples", ExamplesRoute, "ExamplesRoute"),
                                 ).forEachIndexed { index, (label, dest, key) ->

@@ -12,6 +12,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.toRoute
 import com.segnities007.canimation.component.PresetPreviewTuning
+import com.segnities007.canimation.screen.ApiReferenceScreen
 import com.segnities007.canimation.screen.DocsScreen
 import com.segnities007.canimation.screen.HomeScreen
 import com.segnities007.canimation.screen.PresetGalleryScreen
@@ -52,11 +53,13 @@ fun CanimationNavHost(
                         "presets" -> navController.navigate(PresetGalleryRoute)
                         "examples" -> navController.navigate(ExamplesRoute)
                         "docs" -> navController.navigate(DocsRoute)
+                        "api" -> navController.navigate(ApiReferenceRoute)
                     }
                 },
             )
         }
         composable<DocsRoute> { DocsScreen() }
+        composable<ApiReferenceRoute> { ApiReferenceScreen() }
         composable<PresetGalleryRoute> {
             PresetGalleryScreen(
                 autoPlayEnabled = autoPlayEnabled,

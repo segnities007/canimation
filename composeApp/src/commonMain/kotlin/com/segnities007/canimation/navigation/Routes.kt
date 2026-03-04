@@ -12,6 +12,9 @@ data object PresetGalleryRoute
 data object DocsRoute
 
 @Serializable
+data object ApiReferenceRoute
+
+@Serializable
 data object ExamplesRoute
 
 @Serializable
