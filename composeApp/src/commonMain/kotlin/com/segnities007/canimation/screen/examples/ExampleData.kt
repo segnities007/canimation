@@ -22,6 +22,7 @@ data class ExampleItem(
     val enterEffect: CanimationEffect? = null,
     val exitEffect: CanimationEffect? = null,
     val preset: CanimationPreset = CanimationPreset.Fade,
+    val componentKey: String? = null,
 )
 
 val exampleCategories: List<ExampleCategory> = listOf(
@@ -1715,6 +1716,1352 @@ val exampleCategories: List<ExampleCategory> = listOf(
     enter = Canimation.Material.FadeThrough,
     exit = Canimation.Material.FadeThrough,
 )""",
+            ),
+        ),
+    ),
+
+    // ── Text & Typography ──
+    ExampleCategory(
+        id = "text-typography",
+        title = "Text & Typography",
+        subtitle = "Animated text effects and typography",
+        accentLabel = "TEXT",
+        tags = listOf("TEXT"),
+        examples = listOf(
+            ExampleItem(
+                title = "Typewriter Text",
+                description = "Characters appear one by one like a typewriter",
+                demoType = "component",
+                componentKey = "TypewriterText",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: TypewriterText with live demo""",
+            ),
+            ExampleItem(
+                title = "Scramble Text",
+                description = "Random characters resolve into target text",
+                demoType = "component",
+                componentKey = "ScrambleText",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: ScrambleText with live demo""",
+            ),
+            ExampleItem(
+                title = "Wavy Text",
+                description = "Letters oscillate in a wave pattern",
+                demoType = "component",
+                componentKey = "WavyText",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: WavyText with live demo""",
+            ),
+            ExampleItem(
+                title = "Split Text Reveal",
+                description = "Text splits and reveals with staggered animation",
+                demoType = "component",
+                componentKey = "SplitTextReveal",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: SplitTextReveal with live demo""",
+            ),
+            ExampleItem(
+                title = "Glitch Text",
+                description = "Digital glitch distortion effect on text",
+                demoType = "component",
+                componentKey = "GlitchText",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: GlitchText with live demo""",
+            ),
+            ExampleItem(
+                title = "Text Gradient Anim",
+                description = "Animated gradient sweep across text",
+                demoType = "component",
+                componentKey = "TextGradientAnim",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: TextGradientAnim with live demo""",
+            ),
+            ExampleItem(
+                title = "Rolling Digits",
+                description = "Digits roll like a slot machine",
+                demoType = "component",
+                componentKey = "RollingDigits",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: RollingDigits with live demo""",
+            ),
+            ExampleItem(
+                title = "Vertical Ticker",
+                description = "Text scrolls vertically through values",
+                demoType = "component",
+                componentKey = "VerticalTicker",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: VerticalTicker with live demo""",
+            ),
+            ExampleItem(
+                title = "Animated Underline Text",
+                description = "Underline draws beneath text on appear",
+                demoType = "component",
+                componentKey = "AnimatedUnderlineText",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: AnimatedUnderlineText with live demo""",
+            ),
+            ExampleItem(
+                title = "Blinking Cursor",
+                description = "Terminal-style blinking cursor animation",
+                demoType = "component",
+                componentKey = "BlinkingCursor",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: BlinkingCursor with live demo""",
+            ),
+            ExampleItem(
+                title = "Animated Gradient Text",
+                description = "Gradient colors animate across text",
+                demoType = "component",
+                componentKey = "AnimatedGradientText",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: AnimatedGradientText with live demo""",
+            ),
+            ExampleItem(
+                title = "Reveal Text Effect",
+                description = "Text reveals with a sliding mask",
+                demoType = "component",
+                componentKey = "RevealTextEffect",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: RevealTextEffect with live demo""",
+            ),
+            ExampleItem(
+                title = "Scatter Text",
+                description = "Characters scatter and reassemble",
+                demoType = "component",
+                componentKey = "ScatterText",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: ScatterText with live demo""",
+            ),
+            ExampleItem(
+                title = "Text Line Reveal",
+                description = "Text lines reveal one at a time",
+                demoType = "component",
+                componentKey = "TextLineReveal",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: TextLineReveal with live demo""",
+            ),
+            ExampleItem(
+                title = "Typewriter Delete",
+                description = "Characters delete one by one in reverse",
+                demoType = "component",
+                componentKey = "TypewriterDelete",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: TypewriterDelete with live demo""",
+            ),
+        ),
+    ),
+
+    // ── Cards & Surfaces ──
+    ExampleCategory(
+        id = "cards-surfaces",
+        title = "Cards & Surfaces",
+        subtitle = "Card animations, flips, and surface effects",
+        accentLabel = "CARDS",
+        tags = listOf("CARDS"),
+        examples = listOf(
+            ExampleItem(
+                title = "Flip Card",
+                description = "3D card flip between front and back",
+                demoType = "component",
+                componentKey = "FlipCard",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: FlipCard with live demo""",
+            ),
+            ExampleItem(
+                title = "Tilt Card",
+                description = "Card tilts toward pointer on hover",
+                demoType = "component",
+                componentKey = "TiltCard",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: TiltCard with live demo""",
+            ),
+            ExampleItem(
+                title = "Card Border Trace",
+                description = "Animated border traces around the card",
+                demoType = "component",
+                componentKey = "CardBorderTrace",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: CardBorderTrace with live demo""",
+            ),
+            ExampleItem(
+                title = "Card Lift Hover",
+                description = "Card elevates with shadow on hover",
+                demoType = "component",
+                componentKey = "CardLiftHover",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: CardLiftHover with live demo""",
+            ),
+            ExampleItem(
+                title = "Card Gradient Border",
+                description = "Animated gradient border effect",
+                demoType = "component",
+                componentKey = "CardGradientBorder",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: CardGradientBorder with live demo""",
+            ),
+            ExampleItem(
+                title = "Card Expand Collapse",
+                description = "Card smoothly expands and collapses",
+                demoType = "component",
+                componentKey = "CardExpandCollapse",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: CardExpandCollapse with live demo""",
+            ),
+            ExampleItem(
+                title = "Card Parallax Tilt",
+                description = "Parallax layers tilt with pointer movement",
+                demoType = "component",
+                componentKey = "CardParallaxTilt",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: CardParallaxTilt with live demo""",
+            ),
+            ExampleItem(
+                title = "Card Glassmorphism",
+                description = "Frosted glass card with blur effect",
+                demoType = "component",
+                componentKey = "CardGlassmorphism",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: CardGlassmorphism with live demo""",
+            ),
+            ExampleItem(
+                title = "Card Reveal Wipe",
+                description = "Content reveals with a wipe transition",
+                demoType = "component",
+                componentKey = "CardRevealWipe",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: CardRevealWipe with live demo""",
+            ),
+            ExampleItem(
+                title = "Card Fan Stack",
+                description = "Cards fan out from a stack",
+                demoType = "component",
+                componentKey = "CardFanStack",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: CardFanStack with live demo""",
+            ),
+            ExampleItem(
+                title = "Card Magnetic Snap",
+                description = "Card snaps to position with magnetic feel",
+                demoType = "component",
+                componentKey = "CardMagneticSnap",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: CardMagneticSnap with live demo""",
+            ),
+            ExampleItem(
+                title = "Card Shuffle",
+                description = "Cards shuffle like a deck",
+                demoType = "component",
+                componentKey = "CardShuffle",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: CardShuffle with live demo""",
+            ),
+            ExampleItem(
+                title = "Stacked Cards",
+                description = "Cards stacked with depth perspective",
+                demoType = "component",
+                componentKey = "StackedCards",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: StackedCards with live demo""",
+            ),
+            ExampleItem(
+                title = "Card Stack Swipe",
+                description = "Swipeable card stack like a dating app",
+                demoType = "component",
+                componentKey = "CardStackSwipe",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: CardStackSwipe with live demo""",
+            ),
+        ),
+    ),
+
+    // ── Loading & Progress ──
+    ExampleCategory(
+        id = "loading-progress",
+        title = "Loading & Progress",
+        subtitle = "Loading indicators and progress animations",
+        accentLabel = "LOADING",
+        tags = listOf("LOADING"),
+        examples = listOf(
+            ExampleItem(
+                title = "Pulse Loading Dots",
+                description = "Dots pulse in sequence to indicate loading",
+                demoType = "component",
+                componentKey = "PulseLoadingDots",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: PulseLoadingDots with live demo""",
+            ),
+            ExampleItem(
+                title = "Jumping Dots",
+                description = "Dots jump up and down in sequence",
+                demoType = "component",
+                componentKey = "JumpingDots",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: JumpingDots with live demo""",
+            ),
+            ExampleItem(
+                title = "Shimmer Effect",
+                description = "Shimmering placeholder for loading content",
+                demoType = "component",
+                componentKey = "ShimmerEffect",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: ShimmerEffect with live demo""",
+            ),
+            ExampleItem(
+                title = "Loading Spinner",
+                description = "Classic spinning loader animation",
+                demoType = "component",
+                componentKey = "LoadingSpinner",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: LoadingSpinner with live demo""",
+            ),
+            ExampleItem(
+                title = "Loading Ripple",
+                description = "Ripple rings expand outward from center",
+                demoType = "component",
+                componentKey = "LoadingRipple",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: LoadingRipple with live demo""",
+            ),
+            ExampleItem(
+                title = "Skeleton Loader",
+                description = "Skeleton placeholder with shimmer",
+                demoType = "component",
+                componentKey = "SkeletonLoader",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: SkeletonLoader with live demo""",
+            ),
+            ExampleItem(
+                title = "Progress Ring",
+                description = "Circular progress indicator with animation",
+                demoType = "component",
+                componentKey = "ProgressRing",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: ProgressRing with live demo""",
+            ),
+            ExampleItem(
+                title = "Progress Steps",
+                description = "Step-by-step progress with transitions",
+                demoType = "component",
+                componentKey = "ProgressSteps",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: ProgressSteps with live demo""",
+            ),
+            ExampleItem(
+                title = "Liquid Fill",
+                description = "Liquid-style fill animation in a circle",
+                demoType = "component",
+                componentKey = "LiquidFill",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: LiquidFill with live demo""",
+            ),
+            ExampleItem(
+                title = "Glow Progress Bar",
+                description = "Progress bar with glowing edge effect",
+                demoType = "component",
+                componentKey = "GlowProgressBar",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: GlowProgressBar with live demo""",
+            ),
+            ExampleItem(
+                title = "Morph Progress Indicator",
+                description = "Progress indicator that morphs between shapes",
+                demoType = "component",
+                componentKey = "MorphProgressIndicator",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: MorphProgressIndicator with live demo""",
+            ),
+            ExampleItem(
+                title = "Step Indicator",
+                description = "Multi-step progress indicator",
+                demoType = "component",
+                componentKey = "StepIndicator",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: StepIndicator with live demo""",
+            ),
+            ExampleItem(
+                title = "Progress Scrubber",
+                description = "Draggable progress scrubber control",
+                demoType = "component",
+                componentKey = "ProgressScrubber",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: ProgressScrubber with live demo""",
+            ),
+        ),
+    ),
+
+    // ── Counters & Data ──
+    ExampleCategory(
+        id = "counters-data",
+        title = "Counters & Data",
+        subtitle = "Animated counters and data displays",
+        accentLabel = "DATA",
+        tags = listOf("DATA"),
+        examples = listOf(
+            ExampleItem(
+                title = "Animated Counter",
+                description = "Number animates up to target value",
+                demoType = "component",
+                componentKey = "AnimatedCounter",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: AnimatedCounter with live demo""",
+            ),
+            ExampleItem(
+                title = "Number Trend",
+                description = "Number with up/down trend indicator",
+                demoType = "component",
+                componentKey = "NumberTrend",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: NumberTrend with live demo""",
+            ),
+            ExampleItem(
+                title = "Number Counter",
+                description = "Simple animated number counter",
+                demoType = "component",
+                componentKey = "NumberCounter",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: NumberCounter with live demo""",
+            ),
+            ExampleItem(
+                title = "Countdown Timer",
+                description = "Animated countdown from a start value",
+                demoType = "component",
+                componentKey = "CountdownTimer",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: CountdownTimer with live demo""",
+            ),
+            ExampleItem(
+                title = "Engagement Stats",
+                description = "Animated social engagement statistics",
+                demoType = "component",
+                componentKey = "EngagementStats",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: EngagementStats with live demo""",
+            ),
+            ExampleItem(
+                title = "Price Switcher",
+                description = "Animated price toggle between plans",
+                demoType = "component",
+                componentKey = "PriceSwitcher",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: PriceSwitcher with live demo""",
+            ),
+        ),
+    ),
+
+    // ── Navigation & Layout ──
+    ExampleCategory(
+        id = "navigation-layout",
+        title = "Navigation & Layout",
+        subtitle = "Animated navigation and layout components",
+        accentLabel = "NAV",
+        tags = listOf("NAV"),
+        examples = listOf(
+            ExampleItem(
+                title = "Animated Tabs",
+                description = "Tab bar with animated selection indicator",
+                demoType = "component",
+                componentKey = "AnimatedTabs",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: AnimatedTabs with live demo""",
+            ),
+            ExampleItem(
+                title = "Expandable Accordion",
+                description = "Accordion sections expand and collapse",
+                demoType = "component",
+                componentKey = "ExpandableAccordion",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: ExpandableAccordion with live demo""",
+            ),
+            ExampleItem(
+                title = "Mega Menu Reveal",
+                description = "Large dropdown menu with reveal animation",
+                demoType = "component",
+                componentKey = "MegaMenuReveal",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: MegaMenuReveal with live demo""",
+            ),
+            ExampleItem(
+                title = "Accordion Menu",
+                description = "Nested accordion menu with smooth transitions",
+                demoType = "component",
+                componentKey = "AccordionMenu",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: AccordionMenu with live demo""",
+            ),
+            ExampleItem(
+                title = "Smooth Tab Indicator",
+                description = "Tab indicator slides smoothly between tabs",
+                demoType = "component",
+                componentKey = "SmoothTabIndicator",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: SmoothTabIndicator with live demo""",
+            ),
+            ExampleItem(
+                title = "Circular Menu",
+                description = "Menu items arranged in a circle with animation",
+                demoType = "component",
+                componentKey = "CircularMenu",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: CircularMenu with live demo""",
+            ),
+            ExampleItem(
+                title = "Segmented Control",
+                description = "iOS-style segmented control with animation",
+                demoType = "component",
+                componentKey = "SegmentedControl",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: SegmentedControl with live demo""",
+            ),
+            ExampleItem(
+                title = "Elastic Drawer",
+                description = "Side drawer with elastic spring animation",
+                demoType = "component",
+                componentKey = "ElasticDrawer",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: ElasticDrawer with live demo""",
+            ),
+            ExampleItem(
+                title = "Scroll Direction Header",
+                description = "Header hides/shows based on scroll direction",
+                demoType = "component",
+                componentKey = "ScrollDirectionHeader",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: ScrollDirectionHeader with live demo""",
+            ),
+        ),
+    ),
+
+    // ── Interactive Controls ──
+    ExampleCategory(
+        id = "interactive-controls",
+        title = "Interactive Controls",
+        subtitle = "Buttons, toggles, and interactive elements",
+        accentLabel = "INTERACTIVE",
+        tags = listOf("INTERACTIVE"),
+        examples = listOf(
+            ExampleItem(
+                title = "Hold To Confirm",
+                description = "Long-press button with progress confirmation",
+                demoType = "component",
+                componentKey = "HoldToConfirm",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: HoldToConfirm with live demo""",
+            ),
+            ExampleItem(
+                title = "Swipe Actions",
+                description = "Swipe to reveal action buttons",
+                demoType = "component",
+                componentKey = "SwipeActions",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: SwipeActions with live demo""",
+            ),
+            ExampleItem(
+                title = "Multi State Badge",
+                description = "Badge transitions between multiple states",
+                demoType = "component",
+                componentKey = "MultiStateBadge",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: MultiStateBadge with live demo""",
+            ),
+            ExampleItem(
+                title = "Elastic Pull",
+                description = "Elastic pull-to-refresh interaction",
+                demoType = "component",
+                componentKey = "ElasticPull",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: ElasticPull with live demo""",
+            ),
+            ExampleItem(
+                title = "Expanding Search",
+                description = "Search bar expands from icon on tap",
+                demoType = "component",
+                componentKey = "ExpandingSearch",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: ExpandingSearch with live demo""",
+            ),
+            ExampleItem(
+                title = "iOS Slider",
+                description = "iOS-style slider with smooth animation",
+                demoType = "component",
+                componentKey = "IOSSlider",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: IOSSlider with live demo""",
+            ),
+            ExampleItem(
+                title = "Checkbox Animation",
+                description = "Animated checkbox with check mark draw",
+                demoType = "component",
+                componentKey = "CheckboxAnimation",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: CheckboxAnimation with live demo""",
+            ),
+            ExampleItem(
+                title = "Switch Animation",
+                description = "Animated toggle switch with spring physics",
+                demoType = "component",
+                componentKey = "SwitchAnimation",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: SwitchAnimation with live demo""",
+            ),
+            ExampleItem(
+                title = "Magnetic Button",
+                description = "Button attracted to pointer with magnetic effect",
+                demoType = "component",
+                componentKey = "MagneticButton",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: MagneticButton with live demo""",
+            ),
+            ExampleItem(
+                title = "Ripple Button",
+                description = "Button with material ripple on tap",
+                demoType = "component",
+                componentKey = "RippleButton",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: RippleButton with live demo""",
+            ),
+            ExampleItem(
+                title = "Spring Toggle",
+                description = "Toggle with spring bounce animation",
+                demoType = "component",
+                componentKey = "SpringToggle",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: SpringToggle with live demo""",
+            ),
+            ExampleItem(
+                title = "Spring Chip",
+                description = "Chip component with spring selection animation",
+                demoType = "component",
+                componentKey = "SpringChip",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: SpringChip with live demo""",
+            ),
+            ExampleItem(
+                title = "Notification Badge",
+                description = "Animated notification badge with count",
+                demoType = "component",
+                componentKey = "NotificationBadge",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: NotificationBadge with live demo""",
+            ),
+            ExampleItem(
+                title = "Toast Notification",
+                description = "Animated toast notification popup",
+                demoType = "component",
+                componentKey = "ToastNotification",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: ToastNotification with live demo""",
+            ),
+            ExampleItem(
+                title = "Coin Flip",
+                description = "3D coin flip animation",
+                demoType = "component",
+                componentKey = "CoinFlip",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: CoinFlip with live demo""",
+            ),
+        ),
+    ),
+
+    // ── Visual Effects ──
+    ExampleCategory(
+        id = "visual-effects",
+        title = "Visual Effects",
+        subtitle = "Eye-catching visual animations and effects",
+        accentLabel = "VISUAL",
+        tags = listOf("VISUAL"),
+        examples = listOf(
+            ExampleItem(
+                title = "Color Morph",
+                description = "Smooth color morphing transitions",
+                demoType = "component",
+                componentKey = "ColorMorph",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: ColorMorph with live demo""",
+            ),
+            ExampleItem(
+                title = "Morphing Shapes",
+                description = "Shapes morph smoothly between forms",
+                demoType = "component",
+                componentKey = "MorphingShapes",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: MorphingShapes with live demo""",
+            ),
+            ExampleItem(
+                title = "Gradient Shift",
+                description = "Animated gradient color shifting",
+                demoType = "component",
+                componentKey = "GradientShift",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: GradientShift with live demo""",
+            ),
+            ExampleItem(
+                title = "Breathing Glow",
+                description = "Element pulses with a breathing glow",
+                demoType = "component",
+                componentKey = "BreathingGlow",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: BreathingGlow with live demo""",
+            ),
+            ExampleItem(
+                title = "Path Tracer",
+                description = "Animated path drawing on canvas",
+                demoType = "component",
+                componentKey = "PathTracer",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: PathTracer with live demo""",
+            ),
+            ExampleItem(
+                title = "Confetti Explosion",
+                description = "Burst of confetti particles on trigger",
+                demoType = "component",
+                componentKey = "ConfettiExplosion",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: ConfettiExplosion with live demo""",
+            ),
+            ExampleItem(
+                title = "Wave Effect",
+                description = "Audio visualizer-style wave bars",
+                demoType = "component",
+                componentKey = "WaveEffect",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: WaveEffect with live demo""",
+            ),
+            ExampleItem(
+                title = "Sliding Reveal",
+                description = "Content reveals with a sliding mask",
+                demoType = "component",
+                componentKey = "SlidingReveal",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: SlidingReveal with live demo""",
+            ),
+            ExampleItem(
+                title = "Focus Blur Effect",
+                description = "Focus shifts with blur transitions",
+                demoType = "component",
+                componentKey = "FocusBlurEffect",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: FocusBlurEffect with live demo""",
+            ),
+            ExampleItem(
+                title = "Expanding Rings",
+                description = "Concentric rings expand outward",
+                demoType = "component",
+                componentKey = "ExpandingRings",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: ExpandingRings with live demo""",
+            ),
+            ExampleItem(
+                title = "Floating Particles",
+                description = "Ambient floating particles background",
+                demoType = "component",
+                componentKey = "FloatingParticles",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: FloatingParticles with live demo""",
+            ),
+            ExampleItem(
+                title = "Pulsing Avatar",
+                description = "Avatar with pulsing ring animation",
+                demoType = "component",
+                componentKey = "PulsingAvatar",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: PulsingAvatar with live demo""",
+            ),
+            ExampleItem(
+                title = "Pulse Radar",
+                description = "Radar-style pulse scanning animation",
+                demoType = "component",
+                componentKey = "PulseRadar",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: PulseRadar with live demo""",
+            ),
+            ExampleItem(
+                title = "Heartbeat Line",
+                description = "ECG-style heartbeat line animation",
+                demoType = "component",
+                componentKey = "HeartbeatLine",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: HeartbeatLine with live demo""",
+            ),
+        ),
+    ),
+
+    // ── Physics & Motion ──
+    ExampleCategory(
+        id = "physics-motion",
+        title = "Physics & Motion",
+        subtitle = "Physics-based and spring-driven animations",
+        accentLabel = "PHYSICS",
+        tags = listOf("PHYSICS"),
+        examples = listOf(
+            ExampleItem(
+                title = "Bouncy Spring List",
+                description = "List items enter with spring bounce",
+                demoType = "component",
+                componentKey = "BouncySpringList",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: BouncySpringList with live demo""",
+            ),
+            ExampleItem(
+                title = "Stagger From Center",
+                description = "Items stagger outward from center",
+                demoType = "component",
+                componentKey = "StaggerFromCenter",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: StaggerFromCenter with live demo""",
+            ),
+            ExampleItem(
+                title = "Ticker Marquee",
+                description = "Scrolling ticker text marquee",
+                demoType = "component",
+                componentKey = "TickerMarquee",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: TickerMarquee with live demo""",
+            ),
+            ExampleItem(
+                title = "Spring Chain",
+                description = "Chain of elements connected by springs",
+                demoType = "component",
+                componentKey = "SpringChain",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: SpringChain with live demo""",
+            ),
+            ExampleItem(
+                title = "Orbit Animation",
+                description = "Objects orbit around a center point",
+                demoType = "component",
+                componentKey = "OrbitAnimation",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: OrbitAnimation with live demo""",
+            ),
+            ExampleItem(
+                title = "Parallax Layers",
+                description = "Layered parallax scrolling effect",
+                demoType = "component",
+                componentKey = "ParallaxLayers",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: ParallaxLayers with live demo""",
+            ),
+            ExampleItem(
+                title = "DNA Helix",
+                description = "Animated double helix DNA structure",
+                demoType = "component",
+                componentKey = "DnaHelix",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: DnaHelix with live demo""",
+            ),
+            ExampleItem(
+                title = "Pendulum Swing",
+                description = "Pendulum swinging back and forth",
+                demoType = "component",
+                componentKey = "PendulumSwing",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: PendulumSwing with live demo""",
+            ),
+            ExampleItem(
+                title = "Bouncing Ball",
+                description = "Ball bouncing with gravity physics",
+                demoType = "component",
+                componentKey = "BouncingBall",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: BouncingBall with live demo""",
+            ),
+            ExampleItem(
+                title = "Slinky Spring",
+                description = "Slinky-style cascading spring animation",
+                demoType = "component",
+                componentKey = "SlinkySpring",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: SlinkySpring with live demo""",
+            ),
+        ),
+    ),
+
+    // ── Charts & Data Viz ──
+    ExampleCategory(
+        id = "charts-dataviz",
+        title = "Charts & Data Viz",
+        subtitle = "Animated charts and data visualizations",
+        accentLabel = "CHARTS",
+        tags = listOf("CHARTS"),
+        examples = listOf(
+            ExampleItem(
+                title = "Animated Pie Chart",
+                description = "Pie chart with animated segment reveals",
+                demoType = "component",
+                componentKey = "AnimatedPieChart",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: AnimatedPieChart with live demo""",
+            ),
+            ExampleItem(
+                title = "Animated Bar Chart",
+                description = "Bar chart with animated bar growth",
+                demoType = "component",
+                componentKey = "AnimatedBarChart",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: AnimatedBarChart with live demo""",
+            ),
+        ),
+    ),
+
+    // ── Galleries & Lists ──
+    ExampleCategory(
+        id = "galleries-lists",
+        title = "Galleries & Lists",
+        subtitle = "Animated galleries, carousels, and lists",
+        accentLabel = "GALLERY",
+        tags = listOf("GALLERY"),
+        examples = listOf(
+            ExampleItem(
+                title = "Infinite Loading List",
+                description = "List that loads more items on scroll",
+                demoType = "component",
+                componentKey = "InfiniteLoadingList",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: InfiniteLoadingList with live demo""",
+            ),
+            ExampleItem(
+                title = "Horizontal Scroll Gallery",
+                description = "Horizontally scrolling image gallery",
+                demoType = "component",
+                componentKey = "HorizontalScrollGallery",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: HorizontalScrollGallery with live demo""",
+            ),
+            ExampleItem(
+                title = "Vertical Carousel",
+                description = "Vertically scrolling carousel with snap",
+                demoType = "component",
+                componentKey = "VerticalCarousel",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: VerticalCarousel with live demo""",
+            ),
+            ExampleItem(
+                title = "Waterfall Grid",
+                description = "Pinterest-style waterfall grid layout",
+                demoType = "component",
+                componentKey = "WaterfallGrid",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: WaterfallGrid with live demo""",
+            ),
+            ExampleItem(
+                title = "Zoom Hero Image",
+                description = "Image zooms to hero view on tap",
+                demoType = "component",
+                componentKey = "ZoomHeroImage",
+                codeSnippet = """// Entry animation with Canimation API
+Modifier.canimation(
+    visible = entered,
+    effect = Canimation.Fade.Up,
+)
+// Internal: ZoomHeroImage with live demo""",
             ),
         ),
     ),

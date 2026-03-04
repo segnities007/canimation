@@ -53,6 +53,9 @@ import kotlinx.coroutines.delay
 private val accentLabels = listOf(
     "ALL", "ENTRANCE", "EMPHASIS", "PATTERN",
     "MATERIAL", "DIRECTION", "3D", "UI",
+    "TEXT", "CARDS", "LOADING", "DATA",
+    "NAV", "INTERACTIVE", "VISUAL", "PHYSICS",
+    "CHARTS", "GALLERY",
 )
 
 @Composable
@@ -103,14 +106,14 @@ fun ExamplesScreen(
                         verticalArrangement = Arrangement.spacedBy(12.dp),
                     ) {
                         Text(
-                            text = "EXAMPLES",
+                            text = "GALLERY",
                             style = MaterialTheme.typography.labelLarge,
                             color = MaterialTheme.colorScheme.primary,
                             fontWeight = FontWeight.Bold,
                             modifier = Modifier.canimation(visible = headerStage >= 0, effect = Canimation.Fade.Up),
                         )
                         Text(
-                            text = "Animation showcase",
+                            text = "Animation Gallery",
                             style = MaterialTheme.typography.headlineMedium,
                             fontWeight = FontWeight.Bold,
                             modifier = Modifier.canimation(visible = headerStage >= 1, effect = Canimation.Fade.Up),

@@ -134,8 +134,7 @@ fun App() {
                                 listOf(
                                     Triple("Docs", DocsRoute, "DocsRoute"),
                                     Triple("API", ApiReferenceRoute, "ApiReferenceRoute"),
-                                    Triple("Presets", PresetGalleryRoute, "PresetGalleryRoute"),
-                                    Triple("Examples", ExamplesRoute, "ExamplesRoute"),
+                                    Triple("Gallery", ExamplesRoute, "ExamplesRoute"),
                                 ).forEachIndexed { index, (label, dest, key) ->
                                     val selected = route?.contains(key) == true
                                     TextButton(

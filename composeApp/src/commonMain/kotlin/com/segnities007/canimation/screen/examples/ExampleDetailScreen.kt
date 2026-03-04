@@ -171,6 +171,14 @@ private fun ExampleCard(
                 "transition" -> TransitionDemo(example.enterEffect!!, example.exitEffect)
                 "composition" -> EffectDemo(example.effect!!)
                 "stagger" -> StaggerEffectDemo(example.effect!!)
+                "component" -> {
+                    val demo = componentDemos[example.componentKey]
+                    if (demo != null) {
+                        demo()
+                    } else {
+                        Text("Demo not found: ${example.componentKey}")
+                    }
+                }
                 "realWorld" -> RealWorldDemo(example.effect ?: Canimation.Fade.Up, example.title)
                 "emphasis" -> EmphasisDemo(example.preset)
                 "enterExit" -> EnterExitDemo(example.preset, index)
