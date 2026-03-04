@@ -721,6 +721,7 @@ fun ApiReferenceScreen(modifier: Modifier = Modifier) {
                 Row(
                     horizontalArrangement = Arrangement.spacedBy(8.dp),
                     modifier = Modifier
+                        .fillMaxWidth()
                         .horizontalScroll(rememberScrollState())
                         .canimation(visible = headerStage >= 3, effect = Canimation.Fade.Up),
                 ) {

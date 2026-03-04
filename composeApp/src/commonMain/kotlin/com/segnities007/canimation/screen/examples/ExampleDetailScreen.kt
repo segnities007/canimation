@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.rememberScrollState
@@ -108,13 +109,12 @@ fun ExampleDetailScreen(
                             shape = RoundedCornerShape(12.dp),
                             color = MaterialTheme.colorScheme.surface,
                             border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline),
-                            modifier = Modifier.fillMaxWidth().let { m ->
-                                if (item.demoType == "component") m else m.height(220.dp)
-                            },
+                            modifier = Modifier.fillMaxWidth(),
                         ) {
                             Box(
                                 modifier = Modifier
                                     .fillMaxWidth()
+                                    .heightIn(min = 120.dp)
                                     .clip(RoundedCornerShape(12.dp))
                                     .padding(8.dp),
                                 contentAlignment = Alignment.Center,

@@ -241,7 +241,9 @@ fun ExamplesScreen(
                         if (showFilters) {
                             Row(
                                 horizontalArrangement = Arrangement.spacedBy(6.dp),
-                                modifier = Modifier.horizontalScroll(rememberScrollState()),
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .horizontalScroll(rememberScrollState()),
                             ) {
                                 filterTags.forEach { label ->
                                     val chipColor = tagColor(label)
