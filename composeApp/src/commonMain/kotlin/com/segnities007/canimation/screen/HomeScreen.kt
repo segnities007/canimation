@@ -123,10 +123,10 @@ private fun HeroSection(stage: Int, presetCount: Int, onNavigate: (String) -> Un
                     modifier = Modifier.horizontalScroll(rememberScrollState()),
                 ) {
                     listOf(
-                        "$presetCount Presets" to Canimation.Fade.Up,
+                        "100+ Effects" to Canimation.Fade.Up,
+                        "Atomic Design" to Canimation.Entrance.Elevate,
                         "Accessible" to Canimation.Scale.In,
                         "Multiplatform" to Canimation.Bounce.In,
-                        "Testable" to Canimation.Slide.Left,
                         "Open Source" to Canimation.Scale.Pop,
                     ).forEachIndexed { index, (label, effect) ->
                         Box(Modifier.canimation(visible = stage >= 2 + index, effect = effect)) {
@@ -444,12 +444,28 @@ private fun CodeExampleSection(stage: Int) {
                         |    CanimationProvider(
                         |        policy = CanimationPolicy.SystemAware
                         |    ) {
-                        |        CanimationVisibility(
-                        |            visible = isVisible,
-                        |            enterPreset = CanimationPreset.FadeUp,
+                        |        // ✨ Recommended: Effect API
+                        |        Box(
+                        |            Modifier.canimation(
+                        |                visible = isVisible,
+                        |                effect = Canimation.Fade.Up
+                        |            )
                         |        ) {
                         |            Text("Hello, canimation!")
                         |        }
+                        |
+                        |        // Combine effects freely
+                        |        Modifier.canimation(
+                        |            visible = show,
+                        |            effect = Canimation.Scale.Pop
+                        |                + Canimation.Fade.In
+                        |        )
+                        |
+                        |        // Attention seekers
+                        |        Modifier.canimation(
+                        |            visible = pulse,
+                        |            effect = Canimation.Attention.Tada
+                        |        )
                         |    }
                         |}
                     """.trimMargin(),
