@@ -1,9 +1,7 @@
 package com.segnities007.canimation.screen
 
-import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -12,7 +10,6 @@ import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -26,28 +23,19 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccessibilityNew
-import androidx.compose.material.icons.filled.Animation
 import androidx.compose.material.icons.filled.AutoAwesome
-import androidx.compose.material.icons.filled.ChevronLeft
 import androidx.compose.material.icons.filled.ChevronRight
-import androidx.compose.material.icons.filled.Code
-import androidx.compose.material.icons.filled.Menu
-import androidx.compose.material.icons.filled.Extension
-import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Lightbulb
 import androidx.compose.material.icons.filled.PlayArrow
-import androidx.compose.material.icons.filled.Rocket
 import androidx.compose.material.icons.filled.Tune
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.material3.VerticalDivider
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -59,13 +47,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.text.SpanStyle
-import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import io.github.canimation.core.Canimation
@@ -79,23 +63,23 @@ import io.github.canimation.core.canimationEmphasize
 import io.github.canimation.core.canimationEnter
 import kotlinx.coroutines.delay
 
-// ━━━━━━━━━━━━━━━━━━━━━━━━ Sidebar Sections ━━━━━━━━━━━━━━━━━━━━━━━━
+// ━━━━━━━━━━━━━━━━━━━━━━━━ Doc Sections ━━━━━━━━━━━━━━━━━━━━━━━━
 
-private enum class DocSection(val label: String, val group: String) {
-    Overview("Overview", "Getting Started"),
-    QuickStart("Quick Start", "Getting Started"),
-    Philosophy("Philosophy", "Getting Started"),
-    ApiSurface("API Surface", "API Reference"),
-    Namespace("Canimation.*", "API Reference"),
-    Primitives("Effect Primitives", "API Reference"),
-    AtomicDesign("Atomic Design", "API Reference"),
-    Playground("Playground", "Interactive"),
-    Principles("Core Principles", "Concepts"),
-    Inspiration("Inspiration", "Concepts"),
-    Differentiators("What Sets Us Apart", "Concepts"),
-    Modules("Modules", "Architecture"),
-    Platforms("Platforms", "Architecture"),
-    Roadmap("Roadmap", "Architecture"),
+private enum class DocSection(val label: String) {
+    Overview("Overview"),
+    QuickStart("Quick Start"),
+    Philosophy("Philosophy"),
+    ApiSurface("API Surface"),
+    Namespace("Canimation.*"),
+    Primitives("Primitives"),
+    AtomicDesign("Atomic Design"),
+    Playground("Playground"),
+    Principles("Principles"),
+    Inspiration("Inspiration"),
+    Differentiators("Differentiators"),
+    Modules("Modules"),
+    Platforms("Platforms"),
+    Roadmap("Roadmap"),
 }
 
 @OptIn(ExperimentalLayoutApi::class)
@@ -103,128 +87,77 @@ private enum class DocSection(val label: String, val group: String) {
 fun DocsScreen(modifier: Modifier = Modifier) {
     var stage by remember { mutableIntStateOf(-1) }
     var activeSection by remember { mutableStateOf(DocSection.Overview) }
-    var sidebarOpen by remember { mutableStateOf(true) }
     LaunchedEffect(Unit) { for (i in 0..20) { delay(40); stage = i } }
 
     CanimationProvider(policy = CanimationPolicy.AlwaysFull) {
-        Row(modifier.fillMaxSize()) {
-        // ─── Sidebar toggle ───
-        IconButton(onClick = { sidebarOpen = !sidebarOpen }) {
-            Icon(
-                if (sidebarOpen) Icons.Default.ChevronLeft else Icons.Default.Menu,
-                contentDescription = if (sidebarOpen) "Close sidebar" else "Open sidebar",
-            )
-        }
-        // ─── Sidebar (Motion.dev-style) ───
-        AnimatedVisibility(visible = sidebarOpen) {
-        Surface(
-            modifier = Modifier
-                .width(220.dp)
-                .fillMaxHeight()
-                .canimation(visible = stage >= 0, effect = Canimation.Fade.Left),
-            color = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.5f),
-        ) {
-            Column(
-                Modifier
-                    .fillMaxHeight()
-                    .verticalScroll(rememberScrollState())
-                    .padding(vertical = 16.dp),
+        Column(modifier.fillMaxSize()) {
+            // ─── Horizontal tab navigation ───
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .horizontalScroll(rememberScrollState())
+                    .padding(horizontal = 24.dp, vertical = 12.dp),
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
             ) {
-                var currentGroup = ""
-                DocSection.entries.forEachIndexed { i, section ->
-                    if (section.group != currentGroup) {
-                        currentGroup = section.group
-                        if (i > 0) Spacer(Modifier.height(12.dp))
-                        Text(
-                            currentGroup.uppercase(),
-                            Modifier.padding(horizontal = 16.dp, vertical = 4.dp),
-                            style = MaterialTheme.typography.labelSmall,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.6f),
-                            fontWeight = FontWeight.Bold,
-                            letterSpacing = 1.2.sp,
-                        )
-                    }
-
+                DocSection.entries.forEach { section ->
                     val selected = activeSection == section
                     Surface(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(horizontal = 8.dp, vertical = 1.dp)
-                            .clip(RoundedCornerShape(6.dp))
-                            .clickable { activeSection = section }
-                            .canimation(visible = stage >= i, effect = Canimation.Fade.Right),
-                        color = if (selected) MaterialTheme.colorScheme.primary.copy(alpha = 0.12f)
-                        else MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0f),
-                        shape = RoundedCornerShape(6.dp),
+                        onClick = { activeSection = section },
+                        shape = RoundedCornerShape(20.dp),
+                        color = if (selected) MaterialTheme.colorScheme.primaryContainer
+                                else MaterialTheme.colorScheme.surfaceVariant,
+                        border = if (selected) BorderStroke(1.dp, MaterialTheme.colorScheme.primary)
+                                 else BorderStroke(1.dp, MaterialTheme.colorScheme.outlineVariant),
                     ) {
-                        Row(
-                            Modifier.padding(horizontal = 12.dp, vertical = 8.dp),
-                            verticalAlignment = Alignment.CenterVertically,
-                        ) {
-                            if (selected) {
-                                Box(
-                                    Modifier
-                                        .size(3.dp, 16.dp)
-                                        .clip(RoundedCornerShape(2.dp))
-                                        .background(MaterialTheme.colorScheme.primary)
-                                )
-                                Spacer(Modifier.width(8.dp))
-                            }
-                            Text(
-                                section.label,
-                                style = MaterialTheme.typography.bodySmall,
-                                fontWeight = if (selected) FontWeight.Bold else FontWeight.Normal,
-                                color = if (selected) MaterialTheme.colorScheme.primary
-                                else MaterialTheme.colorScheme.onSurfaceVariant,
-                                maxLines = 1,
-                                overflow = TextOverflow.Ellipsis,
-                            )
-                        }
+                        Text(
+                            text = section.label,
+                            modifier = Modifier.padding(horizontal = 14.dp, vertical = 8.dp),
+                            style = MaterialTheme.typography.labelMedium,
+                            fontWeight = if (selected) FontWeight.Bold else FontWeight.Normal,
+                            color = if (selected) MaterialTheme.colorScheme.onPrimaryContainer
+                                    else MaterialTheme.colorScheme.onSurfaceVariant,
+                        )
                     }
                 }
-
-                Spacer(Modifier.height(24.dp))
             }
-        }
-        }
 
-        VerticalDivider(color = MaterialTheme.colorScheme.outlineVariant)
+            HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant)
 
-        // ─── Main Content ───
-        Box(
-            modifier = Modifier
-                .weight(1f)
-                .fillMaxHeight(),
-            contentAlignment = Alignment.TopCenter,
-        ) {
-            Column(
-                Modifier
-                    .widthIn(max = 800.dp)
-                    .fillMaxWidth()
-                    .verticalScroll(rememberScrollState())
-                    .padding(horizontal = 32.dp, vertical = 24.dp),
-                verticalArrangement = Arrangement.spacedBy(32.dp),
+            // ─── Main Content ───
+            Box(
+                modifier = Modifier
+                    .weight(1f)
+                    .fillMaxWidth(),
+                contentAlignment = Alignment.TopCenter,
             ) {
-                when (activeSection) {
-                    DocSection.Overview -> OverviewContent(stage)
-                    DocSection.QuickStart -> QuickStartContent(stage)
-                    DocSection.Philosophy -> PhilosophyContent(stage)
-                    DocSection.ApiSurface -> ApiSurfaceContent(stage)
-                    DocSection.Namespace -> NamespaceContent(stage)
-                    DocSection.Primitives -> PrimitivesContent(stage)
-                    DocSection.AtomicDesign -> AtomicDesignContent(stage)
-                    DocSection.Playground -> PlaygroundContent(stage)
-                    DocSection.Principles -> CorePrinciplesContent(stage)
-                    DocSection.Inspiration -> InspirationContent(stage)
-                    DocSection.Differentiators -> DifferentiatorsContent(stage)
-                    DocSection.Modules -> ModulesContent(stage)
-                    DocSection.Platforms -> PlatformContent(stage)
-                    DocSection.Roadmap -> RoadmapContent(stage)
+                Column(
+                    Modifier
+                        .widthIn(max = 900.dp)
+                        .fillMaxWidth()
+                        .verticalScroll(rememberScrollState())
+                        .padding(horizontal = 32.dp, vertical = 24.dp),
+                    verticalArrangement = Arrangement.spacedBy(32.dp),
+                ) {
+                    when (activeSection) {
+                        DocSection.Overview -> OverviewContent(stage)
+                        DocSection.QuickStart -> QuickStartContent(stage)
+                        DocSection.Philosophy -> PhilosophyContent(stage)
+                        DocSection.ApiSurface -> ApiSurfaceContent(stage)
+                        DocSection.Namespace -> NamespaceContent(stage)
+                        DocSection.Primitives -> PrimitivesContent(stage)
+                        DocSection.AtomicDesign -> AtomicDesignContent(stage)
+                        DocSection.Playground -> PlaygroundContent(stage)
+                        DocSection.Principles -> CorePrinciplesContent(stage)
+                        DocSection.Inspiration -> InspirationContent(stage)
+                        DocSection.Differentiators -> DifferentiatorsContent(stage)
+                        DocSection.Modules -> ModulesContent(stage)
+                        DocSection.Platforms -> PlatformContent(stage)
+                        DocSection.Roadmap -> RoadmapContent(stage)
+                    }
+                    Spacer(Modifier.height(40.dp))
                 }
-                Spacer(Modifier.height(40.dp))
             }
         }
-    }
     }
 }
 
@@ -1065,11 +998,7 @@ private fun ModulesContent(stage: Int) {
     ) {
         PageTitle("Modules", "Modular architecture — import only what you need")
 
-        ModuleRow("canimation-core", "Core engine, CanimationEffect, Modifier.canimation(), 100+ namespace effects", Icons.Default.Animation)
-        ModuleRow("canimation-presets", "100+ ready-made presets (CanimationPreset enum)", Icons.Default.AutoAwesome)
-        ModuleRow("canimation-a11y", "Accessibility helpers, reduced-motion detection", Icons.Default.AccessibilityNew)
-        ModuleRow("canimation-diagnostics", "Debug overlays, animation performance logging", Icons.Default.Tune)
-        ModuleRow("canimation-test", "Testing utilities for animation assertions", Icons.Default.Extension)
+        ModuleRow("canimation-core", "Core engine, CanimationEffect, Modifier.canimation(), 100+ namespace effects", Icons.Default.AutoAwesome)
     }
 }
 

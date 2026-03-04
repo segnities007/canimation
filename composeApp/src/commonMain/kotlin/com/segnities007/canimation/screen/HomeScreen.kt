@@ -36,6 +36,7 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import io.github.canimation.core.CanimationEffect
 import io.github.canimation.core.CanimationPolicy
 import io.github.canimation.core.CanimationPreset
 import io.github.canimation.core.CanimationProvider
@@ -188,22 +189,35 @@ private fun LiveShowcaseSection(stage: Int) {
 
             Spacer(Modifier.height(8.dp))
 
-            val showcasePresets = listOf(
-                CanimationPreset.FadeUp, CanimationPreset.ScaleIn,
-                CanimationPreset.BounceIn, CanimationPreset.SlideLeft,
-                CanimationPreset.SpinIn, CanimationPreset.FlipIn,
-                CanimationPreset.SpringIn, CanimationPreset.EmphasizedEntry,
+            val showcaseEffects = listOf(
+                "Fade Up" to Canimation.Fade.Up,
+                "Scale Pop" to Canimation.Scale.Pop,
+                "Bounce In" to Canimation.Bounce.In,
+                "Spring Up" to Canimation.Spring.Up,
+                "Flip In" to Canimation.Flip.In,
+                "Zoom In" to Canimation.Zoom.In,
+                "Entrance Drop" to Canimation.Entrance.Drop,
+                "Material Fade" to Canimation.Material.FadeThrough,
+                "Elastic Stretch" to Canimation.Elastic.Stretch,
+                "Wave Gentle" to Canimation.Wave.Gentle,
+                "Glitch In" to Canimation.Glitch.In,
+                "Cinematic Dolly" to Canimation.Cinematic.Dolly,
+                "Playful Wiggle" to Canimation.Playful.Wiggle,
+                "Attention Tada" to Canimation.Attention.Tada,
+                "Slide Left" to Canimation.Slide.Left,
+                "Rotate Spin" to Canimation.Rotate.Spin,
             )
             Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
-                showcasePresets.chunked(4).forEachIndexed { rowIndex, row ->
+                showcaseEffects.chunked(4).forEachIndexed { rowIndex, row ->
                     Row(
                         modifier = Modifier.fillMaxWidth(),
                         horizontalArrangement = Arrangement.spacedBy(12.dp),
                     ) {
-                        row.forEachIndexed { colIndex, preset ->
-                            AnimatedPresetCell(
-                                preset = preset,
-                                delayMs = ((rowIndex * 4 + colIndex) * 250L),
+                        row.forEachIndexed { colIndex, (name, effect) ->
+                            AnimatedEffectCell(
+                                name = name,
+                                effect = effect,
+                                delayMs = ((rowIndex * 4 + colIndex) * 200L),
                                 modifier = Modifier.weight(1f),
                             )
                         }
@@ -215,8 +229,9 @@ private fun LiveShowcaseSection(stage: Int) {
 }
 
 @Composable
-private fun AnimatedPresetCell(
-    preset: CanimationPreset,
+private fun AnimatedEffectCell(
+    name: String,
+    effect: CanimationEffect,
     delayMs: Long,
     modifier: Modifier = Modifier,
 ) {
@@ -226,7 +241,7 @@ private fun AnimatedPresetCell(
         delay(delayMs)
         while (true) {
             visible = true
-            delay(2200)
+            delay(2000)
             visible = false
             delay(600)
         }
@@ -246,22 +261,15 @@ private fun AnimatedPresetCell(
                 modifier = Modifier.weight(1f).fillMaxWidth(),
                 contentAlignment = Alignment.Center,
             ) {
-                CanimationVisibility(
-                    visible = visible,
-                    enterPreset = preset,
-                    exitPreset = preset,
-                ) {
-                    Surface(
-                        shape = RoundedCornerShape(8.dp),
-                        color = MaterialTheme.colorScheme.primary.copy(alpha = 0.25f),
-                        border = BorderStroke(1.dp, MaterialTheme.colorScheme.primary.copy(alpha = 0.4f)),
-                    ) {
-                        Box(Modifier.size(40.dp))
-                    }
-                }
+                Surface(
+                    shape = RoundedCornerShape(8.dp),
+                    color = MaterialTheme.colorScheme.primary.copy(alpha = 0.25f),
+                    border = BorderStroke(1.dp, MaterialTheme.colorScheme.primary.copy(alpha = 0.4f)),
+                    modifier = Modifier.size(40.dp).canimation(visible = visible, effect = effect),
+                ) {}
             }
             Text(
-                text = preset.name,
+                text = name,
                 style = MaterialTheme.typography.labelSmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
