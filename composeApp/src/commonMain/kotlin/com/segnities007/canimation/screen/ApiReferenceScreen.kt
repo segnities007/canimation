@@ -454,7 +454,6 @@ CanimationPolicy.AlwaysOff     // Disable all animations""",
     ns("Scale", "Shrink", "Shrink from 200%", Canimation.Scale.Shrink)
     ns("Scale", "Subtle", "Tiny subtle scale (97%)", Canimation.Scale.Subtle)
     ns("Scale", "Pop", "Pop with overshoot", Canimation.Scale.Pop)
-    ns("Scale", "Zoom", "Zoom from 50% + fade", Canimation.Scale.Zoom)
     ns("Scale", "FadeIn", "Scale in + fade", Canimation.Scale.FadeIn)
     ns("Scale", "UpFade", "Scale from below + fade", Canimation.Scale.UpFade)
     ns("Scale", "DownFade", "Scale from above + fade", Canimation.Scale.DownFade)
@@ -566,7 +565,6 @@ CanimationPolicy.AlwaysOff     // Disable all animations""",
     ns("Morph", "ScaleUp", "Scale morph from small", Canimation.Morph.ScaleUp)
     ns("Morph", "Expand", "Expand morph + offset", Canimation.Morph.Expand)
     ns("Morph", "Collapse", "Collapse morph", Canimation.Morph.Collapse)
-    ns("Morph", "Elastic", "Elastic stretch", Canimation.Morph.Elastic)
 
     // Wave
     ns("Wave", "Gentle", "Gentle floating wave", Canimation.Wave.Gentle)

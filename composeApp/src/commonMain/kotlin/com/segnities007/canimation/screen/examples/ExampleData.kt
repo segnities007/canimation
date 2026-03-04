@@ -332,11 +332,11 @@ val exampleCategories: List<ExampleCategory> = listOf(
             ExampleItem(
                 title = "Zoom",
                 description = "Zoom-in scale effect",
-                effect = Canimation.Scale.Zoom,
+                effect = Canimation.Zoom.In,
                 preset = CanimationPreset.ZoomIn,
                 codeSnippet = """Modifier.canimation(
     visible = isVisible,
-    effect = Canimation.Scale.Zoom,
+    effect = Canimation.Zoom.In,
 )""",
             ),
             ExampleItem(
@@ -1382,16 +1382,6 @@ val exampleCategories: List<ExampleCategory> = listOf(
     effect = Canimation.Morph.Collapse,
 )""",
             ),
-            ExampleItem(
-                title = "Elastic",
-                description = "Elastic morphing effect",
-                effect = Canimation.Morph.Elastic,
-                preset = CanimationPreset.SpringIn,
-                codeSnippet = """Modifier.canimation(
-    visible = isVisible,
-    effect = Canimation.Morph.Elastic,
-)""",
-            ),
         ),
     ),
 
@@ -1429,11 +1419,11 @@ val exampleCategories: List<ExampleCategory> = listOf(
                 title = "Zoom + Slide Up",
                 description = "Zoom in while sliding upward",
                 demoType = "composition",
-                effect = Canimation.Scale.Zoom + Canimation.Slide.Up,
+                effect = Canimation.Zoom.In + Canimation.Slide.Up,
                 preset = CanimationPreset.ZoomIn,
                 codeSnippet = """Modifier.canimation(
     visible = isVisible,
-    effect = Canimation.Scale.Zoom + Canimation.Slide.Up,
+    effect = Canimation.Zoom.In + Canimation.Slide.Up,
 )""",
             ),
             ExampleItem(

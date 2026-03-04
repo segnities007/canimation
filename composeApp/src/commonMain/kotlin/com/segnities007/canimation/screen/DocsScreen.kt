@@ -934,7 +934,7 @@ private fun AtomicDesignContent(stage: Int) {
                 AtomicDemoRow("Canimation.Entrance.Drop", "offset + fade dramatic entry", Canimation.Entrance.Drop)
                 AtomicDemoRow("Canimation.Entrance.JackInTheBox", "scale + rotation + fade", Canimation.Entrance.JackInTheBox)
                 AtomicDemoRow("Canimation.Material.FadeThrough", "Material design pattern", Canimation.Material.FadeThrough)
-                AtomicDemoRow("Canimation.Morph.Elastic", "elastic stretch effect", Canimation.Morph.Elastic)
+                AtomicDemoRow("Canimation.Elastic.In", "elastic stretch effect", Canimation.Elastic.In)
             }
         }
 
@@ -996,7 +996,6 @@ private fun PlaygroundContent(stage: Int) {
             "Fade.Big" to Canimation.Fade.Big,
             "Scale.In" to Canimation.Scale.In,
             "Scale.Pop" to Canimation.Scale.Pop,
-            "Scale.Zoom" to Canimation.Scale.Zoom,
             "Scale.Expand" to Canimation.Scale.Expand,
             "Slide.Up" to Canimation.Slide.Up,
             "Slide.Down" to Canimation.Slide.Down,
@@ -1019,7 +1018,7 @@ private fun PlaygroundContent(stage: Int) {
             "Entrance.Rise" to Canimation.Entrance.Rise,
             "Material.FadeThrough" to Canimation.Material.FadeThrough,
             "Material.SharedAxisX" to Canimation.Material.SharedAxisX,
-            "Morph.Elastic" to Canimation.Morph.Elastic,
+            "Elastic.In" to Canimation.Elastic.In,
             "Attention.Pulse" to Canimation.Attention.Pulse,
             "Attention.Tada" to Canimation.Attention.Tada,
             "Attention.Wobble" to Canimation.Attention.Wobble,

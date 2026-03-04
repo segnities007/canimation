@@ -234,8 +234,6 @@ object Canimation {
         // ── Molecules ──
         /** Pop with overshoot. */
         val Pop = CanimationEffect.pop()
-        /** Zoom from half size with fade. */
-        val Zoom = CanimationEffect.zoom()
         /** Scale in with fade. */
         val FadeIn = CanimationEffect.scale() + CanimationEffect.fade()
         /** Scale up from below with fade. */
@@ -647,12 +645,6 @@ object Canimation {
             scale = CanimationRange(1.2f, 1f),
             alpha = CanimationRange(0f, 1f),
             durationMs = 300,
-        )
-        /** Elastic stretch. */
-        val Elastic = CanimationEffect(
-            scale = CanimationRange(0.6f, 1f),
-            alpha = CanimationRange(0f, 1f),
-            durationMs = 500,
         )
     }
 
