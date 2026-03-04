@@ -32,7 +32,10 @@ import kotlin.math.sin
 // ─── 1. WaveformVisualizer ──────────────────────────────────────────
 
 @Composable
-fun WaveformVisualizer() {
+fun WaveformVisualizer(
+    barCount: Int = 20,
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -40,7 +43,7 @@ fun WaveformVisualizer() {
     val barCount = 12
 
     Column(
-        modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Fade.Up),
+        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Fade.Up),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Text("Waveform", style = MaterialTheme.typography.titleSmall)
@@ -74,7 +77,10 @@ fun WaveformVisualizer() {
 // ─── 2. TypewriterCursor ────────────────────────────────────────────
 
 @Composable
-fun TypewriterCursor() {
+fun TypewriterCursor(
+    text: String = "Hello, World!",
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -95,7 +101,7 @@ fun TypewriterCursor() {
     }
 
     Box(
-        modifier = Modifier
+        modifier = modifier
             .canimation(visible = entryVisible, effect = Canimation.Fade.Up)
             .padding(16.dp),
         contentAlignment = Alignment.Center,
@@ -118,7 +124,10 @@ fun TypewriterCursor() {
 // ─── 3. RadialProgress ──────────────────────────────────────────────
 
 @Composable
-fun RadialProgress() {
+fun RadialProgress(
+    targetProgress: Float = 0.75f,
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -130,7 +139,7 @@ fun RadialProgress() {
     val track = MaterialTheme.colorScheme.surfaceVariant
 
     Column(
-        modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Fade.Up),
+        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Fade.Up),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Text("Radial Progress", style = MaterialTheme.typography.titleSmall)
@@ -151,7 +160,10 @@ fun RadialProgress() {
 // ─── 4. MatrixRain ──────────────────────────────────────────────────
 
 @Composable
-fun MatrixRain() {
+fun MatrixRain(
+    title: String = "Matrix Rain",
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -170,7 +182,7 @@ fun MatrixRain() {
     }
 
     Column(
-        modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Fade.Up),
+        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Fade.Up),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Text("Matrix Rain", style = MaterialTheme.typography.titleSmall)
@@ -195,7 +207,10 @@ fun MatrixRain() {
 // ─── 5. PulseButton ─────────────────────────────────────────────────
 
 @Composable
-fun PulseButton() {
+fun PulseButton(
+    label: String = "Tap",
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -208,7 +223,7 @@ fun PulseButton() {
     val primary = MaterialTheme.colorScheme.primary
 
     Column(
-        modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Fade.Up),
+        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Fade.Up),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Text("Pulse Button", style = MaterialTheme.typography.titleSmall)
@@ -225,7 +240,10 @@ fun PulseButton() {
 // ─── 6. NeumorphismCard ─────────────────────────────────────────────
 
 @Composable
-fun NeumorphismCard() {
+fun NeumorphismCard(
+    title: String = "Neumorphism Card",
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -237,7 +255,7 @@ fun NeumorphismCard() {
     )
 
     Column(
-        modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Blur.Soft),
+        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Blur.Soft),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Text("Neumorphism Card", style = MaterialTheme.typography.titleSmall)
@@ -258,7 +276,11 @@ fun NeumorphismCard() {
 // ─── 7. GradientBorderCard ──────────────────────────────────────────
 
 @Composable
-fun GradientBorderCard() {
+fun GradientBorderCard(
+    title: String = "Gradient Border",
+    subtitle: String = "Animated",
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -278,7 +300,7 @@ fun GradientBorderCard() {
     )
 
     Column(
-        modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Reveal.Center),
+        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Reveal.Center),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Text("Gradient Border", style = MaterialTheme.typography.titleSmall)
@@ -301,7 +323,10 @@ fun GradientBorderCard() {
 // ─── 8. FlipCounter ─────────────────────────────────────────────────
 
 @Composable
-fun FlipCounter() {
+fun FlipCounter(
+    targetValue: Int = 42,
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -314,7 +339,7 @@ fun FlipCounter() {
     }
 
     Column(
-        modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Fade.Up),
+        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Fade.Up),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Text("Flip Counter", style = MaterialTheme.typography.titleSmall)
@@ -343,7 +368,11 @@ fun FlipCounter() {
 // ─── 9. ExpandableChip ──────────────────────────────────────────────
 
 @Composable
-fun ExpandableChip() {
+fun ExpandableChip(
+    label: String = "KMP",
+    expandedLabel: String = "Kotlin Multiplatform",
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -351,7 +380,7 @@ fun ExpandableChip() {
     val width by animateFloatAsState(if (expanded) 200f else 80f, tween(300))
 
     Column(
-        modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Micro.Pulse),
+        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Micro.Pulse),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Text("Expandable Chip", style = MaterialTheme.typography.titleSmall)
@@ -378,14 +407,17 @@ fun ExpandableChip() {
 // ─── 10. StackedNotifications ───────────────────────────────────────
 
 @Composable
-fun StackedNotifications() {
+fun StackedNotifications(
+    notifications: List<String> = listOf("New message", "Build passed", "Review requested"),
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
     val items = listOf("New message", "Build passed", "Review requested")
 
     Column(
-        modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Swipe.Right),
+        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Swipe.Right),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Text("Stacked Notifications", style = MaterialTheme.typography.titleSmall)
@@ -411,7 +443,10 @@ fun StackedNotifications() {
 // ─── 11. SlidingToggle ──────────────────────────────────────────────
 
 @Composable
-fun SlidingToggle() {
+fun SlidingToggle(
+    initialState: Boolean = false,
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -423,7 +458,7 @@ fun SlidingToggle() {
     )
 
     Column(
-        modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Fade.Up),
+        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Fade.Up),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Text("Sliding Toggle", style = MaterialTheme.typography.titleSmall)
@@ -451,7 +486,10 @@ fun SlidingToggle() {
 // ─── 12. CircularRevealCard ─────────────────────────────────────────
 
 @Composable
-fun CircularRevealCard() {
+fun CircularRevealCard(
+    title: String = "Circular Reveal",
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -466,7 +504,7 @@ fun CircularRevealCard() {
     val primary = MaterialTheme.colorScheme.primary
 
     Column(
-        modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Reveal.Center),
+        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Reveal.Center),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Text("Circular Reveal", style = MaterialTheme.typography.titleSmall)
@@ -493,14 +531,17 @@ fun CircularRevealCard() {
 // ─── 13. TypingIndicator ────────────────────────────────────────────
 
 @Composable
-fun TypingIndicator() {
+fun TypingIndicator(
+    dotCount: Int = 3,
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
     val transition = rememberInfiniteTransition()
 
     Column(
-        modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Fade.Up),
+        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Fade.Up),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Text("Typing Indicator", style = MaterialTheme.typography.titleSmall)
@@ -539,7 +580,10 @@ fun TypingIndicator() {
 // ─── 14. SkeletonText ───────────────────────────────────────────────
 
 @Composable
-fun SkeletonText() {
+fun SkeletonText(
+    lineCount: Int = 3,
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -551,7 +595,7 @@ fun SkeletonText() {
     )
 
     Column(
-        modifier = Modifier
+        modifier = modifier
             .canimation(visible = entryVisible, effect = Canimation.Fade.Up)
             .padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp),
@@ -573,7 +617,10 @@ fun SkeletonText() {
 // ─── 15. SwipeCard ──────────────────────────────────────────────────
 
 @Composable
-fun SwipeCard() {
+fun SwipeCard(
+    label: String = "Tap to swipe",
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -589,7 +636,7 @@ fun SwipeCard() {
     }
 
     Column(
-        modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Swipe.Left),
+        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Swipe.Left),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Text("Swipe Card", style = MaterialTheme.typography.titleSmall)
@@ -617,7 +664,9 @@ fun SwipeCard() {
 // ─── 16. AnimatedCheckmark ──────────────────────────────────────────
 
 @Composable
-fun AnimatedCheckmark() {
+fun AnimatedCheckmark(
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -626,7 +675,7 @@ fun AnimatedCheckmark() {
     val primary = MaterialTheme.colorScheme.primary
 
     Column(
-        modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Reveal.Center),
+        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Reveal.Center),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Text("Animated Checkmark", style = MaterialTheme.typography.titleSmall)
@@ -659,7 +708,9 @@ fun AnimatedCheckmark() {
 // ─── 17. RotatingCube ───────────────────────────────────────────────
 
 @Composable
-fun RotatingCube() {
+fun RotatingCube(
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -672,7 +723,7 @@ fun RotatingCube() {
     val outline = MaterialTheme.colorScheme.primary
 
     Column(
-        modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Fade.Up),
+        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Fade.Up),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Text("Rotating Cube", style = MaterialTheme.typography.titleSmall)
@@ -713,7 +764,9 @@ fun RotatingCube() {
 // ─── 18. WaterDroplet ───────────────────────────────────────────────
 
 @Composable
-fun WaterDroplet() {
+fun WaterDroplet(
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -723,7 +776,7 @@ fun WaterDroplet() {
     val primary = MaterialTheme.colorScheme.primary
 
     Column(
-        modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Blur.Soft),
+        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Blur.Soft),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Text("Water Droplet", style = MaterialTheme.typography.titleSmall)
@@ -746,7 +799,10 @@ fun WaterDroplet() {
 // ─── 19. SlotMachine ────────────────────────────────────────────────
 
 @Composable
-fun SlotMachine() {
+fun SlotMachine(
+    symbols: List<String> = listOf("🍒", "🍋", "🍊", "⭐", "💎"),
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -765,7 +821,7 @@ fun SlotMachine() {
     }
 
     Column(
-        modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Page.BottomSheet),
+        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Page.BottomSheet),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Text("Slot Machine", style = MaterialTheme.typography.titleSmall)
@@ -791,7 +847,10 @@ fun SlotMachine() {
 // ─── 20. MusicEqualizer ─────────────────────────────────────────────
 
 @Composable
-fun MusicEqualizer() {
+fun MusicEqualizer(
+    barCount: Int = 5,
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -814,7 +873,7 @@ fun MusicEqualizer() {
     }
 
     Column(
-        modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Fade.Up),
+        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Fade.Up),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Text("Music Equalizer", style = MaterialTheme.typography.titleSmall)

@@ -69,6 +69,7 @@ import io.github.canimation.core.canimation
 fun AnimatedCounter(
     targetValue: Int = 1234,
     durationMs: Int = 2000,
+    modifier: Modifier = Modifier,
 ) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
@@ -97,7 +98,7 @@ fun AnimatedCounter(
     }
 
     Row(
-        modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Fade.Up),
+        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Fade.Up),
 
         horizontalArrangement = Arrangement.Center,
         verticalAlignment = Alignment.CenterVertically,
@@ -121,7 +122,10 @@ fun AnimatedCounter(
 // ============================================================
 
 @Composable
-fun NumberTrend() {
+fun NumberTrend(
+    initialValue: Int = 420,
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -158,7 +162,7 @@ fun NumberTrend() {
         animationSpec = tween(400),
     )
 
-    Column(modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Fade.Up), horizontalAlignment = Alignment.CenterHorizontally) {
+    Column(modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Fade.Up), horizontalAlignment = Alignment.CenterHorizontally) {
         Text(
             text = value.toString(),
             style = MaterialTheme.typography.displaySmall.copy(
@@ -185,6 +189,7 @@ fun NumberTrend() {
 fun TypewriterText(
     text: String = "Hello, Canimation!",
     charDelayMs: Long = 80,
+    modifier: Modifier = Modifier,
 ) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
@@ -204,7 +209,7 @@ fun TypewriterText(
     }
 
     Text(
-        modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Fade.In),
+        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Fade.In),
         text = text.take(visibleCount) + if (visibleCount < text.length) "▌" else "",
         style = MaterialTheme.typography.titleLarge.copy(
             fontFamily = FontFamily.Monospace,
@@ -221,6 +226,7 @@ fun TypewriterText(
 @Composable
 fun ScrambleText(
     targetText: String = "CANIMATION",
+    modifier: Modifier = Modifier,
 ) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
@@ -250,7 +256,7 @@ fun ScrambleText(
     }
 
     Text(
-        modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Fade.In),
+        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Fade.In),
         text = displayText,
         style = MaterialTheme.typography.titleLarge.copy(
             fontFamily = FontFamily.Monospace,
@@ -268,6 +274,7 @@ fun ScrambleText(
 @Composable
 fun WavyText(
     text: String = "Wavy Text",
+    modifier: Modifier = Modifier,
 ) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
@@ -283,7 +290,7 @@ fun WavyText(
     )
 
     Row(
-        modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Fade.In),
+        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Fade.In),
 
         horizontalArrangement = Arrangement.Center,
         verticalAlignment = Alignment.Bottom,
@@ -307,14 +314,16 @@ fun WavyText(
 // ============================================================
 
 @Composable
-fun PulseLoadingDots(dotCount: Int = 3) {
+fun PulseLoadingDots(dotCount: Int = 3,
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
     val infiniteTransition = rememberInfiniteTransition()
 
     Row(
-        modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Scale.Pop),
+        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Scale.Pop),
 
         horizontalArrangement = Arrangement.spacedBy(8.dp),
         verticalAlignment = Alignment.CenterVertically,
@@ -353,14 +362,16 @@ fun PulseLoadingDots(dotCount: Int = 3) {
 // ============================================================
 
 @Composable
-fun JumpingDots(dotCount: Int = 3) {
+fun JumpingDots(dotCount: Int = 3,
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
     val infiniteTransition = rememberInfiniteTransition()
 
     Row(
-        modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Fade.Up),
+        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Fade.Up),
 
         horizontalArrangement = Arrangement.spacedBy(6.dp),
         verticalAlignment = Alignment.Bottom,
@@ -390,7 +401,10 @@ fun JumpingDots(dotCount: Int = 3) {
 // ============================================================
 
 @Composable
-fun ShimmerEffect() {
+fun ShimmerEffect(
+    lineCount: Int = 3,
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -409,7 +423,7 @@ fun ShimmerEffect() {
 
     Column(
         verticalArrangement = Arrangement.spacedBy(10.dp),
-        modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Scale.Pop).fillMaxWidth().padding(horizontal = 16.dp),
+        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Scale.Pop).fillMaxWidth().padding(horizontal = 16.dp),
     ) {
         // Title line
         Box(
@@ -492,7 +506,10 @@ fun ShimmerEffect() {
 // ============================================================
 
 @Composable
-fun AnimatedTabs() {
+fun AnimatedTabs(
+    tabs: List<String> = listOf("Home", "Search", "Profile"),
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -508,7 +525,7 @@ fun AnimatedTabs() {
 
     Column(horizontalAlignment = Alignment.CenterHorizontally) {
         Row(
-            modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Fade.Up).clip(RoundedCornerShape(10.dp))
+            modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Fade.Up).clip(RoundedCornerShape(10.dp))
                 .background(MaterialTheme.colorScheme.surfaceVariant)
                 .padding(4.dp),
             horizontalArrangement = Arrangement.spacedBy(2.dp),
@@ -550,7 +567,9 @@ fun AnimatedTabs() {
 // ============================================================
 
 @Composable
-fun ExpandableAccordion() {
+fun ExpandableAccordion(
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -569,7 +588,7 @@ fun ExpandableAccordion() {
 
     Column(
         verticalArrangement = Arrangement.spacedBy(4.dp),
-        modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Fade.Up).fillMaxWidth().padding(horizontal = 8.dp),
+        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Fade.Up).fillMaxWidth().padding(horizontal = 8.dp),
     ) {
         items.forEachIndexed { index, (question, answer) ->
             val isExpanded = index == expandedIndex
@@ -632,7 +651,11 @@ fun ExpandableAccordion() {
 // ============================================================
 
 @Composable
-fun FlipCard() {
+fun FlipCard(
+    frontText: String = "Front",
+    backText: String = "Back",
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -653,7 +676,7 @@ fun FlipCard() {
     val showFront = rotationY <= 90f
 
     Box(
-        modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Spring.In)
+        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Spring.In)
             .size(width = 140.dp, height = 80.dp)
             .clickable { flipped = !flipped }
             .graphicsLayer {
@@ -693,7 +716,10 @@ fun FlipCard() {
 // ============================================================
 
 @Composable
-fun ColorMorph() {
+fun ColorMorph(
+    label: String = "Tap",
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -719,7 +745,7 @@ fun ColorMorph() {
     )
 
     Box(
-        modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Zoom.In)
+        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Zoom.In)
             .size(80.dp)
             .clip(RoundedCornerShape(16.dp))
             .background(animatedColor)
@@ -740,7 +766,10 @@ fun ColorMorph() {
 // ============================================================
 
 @Composable
-fun ProgressRing() {
+fun ProgressRing(
+    targetProgress: Float = 0.75f,
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -765,7 +794,7 @@ fun ProgressRing() {
     )
 
     Box(contentAlignment = Alignment.Center) {
-        androidx.compose.foundation.Canvas(modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Scale.Pop).size(64.dp)) {
+        androidx.compose.foundation.Canvas(modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Scale.Pop).size(64.dp)) {
             val strokeWidth = 6.dp.toPx()
             // Background ring
             drawArc(
@@ -801,7 +830,10 @@ fun ProgressRing() {
 // ============================================================
 
 @Composable
-fun HoldToConfirm() {
+fun HoldToConfirm(
+    confirmText: String = "Hold to confirm",
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -838,7 +870,7 @@ fun HoldToConfirm() {
             shape = RoundedCornerShape(24.dp),
             color = bgColor.copy(alpha = 0.15f),
             border = BorderStroke(2.dp, bgColor),
-            modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Spring.In).size(width = 160.dp, height = 44.dp),
+            modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Spring.In).size(width = 160.dp, height = 44.dp),
         ) {
             Box(contentAlignment = Alignment.CenterStart) {
                 // Progress fill
@@ -872,6 +904,7 @@ fun HoldToConfirm() {
 @Composable
 fun SplitTextReveal(
     text: String = "Compose Multiplatform Animations",
+    modifier: Modifier = Modifier,
 ) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
@@ -894,7 +927,7 @@ fun SplitTextReveal(
     Row(
         horizontalArrangement = Arrangement.spacedBy(6.dp),
         verticalAlignment = Alignment.CenterVertically,
-        modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Fade.In).padding(horizontal = 8.dp),
+        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Fade.In).padding(horizontal = 8.dp),
     ) {
         words.forEachIndexed { index, word ->
             val visible = index < visibleCount
@@ -926,7 +959,9 @@ fun SplitTextReveal(
 // ============================================================
 
 @Composable
-fun StaggerFromCenter(itemCount: Int = 7) {
+fun StaggerFromCenter(itemCount: Int = 7,
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -943,7 +978,7 @@ fun StaggerFromCenter(itemCount: Int = 7) {
     }
 
     Row(
-        modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Fade.Up),
+        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Fade.Up),
 
         horizontalArrangement = Arrangement.spacedBy(4.dp),
         verticalAlignment = Alignment.CenterVertically,
@@ -995,6 +1030,7 @@ fun StaggerFromCenter(itemCount: Int = 7) {
 @Composable
 fun TickerMarquee(
     text: String = "  ★ Canimation  ★ Compose Multiplatform  ★ Animations  ★ Presets  ",
+    modifier: Modifier = Modifier,
 ) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
@@ -1012,7 +1048,7 @@ fun TickerMarquee(
     val repeatedText = text.repeat(3)
 
     Box(
-        modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Fade.In)
+        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Fade.In)
             .fillMaxWidth()
             .height(32.dp)
             .clip(RoundedCornerShape(6.dp))
@@ -1040,7 +1076,10 @@ fun TickerMarquee(
 // ============================================================
 
 @Composable
-fun BouncySpringList() {
+fun BouncySpringList(
+    items: List<String> = listOf("Inbox", "Starred", "Sent", "Drafts", "Trash"),
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -1059,7 +1098,7 @@ fun BouncySpringList() {
 
     Column(
         verticalArrangement = Arrangement.spacedBy(4.dp),
-        modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Spring.In).fillMaxWidth().padding(horizontal = 8.dp),
+        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Spring.In).fillMaxWidth().padding(horizontal = 8.dp),
     ) {
         items.forEachIndexed { index, label ->
             var itemVisible by remember { mutableStateOf(false) }
@@ -1112,7 +1151,10 @@ fun BouncySpringList() {
 // ============================================================
 
 @Composable
-fun LoadingSpinner() {
+fun LoadingSpinner(
+    spinnerSize: Int = 48,
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -1128,7 +1170,7 @@ fun LoadingSpinner() {
 
     Box(contentAlignment = Alignment.Center) {
         androidx.compose.foundation.Canvas(
-            modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Scale.Pop).size(48.dp).graphicsLayer { rotationZ = rotation },
+            modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Scale.Pop).size(48.dp).graphicsLayer { rotationZ = rotation },
         ) {
             val strokeWidth = 4.dp.toPx()
             drawArc(
@@ -1157,13 +1199,16 @@ fun LoadingSpinner() {
 // ============================================================
 
 @Composable
-fun LoadingRipple() {
+fun LoadingRipple(
+    rippleCount: Int = 3,
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
     val infiniteTransition = rememberInfiniteTransition()
 
-    Box(contentAlignment = Alignment.Center, modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Scale.Pop).size(80.dp)) {
+    Box(contentAlignment = Alignment.Center, modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Scale.Pop).size(80.dp)) {
         repeat(3) { index ->
             val scale by infiniteTransition.animateFloat(
                 initialValue = 0.3f,
@@ -1198,7 +1243,10 @@ fun LoadingRipple() {
 // ============================================================
 
 @Composable
-fun SwipeActions() {
+fun SwipeActions(
+    label: String = "Swipe me →",
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -1230,7 +1278,7 @@ fun SwipeActions() {
     )
 
     Box(
-        modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Spring.In).fillMaxWidth().height(48.dp).padding(horizontal = 8.dp),
+        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Spring.In).fillMaxWidth().height(48.dp).padding(horizontal = 8.dp),
     ) {
         // Action behind
         Box(
@@ -1266,7 +1314,11 @@ fun SwipeActions() {
 // ============================================================
 
 @Composable
-fun TiltCard() {
+fun TiltCard(
+    title: String = "3D Tilt",
+    subtitle: String = "Perspective",
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -1292,7 +1344,7 @@ fun TiltCard() {
         shape = RoundedCornerShape(16.dp),
         color = MaterialTheme.colorScheme.primaryContainer,
         border = BorderStroke(1.dp, MaterialTheme.colorScheme.primary.copy(alpha = 0.3f)),
-        modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Spring.In)
+        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Spring.In)
             .size(width = 140.dp, height = 90.dp)
             .graphicsLayer {
                 rotationX = rotX
@@ -1323,7 +1375,11 @@ fun TiltCard() {
 // ============================================================
 
 @Composable
-fun PriceSwitcher() {
+fun PriceSwitcher(
+    monthlyPrice: String = "$9.99",
+    yearlyPrice: String = "$99.99",
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -1344,7 +1400,7 @@ fun PriceSwitcher() {
         )
     }
 
-    Column(modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Spring.In), horizontalAlignment = Alignment.CenterHorizontally) {
+    Column(modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Spring.In), horizontalAlignment = Alignment.CenterHorizontally) {
         // Toggle label
         Row(
             horizontalArrangement = Arrangement.spacedBy(12.dp),
@@ -1396,7 +1452,9 @@ fun PriceSwitcher() {
 // ============================================================
 
 @Composable
-fun EngagementStats() {
+fun EngagementStats(
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -1411,7 +1469,7 @@ fun EngagementStats() {
     }
 
     Row(
-        modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Fade.Up),
+        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Fade.Up),
 
         horizontalArrangement = Arrangement.spacedBy(16.dp),
         verticalAlignment = Alignment.Bottom,
@@ -1457,7 +1515,10 @@ fun EngagementStats() {
 // ============================================================
 
 @Composable
-fun MultiStateBadge() {
+fun MultiStateBadge(
+    states: List<String> = listOf("New", "Processing", "Complete", "Archived"),
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -1491,7 +1552,7 @@ fun MultiStateBadge() {
         shape = RoundedCornerShape(20.dp),
         color = animatedColor.copy(alpha = 0.15f),
         border = BorderStroke(1.5.dp, animatedColor),
-        modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Fade.Up).graphicsLayer {
+        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Fade.Up).graphicsLayer {
             scaleX = animatedScale.value
             scaleY = animatedScale.value
         },

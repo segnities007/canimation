@@ -67,7 +67,9 @@ import io.github.canimation.core.canimation
 // ============================================================
 
 @Composable
-fun MorphingShapes(size: Dp = 120.dp) {
+fun MorphingShapes(size: Dp = 120.dp,
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -90,7 +92,7 @@ fun MorphingShapes(size: Dp = 120.dp) {
     )
 
     Box(
-        modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Zoom.In).size(160.dp),
+        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Zoom.In).size(160.dp),
         contentAlignment = Alignment.Center,
     ) {
         Box(
@@ -108,7 +110,9 @@ fun MorphingShapes(size: Dp = 120.dp) {
 // ============================================================
 
 @Composable
-fun GradientShift(boxSize: Dp = 200.dp) {
+fun GradientShift(boxSize: Dp = 200.dp,
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -131,7 +135,7 @@ fun GradientShift(boxSize: Dp = 200.dp) {
     }
 
     Box(
-        modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Fade.In).size(boxSize),
+        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Fade.In).size(boxSize),
         contentAlignment = Alignment.Center,
     ) {
         Box(
@@ -154,7 +158,10 @@ fun GradientShift(boxSize: Dp = 200.dp) {
 // ============================================================
 
 @Composable
-fun SkeletonLoader() {
+fun SkeletonLoader(
+    lineCount: Int = 3,
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -174,7 +181,7 @@ fun SkeletonLoader() {
     val widths = listOf(0.9f, 0.7f, 0.5f)
 
     Column(
-        modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Scale.Pop).padding(16.dp),
+        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Scale.Pop).padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(12.dp),
     ) {
         widths.forEach { fraction ->
@@ -200,7 +207,9 @@ fun SkeletonLoader() {
 // ============================================================
 
 @Composable
-fun ElasticPull(circleSize: Dp = 80.dp) {
+fun ElasticPull(circleSize: Dp = 80.dp,
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -228,7 +237,7 @@ fun ElasticPull(circleSize: Dp = 80.dp) {
     }
 
     Box(
-        modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Spring.In).size(160.dp),
+        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Spring.In).size(160.dp),
         contentAlignment = Alignment.Center,
     ) {
         Box(
@@ -249,7 +258,10 @@ fun ElasticPull(circleSize: Dp = 80.dp) {
 // ============================================================
 
 @Composable
-fun ParallaxLayers() {
+fun ParallaxLayers(
+    layerCount: Int = 3,
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -271,7 +283,7 @@ fun ParallaxLayers() {
     val speeds = listOf(20f, 50f, 80f)
 
     Box(
-        modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Fade.Up)
+        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Fade.Up)
             .size(240.dp, 160.dp)
             .clip(RoundedCornerShape(12.dp))
             .background(MaterialTheme.colorScheme.surface),
@@ -294,7 +306,9 @@ fun ParallaxLayers() {
 // ============================================================
 
 @Composable
-fun OrbitAnimation(orbitRadius: Dp = 60.dp) {
+fun OrbitAnimation(orbitRadius: Dp = 60.dp,
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -313,7 +327,7 @@ fun OrbitAnimation(orbitRadius: Dp = 60.dp) {
     val tertiary = MaterialTheme.colorScheme.tertiary
 
     Box(
-        modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Zoom.In).size(200.dp),
+        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Zoom.In).size(200.dp),
         contentAlignment = Alignment.Center,
     ) {
         // Center dot
@@ -350,7 +364,9 @@ fun OrbitAnimation(orbitRadius: Dp = 60.dp) {
 // ============================================================
 
 @Composable
-fun BreathingGlow(baseSize: Dp = 80.dp) {
+fun BreathingGlow(baseSize: Dp = 80.dp,
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -369,7 +385,7 @@ fun BreathingGlow(baseSize: Dp = 80.dp) {
     val alphaValue = 0.5f + sinValue * 0.5f
 
     Box(
-        modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Scale.Pop).size(160.dp),
+        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Scale.Pop).size(160.dp),
         contentAlignment = Alignment.Center,
     ) {
         Box(
@@ -391,7 +407,9 @@ fun BreathingGlow(baseSize: Dp = 80.dp) {
 // ============================================================
 
 @Composable
-fun PathTracer(canvasSize: Dp = 160.dp) {
+fun PathTracer(canvasSize: Dp = 160.dp,
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -416,7 +434,7 @@ fun PathTracer(canvasSize: Dp = 160.dp) {
     val arcColor = MaterialTheme.colorScheme.primary
     val trackColor = MaterialTheme.colorScheme.surfaceVariant
 
-    Canvas(modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Zoom.In).size(canvasSize)) {
+    Canvas(modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Zoom.In).size(canvasSize)) {
         val strokeWidth = 8.dp.toPx()
         val padding = strokeWidth / 2f
         drawCircle(
@@ -444,7 +462,9 @@ fun PathTracer(canvasSize: Dp = 160.dp) {
 // ============================================================
 
 @Composable
-fun TextGradientAnim(displayText: String = "Canimation") {
+fun TextGradientAnim(displayText: String = "Canimation",
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -463,7 +483,7 @@ fun TextGradientAnim(displayText: String = "Canimation") {
     val tertiary = MaterialTheme.colorScheme.tertiary
 
     Text(
-        modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Fade.In),
+        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Fade.In),
         text = displayText,
         style = TextStyle(
             fontSize = 32.sp,
@@ -482,7 +502,10 @@ fun TextGradientAnim(displayText: String = "Canimation") {
 // ============================================================
 
 @Composable
-fun CardShuffle() {
+fun CardShuffle(
+    cardCount: Int = 4,
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -502,7 +525,7 @@ fun CardShuffle() {
     )
 
     Box(
-        modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Fade.Up).size(200.dp, 160.dp),
+        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Fade.Up).size(200.dp, 160.dp),
         contentAlignment = Alignment.Center,
     ) {
         (0 until 3).forEach { index ->
@@ -556,7 +579,9 @@ fun CardShuffle() {
 // ============================================================
 
 @Composable
-fun ConfettiExplosion(particleCount: Int = 12) {
+fun ConfettiExplosion(particleCount: Int = 12,
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -587,7 +612,7 @@ fun ConfettiExplosion(particleCount: Int = 12) {
     }
 
     Box(
-        modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Zoom.In).size(200.dp),
+        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Zoom.In).size(200.dp),
         contentAlignment = Alignment.Center,
     ) {
         particles.forEach { particle ->
@@ -632,7 +657,9 @@ fun ConfettiExplosion(particleCount: Int = 12) {
 // ============================================================
 
 @Composable
-fun WaveEffect(barCount: Int = 10) {
+fun WaveEffect(barCount: Int = 10,
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -649,7 +676,7 @@ fun WaveEffect(barCount: Int = 10) {
     val barColor = MaterialTheme.colorScheme.primary
 
     Row(
-        modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Zoom.In)
+        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Zoom.In)
             .size(200.dp, 100.dp)
             .padding(horizontal = 8.dp),
         horizontalArrangement = Arrangement.SpaceEvenly,
@@ -675,7 +702,9 @@ fun WaveEffect(barCount: Int = 10) {
 // ============================================================
 
 @Composable
-fun ProgressSteps(totalSteps: Int = 4) {
+fun ProgressSteps(totalSteps: Int = 4,
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -692,7 +721,7 @@ fun ProgressSteps(totalSteps: Int = 4) {
     val inactiveColor = MaterialTheme.colorScheme.surfaceVariant
 
     Row(
-        modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Scale.Pop)
+        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Scale.Pop)
             .fillMaxWidth()
             .padding(horizontal = 24.dp),
         verticalAlignment = Alignment.CenterVertically,
@@ -758,7 +787,9 @@ fun ProgressSteps(totalSteps: Int = 4) {
 // ============================================================
 
 @Composable
-fun LiquidFill(circleSize: Dp = 120.dp) {
+fun LiquidFill(circleSize: Dp = 120.dp,
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -776,7 +807,7 @@ fun LiquidFill(circleSize: Dp = 120.dp) {
     val fillColor = MaterialTheme.colorScheme.primary
 
     Box(
-        modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Scale.Pop).size(circleSize),
+        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Scale.Pop).size(circleSize),
         contentAlignment = Alignment.Center,
     ) {
         // Background circle
@@ -816,7 +847,9 @@ fun LiquidFill(circleSize: Dp = 120.dp) {
 // ============================================================
 
 @Composable
-fun SlidingReveal(text: String = "Hello, World!") {
+fun SlidingReveal(text: String = "Hello, World!",
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -831,7 +864,7 @@ fun SlidingReveal(text: String = "Hello, World!") {
     )
 
     Box(
-        modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Fade.In)
+        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Fade.In)
             .fillMaxWidth()
             .padding(16.dp),
         contentAlignment = Alignment.CenterStart,
@@ -858,7 +891,10 @@ fun SlidingReveal(text: String = "Hello, World!") {
 // ============================================================
 
 @Composable
-fun FocusBlurEffect() {
+fun FocusBlurEffect(
+    items: List<String> = listOf("Design", "Build", "Test", "Deploy"),
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -873,7 +909,7 @@ fun FocusBlurEffect() {
     }
 
     Row(
-        modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Fade.Up)
+        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Fade.Up)
             .fillMaxWidth()
             .padding(16.dp),
         horizontalArrangement = Arrangement.SpaceEvenly,
@@ -916,7 +952,9 @@ fun FocusBlurEffect() {
 // ============================================================
 
 @Composable
-fun RollingDigits(digitCount: Int = 4) {
+fun RollingDigits(digitCount: Int = 4,
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -946,7 +984,7 @@ fun RollingDigits(digitCount: Int = 4) {
     }
 
     Row(
-        modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Fade.In).padding(16.dp),
+        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Fade.In).padding(16.dp),
         horizontalArrangement = Arrangement.spacedBy(4.dp),
     ) {
         digits.forEach { animatable ->
@@ -982,7 +1020,9 @@ fun RollingDigits(digitCount: Int = 4) {
 // ============================================================
 
 @Composable
-fun SpringChain(circleCount: Int = 5) {
+fun SpringChain(circleCount: Int = 5,
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -1015,7 +1055,7 @@ fun SpringChain(circleCount: Int = 5) {
     val circleColor = MaterialTheme.colorScheme.primary
 
     Row(
-        modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Spring.In).padding(16.dp),
+        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Spring.In).padding(16.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(0.dp),
     ) {
@@ -1044,7 +1084,9 @@ fun SpringChain(circleCount: Int = 5) {
 // ============================================================
 
 @Composable
-fun GlitchText(text: String = "GLITCH") {
+fun GlitchText(text: String = "GLITCH",
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -1069,7 +1111,7 @@ fun GlitchText(text: String = "GLITCH") {
     )
 
     Box(
-        modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Fade.In).padding(16.dp),
+        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Fade.In).padding(16.dp),
         contentAlignment = Alignment.Center,
     ) {
         // Shifted copy (red channel)
@@ -1108,7 +1150,9 @@ fun GlitchText(text: String = "GLITCH") {
 // ============================================================
 
 @Composable
-fun ExpandingRings(canvasSize: Dp = 180.dp) {
+fun ExpandingRings(canvasSize: Dp = 180.dp,
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -1127,7 +1171,7 @@ fun ExpandingRings(canvasSize: Dp = 180.dp) {
 
     val ringColor = MaterialTheme.colorScheme.primary
 
-    Canvas(modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Scale.Pop).size(canvasSize)) {
+    Canvas(modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Scale.Pop).size(canvasSize)) {
         val maxRadius = size.minDimension / 2f
         phases.forEach { phase ->
             val progress = phase.value
@@ -1147,7 +1191,10 @@ fun ExpandingRings(canvasSize: Dp = 180.dp) {
 // ============================================================
 
 @Composable
-fun StackedCards() {
+fun StackedCards(
+    cardCount: Int = 4,
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -1171,7 +1218,7 @@ fun StackedCards() {
     )
 
     Box(
-        modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Fade.Up).size(200.dp, 180.dp),
+        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Fade.Up).size(200.dp, 180.dp),
         contentAlignment = Alignment.Center,
     ) {
         (0 until 3).reversed().forEach { index ->
@@ -1224,7 +1271,9 @@ fun StackedCards() {
 // ============================================================
 
 @Composable
-fun CountdownTimer(startFrom: Int = 10) {
+fun CountdownTimer(startFrom: Int = 10,
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -1250,7 +1299,7 @@ fun CountdownTimer(startFrom: Int = 10) {
     val textColor = MaterialTheme.colorScheme.onSurface
 
     Box(
-        modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Scale.Pop).size(140.dp),
+        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Scale.Pop).size(140.dp),
         contentAlignment = Alignment.Center,
     ) {
         Canvas(modifier = Modifier.fillMaxSize()) {
@@ -1294,7 +1343,10 @@ fun CountdownTimer(startFrom: Int = 10) {
 // ============================================================
 
 @Composable
-fun VerticalTicker() {
+fun VerticalTicker(
+    items: List<String> = listOf("Kotlin", "Compose", "Multiplatform", "Animation", "Design"),
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -1321,7 +1373,7 @@ fun VerticalTicker() {
     val alphaValue = 1f - abs(offset.value) / 40f
 
     Box(
-        modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Fade.In)
+        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Fade.In)
             .fillMaxWidth()
             .height(60.dp),
         contentAlignment = Alignment.Center,
@@ -1346,7 +1398,9 @@ fun VerticalTicker() {
 // ============================================================
 
 @Composable
-fun HeartbeatLine(canvasSize: Dp = 240.dp) {
+fun HeartbeatLine(canvasSize: Dp = 240.dp,
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -1364,7 +1418,7 @@ fun HeartbeatLine(canvasSize: Dp = 240.dp) {
     val bgColor = MaterialTheme.colorScheme.surface
 
     Canvas(
-        modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Scale.Pop)
+        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Scale.Pop)
             .size(canvasSize, 100.dp)
             .clip(RoundedCornerShape(8.dp))
             .background(bgColor),
@@ -1419,7 +1473,10 @@ fun HeartbeatLine(canvasSize: Dp = 240.dp) {
 // ============================================================
 
 @Composable
-fun ExpandingSearch() {
+fun ExpandingSearch(
+    placeholder: String = "Search...",
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -1448,7 +1505,7 @@ fun ExpandingSearch() {
     val onPrimary = MaterialTheme.colorScheme.onPrimary
 
     Surface(
-        modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Fade.Up)
+        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Fade.Up)
             .size(width = animWidth.dp, height = 48.dp),
         shape = RoundedCornerShape(24.dp),
         color = primary,

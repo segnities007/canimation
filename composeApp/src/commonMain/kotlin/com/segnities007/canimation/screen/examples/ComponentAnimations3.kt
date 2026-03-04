@@ -67,7 +67,11 @@ import io.github.canimation.core.canimation
 
 /** Card with animated border that traces around the edges */
 @Composable
-fun CardBorderTrace() {
+fun CardBorderTrace(
+    cardWidth: Int = 160,
+    cardHeight: Int = 100,
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -79,7 +83,7 @@ fun CardBorderTrace() {
     val primary = MaterialTheme.colorScheme.primary
     val outline = MaterialTheme.colorScheme.outline
 
-    Canvas(modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Fade.Up).size(160.dp, 100.dp)) {
+    Canvas(modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Fade.Up).size(160.dp, 100.dp)) {
         val w = size.width
         val h = size.height
         val r = 12.dp.toPx()
@@ -100,7 +104,10 @@ fun CardBorderTrace() {
 
 /** Card that lifts on hover with shadow animation */
 @Composable
-fun CardLiftHover() {
+fun CardLiftHover(
+    title: String = "Lift",
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -116,7 +123,7 @@ fun CardLiftHover() {
         shape = RoundedCornerShape(12.dp),
         color = MaterialTheme.colorScheme.primaryContainer,
         shadowElevation = elevation.dp,
-        modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Fade.Up)
+        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Fade.Up)
             .size(140.dp, 80.dp)
             .graphicsLayer { translationY = translateY },
     ) {
@@ -128,7 +135,10 @@ fun CardLiftHover() {
 
 /** Card with animated gradient border */
 @Composable
-fun CardGradientBorder() {
+fun CardGradientBorder(
+    title: String = "Gradient",
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -142,7 +152,7 @@ fun CardGradientBorder() {
     val tertiary = MaterialTheme.colorScheme.tertiary
 
     Box(
-        modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Fade.In)
+        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Fade.In)
             .size(160.dp, 100.dp)
             .graphicsLayer { rotationZ = 0f }
             .clip(RoundedCornerShape(12.dp))
@@ -165,7 +175,11 @@ fun CardGradientBorder() {
 
 /** Card expand/collapse animation */
 @Composable
-fun CardExpandCollapse() {
+fun CardExpandCollapse(
+    title: String = "Card Title",
+    content: String = "Expanded content with more details...",
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -180,7 +194,7 @@ fun CardExpandCollapse() {
         shape = RoundedCornerShape(12.dp),
         color = MaterialTheme.colorScheme.primaryContainer,
         border = BorderStroke(1.dp, MaterialTheme.colorScheme.primary.copy(alpha = 0.3f)),
-        modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Fade.Up).width(160.dp).height(height.dp),
+        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Fade.Up).width(160.dp).height(height.dp),
     ) {
         Column(
             modifier = Modifier.padding(12.dp),
@@ -196,7 +210,10 @@ fun CardExpandCollapse() {
 
 /** Card with parallax tilt effect */
 @Composable
-fun CardParallaxTilt() {
+fun CardParallaxTilt(
+    title: String = "Parallax",
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -214,7 +231,7 @@ fun CardParallaxTilt() {
         shape = RoundedCornerShape(12.dp),
         color = MaterialTheme.colorScheme.primaryContainer,
         border = BorderStroke(1.dp, MaterialTheme.colorScheme.primary.copy(alpha = 0.3f)),
-        modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Spring.In)
+        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Spring.In)
             .size(140.dp, 90.dp)
             .graphicsLayer {
                 rotationX = rotX
@@ -230,7 +247,10 @@ fun CardParallaxTilt() {
 
 /** Card with glassmorphism frosted effect */
 @Composable
-fun CardGlassmorphism() {
+fun CardGlassmorphism(
+    title: String = "Glass",
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -242,7 +262,7 @@ fun CardGlassmorphism() {
     val primary = MaterialTheme.colorScheme.primary
 
     Box(
-        modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Zoom.In).size(160.dp, 100.dp),
+        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Zoom.In).size(160.dp, 100.dp),
         contentAlignment = Alignment.Center,
     ) {
         // Moving blob behind glass
@@ -269,7 +289,10 @@ fun CardGlassmorphism() {
 
 /** Card with reveal wipe animation */
 @Composable
-fun CardRevealWipe() {
+fun CardRevealWipe(
+    title: String = "Reveal",
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -280,7 +303,7 @@ fun CardRevealWipe() {
     )
 
     Box(
-        modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Fade.In)
+        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Fade.In)
             .size(160.dp, 100.dp)
             .clip(RoundedCornerShape(12.dp)),
     ) {
@@ -308,7 +331,10 @@ fun CardRevealWipe() {
 
 /** Stacked cards that rotate like a fan */
 @Composable
-fun CardFanStack() {
+fun CardFanStack(
+    cardCount: Int = 4,
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -324,7 +350,7 @@ fun CardFanStack() {
     )
 
     Box(
-        modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Fade.Up).size(160.dp, 100.dp),
+        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Fade.Up).size(160.dp, 100.dp),
         contentAlignment = Alignment.Center,
     ) {
         colors.forEachIndexed { i, color ->
@@ -346,7 +372,9 @@ fun CardFanStack() {
 
 /** Card with magnetic snap animation */
 @Composable
-fun CardMagneticSnap() {
+fun CardMagneticSnap(
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -361,7 +389,7 @@ fun CardMagneticSnap() {
     )
 
     Box(
-        modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Spring.In).size(160.dp, 80.dp),
+        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Spring.In).size(160.dp, 80.dp),
         contentAlignment = Alignment.Center,
     ) {
         // Snap targets
@@ -398,7 +426,11 @@ fun CardMagneticSnap() {
 
 /** Animated notification badge count */
 @Composable
-fun NotificationBadge() {
+fun NotificationBadge(
+    label: String = "Notifications",
+    count: Int = 3,
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -414,7 +446,7 @@ fun NotificationBadge() {
     )
 
     Row(
-        modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Fade.Up),
+        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Fade.Up),
 
         horizontalArrangement = Arrangement.spacedBy(8.dp),
         verticalAlignment = Alignment.CenterVertically,
@@ -441,7 +473,10 @@ fun NotificationBadge() {
 
 /** Animated progress bar with glow */
 @Composable
-fun GlowProgressBar() {
+fun GlowProgressBar(
+    targetProgress: Float = 0.7f,
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -453,7 +488,7 @@ fun GlowProgressBar() {
     val primary = MaterialTheme.colorScheme.primary
 
     Box(
-        modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Scale.Pop).width(160.dp).height(8.dp).clip(RoundedCornerShape(4.dp))
+        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Scale.Pop).width(160.dp).height(8.dp).clip(RoundedCornerShape(4.dp))
             .background(MaterialTheme.colorScheme.surfaceVariant),
     ) {
         Box(
@@ -472,7 +507,10 @@ fun GlowProgressBar() {
 
 /** Animated toggle switch with spring */
 @Composable
-fun SpringToggle() {
+fun SpringToggle(
+    initialState: Boolean = false,
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -491,7 +529,7 @@ fun SpringToggle() {
     )
 
     Box(
-        modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Spring.In)
+        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Spring.In)
             .width(52.dp)
             .height(28.dp)
             .clip(RoundedCornerShape(14.dp))
@@ -510,7 +548,10 @@ fun SpringToggle() {
 
 /** Pulse radar effect */
 @Composable
-fun PulseRadar() {
+fun PulseRadar(
+    ringCount: Int = 3,
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -519,7 +560,7 @@ fun PulseRadar() {
     val pulse2 by inf.animateFloat(0f, 1f, infiniteRepeatable(tween(2000, delayMillis = 700), RepeatMode.Restart))
     val primary = MaterialTheme.colorScheme.primary
 
-    Canvas(modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Scale.Pop).size(100.dp)) {
+    Canvas(modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Scale.Pop).size(100.dp)) {
         val c = center
         val maxR = size.minDimension / 2
         listOf(pulse1, pulse2).forEach { p ->
@@ -531,7 +572,9 @@ fun PulseRadar() {
 
 /** Morphing progress indicator: circle → line → circle */
 @Composable
-fun MorphProgressIndicator() {
+fun MorphProgressIndicator(
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -542,7 +585,7 @@ fun MorphProgressIndicator() {
     )
     val primary = MaterialTheme.colorScheme.primary
 
-    Canvas(modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Scale.Pop).size(120.dp, 40.dp)) {
+    Canvas(modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Scale.Pop).size(120.dp, 40.dp)) {
         val cx = size.width / 2
         val cy = size.height / 2
         when {
@@ -565,7 +608,10 @@ fun MorphProgressIndicator() {
 
 /** Animated step indicator */
 @Composable
-fun StepIndicator() {
+fun StepIndicator(
+    totalSteps: Int = 4,
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -575,7 +621,7 @@ fun StepIndicator() {
     }
 
     Row(
-        modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Fade.Up),
+        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Fade.Up),
 
         horizontalArrangement = Arrangement.spacedBy(4.dp),
         verticalAlignment = Alignment.CenterVertically,
@@ -609,7 +655,10 @@ fun StepIndicator() {
 
 /** Text with animated underline */
 @Composable
-fun AnimatedUnderlineText() {
+fun AnimatedUnderlineText(
+    text: String = "Hover me",
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -620,7 +669,7 @@ fun AnimatedUnderlineText() {
     )
 
     Column(
-        modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Fade.In),
+        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Fade.In),
 
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(2.dp),
@@ -643,7 +692,10 @@ fun AnimatedUnderlineText() {
 
 /** Blinking cursor animation */
 @Composable
-fun BlinkingCursor() {
+fun BlinkingCursor(
+    text: String = "Type here",
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -656,7 +708,7 @@ fun BlinkingCursor() {
     Row(verticalAlignment = Alignment.CenterVertically) {
         Text("Type here", style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurface)
         Box(
-            modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Scale.Pop)
+            modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Scale.Pop)
                 .width(2.dp)
                 .height(20.dp)
                 .graphicsLayer { this.alpha = alpha }
@@ -667,7 +719,10 @@ fun BlinkingCursor() {
 
 /** Animated tag / chip that scales in with spring */
 @Composable
-fun SpringChip() {
+fun SpringChip(
+    label: String = "New ✨",
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -685,7 +740,7 @@ fun SpringChip() {
         shape = RoundedCornerShape(16.dp),
         color = MaterialTheme.colorScheme.primaryContainer,
         border = BorderStroke(1.dp, MaterialTheme.colorScheme.primary.copy(alpha = 0.3f)),
-        modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Spring.In).graphicsLayer { scaleX = scale; scaleY = scale },
+        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Spring.In).graphicsLayer { scaleX = scale; scaleY = scale },
     ) {
         Text(
             text = "New ✨",
@@ -699,7 +754,9 @@ fun SpringChip() {
 
 /** Spinning coin flip */
 @Composable
-fun CoinFlip() {
+fun CoinFlip(
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -713,7 +770,7 @@ fun CoinFlip() {
     Surface(
         shape = CircleShape,
         color = if (showFront) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.secondary,
-        modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Spring.In)
+        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Spring.In)
             .size(60.dp)
             .graphicsLayer {
                 rotationY = rotY
@@ -733,7 +790,9 @@ fun CoinFlip() {
 
 /** DNA double helix animation */
 @Composable
-fun DnaHelix() {
+fun DnaHelix(
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -745,7 +804,7 @@ fun DnaHelix() {
     val primary = MaterialTheme.colorScheme.primary
     val secondary = MaterialTheme.colorScheme.secondary
 
-    Canvas(modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Zoom.In).size(160.dp, 60.dp)) {
+    Canvas(modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Zoom.In).size(160.dp, 60.dp)) {
         val w = size.width
         val cy = size.height / 2
         val amp = size.height * 0.3f
@@ -766,7 +825,9 @@ fun DnaHelix() {
 
 /** Animated pie chart segments */
 @Composable
-fun AnimatedPieChart() {
+fun AnimatedPieChart(
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -786,7 +847,7 @@ fun AnimatedPieChart() {
         0.2f to MaterialTheme.colorScheme.error,
     )
 
-    Canvas(modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Zoom.In).size(80.dp)) {
+    Canvas(modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Zoom.In).size(80.dp)) {
         var startAngle = -90f
         slices.forEach { (fraction, color) ->
             val sweep = 360f * fraction * anim.value
@@ -798,7 +859,9 @@ fun AnimatedPieChart() {
 
 /** Pendulum swing */
 @Composable
-fun PendulumSwing() {
+fun PendulumSwing(
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -809,7 +872,7 @@ fun PendulumSwing() {
     )
     val primary = MaterialTheme.colorScheme.primary
 
-    Canvas(modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Spring.In).size(80.dp, 100.dp)) {
+    Canvas(modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Spring.In).size(80.dp, 100.dp)) {
         val pivotX = size.width / 2
         val pivotY = 0f
         val rodLen = size.height * 0.8f
@@ -825,7 +888,9 @@ fun PendulumSwing() {
 
 /** Bouncing ball with shadow */
 @Composable
-fun BouncingBall() {
+fun BouncingBall(
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -839,7 +904,7 @@ fun BouncingBall() {
     val y = bounce * bounce // quadratic for gravity feel
     val shadowScale = 0.5f + (1f - y) * 0.5f
 
-    Canvas(modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Fade.Up).size(60.dp, 80.dp)) {
+    Canvas(modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Fade.Up).size(60.dp, 80.dp)) {
         val cx = size.width / 2
         val bottom = size.height - 10.dp.toPx()
         val ballY = bottom - y * (size.height - 30.dp.toPx())
@@ -857,7 +922,10 @@ fun BouncingBall() {
 
 /** Circular menu items that orbit in/out */
 @Composable
-fun CircularMenu() {
+fun CircularMenu(
+    itemCount: Int = 5,
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -872,7 +940,7 @@ fun CircularMenu() {
     )
 
     Box(
-        modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Zoom.In).size(100.dp),
+        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Zoom.In).size(100.dp),
         contentAlignment = Alignment.Center,
     ) {
         repeat(5) { i ->
@@ -902,7 +970,10 @@ fun CircularMenu() {
 
 /** Animated bar chart */
 @Composable
-fun AnimatedBarChart() {
+fun AnimatedBarChart(
+    barCount: Int = 5,
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -913,7 +984,7 @@ fun AnimatedBarChart() {
     }
 
     Row(
-        modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Zoom.In).height(60.dp),
+        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Zoom.In).height(60.dp),
         horizontalArrangement = Arrangement.spacedBy(4.dp),
         verticalAlignment = Alignment.Bottom,
     ) {
@@ -935,7 +1006,9 @@ fun AnimatedBarChart() {
 
 /** Slinky spring animation */
 @Composable
-fun SlinkySpring() {
+fun SlinkySpring(
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -946,7 +1019,7 @@ fun SlinkySpring() {
     )
     val primary = MaterialTheme.colorScheme.primary
 
-    Canvas(modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Spring.In).size(60.dp, 80.dp)) {
+    Canvas(modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Spring.In).size(60.dp, 80.dp)) {
         val w = size.width
         val h = size.height * stretch
         val coils = 8
@@ -973,7 +1046,10 @@ fun SlinkySpring() {
 
 /** Typewriter with delete animation */
 @Composable
-fun TypewriterDelete() {
+fun TypewriterDelete(
+    text: String = "canimation",
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -992,7 +1068,7 @@ fun TypewriterDelete() {
         }
     }
 
-    Row(modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Fade.In), verticalAlignment = Alignment.CenterVertically) {
+    Row(modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Fade.In), verticalAlignment = Alignment.CenterVertically) {
         Text(
             text = text.take(count),
             style = MaterialTheme.typography.titleMedium,
@@ -1013,7 +1089,10 @@ fun TypewriterDelete() {
 
 /** Animated gradient text */
 @Composable
-fun AnimatedGradientText() {
+fun AnimatedGradientText(
+    text: String = "canimation",
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -1027,7 +1106,7 @@ fun AnimatedGradientText() {
     val tertiary = MaterialTheme.colorScheme.tertiary
 
     Text(
-        modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Fade.In),
+        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Fade.In),
         text = "canimation",
         style = MaterialTheme.typography.headlineSmall.copy(
             brush = Brush.horizontalGradient(

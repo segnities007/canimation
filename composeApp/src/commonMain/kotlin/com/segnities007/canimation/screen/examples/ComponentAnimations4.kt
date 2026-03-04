@@ -68,7 +68,10 @@ import io.github.canimation.core.canimation
 
 /** Navigation menu that reveals items with staggered slide+fade from left */
 @Composable
-fun MegaMenuReveal() {
+fun MegaMenuReveal(
+    items: List<String> = listOf("Home", "Products", "About", "Blog", "Contact"),
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -100,7 +103,7 @@ fun MegaMenuReveal() {
     }
 
     Surface(
-        modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Fade.In).width(200.dp).height(180.dp),
+        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Fade.In).width(200.dp).height(180.dp),
         shape = RoundedCornerShape(12.dp),
         color = MaterialTheme.colorScheme.surfaceVariant,
     ) {
@@ -129,7 +132,10 @@ fun MegaMenuReveal() {
 
 /** Horizontal tabs with a smooth sliding underline indicator */
 @Composable
-fun SmoothTabIndicator() {
+fun SmoothTabIndicator(
+    tabs: List<String> = listOf("All", "Recent", "Popular"),
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -150,7 +156,7 @@ fun SmoothTabIndicator() {
 
     val primary = MaterialTheme.colorScheme.primary
 
-    Column(modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Fade.Up).width(260.dp)) {
+    Column(modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Fade.Up).width(260.dp)) {
         Row(modifier = Modifier.fillMaxWidth()) {
             tabs.forEachIndexed { i, tab ->
                 Box(
@@ -183,7 +189,10 @@ fun SmoothTabIndicator() {
 
 /** Large number that counts up from 0 to target with easing */
 @Composable
-fun NumberCounter() {
+fun NumberCounter(
+    targetValue: Int = 999,
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -199,7 +208,7 @@ fun NumberCounter() {
     }
 
     Box(
-        modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Fade.Up).size(140.dp, 80.dp),
+        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Fade.Up).size(140.dp, 80.dp),
         contentAlignment = Alignment.Center,
     ) {
         Text(
@@ -215,7 +224,10 @@ fun NumberCounter() {
 
 /** Text that reveals character by character with a moving highlight bar */
 @Composable
-fun RevealTextEffect() {
+fun RevealTextEffect(
+    text: String = "Reveal Animation",
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -233,7 +245,7 @@ fun RevealTextEffect() {
 
     val primary = MaterialTheme.colorScheme.primary
 
-    Row(modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Fade.In), verticalAlignment = Alignment.CenterVertically) {
+    Row(modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Fade.In), verticalAlignment = Alignment.CenterVertically) {
         text.forEachIndexed { i, c ->
             val visible = i < count
             val isHighlight = i == count - 1
@@ -258,7 +270,10 @@ fun RevealTextEffect() {
 
 /** Text where characters scatter/explode outward then reassemble */
 @Composable
-fun ScatterText() {
+fun ScatterText(
+    text: String = "SCATTER",
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -290,7 +305,7 @@ fun ScatterText() {
         Triple(tx, ty, a)
     }
 
-    Box(modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Fade.In).size(200.dp, 60.dp), contentAlignment = Alignment.Center) {
+    Box(modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Fade.In).size(200.dp, 60.dp), contentAlignment = Alignment.Center) {
         Row {
             text.forEachIndexed { i, c ->
                 val (tx, ty, a) = offsets[i]
@@ -314,7 +329,9 @@ fun ScatterText() {
 
 /** Simulated infinite scroll with items fading in from bottom */
 @Composable
-fun InfiniteLoadingList() {
+fun InfiniteLoadingList(
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -339,7 +356,7 @@ fun InfiniteLoadingList() {
     LaunchedEffect(batch) { trigger = !trigger }
 
     Column(
-        modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Scale.Pop).width(220.dp).height(180.dp).padding(8.dp),
+        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Scale.Pop).width(220.dp).height(180.dp).padding(8.dp),
         verticalArrangement = Arrangement.spacedBy(6.dp),
     ) {
         for (i in 0 until 4) {
@@ -380,7 +397,10 @@ fun InfiniteLoadingList() {
 
 /** Stack of cards that auto-swipe away one by one (Tinder-style) */
 @Composable
-fun CardStackSwipe() {
+fun CardStackSwipe(
+    cards: List<String> = listOf("Card A", "Card B", "Card C", "Card D"),
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -400,7 +420,7 @@ fun CardStackSwipe() {
         }
     }
 
-    Box(modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Spring.In).size(180.dp, 120.dp), contentAlignment = Alignment.Center) {
+    Box(modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Spring.In).size(180.dp, 120.dp), contentAlignment = Alignment.Center) {
         for (i in (labels.indices).reversed()) {
             val rel = (i - topIndex + labels.size) % labels.size
             if (rel > 2) continue
@@ -438,7 +458,10 @@ fun CardStackSwipe() {
 
 /** Thumbnails that scroll horizontally with parallax offset */
 @Composable
-fun HorizontalScrollGallery() {
+fun HorizontalScrollGallery(
+    itemCount: Int = 8,
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -456,7 +479,7 @@ fun HorizontalScrollGallery() {
         MaterialTheme.colorScheme.primary.copy(alpha = 0.6f),
     )
 
-    Box(modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Fade.Up).width(260.dp).height(80.dp).clip(RoundedCornerShape(12.dp))) {
+    Box(modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Fade.Up).width(260.dp).height(80.dp).clip(RoundedCornerShape(12.dp))) {
         Row {
             colors.forEachIndexed { i, color ->
                 val parallax = (scroll * (0.5f + i * 0.15f)) % 400f
@@ -477,7 +500,10 @@ fun HorizontalScrollGallery() {
 
 /** iOS-style slider with animated track fill and haptic-style knob */
 @Composable
-fun IOSSlider() {
+fun IOSSlider(
+    initialValue: Float = 0.5f,
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -495,7 +521,7 @@ fun IOSSlider() {
     val primary = MaterialTheme.colorScheme.primary
     val trackColor = MaterialTheme.colorScheme.surfaceVariant
 
-    Box(modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Spring.In).width(240.dp).height(40.dp), contentAlignment = Alignment.CenterStart) {
+    Box(modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Spring.In).width(240.dp).height(40.dp), contentAlignment = Alignment.CenterStart) {
         Canvas(modifier = Modifier.fillMaxWidth().height(6.dp)) {
             drawRoundRect(trackColor, cornerRadius = CornerRadius(3f, 3f))
             drawRoundRect(
@@ -521,7 +547,10 @@ fun IOSSlider() {
 
 /** Checkbox that draws a checkmark path when toggled */
 @Composable
-fun CheckboxAnimation() {
+fun CheckboxAnimation(
+    initialChecked: Boolean = false,
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -543,7 +572,7 @@ fun CheckboxAnimation() {
         tween(300),
     )
 
-    Canvas(modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Spring.In).size(48.dp)) {
+    Canvas(modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Spring.In).size(48.dp)) {
         drawRoundRect(bgColor, cornerRadius = CornerRadius(8.dp.toPx()))
         if (progress > 0f) {
             val path = Path().apply {
@@ -572,7 +601,10 @@ fun CheckboxAnimation() {
 
 /** Material switch with bouncy thumb animation */
 @Composable
-fun SwitchAnimation() {
+fun SwitchAnimation(
+    initialState: Boolean = false,
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -598,7 +630,7 @@ fun SwitchAnimation() {
     )
 
     Box(
-        modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Spring.In)
+        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Spring.In)
             .width(52.dp).height(28.dp)
             .clip(RoundedCornerShape(14.dp))
             .background(trackColor)
@@ -620,7 +652,10 @@ fun SwitchAnimation() {
 
 /** Toast that slides in from top, stays, slides out */
 @Composable
-fun ToastNotification() {
+fun ToastNotification(
+    message: String = "✓ Action completed",
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -642,7 +677,7 @@ fun ToastNotification() {
         tween(300),
     )
 
-    Box(modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Fade.Up).width(260.dp).height(60.dp), contentAlignment = Alignment.TopCenter) {
+    Box(modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Fade.Up).width(260.dp).height(60.dp), contentAlignment = Alignment.TopCenter) {
         Surface(
             modifier = Modifier
                 .fillMaxWidth()
@@ -670,7 +705,10 @@ fun ToastNotification() {
 
 /** Expandable menu items that open/close with spring animation */
 @Composable
-fun AccordionMenu() {
+fun AccordionMenu(
+    items: List<String> = listOf("Settings", "Profile", "Help"),
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -687,7 +725,7 @@ fun AccordionMenu() {
     }
 
     Column(
-        modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Zoom.In).width(220.dp).padding(4.dp),
+        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Zoom.In).width(220.dp).padding(4.dp),
         verticalArrangement = Arrangement.spacedBy(4.dp),
     ) {
         items.forEachIndexed { i, item ->
@@ -727,7 +765,10 @@ fun AccordionMenu() {
 
 /** Button that subtly moves toward a simulated touch position */
 @Composable
-fun MagneticButton() {
+fun MagneticButton(
+    label: String = "Hover Me",
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -741,7 +782,7 @@ fun MagneticButton() {
         infiniteRepeatable(tween(1500, easing = FastOutSlowInEasing), RepeatMode.Reverse),
     )
 
-    Box(modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Spring.In).size(180.dp, 60.dp), contentAlignment = Alignment.Center) {
+    Box(modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Spring.In).size(180.dp, 60.dp), contentAlignment = Alignment.Center) {
         Surface(
             modifier = Modifier
                 .graphicsLayer {
@@ -767,7 +808,10 @@ fun MagneticButton() {
 
 /** Material ripple effect that radiates from center */
 @Composable
-fun RippleButton() {
+fun RippleButton(
+    label: String = "Press",
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -779,7 +823,7 @@ fun RippleButton() {
 
     val primary = MaterialTheme.colorScheme.primary
 
-    Box(modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Scale.Pop).size(160.dp, 56.dp), contentAlignment = Alignment.Center) {
+    Box(modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Scale.Pop).size(160.dp, 56.dp), contentAlignment = Alignment.Center) {
         Canvas(modifier = Modifier.fillMaxSize()) {
             val maxRadius = size.width / 2
             drawRoundRect(
@@ -804,7 +848,10 @@ fun RippleButton() {
 
 /** Small particles that float upward like embers */
 @Composable
-fun FloatingParticles() {
+fun FloatingParticles(
+    particleCount: Int = 12,
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -830,7 +877,7 @@ fun FloatingParticles() {
     val primary = MaterialTheme.colorScheme.primary
     val secondary = MaterialTheme.colorScheme.tertiary
 
-    Canvas(modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Zoom.In).width(260.dp).height(160.dp)) {
+    Canvas(modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Zoom.In).width(260.dp).height(160.dp)) {
         particles.forEach { p ->
             val prog = ((time + p.delay / 3000f) % 1f)
             val y = size.height * (1f - prog)
@@ -850,7 +897,10 @@ fun FloatingParticles() {
 
 /** Header that slides up/hides when scrolling down, reveals on up */
 @Composable
-fun ScrollDirectionHeader() {
+fun ScrollDirectionHeader(
+    title: String = "App Header",
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -872,7 +922,7 @@ fun ScrollDirectionHeader() {
         tween(300),
     )
 
-    Column(modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Fade.Up).width(260.dp).height(80.dp)) {
+    Column(modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Fade.Up).width(260.dp).height(80.dp)) {
         Surface(
             modifier = Modifier
                 .fillMaxWidth()
@@ -908,7 +958,10 @@ fun ScrollDirectionHeader() {
 
 /** Multi-line text where each line slides in from right with stagger */
 @Composable
-fun TextLineReveal() {
+fun TextLineReveal(
+    lines: List<String> = listOf("Design is", "not just what", "it looks like.", "It's how it works."),
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -923,7 +976,7 @@ fun TextLineReveal() {
     }
 
     Column(
-        modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Fade.In).width(220.dp).padding(8.dp),
+        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Fade.In).width(220.dp).padding(8.dp),
         verticalArrangement = Arrangement.spacedBy(4.dp),
     ) {
         lines.forEachIndexed { i, line ->
@@ -953,7 +1006,10 @@ fun TextLineReveal() {
 
 /** Image placeholder that zooms from thumbnail to hero size */
 @Composable
-fun ZoomHeroImage() {
+fun ZoomHeroImage(
+    title: String = "Hero View",
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -979,7 +1035,7 @@ fun ZoomHeroImage() {
         tween(400),
     )
 
-    Box(modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Zoom.In).size(260.dp, 160.dp), contentAlignment = Alignment.Center) {
+    Box(modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Zoom.In).size(260.dp, 160.dp), contentAlignment = Alignment.Center) {
         Surface(
             modifier = Modifier.size(width.dp, height.dp),
             shape = RoundedCornerShape(cornerRadius.dp),
@@ -1001,7 +1057,10 @@ fun ZoomHeroImage() {
 
 /** Horizontal progress bar with draggable scrubber thumb */
 @Composable
-fun ProgressScrubber() {
+fun ProgressScrubber(
+    duration: String = "3:00",
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -1020,7 +1079,7 @@ fun ProgressScrubber() {
     val track = MaterialTheme.colorScheme.surfaceVariant
     val elapsed = (anim.value * 180).roundToInt()
 
-    Column(modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Scale.Pop).width(260.dp).padding(8.dp)) {
+    Column(modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Scale.Pop).width(260.dp).padding(8.dp)) {
         Box(modifier = Modifier.fillMaxWidth().height(32.dp), contentAlignment = Alignment.CenterStart) {
             Canvas(modifier = Modifier.fillMaxWidth().height(4.dp)) {
                 drawRoundRect(track, cornerRadius = CornerRadius(2f))
@@ -1045,7 +1104,10 @@ fun ProgressScrubber() {
 
 /** Items that cycle vertically with 3D rotation perspective */
 @Composable
-fun VerticalCarousel() {
+fun VerticalCarousel(
+    items: List<String> = listOf("Slide 1", "Slide 2", "Slide 3", "Slide 4"),
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -1063,7 +1125,7 @@ fun VerticalCarousel() {
     }
 
     Box(
-        modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Fade.Up).width(200.dp).height(80.dp).clip(RoundedCornerShape(12.dp)),
+        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Fade.Up).width(200.dp).height(80.dp).clip(RoundedCornerShape(12.dp)),
         contentAlignment = Alignment.Center,
     ) {
         for (i in -1..1) {
@@ -1100,7 +1162,10 @@ fun VerticalCarousel() {
 
 /** Items that fall into place in a staggered waterfall pattern */
 @Composable
-fun WaterfallGrid() {
+fun WaterfallGrid(
+    itemCount: Int = 8,
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -1125,7 +1190,7 @@ fun WaterfallGrid() {
     )
 
     Column(
-        modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Zoom.In).width(200.dp).padding(4.dp),
+        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Zoom.In).width(200.dp).padding(4.dp),
         verticalArrangement = Arrangement.spacedBy(6.dp),
     ) {
         for (r in 0 until rows) {
@@ -1163,7 +1228,10 @@ fun WaterfallGrid() {
 
 /** Avatar circle with pulsing ring around it (like a "live" indicator) */
 @Composable
-fun PulsingAvatar() {
+fun PulsingAvatar(
+    initials: String = "JD",
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -1182,7 +1250,7 @@ fun PulsingAvatar() {
 
     val primary = MaterialTheme.colorScheme.primary
 
-    Box(modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Scale.Pop).size(100.dp), contentAlignment = Alignment.Center) {
+    Box(modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Scale.Pop).size(100.dp), contentAlignment = Alignment.Center) {
         Canvas(modifier = Modifier.fillMaxSize()) {
             listOf(pulse, pulse2).forEach { p ->
                 drawCircle(
@@ -1213,7 +1281,10 @@ fun PulsingAvatar() {
 
 /** iOS-style segmented control with sliding selection indicator */
 @Composable
-fun SegmentedControl() {
+fun SegmentedControl(
+    segments: List<String> = listOf("Day", "Week", "Month"),
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -1233,7 +1304,7 @@ fun SegmentedControl() {
     )
 
     Box(
-        modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Fade.Up)
+        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Fade.Up)
             .width(240.dp)
             .height(36.dp)
             .clip(RoundedCornerShape(8.dp))
@@ -1272,7 +1343,10 @@ fun SegmentedControl() {
 
 /** Side drawer that opens with elastic overshoot spring */
 @Composable
-fun ElasticDrawer() {
+fun ElasticDrawer(
+    menuItems: List<String> = listOf("Home", "Settings", "About"),
+    modifier: Modifier = Modifier,
+) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
@@ -1295,7 +1369,7 @@ fun ElasticDrawer() {
     )
 
     Box(
-        modifier = Modifier.canimation(visible = entryVisible, effect = Canimation.Spring.In).width(260.dp).height(180.dp).clip(RoundedCornerShape(12.dp)),
+        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Spring.In).width(260.dp).height(180.dp).clip(RoundedCornerShape(12.dp)),
     ) {
         // Main content
         Box(
