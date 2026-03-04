@@ -1,5 +1,6 @@
 package com.segnities007.canimation.screen
 
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -27,8 +28,10 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccessibilityNew
 import androidx.compose.material.icons.filled.Animation
 import androidx.compose.material.icons.filled.AutoAwesome
+import androidx.compose.material.icons.filled.ChevronLeft
 import androidx.compose.material.icons.filled.ChevronRight
 import androidx.compose.material.icons.filled.Code
+import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Extension
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Lightbulb
@@ -40,6 +43,7 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -99,11 +103,20 @@ private enum class DocSection(val label: String, val group: String) {
 fun DocsScreen(modifier: Modifier = Modifier) {
     var stage by remember { mutableIntStateOf(-1) }
     var activeSection by remember { mutableStateOf(DocSection.Overview) }
+    var sidebarOpen by remember { mutableStateOf(true) }
     LaunchedEffect(Unit) { for (i in 0..20) { delay(40); stage = i } }
 
     CanimationProvider(policy = CanimationPolicy.AlwaysFull) {
         Row(modifier.fillMaxSize()) {
+        // ─── Sidebar toggle ───
+        IconButton(onClick = { sidebarOpen = !sidebarOpen }) {
+            Icon(
+                if (sidebarOpen) Icons.Default.ChevronLeft else Icons.Default.Menu,
+                contentDescription = if (sidebarOpen) "Close sidebar" else "Open sidebar",
+            )
+        }
         // ─── Sidebar (Motion.dev-style) ───
+        AnimatedVisibility(visible = sidebarOpen) {
         Surface(
             modifier = Modifier
                 .width(220.dp)
@@ -117,31 +130,6 @@ fun DocsScreen(modifier: Modifier = Modifier) {
                     .verticalScroll(rememberScrollState())
                     .padding(vertical = 16.dp),
             ) {
-                // Logo
-                Text(
-                    buildAnnotatedString {
-                        withStyle(SpanStyle(color = MaterialTheme.colorScheme.onSurface)) { append("c") }
-                        withStyle(SpanStyle(color = MaterialTheme.colorScheme.primary)) { append("animation") }
-                    },
-                    style = MaterialTheme.typography.titleMedium,
-                    fontWeight = FontWeight.Black,
-                    modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
-                )
-                Surface(
-                    shape = RoundedCornerShape(50),
-                    color = MaterialTheme.colorScheme.primary.copy(alpha = 0.12f),
-                    modifier = Modifier.padding(horizontal = 16.dp),
-                ) {
-                    Text(
-                        "v1.0",
-                        Modifier.padding(horizontal = 10.dp, vertical = 3.dp),
-                        style = MaterialTheme.typography.labelSmall,
-                        color = MaterialTheme.colorScheme.primary,
-                    )
-                }
-
-                Spacer(Modifier.height(20.dp))
-
                 var currentGroup = ""
                 DocSection.entries.forEachIndexed { i, section ->
                     if (section.group != currentGroup) {
@@ -198,6 +186,7 @@ fun DocsScreen(modifier: Modifier = Modifier) {
                 Spacer(Modifier.height(24.dp))
             }
         }
+        }
 
         VerticalDivider(color = MaterialTheme.colorScheme.outlineVariant)
 
@@ -249,7 +238,7 @@ private fun OverviewContent(stage: Int) {
     ) {
         Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
             Text(
-                "Documentation",
+                "Getting Started",
                 style = MaterialTheme.typography.displaySmall,
                 fontWeight = FontWeight.Black,
             )
@@ -1160,17 +1149,13 @@ private fun PageTitle(title: String, subtitle: String) {
 
 @Composable
 private fun SectionCard(title: String, description: String, content: @Composable () -> Unit) {
-    Card(
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),
-        border = BorderStroke(1.dp, MaterialTheme.colorScheme.outlineVariant),
-        modifier = Modifier.fillMaxWidth(),
+    Column(
+        Modifier.fillMaxWidth(),
+        verticalArrangement = Arrangement.spacedBy(12.dp),
     ) {
-        Column(Modifier.padding(20.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
-            Text(title, style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold)
-            Text(description, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
-            HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant)
-            content()
-        }
+        Text(title, style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
+        Text(description, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+        content()
     }
 }
 

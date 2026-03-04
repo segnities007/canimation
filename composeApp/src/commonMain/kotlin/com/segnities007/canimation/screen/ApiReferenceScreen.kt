@@ -748,6 +748,32 @@ fun ApiReferenceScreen(modifier: Modifier = Modifier) {
                     }
                 }
 
+                if (category == RefFilter.Namespace) {
+                    val subGroups = entries.groupBy { entry ->
+                        entry.name.removePrefix("Canimation.").substringBefore(".")
+                    }
+                    subGroups.forEach { (subCategory, subEntries) ->
+                        item(key = "sub-${category.name}-$subCategory") {
+                            Text(
+                                text = subCategory,
+                                style = MaterialTheme.typography.labelMedium,
+                                color = MaterialTheme.colorScheme.tertiary,
+                                fontWeight = FontWeight.Bold,
+                                letterSpacing = 1.sp,
+                                modifier = Modifier.padding(top = 12.dp, bottom = 4.dp),
+                            )
+                        }
+                        items(subEntries, key = { it.name }) { entry ->
+                            var visible by remember { mutableStateOf(false) }
+                            LaunchedEffect(entry.name) { visible = true }
+                            Box(
+                                Modifier.canimation(visible = visible, effect = Canimation.Fade.Up),
+                            ) {
+                                ApiEntryCard(entry)
+                            }
+                        }
+                    }
+                } else {
                 items(entries, key = { it.name }) { entry ->
                     var visible by remember { mutableStateOf(false) }
                     LaunchedEffect(entry.name) { visible = true }
@@ -756,6 +782,7 @@ fun ApiReferenceScreen(modifier: Modifier = Modifier) {
                     ) {
                         ApiEntryCard(entry)
                     }
+                }
                 }
             }
 
@@ -798,16 +825,10 @@ fun ApiReferenceScreen(modifier: Modifier = Modifier) {
 
 @Composable
 private fun ApiEntryCard(entry: ApiEntry) {
-    Surface(
-        shape = RoundedCornerShape(12.dp),
-        color = MaterialTheme.colorScheme.surfaceVariant,
-        border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline),
-        modifier = Modifier.fillMaxWidth(),
+    Column(
+        modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp),
+        verticalArrangement = Arrangement.spacedBy(8.dp),
     ) {
-        Column(
-            modifier = Modifier.padding(16.dp),
-            verticalArrangement = Arrangement.spacedBy(8.dp),
-        ) {
             // Name + badge row
             Row(
                 verticalAlignment = Alignment.CenterVertically,
@@ -815,10 +836,10 @@ private fun ApiEntryCard(entry: ApiEntry) {
             ) {
                 Text(
                     text = entry.name,
-                    style = MaterialTheme.typography.titleSmall,
+                    style = MaterialTheme.typography.titleMedium,
                     fontFamily = FontFamily.Monospace,
                     fontWeight = FontWeight.Bold,
-                    color = MaterialTheme.colorScheme.onSurface,
+                    color = MaterialTheme.colorScheme.primary,
                     modifier = Modifier.weight(1f, fill = false),
                 )
                 if (entry.badge.isNotEmpty()) {
@@ -888,6 +909,8 @@ private fun ApiEntryCard(entry: ApiEntry) {
                     }
                 }
             }
-        }
+
+            // Separator
+            HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.5f))
     }
 }
