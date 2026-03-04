@@ -43,6 +43,8 @@ import io.github.canimation.core.CanimationTokens
 import io.github.canimation.core.CanimationVisibility
 import io.github.canimation.core.EasingTokens
 import io.github.canimation.core.canimationEnter
+import io.github.canimation.core.Canimation
+import io.github.canimation.core.canimation
 import kotlinx.coroutines.delay
 
 @Composable
@@ -68,7 +70,7 @@ fun TokenReferenceScreen(modifier: Modifier = Modifier) {
             verticalArrangement = Arrangement.spacedBy(20.dp),
         ) {
             // Header
-            Box(Modifier.fillMaxWidth().canimationEnter(visible = entryStage >= 0, preset = CanimationPreset.FadeUp)) {
+            Box(Modifier.fillMaxWidth().canimation(visible = entryStage >= 0, effect = Canimation.Fade.Up)) {
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     verticalAlignment = Alignment.CenterVertically,
@@ -99,28 +101,28 @@ fun TokenReferenceScreen(modifier: Modifier = Modifier) {
             }
 
             // Duration demo
-            Box(Modifier.fillMaxWidth().canimationEnter(visible = entryStage >= 1, preset = CanimationPreset.FadeUp)) {
+            Box(Modifier.fillMaxWidth().canimation(visible = entryStage >= 1, effect = Canimation.Fade.Up)) {
                 TokenDemoCard(title = "Duration") {
                     DurationDemo(replayTrigger = replayTrigger)
                 }
             }
 
             // Easing demo
-            Box(Modifier.fillMaxWidth().canimationEnter(visible = entryStage >= 2, preset = CanimationPreset.FadeUp)) {
+            Box(Modifier.fillMaxWidth().canimation(visible = entryStage >= 2, effect = Canimation.Fade.Up)) {
                 TokenDemoCard(title = "Easing") {
                     EasingDemo(replayTrigger = replayTrigger)
                 }
             }
 
             // Distance demo
-            Box(Modifier.fillMaxWidth().canimationEnter(visible = entryStage >= 3, preset = CanimationPreset.FadeUp)) {
+            Box(Modifier.fillMaxWidth().canimation(visible = entryStage >= 3, effect = Canimation.Fade.Up)) {
                 TokenDemoCard(title = "Distance") {
                     DistanceDemo(replayTrigger = replayTrigger)
                 }
             }
 
             // Reference tables
-            Box(Modifier.fillMaxWidth().canimationEnter(visible = entryStage >= 4, preset = CanimationPreset.FadeUp)) {
+            Box(Modifier.fillMaxWidth().canimation(visible = entryStage >= 4, effect = Canimation.Fade.Up)) {
                 Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
                     Text(
                         text = "Reference",

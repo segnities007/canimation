@@ -41,6 +41,8 @@ import io.github.canimation.core.CanimationPreset
 import io.github.canimation.core.CanimationProvider
 import io.github.canimation.core.CanimationVisibility
 import io.github.canimation.core.canimationEnter
+import io.github.canimation.core.Canimation
+import io.github.canimation.core.canimation
 import kotlinx.coroutines.delay
 
 
@@ -93,7 +95,7 @@ private fun HeroSection(stage: Int, presetCount: Int, onNavigate: (String) -> Un
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.spacedBy(20.dp),
             ) {
-                Box(Modifier.canimationEnter(visible = stage >= 0, preset = CanimationPreset.FadeUp)) {
+                Box(Modifier.canimation(visible = stage >= 0, effect = Canimation.Fade.Up)) {
                     Text(
                         text = "canimation",
                         style = MaterialTheme.typography.displayLarge.copy(
@@ -105,7 +107,7 @@ private fun HeroSection(stage: Int, presetCount: Int, onNavigate: (String) -> Un
                     )
                 }
 
-                Box(Modifier.canimationEnter(visible = stage >= 1, preset = CanimationPreset.FadeUp)) {
+                Box(Modifier.canimation(visible = stage >= 1, effect = Canimation.Fade.Up)) {
                     Text(
                         text = "A production-grade animation library\nfor Compose Multiplatform.",
                         style = MaterialTheme.typography.headlineSmall,
@@ -121,13 +123,13 @@ private fun HeroSection(stage: Int, presetCount: Int, onNavigate: (String) -> Un
                     modifier = Modifier.horizontalScroll(rememberScrollState()),
                 ) {
                     listOf(
-                        "$presetCount Presets" to CanimationPreset.FadeUp,
-                        "Accessible" to CanimationPreset.ScaleIn,
-                        "Multiplatform" to CanimationPreset.BounceIn,
-                        "Testable" to CanimationPreset.SlideLeft,
-                        "Open Source" to CanimationPreset.Pop,
-                    ).forEachIndexed { index, (label, preset) ->
-                        Box(Modifier.canimationEnter(visible = stage >= 2 + index, preset = preset)) {
+                        "$presetCount Presets" to Canimation.Fade.Up,
+                        "Accessible" to Canimation.Scale.In,
+                        "Multiplatform" to Canimation.Bounce.In,
+                        "Testable" to Canimation.Slide.Left,
+                        "Open Source" to Canimation.Scale.Pop,
+                    ).forEachIndexed { index, (label, effect) ->
+                        Box(Modifier.canimation(visible = stage >= 2 + index, effect = effect)) {
                             Surface(
                                 shape = RoundedCornerShape(20.dp),
                                 color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.06f),
@@ -165,7 +167,7 @@ private fun HeroSection(stage: Int, presetCount: Int, onNavigate: (String) -> Un
 private fun LiveShowcaseSection(stage: Int) {
     Box(modifier = Modifier.fillMaxWidth().background(MaterialTheme.colorScheme.surface)) {
         DarkCenteredSection {
-            Box(Modifier.canimationEnter(visible = stage >= 7, preset = CanimationPreset.FadeUp)) {
+            Box(Modifier.canimation(visible = stage >= 7, effect = Canimation.Fade.Up)) {
                 Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                     Text(
                         text = "SHOWCASE",
@@ -270,7 +272,7 @@ private fun AnimatedPresetCell(
 @Composable
 private fun FeaturesSection(stage: Int, presetCount: Int) {
     DarkCenteredSection {
-        Box(Modifier.canimationEnter(visible = stage >= 8, preset = CanimationPreset.FadeUp)) {
+        Box(Modifier.canimation(visible = stage >= 8, effect = Canimation.Fade.Up)) {
             Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                 Text(
                     text = "WHY CANIMATION",
@@ -410,7 +412,7 @@ private fun LiveFeatureCard(
 private fun CodeExampleSection(stage: Int) {
     Box(modifier = Modifier.fillMaxWidth().background(MaterialTheme.colorScheme.surface)) {
         DarkCenteredSection {
-            Box(Modifier.canimationEnter(visible = stage >= 9, preset = CanimationPreset.FadeUp)) {
+            Box(Modifier.canimation(visible = stage >= 9, effect = Canimation.Fade.Up)) {
                 Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                     Text(
                         text = "QUICK START",
@@ -551,9 +553,9 @@ private fun PlatformSection(stage: Int) {
                 )
                 Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
                     listOf("Android", "iOS", "Desktop", "Web").forEachIndexed { index, platform ->
-                        Box(Modifier.canimationEnter(
+                        Box(Modifier.canimation(
                             visible = stage >= 8 + index,
-                            preset = CanimationPreset.BounceIn,
+                            effect = Canimation.Bounce.In,
                         )) {
                             Surface(
                                 shape = RoundedCornerShape(8.dp),

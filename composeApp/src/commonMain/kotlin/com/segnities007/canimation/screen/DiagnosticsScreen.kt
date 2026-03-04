@@ -33,6 +33,8 @@ import androidx.compose.ui.unit.dp
 import io.github.canimation.core.CanimationPreset
 import io.github.canimation.core.canimationEmphasize
 import io.github.canimation.core.canimationEnter
+import io.github.canimation.core.Canimation
+import io.github.canimation.core.canimation
 import io.github.canimation.diagnostics.CanimationDiagnosticsOverlay
 import kotlinx.coroutines.delay
 
@@ -57,7 +59,7 @@ fun DiagnosticsScreen(modifier: Modifier = Modifier) {
             verticalArrangement = Arrangement.spacedBy(20.dp),
         ) {
             // Header
-            Box(Modifier.canimationEnter(visible = entryStage >= 0, preset = CanimationPreset.FadeUp)) {
+            Box(Modifier.canimation(visible = entryStage >= 0, effect = Canimation.Fade.Up)) {
                 Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                     Text(
                         text = "PERFORMANCE",
@@ -79,7 +81,7 @@ fun DiagnosticsScreen(modifier: Modifier = Modifier) {
             }
 
             // Overlay toggle card
-            Box(Modifier.fillMaxWidth().canimationEnter(visible = entryStage >= 1, preset = CanimationPreset.FadeUp)) {
+            Box(Modifier.fillMaxWidth().canimation(visible = entryStage >= 1, effect = Canimation.Fade.Up)) {
                 Card(
                     modifier = Modifier.fillMaxWidth(),
                     colors = CardDefaults.cardColors(
@@ -117,7 +119,7 @@ fun DiagnosticsScreen(modifier: Modifier = Modifier) {
                 Modifier
                     .fillMaxWidth()
                     .weight(1f)
-                    .canimationEnter(visible = entryStage >= 2, preset = CanimationPreset.FadeUp),
+                    .canimation(visible = entryStage >= 2, effect = Canimation.Fade.Up),
             ) {
                 CanimationDiagnosticsOverlay(
                     enabled = overlayEnabled,

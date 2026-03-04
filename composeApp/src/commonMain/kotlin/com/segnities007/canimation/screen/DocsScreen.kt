@@ -2,7 +2,6 @@ package com.segnities007.canimation.screen
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -16,7 +15,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
@@ -28,6 +26,11 @@ import androidx.compose.material.icons.filled.Animation
 import androidx.compose.material.icons.filled.AutoAwesome
 import androidx.compose.material.icons.filled.ChevronRight
 import androidx.compose.material.icons.filled.Extension
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.Lightbulb
+import androidx.compose.material.icons.filled.Rocket
+import androidx.compose.material.icons.filled.Tune
+import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.HorizontalDivider
@@ -45,7 +48,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
@@ -70,7 +72,7 @@ import kotlinx.coroutines.delay
 @Composable
 fun DocsScreen(modifier: Modifier = Modifier) {
     var stage by remember { mutableIntStateOf(-1) }
-    LaunchedEffect(Unit) { for (i in 0..15) { delay(50); stage = i } }
+    LaunchedEffect(Unit) { for (i in 0..20) { delay(50); stage = i } }
 
     Box(modifier.fillMaxSize(), contentAlignment = Alignment.TopCenter) {
         Column(
@@ -82,13 +84,12 @@ fun DocsScreen(modifier: Modifier = Modifier) {
             verticalArrangement = Arrangement.spacedBy(40.dp),
         ) {
             // ─── Hero ───
-            Box(Modifier.canimationEnter(visible = stage >= 0, preset = CanimationPreset.FadeUp)) {
+            Box(Modifier.canimation(visible = stage >= 0, effect = Canimation.Fade.Up)) {
                 Column(
-                    Modifier.fillMaxWidth().padding(vertical = 32.dp),
+                    Modifier.fillMaxWidth().padding(vertical = 40.dp),
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.spacedBy(16.dp),
                 ) {
-                    // Version badge
                     Surface(
                         shape = RoundedCornerShape(50),
                         color = MaterialTheme.colorScheme.primary.copy(alpha = 0.12f),
@@ -102,7 +103,6 @@ fun DocsScreen(modifier: Modifier = Modifier) {
                             fontWeight = FontWeight.SemiBold,
                         )
                     }
-                    // Title
                     Text(
                         buildAnnotatedString {
                             withStyle(SpanStyle(color = MaterialTheme.colorScheme.onSurface)) { append("c") }
@@ -113,360 +113,59 @@ fun DocsScreen(modifier: Modifier = Modifier) {
                         textAlign = TextAlign.Center,
                     )
                     Text(
-                        "Production-ready animations for Compose Multiplatform.\nDrop-in presets, composable effects, full a11y support.",
+                        "Production-ready animations for Compose Multiplatform.\nMake your UI speak through motion.",
                         style = MaterialTheme.typography.bodyLarge,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                         textAlign = TextAlign.Center,
                         lineHeight = 26.sp,
                     )
-                    // Live hero demo
                     HeroDemo()
                 }
             }
 
-            // ─── Why canimation — Feature Cards ───
-            Box(Modifier.canimationEnter(visible = stage >= 1, preset = CanimationPreset.FadeUp)) {
-                Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
-                    SectionLabel("WHY CANIMATION")
-                    Row(
-                        Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.spacedBy(12.dp),
-                    ) {
-                        FeatureCard(
-                            Modifier.weight(1f),
-                            icon = Icons.Default.Animation,
-                            title = "83+ Presets",
-                            desc = "Fade, scale, slide, bounce, flip, spring — one line to animate anything.",
-                        )
-                        FeatureCard(
-                            Modifier.weight(1f),
-                            icon = Icons.Default.AutoAwesome,
-                            title = "Effect DSL",
-                            desc = "Combine primitives with the + operator. Infinite possibilities.",
-                        )
-                        FeatureCard(
-                            Modifier.weight(1f),
-                            icon = Icons.Default.AccessibilityNew,
-                            title = "A11y Ready",
-                            desc = "Respects OS reduced-motion. Fine-grained policy control built in.",
-                        )
-                    }
-                }
+            // ─── Design Philosophy ───
+            Box(Modifier.canimation(visible = stage >= 1, effect = Canimation.Fade.Up)) {
+                PhilosophySection()
             }
 
-            // ─── Installation ───
-            Box(Modifier.canimationEnter(visible = stage >= 2, preset = CanimationPreset.FadeUp)) {
-                DocSection("Installation", "Add canimation to your Gradle project") {
-                    CodeBlock("""// build.gradle.kts (commonMain)
-dependencies {
-    implementation("io.github.canimation:canimation-core:<version>")
-    implementation("io.github.canimation:canimation-presets:<version>")
-
-    // Optional
-    implementation("io.github.canimation:canimation-a11y:<version>")
-    implementation("io.github.canimation:canimation-diagnostics:<version>")
-}""")
-                }
+            // ─── Core Principles ───
+            Box(Modifier.canimation(visible = stage >= 3, effect = Canimation.Fade.Up)) {
+                CorePrinciplesSection()
             }
 
-            // ─── Quick Start — 3 Steps ───
-            Box(Modifier.canimationEnter(visible = stage >= 3, preset = CanimationPreset.FadeUp)) {
-                DocSection("Quick Start", "Three steps to your first animation") {
-                    Column(verticalArrangement = Arrangement.spacedBy(24.dp)) {
-                        // Step 1
-                        StepBlock(1, "Wrap your app with CanimationProvider",
-                            """CanimationProvider(
-    policy = CanimationPolicy.SystemAware,
-) {
-    MyApp()
-}""")
-                        // Step 2
-                        StepBlock(2, "Animate with the recommended Effect API",
-                            """var show by remember { mutableStateOf(false) }
-
-Box(
-    Modifier.canimation(
-        visible = show,
-        effect = Canimation.Fade.Up,
-    )
-) {
-    Text("Hello, animated world!")
-}""")
-                        // Step 3
-                        StepBlock(3, "Or use presets for quick results",
-                            """CanimationVisibility(
-    visible = show,
-    enterPreset = CanimationPreset.BounceIn,
-) {
-    Card { Text("Bounced in!") }
-}""")
-                        // Live demo
-                        DemoBox { QuickStartDemo() }
-                    }
-                }
+            // ─── Inspiration ───
+            Box(Modifier.canimation(visible = stage >= 5, effect = Canimation.Fade.Up)) {
+                InspirationSection()
             }
 
-            // ─── Recommended API: Modifier.canimation() ───
-            Box(Modifier.canimationEnter(visible = stage >= 4, preset = CanimationPreset.FadeUp)) {
-                DocSection(
-                    "Modifier.canimation()  ✨",
-                    "The recommended API — compose effects with the + operator",
-                ) {
-                    Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
-                        Text(
-                            "Use Canimation.* namespace or build custom effects from primitives.",
-                            style = MaterialTheme.typography.bodyMedium,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant,
-                        )
-                        CodeBlock("""// Namespace shortcuts
-Modifier.canimation(visible = true, effect = Canimation.Fade.Up)
-Modifier.canimation(visible = true, effect = Canimation.Scale.Pop)
-
-// Combine freely with +
-Modifier.canimation(
-    visible = true,
-    effect = Canimation.Fade.In + Canimation.Scale.In
-                + CanimationEffect.rotate(-10f),
-)
-
-// Build from primitives
-val custom = CanimationEffect.fade() +
-    CanimationEffect.slideUp(16.dp) +
-    CanimationEffect.scale(0.9f)
-Modifier.canimation(visible = true, effect = custom)""")
-                        ParamTable(listOf(
-                            Triple("visible", "Boolean", "Controls enter/exit animation"),
-                            Triple("effect", "CanimationEffect", "Composable effect — combine with + operator"),
-                        ))
-                        DemoBox { CanimationEffectDemo() }
-                    }
-                }
+            // ─── What Sets Us Apart ───
+            Box(Modifier.canimation(visible = stage >= 7, effect = Canimation.Fade.Up)) {
+                DifferentiatorsSection()
             }
 
-            // ─── Modifier.canimationTransition() ───
-            Box(Modifier.canimationEnter(visible = stage >= 5, preset = CanimationPreset.FadeUp)) {
-                DocSection(
-                    "Modifier.canimationTransition()",
-                    "Separate enter and exit effects for full control",
-                ) {
-                    Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
-                        CodeBlock("""Modifier.canimationTransition(
-    visible = isVisible,
-    enter = Canimation.Fade.Up,
-    exit = Canimation.Fade.Down,    // null = reverse enter
-)""")
-                        ParamTable(listOf(
-                            Triple("visible", "Boolean", "Controls direction"),
-                            Triple("enter", "CanimationEffect", "Enter effect"),
-                            Triple("exit", "CanimationEffect?", "Exit effect (null reverses enter)"),
-                        ))
-                    }
-                }
+            // ─── Vision & Roadmap ───
+            Box(Modifier.canimation(visible = stage >= 9, effect = Canimation.Fade.Up)) {
+                VisionSection()
             }
 
-            // ─── CanimationEffect Builder ───
-            Box(Modifier.canimationEnter(visible = stage >= 6, preset = CanimationPreset.FadeUp)) {
-                DocSection(
-                    "CanimationEffect Primitives",
-                    "Build blocks for the + operator — combine any number of these",
-                ) {
-                    Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
-                        PrimitiveGrid()
-                        CodeBlock("""// All primitives
-CanimationEffect.fade(from = 0f, to = 1f)
-CanimationEffect.slideUp(offset = 16.dp)
-CanimationEffect.slideDown(offset = 16.dp)
-CanimationEffect.slideLeft(offset = 24.dp)
-CanimationEffect.slideRight(offset = 24.dp)
-CanimationEffect.scale(from = 0.92f, to = 1f)
-CanimationEffect.pop(from = 0.8f)
-CanimationEffect.rotate(fromDegrees = -15f)
-CanimationEffect.spin(fromDegrees = -360f)
-CanimationEffect.zoom(from = 0.5f)
-CanimationEffect.bounce()
-CanimationEffect.duration(ms = 400)
-CanimationEffect.easing(myEasing)""")
-                    }
-                }
+            // ─── Quick Start (concise) ───
+            Box(Modifier.canimation(visible = stage >= 11, effect = Canimation.Fade.Up)) {
+                QuickStartSection()
             }
 
-            // ─── Canimation Namespace ───
-            Box(Modifier.canimationEnter(visible = stage >= 7, preset = CanimationPreset.FadeUp)) {
-                DocSection(
-                    "Canimation Namespace",
-                    "Pre-built effect combos — IDE autocomplete friendly",
-                ) {
-                    Column(verticalArrangement = Arrangement.spacedBy(14.dp)) {
-                        NamespaceRow("Canimation.Fade", listOf("In", "Up", "Down", "Left", "Right", "Gentle", "UpBig", "DownBig"))
-                        NamespaceRow("Canimation.Scale", listOf("In", "Up", "Pop", "Zoom", "Expand", "Shrink"))
-                        NamespaceRow("Canimation.Slide", listOf("Left", "Right", "Up", "Down", "LeftBig", "RightBig"))
-                        NamespaceRow("Canimation.Rotate", listOf("In", "Clockwise", "Spin"))
-                        NamespaceRow("Canimation.Bounce", listOf("In", "Down", "Up"))
-                        NamespaceRow("Canimation.Spring", listOf("In", "Up"))
-                        NamespaceRow("Canimation.Flip", listOf("In", "Up"))
-                    }
-                }
+            // ─── API Overview (compact) ───
+            Box(Modifier.canimation(visible = stage >= 13, effect = Canimation.Fade.Up)) {
+                ApiOverviewSection()
             }
 
-            // ─── Classic: CanimationVisibility ───
-            Box(Modifier.canimationEnter(visible = stage >= 8, preset = CanimationPreset.FadeUp)) {
-                DocSection(
-                    "CanimationVisibility",
-                    "AnimatedVisibility wrapper with preset-based enter/exit",
-                ) {
-                    Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
-                        CodeBlock("""CanimationVisibility(
-    visible = visible,
-    enterPreset = CanimationPreset.BounceIn,
-    exitPreset = CanimationPreset.FadeDown,
-) {
-    Text("Content here")
-}""")
-                        ParamTable(listOf(
-                            Triple("visible", "Boolean", "Controls show/hide"),
-                            Triple("enterPreset", "CanimationPreset", "Preset for enter transition"),
-                            Triple("exitPreset", "CanimationPreset", "Preset for exit (defaults to enter)"),
-                        ))
-                        DemoBox { VisibilityApiDemo() }
-                    }
-                }
-            }
-
-            // ─── Classic: Modifier.canimationEnter ───
-            Box(Modifier.canimationEnter(visible = stage >= 9, preset = CanimationPreset.FadeUp)) {
-                DocSection(
-                    "Modifier.canimationEnter",
-                    "Modifier-based enter animation — great for lists and lazy layouts",
-                ) {
-                    Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
-                        CodeBlock("""items.forEachIndexed { i, item ->
-    var show by remember { mutableStateOf(false) }
-    LaunchedEffect(Unit) { delay(i * 60L); show = true }
-
-    Card(
-        Modifier.canimationEnter(
-            visible = show,
-            preset = CanimationPreset.FadeUp,
-        )
-    ) { Text(item.name) }
-}""")
-                        DemoBox { EnterModifierDemo() }
-                    }
-                }
-            }
-
-            // ─── Modifier.canimationEmphasize ───
-            Box(Modifier.canimationEnter(visible = stage >= 10, preset = CanimationPreset.FadeUp)) {
-                DocSection(
-                    "Modifier.canimationEmphasize",
-                    "Attention animations — pulse, tada, wobble and more",
-                ) {
-                    Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
-                        CodeBlock("""Button(
-    modifier = Modifier.canimationEmphasize(
-        active = hasNotification,
-        preset = CanimationPreset.Pulse,
-    ),
-    onClick = { /* ... */ },
-) { Text("Notifications") }""")
-                        DemoBox { EmphasizeDemo() }
-                    }
-                }
-            }
-
-            // ─── CanimationProvider ───
-            Box(Modifier.canimationEnter(visible = stage >= 11, preset = CanimationPreset.FadeUp)) {
-                DocSection(
-                    "CanimationProvider",
-                    "Global motion policy — a11y control for your entire app",
-                ) {
-                    Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
-                        CodeBlock("""CanimationProvider(
-    policy = CanimationPolicy.SystemAware,
-) { App() }
-
-// Policies:
-// SystemAware    — Follows OS reduced-motion
-// AlwaysFull     — Full animations always
-// AlwaysReduced  — Reduced motion always
-// AlwaysOff      — Disable all animations""")
-                        DemoBox { PolicyDemo() }
-                    }
-                }
-            }
-
-            // ─── Presets Reference ───
-            Box(Modifier.canimationEnter(visible = stage >= 12, preset = CanimationPreset.FadeUp)) {
-                DocSection(
-                    "Preset Reference",
-                    "83+ built-in presets organized by category",
-                ) {
-                    Column(verticalArrangement = Arrangement.spacedBy(14.dp)) {
-                        PresetRow("Fade", listOf("Fade", "FadeUp", "FadeDown", "FadeInLeft", "FadeInRight", "GentleFade", "FadeThrough"))
-                        PresetRow("Scale", listOf("ScaleIn", "ScaleUp", "ZoomIn", "ZoomOut", "Pop", "Expand"))
-                        PresetRow("Slide", listOf("SlideLeft", "SlideRight", "SlideUp", "SlideDown", "SharedAxisX", "SharedAxisY"))
-                        PresetRow("Bounce", listOf("BounceIn", "BounceInDown", "BounceInUp", "BounceInLeft", "BounceInRight"))
-                        PresetRow("Rotate", listOf("RotateIn", "RotateClockwise", "SpinIn", "RotateScale"))
-                        PresetRow("Flip", listOf("FlipIn", "FlipInY", "FlipUp", "FlipDown", "TiltIn"))
-                        PresetRow("Spring", listOf("SpringIn", "SpringSlideUp", "SpringFadeIn", "BackInUp"))
-                        PresetRow("Emphasis", listOf("Pulse", "HeartBeat", "Tada", "Wobble", "Swing", "RubberBand"))
-                        PresetRow("Special", listOf("JackInTheBox", "RollIn", "LightSpeedInRight", "Snap"))
-                    }
-                }
-            }
-
-            // ─── Module Architecture ───
-            Box(Modifier.canimationEnter(visible = stage >= 13, preset = CanimationPreset.FadeUp)) {
-                DocSection("Modules", "Modular architecture — import only what you need") {
-                    Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                        ModuleRow("canimation-core", "Core engine, CanimationEffect, Modifier.canimation()")
-                        ModuleRow("canimation-presets", "83+ ready-made presets (CanimationPreset enum)")
-                        ModuleRow("canimation-a11y", "Accessibility helpers, reduced-motion detection")
-                        ModuleRow("canimation-diagnostics", "Debug overlays, animation performance logging")
-                        ModuleRow("canimation-test", "Testing utilities for animation assertions")
-                    }
-                }
+            // ─── Modules ───
+            Box(Modifier.canimation(visible = stage >= 15, effect = Canimation.Fade.Up)) {
+                ModulesSection()
             }
 
             // ─── Platform Support ───
-            Box(Modifier.canimationEnter(visible = stage >= 14, preset = CanimationPreset.FadeUp)) {
-                Surface(
-                    shape = RoundedCornerShape(16.dp),
-                    color = MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.3f),
-                    border = BorderStroke(1.dp, MaterialTheme.colorScheme.primary.copy(alpha = 0.2f)),
-                    modifier = Modifier.fillMaxWidth(),
-                ) {
-                    Column(
-                        Modifier.padding(24.dp),
-                        horizontalAlignment = Alignment.CenterHorizontally,
-                        verticalArrangement = Arrangement.spacedBy(12.dp),
-                    ) {
-                        Text(
-                            "Compose Multiplatform",
-                            style = MaterialTheme.typography.titleMedium,
-                            fontWeight = FontWeight.Bold,
-                        )
-                        FlowRow(
-                            horizontalArrangement = Arrangement.spacedBy(8.dp),
-                            verticalArrangement = Arrangement.spacedBy(8.dp),
-                        ) {
-                            listOf("Android", "iOS", "Desktop (JVM)", "Web (JS)", "Web (WasmJs)").forEach {
-                                Surface(
-                                    shape = RoundedCornerShape(50),
-                                    color = MaterialTheme.colorScheme.primary.copy(alpha = 0.15f),
-                                ) {
-                                    Text(
-                                        it,
-                                        Modifier.padding(horizontal = 14.dp, vertical = 6.dp),
-                                        style = MaterialTheme.typography.labelMedium,
-                                        color = MaterialTheme.colorScheme.primary,
-                                        fontWeight = FontWeight.SemiBold,
-                                    )
-                                }
-                            }
-                        }
-                    }
-                }
+            Box(Modifier.canimation(visible = stage >= 17, effect = Canimation.Fade.Up)) {
+                PlatformSection()
             }
 
             Spacer(Modifier.height(40.dp))
@@ -474,45 +173,589 @@ CanimationEffect.easing(myEasing)""")
     }
 }
 
-// ──────────────────────────── Shared Components ────────────────────────────
+// ━━━━━━━━━━━━━━━━━━━━━━━━ Design Philosophy ━━━━━━━━━━━━━━━━━━━━━━━━
 
 @Composable
-private fun SectionLabel(text: String) {
-    Text(
-        text,
-        style = MaterialTheme.typography.labelMedium,
-        color = MaterialTheme.colorScheme.primary,
-        fontWeight = FontWeight.Bold,
-        letterSpacing = 1.5.sp,
-    )
+private fun PhilosophySection() {
+    DocSection(
+        "Design Philosophy",
+        "What we believe about animation and why canimation exists",
+    ) {
+        Column(verticalArrangement = Arrangement.spacedBy(20.dp)) {
+            BodyText(
+                "Animation is not decoration — it is communication. Every transition, every entrance, " +
+                "every emphasis tells the user something: where they came from, where they're going, " +
+                "and what matters right now. canimation was born from the conviction that great animation " +
+                "should be as easy to add as a color or a font, not a week-long engineering project."
+            )
+            BodyText(
+                "We studied how the best animation libraries — Motion.dev, Animate.css, AnimXYZ, " +
+                "and Material Design Motion — make developers productive and users delighted. We took " +
+                "those lessons and rebuilt them for the Compose Multiplatform ecosystem, where animations " +
+                "have traditionally required deep knowledge of coroutines, state machines, and platform-specific APIs."
+            )
+
+            // Live philosophy demo: animation as communication
+            PhilosophyDemo()
+
+            BodyText(
+                "The result is a library where a single line — Modifier.canimation(visible, Canimation.Fade.Up) — " +
+                "gives you production-quality motion that respects accessibility settings, adapts to platform conventions, " +
+                "and composes naturally with other effects via the + operator."
+            )
+        }
+    }
 }
 
 @Composable
-private fun FeatureCard(
+private fun PhilosophyDemo() {
+    DemoBox("Animation as Communication") {
+        var step by remember { mutableIntStateOf(0) }
+        LaunchedEffect(Unit) {
+            while (true) { for (i in 0..3) { delay(if (i == 0) 800L else 1200L); step = i }; delay(1600); step = -1; delay(600) }
+        }
+        Column(
+            Modifier.fillMaxWidth().height(120.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center,
+        ) {
+            Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+                listOf(
+                    "Origin" to Canimation.Fade.Left,
+                    "Focus" to Canimation.Scale.Pop,
+                    "Destination" to Canimation.Fade.Right,
+                ).forEachIndexed { i, (label, effect) ->
+                    Surface(
+                        shape = RoundedCornerShape(10.dp),
+                        color = when (i) {
+                            0 -> MaterialTheme.colorScheme.secondaryContainer
+                            1 -> MaterialTheme.colorScheme.primaryContainer
+                            else -> MaterialTheme.colorScheme.tertiaryContainer
+                        },
+                        border = BorderStroke(1.dp, when (i) {
+                            0 -> MaterialTheme.colorScheme.secondary.copy(alpha = 0.3f)
+                            1 -> MaterialTheme.colorScheme.primary.copy(alpha = 0.3f)
+                            else -> MaterialTheme.colorScheme.tertiary.copy(alpha = 0.3f)
+                        }),
+                        modifier = Modifier.canimation(visible = step >= i, effect = effect),
+                    ) {
+                        Text(
+                            label,
+                            Modifier.padding(horizontal = 16.dp, vertical = 10.dp),
+                            style = MaterialTheme.typography.labelMedium,
+                            fontWeight = FontWeight.Bold,
+                            color = when (i) {
+                                0 -> MaterialTheme.colorScheme.onSecondaryContainer
+                                1 -> MaterialTheme.colorScheme.onPrimaryContainer
+                                else -> MaterialTheme.colorScheme.onTertiaryContainer
+                            },
+                        )
+                    }
+                }
+            }
+            Spacer(Modifier.height(8.dp))
+            Text(
+                when {
+                    step < 0 -> ""
+                    step == 0 -> "← Where you came from"
+                    step == 1 -> "◉ What matters now"
+                    else -> "→ Where you're going"
+                },
+                style = MaterialTheme.typography.labelSmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
+        }
+    }
+}
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━ Core Principles ━━━━━━━━━━━━━━━━━━━━━━━━
+
+@OptIn(ExperimentalLayoutApi::class)
+@Composable
+private fun CorePrinciplesSection() {
+    DocSection("Core Principles", "The values that shape every API decision") {
+        Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
+            Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+                PrincipleCard(
+                    Modifier.weight(1f),
+                    icon = Icons.Default.Tune,
+                    title = "Composability Over Configuration",
+                    body = "Instead of massive parameter lists, combine small focused effects with +. " +
+                           "CanimationEffect.fade() + CanimationEffect.slideUp() is more expressive than " +
+                           "any config object. Build exactly what you need from simple building blocks.",
+                    effect = Canimation.Fade.Up,
+                )
+                PrincipleCard(
+                    Modifier.weight(1f),
+                    icon = Icons.Default.AccessibilityNew,
+                    title = "Accessibility Is Not Optional",
+                    body = "Every animation respects CanimationPolicy. When the OS says 'reduce motion', " +
+                           "we listen automatically. No extra code. No opt-in. It's built into the core engine, " +
+                           "not bolted on as an afterthought.",
+                    effect = Canimation.Scale.Pop,
+                )
+            }
+            Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+                PrincipleCard(
+                    Modifier.weight(1f),
+                    icon = Icons.Default.Lightbulb,
+                    title = "Progressive Disclosure",
+                    body = "Start with Modifier.canimation(visible, Canimation.Fade.Up). Need more control? " +
+                           "Use CanimationEffect primitives. Need full control? Drop down to CanimationSpec. " +
+                           "Simple things stay simple, complex things stay possible.",
+                    effect = Canimation.Slide.Up,
+                )
+                PrincipleCard(
+                    Modifier.weight(1f),
+                    icon = Icons.Default.Visibility,
+                    title = "Show, Don't Tell",
+                    body = "Animation should explain itself. That's why this entire documentation site is built " +
+                           "with canimation — every card entrance, every demo, every transition you see here uses " +
+                           "the same API you'll use in your app.",
+                    effect = Canimation.Bounce.In,
+                )
+            }
+        }
+    }
+}
+
+@Composable
+private fun PrincipleCard(
     modifier: Modifier = Modifier,
     icon: ImageVector,
     title: String,
-    desc: String,
+    body: String,
+    effect: CanimationEffect,
 ) {
+    var pulse by remember { mutableStateOf(false) }
+    LaunchedEffect(Unit) { delay(500); while (true) { pulse = true; delay(3000); pulse = false; delay(800) } }
+
     Card(
         modifier = modifier,
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),
         border = BorderStroke(1.dp, MaterialTheme.colorScheme.outlineVariant),
     ) {
-        Column(Modifier.padding(20.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
-            Surface(
-                shape = CircleShape,
-                color = MaterialTheme.colorScheme.primary.copy(alpha = 0.12f),
-                modifier = Modifier.size(40.dp),
-            ) {
-                Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                    Icon(icon, null, tint = MaterialTheme.colorScheme.primary, modifier = Modifier.size(22.dp))
+        Column(Modifier.padding(20.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
+            Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+                Surface(
+                    shape = CircleShape,
+                    color = MaterialTheme.colorScheme.primary.copy(alpha = 0.12f),
+                    modifier = Modifier.size(36.dp).canimation(visible = pulse, effect = effect),
+                ) {
+                    Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                        Icon(icon, null, tint = MaterialTheme.colorScheme.primary, modifier = Modifier.size(20.dp))
+                    }
                 }
+                Text(title, style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold)
             }
-            Text(title, style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold)
-            Text(desc, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant, lineHeight = 18.sp)
+            Text(body, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant, lineHeight = 18.sp)
         }
     }
+}
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━ Inspiration ━━━━━━━━━━━━━━━━━━━━━━━━
+
+@Composable
+private fun InspirationSection() {
+    DocSection("Inspiration & References", "Standing on the shoulders of giants") {
+        Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
+            BodyText(
+                "canimation didn't emerge in a vacuum. We carefully studied the animation ecosystem " +
+                "across web, mobile, and design systems to create something that feels familiar yet " +
+                "uniquely suited for Compose Multiplatform."
+            )
+
+            InspirationCard(
+                name = "Motion.dev (Framer Motion)",
+                lesson = "The composable, declarative API pattern. Motion.dev proved that animation primitives " +
+                         "should compose together freely, not be rigid presets. Our CanimationEffect + operator " +
+                         "and the Canimation.* namespace are directly inspired by this philosophy.",
+                demoEffect = Canimation.Fade.Up + CanimationEffect.scale(0.95f),
+            )
+            InspirationCard(
+                name = "Animate.css",
+                lesson = "The power of named presets. Animate.css showed that developers want ready-made " +
+                         "animations they can apply with a single class name. Our 83+ CanimationPreset entries " +
+                         "(FadeUp, BounceIn, SpringSlideUp) follow this exact pattern — one line, done.",
+                demoEffect = Canimation.Bounce.In,
+            )
+            InspirationCard(
+                name = "AnimXYZ",
+                lesson = "Compositional CSS animation utilities with stagger and multi-axis control. " +
+                         "AnimXYZ's xyz-appear/xyz-in model influenced our enter/exit distinction and " +
+                         "our support for multi-axis animation composition.",
+                demoEffect = Canimation.Slide.Left + Canimation.Fade.In,
+            )
+            InspirationCard(
+                name = "Material Design Motion",
+                lesson = "Meaningful, purposeful transitions with container transform and shared axis. " +
+                         "We adopted Material's philosophy that animation should convey spatial relationships " +
+                         "and hierarchy. Our SharedAxisX/Y presets come directly from Material Motion.",
+                demoEffect = Canimation.Scale.Zoom,
+            )
+            InspirationCard(
+                name = "Kotlin / Ktor / Koin Documentation",
+                lesson = "Clean, developer-friendly documentation with progressive complexity. " +
+                         "These sites proved that Kotlin developers expect concise, well-organized docs " +
+                         "with runnable examples — exactly what this showcase aims to be.",
+                demoEffect = Canimation.Fade.Gentle,
+            )
+        }
+    }
+}
+
+@Composable
+private fun InspirationCard(name: String, lesson: String, demoEffect: CanimationEffect) {
+    var vis by remember { mutableStateOf(false) }
+    LaunchedEffect(Unit) { delay(300); while (true) { vis = true; delay(2800); vis = false; delay(700) } }
+
+    Surface(
+        shape = RoundedCornerShape(12.dp),
+        color = MaterialTheme.colorScheme.surface,
+        border = BorderStroke(1.dp, MaterialTheme.colorScheme.outlineVariant),
+        modifier = Modifier.fillMaxWidth(),
+    ) {
+        Row(Modifier.padding(16.dp), horizontalArrangement = Arrangement.spacedBy(16.dp)) {
+            // Live demo
+            Box(
+                Modifier.size(80.dp).clip(RoundedCornerShape(8.dp))
+                    .background(MaterialTheme.colorScheme.surfaceVariant),
+                contentAlignment = Alignment.Center,
+            ) {
+                Surface(
+                    shape = RoundedCornerShape(8.dp),
+                    color = MaterialTheme.colorScheme.primary.copy(alpha = 0.15f),
+                    border = BorderStroke(1.dp, MaterialTheme.colorScheme.primary.copy(alpha = 0.3f)),
+                    modifier = Modifier.size(40.dp).canimation(visible = vis, effect = demoEffect),
+                ) {}
+            }
+            Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(6.dp)) {
+                Text(name, style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.primary)
+                Text(lesson, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant, lineHeight = 18.sp)
+            }
+        }
+    }
+}
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━ What Sets Us Apart ━━━━━━━━━━━━━━━━━━━━━━━━
+
+@Composable
+private fun DifferentiatorsSection() {
+    DocSection("What Sets canimation Apart", "More than just another animation library") {
+        Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
+            val items = listOf(
+                Triple("Compose-Native", "Not a port from CSS or web. Built from the ground up for Compose's " +
+                    "graphicsLayer, state-driven rendering, and recomposition model. No wrappers, no bridges.", Canimation.Fade.Up),
+                Triple("Truly Multiplatform", "One API, five targets. Android, iOS, Desktop, Web (JS), " +
+                    "Web (WasmJs). Same animation code runs everywhere without platform-specific branches.", Canimation.Scale.Pop),
+                Triple("Effect Algebra", "The + operator isn't syntactic sugar — it's a principled algebraic " +
+                    "composition. Effects combine predictably: properties from the right override the left, " +
+                    "duration takes the maximum. No surprises.", Canimation.Slide.Left + Canimation.Fade.In),
+                Triple("Three Layers of Control", "Quick: CanimationPreset.FadeUp (one line). Medium: " +
+                    "Canimation.Fade.Up + CanimationEffect.scale(0.9f) (composable). Full: CanimationSpec " +
+                    "with custom ranges, easing, and duration (total control).", Canimation.Spring.Up),
+                Triple("A11y by Default", "CanimationProvider + CanimationPolicy means accessibility is not " +
+                    "a feature flag. It's the default behavior. SystemAware reads the OS preference automatically. " +
+                    "Reduced mode simplifies, Off mode disables — your animation code doesn't change.", Canimation.Fade.Gentle),
+            )
+
+            items.forEachIndexed { i, (title, desc, effect) ->
+                var vis by remember { mutableStateOf(false) }
+                LaunchedEffect(Unit) { delay(i * 200L + 400L); vis = true }
+                DifferentiatorRow(title, desc, effect, vis)
+            }
+        }
+    }
+}
+
+@Composable
+private fun DifferentiatorRow(title: String, desc: String, effect: CanimationEffect, visible: Boolean) {
+    Surface(
+        shape = RoundedCornerShape(12.dp),
+        color = MaterialTheme.colorScheme.surface,
+        border = BorderStroke(1.dp, MaterialTheme.colorScheme.outlineVariant),
+        modifier = Modifier.fillMaxWidth().canimation(visible = visible, effect = Canimation.Fade.Up),
+    ) {
+        Row(Modifier.padding(16.dp), verticalAlignment = Alignment.Top, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+            var pulse by remember { mutableStateOf(false) }
+            LaunchedEffect(Unit) { while (true) { pulse = true; delay(2500); pulse = false; delay(700) } }
+            Surface(
+                shape = RoundedCornerShape(8.dp),
+                color = MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.5f),
+                modifier = Modifier.size(48.dp).canimation(visible = pulse, effect = effect),
+            ) {
+                Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                    Icon(Icons.Default.AutoAwesome, null, tint = MaterialTheme.colorScheme.primary, modifier = Modifier.size(20.dp))
+                }
+            }
+            Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(4.dp)) {
+                Text(title, style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold)
+                Text(desc, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant, lineHeight = 18.sp)
+            }
+        }
+    }
+}
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━ Vision & Roadmap ━━━━━━━━━━━━━━━━━━━━━━━━
+
+@Composable
+private fun VisionSection() {
+    DocSection("Vision & Roadmap", "Where canimation is heading") {
+        Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
+            BodyText(
+                "canimation aims to be the definitive animation toolkit for Compose Multiplatform — " +
+                "the way Animate.css became the go-to for web animations and Motion.dev became the " +
+                "standard for React motion. We're building toward a world where adding beautiful, " +
+                "accessible animation to any Compose app takes seconds, not hours."
+            )
+
+            SectionLabel("NOW")
+            RoadmapItem("83+ animation presets covering entrance, emphasis, and attention patterns")
+            RoadmapItem("CanimationEffect DSL with algebraic + composition")
+            RoadmapItem("Full accessibility support with CanimationPolicy")
+            RoadmapItem("Five-platform support: Android, iOS, Desktop, Web JS, Web WasmJs")
+            RoadmapItem("Diagnostic overlay for animation performance monitoring")
+
+            SectionLabel("NEXT")
+            RoadmapItem("Layout animations — shared element transitions and container transforms")
+            RoadmapItem("Gesture-driven animations — spring-based drag, swipe, and fling")
+            RoadmapItem("Scroll-linked animations — parallax, reveal, and pinning")
+            RoadmapItem("Stagger orchestration — automatic stagger for list items")
+            RoadmapItem("Animation timeline — sequence multiple effects with precise timing")
+
+            SectionLabel("FUTURE")
+            RoadmapItem("Visual animation editor — design animations graphically, export as code")
+            RoadmapItem("AI-assisted motion — suggest appropriate animations based on context")
+            RoadmapItem("Design system integration — Material 3, iOS HIG, and custom token presets")
+            RoadmapItem("Performance profiling — identify and optimize expensive animation paths")
+        }
+    }
+}
+
+@Composable
+private fun RoadmapItem(text: String) {
+    Row(verticalAlignment = Alignment.Top, horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+        Icon(Icons.Default.ChevronRight, null, tint = MaterialTheme.colorScheme.primary, modifier = Modifier.size(18.dp).padding(top = 2.dp))
+        Text(text, style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant, lineHeight = 22.sp)
+    }
+}
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━ Quick Start (Compact) ━━━━━━━━━━━━━━━━━━━━━━━━
+
+@Composable
+private fun QuickStartSection() {
+    DocSection("Quick Start", "Three steps to your first animation") {
+        Column(verticalArrangement = Arrangement.spacedBy(20.dp)) {
+            StepBlock(1, "Add the dependency",
+                """// build.gradle.kts (commonMain)
+implementation("io.github.canimation:canimation-core:<version>")
+implementation("io.github.canimation:canimation-presets:<version>")""")
+            StepBlock(2, "Wrap your app with CanimationProvider",
+                """CanimationProvider(policy = CanimationPolicy.SystemAware) {
+    MyApp()
+}""")
+            StepBlock(3, "Animate anything with one line",
+                """// Recommended: Effect API
+Modifier.canimation(visible = show, effect = Canimation.Fade.Up)
+
+// Classic: Preset API
+CanimationVisibility(visible = show, enterPreset = CanimationPreset.BounceIn) {
+    Card { Text("Hello!") }
+}""")
+            DemoBox("Effect API in action") { EffectDemo() }
+        }
+    }
+}
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━ API Overview (Compact) ━━━━━━━━━━━━━━━━━━━━━━━━
+
+@OptIn(ExperimentalLayoutApi::class)
+@Composable
+private fun ApiOverviewSection() {
+    DocSection("API Surface", "Every way to animate — pick the level of control you need") {
+        Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
+            ApiCard(
+                "✨ Modifier.canimation(visible, effect)",
+                "RECOMMENDED",
+                "Compose effects with the + operator. Use Canimation.* namespace for presets.",
+                """Modifier.canimation(visible = true, effect = Canimation.Fade.Up)
+Modifier.canimation(visible = true, effect = Canimation.Scale.Pop + Canimation.Fade.In)""",
+            )
+            ApiCard(
+                "Modifier.canimationTransition(visible, enter, exit)",
+                "ADVANCED",
+                "Separate enter and exit effects for asymmetric transitions.",
+                """Modifier.canimationTransition(
+    visible = isVisible,
+    enter = Canimation.Fade.Up,
+    exit = Canimation.Fade.Down,
+)""",
+            )
+            ApiCard(
+                "CanimationVisibility(visible, enterPreset)",
+                "CLASSIC",
+                "AnimatedVisibility wrapper with named presets.",
+                """CanimationVisibility(
+    visible = visible,
+    enterPreset = CanimationPreset.BounceIn,
+) { Text("Content") }""",
+            )
+            ApiCard(
+                "Modifier.canimationEnter(visible, preset)",
+                "LISTS",
+                "Perfect for lazy layouts and staggered list items.",
+                """Card(Modifier.canimationEnter(visible = show, preset = CanimationPreset.FadeUp)) {
+    Text(item.name)
+}""",
+            )
+            ApiCard(
+                "Modifier.canimationEmphasize(active, preset)",
+                "ATTENTION",
+                "Pulse, Tada, Wobble — draw attention to interactive elements.",
+                """Modifier.canimationEmphasize(active = hasNew, preset = CanimationPreset.Pulse)""",
+            )
+
+            // Canimation Namespace reference
+            Text("Canimation Namespace", style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold)
+            Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
+                NamespaceRow("Canimation.Fade", listOf("In", "Up", "Down", "Left", "Right", "Gentle", "UpBig", "DownBig"))
+                NamespaceRow("Canimation.Scale", listOf("In", "Up", "Pop", "Zoom", "Expand", "Shrink"))
+                NamespaceRow("Canimation.Slide", listOf("Left", "Right", "Up", "Down", "LeftBig", "RightBig"))
+                NamespaceRow("Canimation.Rotate", listOf("In", "Clockwise", "Spin"))
+                NamespaceRow("Canimation.Bounce", listOf("In", "Down", "Up"))
+                NamespaceRow("Canimation.Spring", listOf("In", "Up"))
+                NamespaceRow("Canimation.Flip", listOf("In", "Up"))
+            }
+
+            // Effect primitives
+            Text("CanimationEffect Primitives", style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold)
+            FlowRow(
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                verticalArrangement = Arrangement.spacedBy(8.dp),
+            ) {
+                listOf(
+                    "fade()", "slideUp()", "slideDown()", "slideLeft()", "slideRight()",
+                    "scale()", "pop()", "rotate()", "spin()", "zoom()", "bounce()",
+                    "duration(ms)", "easing(e)",
+                ).forEach { name ->
+                    Surface(
+                        shape = RoundedCornerShape(6.dp),
+                        color = MaterialTheme.colorScheme.tertiary.copy(alpha = 0.1f),
+                    ) {
+                        Text(
+                            name,
+                            Modifier.padding(horizontal = 10.dp, vertical = 4.dp),
+                            fontFamily = FontFamily.Monospace,
+                            style = MaterialTheme.typography.labelSmall,
+                            color = MaterialTheme.colorScheme.tertiary,
+                            fontWeight = FontWeight.Bold,
+                        )
+                    }
+                }
+            }
+        }
+    }
+}
+
+@Composable
+private fun ApiCard(signature: String, badge: String, desc: String, code: String) {
+    Surface(
+        shape = RoundedCornerShape(10.dp),
+        color = MaterialTheme.colorScheme.surface,
+        border = BorderStroke(1.dp, MaterialTheme.colorScheme.outlineVariant),
+        modifier = Modifier.fillMaxWidth(),
+    ) {
+        Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+            Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                Text(signature, fontFamily = FontFamily.Monospace, style = MaterialTheme.typography.labelMedium, fontWeight = FontWeight.Bold, modifier = Modifier.weight(1f))
+                Surface(
+                    shape = RoundedCornerShape(4.dp),
+                    color = MaterialTheme.colorScheme.primary.copy(alpha = 0.12f),
+                ) {
+                    Text(badge, Modifier.padding(horizontal = 8.dp, vertical = 2.dp), style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.primary, fontWeight = FontWeight.Bold)
+                }
+            }
+            Text(desc, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+            CodeBlock(code)
+        }
+    }
+}
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━ Modules ━━━━━━━━━━━━━━━━━━━━━━━━
+
+@Composable
+private fun ModulesSection() {
+    DocSection("Modules", "Modular architecture — import only what you need") {
+        Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+            ModuleRow("canimation-core", "Core engine, CanimationEffect, Modifier.canimation()", Icons.Default.Animation)
+            ModuleRow("canimation-presets", "83+ ready-made presets (CanimationPreset enum)", Icons.Default.AutoAwesome)
+            ModuleRow("canimation-a11y", "Accessibility helpers, reduced-motion detection", Icons.Default.AccessibilityNew)
+            ModuleRow("canimation-diagnostics", "Debug overlays, animation performance logging", Icons.Default.Tune)
+            ModuleRow("canimation-test", "Testing utilities for animation assertions", Icons.Default.Extension)
+        }
+    }
+}
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━ Platform ━━━━━━━━━━━━━━━━━━━━━━━━
+
+@OptIn(ExperimentalLayoutApi::class)
+@Composable
+private fun PlatformSection() {
+    Surface(
+        shape = RoundedCornerShape(16.dp),
+        color = MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.3f),
+        border = BorderStroke(1.dp, MaterialTheme.colorScheme.primary.copy(alpha = 0.2f)),
+        modifier = Modifier.fillMaxWidth(),
+    ) {
+        Column(
+            Modifier.padding(24.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.spacedBy(12.dp),
+        ) {
+            Text("Compose Multiplatform", style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
+            FlowRow(
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                verticalArrangement = Arrangement.spacedBy(8.dp),
+            ) {
+                val platforms = listOf(
+                    "Android" to Canimation.Fade.Up,
+                    "iOS" to Canimation.Fade.Left,
+                    "Desktop (JVM)" to Canimation.Scale.Pop,
+                    "Web (JS)" to Canimation.Fade.Right,
+                    "Web (WasmJs)" to Canimation.Bounce.In,
+                )
+                platforms.forEachIndexed { i, (name, effect) ->
+                    var vis by remember { mutableStateOf(false) }
+                    LaunchedEffect(Unit) { delay(i * 150L + 200L); vis = true }
+                    Surface(
+                        shape = RoundedCornerShape(50),
+                        color = MaterialTheme.colorScheme.primary.copy(alpha = 0.15f),
+                        modifier = Modifier.canimation(visible = vis, effect = effect),
+                    ) {
+                        Text(
+                            name,
+                            Modifier.padding(horizontal = 14.dp, vertical = 6.dp),
+                            style = MaterialTheme.typography.labelMedium,
+                            color = MaterialTheme.colorScheme.primary,
+                            fontWeight = FontWeight.SemiBold,
+                        )
+                    }
+                }
+            }
+        }
+    }
+}
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━ Shared Components ━━━━━━━━━━━━━━━━━━━━━━━━
+
+@Composable
+private fun SectionLabel(text: String) {
+    Text(text, style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.primary, fontWeight = FontWeight.Bold, letterSpacing = 1.5.sp)
+}
+
+@Composable
+private fun BodyText(text: String) {
+    Text(text, style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant, lineHeight = 24.sp)
 }
 
 @Composable
@@ -536,11 +779,7 @@ private fun DocSection(title: String, description: String, content: @Composable 
 @Composable
 private fun StepBlock(step: Int, title: String, code: String) {
     Row(verticalAlignment = Alignment.Top, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-        Surface(
-            shape = CircleShape,
-            color = MaterialTheme.colorScheme.primary,
-            modifier = Modifier.size(28.dp),
-        ) {
+        Surface(shape = CircleShape, color = MaterialTheme.colorScheme.primary, modifier = Modifier.size(28.dp)) {
             Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                 Text("$step", style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onPrimary, fontWeight = FontWeight.Bold)
             }
@@ -572,7 +811,7 @@ private fun CodeBlock(code: String) {
 }
 
 @Composable
-private fun DemoBox(content: @Composable () -> Unit) {
+private fun DemoBox(label: String, content: @Composable () -> Unit) {
     Surface(
         shape = RoundedCornerShape(12.dp),
         color = MaterialTheme.colorScheme.surface,
@@ -580,68 +819,8 @@ private fun DemoBox(content: @Composable () -> Unit) {
         modifier = Modifier.fillMaxWidth(),
     ) {
         Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
-            Text("LIVE DEMO", style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.primary, fontWeight = FontWeight.Bold, letterSpacing = 1.sp)
+            Text(label.uppercase(), style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.primary, fontWeight = FontWeight.Bold, letterSpacing = 1.sp)
             content()
-        }
-    }
-}
-
-@Composable
-private fun ParamTable(params: List<Triple<String, String, String>>) {
-    Card(
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
-        border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline.copy(alpha = 0.5f)),
-    ) {
-        Column(Modifier.padding(16.dp)) {
-            Row(Modifier.fillMaxWidth().padding(bottom = 8.dp), horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-                Text("Param", style = MaterialTheme.typography.labelMedium, fontWeight = FontWeight.Bold, modifier = Modifier.weight(1f))
-                Text("Type", style = MaterialTheme.typography.labelMedium, fontWeight = FontWeight.Bold, modifier = Modifier.weight(1f))
-                Text("Description", style = MaterialTheme.typography.labelMedium, fontWeight = FontWeight.Bold, modifier = Modifier.weight(2f))
-            }
-            HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant)
-            params.forEach { (name, type, desc) ->
-                Row(Modifier.fillMaxWidth().padding(vertical = 6.dp), horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-                    Text(name, fontFamily = FontFamily.Monospace, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.primary, modifier = Modifier.weight(1f))
-                    Text(type, fontFamily = FontFamily.Monospace, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.weight(1f))
-                    Text(desc, style = MaterialTheme.typography.bodySmall, modifier = Modifier.weight(2f))
-                }
-            }
-        }
-    }
-}
-
-@OptIn(ExperimentalLayoutApi::class)
-@Composable
-private fun PrimitiveGrid() {
-    val primitives = listOf(
-        "fade()" to "Alpha transition",
-        "slideUp()" to "Slide from below",
-        "slideDown()" to "Slide from above",
-        "slideLeft()" to "Slide from left",
-        "slideRight()" to "Slide from right",
-        "scale()" to "Scale transition",
-        "pop()" to "Overshoot scale",
-        "rotate()" to "Rotation entry",
-        "spin()" to "Full 360° spin",
-        "zoom()" to "Zoom + fade",
-        "bounce()" to "Bouncy entry",
-        "duration()" to "Custom timing",
-    )
-    FlowRow(
-        horizontalArrangement = Arrangement.spacedBy(8.dp),
-        verticalArrangement = Arrangement.spacedBy(8.dp),
-    ) {
-        primitives.forEach { (name, desc) ->
-            Surface(
-                shape = RoundedCornerShape(8.dp),
-                color = MaterialTheme.colorScheme.surface,
-                border = BorderStroke(1.dp, MaterialTheme.colorScheme.tertiary.copy(alpha = 0.3f)),
-            ) {
-                Column(Modifier.padding(10.dp)) {
-                    Text(name, fontFamily = FontFamily.Monospace, style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.tertiary, fontWeight = FontWeight.Bold)
-                    Text(desc, style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
-                }
-            }
         }
     }
 }
@@ -649,28 +828,12 @@ private fun PrimitiveGrid() {
 @Composable
 private fun NamespaceRow(namespace: String, members: List<String>) {
     Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-        Text(
-            namespace,
-            fontFamily = FontFamily.Monospace,
-            style = MaterialTheme.typography.labelMedium,
-            fontWeight = FontWeight.Bold,
-            color = MaterialTheme.colorScheme.tertiary,
-            modifier = Modifier.widthIn(min = 140.dp),
-        )
+        Text(namespace, fontFamily = FontFamily.Monospace, style = MaterialTheme.typography.labelMedium, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.tertiary, modifier = Modifier.widthIn(min = 140.dp))
         Icon(Icons.Default.ChevronRight, null, tint = MaterialTheme.colorScheme.outlineVariant, modifier = Modifier.size(16.dp))
         Row(Modifier.horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(6.dp)) {
             members.forEach { m ->
-                Surface(
-                    shape = RoundedCornerShape(4.dp),
-                    color = MaterialTheme.colorScheme.tertiary.copy(alpha = 0.1f),
-                ) {
-                    Text(
-                        ".$m",
-                        Modifier.padding(horizontal = 8.dp, vertical = 3.dp),
-                        fontFamily = FontFamily.Monospace,
-                        style = MaterialTheme.typography.labelSmall,
-                        color = MaterialTheme.colorScheme.tertiary,
-                    )
+                Surface(shape = RoundedCornerShape(4.dp), color = MaterialTheme.colorScheme.tertiary.copy(alpha = 0.1f)) {
+                    Text(".$m", Modifier.padding(horizontal = 8.dp, vertical = 3.dp), fontFamily = FontFamily.Monospace, style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.tertiary)
                 }
             }
         }
@@ -678,50 +841,18 @@ private fun NamespaceRow(namespace: String, members: List<String>) {
 }
 
 @Composable
-private fun PresetRow(category: String, presets: List<String>) {
-    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-        Surface(
-            shape = RoundedCornerShape(4.dp),
-            color = MaterialTheme.colorScheme.primary.copy(alpha = 0.12f),
-        ) {
-            Text(
-                category,
-                Modifier.padding(horizontal = 10.dp, vertical = 4.dp).widthIn(min = 70.dp),
-                style = MaterialTheme.typography.labelMedium,
-                fontWeight = FontWeight.Bold,
-                color = MaterialTheme.colorScheme.primary,
-            )
-        }
-        Row(Modifier.horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(6.dp)) {
-            presets.forEach { name ->
-                Surface(
-                    shape = RoundedCornerShape(4.dp),
-                    color = MaterialTheme.colorScheme.surface,
-                    border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline.copy(alpha = 0.4f)),
-                ) {
-                    Text(
-                        name,
-                        Modifier.padding(horizontal = 8.dp, vertical = 3.dp),
-                        fontFamily = FontFamily.Monospace,
-                        style = MaterialTheme.typography.labelSmall,
-                        color = MaterialTheme.colorScheme.onSurface,
-                    )
-                }
-            }
-        }
-    }
-}
-
-@Composable
-private fun ModuleRow(name: String, desc: String) {
+private fun ModuleRow(name: String, desc: String, icon: ImageVector) {
+    var vis by remember { mutableStateOf(false) }
+    LaunchedEffect(Unit) { delay(200); vis = true }
     Row(
         Modifier.fillMaxWidth().clip(RoundedCornerShape(8.dp))
             .background(MaterialTheme.colorScheme.surface)
-            .padding(12.dp),
+            .padding(12.dp)
+            .canimation(visible = vis, effect = Canimation.Fade.Up),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(12.dp),
     ) {
-        Icon(Icons.Default.Extension, null, tint = MaterialTheme.colorScheme.primary, modifier = Modifier.size(18.dp))
+        Icon(icon, null, tint = MaterialTheme.colorScheme.primary, modifier = Modifier.size(18.dp))
         Column {
             Text(name, fontFamily = FontFamily.Monospace, style = MaterialTheme.typography.labelMedium, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.onSurface)
             Text(desc, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
@@ -729,14 +860,14 @@ private fun ModuleRow(name: String, desc: String) {
     }
 }
 
-// ──────────────────────────── Live Demos ────────────────────────────
+// ━━━━━━━━━━━━━━━━━━━━━━━━ Live Demos ━━━━━━━━━━━━━━━━━━━━━━━━
 
 @Composable
 private fun HeroDemo() {
-    val effects = listOf(Canimation.Fade.Up, Canimation.Scale.Pop, Canimation.Bounce.In)
-    var cycle by remember { mutableIntStateOf(0) }
+    val effects = listOf(Canimation.Fade.Up, Canimation.Scale.Pop, Canimation.Bounce.In, Canimation.Rotate.In)
+    val labels = listOf("Fade.Up", "Scale.Pop", "Bounce.In", "Rotate.In")
     var visible by remember { mutableStateOf(false) }
-    LaunchedEffect(Unit) { while (true) { visible = true; delay(2000); visible = false; delay(600); cycle++ } }
+    LaunchedEffect(Unit) { while (true) { visible = true; delay(2200); visible = false; delay(600) } }
     Row(
         Modifier.fillMaxWidth().padding(top = 8.dp),
         horizontalArrangement = Arrangement.Center,
@@ -752,7 +883,7 @@ private fun HeroDemo() {
                 modifier = Modifier.padding(horizontal = 6.dp).canimation(visible = itemVis, effect = effect),
             ) {
                 Text(
-                    when (i) { 0 -> "Fade.Up"; 1 -> "Scale.Pop"; else -> "Bounce.In" },
+                    labels[i],
                     Modifier.padding(horizontal = 14.dp, vertical = 8.dp),
                     fontFamily = FontFamily.Monospace,
                     style = MaterialTheme.typography.labelMedium,
@@ -764,115 +895,12 @@ private fun HeroDemo() {
 }
 
 @Composable
-private fun QuickStartDemo() {
-    var visible by remember { mutableStateOf(false) }
-    LaunchedEffect(Unit) { while (true) { visible = true; delay(2200); visible = false; delay(600) } }
-    Box(Modifier.fillMaxWidth().height(80.dp), contentAlignment = Alignment.Center) {
-        CanimationVisibility(visible = visible, enterPreset = CanimationPreset.FadeUp) {
-            Text(
-                "Hello, animated world!",
-                style = MaterialTheme.typography.titleMedium,
-                fontWeight = FontWeight.Bold,
-                color = MaterialTheme.colorScheme.primary,
-            )
-        }
-    }
-}
-
-@Composable
-private fun VisibilityApiDemo() {
-    var visible by remember { mutableStateOf(false) }
-    LaunchedEffect(Unit) { while (true) { visible = true; delay(2500); visible = false; delay(800) } }
-    Box(Modifier.fillMaxWidth().height(80.dp), contentAlignment = Alignment.Center) {
-        CanimationVisibility(visible = visible, enterPreset = CanimationPreset.BounceIn, exitPreset = CanimationPreset.FadeDown) {
-            Surface(
-                shape = RoundedCornerShape(12.dp),
-                color = MaterialTheme.colorScheme.primaryContainer,
-                border = BorderStroke(1.dp, MaterialTheme.colorScheme.primary.copy(alpha = 0.4f)),
-            ) {
-                Text(
-                    "BounceIn → FadeDown",
-                    Modifier.padding(horizontal = 20.dp, vertical = 10.dp),
-                    style = MaterialTheme.typography.bodyMedium,
-                    fontWeight = FontWeight.Bold,
-                    color = MaterialTheme.colorScheme.onPrimaryContainer,
-                )
-            }
-        }
-    }
-}
-
-@Composable
-private fun EnterModifierDemo() {
-    var visible by remember { mutableStateOf(false) }
-    LaunchedEffect(Unit) { while (true) { visible = true; delay(3000); visible = false; delay(800) } }
-    Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly, verticalAlignment = Alignment.CenterVertically) {
-        listOf(CanimationPreset.FadeUp, CanimationPreset.ScaleIn, CanimationPreset.SlideLeft).forEachIndexed { i, preset ->
-            var show by remember { mutableStateOf(false) }
-            LaunchedEffect(visible) { if (visible) { delay(i * 120L); show = true } else { show = false } }
-            Surface(
-                shape = RoundedCornerShape(8.dp),
-                color = MaterialTheme.colorScheme.primaryContainer,
-                border = BorderStroke(1.dp, MaterialTheme.colorScheme.primary.copy(alpha = 0.3f)),
-                modifier = Modifier.canimationEnter(visible = show, preset = preset),
-            ) {
-                Text(
-                    preset.name, Modifier.padding(horizontal = 12.dp, vertical = 8.dp),
-                    style = MaterialTheme.typography.labelSmall,
-                    color = MaterialTheme.colorScheme.onPrimaryContainer,
-                )
-            }
-        }
-    }
-}
-
-@Composable
-private fun EmphasizeDemo() {
-    var active by remember { mutableStateOf(false) }
-    LaunchedEffect(Unit) { while (true) { active = true; delay(1800); active = false; delay(600) } }
-    Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly, verticalAlignment = Alignment.CenterVertically) {
-        listOf(CanimationPreset.Pulse, CanimationPreset.Tada, CanimationPreset.Wobble).forEach { preset ->
-            Surface(
-                shape = RoundedCornerShape(8.dp),
-                color = MaterialTheme.colorScheme.secondaryContainer,
-                border = BorderStroke(1.dp, MaterialTheme.colorScheme.secondary.copy(alpha = 0.3f)),
-                modifier = Modifier.canimationEmphasize(active = active, preset = preset),
-            ) {
-                Text(
-                    preset.name, Modifier.padding(horizontal = 12.dp, vertical = 8.dp),
-                    style = MaterialTheme.typography.labelSmall,
-                    color = MaterialTheme.colorScheme.onSecondaryContainer,
-                )
-            }
-        }
-    }
-}
-
-@Composable
-private fun PolicyDemo() {
-    CanimationProvider(policy = CanimationPolicy.AlwaysFull) {
-        var visible by remember { mutableStateOf(false) }
-        LaunchedEffect(Unit) { while (true) { visible = true; delay(2200); visible = false; delay(600) } }
-        Box(Modifier.fillMaxWidth().height(64.dp), contentAlignment = Alignment.Center) {
-            CanimationVisibility(visible = visible, enterPreset = CanimationPreset.SpringIn) {
-                Text(
-                    "AlwaysFull policy active ✓",
-                    style = MaterialTheme.typography.bodyMedium,
-                    fontWeight = FontWeight.Bold,
-                    color = MaterialTheme.colorScheme.tertiary,
-                )
-            }
-        }
-    }
-}
-
-@Composable
-private fun CanimationEffectDemo() {
+private fun EffectDemo() {
     val effects = listOf(
         "Fade.Up" to Canimation.Fade.Up,
         "Scale.Pop" to Canimation.Scale.Pop,
         "Slide.Left + Fade" to (Canimation.Slide.Left + Canimation.Fade.In),
-        "Rotate.Spin" to Canimation.Rotate.Spin,
+        "Bounce.In" to Canimation.Bounce.In,
     )
     var visible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { while (true) { visible = true; delay(2500); visible = false; delay(800) } }

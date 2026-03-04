@@ -47,6 +47,9 @@ import io.github.canimation.core.CanimationSpec
 import io.github.canimation.core.CanimationPolicy
 import io.github.canimation.core.CanimationProvider
 import io.github.canimation.presets.PresetsExtensionRegistry
+import io.github.canimation.core.Canimation
+import io.github.canimation.core.canimation
+import kotlinx.coroutines.delay
 import kotlin.math.abs
 import kotlin.math.roundToInt
 
@@ -60,8 +63,13 @@ fun PresetGalleryScreen(
 ) {
     var autoPlayTickLocal by remember { mutableIntStateOf(0) }
     var motionFilter by remember { mutableStateOf(MotionFilter.All) }
+    var headerStage by remember { mutableIntStateOf(-1) }
 
     var codeDialogPreset by remember { mutableStateOf<CanimationPreset?>(null) }
+
+    LaunchedEffect(Unit) {
+        for (i in 0..3) { headerStage = i; delay(80) }
+    }
 
     // Sync external tick
     LaunchedEffect(autoPlayTick) {
@@ -93,22 +101,29 @@ fun PresetGalleryScreen(
                 modifier = Modifier.padding(horizontal = 4.dp, vertical = 8.dp),
                 verticalArrangement = Arrangement.spacedBy(4.dp),
             ) {
+                Box(Modifier.canimation(visible = headerStage >= 0, effect = Canimation.Fade.Up)) {
                 Text(
                     text = "GALLERY",
                     style = MaterialTheme.typography.labelMedium,
                     color = MaterialTheme.colorScheme.primary,
                     fontWeight = FontWeight.Bold,
                 )
+                }
+                Box(Modifier.canimation(visible = headerStage >= 1, effect = Canimation.Fade.Up)) {
                 Text(
                     text = "${CanimationPreset.entries.size} Presets",
                     style = MaterialTheme.typography.headlineSmall,
                     fontWeight = FontWeight.Bold,
                 )
+                }
+                Box(Modifier.canimation(visible = headerStage >= 2, effect = Canimation.Fade.Up)) {
                 Text(
                     text = "Browse, compare, and tune every built-in animation",
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
+                }
+                Box(Modifier.canimation(visible = headerStage >= 3, effect = Canimation.Fade.Up)) {
                 FlowRow(
                     horizontalArrangement = Arrangement.spacedBy(8.dp),
                     verticalArrangement = Arrangement.spacedBy(8.dp),
@@ -121,6 +136,7 @@ fun PresetGalleryScreen(
                             label = { Text(filter.label) },
                         )
                     }
+                }
                 }
             }
         }

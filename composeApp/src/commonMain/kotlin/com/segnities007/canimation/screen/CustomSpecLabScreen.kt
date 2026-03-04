@@ -40,6 +40,8 @@ import io.github.canimation.core.CanimationRange
 import io.github.canimation.core.CanimationSpec
 import io.github.canimation.core.EasingTokens
 import io.github.canimation.core.canimationEnter
+import io.github.canimation.core.Canimation
+import io.github.canimation.core.canimation
 import kotlinx.coroutines.delay
 
 private fun Float.fmt2(): String {
@@ -76,7 +78,7 @@ fun CustomSpecLabScreen(modifier: Modifier = Modifier) {
             verticalArrangement = Arrangement.spacedBy(20.dp),
         ) {
             // Header
-            Box(Modifier.canimationEnter(visible = entryStage >= 0, preset = CanimationPreset.FadeUp)) {
+            Box(Modifier.canimation(visible = entryStage >= 0, effect = Canimation.Fade.Up)) {
                 Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                     Text(
                         text = "CUSTOM SPEC",
@@ -98,7 +100,7 @@ fun CustomSpecLabScreen(modifier: Modifier = Modifier) {
             }
 
             // Controls card
-            Box(Modifier.fillMaxWidth().canimationEnter(visible = entryStage >= 1, preset = CanimationPreset.FadeUp)) {
+            Box(Modifier.fillMaxWidth().canimation(visible = entryStage >= 1, effect = Canimation.Fade.Up)) {
                 Card(
                     modifier = Modifier.fillMaxWidth(),
                     colors = CardDefaults.cardColors(
@@ -125,7 +127,7 @@ fun CustomSpecLabScreen(modifier: Modifier = Modifier) {
             }
 
             // Preview card
-            Box(Modifier.fillMaxWidth().canimationEnter(visible = entryStage >= 2, preset = CanimationPreset.FadeUp)) {
+            Box(Modifier.fillMaxWidth().canimation(visible = entryStage >= 2, effect = Canimation.Fade.Up)) {
                 val customSpec = CanimationSpec(
                     durationMs = durationMs.toInt(),
                     easing = EasingTokens.Default.standard,
@@ -194,7 +196,7 @@ fun CustomSpecLabScreen(modifier: Modifier = Modifier) {
             }
 
             // Generated code
-            Box(Modifier.fillMaxWidth().canimationEnter(visible = entryStage >= 3, preset = CanimationPreset.FadeUp)) {
+            Box(Modifier.fillMaxWidth().canimation(visible = entryStage >= 3, effect = Canimation.Fade.Up)) {
                 Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                     Text(
                         text = "Generated Code",

@@ -46,6 +46,8 @@ import io.github.canimation.core.CanimationProvider
 import io.github.canimation.core.CanimationVisibility
 import io.github.canimation.core.canimationEmphasize
 import io.github.canimation.core.canimationEnter
+import io.github.canimation.core.Canimation
+import io.github.canimation.core.canimation
 import kotlinx.coroutines.delay
 
 @Composable
@@ -86,7 +88,7 @@ fun ExampleDetailScreen(
             ) {
                 // Header
                 item {
-                    Box(Modifier.canimationEnter(visible = entryStage >= 0, preset = CanimationPreset.FadeUp)) {
+                    Box(Modifier.canimation(visible = entryStage >= 0, effect = Canimation.Fade.Up)) {
                         Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                             Row(
                                 verticalAlignment = Alignment.CenterVertically,

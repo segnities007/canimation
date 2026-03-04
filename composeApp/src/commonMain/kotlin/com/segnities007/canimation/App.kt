@@ -49,8 +49,12 @@ import com.segnities007.canimation.navigation.ExamplesRoute
 import com.segnities007.canimation.navigation.PresetGalleryRoute
 import com.segnities007.canimation.navigation.TokenReferenceRoute
 import com.segnities007.canimation.theme.CanimationTheme
+import io.github.canimation.core.Canimation
+import io.github.canimation.core.CanimationPreset
 import io.github.canimation.core.CanimationPolicy
 import io.github.canimation.core.CanimationProvider
+import io.github.canimation.core.canimation
+import io.github.canimation.core.canimationEnter
 import kotlinx.coroutines.delay
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -60,6 +64,9 @@ fun App() {
     var darkOverride by remember { mutableStateOf<Boolean?>(true) }
     val isDarkMode = darkOverride ?: isSystemInDarkTheme()
     var showSettings by remember { mutableStateOf(false) }
+    var navStage by remember { mutableIntStateOf(-1) }
+
+    LaunchedEffect(Unit) { for (i in 0..7) { delay(40); navStage = i } }
 
     // Preset gallery tuning state (hoisted for settings bottom sheet)
     var autoPlayEnabled by remember { mutableStateOf(true) }
@@ -112,7 +119,9 @@ fun App() {
                                 style = MaterialTheme.typography.titleLarge,
                                 fontWeight = FontWeight.Bold,
                                 color = MaterialTheme.colorScheme.primary,
-                                modifier = Modifier.clickable {
+                                modifier = Modifier
+                                    .canimation(visible = navStage >= 0, effect = Canimation.Fade.Left)
+                                    .clickable {
                                     navController.navigate(HomeRoute) {
                                         popUpTo(HomeRoute) { inclusive = true }
                                     }
@@ -133,7 +142,7 @@ fun App() {
                                     Triple("A11y", A11yDemoRoute, "A11yDemoRoute"),
                                     Triple("Diagnostics", DiagnosticsRoute, "DiagnosticsRoute"),
                                     Triple("Tokens", TokenReferenceRoute, "TokenReferenceRoute"),
-                                ).forEach { (label, dest, key) ->
+                                ).forEachIndexed { index, (label, dest, key) ->
                                     val selected = route?.contains(key) == true
                                     TextButton(
                                         onClick = {
@@ -143,6 +152,10 @@ fun App() {
                                                 restoreState = true
                                             }
                                         },
+                                        modifier = Modifier.canimation(
+                                            visible = navStage >= index + 1,
+                                            effect = Canimation.Fade.Up,
+                                        ),
                                     ) {
                                         Text(
                                             text = label,
@@ -237,6 +250,9 @@ private fun SettingsBottomSheet(
         sheetState = sheetState,
         containerColor = MaterialTheme.colorScheme.surface,
     ) {
+        var sheetStage by remember { mutableIntStateOf(-1) }
+        LaunchedEffect(Unit) { for (i in 0..8) { delay(40); sheetStage = i } }
+
         Column(
             modifier = Modifier
                 .fillMaxWidth()
@@ -248,13 +264,15 @@ private fun SettingsBottomSheet(
                 text = "Settings",
                 style = MaterialTheme.typography.titleLarge,
                 fontWeight = FontWeight.Bold,
+                modifier = Modifier.canimation(visible = sheetStage >= 0, effect = Canimation.Fade.Up),
             )
 
             HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant)
 
             // Theme
             Row(
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier.fillMaxWidth()
+                    .canimation(visible = sheetStage >= 1, effect = Canimation.Fade.Up),
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically,
             ) {
@@ -291,7 +309,10 @@ private fun SettingsBottomSheet(
             HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant)
 
             // Motion policy
-            Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+            Column(
+                verticalArrangement = Arrangement.spacedBy(8.dp),
+                modifier = Modifier.canimation(visible = sheetStage >= 2, effect = Canimation.Fade.Up),
+            ) {
                 Text(
                     text = "Motion Policy",
                     style = MaterialTheme.typography.bodyLarge,
@@ -308,7 +329,7 @@ private fun SettingsBottomSheet(
                     Triple(CanimationPolicy.AlwaysFull, "Full Motion", "All animations at full intensity"),
                     Triple(CanimationPolicy.AlwaysReduced, "Reduced Motion", "Simpler, shorter animations"),
                     Triple(CanimationPolicy.AlwaysOff, "Motion Off", "Disable all animations"),
-                ).forEach { (p, label, desc) ->
+                ).forEachIndexed { idx, (p, label, desc) ->
                     Surface(
                         onClick = { onPolicyChange(p) },
                         shape = MaterialTheme.shapes.medium,
@@ -318,6 +339,10 @@ private fun SettingsBottomSheet(
                             1.dp,
                             if (policy == p) MaterialTheme.colorScheme.primary
                                 else MaterialTheme.colorScheme.outline,
+                        ),
+                        modifier = Modifier.canimation(
+                            visible = sheetStage >= 3 + idx,
+                            effect = Canimation.Fade.Up,
                         ),
                     ) {
                         Row(
@@ -359,7 +384,10 @@ private fun SettingsBottomSheet(
             if (showPresetTuning) {
                 HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant)
 
-                Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                Column(
+                    verticalArrangement = Arrangement.spacedBy(8.dp),
+                    modifier = Modifier.canimation(visible = sheetStage >= 7, effect = Canimation.Fade.Up),
+                ) {
                     Text(
                         text = "Preset Gallery",
                         style = MaterialTheme.typography.bodyLarge,

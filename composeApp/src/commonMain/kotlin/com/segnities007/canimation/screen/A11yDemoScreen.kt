@@ -30,10 +30,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import io.github.canimation.core.Canimation
 import io.github.canimation.core.CanimationPolicy
 import io.github.canimation.core.CanimationPreset
 import io.github.canimation.core.CanimationProvider
 import io.github.canimation.core.CanimationVisibility
+import io.github.canimation.core.canimation
 import io.github.canimation.core.canimationEnter
 import kotlinx.coroutines.delay
 
@@ -59,7 +61,7 @@ fun A11yDemoScreen(modifier: Modifier = Modifier) {
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             // Header
-            Box(Modifier.canimationEnter(visible = entryStage >= 0, preset = CanimationPreset.FadeUp)) {
+            Box(Modifier.canimation(visible = entryStage >= 0, effect = Canimation.Fade.Up)) {
                 Column(
                     verticalArrangement = Arrangement.spacedBy(8.dp),
                     horizontalAlignment = Alignment.CenterHorizontally,
@@ -87,7 +89,7 @@ fun A11yDemoScreen(modifier: Modifier = Modifier) {
             Box(
                 Modifier
                     .fillMaxWidth()
-                    .canimationEnter(visible = entryStage >= 1, preset = CanimationPreset.FadeUp),
+                    .canimation(visible = entryStage >= 1, effect = Canimation.Fade.Up),
             ) {
                 Column(
                     verticalArrangement = Arrangement.spacedBy(16.dp),
@@ -106,7 +108,7 @@ fun A11yDemoScreen(modifier: Modifier = Modifier) {
             Box(
                 Modifier
                     .fillMaxWidth()
-                    .canimationEnter(visible = entryStage >= 2, preset = CanimationPreset.FadeUp),
+                    .canimation(visible = entryStage >= 2, effect = Canimation.Fade.Up),
             ) {
                 Card(
                     modifier = Modifier.fillMaxWidth(),

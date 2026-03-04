@@ -34,6 +34,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -43,9 +44,13 @@ import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import io.github.canimation.core.Canimation
 import io.github.canimation.core.CanimationPolicy
 import io.github.canimation.core.CanimationProvider
 import io.github.canimation.core.CanimationVisibility
+import io.github.canimation.core.canimation
+import io.github.canimation.core.canimationEnter
+import io.github.canimation.core.CanimationPreset
 import kotlinx.coroutines.delay
 
 private val accentLabels = listOf(
@@ -61,6 +66,9 @@ fun ExamplesScreen(
 ) {
     var searchQuery by remember { mutableStateOf("") }
     var selectedTag by remember { mutableStateOf("ALL") }
+    var headerStage by remember { mutableIntStateOf(-1) }
+
+    LaunchedEffect(Unit) { for (i in 0..3) { delay(50); headerStage = i } }
 
     val filteredCategories by remember(searchQuery, selectedTag) {
         derivedStateOf {
@@ -102,16 +110,19 @@ fun ExamplesScreen(
                             style = MaterialTheme.typography.labelMedium,
                             color = MaterialTheme.colorScheme.primary,
                             fontWeight = FontWeight.Bold,
+                            modifier = Modifier.canimation(visible = headerStage >= 0, effect = Canimation.Fade.Up),
                         )
                         Text(
                             text = "Animation showcase",
                             style = MaterialTheme.typography.headlineMedium,
                             fontWeight = FontWeight.Bold,
+                            modifier = Modifier.canimation(visible = headerStage >= 1, effect = Canimation.Fade.Up),
                         )
                         Text(
                             text = "Explore ${exampleCategories.sumOf { it.examples.size }} examples across ${exampleCategories.size} categories — each with live demos and code",
                             style = MaterialTheme.typography.bodyMedium,
                             color = MaterialTheme.colorScheme.onSurfaceVariant,
+                            modifier = Modifier.canimation(visible = headerStage >= 2, effect = Canimation.Fade.Up),
                         )
 
                         // Search bar
@@ -128,13 +139,14 @@ fun ExamplesScreen(
                             },
                             singleLine = true,
                             shape = RoundedCornerShape(12.dp),
+                            modifier = Modifier.fillMaxWidth()
+                                .canimation(visible = headerStage >= 3, effect = Canimation.Fade.Up),
                             colors = OutlinedTextFieldDefaults.colors(
                                 focusedBorderColor = MaterialTheme.colorScheme.primary,
                                 unfocusedBorderColor = MaterialTheme.colorScheme.outline,
                                 focusedContainerColor = MaterialTheme.colorScheme.surface,
                                 unfocusedContainerColor = MaterialTheme.colorScheme.surface,
                             ),
-                            modifier = Modifier.fillMaxWidth(),
                         )
 
                         // Tag filter chips
