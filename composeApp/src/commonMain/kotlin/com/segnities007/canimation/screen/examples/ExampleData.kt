@@ -3065,4 +3065,226 @@ Modifier.canimation(
             ),
         ),
     ),
+
+    // ── Audio & Visualization ──
+    ExampleCategory(
+        id = "audio-viz",
+        title = "Audio & Visualization",
+        subtitle = "Waveforms, visual effects, and animated graphics",
+        accentLabel = "VISUAL",
+        tags = listOf("VISUAL"),
+        examples = listOf(
+            ExampleItem(
+                title = "Waveform Visualizer",
+                description = "Animated audio waveform bars",
+                demoType = "component",
+                componentKey = "WaveformVisualizer",
+                codeSnippet = """Modifier.canimation(
+    visible = entryVisible,
+    effect = Canimation.Fade.Up,
+)""",
+            ),
+            ExampleItem(
+                title = "Matrix Rain",
+                description = "Columns of cascading characters",
+                demoType = "component",
+                componentKey = "MatrixRain",
+                codeSnippet = """Modifier.canimation(
+    visible = entryVisible,
+    effect = Canimation.Fade.Up,
+)""",
+            ),
+            ExampleItem(
+                title = "Music Equalizer",
+                description = "Animated equalizer bars",
+                demoType = "component",
+                componentKey = "MusicEqualizer",
+                codeSnippet = """Modifier.canimation(
+    visible = entryVisible,
+    effect = Canimation.Fade.Up,
+)""",
+            ),
+            ExampleItem(
+                title = "Water Droplet",
+                description = "Water droplet ripple effect",
+                demoType = "component",
+                componentKey = "WaterDroplet",
+                codeSnippet = """Modifier.canimation(
+    visible = entryVisible,
+    effect = Canimation.Blur.Soft,
+)""",
+            ),
+        ),
+    ),
+
+    // ── Modern UI Components ──
+    ExampleCategory(
+        id = "modern-ui",
+        title = "Modern UI Components",
+        subtitle = "Interactive buttons, cards, indicators, and controls",
+        accentLabel = "UI",
+        tags = listOf("UI"),
+        examples = listOf(
+            ExampleItem(
+                title = "Pulse Button",
+                description = "Button that pulses when idle",
+                demoType = "component",
+                componentKey = "PulseButton",
+                codeSnippet = """Modifier.canimation(
+    visible = entryVisible,
+    effect = Canimation.Fade.Up,
+)""",
+            ),
+            ExampleItem(
+                title = "Neumorphism Card",
+                description = "Card with animated shadow depth",
+                demoType = "component",
+                componentKey = "NeumorphismCard",
+                codeSnippet = """Modifier.canimation(
+    visible = entryVisible,
+    effect = Canimation.Blur.Soft,
+)""",
+            ),
+            ExampleItem(
+                title = "Gradient Border Card",
+                description = "Card with animated gradient border",
+                demoType = "component",
+                componentKey = "GradientBorderCard",
+                codeSnippet = """Modifier.canimation(
+    visible = entryVisible,
+    effect = Canimation.Reveal.Center,
+)""",
+            ),
+            ExampleItem(
+                title = "Flip Counter",
+                description = "Digit flip counter",
+                demoType = "component",
+                componentKey = "FlipCounter",
+                codeSnippet = """Modifier.canimation(
+    visible = entryVisible,
+    effect = Canimation.Fade.Up,
+)""",
+            ),
+            ExampleItem(
+                title = "Expandable Chip",
+                description = "Chip that expands with content",
+                demoType = "component",
+                componentKey = "ExpandableChip",
+                codeSnippet = """Modifier.canimation(
+    visible = entryVisible,
+    effect = Canimation.Micro.Pulse,
+)""",
+            ),
+            ExampleItem(
+                title = "Stacked Notifications",
+                description = "Stacked notification cards",
+                demoType = "component",
+                componentKey = "StackedNotifications",
+                codeSnippet = """Modifier.canimation(
+    visible = entryVisible,
+    effect = Canimation.Swipe.Right,
+)""",
+            ),
+            ExampleItem(
+                title = "Sliding Toggle",
+                description = "Custom toggle switch with sliding animation",
+                demoType = "component",
+                componentKey = "SlidingToggle",
+                codeSnippet = """Modifier.canimation(
+    visible = entryVisible,
+    effect = Canimation.Fade.Up,
+)""",
+            ),
+            ExampleItem(
+                title = "Circular Reveal Card",
+                description = "Card with circular reveal animation",
+                demoType = "component",
+                componentKey = "CircularRevealCard",
+                codeSnippet = """Modifier.canimation(
+    visible = entryVisible,
+    effect = Canimation.Reveal.Center,
+)""",
+            ),
+            ExampleItem(
+                title = "Typing Indicator",
+                description = "Chat typing indicator (3 bouncing dots)",
+                demoType = "component",
+                componentKey = "TypingIndicator",
+                codeSnippet = """Modifier.canimation(
+    visible = entryVisible,
+    effect = Canimation.Fade.Up,
+)""",
+            ),
+            ExampleItem(
+                title = "Skeleton Text",
+                description = "Skeleton loading for text content",
+                demoType = "component",
+                componentKey = "SkeletonText",
+                codeSnippet = """Modifier.canimation(
+    visible = entryVisible,
+    effect = Canimation.Fade.Up,
+)""",
+            ),
+            ExampleItem(
+                title = "Swipe Card",
+                description = "Card that can be swiped away",
+                demoType = "component",
+                componentKey = "SwipeCard",
+                codeSnippet = """Modifier.canimation(
+    visible = entryVisible,
+    effect = Canimation.Swipe.Left,
+)""",
+            ),
+            ExampleItem(
+                title = "Animated Checkmark",
+                description = "Animated checkmark with circle",
+                demoType = "component",
+                componentKey = "AnimatedCheckmark",
+                codeSnippet = """Modifier.canimation(
+    visible = entryVisible,
+    effect = Canimation.Reveal.Center,
+)""",
+            ),
+            ExampleItem(
+                title = "Rotating Cube",
+                description = "2D representation of a rotating cube",
+                demoType = "component",
+                componentKey = "RotatingCube",
+                codeSnippet = """Modifier.canimation(
+    visible = entryVisible,
+    effect = Canimation.Fade.Up,
+)""",
+            ),
+            ExampleItem(
+                title = "Slot Machine",
+                description = "Simple slot machine with rolling numbers",
+                demoType = "component",
+                componentKey = "SlotMachine",
+                codeSnippet = """Modifier.canimation(
+    visible = entryVisible,
+    effect = Canimation.Page.BottomSheet,
+)""",
+            ),
+            ExampleItem(
+                title = "Typewriter Cursor",
+                description = "Blinking cursor with text typing effect",
+                demoType = "component",
+                componentKey = "TypewriterCursor",
+                codeSnippet = """Modifier.canimation(
+    visible = entryVisible,
+    effect = Canimation.Fade.Up,
+)""",
+            ),
+            ExampleItem(
+                title = "Radial Progress",
+                description = "Circular progress with animated arc",
+                demoType = "component",
+                componentKey = "RadialProgress",
+                codeSnippet = """Modifier.canimation(
+    visible = entryVisible,
+    effect = Canimation.Fade.Up,
+)""",
+            ),
+        ),
+    ),
 )
