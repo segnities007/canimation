@@ -7,6 +7,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- **Canimation.* Effect Namespace** with 23 categories and 160+ named effects
+  - Fade, Scale, Slide, Rotate, Bounce, Spring, Flip, Zoom
+  - Attention (Pulse, HeartBeat, Tada, Wobble, Swing, RubberBand, etc.)
+  - Entrance (Elevate, Drop, JackInTheBox, RollIn, LightSpeed, etc.)
+  - Material (FadeThrough, SharedAxisX, SharedAxisY, Emphasized, ContainerTransform)
+  - Morph, Blur, Swipe, Reveal, Micro, Page
+  - Wave, Glitch, Elastic, Cinematic, Playful, Stagger
+- **CanimationEffect DSL** with composable `+` operator for effect combination
+- **Modifier.canimation(visible, effect)** — new primary animation API
+- **Modifier.canimationTransition(visible, enter, exit)** — asymmetric transitions with effects
+- **290+ gallery examples** in the showcase app
+- **123 rich component demos** with customizable parameters
+- **Atomic Design organization** — Atoms, Molecules, Organisms hierarchy
+- **Interactive showcase website** with Docs, API Reference, and Gallery pages
+
 ## [0.1.0] - 2026-03-02
 
 ### Added

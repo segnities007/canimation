@@ -1,5 +1,9 @@
 # Accessibility — Tier 1 Validation
 
+> **Note:** All accessibility functionality (policy resolution, level mapping)
+> is included in `canimation-core`. The `canimation-a11y` module directory
+> exists as scaffolding for planned future extraction.
+
 ## Purpose
 
 This document defines the Tier 1 accessibility validation criteria for

@@ -1,5 +1,9 @@
 # Accessibility — Tier 2 Compatibility
 
+> **Note:** All accessibility functionality (policy resolution, platform adapters)
+> is included in `canimation-core`. The `canimation-a11y` module directory
+> exists as scaffolding for planned future extraction.
+
 ## Purpose
 
 This document covers **Tier 2** accessibility: platform-specific integration

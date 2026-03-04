@@ -1,5 +1,9 @@
 # Diagnostics Usage Guide
 
+> **Note:** The diagnostics functionality described here is part of `canimation-core`.
+> There is no separate `canimation-diagnostics` module published at this time — the
+> module directory exists as scaffolding for planned future extraction.
+
 ## Overview
 
 `CanimationDiagnosticsOverlay` is a development-time composable that renders

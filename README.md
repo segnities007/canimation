@@ -17,9 +17,9 @@
 <p align="center">
   <a href="#setup">Setup</a> •
   <a href="#quick-start">Quick Start</a> •
+  <a href="#canimation-namespace">Effects</a> •
   <a href="#presets">Presets</a> •
   <a href="#accessibility">Accessibility</a> •
-  <a href="#diagnostics">Diagnostics</a> •
   <a href="#modules">Modules</a> •
   <a href="#documentation">Documentation</a>
 </p>
@@ -28,9 +28,11 @@
 
 ## What is canimation?
 
-**canimation** provides policy-based animation control that respects user accessibility preferences out of the box.
-Wrap your app with `CanimationProvider`, apply modifier-based animations, and the library automatically adapts between
-**Full**, **Reduced**, and **Off** motion levels based on system settings.
+**canimation** is an effect-driven animation library for Compose Multiplatform.
+Use the `Canimation.*` namespace to pick from **160+ named effects** across 23 categories,
+combine them with the `+` operator, and apply them with `Modifier.canimation(visible, effect)`.
+The library automatically adapts between **Full**, **Reduced**, and **Off** motion levels
+based on system accessibility settings via `CanimationProvider`.
 
 ```
 Android • iOS • Desktop (JVM) • Web (JS / WasmJs)
@@ -47,26 +49,22 @@ canimation = "0.1.0"
 
 [libraries]
 canimation-core = { module = "io.github.canimation:canimation-core", version.ref = "canimation" }
-canimation-presets = { module = "io.github.canimation:canimation-presets", version.ref = "canimation" }
-canimation-a11y = { module = "io.github.canimation:canimation-a11y", version.ref = "canimation" }
-canimation-diagnostics = { module = "io.github.canimation:canimation-diagnostics", version.ref = "canimation" }
-canimation-test = { module = "io.github.canimation:canimation-test", version.ref = "canimation" }
 ```
 
 ### Gradle
 
 ```kotlin
 // build.gradle.kts
-dependencies {
-    implementation(libs.canimation.core)
-    implementation(libs.canimation.presets)
-
-    // Optional
-    implementation(libs.canimation.a11y)
-    implementation(libs.canimation.diagnostics)
-    testImplementation(libs.canimation.test)
+kotlin {
+    sourceSets {
+        commonMain.dependencies {
+            implementation(libs.canimation.core)
+        }
+    }
 }
 ```
+
+> **Note:** All APIs — effects, presets, accessibility, modifiers — live in `canimation-core`.
 
 ## Quick Start
 
@@ -81,7 +79,42 @@ fun App() {
 }
 ```
 
-### 2. Animate elements
+### 2. Animate with effects (recommended)
+
+```kotlin
+// Use named effects from the Canimation.* namespace
+Box(
+    modifier = Modifier.canimation(
+        visible = isVisible,
+        effect = Canimation.Fade.Up,
+    )
+) {
+    Text("Hello, canimation!")
+}
+```
+
+```kotlin
+// Combine effects with the + operator
+Card(
+    modifier = Modifier.canimation(
+        visible = isShown,
+        effect = Canimation.Fade.In + Canimation.Scale.Pop,
+    )
+)
+```
+
+```kotlin
+// Asymmetric transitions with separate enter/exit effects
+Card(
+    modifier = Modifier.canimationTransition(
+        visible = isShown,
+        enter = Canimation.Slide.Left,
+        exit = Canimation.Fade.Out,
+    )
+)
+```
+
+### 3. Other APIs
 
 ```kotlin
 // Preset-based enter animation
@@ -90,18 +123,15 @@ Box(
         visible = isVisible,
         preset = CanimationPreset.FadeUp,
     )
-) {
-    Text("Hello, canimation!")
-}
+)
 ```
 
 ```kotlin
-// Transition with separate enter/exit presets
-Card(
-    modifier = Modifier.canimationTransition(
-        visible = isShown,
-        enterPreset = CanimationPreset.SlideLeft,
-        exitPreset = CanimationPreset.Fade,
+// Attention / emphasis effects
+Box(
+    modifier = Modifier.canimationEmphasize(
+        active = isHighlighted,
+        preset = CanimationPreset.Pulse,
     )
 )
 ```
@@ -116,32 +146,63 @@ CanimationVisibility(
 }
 ```
 
-### 3. Custom specs
+### 4. Custom effects
 
 ```kotlin
-val customSpec = CanimationSpec(
-    durationMs = 300,
-    easing = EasingTokens.Default.emphasizedDecelerate,
+// Build from scratch with CanimationEffect
+val custom = CanimationEffect(
     alpha = CanimationRange(0f, 1f),
     offsetY = CanimationDpRange(24.dp, 0.dp),
+    scale = CanimationRange(0.9f, 1f),
+    durationMs = 300,
 )
 
 Box(
-    modifier = Modifier.canimationEnter(
-        visible = isVisible,
-        fullSpec = customSpec,
-        // reducedSpec auto-derived via customSpec.toReduced()
-    )
+    modifier = Modifier.canimation(visible = isVisible, effect = custom)
 )
 ```
 
+## Canimation.* Namespace
+
+The `Canimation` object provides **23 categories** of named effects. Each effect is a `CanimationEffect`
+that can be used directly or combined with `+`.
+
+| Category | Examples |
+|----------|----------|
+| `Canimation.Fade` | `In`, `Out`, `Up`, `Down`, `Left`, `Right` |
+| `Canimation.Scale` | `In`, `Up`, `Pop`, `Expand` |
+| `Canimation.Slide` | `Up`, `Down`, `Left`, `Right` |
+| `Canimation.Rotate` | `In`, `Clockwise`, `CounterClockwise` |
+| `Canimation.Bounce` | `In`, `InDown`, `InUp`, `InLeft`, `InRight` |
+| `Canimation.Spring` | `In`, `SlideUp`, `FadeIn` |
+| `Canimation.Flip` | `In`, `Up`, `Down`, `InY` |
+| `Canimation.Zoom` | `In`, `Out`, `InUp`, `InDown`, `InLeft`, `InRight` |
+| `Canimation.Attention` | `Pulse`, `HeartBeat`, `Tada`, `Wobble`, `Swing`, `RubberBand`, `Jello` |
+| `Canimation.Entrance` | `Elevate`, `Drop`, `JackInTheBox`, `RollIn`, `LightSpeed` |
+| `Canimation.Material` | `FadeThrough`, `SharedAxisX`, `SharedAxisY`, `Emphasized`, `ContainerTransform` |
+| `Canimation.Morph` | Shape morphing effects |
+| `Canimation.Blur` | Blur-based transitions |
+| `Canimation.Swipe` | Directional swipe effects |
+| `Canimation.Reveal` | Reveal/uncover effects |
+| `Canimation.Micro` | Subtle micro-interactions |
+| `Canimation.Page` | Page-level transitions |
+| `Canimation.Wave` | Wave motion effects |
+| `Canimation.Glitch` | Glitch/distortion effects |
+| `Canimation.Elastic` | Elastic motion effects |
+| `Canimation.Cinematic` | Cinematic transitions |
+| `Canimation.Playful` | Fun, playful animations |
+| `Canimation.Stagger` | Staggered group effects |
+
 ## Presets
 
-83 built-in presets inspired by leading animation libraries and design systems.
+112 built-in presets (via `CanimationPreset`) inspired by leading animation libraries and design systems.
 Each preset provides **Full** and **Reduced** motion variants derived automatically.
 
+> **Tip:** For new code, prefer the `Canimation.*` effect namespace with `Modifier.canimation()`.
+> Presets remain fully supported and work with `Modifier.canimationEnter()` and `CanimationVisibility`.
+
 <details>
-<summary>All 83 Presets</summary>
+<summary>All 83 Original Presets (CanimationPreset)</summary>
 
 | Preset | Source | Description |
 |--------|--------|-------------|
@@ -252,36 +313,21 @@ CanimationProvider(policy = CanimationPolicy.AlwaysOff) { ... }
 | **Reduced** | Alpha-only emphasis, ≤120ms duration, minimal offset |
 | **Off** | Instant snap — zero duration on all animations |
 
-## Diagnostics
-
-```kotlin
-CanimationDiagnosticsOverlay(
-    enabled = BuildConfig.DEBUG,
-    jankThresholdMs = 16,
-) {
-    AppContent()
-}
-```
-
-The overlay displays real-time **FPS**, **p95 frame time**, and **jank count** with color-coded thresholds.
-
 ## Modules
 
 | Module | Description |
 |--------|-------------|
-| `canimation-core` | Core API — Provider, Modifiers, Token system, Spec resolver |
-| `canimation-presets` | 83 built-in animation presets with Full/Reduced specs |
-| `canimation-a11y` | Accessibility policy adapter & system motion preference |
-| `canimation-diagnostics` | Frame timing overlay & performance measurement |
-| `canimation-test` | `CanimationTestClock` and `CanimationTestHost` for testing |
-| `canimation-platform-android` | Android platform integration |
-| `canimation-platform-desktop` | JVM/Desktop platform integration |
-| `canimation-platform-ios` | iOS platform integration |
-| `canimation-platform-web` | JS/WasmJs platform integration |
+| `canimation-core` | All library APIs — Provider, Modifiers, Effects, Presets, Accessibility, Token system |
+| `composeApp` | Interactive showcase / demo website (Desktop + Web targets) |
+
+> **Note:** All functionality (effects, presets, accessibility, diagnostics) is shipped in
+> `canimation-core`. The other module directories in the repository are scaffolding for
+> planned future extraction and are not published separately.
 
 ## Showcase App
 
-The `composeApp` module is an interactive showcase demonstrating all library features.
+The `composeApp` module is an interactive showcase with **290+ gallery examples** and
+**123 rich component demos**, organized in an Atomic Design hierarchy (Atoms, Molecules, Organisms).
 
 ```bash
 ./gradlew :composeApp:run                              # Desktop
@@ -294,7 +340,6 @@ The `composeApp` module is an interactive showcase demonstrating all library fea
 | Document | Description |
 |----------|-------------|
 | [Changelog](CHANGELOG.md) | Version history |
-| [Diagnostics Usage](docs/diagnostics-usage.md) | Overlay setup & configuration |
 | [A11y Tier 1 Validation](docs/a11y-tier1-validation.md) | Policy level validation matrix |
 | [A11y Tier 2 Compatibility](docs/a11y-tier2-compatibility.md) | Platform-specific a11y integration |
 | [Release Versioning Policy](docs/release-versioning-policy.md) | SemVer & release tag conventions |
