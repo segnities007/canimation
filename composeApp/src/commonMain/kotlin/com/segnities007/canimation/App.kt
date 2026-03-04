@@ -47,11 +47,9 @@ import com.segnities007.canimation.navigation.ExamplesRoute
 import com.segnities007.canimation.navigation.PresetGalleryRoute
 import com.segnities007.canimation.theme.CanimationTheme
 import io.github.canimation.core.Canimation
-import io.github.canimation.core.CanimationPreset
 import io.github.canimation.core.CanimationPolicy
 import io.github.canimation.core.CanimationProvider
 import io.github.canimation.core.canimation
-import io.github.canimation.core.canimationEnter
 import kotlinx.coroutines.delay
 
 @OptIn(ExperimentalMaterial3Api::class)

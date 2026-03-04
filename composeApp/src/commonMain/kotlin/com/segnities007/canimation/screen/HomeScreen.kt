@@ -41,7 +41,6 @@ import io.github.canimation.core.CanimationPolicy
 import io.github.canimation.core.CanimationPreset
 import io.github.canimation.core.CanimationProvider
 import io.github.canimation.core.CanimationVisibility
-import io.github.canimation.core.canimationEnter
 import io.github.canimation.core.Canimation
 import io.github.canimation.core.canimation
 import kotlinx.coroutines.delay

@@ -29,7 +29,7 @@
 ## What is canimation?
 
 **canimation** is an effect-driven animation library for Compose Multiplatform.
-Use the `Canimation.*` namespace to pick from **160+ named effects** across 23 categories,
+Use the `Canimation.*` namespace to pick from **190+ named effects** across 31 categories,
 combine them with the `+` operator, and apply them with `Modifier.canimation(visible, effect)`.
 The library automatically adapts between **Full**, **Reduced**, and **Off** motion levels
 based on system accessibility settings via `CanimationProvider`.
@@ -164,34 +164,41 @@ Box(
 
 ## Canimation.* Namespace
 
-The `Canimation` object provides **23 categories** of named effects. Each effect is a `CanimationEffect`
+The `Canimation` object provides **31 categories** of named effects. Each effect is a `CanimationEffect`
 that can be used directly or combined with `+`.
 
 | Category | Examples |
 |----------|----------|
-| `Canimation.Fade` | `In`, `Out`, `Up`, `Down`, `Left`, `Right` |
-| `Canimation.Scale` | `In`, `Up`, `Pop`, `Expand` |
-| `Canimation.Slide` | `Up`, `Down`, `Left`, `Right` |
-| `Canimation.Rotate` | `In`, `Clockwise`, `CounterClockwise` |
-| `Canimation.Bounce` | `In`, `InDown`, `InUp`, `InLeft`, `InRight` |
-| `Canimation.Spring` | `In`, `SlideUp`, `FadeIn` |
-| `Canimation.Flip` | `In`, `Up`, `Down`, `InY` |
-| `Canimation.Zoom` | `In`, `Out`, `InUp`, `InDown`, `InLeft`, `InRight` |
+| `Canimation.Fade` | `In`, `Out`, `Up`, `Down`, `Left`, `Right`, `Gentle`, `Quick` |
+| `Canimation.Scale` | `In`, `Up`, `Pop`, `Expand`, `Shrink`, `FadeIn` |
+| `Canimation.Slide` | `Up`, `Down`, `Left`, `Right`, `UpBig`, `DownBig` |
+| `Canimation.Rotate` | `In`, `Clockwise`, `Spin`, `Half`, `Quarter` |
+| `Canimation.Bounce` | `In`, `Down`, `Up`, `Left`, `Right` |
+| `Canimation.Spring` | `In`, `Up`, `Down`, `Pop`, `Bounce` |
+| `Canimation.Flip` | `In`, `Up`, `Down`, `X`, `Y` |
+| `Canimation.Zoom` | `In`, `Out`, `InUp`, `InDown`, `Dramatic` |
 | `Canimation.Attention` | `Pulse`, `HeartBeat`, `Tada`, `Wobble`, `Swing`, `RubberBand`, `Jello` |
-| `Canimation.Entrance` | `Elevate`, `Drop`, `JackInTheBox`, `RollIn`, `LightSpeed` |
-| `Canimation.Material` | `FadeThrough`, `SharedAxisX`, `SharedAxisY`, `Emphasized`, `ContainerTransform` |
-| `Canimation.Morph` | Shape morphing effects |
-| `Canimation.Blur` | Blur-based transitions |
-| `Canimation.Swipe` | Directional swipe effects |
-| `Canimation.Reveal` | Reveal/uncover effects |
-| `Canimation.Micro` | Subtle micro-interactions |
-| `Canimation.Page` | Page-level transitions |
-| `Canimation.Wave` | Wave motion effects |
-| `Canimation.Glitch` | Glitch/distortion effects |
-| `Canimation.Elastic` | Elastic motion effects |
-| `Canimation.Cinematic` | Cinematic transitions |
-| `Canimation.Playful` | Fun, playful animations |
-| `Canimation.Stagger` | Staggered group effects |
+| `Canimation.Entrance` | `Elevate`, `Drop`, `JackInTheBox`, `RollIn`, `Snap`, `Rise` |
+| `Canimation.Material` | `FadeThrough`, `SharedAxisX`, `SharedAxisY`, `Emphasized` |
+| `Canimation.Morph` | `ScaleUp`, `Expand`, `Collapse` |
+| `Canimation.Blur` | `In`, `Out`, `Soft` |
+| `Canimation.Swipe` | `Left`, `Right`, `Up`, `Down`, `FlingRight` |
+| `Canimation.Reveal` | `Center`, `Top`, `Bottom`, `Dramatic` |
+| `Canimation.Micro` | `NudgeUp`, `NudgeDown`, `Pulse`, `Wiggle`, `Press` |
+| `Canimation.Page` | `PushRight`, `PushLeft`, `BottomSheet`, `CoverUp` |
+| `Canimation.Wave` | `Gentle`, `Strong`, `Ripple`, `Float`, `Drift` |
+| `Canimation.Glitch` | `In`, `Shake`, `Flicker`, `Distort` |
+| `Canimation.Elastic` | `In`, `Stretch`, `Squash`, `Snap`, `Wobble` |
+| `Canimation.Cinematic` | `Curtain`, `ZoomPan`, `Dolly`, `Reveal`, `Dramatic` |
+| `Canimation.Playful` | `Wiggle`, `Hop`, `Spin`, `Pop`, `Twirl`, `Boing` |
+| `Canimation.Diagonal` | `TopLeft`, `TopRight`, `BottomLeft`, `BottomRight`, `Subtle` |
+| `Canimation.Shrink` | `Out`, `Subtle`, `Rotate`, `FadeDown` |
+| `Canimation.Tilt` | `Left`, `Right`, `Up`, `Down`, `Swing` |
+| `Canimation.Float` | `Up`, `Down`, `Gentle`, `ScaleUp` |
+| `Canimation.Drop` | `In`, `Heavy`, `Light`, `Rotate` |
+| `Canimation.Rise` | `In`, `Slow`, `Scale`, `Rotate` |
+| `Canimation.Stretch` | `Horizontal`, `Vertical`, `Both`, `Snap` |
+| `Canimation.Stagger` | `Quick=40ms`, `Normal=70ms`, `Slow=120ms`, `Relaxed=200ms` |
 
 ## Presets
 
