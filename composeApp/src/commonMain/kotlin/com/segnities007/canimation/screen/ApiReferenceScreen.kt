@@ -568,6 +568,42 @@ CanimationPolicy.AlwaysOff     // Disable all animations""",
     ns("Morph", "Collapse", "Collapse morph", Canimation.Morph.Collapse)
     ns("Morph", "Elastic", "Elastic stretch", Canimation.Morph.Elastic)
 
+    // Wave
+    ns("Wave", "Gentle", "Gentle floating wave", Canimation.Wave.Gentle)
+    ns("Wave", "Strong", "Strong wave with rotation", Canimation.Wave.Strong)
+    ns("Wave", "Ripple", "Ripple expansion", Canimation.Wave.Ripple)
+    ns("Wave", "Float", "Floating upward", Canimation.Wave.Float)
+    ns("Wave", "Drift", "Diagonal drift", Canimation.Wave.Drift)
+
+    // Glitch
+    ns("Glitch", "In", "Digital glitch entry", Canimation.Glitch.In)
+    ns("Glitch", "Shake", "Glitchy shake", Canimation.Glitch.Shake)
+    ns("Glitch", "Flicker", "Flickering", Canimation.Glitch.Flicker)
+    ns("Glitch", "Distort", "Distorted entry", Canimation.Glitch.Distort)
+
+    // Elastic
+    ns("Elastic", "In", "Elastic stretch entry", Canimation.Elastic.In)
+    ns("Elastic", "Stretch", "Full elastic stretch", Canimation.Elastic.Stretch)
+    ns("Elastic", "Squash", "Squash compression", Canimation.Elastic.Squash)
+    ns("Elastic", "Snap", "Snappy elastic", Canimation.Elastic.Snap)
+    ns("Elastic", "Wobble", "Wobbly elastic", Canimation.Elastic.Wobble)
+
+    // Cinematic
+    ns("Cinematic", "Curtain", "Curtain reveal", Canimation.Cinematic.Curtain)
+    ns("Cinematic", "ZoomPan", "Camera zoom pan", Canimation.Cinematic.ZoomPan)
+    ns("Cinematic", "Dolly", "Dolly zoom", Canimation.Cinematic.Dolly)
+    ns("Cinematic", "Reveal", "Subtle reveal", Canimation.Cinematic.Reveal)
+    ns("Cinematic", "FadeToBlack", "Fade to black", Canimation.Cinematic.FadeToBlack)
+    ns("Cinematic", "Dramatic", "Dramatic entrance", Canimation.Cinematic.Dramatic)
+
+    // Playful
+    ns("Playful", "Wiggle", "Fun wiggle", Canimation.Playful.Wiggle)
+    ns("Playful", "Hop", "Hop bounce", Canimation.Playful.Hop)
+    ns("Playful", "Spin", "Playful spin", Canimation.Playful.Spin)
+    ns("Playful", "Pop", "Quick playful pop", Canimation.Playful.Pop)
+    ns("Playful", "Twirl", "Twirling entry", Canimation.Playful.Twirl)
+    ns("Playful", "Boing", "Spring boing", Canimation.Playful.Boing)
+
     // Stagger (these are constants, not effects)
     add(ApiEntry(
         name = "Canimation.Stagger",

@@ -125,7 +125,7 @@ fun ExampleDetailScreen(
                 // Usage / Code
                 Box(Modifier.canimation(visible = entryStage >= 2, effect = Canimation.Fade.Up)) {
                     SectionCard(title = "Usage") {
-                        CodeBlock(item.codeSnippet)
+                        CodeBlock(generateUsageCode(item))
                     }
                 }
 
@@ -318,41 +318,61 @@ Combine with CanimationVisibility for composable-level enter/exit."""
     else -> """Add canimation-core to your dependencies and apply the appropriate Modifier extension. All animations work cross-platform on Android, iOS, Desktop, and Web (JS/WASM)."""
 }
 
+private fun generateUsageCode(item: ExampleItem): String = when (item.demoType) {
+    "effect", "transition", "composition", "stagger", "emphasis",
+    "enterExit", "visibility", "realWorld" -> {
+        val snippet = item.codeSnippet.trimIndent()
+        "var visible by remember { mutableStateOf(false) }\n" +
+            "LaunchedEffect(Unit) { visible = true }\n\n" +
+            "Box(\n" +
+            "    modifier = ${snippet}\n" +
+            ") {\n" +
+            "    // Your content here\n" +
+            "}"
+    }
+    "component" -> {
+        val snippet = item.codeSnippet.trimIndent()
+        "// Component with canimation entry animation\n" +
+            snippet + "\n\n" +
+            "// The component uses Modifier.canimation() internally:\n" +
+            "// modifier.canimation(visible = entryVisible, effect = Canimation.XXX.YYY)"
+    }
+    else -> item.codeSnippet
+}
+
 private fun generateFullExample(item: ExampleItem): String = when (item.demoType) {
-    "effect" -> """@Composable
-fun MyScreen() {
-    var visible by remember { mutableStateOf(false) }
-    LaunchedEffect(Unit) { visible = true }
-
-    CanimationProvider(policy = CanimationPolicy.AlwaysFull) {
-        Card(
-            modifier = Modifier
-                ${item.codeSnippet.lines().joinToString("\n                ")}
-        ) {
-            Text("Hello, Canimation!")
-        }
+    "effect", "transition", "composition", "stagger", "emphasis",
+    "enterExit", "visibility", "realWorld" -> {
+        val snippet = item.codeSnippet.trimIndent()
+        "@Composable\n" +
+            "fun MyScreen() {\n" +
+            "    var visible by remember { mutableStateOf(false) }\n" +
+            "    LaunchedEffect(Unit) { visible = true }\n\n" +
+            "    CanimationProvider(policy = CanimationPolicy.AlwaysFull) {\n" +
+            "        Box(\n" +
+            "            modifier = ${snippet.lines().joinToString("\n                ")}\n" +
+            "        ) {\n" +
+            "            Text(\"Hello, Canimation!\")\n" +
+            "        }\n" +
+            "    }\n" +
+            "}"
     }
-}"""
-    "transition" -> """@Composable
-fun MyScreen() {
-    var visible by remember { mutableStateOf(false) }
-    LaunchedEffect(Unit) { visible = true }
-
-    Box(
-        modifier = Modifier
-            ${item.codeSnippet.lines().joinToString("\n            ")}
-    ) {
-        Text("Asymmetric transition")
+    "component" -> {
+        val snippet = item.codeSnippet.trimIndent()
+        "@Composable\n" +
+            "fun MyScreen() {\n" +
+            "    // The component uses Modifier.canimation() internally\n" +
+            "    // for its entry animation\n" +
+            "    CanimationProvider(policy = CanimationPolicy.AlwaysFull) {\n" +
+            "        ${snippet.lines().joinToString("\n        ")}\n" +
+            "    }\n" +
+            "}"
     }
-}"""
-    "component" -> """@Composable
-fun MyScreen() {
-    // The component uses Modifier.canimation() internally
-    // for its entry animation
-    ${item.componentKey ?: "Component"}()
-}"""
-    else -> """@Composable
-fun MyScreen() {
-    ${item.codeSnippet.lines().joinToString("\n    ")}
-}"""
+    else -> {
+        val snippet = item.codeSnippet.trimIndent()
+        "@Composable\n" +
+            "fun MyScreen() {\n" +
+            "    ${snippet.lines().joinToString("\n    ")}\n" +
+            "}"
+    }
 }

@@ -812,6 +812,52 @@ object Canimation {
         )
     }
 
+    /** Wave-like motion effects. */
+    object Wave {
+        val Gentle = CanimationEffect(offsetY = CanimationDpRange(6.dp, 0.dp), rotation = CanimationRange(-3f, 0f), alpha = CanimationRange(0f, 1f), durationMs = 500)
+        val Strong = CanimationEffect(offsetY = CanimationDpRange(20.dp, 0.dp), rotation = CanimationRange(-8f, 0f), alpha = CanimationRange(0f, 1f), durationMs = 600)
+        val Ripple = CanimationEffect(scale = CanimationRange(0.9f, 1f), alpha = CanimationRange(0f, 1f), durationMs = 400)
+        val Float = CanimationEffect(offsetY = CanimationDpRange(12.dp, 0.dp), alpha = CanimationRange(0f, 1f), durationMs = 700)
+        val Drift = CanimationEffect(offsetX = CanimationDpRange(10.dp, 0.dp), offsetY = CanimationDpRange(6.dp, 0.dp), alpha = CanimationRange(0f, 1f), durationMs = 500)
+    }
+
+    /** Digital glitch effects. */
+    object Glitch {
+        val In = CanimationEffect(offsetX = CanimationDpRange((-4).dp, 0.dp), alpha = CanimationRange(0f, 1f), durationMs = 150)
+        val Shake = CanimationEffect(offsetX = CanimationDpRange(8.dp, 0.dp), rotation = CanimationRange(2f, 0f), alpha = CanimationRange(0f, 1f), durationMs = 200)
+        val Flicker = CanimationEffect(alpha = CanimationRange(0.3f, 1f), scale = CanimationRange(1.02f, 1f), durationMs = 180)
+        val Distort = CanimationEffect(offsetX = CanimationDpRange(6.dp, 0.dp), scale = CanimationRange(1.05f, 1f), alpha = CanimationRange(0f, 1f), durationMs = 250)
+    }
+
+    /** Elastic spring-like effects. */
+    object Elastic {
+        val In = CanimationEffect(scale = CanimationRange(0.6f, 1f), alpha = CanimationRange(0f, 1f), durationMs = 500)
+        val Stretch = CanimationEffect(scale = CanimationRange(0.7f, 1f), offsetY = CanimationDpRange(30.dp, 0.dp), alpha = CanimationRange(0f, 1f), durationMs = 600)
+        val Squash = CanimationEffect(scale = CanimationRange(1.3f, 1f), alpha = CanimationRange(0f, 1f), durationMs = 400)
+        val Snap = CanimationEffect(scale = CanimationRange(0.5f, 1f), rotation = CanimationRange(-5f, 0f), alpha = CanimationRange(0f, 1f), durationMs = 350)
+        val Wobble = CanimationEffect(scale = CanimationRange(0.85f, 1f), rotation = CanimationRange(3f, 0f), alpha = CanimationRange(0f, 1f), durationMs = 450)
+    }
+
+    /** Cinematic film-inspired effects. */
+    object Cinematic {
+        val Curtain = CanimationEffect(offsetY = CanimationDpRange((-40).dp, 0.dp), alpha = CanimationRange(0f, 1f), durationMs = 600)
+        val ZoomPan = CanimationEffect(scale = CanimationRange(1.5f, 1f), offsetX = CanimationDpRange(30.dp, 0.dp), alpha = CanimationRange(0f, 1f), durationMs = 700)
+        val Dolly = CanimationEffect(scale = CanimationRange(0.3f, 1f), alpha = CanimationRange(0f, 1f), durationMs = 800)
+        val Reveal = CanimationEffect(alpha = CanimationRange(0f, 1f), scale = CanimationRange(0.95f, 1f), offsetY = CanimationDpRange(10.dp, 0.dp), durationMs = 500)
+        val FadeToBlack = CanimationEffect(alpha = CanimationRange(0f, 1f), durationMs = 600)
+        val Dramatic = CanimationEffect(scale = CanimationRange(0.4f, 1f), rotation = CanimationRange(-10f, 0f), alpha = CanimationRange(0f, 1f), durationMs = 700)
+    }
+
+    /** Playful fun effects. */
+    object Playful {
+        val Wiggle = CanimationEffect(rotation = CanimationRange(-12f, 0f), scale = CanimationRange(0.9f, 1f), alpha = CanimationRange(0f, 1f), durationMs = 400)
+        val Hop = CanimationEffect(offsetY = CanimationDpRange((-20).dp, 0.dp), scale = CanimationRange(0.85f, 1f), alpha = CanimationRange(0f, 1f), durationMs = 350)
+        val Spin = CanimationEffect(rotation = CanimationRange(-180f, 0f), scale = CanimationRange(0.7f, 1f), alpha = CanimationRange(0f, 1f), durationMs = 500)
+        val Pop = CanimationEffect(scale = CanimationRange(0.3f, 1f), alpha = CanimationRange(0f, 1f), durationMs = 300)
+        val Twirl = CanimationEffect(rotation = CanimationRange(-90f, 0f), offsetY = CanimationDpRange(15.dp, 0.dp), alpha = CanimationRange(0f, 1f), durationMs = 450)
+        val Boing = CanimationEffect(scale = CanimationRange(0.5f, 1f), offsetY = CanimationDpRange(10.dp, 0.dp), alpha = CanimationRange(0f, 1f), durationMs = 400)
+    }
+
     /** Stagger helper for building delayed animation sequences. */
     object Stagger {
         /** Quick stagger delay (40ms per item). */
