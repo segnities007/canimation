@@ -20,11 +20,13 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.filled.FilterList
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.FilterChipDefaults
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
@@ -54,11 +56,11 @@ import io.github.canimation.core.canimation
 import io.github.canimation.core.canimationEmphasize
 import kotlinx.coroutines.delay
 
-// Flat item for the grid — carries parent category tag for filtering
-private data class GalleryItem(
+// Flat item for the grid
+data class GalleryItem(
     val item: ExampleItem,
     val tag: String,
-    val uniqueId: String,
+    val globalIndex: Int,
 )
 
 private val filterTags = listOf(
@@ -70,14 +72,14 @@ private val filterTags = listOf(
 )
 
 // Pre-built flat list
-private val allGalleryItems: List<GalleryItem> by lazy {
+val allGalleryItems: List<GalleryItem> by lazy {
     var idx = 0
     exampleCategories.flatMap { cat ->
         cat.examples.map { example ->
             GalleryItem(
                 item = example,
                 tag = cat.accentLabel,
-                uniqueId = "item-${idx++}",
+                globalIndex = idx++,
             )
         }
     }
@@ -85,13 +87,13 @@ private val allGalleryItems: List<GalleryItem> by lazy {
 
 @Composable
 fun ExamplesScreen(
-    onCategoryClick: (String) -> Unit,
+    onItemClick: (Int) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     var searchQuery by remember { mutableStateOf("") }
     var selectedTag by remember { mutableStateOf("ALL") }
     var headerStage by remember { mutableIntStateOf(-1) }
-    var selectedItem by remember { mutableStateOf<GalleryItem?>(null) }
+    var showFilters by remember { mutableStateOf(true) }
 
     LaunchedEffect(Unit) { for (i in 0..3) { delay(50); headerStage = i } }
 
@@ -158,58 +160,76 @@ fun ExamplesScreen(
                             ),
                         )
 
-                        // Search bar
-                        OutlinedTextField(
-                            value = searchQuery,
-                            onValueChange = { searchQuery = it },
-                            placeholder = { Text("Search animations...") },
-                            leadingIcon = {
-                                Icon(
-                                    Icons.Default.Search,
-                                    contentDescription = "Search",
-                                    tint = MaterialTheme.colorScheme.onSurfaceVariant,
-                                )
-                            },
-                            singleLine = true,
-                            shape = RoundedCornerShape(12.dp),
-                            modifier = Modifier.fillMaxWidth()
+                        // Search bar + filter icon
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.spacedBy(8.dp),
+                            modifier = Modifier
+                                .fillMaxWidth()
                                 .canimation(
                                     visible = headerStage >= 3,
                                     effect = Canimation.Fade.Up,
                                 ),
-                            colors = OutlinedTextFieldDefaults.colors(
-                                focusedBorderColor = MaterialTheme.colorScheme.primary,
-                                unfocusedBorderColor = MaterialTheme.colorScheme.outline,
-                                focusedContainerColor = MaterialTheme.colorScheme.surface,
-                                unfocusedContainerColor = MaterialTheme.colorScheme.surface,
-                            ),
-                        )
-
-                        // Filter chips
-                        Row(
-                            horizontalArrangement = Arrangement.spacedBy(6.dp),
-                            modifier = Modifier.horizontalScroll(rememberScrollState()),
                         ) {
-                            filterTags.forEach { label ->
-                                FilterChip(
-                                    selected = selectedTag == label,
-                                    onClick = {
-                                        selectedTag =
-                                            if (selectedTag == label) "ALL" else label
-                                    },
-                                    label = {
-                                        Text(
-                                            text = label,
-                                            style = MaterialTheme.typography.labelSmall,
-                                            fontWeight = if (selectedTag == label) FontWeight.Bold
-                                            else FontWeight.Normal,
-                                        )
-                                    },
-                                    colors = FilterChipDefaults.filterChipColors(
-                                        selectedContainerColor = MaterialTheme.colorScheme.primaryContainer,
-                                        selectedLabelColor = MaterialTheme.colorScheme.onPrimaryContainer,
-                                    ),
+                            OutlinedTextField(
+                                value = searchQuery,
+                                onValueChange = { searchQuery = it },
+                                placeholder = { Text("Search animations...") },
+                                leadingIcon = {
+                                    Icon(
+                                        Icons.Default.Search,
+                                        contentDescription = "Search",
+                                        tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                                    )
+                                },
+                                singleLine = true,
+                                shape = RoundedCornerShape(12.dp),
+                                modifier = Modifier.weight(1f),
+                                colors = OutlinedTextFieldDefaults.colors(
+                                    focusedBorderColor = MaterialTheme.colorScheme.primary,
+                                    unfocusedBorderColor = MaterialTheme.colorScheme.outline,
+                                    focusedContainerColor = MaterialTheme.colorScheme.surface,
+                                    unfocusedContainerColor = MaterialTheme.colorScheme.surface,
+                                ),
+                            )
+                            IconButton(onClick = { showFilters = !showFilters }) {
+                                Icon(
+                                    imageVector = Icons.Default.FilterList,
+                                    contentDescription = "Filter",
+                                    tint = if (selectedTag != "ALL")
+                                        MaterialTheme.colorScheme.primary
+                                    else MaterialTheme.colorScheme.onSurfaceVariant,
                                 )
+                            }
+                        }
+
+                        // Filter chips (toggled by filter icon)
+                        if (showFilters) {
+                            Row(
+                                horizontalArrangement = Arrangement.spacedBy(6.dp),
+                                modifier = Modifier.horizontalScroll(rememberScrollState()),
+                            ) {
+                                filterTags.forEach { label ->
+                                    FilterChip(
+                                        selected = selectedTag == label,
+                                        onClick = {
+                                            selectedTag =
+                                                if (selectedTag == label) "ALL" else label
+                                        },
+                                        label = {
+                                            Text(
+                                                text = label,
+                                                style = MaterialTheme.typography.labelSmall,
+                                                fontWeight = if (selectedTag == label) FontWeight.Bold
+                                                else FontWeight.Normal,
+                                            )
+                                        },
+                                        colors = FilterChipDefaults.filterChipColors(
+                                            selectedContainerColor = MaterialTheme.colorScheme.primaryContainer,
+                                            selectedLabelColor = MaterialTheme.colorScheme.onPrimaryContainer,
+                                        ),
+                                    )
+                                }
                             }
                         }
 
@@ -225,20 +245,12 @@ fun ExamplesScreen(
                 }
 
                 // Flat animation cards
-                items(filteredItems, key = { it.uniqueId }) { galleryItem ->
+                items(filteredItems, key = { it.globalIndex }) { galleryItem ->
                     AnimationPreviewCard(
                         galleryItem = galleryItem,
-                        onClick = { selectedItem = galleryItem },
+                        onClick = { onItemClick(galleryItem.globalIndex) },
                     )
                 }
-            }
-
-            // Detail dialog
-            selectedItem?.let { gi ->
-                DetailDialog(
-                    galleryItem = gi,
-                    onDismiss = { selectedItem = null },
-                )
             }
         }
     }
@@ -282,35 +294,23 @@ private fun AnimationPreviewCard(
                 }
             }
 
-            // Bottom: Info area
+            // Bottom: Tag + Title only
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = 12.dp, vertical = 10.dp),
                 verticalArrangement = Arrangement.spacedBy(2.dp),
             ) {
-                Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.spacedBy(6.dp),
-                ) {
-                    Text(
-                        text = galleryItem.tag,
-                        style = MaterialTheme.typography.labelSmall,
-                        color = MaterialTheme.colorScheme.secondary,
-                        fontWeight = FontWeight.Bold,
-                    )
-                }
+                Text(
+                    text = galleryItem.tag,
+                    style = MaterialTheme.typography.labelSmall,
+                    color = MaterialTheme.colorScheme.secondary,
+                    fontWeight = FontWeight.Bold,
+                )
                 Text(
                     text = item.title,
                     style = MaterialTheme.typography.titleSmall,
                     fontWeight = FontWeight.Bold,
-                    maxLines = 1,
-                    overflow = TextOverflow.Ellipsis,
-                )
-                Text(
-                    text = item.description,
-                    style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
                 )
@@ -322,7 +322,7 @@ private fun AnimationPreviewCard(
 // ===== Live Preview Renderers =====
 
 @Composable
-private fun LivePreview(item: ExampleItem) {
+internal fun LivePreview(item: ExampleItem) {
     when (item.demoType) {
         "effect", "composition" -> EffectPreview(item.effect ?: Canimation.Fade.In)
         "transition" -> TransitionPreview(item.enterEffect, item.exitEffect)
@@ -349,7 +349,7 @@ private fun EffectPreview(effect: CanimationEffect) {
             .canimation(visible = visible, effect = effect),
     ) {
         Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-            Text("✦", style = MaterialTheme.typography.titleMedium)
+            Text("\u2726", style = MaterialTheme.typography.titleMedium)
         }
     }
 }
@@ -364,20 +364,13 @@ private fun TransitionPreview(enter: CanimationEffect?, exit: CanimationEffect?)
     Surface(
         shape = RoundedCornerShape(10.dp),
         color = MaterialTheme.colorScheme.secondaryContainer,
-        border = BorderStroke(
-            1.dp,
-            MaterialTheme.colorScheme.secondary.copy(alpha = 0.4f),
-        ),
+        border = BorderStroke(1.dp, MaterialTheme.colorScheme.secondary.copy(alpha = 0.4f)),
         modifier = Modifier.size(56.dp).let { mod ->
-            if (enter != null) {
-                mod.canimation(visible = visible, effect = enter)
-            } else {
-                mod
-            }
+            if (enter != null) mod.canimation(visible = visible, effect = enter) else mod
         },
     ) {
         Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-            Text("⇄", style = MaterialTheme.typography.titleMedium)
+            Text("\u21C4", style = MaterialTheme.typography.titleMedium)
         }
     }
 }
@@ -442,10 +435,7 @@ private fun PresetPreview(preset: CanimationPreset) {
             Surface(
                 shape = RoundedCornerShape(10.dp),
                 color = MaterialTheme.colorScheme.primaryContainer,
-                border = BorderStroke(
-                    1.dp,
-                    MaterialTheme.colorScheme.primary.copy(alpha = 0.4f),
-                ),
+                border = BorderStroke(1.dp, MaterialTheme.colorScheme.primary.copy(alpha = 0.4f)),
             ) {
                 Box(Modifier.size(48.dp))
             }
@@ -463,80 +453,6 @@ private fun ComponentPreview(componentKey: String?) {
             .clip(RoundedCornerShape(topStart = 14.dp, topEnd = 14.dp)),
         contentAlignment = Alignment.Center,
     ) {
-        if (demo != null) {
-            demo()
-        }
+        demo?.invoke()
     }
-}
-
-// ===== Detail Dialog =====
-
-@Composable
-private fun DetailDialog(
-    galleryItem: GalleryItem,
-    onDismiss: () -> Unit,
-) {
-    val item = galleryItem.item
-
-    androidx.compose.material3.AlertDialog(
-        onDismissRequest = onDismiss,
-        shape = RoundedCornerShape(20.dp),
-        containerColor = MaterialTheme.colorScheme.surface,
-        title = {
-            Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
-                Text(
-                    text = galleryItem.tag,
-                    style = MaterialTheme.typography.labelSmall,
-                    color = MaterialTheme.colorScheme.secondary,
-                    fontWeight = FontWeight.Bold,
-                )
-                Text(
-                    text = item.title,
-                    style = MaterialTheme.typography.titleLarge,
-                    fontWeight = FontWeight.Bold,
-                )
-                Text(
-                    text = item.description,
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                )
-            }
-        },
-        text = {
-            Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
-                // Full-size demo
-                Surface(
-                    shape = RoundedCornerShape(12.dp),
-                    color = MaterialTheme.colorScheme.surfaceVariant,
-                    border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline),
-                    modifier = Modifier.fillMaxWidth().height(200.dp),
-                ) {
-                    Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                        LivePreview(item = item)
-                    }
-                }
-
-                // Code snippet
-                Surface(
-                    shape = RoundedCornerShape(8.dp),
-                    color = MaterialTheme.colorScheme.surfaceVariant,
-                    border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline),
-                    modifier = Modifier.fillMaxWidth(),
-                ) {
-                    Text(
-                        text = item.codeSnippet,
-                        modifier = Modifier.padding(12.dp),
-                        fontFamily = androidx.compose.ui.text.font.FontFamily.Monospace,
-                        style = MaterialTheme.typography.bodySmall,
-                        color = MaterialTheme.colorScheme.onSurface,
-                    )
-                }
-            }
-        },
-        confirmButton = {
-            androidx.compose.material3.TextButton(onClick = onDismiss) {
-                Text("Close")
-            }
-        },
-    )
 }

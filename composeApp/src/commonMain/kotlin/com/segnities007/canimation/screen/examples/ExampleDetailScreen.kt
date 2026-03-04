@@ -1,27 +1,19 @@
 package com.segnities007.canimation.screen.examples
 
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.combinedClickable
-import androidx.compose.foundation.gestures.Orientation
-import androidx.compose.foundation.gestures.draggable
-import androidx.compose.foundation.gestures.rememberDraggableState
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.widthIn
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -35,44 +27,37 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.input.pointer.PointerEventType
-import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import io.github.canimation.core.CanimationPolicy
-import io.github.canimation.core.CanimationPreset
-import io.github.canimation.core.CanimationProvider
-import io.github.canimation.core.CanimationVisibility
-import io.github.canimation.core.canimationEmphasize
-import io.github.canimation.core.canimationEnter
 import io.github.canimation.core.Canimation
-import io.github.canimation.core.CanimationEffect
+import io.github.canimation.core.CanimationPolicy
+import io.github.canimation.core.CanimationProvider
 import io.github.canimation.core.canimation
-import io.github.canimation.core.canimationTransition
 import kotlinx.coroutines.delay
 
 @Composable
 fun ExampleDetailScreen(
-    categoryId: String,
+    itemIndex: Int,
     onBack: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    val category = remember(categoryId) {
-        exampleCategories.find { it.id == categoryId }
+    val galleryItem = remember(itemIndex) {
+        allGalleryItems.getOrNull(itemIndex)
     }
 
-    if (category == null) {
+    if (galleryItem == null) {
         Box(modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-            Text("Category not found")
+            Text("Item not found")
         }
         return
     }
 
+    val item = galleryItem.item
     var entryStage by remember { mutableIntStateOf(-1) }
-
     LaunchedEffect(Unit) {
-        for (i in 0..1) { delay(80); entryStage = i }
+        for (i in 0..4) { delay(60); entryStage = i }
     }
 
     CanimationProvider(policy = CanimationPolicy.AlwaysFull) {
@@ -80,39 +65,98 @@ fun ExampleDetailScreen(
             modifier = modifier.fillMaxSize(),
             contentAlignment = Alignment.TopCenter,
         ) {
-            LazyColumn(
+            Column(
                 modifier = Modifier
-                    .widthIn(max = 960.dp)
+                    .widthIn(max = 800.dp)
                     .fillMaxWidth()
-                    .padding(horizontal = 32.dp),
-                verticalArrangement = Arrangement.spacedBy(16.dp),
-                contentPadding = androidx.compose.foundation.layout.PaddingValues(vertical = 32.dp),
+                    .verticalScroll(rememberScrollState())
+                    .padding(horizontal = 32.dp, vertical = 32.dp),
+                verticalArrangement = Arrangement.spacedBy(24.dp),
             ) {
                 // Header
-                item {
-                    Box(Modifier.canimation(visible = entryStage >= 0, effect = Canimation.Fade.Up)) {
-                        Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                            Row(
-                                verticalAlignment = Alignment.CenterVertically,
-                                horizontalArrangement = Arrangement.spacedBy(12.dp),
-                            ) {
-                                TextButton(onClick = onBack) {
-                                    Text("← Examples")
-                                }
-                                Text(
-                                    text = category.accentLabel,
-                                    style = MaterialTheme.typography.labelSmall,
-                                    color = MaterialTheme.colorScheme.secondary,
-                                    fontWeight = FontWeight.Bold,
-                                )
-                            }
+                Box(Modifier.canimation(visible = entryStage >= 0, effect = Canimation.Fade.Up)) {
+                    Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.spacedBy(12.dp),
+                        ) {
+                            TextButton(onClick = onBack) { Text("← Gallery") }
                             Text(
-                                text = category.title,
-                                style = MaterialTheme.typography.headlineMedium,
+                                text = galleryItem.tag,
+                                style = MaterialTheme.typography.labelSmall,
+                                color = MaterialTheme.colorScheme.secondary,
+                                fontWeight = FontWeight.Bold,
+                            )
+                        }
+                        Text(
+                            text = item.title,
+                            style = MaterialTheme.typography.headlineMedium,
+                            fontWeight = FontWeight.Bold,
+                        )
+                        Text(
+                            text = item.description,
+                            style = MaterialTheme.typography.bodyLarge,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        )
+                    }
+                }
+
+                // Live Demo
+                Box(Modifier.canimation(visible = entryStage >= 1, effect = Canimation.Fade.Up)) {
+                    SectionCard(title = "Live Demo") {
+                        Surface(
+                            shape = RoundedCornerShape(12.dp),
+                            color = MaterialTheme.colorScheme.surface,
+                            border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline),
+                            modifier = Modifier.fillMaxWidth().height(220.dp),
+                        ) {
+                            Box(
+                                modifier = Modifier
+                                    .fillMaxSize()
+                                    .clip(RoundedCornerShape(12.dp)),
+                                contentAlignment = Alignment.Center,
+                            ) {
+                                LivePreview(item = item)
+                            }
+                        }
+                    }
+                }
+
+                // Usage / Code
+                Box(Modifier.canimation(visible = entryStage >= 2, effect = Canimation.Fade.Up)) {
+                    SectionCard(title = "Usage") {
+                        CodeBlock(item.codeSnippet)
+                    }
+                }
+
+                // API Details
+                Box(Modifier.canimation(visible = entryStage >= 3, effect = Canimation.Fade.Up)) {
+                    SectionCard(title = "Implementation Details") {
+                        Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
+                            DetailRow("Type", formatDemoType(item.demoType))
+                            DetailRow("Category", galleryItem.tag)
+
+                            if (item.effect != null) {
+                                DetailRow("Effect", describeEffect(item.effect))
+                            }
+                            if (item.enterEffect != null) {
+                                DetailRow("Enter Effect", describeEffect(item.enterEffect))
+                            }
+                            if (item.exitEffect != null) {
+                                DetailRow("Exit Effect", describeEffect(item.exitEffect))
+                            }
+                            if (item.demoType == "component") {
+                                DetailRow("Component", item.componentKey ?: "—")
+                            }
+
+                            Spacer(Modifier.height(4.dp))
+                            Text(
+                                text = "How it works",
+                                style = MaterialTheme.typography.titleSmall,
                                 fontWeight = FontWeight.Bold,
                             )
                             Text(
-                                text = "${category.examples.size} examples — ${category.subtitle}",
+                                text = generateHowItWorks(item),
                                 style = MaterialTheme.typography.bodyMedium,
                                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                             )
@@ -120,792 +164,195 @@ fun ExampleDetailScreen(
                     }
                 }
 
-                // Example items
-                itemsIndexed(
-                    items = category.examples,
-                    key = { idx, item -> "${category.id}-$idx" },
-                ) { index, example ->
-                    ExampleCard(
-                        example = example,
-                        index = index,
-                    )
+                // Integration Guide
+                Box(Modifier.canimation(visible = entryStage >= 4, effect = Canimation.Fade.Up)) {
+                    SectionCard(title = "Integration Guide") {
+                        Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
+                            Text(
+                                text = generateIntegrationGuide(item, galleryItem.tag),
+                                style = MaterialTheme.typography.bodyMedium,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                            )
+                            CodeBlock(generateFullExample(item))
+                        }
+                    }
                 }
             }
         }
     }
 }
 
+// ===== Section Components =====
+
 @Composable
-private fun ExampleCard(
-    example: ExampleItem,
-    index: Int,
+private fun SectionCard(
+    title: String,
+    content: @Composable () -> Unit,
 ) {
-    Card(
-        modifier = Modifier.fillMaxWidth(),
-        colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.surfaceVariant,
-        ),
+    Surface(
+        shape = RoundedCornerShape(16.dp),
+        color = MaterialTheme.colorScheme.surfaceVariant,
         border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline),
+        modifier = Modifier.fillMaxWidth(),
     ) {
         Column(
             modifier = Modifier.padding(20.dp),
             verticalArrangement = Arrangement.spacedBy(12.dp),
         ) {
-            // Title
-            Column(verticalArrangement = Arrangement.spacedBy(2.dp)) {
-                Text(
-                    text = example.title,
-                    style = MaterialTheme.typography.titleMedium,
-                    fontWeight = FontWeight.Bold,
-                )
-                Text(
-                    text = example.description,
-                    style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                )
-            }
-
-            // Live demo area — renders based on demoType
-            when (example.demoType) {
-                "effect" -> EffectDemo(example.effect!!)
-                "transition" -> TransitionDemo(example.enterEffect!!, example.exitEffect)
-                "composition" -> EffectDemo(example.effect!!)
-                "stagger" -> StaggerEffectDemo(example.effect!!)
-                "component" -> {
-                    val demo = componentDemos[example.componentKey]
-                    if (demo != null) {
-                        demo()
-                    } else {
-                        Text("Demo not found: ${example.componentKey}")
-                    }
-                }
-                "realWorld" -> RealWorldDemo(example.effect ?: Canimation.Fade.Up, example.title)
-                "emphasis" -> EmphasisDemo(example.preset)
-                "enterExit" -> EnterExitDemo(example.preset, index)
-                "grid" -> GridDemo(example.preset, index)
-                "tap" -> TapDemo(example.preset)
-                "tapEmphasis" -> TapEmphasisDemo(example.preset)
-                "hover" -> HoverDemo(example.preset)
-                "longPress" -> LongPressDemo(example.preset)
-                "toggle" -> ToggleDemo(example.preset)
-                "drag" -> DragDemo(example.preset)
-                "visibility" -> VisibilityDemo(example.preset, index)
-                else -> VisibilityDemo(example.preset, index)
-            }
-
-            // Code snippet
-            Surface(
-                shape = RoundedCornerShape(8.dp),
-                color = MaterialTheme.colorScheme.surface,
-                border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline),
-                modifier = Modifier.fillMaxWidth(),
-            ) {
-                Text(
-                    text = example.codeSnippet,
-                    modifier = Modifier.padding(16.dp),
-                    fontFamily = FontFamily.Monospace,
-                    style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onSurface,
-                )
-            }
-        }
-    }
-}
-
-// ===== Demo Renderers =====
-
-@Composable
-private fun VisibilityDemo(preset: CanimationPreset, index: Int) {
-    var visible by remember { mutableStateOf(false) }
-
-    LaunchedEffect(Unit) {
-        delay(200L + index * 60L)
-        while (true) {
-            visible = true
-            delay(2000)
-            visible = false
-            delay(600)
-        }
-    }
-
-    DemoSurface {
-        DemoDot()
-        CanimationVisibility(
-            visible = visible,
-            enterPreset = preset,
-            exitPreset = preset,
-        ) {
-            DemoBox()
-        }
-    }
-}
-
-@Composable
-private fun EmphasisDemo(preset: CanimationPreset) {
-    var active by remember { mutableStateOf(false) }
-
-    LaunchedEffect(Unit) {
-        delay(300)
-        while (true) {
-            active = true
-            delay(1800)
-            active = false
-            delay(600)
-        }
-    }
-
-    DemoSurface {
-        Surface(
-            shape = RoundedCornerShape(10.dp),
-            color = MaterialTheme.colorScheme.primaryContainer,
-            border = BorderStroke(1.dp, MaterialTheme.colorScheme.primary.copy(alpha = 0.4f)),
-            modifier = Modifier.canimationEmphasize(active = active, preset = preset),
-        ) {
-            Box(
-                modifier = Modifier.size(width = 64.dp, height = 48.dp),
-                contentAlignment = Alignment.Center,
-            ) {
-                Text(
-                    text = "A",
-                    style = MaterialTheme.typography.titleMedium,
-                    fontWeight = FontWeight.Bold,
-                    color = MaterialTheme.colorScheme.onPrimaryContainer,
-                )
-            }
-        }
-    }
-}
-
-@Composable
-private fun EnterExitDemo(preset: CanimationPreset, index: Int) {
-    var visible by remember { mutableStateOf(false) }
-
-    LaunchedEffect(Unit) {
-        delay(200L + index * 60L)
-        while (true) {
-            visible = true
-            delay(2400)
-            visible = false
-            delay(800)
-        }
-    }
-
-    DemoSurface {
-        DemoDot()
-        CanimationVisibility(
-            visible = visible,
-            enterPreset = preset,
-            exitPreset = preset,
-        ) {
-            DemoBox(label = "↔")
-        }
-    }
-}
-
-@Composable
-private fun StaggerDemo(preset: CanimationPreset, index: Int) {
-    var visible by remember { mutableStateOf(false) }
-
-    LaunchedEffect(Unit) {
-        delay(200L + index * 60L)
-        while (true) {
-            visible = true
-            delay(3000)
-            visible = false
-            delay(800)
-        }
-    }
-
-    Surface(
-        shape = RoundedCornerShape(12.dp),
-        color = MaterialTheme.colorScheme.surface,
-        border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline),
-        modifier = Modifier.fillMaxWidth(),
-    ) {
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(12.dp),
-            verticalArrangement = Arrangement.spacedBy(6.dp),
-        ) {
-            repeat(4) { i ->
-                var itemVisible by remember { mutableStateOf(false) }
-
-                LaunchedEffect(visible) {
-                    if (visible) {
-                        delay(i * 100L)
-                        itemVisible = true
-                    } else {
-                        itemVisible = false
-                    }
-                }
-
-                CanimationVisibility(
-                    visible = itemVisible,
-                    enterPreset = preset,
-                    exitPreset = preset,
-                ) {
-                    Surface(
-                        shape = RoundedCornerShape(8.dp),
-                        color = MaterialTheme.colorScheme.primaryContainer,
-                        border = BorderStroke(
-                            1.dp,
-                            MaterialTheme.colorScheme.primary.copy(alpha = 0.3f),
-                        ),
-                        modifier = Modifier.fillMaxWidth(),
-                    ) {
-                        Box(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .height(28.dp),
-                            contentAlignment = Alignment.CenterStart,
-                        ) {
-                            Text(
-                                text = "  Item ${i + 1}",
-                                style = MaterialTheme.typography.bodySmall,
-                                color = MaterialTheme.colorScheme.onPrimaryContainer,
-                            )
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
-
-@Composable
-private fun GridDemo(preset: CanimationPreset, index: Int) {
-    var visible by remember { mutableStateOf(false) }
-
-    LaunchedEffect(Unit) {
-        delay(200L + index * 60L)
-        while (true) {
-            visible = true
-            delay(3000)
-            visible = false
-            delay(800)
-        }
-    }
-
-    Surface(
-        shape = RoundedCornerShape(12.dp),
-        color = MaterialTheme.colorScheme.surface,
-        border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline),
-        modifier = Modifier.fillMaxWidth(),
-    ) {
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(12.dp),
-            verticalArrangement = Arrangement.spacedBy(6.dp),
-        ) {
-            repeat(2) { row ->
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.spacedBy(6.dp),
-                ) {
-                    repeat(2) { col ->
-                        val cellIndex = row * 2 + col
-                        var cellVisible by remember { mutableStateOf(false) }
-
-                        LaunchedEffect(visible) {
-                            if (visible) {
-                                delay(cellIndex * 120L)
-                                cellVisible = true
-                            } else {
-                                cellVisible = false
-                            }
-                        }
-
-                        CanimationVisibility(
-                            visible = cellVisible,
-                            enterPreset = preset,
-                            exitPreset = preset,
-                        ) {
-                            Surface(
-                                shape = RoundedCornerShape(8.dp),
-                                color = MaterialTheme.colorScheme.primaryContainer,
-                                border = BorderStroke(
-                                    1.dp,
-                                    MaterialTheme.colorScheme.primary.copy(alpha = 0.3f),
-                                ),
-                                modifier = Modifier
-                                    .weight(1f)
-                                    .height(48.dp),
-                            ) {
-                                Box(contentAlignment = Alignment.Center) {
-                                    Text(
-                                        text = "${cellIndex + 1}",
-                                        style = MaterialTheme.typography.labelMedium,
-                                        color = MaterialTheme.colorScheme.onPrimaryContainer,
-                                        fontWeight = FontWeight.Bold,
-                                    )
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
-
-// ===== Interactive Demo Renderers =====
-
-@Composable
-private fun TapDemo(preset: CanimationPreset) {
-    var visible by remember { mutableStateOf(false) }
-
-    InteractiveDemoSurface(hint = "Tap to toggle") {
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .clickable { visible = !visible },
-            contentAlignment = Alignment.Center,
-        ) {
-            DemoDot()
-            CanimationVisibility(
-                visible = visible,
-                enterPreset = preset,
-                exitPreset = preset,
-            ) {
-                DemoBox()
-            }
-        }
-    }
-}
-
-@Composable
-private fun TapEmphasisDemo(preset: CanimationPreset) {
-    var active by remember { mutableStateOf(false) }
-
-    LaunchedEffect(active) {
-        if (active) {
-            delay(1200)
-            active = false
-        }
-    }
-
-    InteractiveDemoSurface(hint = "Tap to emphasize") {
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .clickable { active = true },
-            contentAlignment = Alignment.Center,
-        ) {
-            Surface(
-                shape = RoundedCornerShape(10.dp),
-                color = MaterialTheme.colorScheme.primaryContainer,
-                border = BorderStroke(1.dp, MaterialTheme.colorScheme.primary.copy(alpha = 0.4f)),
-                modifier = Modifier.canimationEmphasize(active = active, preset = preset),
-            ) {
-                Box(
-                    modifier = Modifier.size(width = 64.dp, height = 48.dp),
-                    contentAlignment = Alignment.Center,
-                ) {
-                    Text(
-                        text = "A",
-                        style = MaterialTheme.typography.titleMedium,
-                        fontWeight = FontWeight.Bold,
-                        color = MaterialTheme.colorScheme.onPrimaryContainer,
-                    )
-                }
-            }
-        }
-    }
-}
-
-@Composable
-private fun HoverDemo(preset: CanimationPreset) {
-    var hovered by remember { mutableStateOf(false) }
-
-    InteractiveDemoSurface(hint = "Hover / pointer over") {
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .pointerInput(Unit) {
-                    awaitPointerEventScope {
-                        while (true) {
-                            val event = awaitPointerEvent()
-                            when (event.type) {
-                                PointerEventType.Enter -> hovered = true
-                                PointerEventType.Exit -> hovered = false
-                            }
-                        }
-                    }
-                },
-            contentAlignment = Alignment.Center,
-        ) {
-            Surface(
-                shape = RoundedCornerShape(10.dp),
-                color = MaterialTheme.colorScheme.primaryContainer,
-                border = BorderStroke(1.dp, MaterialTheme.colorScheme.primary.copy(alpha = 0.4f)),
-                modifier = Modifier.canimationEmphasize(active = hovered, preset = preset),
-            ) {
-                Box(
-                    modifier = Modifier.size(width = 64.dp, height = 48.dp),
-                    contentAlignment = Alignment.Center,
-                ) {
-                    Text(
-                        text = "A",
-                        style = MaterialTheme.typography.titleMedium,
-                        fontWeight = FontWeight.Bold,
-                        color = MaterialTheme.colorScheme.onPrimaryContainer,
-                    )
-                }
-            }
-        }
-    }
-}
-
-@OptIn(ExperimentalFoundationApi::class)
-@Composable
-private fun LongPressDemo(preset: CanimationPreset) {
-    var active by remember { mutableStateOf(false) }
-
-    LaunchedEffect(active) {
-        if (active) {
-            delay(1200)
-            active = false
-        }
-    }
-
-    InteractiveDemoSurface(hint = "Long press") {
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .combinedClickable(
-                    onClick = {},
-                    onLongClick = { active = true },
-                ),
-            contentAlignment = Alignment.Center,
-        ) {
-            Surface(
-                shape = RoundedCornerShape(10.dp),
-                color = MaterialTheme.colorScheme.primaryContainer,
-                border = BorderStroke(1.dp, MaterialTheme.colorScheme.primary.copy(alpha = 0.4f)),
-                modifier = Modifier.canimationEmphasize(active = active, preset = preset),
-            ) {
-                Box(
-                    modifier = Modifier.size(width = 64.dp, height = 48.dp),
-                    contentAlignment = Alignment.Center,
-                ) {
-                    Text(
-                        text = "A",
-                        style = MaterialTheme.typography.titleMedium,
-                        fontWeight = FontWeight.Bold,
-                        color = MaterialTheme.colorScheme.onPrimaryContainer,
-                    )
-                }
-            }
-        }
-    }
-}
-
-@Composable
-private fun ToggleDemo(preset: CanimationPreset) {
-    var stateA by remember { mutableStateOf(true) }
-
-    InteractiveDemoSurface(hint = "Tap to switch A ↔ B") {
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .clickable { stateA = !stateA },
-            contentAlignment = Alignment.Center,
-        ) {
-            CanimationVisibility(
-                visible = stateA,
-                enterPreset = preset,
-                exitPreset = preset,
-            ) {
-                DemoBox(label = "A")
-            }
-            CanimationVisibility(
-                visible = !stateA,
-                enterPreset = preset,
-                exitPreset = preset,
-            ) {
-                DemoBox(label = "B")
-            }
-        }
-    }
-}
-
-@Composable
-private fun DragDemo(preset: CanimationPreset) {
-    var revealed by remember { mutableStateOf(false) }
-    val draggableState = rememberDraggableState { delta ->
-        if (delta > 8f) revealed = true
-        if (delta < -8f) revealed = false
-    }
-
-    InteractiveDemoSurface(hint = "Drag → to reveal, ← to hide") {
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .draggable(
-                    state = draggableState,
-                    orientation = Orientation.Horizontal,
-                ),
-            contentAlignment = Alignment.Center,
-        ) {
-            // Track indicator
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(4.dp),
-            ) {
-                Text(
-                    text = "←",
-                    style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.outline.copy(alpha = 0.5f),
-                )
-                Surface(
-                    shape = RoundedCornerShape(2.dp),
-                    color = MaterialTheme.colorScheme.outline.copy(alpha = 0.15f),
-                    modifier = Modifier.size(width = 60.dp, height = 4.dp),
-                ) {}
-                Text(
-                    text = "→",
-                    style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.outline.copy(alpha = 0.5f),
-                )
-            }
-
-            CanimationVisibility(
-                visible = revealed,
-                enterPreset = preset,
-                exitPreset = preset,
-            ) {
-                DemoBox()
-            }
-        }
-    }
-}
-
-@Composable
-private fun EffectDemo(effect: CanimationEffect) {
-    var visible by remember { mutableStateOf(false) }
-    LaunchedEffect(Unit) {
-        delay(300)
-        while (true) {
-            visible = true
-            delay(2000)
-            visible = false
-            delay(800)
-        }
-    }
-    Box(
-        modifier = Modifier.fillMaxWidth().height(120.dp),
-        contentAlignment = Alignment.Center,
-    ) {
-        Surface(
-            shape = RoundedCornerShape(12.dp),
-            color = MaterialTheme.colorScheme.primaryContainer,
-            modifier = Modifier
-                .size(80.dp)
-                .canimation(visible = visible, effect = effect),
-        ) {
-            Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                Text("\u2726", style = MaterialTheme.typography.headlineMedium)
-            }
-        }
-    }
-}
-
-@Composable
-private fun TransitionDemo(enter: CanimationEffect, exit: CanimationEffect?) {
-    var visible by remember { mutableStateOf(false) }
-    LaunchedEffect(Unit) {
-        delay(300)
-        while (true) {
-            visible = true
-            delay(2000)
-            visible = false
-            delay(800)
-        }
-    }
-    Box(
-        modifier = Modifier.fillMaxWidth().height(120.dp),
-        contentAlignment = Alignment.Center,
-    ) {
-        Surface(
-            shape = RoundedCornerShape(12.dp),
-            color = MaterialTheme.colorScheme.secondaryContainer,
-            modifier = Modifier
-                .size(80.dp)
-                .canimationTransition(visible = visible, enter = enter, exit = exit),
-        ) {
-            Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                Text("\u21C4", style = MaterialTheme.typography.headlineMedium)
-            }
-        }
-    }
-}
-
-@Composable
-private fun StaggerEffectDemo(effect: CanimationEffect) {
-    val items = remember { listOf("Item A", "Item B", "Item C", "Item D", "Item E") }
-    Column(
-        modifier = Modifier.fillMaxWidth().padding(8.dp),
-        verticalArrangement = Arrangement.spacedBy(6.dp),
-    ) {
-        items.forEachIndexed { i, label ->
-            var visible by remember { mutableStateOf(false) }
-            LaunchedEffect(Unit) {
-                delay(i * Canimation.Stagger.Normal.toLong() + 300L)
-                visible = true
-            }
-            Surface(
-                shape = RoundedCornerShape(8.dp),
-                color = MaterialTheme.colorScheme.surfaceVariant,
-                border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .canimation(visible = visible, effect = effect),
-            ) {
-                Text(
-                    text = label,
-                    modifier = Modifier.padding(12.dp),
-                    style = MaterialTheme.typography.bodyMedium,
-                )
-            }
-        }
-    }
-}
-
-@Composable
-private fun RealWorldDemo(effect: CanimationEffect, pattern: String) {
-    var visible by remember { mutableStateOf(false) }
-    LaunchedEffect(Unit) {
-        delay(300)
-        while (true) {
-            visible = true
-            delay(2500)
-            visible = false
-            delay(800)
-        }
-    }
-    Box(
-        modifier = Modifier.fillMaxWidth().height(140.dp).padding(8.dp),
-        contentAlignment = Alignment.Center,
-    ) {
-        Card(
-            shape = RoundedCornerShape(16.dp),
-            colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),
-            border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline),
-            modifier = Modifier
-                .fillMaxWidth()
-                .canimation(visible = visible, effect = effect),
-        ) {
-            Row(
-                modifier = Modifier.padding(16.dp),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(12.dp),
-            ) {
-                Surface(
-                    shape = RoundedCornerShape(8.dp),
-                    color = MaterialTheme.colorScheme.primary.copy(alpha = 0.15f),
-                    modifier = Modifier.size(48.dp),
-                ) {
-                    Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                        Text("\u2726", style = MaterialTheme.typography.titleMedium)
-                    }
-                }
-                Column {
-                    Text(pattern, style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold)
-                    Text(
-                        "Canimation effect demo",
-                        style = MaterialTheme.typography.bodySmall,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    )
-                }
-            }
-        }
-    }
-}
-
-@Composable
-private fun InteractiveDemoSurface(
-    hint: String,
-    content: @Composable () -> Unit,
-) {
-    Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
-        Text(
-            text = hint,
-            style = MaterialTheme.typography.labelSmall,
-            color = MaterialTheme.colorScheme.secondary,
-            fontWeight = FontWeight.Bold,
-        )
-        Surface(
-            shape = RoundedCornerShape(12.dp),
-            color = MaterialTheme.colorScheme.surface,
-            border = BorderStroke(
-                1.dp,
-                MaterialTheme.colorScheme.secondary.copy(alpha = 0.4f),
-            ),
-            modifier = Modifier.fillMaxWidth(),
-        ) {
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(120.dp),
-            ) {
-                content()
-            }
-        }
-    }
-}
-
-// ===== Shared Demo Components =====
-
-@Composable
-private fun DemoSurface(content: @Composable () -> Unit) {
-    Surface(
-        shape = RoundedCornerShape(12.dp),
-        color = MaterialTheme.colorScheme.surface,
-        border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline),
-        modifier = Modifier.fillMaxWidth(),
-    ) {
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(100.dp),
-            contentAlignment = Alignment.Center,
-        ) {
+            Text(
+                text = title,
+                style = MaterialTheme.typography.titleMedium,
+                fontWeight = FontWeight.Bold,
+            )
             content()
         }
     }
 }
 
 @Composable
-private fun DemoDot() {
+private fun CodeBlock(code: String) {
     Surface(
-        shape = RoundedCornerShape(3.dp),
-        color = MaterialTheme.colorScheme.outline.copy(alpha = 0.3f),
-        modifier = Modifier.size(6.dp),
-    ) {}
+        shape = RoundedCornerShape(10.dp),
+        color = MaterialTheme.colorScheme.surface,
+        border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline),
+        modifier = Modifier.fillMaxWidth(),
+    ) {
+        Text(
+            text = code,
+            modifier = Modifier.padding(16.dp),
+            fontFamily = FontFamily.Monospace,
+            style = MaterialTheme.typography.bodySmall,
+            color = MaterialTheme.colorScheme.onSurface,
+        )
+    }
 }
 
 @Composable
-private fun DemoBox(label: String = "A") {
-    Surface(
-        shape = RoundedCornerShape(10.dp),
-        color = MaterialTheme.colorScheme.primaryContainer,
-        border = BorderStroke(
-            1.dp,
-            MaterialTheme.colorScheme.primary.copy(alpha = 0.4f),
-        ),
+private fun DetailRow(label: String, value: String) {
+    Row(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.SpaceBetween,
     ) {
-        Box(
-            modifier = Modifier.size(width = 64.dp, height = 48.dp),
-            contentAlignment = Alignment.Center,
+        Text(
+            text = label,
+            style = MaterialTheme.typography.bodyMedium,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+            fontWeight = FontWeight.Bold,
+        )
+        Surface(
+            shape = RoundedCornerShape(6.dp),
+            color = MaterialTheme.colorScheme.primary.copy(alpha = 0.1f),
         ) {
             Text(
-                text = label,
-                style = MaterialTheme.typography.titleMedium,
+                text = value,
+                modifier = Modifier.padding(horizontal = 10.dp, vertical = 4.dp),
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.primary,
                 fontWeight = FontWeight.Bold,
-                color = MaterialTheme.colorScheme.onPrimaryContainer,
             )
         }
     }
+}
+
+// ===== Content Generators =====
+
+private fun formatDemoType(demoType: String): String = when (demoType) {
+    "effect" -> "Modifier.canimation"
+    "transition" -> "Modifier.canimationTransition"
+    "composition" -> "Effect Composition (+)"
+    "stagger" -> "Stagger Pattern"
+    "emphasis" -> "Modifier.canimationEmphasize"
+    "realWorld" -> "Real World Pattern"
+    "component" -> "Rich Component"
+    "enterExit" -> "Enter / Exit"
+    "visibility" -> "CanimationVisibility"
+    else -> demoType
+}
+
+private fun describeEffect(effect: io.github.canimation.core.CanimationEffect): String {
+    val parts = mutableListOf<String>()
+    effect.alpha?.let { parts.add("alpha: ${it.from}→${it.to}") }
+    effect.offsetX?.let { parts.add("offsetX: ${it.from}→${it.to}") }
+    effect.offsetY?.let { parts.add("offsetY: ${it.from}→${it.to}") }
+    effect.scale?.let { parts.add("scale: ${it.from}→${it.to}") }
+    effect.rotation?.let { parts.add("rotation: ${it.from}°→${it.to}°") }
+    parts.add("${effect.durationMs}ms")
+    return if (parts.size == 1) "Default (${effect.durationMs}ms)" else parts.joinToString(", ")
+}
+
+private fun generateHowItWorks(item: ExampleItem): String = when (item.demoType) {
+    "effect" -> """This animation uses Modifier.canimation() to animate element properties between hidden and visible states. When visible becomes true, the element transitions from the initial effect values (offset, alpha, scale, rotation) to their default state using an easing curve. The animation is GPU-accelerated through graphicsLayer."""
+    "transition" -> """This uses Modifier.canimationTransition() with separate enter and exit effects. The enter effect plays when visible becomes true, and the exit effect (reversed) plays when visible becomes false. This allows asymmetric transitions — for example, sliding in from the left but fading out."""
+    "composition" -> """Effects are combined using the + operator. When two CanimationEffect objects are combined, the right-hand side fills in any null values from the left-hand side. This lets you compose complex multi-property animations from simple building blocks: Canimation.Fade.Up + Canimation.Rotate.In creates a fade-up with rotation."""
+    "stagger" -> """Stagger patterns apply the same animation to multiple elements with increasing delays. Each item receives a delay of index × staggerMs, creating a cascading wave effect. Use Canimation.Stagger constants (Fast=60ms, Normal=80ms, Slow=120ms) to control timing."""
+    "emphasis" -> """Modifier.canimationEmphasize() creates attention-seeking animations triggered by a boolean state. Unlike enter/exit animations, emphasis effects play while the element is already visible — pulse, shake, bounce, etc. Useful for form validation feedback, notification badges, or interactive highlights."""
+    "component" -> """This is a rich animated component that uses Modifier.canimation() for its entry animation, combined with internal Compose animation APIs for its unique behavior. The entry animation ensures smooth appearance using the canimation system, while custom animations handle the component's specific interaction pattern."""
+    else -> """This animation demonstrates the canimation library's approach to declarative animations in Compose Multiplatform. Apply effects through Modifier extensions for a clean, composable API."""
+}
+
+private fun generateIntegrationGuide(item: ExampleItem, tag: String): String = when (item.demoType) {
+    "effect" -> """To use this animation in your project:
+1. Add the canimation-core dependency
+2. Create a boolean state for visibility
+3. Apply Modifier.canimation() to your composable
+4. Toggle the visibility state to trigger the animation
+
+The animation respects CanimationProvider policy — wrap your app in CanimationProvider to globally control animation behavior (SystemAware, AlwaysFull, AlwaysReduced, AlwaysOff)."""
+    "transition" -> """To use asymmetric transitions:
+1. Define separate enter and exit CanimationEffect instances
+2. Apply Modifier.canimationTransition(visible, enter, exit)
+3. The enter effect plays forward when visible=true
+4. The exit effect plays in reverse when visible=false
+
+Combine with CanimationVisibility for composable-level enter/exit."""
+    "composition" -> """To compose effects:
+1. Combine effects with the + operator: effectA + effectB
+2. The right-hand side overrides non-null values of the left
+3. Use this to create complex animations from simple primitives
+4. Example: Canimation.Fade.Up + Canimation.Scale.Pop"""
+    "component" -> """This component uses canimation for entry animation:
+1. Import the component from the examples package
+2. The component handles its own internal animation logic
+3. Entry animation is powered by Modifier.canimation()
+4. Wrap in CanimationProvider to control animation policy"""
+    else -> """Add canimation-core to your dependencies and apply the appropriate Modifier extension. All animations work cross-platform on Android, iOS, Desktop, and Web (JS/WASM)."""
+}
+
+private fun generateFullExample(item: ExampleItem): String = when (item.demoType) {
+    "effect" -> """@Composable
+fun MyScreen() {
+    var visible by remember { mutableStateOf(false) }
+    LaunchedEffect(Unit) { visible = true }
+
+    CanimationProvider(policy = CanimationPolicy.AlwaysFull) {
+        Card(
+            modifier = Modifier
+                ${item.codeSnippet.lines().joinToString("\n                ")}
+        ) {
+            Text("Hello, Canimation!")
+        }
+    }
+}"""
+    "transition" -> """@Composable
+fun MyScreen() {
+    var visible by remember { mutableStateOf(false) }
+    LaunchedEffect(Unit) { visible = true }
+
+    Box(
+        modifier = Modifier
+            ${item.codeSnippet.lines().joinToString("\n            ")}
+    ) {
+        Text("Asymmetric transition")
+    }
+}"""
+    "component" -> """@Composable
+fun MyScreen() {
+    // The component uses Modifier.canimation() internally
+    // for its entry animation
+    ${item.componentKey ?: "Component"}()
+}"""
+    else -> """@Composable
+fun MyScreen() {
+    ${item.codeSnippet.lines().joinToString("\n    ")}
+}"""
 }

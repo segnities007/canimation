@@ -161,13 +161,6 @@ fun App() {
                                     }
                                 }
                             }
-                            IconButton(onClick = { showSettings = true }) {
-                                Icon(
-                                    imageVector = Icons.Default.Settings,
-                                    contentDescription = "Settings",
-                                    tint = MaterialTheme.colorScheme.onSurfaceVariant,
-                                )
-                            }
                         }
                     }
                 },

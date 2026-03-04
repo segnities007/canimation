@@ -69,15 +69,15 @@ fun CanimationNavHost(
         }
         composable<ExamplesRoute> {
             ExamplesScreen(
-                onCategoryClick = { categoryId ->
-                    navController.navigate(ExampleDetailRoute(categoryId))
+                onItemClick = { itemIndex ->
+                    navController.navigate(ExampleDetailRoute(itemIndex = itemIndex))
                 },
             )
         }
         composable<ExampleDetailRoute> { backStackEntry ->
             val route = backStackEntry.toRoute<ExampleDetailRoute>()
             ExampleDetailScreen(
-                categoryId = route.categoryId,
+                itemIndex = route.itemIndex,
                 onBack = { navController.popBackStack() },
             )
         }

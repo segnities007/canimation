@@ -18,7 +18,7 @@ data object ApiReferenceRoute
 data object ExamplesRoute
 
 @Serializable
-data class ExampleDetailRoute(val categoryId: String)
+data class ExampleDetailRoute(val categoryId: String = "", val itemIndex: Int = 0)
 
 fun routeTitle(route: String?): String = when {
     route == null || route.contains("HomeRoute") -> "canimation"
