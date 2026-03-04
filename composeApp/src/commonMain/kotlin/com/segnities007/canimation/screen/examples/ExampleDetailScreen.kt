@@ -779,6 +779,8 @@ private fun ComponentDemoSurface(
     height: Int = 120,
     content: @Composable () -> Unit,
 ) {
+    var visible by remember { mutableStateOf(false) }
+    LaunchedEffect(Unit) { visible = true }
     Surface(
         shape = RoundedCornerShape(12.dp),
         color = MaterialTheme.colorScheme.surface,
@@ -786,7 +788,9 @@ private fun ComponentDemoSurface(
             1.dp,
             MaterialTheme.colorScheme.tertiary.copy(alpha = 0.3f),
         ),
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier
+            .fillMaxWidth()
+            .canimation(visible = visible, effect = Canimation.Fade.Up),
     ) {
         Box(
             modifier = Modifier

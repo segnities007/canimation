@@ -39,15 +39,11 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.segnities007.canimation.component.PresetPreviewTuning
-import com.segnities007.canimation.navigation.A11yDemoRoute
 import com.segnities007.canimation.navigation.CanimationNavHost
-import com.segnities007.canimation.navigation.CustomSpecLabRoute
-import com.segnities007.canimation.navigation.DiagnosticsRoute
 import com.segnities007.canimation.navigation.HomeRoute
 import com.segnities007.canimation.navigation.DocsRoute
 import com.segnities007.canimation.navigation.ExamplesRoute
 import com.segnities007.canimation.navigation.PresetGalleryRoute
-import com.segnities007.canimation.navigation.TokenReferenceRoute
 import com.segnities007.canimation.theme.CanimationTheme
 import io.github.canimation.core.Canimation
 import io.github.canimation.core.CanimationPreset
@@ -138,10 +134,6 @@ fun App() {
                                     Triple("Docs", DocsRoute, "DocsRoute"),
                                     Triple("Presets", PresetGalleryRoute, "PresetGalleryRoute"),
                                     Triple("Examples", ExamplesRoute, "ExamplesRoute"),
-                                    Triple("Lab", CustomSpecLabRoute, "CustomSpecLabRoute"),
-                                    Triple("A11y", A11yDemoRoute, "A11yDemoRoute"),
-                                    Triple("Diagnostics", DiagnosticsRoute, "DiagnosticsRoute"),
-                                    Triple("Tokens", TokenReferenceRoute, "TokenReferenceRoute"),
                                 ).forEachIndexed { index, (label, dest, key) ->
                                     val selected = route?.contains(key) == true
                                     TextButton(

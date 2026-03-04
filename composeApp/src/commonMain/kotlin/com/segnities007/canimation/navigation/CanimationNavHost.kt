@@ -12,13 +12,9 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.toRoute
 import com.segnities007.canimation.component.PresetPreviewTuning
-import com.segnities007.canimation.screen.A11yDemoScreen
-import com.segnities007.canimation.screen.CustomSpecLabScreen
-import com.segnities007.canimation.screen.DiagnosticsScreen
 import com.segnities007.canimation.screen.DocsScreen
 import com.segnities007.canimation.screen.HomeScreen
 import com.segnities007.canimation.screen.PresetGalleryScreen
-import com.segnities007.canimation.screen.TokenReferenceScreen
 import com.segnities007.canimation.screen.examples.ExampleDetailScreen
 import com.segnities007.canimation.screen.examples.ExamplesScreen
 
@@ -54,10 +50,6 @@ fun CanimationNavHost(
                 onNavigate = { route ->
                     when (route) {
                         "presets" -> navController.navigate(PresetGalleryRoute)
-                        "custom" -> navController.navigate(CustomSpecLabRoute)
-                        "a11y" -> navController.navigate(A11yDemoRoute)
-                        "diagnostics" -> navController.navigate(DiagnosticsRoute)
-                        "tokens" -> navController.navigate(TokenReferenceRoute)
                         "examples" -> navController.navigate(ExamplesRoute)
                         "docs" -> navController.navigate(DocsRoute)
                     }
@@ -72,10 +64,6 @@ fun CanimationNavHost(
                 tuning = tuning,
             )
         }
-        composable<CustomSpecLabRoute> { CustomSpecLabScreen() }
-        composable<A11yDemoRoute> { A11yDemoScreen() }
-        composable<DiagnosticsRoute> { DiagnosticsScreen() }
-        composable<TokenReferenceRoute> { TokenReferenceScreen() }
         composable<ExamplesRoute> {
             ExamplesScreen(
                 onCategoryClick = { categoryId ->

@@ -69,7 +69,7 @@ fun HomeScreen(
             LiveShowcaseSection(stage = stage)
             FeaturesSection(stage = stage, presetCount = presetCount)
             CodeExampleSection(stage = stage)
-            ExploreSection(presetCount = presetCount, onNavigate = onNavigate)
+            ExploreSection(onNavigate = onNavigate)
             PlatformSection(stage = stage)
             FooterSection()
         }
@@ -171,7 +171,7 @@ private fun LiveShowcaseSection(stage: Int) {
                 Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                     Text(
                         text = "SHOWCASE",
-                        style = MaterialTheme.typography.labelMedium,
+                        style = MaterialTheme.typography.labelLarge,
                         color = MaterialTheme.colorScheme.primary,
                         fontWeight = FontWeight.Bold,
                     )
@@ -276,7 +276,7 @@ private fun FeaturesSection(stage: Int, presetCount: Int) {
             Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                 Text(
                     text = "WHY CANIMATION",
-                    style = MaterialTheme.typography.labelMedium,
+                    style = MaterialTheme.typography.labelLarge,
                     color = MaterialTheme.colorScheme.secondary,
                     fontWeight = FontWeight.Bold,
                 )
@@ -416,7 +416,7 @@ private fun CodeExampleSection(stage: Int) {
                 Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                     Text(
                         text = "QUICK START",
-                        style = MaterialTheme.typography.labelMedium,
+                        style = MaterialTheme.typography.labelLarge,
                         color = MaterialTheme.colorScheme.primary,
                         fontWeight = FontWeight.Bold,
                     )
@@ -482,12 +482,12 @@ private fun CodeExampleSection(stage: Int) {
 // ======= EXPLORE =======
 
 @Composable
-private fun ExploreSection(presetCount: Int, onNavigate: (String) -> Unit) {
+private fun ExploreSection(onNavigate: (String) -> Unit) {
     DarkCenteredSection {
         Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
             Text(
                 text = "EXPLORE",
-                style = MaterialTheme.typography.labelMedium,
+                style = MaterialTheme.typography.labelLarge,
                 color = MaterialTheme.colorScheme.secondary,
                 fontWeight = FontWeight.Bold,
             )
@@ -502,12 +502,9 @@ private fun ExploreSection(presetCount: Int, onNavigate: (String) -> Unit) {
         Spacer(Modifier.height(8.dp))
 
         listOf(
-            Triple("Preset Gallery", "All $presetCount built-in presets with interactive demos", "presets"),
+            Triple("Preset Gallery", "All built-in presets with interactive demos", "presets"),
             Triple("Examples", "Categorized interactive examples — fade, scale, spring, attention seekers & more", "examples"),
-            Triple("Custom Spec Lab", "Build your own animation specs with live preview", "custom"),
-            Triple("Accessibility", "Full / Reduced / Off motion policy comparison", "a11y"),
-            Triple("Diagnostics", "FPS overlay and performance monitoring tools", "diagnostics"),
-            Triple("Token Reference", "Duration, easing, distance, and spring design tokens", "tokens"),
+            Triple("Documentation", "API reference, Atomic Design guide, and interactive playground", "docs"),
         ).forEach { (title, description, route) ->
             Surface(
                 onClick = { onNavigate(route) },

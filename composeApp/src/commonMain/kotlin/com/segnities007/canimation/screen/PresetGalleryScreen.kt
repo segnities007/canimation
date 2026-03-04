@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -20,7 +19,6 @@ import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material3.AlertDialog
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -89,83 +87,80 @@ fun PresetGalleryScreen(
             modifier = modifier.fillMaxSize(),
             contentAlignment = Alignment.TopCenter,
         ) {
-        LazyVerticalGrid(
-            columns = GridCells.Adaptive(minSize = 220.dp),
-            modifier = Modifier.widthIn(max = 1200.dp),
-            contentPadding = PaddingValues(horizontal = 24.dp, vertical = 8.dp),
-            horizontalArrangement = Arrangement.spacedBy(8.dp),
-            verticalArrangement = Arrangement.spacedBy(8.dp),
-        ) {
-        item(span = { GridItemSpan(maxLineSpan) }) {
-            Column(
-                modifier = Modifier.padding(horizontal = 4.dp, vertical = 8.dp),
-                verticalArrangement = Arrangement.spacedBy(4.dp),
+            LazyVerticalGrid(
+                columns = GridCells.Adaptive(minSize = 220.dp),
+                modifier = Modifier.widthIn(max = 1200.dp),
+                contentPadding = PaddingValues(horizontal = 24.dp, vertical = 24.dp),
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                verticalArrangement = Arrangement.spacedBy(8.dp),
             ) {
-                Box(Modifier.canimation(visible = headerStage >= 0, effect = Canimation.Fade.Up)) {
-                Text(
-                    text = "GALLERY",
-                    style = MaterialTheme.typography.labelMedium,
-                    color = MaterialTheme.colorScheme.primary,
-                    fontWeight = FontWeight.Bold,
-                )
-                }
-                Box(Modifier.canimation(visible = headerStage >= 1, effect = Canimation.Fade.Up)) {
-                Text(
-                    text = "${CanimationPreset.entries.size} Presets",
-                    style = MaterialTheme.typography.headlineSmall,
-                    fontWeight = FontWeight.Bold,
-                )
-                }
-                Box(Modifier.canimation(visible = headerStage >= 2, effect = Canimation.Fade.Up)) {
-                Text(
-                    text = "Browse, compare, and tune every built-in animation",
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                )
-                }
-                Box(Modifier.canimation(visible = headerStage >= 3, effect = Canimation.Fade.Up)) {
-                FlowRow(
-                    horizontalArrangement = Arrangement.spacedBy(8.dp),
-                    verticalArrangement = Arrangement.spacedBy(8.dp),
-                    modifier = Modifier.padding(top = 8.dp),
-                ) {
-                    MotionFilter.entries.forEach { filter ->
-                        FilterChip(
-                            selected = motionFilter == filter,
-                            onClick = { motionFilter = filter },
-                            label = { Text(filter.label) },
+                item(span = { GridItemSpan(maxLineSpan) }) {
+                    Column(
+                        modifier = Modifier.padding(bottom = 8.dp),
+                        verticalArrangement = Arrangement.spacedBy(8.dp),
+                    ) {
+                        Text(
+                            text = "GALLERY",
+                            style = MaterialTheme.typography.labelLarge,
+                            color = MaterialTheme.colorScheme.primary,
+                            fontWeight = FontWeight.Bold,
+                            modifier = Modifier.canimation(visible = headerStage >= 0, effect = Canimation.Fade.Up),
                         )
+                        Text(
+                            text = "${CanimationPreset.entries.size} Presets",
+                            style = MaterialTheme.typography.headlineMedium,
+                            fontWeight = FontWeight.Bold,
+                            modifier = Modifier.canimation(visible = headerStage >= 1, effect = Canimation.Fade.Up),
+                        )
+                        Text(
+                            text = "Browse, compare, and tune every built-in animation",
+                            style = MaterialTheme.typography.bodyMedium,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                            modifier = Modifier.canimation(visible = headerStage >= 2, effect = Canimation.Fade.Up),
+                        )
+                        FlowRow(
+                            horizontalArrangement = Arrangement.spacedBy(8.dp),
+                            verticalArrangement = Arrangement.spacedBy(8.dp),
+                            modifier = Modifier
+                                .padding(top = 4.dp)
+                                .canimation(visible = headerStage >= 3, effect = Canimation.Fade.Up),
+                        ) {
+                            MotionFilter.entries.forEach { filter ->
+                                FilterChip(
+                                    selected = motionFilter == filter,
+                                    onClick = { motionFilter = filter },
+                                    label = { Text(filter.label) },
+                                )
+                            }
+                        }
                     }
                 }
+
+                items(filteredPresets, key = { it.name }) { preset ->
+                    AnimationShowcase(
+                        title = presetDescription(preset),
+                        preset = preset,
+                        baseSpec = allPresetSpecs.getValue(preset),
+                        tuning = tuning,
+                        autoPlayEnabled = autoPlayEnabled,
+                        autoPlayTick = autoPlayTickLocal,
+                        selectedForCompare = false,
+                        onCardClick = { tapped ->
+                            codeDialogPreset = tapped
+                        },
+                    )
                 }
             }
-        }
 
-        items(filteredPresets, key = { it.name }) { preset ->
-            AnimationShowcase(
-                title = presetDescription(preset),
-                preset = preset,
-                baseSpec = allPresetSpecs.getValue(preset),
-                    tuning = tuning,
-                    autoPlayEnabled = autoPlayEnabled,
-                    autoPlayTick = autoPlayTickLocal,
-                    selectedForCompare = false,
-                    onCardClick = { tapped ->
-                        codeDialogPreset = tapped
-                    },
+            val dialogPreset = codeDialogPreset
+            if (dialogPreset != null) {
+                val dialogSpec = tunePresetSpec(allPresetSpecs.getValue(dialogPreset), tuning)
+                CodeSampleDialog(
+                    preset = dialogPreset,
+                    spec = dialogSpec,
+                    onDismiss = { codeDialogPreset = null },
                 )
             }
-        }
-
-        val dialogPreset = codeDialogPreset
-        if (dialogPreset != null) {
-            val dialogSpec = tunePresetSpec(allPresetSpecs.getValue(dialogPreset), tuning)
-            CodeSampleDialog(
-                preset = dialogPreset,
-                spec = dialogSpec,
-                onDismiss = { codeDialogPreset = null },
-            )
-        }
         }
     }
 }

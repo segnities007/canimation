@@ -49,7 +49,6 @@ import io.github.canimation.core.CanimationPolicy
 import io.github.canimation.core.CanimationProvider
 import io.github.canimation.core.CanimationVisibility
 import io.github.canimation.core.canimation
-import io.github.canimation.core.canimationEnter
 import io.github.canimation.core.CanimationPreset
 import kotlinx.coroutines.delay
 
@@ -107,7 +106,7 @@ fun ExamplesScreen(
                     ) {
                         Text(
                             text = "EXAMPLES",
-                            style = MaterialTheme.typography.labelMedium,
+                            style = MaterialTheme.typography.labelLarge,
                             color = MaterialTheme.colorScheme.primary,
                             fontWeight = FontWeight.Bold,
                             modifier = Modifier.canimation(visible = headerStage >= 0, effect = Canimation.Fade.Up),
@@ -184,12 +183,20 @@ fun ExamplesScreen(
                     }
                 }
 
-                // Category cards
+                // Category cards with stagger entry
                 items(filteredCategories, key = { it.id }) { category ->
-                    CategoryCard(
-                        category = category,
+                    var visible by remember { mutableStateOf(false) }
+                    LaunchedEffect(category.id) { visible = true }
+                    Card(
                         onClick = { onCategoryClick(category.id) },
-                    )
+                        colors = CardDefaults.cardColors(
+                            containerColor = MaterialTheme.colorScheme.surfaceVariant,
+                        ),
+                        border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline),
+                        modifier = Modifier.canimation(visible = visible, effect = Canimation.Fade.Up),
+                    ) {
+                        CategoryCardContent(category)
+                    }
                 }
             }
         }
@@ -197,104 +204,95 @@ fun ExamplesScreen(
 }
 
 @Composable
-private fun CategoryCard(
+private fun CategoryCardContent(
     category: ExampleCategory,
-    onClick: () -> Unit,
 ) {
-    Card(
-        onClick = onClick,
-        colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.surfaceVariant,
-        ),
-        border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline),
+    Column(
+        modifier = Modifier.padding(16.dp),
+        verticalArrangement = Arrangement.spacedBy(12.dp),
     ) {
-        Column(
-            modifier = Modifier.padding(16.dp),
-            verticalArrangement = Arrangement.spacedBy(12.dp),
-        ) {
-            // Category label
-            Text(
-                text = category.accentLabel,
-                style = MaterialTheme.typography.labelSmall,
-                color = MaterialTheme.colorScheme.secondary,
-                fontWeight = FontWeight.Bold,
-            )
+        // Category label
+        Text(
+            text = category.accentLabel,
+            style = MaterialTheme.typography.labelSmall,
+            color = MaterialTheme.colorScheme.secondary,
+            fontWeight = FontWeight.Bold,
+        )
 
-            // Live preview: actual animations
-            Surface(
-                shape = RoundedCornerShape(12.dp),
-                color = MaterialTheme.colorScheme.surface,
-                border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline),
-                modifier = Modifier.fillMaxWidth(),
-            ) {
-                val isComponent = category.examples.firstOrNull()?.demoType in standaloneDemoTypes
-                if (isComponent) {
+        // Live preview: actual animations
+        Surface(
+            shape = RoundedCornerShape(12.dp),
+            color = MaterialTheme.colorScheme.surface,
+            border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline),
+            modifier = Modifier.fillMaxWidth(),
+        ) {
+            val isComponent = category.examples.firstOrNull()?.demoType in standaloneDemoTypes
+            if (isComponent) {
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(80.dp)
+                        .clipToBounds(),
+                    contentAlignment = Alignment.Center,
+                ) {
                     Box(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(80.dp)
-                            .clipToBounds(),
-                        contentAlignment = Alignment.Center,
+                        modifier = Modifier.graphicsLayer {
+                            scaleX = 0.6f
+                            scaleY = 0.6f
+                        },
                     ) {
-                        Box(
-                            modifier = Modifier.graphicsLayer {
-                                scaleX = 0.6f
-                                scaleY = 0.6f
-                            },
-                        ) {
-                            ComponentPreviewCell(
-                                demoType = category.examples.first().demoType,
-                            )
-                        }
+                        ComponentPreviewCell(
+                            demoType = category.examples.first().demoType,
+                        )
                     }
-                } else {
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(80.dp)
-                            .padding(8.dp),
-                        horizontalArrangement = Arrangement.SpaceEvenly,
-                        verticalAlignment = Alignment.CenterVertically,
-                    ) {
-                        category.examples.take(3).forEachIndexed { index, example ->
-                            PreviewCell(
-                                preset = example.preset,
-                                delayMs = index * 300L,
-                            )
-                        }
+                }
+            } else {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(80.dp)
+                        .padding(8.dp),
+                    horizontalArrangement = Arrangement.SpaceEvenly,
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    category.examples.take(3).forEachIndexed { index, example ->
+                        PreviewCell(
+                            preset = example.preset,
+                            delayMs = index * 300L,
+                        )
                     }
                 }
             }
+        }
 
-            // Title and count
+        // Title and count
+        Text(
+            text = category.title,
+            style = MaterialTheme.typography.titleMedium,
+            fontWeight = FontWeight.Bold,
+        )
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
             Text(
-                text = category.title,
-                style = MaterialTheme.typography.titleMedium,
-                fontWeight = FontWeight.Bold,
+                text = category.subtitle,
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                modifier = Modifier.weight(1f),
             )
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically,
+            Surface(
+                shape = RoundedCornerShape(12.dp),
+                color = MaterialTheme.colorScheme.primary.copy(alpha = 0.1f),
             ) {
                 Text(
-                    text = category.subtitle,
-                    style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    modifier = Modifier.weight(1f),
+                    text = "${category.examples.size}",
+                    modifier = Modifier.padding(horizontal = 10.dp, vertical = 4.dp),
+                    style = MaterialTheme.typography.labelMedium,
+                    color = MaterialTheme.colorScheme.primary,
+                    fontWeight = FontWeight.Bold,
                 )
-                Surface(
-                    shape = RoundedCornerShape(12.dp),
-                    color = MaterialTheme.colorScheme.primary.copy(alpha = 0.1f),
-                ) {
-                    Text(
-                        text = "${category.examples.size}",
-                        modifier = Modifier.padding(horizontal = 10.dp, vertical = 4.dp),
-                        style = MaterialTheme.typography.labelMedium,
-                        color = MaterialTheme.colorScheme.primary,
-                        fontWeight = FontWeight.Bold,
-                    )
-                }
             }
         }
     }
