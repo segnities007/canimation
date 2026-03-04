@@ -3121,17 +3121,6 @@ val exampleCategories: List<ExampleCategory> = listOf(
 )""",
             ),
             ExampleItem(
-                title = "Sliding Toggle",
-                description = "Custom toggle switch with sliding animation",
-                demoType = "component",
-                componentKey = "SlidingToggle",
-                codeSnippet = """SlidingToggle(
-    checked = true,
-    onCheckedChange = { isOn -> /* toggle */ },
-    modifier = Modifier.padding(8.dp),
-)""",
-            ),
-            ExampleItem(
                 title = "Circular Reveal Card",
                 description = "Card with circular reveal animation",
                 demoType = "component",

@@ -1,6 +1,7 @@
 package com.segnities007.canimation.screen.examples
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.background
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -11,12 +12,14 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
@@ -43,6 +46,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -55,6 +59,36 @@ import io.github.canimation.core.CanimationVisibility
 import io.github.canimation.core.canimation
 import io.github.canimation.core.canimationEmphasize
 import kotlinx.coroutines.delay
+
+// ─── Category color mapping ───
+private val tagColors: Map<String, Color> = mapOf(
+    "ENTRANCE" to Color(0xFF6366F1),   // indigo
+    "EMPHASIS" to Color(0xFFEC4899),    // pink
+    "PATTERN" to Color(0xFF8B5CF6),     // violet
+    "MATERIAL" to Color(0xFF14B8A6),    // teal
+    "DIRECTION" to Color(0xFF3B82F6),   // blue
+    "3D" to Color(0xFFF97316),          // orange
+    "UI" to Color(0xFF22C55E),          // green
+    "TEXT" to Color(0xFFEAB308),         // yellow
+    "CARDS" to Color(0xFFE11D48),       // rose
+    "LOADING" to Color(0xFF06B6D4),     // cyan
+    "DATA" to Color(0xFF7C3AED),        // purple
+    "NAVIGATION" to Color(0xFF0EA5E9),  // sky
+    "INTERACTIVE" to Color(0xFFF59E0B), // amber
+    "CANVAS" to Color(0xFFD946EF),      // fuchsia
+    "LAYOUT" to Color(0xFF10B981),      // emerald
+    "SCALE" to Color(0xFF6366F1),       // indigo
+    "MOVEMENT" to Color(0xFF3B82F6),    // blue
+    "ROTATE" to Color(0xFFF97316),      // orange
+    "SUBTLE" to Color(0xFF94A3B8),      // slate
+    "PHYSICS" to Color(0xFF0891B2),     // cyan-dark
+    "CHARTS" to Color(0xFF7C3AED),      // purple
+    "GALLERY" to Color(0xFFE11D48),     // rose
+    "NAV" to Color(0xFF0EA5E9),         // sky
+    "VISUAL" to Color(0xFFD946EF),      // fuchsia
+)
+
+private fun tagColor(tag: String): Color = tagColors[tag] ?: Color(0xFF6366F1)
 
 // Flat item for the grid
 data class GalleryItem(
@@ -210,6 +244,7 @@ fun ExamplesScreen(
                                 modifier = Modifier.horizontalScroll(rememberScrollState()),
                             ) {
                                 filterTags.forEach { label ->
+                                    val chipColor = tagColor(label)
                                     FilterChip(
                                         selected = selectedTag == label,
                                         onClick = {
@@ -224,9 +259,17 @@ fun ExamplesScreen(
                                                 else FontWeight.Normal,
                                             )
                                         },
+                                        leadingIcon = if (label != "ALL") {
+                                            {
+                                                Box(
+                                                    Modifier.size(8.dp)
+                                                        .background(chipColor, CircleShape)
+                                                )
+                                            }
+                                        } else null,
                                         colors = FilterChipDefaults.filterChipColors(
-                                            selectedContainerColor = MaterialTheme.colorScheme.primaryContainer,
-                                            selectedLabelColor = MaterialTheme.colorScheme.onPrimaryContainer,
+                                            selectedContainerColor = chipColor.copy(alpha = 0.15f),
+                                            selectedLabelColor = chipColor,
                                         ),
                                     )
                                 }
@@ -264,6 +307,7 @@ private fun AnimationPreviewCard(
     onClick: () -> Unit,
 ) {
     val item = galleryItem.item
+    val accent = tagColor(galleryItem.tag)
     var entered by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entered = true }
 
@@ -273,14 +317,14 @@ private fun AnimationPreviewCard(
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.surfaceVariant,
         ),
-        border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline),
+        border = BorderStroke(1.dp, accent.copy(alpha = 0.3f)),
         modifier = Modifier
             .canimation(visible = entered, effect = Canimation.Fade.Up),
     ) {
         Column {
-            // Top: Live animation preview
+            // Top: Live animation preview with category-tinted background
             Surface(
-                color = MaterialTheme.colorScheme.surface,
+                color = accent.copy(alpha = 0.06f),
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(140.dp)
@@ -294,26 +338,38 @@ private fun AnimationPreviewCard(
                 }
             }
 
-            // Bottom: Tag + Title only
-            Column(
+            // Bottom: Color strip + Tag + Title
+            Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = 12.dp, vertical = 10.dp),
-                verticalArrangement = Arrangement.spacedBy(2.dp),
+                    .padding(start = 0.dp, end = 12.dp, top = 10.dp, bottom = 10.dp),
+                verticalAlignment = Alignment.CenterVertically,
             ) {
-                Text(
-                    text = galleryItem.tag,
-                    style = MaterialTheme.typography.labelSmall,
-                    color = MaterialTheme.colorScheme.secondary,
-                    fontWeight = FontWeight.Bold,
+                // Color accent strip
+                Box(
+                    modifier = Modifier
+                        .width(4.dp)
+                        .height(32.dp)
+                        .background(accent, RoundedCornerShape(topEnd = 4.dp, bottomEnd = 4.dp)),
                 )
-                Text(
-                    text = item.title,
-                    style = MaterialTheme.typography.titleSmall,
-                    fontWeight = FontWeight.Bold,
-                    maxLines = 1,
-                    overflow = TextOverflow.Ellipsis,
-                )
+                Column(
+                    modifier = Modifier.padding(start = 10.dp),
+                    verticalArrangement = Arrangement.spacedBy(2.dp),
+                ) {
+                    Text(
+                        text = galleryItem.tag,
+                        style = MaterialTheme.typography.labelSmall,
+                        color = accent,
+                        fontWeight = FontWeight.Bold,
+                    )
+                    Text(
+                        text = item.title,
+                        style = MaterialTheme.typography.titleSmall,
+                        fontWeight = FontWeight.Bold,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis,
+                    )
+                }
             }
         }
     }
@@ -453,6 +509,15 @@ private fun ComponentPreview(componentKey: String?) {
             .clip(RoundedCornerShape(topStart = 14.dp, topEnd = 14.dp)),
         contentAlignment = Alignment.Center,
     ) {
-        demo?.invoke()
+        // Constrain component demos to prevent overflow
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(140.dp)
+                .clip(RoundedCornerShape(topStart = 14.dp, topEnd = 14.dp)),
+            contentAlignment = Alignment.Center,
+        ) {
+            demo?.invoke()
+        }
     }
 }

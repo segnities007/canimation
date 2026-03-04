@@ -108,12 +108,15 @@ fun ExampleDetailScreen(
                             shape = RoundedCornerShape(12.dp),
                             color = MaterialTheme.colorScheme.surface,
                             border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline),
-                            modifier = Modifier.fillMaxWidth().height(220.dp),
+                            modifier = Modifier.fillMaxWidth().let { m ->
+                                if (item.demoType == "component") m else m.height(220.dp)
+                            },
                         ) {
                             Box(
                                 modifier = Modifier
-                                    .fillMaxSize()
-                                    .clip(RoundedCornerShape(12.dp)),
+                                    .fillMaxWidth()
+                                    .clip(RoundedCornerShape(12.dp))
+                                    .padding(8.dp),
                                 contentAlignment = Alignment.Center,
                             ) {
                                 LivePreview(item = item)

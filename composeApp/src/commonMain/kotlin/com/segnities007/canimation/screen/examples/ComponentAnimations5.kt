@@ -377,6 +377,7 @@ fun ExpandableChip(
     LaunchedEffect(Unit) { entryVisible = true }
 
     var expanded by remember { mutableStateOf(false) }
+    LaunchedEffect(Unit) { while (true) { delay(1800); expanded = !expanded } }
     val width by animateFloatAsState(if (expanded) 200f else 80f, tween(300))
 
     Column(
@@ -451,6 +452,7 @@ fun SlidingToggle(
     LaunchedEffect(Unit) { entryVisible = true }
 
     var on by remember { mutableStateOf(false) }
+    LaunchedEffect(Unit) { while (true) { delay(1500); on = !on } }
     val offsetX by animateFloatAsState(if (on) 32f else 0f, tween(250))
     val trackColor by animateColorAsState(
         targetValue = if (on) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.surfaceVariant,
@@ -625,15 +627,9 @@ fun SwipeCard(
     LaunchedEffect(Unit) { entryVisible = true }
 
     var dismissed by remember { mutableStateOf(false) }
+    LaunchedEffect(Unit) { while (true) { delay(2000); dismissed = true; delay(1000); dismissed = false } }
     val offsetX by animateFloatAsState(if (dismissed) 300f else 0f, tween(400))
     val cardAlpha by animateFloatAsState(if (dismissed) 0f else 1f, tween(400))
-
-    LaunchedEffect(dismissed) {
-        if (dismissed) {
-            delay(600)
-            dismissed = false
-        }
-    }
 
     Column(
         modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Swipe.Left),
@@ -671,7 +667,14 @@ fun AnimatedCheckmark(
     LaunchedEffect(Unit) { entryVisible = true }
 
     val progress = remember { Animatable(0f) }
-    LaunchedEffect(Unit) { progress.animateTo(1f, tween(800, easing = FastOutSlowInEasing)) }
+    LaunchedEffect(Unit) {
+        while (true) {
+            progress.animateTo(1f, tween(800, easing = FastOutSlowInEasing))
+            delay(1200)
+            progress.animateTo(0f, tween(400))
+            delay(300)
+        }
+    }
     val primary = MaterialTheme.colorScheme.primary
 
     Column(
