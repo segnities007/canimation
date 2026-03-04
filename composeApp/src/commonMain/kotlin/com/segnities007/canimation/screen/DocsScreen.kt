@@ -101,7 +101,8 @@ fun DocsScreen(modifier: Modifier = Modifier) {
     var activeSection by remember { mutableStateOf(DocSection.Overview) }
     LaunchedEffect(Unit) { for (i in 0..20) { delay(40); stage = i } }
 
-    Row(modifier.fillMaxSize()) {
+    CanimationProvider(policy = CanimationPolicy.AlwaysFull) {
+        Row(modifier.fillMaxSize()) {
         // ─── Sidebar (Motion.dev-style) ───
         Surface(
             modifier = Modifier
@@ -234,6 +235,7 @@ fun DocsScreen(modifier: Modifier = Modifier) {
                 Spacer(Modifier.height(40.dp))
             }
         }
+    }
     }
 }
 

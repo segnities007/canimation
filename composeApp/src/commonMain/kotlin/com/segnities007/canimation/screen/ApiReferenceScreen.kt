@@ -44,6 +44,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import io.github.canimation.core.Canimation
 import io.github.canimation.core.CanimationEffect
+import io.github.canimation.core.CanimationPolicy
+import io.github.canimation.core.CanimationProvider
 import io.github.canimation.core.canimation
 import kotlinx.coroutines.delay
 
@@ -608,10 +610,11 @@ fun ApiReferenceScreen(modifier: Modifier = Modifier) {
         filtered.groupBy { it.category }
     }
 
-    Box(
-        modifier = modifier.fillMaxSize(),
-        contentAlignment = Alignment.TopCenter,
-    ) {
+    CanimationProvider(policy = CanimationPolicy.AlwaysFull) {
+        Box(
+            modifier = modifier.fillMaxSize(),
+            contentAlignment = Alignment.TopCenter,
+        ) {
         LazyColumn(
             modifier = Modifier.widthIn(max = 960.dp),
             contentPadding = PaddingValues(horizontal = 32.dp, vertical = 24.dp),
@@ -675,32 +678,36 @@ fun ApiReferenceScreen(modifier: Modifier = Modifier) {
             // Grouped entries
             groupedByCategory.forEach { (category, entries) ->
                 item(key = "section-${category.name}") {
-                    Column {
-                        HorizontalDivider(
-                            modifier = Modifier.padding(vertical = 8.dp),
-                            color = MaterialTheme.colorScheme.outlineVariant,
-                        )
-                        Row(
-                            verticalAlignment = Alignment.CenterVertically,
-                            horizontalArrangement = Arrangement.spacedBy(8.dp),
-                        ) {
-                            Box(
-                                modifier = Modifier
-                                    .size(8.dp)
-                                    .background(MaterialTheme.colorScheme.primary, CircleShape),
+                    var visible by remember { mutableStateOf(false) }
+                    LaunchedEffect(category.name) { visible = true }
+                    Box(Modifier.canimation(visible = visible, effect = Canimation.Fade.Left)) {
+                        Column {
+                            HorizontalDivider(
+                                modifier = Modifier.padding(vertical = 8.dp),
+                                color = MaterialTheme.colorScheme.outlineVariant,
                             )
-                            Text(
-                                text = category.label.uppercase(),
-                                style = MaterialTheme.typography.labelLarge,
-                                color = MaterialTheme.colorScheme.primary,
-                                fontWeight = FontWeight.Bold,
-                                letterSpacing = 1.5.sp,
-                            )
-                            Text(
-                                text = "${entries.size}",
-                                style = MaterialTheme.typography.labelSmall,
-                                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                            )
+                            Row(
+                                verticalAlignment = Alignment.CenterVertically,
+                                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                            ) {
+                                Box(
+                                    modifier = Modifier
+                                        .size(8.dp)
+                                        .background(MaterialTheme.colorScheme.primary, CircleShape),
+                                )
+                                Text(
+                                    text = category.label.uppercase(),
+                                    style = MaterialTheme.typography.labelLarge,
+                                    color = MaterialTheme.colorScheme.primary,
+                                    fontWeight = FontWeight.Bold,
+                                    letterSpacing = 1.5.sp,
+                                )
+                                Text(
+                                    text = "${entries.size}",
+                                    style = MaterialTheme.typography.labelSmall,
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                )
+                            }
                         }
                     }
                 }
@@ -718,29 +725,34 @@ fun ApiReferenceScreen(modifier: Modifier = Modifier) {
 
             // Footer
             item(key = "footer") {
-                Column(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(vertical = 24.dp),
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.spacedBy(4.dp),
-                ) {
-                    HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant)
-                    Spacer(Modifier.height(16.dp))
-                    Text(
-                        text = "canimation — Compose Multiplatform Animation Library",
-                        style = MaterialTheme.typography.bodySmall,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    )
-                    Text(
-                        text = "io.github.canimation:canimation-core",
-                        style = MaterialTheme.typography.labelSmall,
-                        fontFamily = FontFamily.Monospace,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    )
+                var visible by remember { mutableStateOf(false) }
+                LaunchedEffect(Unit) { visible = true }
+                Box(Modifier.canimation(visible = visible, effect = Canimation.Fade.In)) {
+                    Column(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(vertical = 24.dp),
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        verticalArrangement = Arrangement.spacedBy(4.dp),
+                    ) {
+                        HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant)
+                        Spacer(Modifier.height(16.dp))
+                        Text(
+                            text = "canimation — Compose Multiplatform Animation Library",
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        )
+                        Text(
+                            text = "io.github.canimation:canimation-core",
+                            style = MaterialTheme.typography.labelSmall,
+                            fontFamily = FontFamily.Monospace,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        )
+                    }
                 }
             }
         }
+    }
     }
 }
 

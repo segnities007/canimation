@@ -148,12 +148,14 @@ private fun HeroSection(stage: Int, presetCount: Int, onNavigate: (String) -> Un
 
                 Spacer(Modifier.height(12.dp))
 
-                Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-                    Button(onClick = { onNavigate("docs") }) {
-                        Text("Get Started")
-                    }
-                    FilledTonalButton(onClick = { onNavigate("examples") }) {
-                        Text("Examples")
+                Box(Modifier.canimation(visible = stage >= 7, effect = Canimation.Scale.Pop)) {
+                    Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+                        Button(onClick = { onNavigate("docs") }) {
+                            Text("Get Started")
+                        }
+                        FilledTonalButton(onClick = { onNavigate("examples") }) {
+                            Text("Examples")
+                        }
                     }
                 }
             }
@@ -293,7 +295,8 @@ private fun FeaturesSection(stage: Int, presetCount: Int) {
 
         Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
             Row(
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier.fillMaxWidth()
+                    .canimation(visible = stage >= 9, effect = Canimation.Fade.Up),
                 horizontalArrangement = Arrangement.spacedBy(12.dp),
             ) {
                 LiveFeatureCard(
@@ -319,7 +322,8 @@ private fun FeaturesSection(stage: Int, presetCount: Int) {
                 )
             }
             Row(
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier.fillMaxWidth()
+                    .canimation(visible = stage >= 10, effect = Canimation.Spring.Up),
                 horizontalArrangement = Arrangement.spacedBy(12.dp),
             ) {
                 LiveFeatureCard(
@@ -435,7 +439,8 @@ private fun CodeExampleSection(stage: Int) {
                 shape = RoundedCornerShape(12.dp),
                 color = MaterialTheme.colorScheme.surfaceVariant,
                 border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline),
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier.fillMaxWidth()
+                    .canimation(visible = stage >= 10, effect = Canimation.Scale.FadeIn),
             ) {
                 Text(
                     text = """
@@ -483,20 +488,25 @@ private fun CodeExampleSection(stage: Int) {
 
 @Composable
 private fun ExploreSection(onNavigate: (String) -> Unit) {
+    var entryStage by remember { mutableIntStateOf(-1) }
+    LaunchedEffect(Unit) { for (i in 0..5) { delay(60); entryStage = i } }
+
     DarkCenteredSection {
-        Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-            Text(
-                text = "EXPLORE",
-                style = MaterialTheme.typography.labelLarge,
-                color = MaterialTheme.colorScheme.secondary,
-                fontWeight = FontWeight.Bold,
-            )
-            Text(
-                text = "Dive deeper",
-                style = MaterialTheme.typography.headlineMedium,
-                fontWeight = FontWeight.Bold,
-                color = MaterialTheme.colorScheme.onBackground,
-            )
+        Box(Modifier.canimation(visible = entryStage >= 0, effect = Canimation.Fade.Up)) {
+            Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                Text(
+                    text = "EXPLORE",
+                    style = MaterialTheme.typography.labelLarge,
+                    color = MaterialTheme.colorScheme.secondary,
+                    fontWeight = FontWeight.Bold,
+                )
+                Text(
+                    text = "Dive deeper",
+                    style = MaterialTheme.typography.headlineMedium,
+                    fontWeight = FontWeight.Bold,
+                    color = MaterialTheme.colorScheme.onBackground,
+                )
+            }
         }
 
         Spacer(Modifier.height(8.dp))
@@ -506,37 +516,39 @@ private fun ExploreSection(onNavigate: (String) -> Unit) {
             Triple("Examples", "Categorized interactive examples — fade, scale, spring, attention seekers & more", "examples"),
             Triple("API Reference", "Complete documentation of every Modifier, Composable, data class, and namespace effect", "api"),
             Triple("Documentation", "Getting started guide, Atomic Design concepts, and interactive playground", "docs"),
-        ).forEach { (title, description, route) ->
-            Surface(
-                onClick = { onNavigate(route) },
-                shape = RoundedCornerShape(12.dp),
-                color = MaterialTheme.colorScheme.surfaceVariant,
-                border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline),
-                modifier = Modifier.fillMaxWidth(),
-            ) {
-                Row(
-                    modifier = Modifier.padding(20.dp),
-                    verticalAlignment = Alignment.CenterVertically,
+        ).forEachIndexed { index, (title, description, route) ->
+            Box(Modifier.canimation(visible = entryStage >= 1 + index, effect = Canimation.Entrance.Rise)) {
+                Surface(
+                    onClick = { onNavigate(route) },
+                    shape = RoundedCornerShape(12.dp),
+                    color = MaterialTheme.colorScheme.surfaceVariant,
+                    border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline),
+                    modifier = Modifier.fillMaxWidth(),
                 ) {
-                    Column(modifier = Modifier.weight(1f)) {
+                    Row(
+                        modifier = Modifier.padding(20.dp),
+                        verticalAlignment = Alignment.CenterVertically,
+                    ) {
+                        Column(modifier = Modifier.weight(1f)) {
+                            Text(
+                                text = title,
+                                style = MaterialTheme.typography.titleMedium,
+                                fontWeight = FontWeight.Bold,
+                                color = MaterialTheme.colorScheme.onBackground,
+                            )
+                            Spacer(Modifier.height(4.dp))
+                            Text(
+                                text = description,
+                                style = MaterialTheme.typography.bodyMedium,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                            )
+                        }
                         Text(
-                            text = title,
-                            style = MaterialTheme.typography.titleMedium,
-                            fontWeight = FontWeight.Bold,
-                            color = MaterialTheme.colorScheme.onBackground,
-                        )
-                        Spacer(Modifier.height(4.dp))
-                        Text(
-                            text = description,
-                            style = MaterialTheme.typography.bodyMedium,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                            "→",
+                            style = MaterialTheme.typography.titleLarge,
+                            color = MaterialTheme.colorScheme.primary,
                         )
                     }
-                    Text(
-                        "→",
-                        style = MaterialTheme.typography.titleLarge,
-                        color = MaterialTheme.colorScheme.primary,
-                    )
                 }
             }
         }
@@ -559,12 +571,14 @@ private fun PlatformSection(stage: Int) {
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.spacedBy(16.dp),
             ) {
-                Text(
-                    text = "Built for every platform",
-                    style = MaterialTheme.typography.headlineSmall,
-                    fontWeight = FontWeight.Bold,
-                    color = MaterialTheme.colorScheme.onBackground,
-                )
+                Box(Modifier.canimation(visible = stage >= 8, effect = Canimation.Fade.Up)) {
+                    Text(
+                        text = "Built for every platform",
+                        style = MaterialTheme.typography.headlineSmall,
+                        fontWeight = FontWeight.Bold,
+                        color = MaterialTheme.colorScheme.onBackground,
+                    )
+                }
                 Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
                     listOf("Android", "iOS", "Desktop", "Web").forEachIndexed { index, platform ->
                         Box(Modifier.canimation(
@@ -595,11 +609,15 @@ private fun PlatformSection(stage: Int) {
 
 @Composable
 private fun FooterSection() {
+    var visible by remember { mutableStateOf(false) }
+    LaunchedEffect(Unit) { visible = true }
+
     Column(
         modifier = Modifier
             .fillMaxWidth()
             .background(MaterialTheme.colorScheme.background)
-            .padding(vertical = 32.dp),
+            .padding(vertical = 32.dp)
+            .canimation(visible = visible, effect = Canimation.Fade.In),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Text(

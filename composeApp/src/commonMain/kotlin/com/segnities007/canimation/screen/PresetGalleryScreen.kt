@@ -137,18 +137,22 @@ fun PresetGalleryScreen(
                 }
 
                 items(filteredPresets, key = { it.name }) { preset ->
-                    AnimationShowcase(
-                        title = presetDescription(preset),
-                        preset = preset,
-                        baseSpec = allPresetSpecs.getValue(preset),
-                        tuning = tuning,
-                        autoPlayEnabled = autoPlayEnabled,
-                        autoPlayTick = autoPlayTickLocal,
-                        selectedForCompare = false,
-                        onCardClick = { tapped ->
-                            codeDialogPreset = tapped
-                        },
-                    )
+                    var visible by remember { mutableStateOf(false) }
+                    LaunchedEffect(preset) { visible = true }
+                    Box(Modifier.canimation(visible = visible, effect = Canimation.Fade.Up)) {
+                        AnimationShowcase(
+                            title = presetDescription(preset),
+                            preset = preset,
+                            baseSpec = allPresetSpecs.getValue(preset),
+                            tuning = tuning,
+                            autoPlayEnabled = autoPlayEnabled,
+                            autoPlayTick = autoPlayTickLocal,
+                            selectedForCompare = false,
+                            onCardClick = { tapped ->
+                                codeDialogPreset = tapped
+                            },
+                        )
+                    }
                 }
             }
 
@@ -173,24 +177,30 @@ private fun CodeSampleDialog(
 ) {
     val clipboard = LocalClipboardManager.current
     val codeSample = remember(preset, spec) { buildCodeSample(preset, spec) }
+    var dialogVisible by remember { mutableStateOf(false) }
+    LaunchedEffect(Unit) { dialogVisible = true }
 
     AlertDialog(
         onDismissRequest = onDismiss,
         title = {
-            Text("${preset.name} code sample")
+            Box(Modifier.canimation(visible = dialogVisible, effect = Canimation.Scale.Pop)) {
+                Text("${preset.name} code sample")
+            }
         },
         text = {
-            SelectionContainer {
-                Column(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(320.dp)
-                        .verticalScroll(rememberScrollState()),
-                ) {
-                    Text(
-                        text = codeSample,
-                        style = MaterialTheme.typography.bodySmall,
-                    )
+            Box(Modifier.canimation(visible = dialogVisible, effect = Canimation.Fade.In)) {
+                SelectionContainer {
+                    Column(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(320.dp)
+                            .verticalScroll(rememberScrollState()),
+                    ) {
+                        Text(
+                            text = codeSample,
+                            style = MaterialTheme.typography.bodySmall,
+                        )
+                    }
                 }
             }
         },
