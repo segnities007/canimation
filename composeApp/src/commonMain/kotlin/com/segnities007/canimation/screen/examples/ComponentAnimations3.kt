@@ -1,6 +1,5 @@
 package com.segnities007.canimation.screen.examples
 
-import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.LinearEasing
@@ -15,7 +14,6 @@ import androidx.compose.animation.core.tween
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -34,11 +32,10 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -56,7 +53,6 @@ import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.delay
 import kotlin.math.PI
-import kotlin.math.abs
 import kotlin.math.cos
 import kotlin.math.roundToInt
 import kotlin.math.sin
@@ -425,52 +421,6 @@ fun CardMagneticSnap(
 // ===== MORE UNIQUE ANIMATIONS =====
 
 /** Animated notification badge count */
-@Composable
-fun NotificationBadge(
-    label: String = "Notifications",
-    count: Int = 3,
-    modifier: Modifier = Modifier,
-) {
-    var entryVisible by remember { mutableStateOf(false) }
-    LaunchedEffect(Unit) { entryVisible = true }
-
-    var count by remember { mutableIntStateOf(0) }
-    LaunchedEffect(Unit) {
-        while (true) { count++; delay(800) }
-    }
-    val displayCount = count % 100
-
-    val scale by animateFloatAsState(
-        targetValue = 1f,
-        animationSpec = spring(dampingRatio = Spring.DampingRatioMediumBouncy, stiffness = Spring.StiffnessHigh),
-    )
-
-    Row(
-        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Fade.Up),
-
-        horizontalArrangement = Arrangement.spacedBy(8.dp),
-        verticalAlignment = Alignment.CenterVertically,
-    ) {
-        Text("Notifications", style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurface)
-        Surface(
-            shape = CircleShape,
-            color = MaterialTheme.colorScheme.error,
-            modifier = Modifier
-                .size(24.dp)
-                .graphicsLayer { scaleX = scale; scaleY = scale },
-        ) {
-            Box(contentAlignment = Alignment.Center) {
-                Text(
-                    text = displayCount.toString(),
-                    style = MaterialTheme.typography.labelSmall,
-                    fontWeight = FontWeight.Bold,
-                    color = MaterialTheme.colorScheme.onError,
-                )
-            }
-        }
-    }
-}
-
 /** Animated progress bar with glow */
 @Composable
 fun GlowProgressBar(
@@ -506,46 +456,6 @@ fun GlowProgressBar(
 }
 
 /** Animated toggle switch with spring */
-@Composable
-fun SpringToggle(
-    initialState: Boolean = false,
-    modifier: Modifier = Modifier,
-) {
-    var entryVisible by remember { mutableStateOf(false) }
-    LaunchedEffect(Unit) { entryVisible = true }
-
-    var on by remember { mutableStateOf(false) }
-    LaunchedEffect(Unit) {
-        while (true) { on = !on; delay(1500) }
-    }
-
-    val thumbOffset by animateFloatAsState(
-        if (on) 24f else 0f,
-        spring(dampingRatio = Spring.DampingRatioMediumBouncy),
-    )
-    val trackColor by animateColorAsState(
-        if (on) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.surfaceVariant,
-        tween(300),
-    )
-
-    Box(
-        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Spring.In)
-            .width(52.dp)
-            .height(28.dp)
-            .clip(RoundedCornerShape(14.dp))
-            .background(trackColor)
-            .padding(2.dp),
-    ) {
-        Box(
-            modifier = Modifier
-                .size(24.dp)
-                .offset { IntOffset(thumbOffset.roundToInt(), 0) }
-                .clip(CircleShape)
-                .background(Color.White),
-        )
-    }
-}
-
 /** Pulse radar effect */
 @Composable
 fun PulseRadar(
@@ -607,52 +517,6 @@ fun MorphProgressIndicator(
 }
 
 /** Animated step indicator */
-@Composable
-fun StepIndicator(
-    totalSteps: Int = 4,
-    modifier: Modifier = Modifier,
-) {
-    var entryVisible by remember { mutableStateOf(false) }
-    LaunchedEffect(Unit) { entryVisible = true }
-
-    var step by remember { mutableIntStateOf(0) }
-    LaunchedEffect(Unit) {
-        while (true) { step = (step + 1) % 4; delay(1000) }
-    }
-
-    Row(
-        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Fade.Up),
-
-        horizontalArrangement = Arrangement.spacedBy(4.dp),
-        verticalAlignment = Alignment.CenterVertically,
-    ) {
-        repeat(4) { i ->
-            val active = i <= step
-            val color by animateColorAsState(
-                if (active) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.surfaceVariant,
-                tween(300),
-            )
-            val scale by animateFloatAsState(if (i == step) 1.2f else 1f, spring())
-
-            Box(
-                modifier = Modifier
-                    .size(12.dp)
-                    .graphicsLayer { scaleX = scale; scaleY = scale }
-                    .clip(CircleShape)
-                    .background(color),
-            )
-            if (i < 3) {
-                Box(
-                    modifier = Modifier
-                        .width(20.dp)
-                        .height(2.dp)
-                        .background(if (i < step) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.surfaceVariant),
-                )
-            }
-        }
-    }
-}
-
 /** Text with animated underline */
 @Composable
 fun AnimatedUnderlineText(
@@ -691,32 +555,6 @@ fun AnimatedUnderlineText(
 }
 
 /** Blinking cursor animation */
-@Composable
-fun BlinkingCursor(
-    text: String = "Type here",
-    modifier: Modifier = Modifier,
-) {
-    var entryVisible by remember { mutableStateOf(false) }
-    LaunchedEffect(Unit) { entryVisible = true }
-
-    val inf = rememberInfiniteTransition()
-    val alpha by inf.animateFloat(
-        1f, 0f,
-        infiniteRepeatable(tween(500), RepeatMode.Reverse),
-    )
-
-    Row(verticalAlignment = Alignment.CenterVertically) {
-        Text("Type here", style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurface)
-        Box(
-            modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Scale.Pop)
-                .width(2.dp)
-                .height(20.dp)
-                .graphicsLayer { this.alpha = alpha }
-                .background(MaterialTheme.colorScheme.primary),
-        )
-    }
-}
-
 /** Animated tag / chip that scales in with spring */
 @Composable
 fun SpringChip(
@@ -789,40 +627,6 @@ fun CoinFlip(
 }
 
 /** DNA double helix animation */
-@Composable
-fun DnaHelix(
-    modifier: Modifier = Modifier,
-) {
-    var entryVisible by remember { mutableStateOf(false) }
-    LaunchedEffect(Unit) { entryVisible = true }
-
-    val inf = rememberInfiniteTransition()
-    val phase by inf.animateFloat(
-        0f, 2f * PI.toFloat(),
-        infiniteRepeatable(tween(3000, easing = LinearEasing), RepeatMode.Restart),
-    )
-    val primary = MaterialTheme.colorScheme.primary
-    val secondary = MaterialTheme.colorScheme.secondary
-
-    Canvas(modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Zoom.In).size(160.dp, 60.dp)) {
-        val w = size.width
-        val cy = size.height / 2
-        val amp = size.height * 0.3f
-        val dotR = 4.dp.toPx()
-
-        for (i in 0..16) {
-            val x = w * i / 16f
-            val angle = phase + i * 0.5f
-            val y1 = cy + sin(angle) * amp
-            val y2 = cy - sin(angle) * amp
-
-            drawCircle(primary, dotR, Offset(x, y1))
-            drawCircle(secondary, dotR, Offset(x, y2))
-            drawLine(primary.copy(alpha = 0.2f), Offset(x, y1), Offset(x, y2), strokeWidth = 1.dp.toPx())
-        }
-    }
-}
-
 /** Animated pie chart segments */
 @Composable
 fun AnimatedPieChart(

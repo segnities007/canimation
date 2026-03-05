@@ -33,11 +33,10 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -46,7 +45,6 @@ import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.StrokeCap
@@ -188,38 +186,6 @@ fun SmoothTabIndicator(
 // ─── 3. NumberCounter ────────────────────────────────────────────────
 
 /** Large number that counts up from 0 to target with easing */
-@Composable
-fun NumberCounter(
-    targetValue: Int = 999,
-    modifier: Modifier = Modifier,
-) {
-    var entryVisible by remember { mutableStateOf(false) }
-    LaunchedEffect(Unit) { entryVisible = true }
-
-    val target = 8742
-    val anim = remember { Animatable(0f) }
-
-    LaunchedEffect(Unit) {
-        while (true) {
-            anim.snapTo(0f)
-            anim.animateTo(target.toFloat(), tween(2000, easing = FastOutSlowInEasing))
-            delay(1500)
-        }
-    }
-
-    Box(
-        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Fade.Up).size(140.dp, 80.dp),
-        contentAlignment = Alignment.Center,
-    ) {
-        Text(
-            text = "${anim.value.roundToInt()}",
-            style = MaterialTheme.typography.headlineLarge,
-            fontWeight = FontWeight.Bold,
-            color = MaterialTheme.colorScheme.primary,
-        )
-    }
-}
-
 // ─── 4. RevealTextEffect ────────────────────────────────────────────
 
 /** Text that reveals character by character with a moving highlight bar */
@@ -704,63 +670,6 @@ fun ToastNotification(
 // ─── 13. AccordionMenu ──────────────────────────────────────────────
 
 /** Expandable menu items that open/close with spring animation */
-@Composable
-fun AccordionMenu(
-    items: List<String> = listOf("Settings", "Profile", "Help"),
-    modifier: Modifier = Modifier,
-) {
-    var entryVisible by remember { mutableStateOf(false) }
-    LaunchedEffect(Unit) { entryVisible = true }
-
-    val items = listOf("Settings", "Profile", "Help")
-    var expandedIndex by remember { mutableIntStateOf(-1) }
-
-    LaunchedEffect(Unit) {
-        while (true) {
-            for (i in items.indices) {
-                expandedIndex = i; delay(1200)
-            }
-            expandedIndex = -1; delay(800)
-        }
-    }
-
-    Column(
-        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Zoom.In).width(220.dp).padding(4.dp),
-        verticalArrangement = Arrangement.spacedBy(4.dp),
-    ) {
-        items.forEachIndexed { i, item ->
-            val expanded = i == expandedIndex
-            val height by animateFloatAsState(
-                if (expanded) 60f else 36f,
-                spring(dampingRatio = 0.7f, stiffness = Spring.StiffnessMediumLow),
-            )
-            Surface(
-                modifier = Modifier.fillMaxWidth().height(height.dp),
-                shape = RoundedCornerShape(8.dp),
-                color = if (expanded) MaterialTheme.colorScheme.primaryContainer
-                else MaterialTheme.colorScheme.surfaceVariant,
-            ) {
-                Column(modifier = Modifier.padding(horizontal = 12.dp, vertical = 8.dp)) {
-                    Text(
-                        text = item,
-                        style = MaterialTheme.typography.bodyMedium,
-                        fontWeight = FontWeight.SemiBold,
-                        color = if (expanded) MaterialTheme.colorScheme.onPrimaryContainer
-                        else MaterialTheme.colorScheme.onSurfaceVariant,
-                    )
-                    if (expanded) {
-                        Text(
-                            text = "Sub-content here",
-                            style = MaterialTheme.typography.bodySmall,
-                            color = MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.7f),
-                        )
-                    }
-                }
-            }
-        }
-    }
-}
-
 // ─── 14. MagneticButton ─────────────────────────────────────────────
 
 /** Button that subtly moves toward a simulated touch position */
@@ -1280,65 +1189,6 @@ fun PulsingAvatar(
 // ─── 24. SegmentedControl ───────────────────────────────────────────
 
 /** iOS-style segmented control with sliding selection indicator */
-@Composable
-fun SegmentedControl(
-    segments: List<String> = listOf("Day", "Week", "Month"),
-    modifier: Modifier = Modifier,
-) {
-    var entryVisible by remember { mutableStateOf(false) }
-    LaunchedEffect(Unit) { entryVisible = true }
-
-    val segments = listOf("Day", "Week", "Month")
-    var selected by remember { mutableIntStateOf(0) }
-
-    LaunchedEffect(Unit) {
-        while (true) {
-            delay(1200)
-            selected = (selected + 1) % segments.size
-        }
-    }
-
-    val indicatorOffset by animateFloatAsState(
-        selected.toFloat(),
-        spring(dampingRatio = 0.65f, stiffness = Spring.StiffnessMediumLow),
-    )
-
-    Box(
-        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Fade.Up)
-            .width(240.dp)
-            .height(36.dp)
-            .clip(RoundedCornerShape(8.dp))
-            .background(MaterialTheme.colorScheme.surfaceVariant)
-            .padding(2.dp),
-    ) {
-        val segmentWidth = (240f - 4f) / segments.size
-        Box(
-            modifier = Modifier
-                .offset { IntOffset((indicatorOffset * segmentWidth).dp.roundToPx(), 0) }
-                .width(segmentWidth.dp)
-                .height(32.dp)
-                .clip(RoundedCornerShape(6.dp))
-                .background(MaterialTheme.colorScheme.surface),
-        )
-        Row(modifier = Modifier.fillMaxSize()) {
-            segments.forEachIndexed { i, label ->
-                Box(
-                    modifier = Modifier.weight(1f).fillMaxSize(),
-                    contentAlignment = Alignment.Center,
-                ) {
-                    Text(
-                        text = label,
-                        style = MaterialTheme.typography.labelMedium,
-                        fontWeight = if (i == selected) FontWeight.Bold else FontWeight.Normal,
-                        color = if (i == selected) MaterialTheme.colorScheme.onSurface
-                        else MaterialTheme.colorScheme.onSurfaceVariant,
-                    )
-                }
-            }
-        }
-    }
-}
-
 // ─── 25. ElasticDrawer ──────────────────────────────────────────────
 
 /** Side drawer that opens with elastic overshoot spring */

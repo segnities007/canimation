@@ -12,9 +12,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
@@ -48,42 +46,6 @@ fun AnimatedBreadcrumb(modifier: Modifier = Modifier) {
         }
     }
 }
-
-// ─── 2. StepperProgress ───
-@Composable
-fun StepperProgress(modifier: Modifier = Modifier) {
-    val steps = listOf("Cart", "Shipping", "Payment", "Done")
-    var current by remember { mutableIntStateOf(0) }
-    LaunchedEffect(Unit) { while (true) { delay(1200); current = (current + 1) % steps.size } }
-
-    Column(modifier.fillMaxWidth().padding(16.dp), horizontalAlignment = Alignment.CenterHorizontally) {
-        Row(horizontalArrangement = Arrangement.spacedBy(4.dp), verticalAlignment = Alignment.CenterVertically) {
-            steps.forEachIndexed { i, step ->
-                val active = i <= current
-                var vis by remember { mutableStateOf(false) }
-                LaunchedEffect(active) { vis = active }
-                Surface(
-                    shape = CircleShape,
-                    color = if (active) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.surfaceVariant,
-                    modifier = Modifier.size(32.dp).canimation(visible = vis, effect = Canimation.Scale.Pop),
-                ) {
-                    Box(contentAlignment = Alignment.Center) {
-                        Text("${i + 1}", style = MaterialTheme.typography.labelSmall,
-                            color = if (active) MaterialTheme.colorScheme.onPrimary else MaterialTheme.colorScheme.onSurfaceVariant)
-                    }
-                }
-                if (i < steps.lastIndex) {
-                    Box(Modifier.width(24.dp).height(2.dp).background(
-                        if (i < current) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.outlineVariant
-                    ))
-                }
-            }
-        }
-        Spacer(Modifier.height(8.dp))
-        Text(steps[current], style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.primary)
-    }
-}
-
 // ─── 3. AnimatedTagCloud ───
 @Composable
 fun AnimatedTagCloud(modifier: Modifier = Modifier) {
@@ -304,32 +266,6 @@ fun AnimatedNavItem(modifier: Modifier = Modifier) {
         }
     }
 }
-
-// ─── 12. AnimatedToggleCard ───
-@Composable
-fun AnimatedToggleCard(modifier: Modifier = Modifier) {
-    var enabled by remember { mutableStateOf(false) }
-    LaunchedEffect(Unit) { while (true) { delay(1800); enabled = !enabled } }
-
-    Surface(
-        shape = RoundedCornerShape(12.dp),
-        color = MaterialTheme.colorScheme.surfaceVariant,
-        modifier = modifier.fillMaxWidth().padding(16.dp),
-    ) {
-        Row(Modifier.padding(16.dp), verticalAlignment = Alignment.CenterVertically) {
-            Column(Modifier.weight(1f)) {
-                Text("Dark Mode", style = MaterialTheme.typography.bodyMedium, fontWeight = FontWeight.SemiBold)
-                Text("Toggle dark theme", style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
-            }
-            var vis by remember { mutableStateOf(false) }
-            LaunchedEffect(enabled) { vis = enabled }
-            Box(Modifier.canimation(visible = vis, effect = Canimation.Stretch.Horizontal)) {
-                Switch(checked = enabled, onCheckedChange = {})
-            }
-        }
-    }
-}
-
 // ─── 13. AnimatedKpi ───
 @Composable
 fun AnimatedKpi(modifier: Modifier = Modifier) {
@@ -474,28 +410,6 @@ fun AnimatedSearchResult(modifier: Modifier = Modifier) {
         }
     }
 }
-
-// ─── 19. AnimatedSineWave ───
-@Composable
-fun AnimatedSineWave(modifier: Modifier = Modifier) {
-    val infiniteTransition = rememberInfiniteTransition()
-    val phase by infiniteTransition.animateFloat(
-        initialValue = 0f, targetValue = (2 * PI).toFloat(),
-        animationSpec = infiniteRepeatable(tween(3000, easing = LinearEasing), RepeatMode.Restart)
-    )
-    val primaryColor = MaterialTheme.colorScheme.primary
-    Canvas(modifier.fillMaxWidth().height(60.dp).padding(horizontal = 16.dp)) {
-        val w = size.width
-        val h = size.height
-        val points = 200
-        for (i in 0 until points) {
-            val x = w * i / points
-            val y = h / 2 + sin(phase + i * 0.08f).toFloat() * h * 0.35f
-            drawCircle(color = primaryColor, radius = 1.5f, center = androidx.compose.ui.geometry.Offset(x, y))
-        }
-    }
-}
-
 // ─── 20. AnimatedChipGroup ───
 @Composable
 fun AnimatedChipGroup(modifier: Modifier = Modifier) {

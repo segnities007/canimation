@@ -1,12 +1,10 @@
 package com.segnities007.canimation.screen.examples
 
-import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -25,7 +23,6 @@ import io.github.canimation.core.Canimation
 import io.github.canimation.core.canimation
 import kotlinx.coroutines.delay
 import kotlin.math.PI
-import kotlin.math.abs
 import kotlin.math.cos
 import kotlin.math.sin
 
@@ -73,54 +70,6 @@ fun WaveformVisualizer(
         }
     }
 }
-
-// ─── 2. TypewriterCursor ────────────────────────────────────────────
-
-@Composable
-fun TypewriterCursor(
-    text: String = "Hello, World!",
-    modifier: Modifier = Modifier,
-) {
-    var entryVisible by remember { mutableStateOf(false) }
-    LaunchedEffect(Unit) { entryVisible = true }
-
-    val fullText = "Hello, World!"
-    var displayedText by remember { mutableStateOf("") }
-    val transition = rememberInfiniteTransition()
-    val cursorAlpha by transition.animateFloat(
-        initialValue = 1f,
-        targetValue = 0f,
-        animationSpec = infiniteRepeatable(tween(500), RepeatMode.Reverse),
-    )
-
-    LaunchedEffect(Unit) {
-        for (i in fullText.indices) {
-            displayedText = fullText.substring(0, i + 1)
-            delay(100)
-        }
-    }
-
-    Box(
-        modifier = modifier
-            .canimation(visible = entryVisible, effect = Canimation.Fade.Up)
-            .padding(16.dp),
-        contentAlignment = Alignment.Center,
-    ) {
-        Row {
-            Text(
-                displayedText,
-                style = MaterialTheme.typography.headlineSmall,
-                fontFamily = FontFamily.Monospace,
-            )
-            Text(
-                "▌",
-                style = MaterialTheme.typography.headlineSmall,
-                color = MaterialTheme.colorScheme.primary.copy(alpha = cursorAlpha),
-            )
-        }
-    }
-}
-
 // ─── 3. RadialProgress ──────────────────────────────────────────────
 
 @Composable
@@ -440,51 +389,6 @@ fun StackedNotifications(
         }
     }
 }
-
-// ─── 11. SlidingToggle ──────────────────────────────────────────────
-
-@Composable
-fun SlidingToggle(
-    initialState: Boolean = false,
-    modifier: Modifier = Modifier,
-) {
-    var entryVisible by remember { mutableStateOf(false) }
-    LaunchedEffect(Unit) { entryVisible = true }
-
-    var on by remember { mutableStateOf(false) }
-    LaunchedEffect(Unit) { while (true) { delay(1500); on = !on } }
-    val offsetX by animateFloatAsState(if (on) 32f else 0f, tween(250))
-    val trackColor by animateColorAsState(
-        targetValue = if (on) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.surfaceVariant,
-        animationSpec = tween(250),
-    )
-
-    Column(
-        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Fade.Up),
-        horizontalAlignment = Alignment.CenterHorizontally,
-    ) {
-        Text("Sliding Toggle", style = MaterialTheme.typography.titleSmall)
-        Spacer(Modifier.height(8.dp))
-        Box(
-            Modifier
-                .width(64.dp)
-                .height(32.dp)
-                .clip(RoundedCornerShape(16.dp))
-                .background(trackColor)
-                .clickable { on = !on }
-                .padding(4.dp),
-        ) {
-            Box(
-                Modifier
-                    .offset(x = offsetX.dp)
-                    .size(24.dp)
-                    .clip(CircleShape)
-                    .background(Color.White),
-            )
-        }
-    }
-}
-
 // ─── 12. CircularRevealCard ─────────────────────────────────────────
 
 @Composable
@@ -529,93 +433,6 @@ fun CircularRevealCard(
         }
     }
 }
-
-// ─── 13. TypingIndicator ────────────────────────────────────────────
-
-@Composable
-fun TypingIndicator(
-    dotCount: Int = 3,
-    modifier: Modifier = Modifier,
-) {
-    var entryVisible by remember { mutableStateOf(false) }
-    LaunchedEffect(Unit) { entryVisible = true }
-
-    val transition = rememberInfiniteTransition()
-
-    Column(
-        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Fade.Up),
-        horizontalAlignment = Alignment.CenterHorizontally,
-    ) {
-        Text("Typing Indicator", style = MaterialTheme.typography.titleSmall)
-        Spacer(Modifier.height(8.dp))
-        Surface(
-            shape = RoundedCornerShape(16.dp),
-            tonalElevation = 2.dp,
-            modifier = Modifier.padding(4.dp),
-        ) {
-            Row(
-                Modifier.padding(horizontal = 16.dp, vertical = 10.dp),
-                horizontalArrangement = Arrangement.spacedBy(6.dp),
-            ) {
-                for (i in 0..2) {
-                    val offsetY by transition.animateFloat(
-                        initialValue = 0f,
-                        targetValue = -8f,
-                        animationSpec = infiniteRepeatable(
-                            tween(400, delayMillis = i * 150),
-                            RepeatMode.Reverse,
-                        ),
-                    )
-                    Box(
-                        Modifier
-                            .offset(y = offsetY.dp)
-                            .size(10.dp)
-                            .clip(CircleShape)
-                            .background(MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.6f)),
-                    )
-                }
-            }
-        }
-    }
-}
-
-// ─── 14. SkeletonText ───────────────────────────────────────────────
-
-@Composable
-fun SkeletonText(
-    lineCount: Int = 3,
-    modifier: Modifier = Modifier,
-) {
-    var entryVisible by remember { mutableStateOf(false) }
-    LaunchedEffect(Unit) { entryVisible = true }
-
-    val transition = rememberInfiniteTransition()
-    val alpha by transition.animateFloat(
-        initialValue = 0.3f,
-        targetValue = 0.7f,
-        animationSpec = infiniteRepeatable(tween(800), RepeatMode.Reverse),
-    )
-
-    Column(
-        modifier = modifier
-            .canimation(visible = entryVisible, effect = Canimation.Fade.Up)
-            .padding(16.dp),
-        verticalArrangement = Arrangement.spacedBy(8.dp),
-    ) {
-        Text("Skeleton Loading", style = MaterialTheme.typography.titleSmall)
-        Spacer(Modifier.height(4.dp))
-        listOf(1f, 0.8f, 0.6f, 0.9f).forEach { fraction ->
-            Box(
-                Modifier
-                    .fillMaxWidth(fraction)
-                    .height(14.dp)
-                    .clip(RoundedCornerShape(4.dp))
-                    .background(MaterialTheme.colorScheme.onSurface.copy(alpha = alpha)),
-            )
-        }
-    }
-}
-
 // ─── 15. SwipeCard ──────────────────────────────────────────────────
 
 @Composable

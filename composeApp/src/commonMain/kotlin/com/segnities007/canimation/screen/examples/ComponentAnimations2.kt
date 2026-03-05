@@ -31,11 +31,10 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -46,7 +45,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.graphicsLayer
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
@@ -61,50 +59,6 @@ import kotlin.math.roundToInt
 import kotlin.math.sin
 import io.github.canimation.core.Canimation
 import io.github.canimation.core.canimation
-
-// ============================================================
-// 1. MorphingShapes
-// ============================================================
-
-@Composable
-fun MorphingShapes(size: Dp = 120.dp,
-    modifier: Modifier = Modifier,
-) {
-    var entryVisible by remember { mutableStateOf(false) }
-    LaunchedEffect(Unit) { entryVisible = true }
-
-    val infiniteTransition = rememberInfiniteTransition()
-    val cornerPercent by infiniteTransition.animateFloat(
-        initialValue = 50f,
-        targetValue = 10f,
-        animationSpec = infiniteRepeatable(
-            animation = tween(1500, easing = FastOutSlowInEasing),
-            repeatMode = RepeatMode.Reverse,
-        ),
-    )
-    val rotation by infiniteTransition.animateFloat(
-        initialValue = 0f,
-        targetValue = 90f,
-        animationSpec = infiniteRepeatable(
-            animation = tween(1500, easing = FastOutSlowInEasing),
-            repeatMode = RepeatMode.Reverse,
-        ),
-    )
-
-    Box(
-        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Zoom.In).size(160.dp),
-        contentAlignment = Alignment.Center,
-    ) {
-        Box(
-            modifier = Modifier
-                .size(size)
-                .graphicsLayer { rotationZ = rotation }
-                .clip(RoundedCornerShape(cornerPercent.toInt()))
-                .background(MaterialTheme.colorScheme.primary),
-        )
-    }
-}
-
 // ============================================================
 // 2. GradientShift
 // ============================================================
@@ -300,108 +254,6 @@ fun ParallaxLayers(
         }
     }
 }
-
-// ============================================================
-// 6. OrbitAnimation
-// ============================================================
-
-@Composable
-fun OrbitAnimation(orbitRadius: Dp = 60.dp,
-    modifier: Modifier = Modifier,
-) {
-    var entryVisible by remember { mutableStateOf(false) }
-    LaunchedEffect(Unit) { entryVisible = true }
-
-    val infiniteTransition = rememberInfiniteTransition()
-    val angle by infiniteTransition.animateFloat(
-        initialValue = 0f,
-        targetValue = 360f,
-        animationSpec = infiniteRepeatable(
-            animation = tween(3000, easing = LinearEasing),
-            repeatMode = RepeatMode.Restart,
-        ),
-    )
-
-    val primary = MaterialTheme.colorScheme.primary
-    val secondary = MaterialTheme.colorScheme.secondary
-    val tertiary = MaterialTheme.colorScheme.tertiary
-
-    Box(
-        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Zoom.In).size(200.dp),
-        contentAlignment = Alignment.Center,
-    ) {
-        // Center dot
-        Box(
-            modifier = Modifier
-                .size(12.dp)
-                .clip(RoundedCornerShape(50))
-                .background(MaterialTheme.colorScheme.onSurface),
-        )
-
-        val orbiterColors = listOf(primary, secondary, tertiary)
-        val offsets = listOf(0f, 120f, 240f)
-
-        orbiterColors.forEachIndexed { index, color ->
-            val currentAngle = angle + offsets[index]
-            val radians = currentAngle * PI.toFloat() / 180f
-            val radiusPx = orbitRadius.value
-            val xOffset = (cos(radians) * radiusPx).dp
-            val yOffset = (sin(radians) * radiusPx).dp
-
-            Box(
-                modifier = Modifier
-                    .offset(x = xOffset, y = yOffset)
-                    .size(16.dp)
-                    .clip(RoundedCornerShape(50))
-                    .background(color),
-            )
-        }
-    }
-}
-
-// ============================================================
-// 7. BreathingGlow
-// ============================================================
-
-@Composable
-fun BreathingGlow(baseSize: Dp = 80.dp,
-    modifier: Modifier = Modifier,
-) {
-    var entryVisible by remember { mutableStateOf(false) }
-    LaunchedEffect(Unit) { entryVisible = true }
-
-    val infiniteTransition = rememberInfiniteTransition()
-    val progress by infiniteTransition.animateFloat(
-        initialValue = 0f,
-        targetValue = 1f,
-        animationSpec = infiniteRepeatable(
-            animation = tween(2000, easing = LinearEasing),
-            repeatMode = RepeatMode.Restart,
-        ),
-    )
-
-    val sinValue = sin(progress * 2f * PI.toFloat())
-    val scale = 1f + sinValue * 0.2f
-    val alphaValue = 0.5f + sinValue * 0.5f
-
-    Box(
-        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Scale.Pop).size(160.dp),
-        contentAlignment = Alignment.Center,
-    ) {
-        Box(
-            modifier = Modifier
-                .size(baseSize)
-                .graphicsLayer {
-                    scaleX = scale
-                    scaleY = scale
-                    alpha = alphaValue
-                }
-                .clip(RoundedCornerShape(50))
-                .background(MaterialTheme.colorScheme.primary),
-        )
-    }
-}
-
 // ============================================================
 // 8. PathTracer
 // ============================================================
@@ -456,47 +308,6 @@ fun PathTracer(canvasSize: Dp = 160.dp,
         )
     }
 }
-
-// ============================================================
-// 9. TextGradientAnim
-// ============================================================
-
-@Composable
-fun TextGradientAnim(displayText: String = "Canimation",
-    modifier: Modifier = Modifier,
-) {
-    var entryVisible by remember { mutableStateOf(false) }
-    LaunchedEffect(Unit) { entryVisible = true }
-
-    val infiniteTransition = rememberInfiniteTransition()
-    val offset by infiniteTransition.animateFloat(
-        initialValue = 0f,
-        targetValue = 1000f,
-        animationSpec = infiniteRepeatable(
-            animation = tween(2000, easing = LinearEasing),
-            repeatMode = RepeatMode.Restart,
-        ),
-    )
-
-    val primary = MaterialTheme.colorScheme.primary
-    val secondary = MaterialTheme.colorScheme.secondary
-    val tertiary = MaterialTheme.colorScheme.tertiary
-
-    Text(
-        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Fade.In),
-        text = displayText,
-        style = TextStyle(
-            fontSize = 32.sp,
-            fontWeight = FontWeight.Bold,
-            brush = Brush.horizontalGradient(
-                colors = listOf(primary, secondary, tertiary, primary),
-                startX = offset,
-                endX = offset + 400f,
-            ),
-        ),
-    )
-}
-
 // ============================================================
 // 10. CardShuffle
 // ============================================================
@@ -696,92 +507,6 @@ fun WaveEffect(barCount: Int = 10,
         }
     }
 }
-
-// ============================================================
-// 13. ProgressSteps
-// ============================================================
-
-@Composable
-fun ProgressSteps(totalSteps: Int = 4,
-    modifier: Modifier = Modifier,
-) {
-    var entryVisible by remember { mutableStateOf(false) }
-    LaunchedEffect(Unit) { entryVisible = true }
-
-    var currentStep by remember { mutableIntStateOf(0) }
-
-    LaunchedEffect(Unit) {
-        while (true) {
-            delay(1000)
-            currentStep = (currentStep + 1) % (totalSteps + 1)
-        }
-    }
-
-    val activeColor = MaterialTheme.colorScheme.primary
-    val inactiveColor = MaterialTheme.colorScheme.surfaceVariant
-
-    Row(
-        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Scale.Pop)
-            .fillMaxWidth()
-            .padding(horizontal = 24.dp),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.SpaceBetween,
-    ) {
-        for (i in 0 until totalSteps) {
-            val isActive = i < currentStep
-            val circleColor by animateFloatAsState(
-                targetValue = if (isActive) 1f else 0f,
-                animationSpec = tween(400),
-            )
-
-            Box(
-                modifier = Modifier
-                    .size(28.dp)
-                    .clip(RoundedCornerShape(50))
-                    .background(
-                        Color(
-                            red = inactiveColor.red + (activeColor.red - inactiveColor.red) * circleColor,
-                            green = inactiveColor.green + (activeColor.green - inactiveColor.green) * circleColor,
-                            blue = inactiveColor.blue + (activeColor.blue - inactiveColor.blue) * circleColor,
-                            alpha = 1f,
-                        )
-                    ),
-                contentAlignment = Alignment.Center,
-            ) {
-                Text(
-                    text = (i + 1).toString(),
-                    fontSize = 12.sp,
-                    fontWeight = FontWeight.Bold,
-                    color = if (isActive) MaterialTheme.colorScheme.onPrimary
-                    else MaterialTheme.colorScheme.onSurfaceVariant,
-                )
-            }
-
-            if (i < totalSteps - 1) {
-                val lineFraction by animateFloatAsState(
-                    targetValue = if (i < currentStep - 1) 1f else 0f,
-                    animationSpec = tween(400),
-                )
-                Box(
-                    modifier = Modifier
-                        .weight(1f)
-                        .height(4.dp)
-                        .padding(horizontal = 4.dp)
-                        .clip(RoundedCornerShape(2.dp))
-                        .background(inactiveColor),
-                ) {
-                    Box(
-                        modifier = Modifier
-                            .fillMaxWidth(lineFraction)
-                            .height(4.dp)
-                            .background(activeColor),
-                    )
-                }
-            }
-        }
-    }
-}
-
 // ============================================================
 // 14. LiquidFill
 // ============================================================
@@ -1144,200 +869,6 @@ fun GlitchText(text: String = "GLITCH",
         )
     }
 }
-
-// ============================================================
-// 20. ExpandingRings
-// ============================================================
-
-@Composable
-fun ExpandingRings(canvasSize: Dp = 180.dp,
-    modifier: Modifier = Modifier,
-) {
-    var entryVisible by remember { mutableStateOf(false) }
-    LaunchedEffect(Unit) { entryVisible = true }
-
-    val ringCount = 3
-    val infiniteTransition = rememberInfiniteTransition()
-    val phases = (0 until ringCount).map { index ->
-        infiniteTransition.animateFloat(
-            initialValue = 0f,
-            targetValue = 1f,
-            animationSpec = infiniteRepeatable(
-                animation = tween(2000, delayMillis = index * 600, easing = LinearEasing),
-                repeatMode = RepeatMode.Restart,
-            ),
-        )
-    }
-
-    val ringColor = MaterialTheme.colorScheme.primary
-
-    Canvas(modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Scale.Pop).size(canvasSize)) {
-        val maxRadius = size.minDimension / 2f
-        phases.forEach { phase ->
-            val progress = phase.value
-            val radius = maxRadius * progress
-            val alpha = 1f - progress
-            drawCircle(
-                color = ringColor.copy(alpha = alpha),
-                radius = radius,
-                style = Stroke(width = 3.dp.toPx()),
-            )
-        }
-    }
-}
-
-// ============================================================
-// 21. StackedCards
-// ============================================================
-
-@Composable
-fun StackedCards(
-    cardCount: Int = 4,
-    modifier: Modifier = Modifier,
-) {
-    var entryVisible by remember { mutableStateOf(false) }
-    LaunchedEffect(Unit) { entryVisible = true }
-
-    var dismissIndex by remember { mutableIntStateOf(-1) }
-    var cycle by remember { mutableIntStateOf(0) }
-
-    LaunchedEffect(Unit) {
-        while (true) {
-            delay(1500)
-            dismissIndex = cycle % 3
-            delay(600)
-            dismissIndex = -1
-            cycle++
-        }
-    }
-
-    val cardColors = listOf(
-        MaterialTheme.colorScheme.primaryContainer,
-        MaterialTheme.colorScheme.secondaryContainer,
-        MaterialTheme.colorScheme.tertiaryContainer,
-    )
-
-    Box(
-        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Fade.Up).size(200.dp, 180.dp),
-        contentAlignment = Alignment.Center,
-    ) {
-        (0 until 3).reversed().forEach { index ->
-            val isDismissed = index == dismissIndex
-            val stackOffset = index * 8f
-
-            val animX by animateFloatAsState(
-                targetValue = if (isDismissed) 300f else 0f,
-                animationSpec = tween(500, easing = FastOutSlowInEasing),
-            )
-            val animRotation by animateFloatAsState(
-                targetValue = if (isDismissed) 15f else 0f,
-                animationSpec = tween(500, easing = FastOutSlowInEasing),
-            )
-            val animAlpha by animateFloatAsState(
-                targetValue = if (isDismissed) 0f else 1f,
-                animationSpec = tween(500),
-            )
-
-            Surface(
-                modifier = Modifier
-                    .size(120.dp, 150.dp)
-                    .graphicsLayer {
-                        translationX = animX + stackOffset
-                        translationY = stackOffset
-                        rotationZ = animRotation
-                        alpha = animAlpha
-                    },
-                shape = RoundedCornerShape(12.dp),
-                color = cardColors[index],
-                shadowElevation = 4.dp,
-            ) {
-                Box(
-                    modifier = Modifier.fillMaxSize(),
-                    contentAlignment = Alignment.Center,
-                ) {
-                    Text(
-                        text = "Card " + (index + 1).toString(),
-                        style = MaterialTheme.typography.titleMedium,
-                        color = MaterialTheme.colorScheme.onPrimaryContainer,
-                    )
-                }
-            }
-        }
-    }
-}
-
-// ============================================================
-// 22. CountdownTimer
-// ============================================================
-
-@Composable
-fun CountdownTimer(startFrom: Int = 10,
-    modifier: Modifier = Modifier,
-) {
-    var entryVisible by remember { mutableStateOf(false) }
-    LaunchedEffect(Unit) { entryVisible = true }
-
-    var count by remember { mutableIntStateOf(startFrom) }
-    val progress = remember { Animatable(1f) }
-
-    LaunchedEffect(Unit) {
-        while (true) {
-            for (i in startFrom downTo 0) {
-                count = i
-                progress.snapTo(i.toFloat() / startFrom)
-                progress.animateTo(
-                    targetValue = (i - 1).toFloat().coerceAtLeast(0f) / startFrom,
-                    animationSpec = tween(1000, easing = LinearEasing),
-                )
-            }
-            delay(500)
-        }
-    }
-
-    val ringColor = MaterialTheme.colorScheme.primary
-    val trackColor = MaterialTheme.colorScheme.surfaceVariant
-    val textColor = MaterialTheme.colorScheme.onSurface
-
-    Box(
-        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Scale.Pop).size(140.dp),
-        contentAlignment = Alignment.Center,
-    ) {
-        Canvas(modifier = Modifier.fillMaxSize()) {
-            val strokeWidth = 10.dp.toPx()
-            val padding = strokeWidth / 2f
-            val arcSize = androidx.compose.ui.geometry.Size(
-                size.width - strokeWidth,
-                size.height - strokeWidth,
-            )
-            drawArc(
-                color = trackColor,
-                startAngle = -90f,
-                sweepAngle = 360f,
-                useCenter = false,
-                topLeft = androidx.compose.ui.geometry.Offset(padding, padding),
-                size = arcSize,
-                style = Stroke(width = strokeWidth, cap = StrokeCap.Round),
-            )
-            drawArc(
-                color = ringColor,
-                startAngle = -90f,
-                sweepAngle = progress.value * 360f,
-                useCenter = false,
-                topLeft = androidx.compose.ui.geometry.Offset(padding, padding),
-                size = arcSize,
-                style = Stroke(width = strokeWidth, cap = StrokeCap.Round),
-            )
-        }
-        Text(
-            text = count.toString(),
-            style = MaterialTheme.typography.displaySmall.copy(
-                fontWeight = FontWeight.Bold,
-                color = textColor,
-            ),
-        )
-    }
-}
-
 // ============================================================
 // 23. VerticalTicker
 // ============================================================

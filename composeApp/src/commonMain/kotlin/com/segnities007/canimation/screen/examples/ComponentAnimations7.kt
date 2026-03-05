@@ -5,7 +5,6 @@ import androidx.compose.animation.core.*
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -14,17 +13,13 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.drawscope.Stroke
-import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import io.github.canimation.core.Canimation
 import io.github.canimation.core.canimation
@@ -54,30 +49,6 @@ fun TextFadeReveal(modifier: Modifier = Modifier) {
         )
     }
 }
-
-// ─── 2. TextCountUp ───
-@Composable
-fun TextCountUp(modifier: Modifier = Modifier) {
-    var count by remember { mutableIntStateOf(0) }
-    val target = 1234
-    LaunchedEffect(Unit) {
-        while (true) {
-            count = 0
-            repeat(20) { i -> delay(60); count = (target * (i + 1) / 20) }
-            delay(2000)
-        }
-    }
-    Box(modifier.fillMaxWidth().padding(16.dp), contentAlignment = Alignment.Center) {
-        Text(
-            text = "$count",
-            style = MaterialTheme.typography.headlineLarge,
-            fontWeight = FontWeight.Bold,
-            fontFamily = FontFamily.Monospace,
-            color = MaterialTheme.colorScheme.primary,
-        )
-    }
-}
-
 // ─── 3. TextHighlighter ───
 @Composable
 fun TextHighlighter(modifier: Modifier = Modifier) {
@@ -306,42 +277,6 @@ fun ProductCard(modifier: Modifier = Modifier) {
         }
     }
 }
-
-// ═══════════════════════════════════════════════════════════
-//  NAVIGATION UI ANIMATIONS
-// ═══════════════════════════════════════════════════════════
-
-// ─── 13. TabBarIndicator ───
-@Composable
-fun TabBarIndicator(modifier: Modifier = Modifier) {
-    val tabs = listOf("Home", "Explore", "Library", "Profile")
-    var selected by remember { mutableIntStateOf(0) }
-    LaunchedEffect(Unit) { while (true) { delay(1500); selected = (selected + 1) % tabs.size } }
-
-    Column(modifier.fillMaxWidth().padding(16.dp)) {
-        Row(Modifier.fillMaxWidth()) {
-            tabs.forEachIndexed { i, tab ->
-                val isSelected = i == selected
-                Column(
-                    modifier = Modifier.weight(1f).clickable { selected = i },
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                ) {
-                    Text(
-                        tab, style = MaterialTheme.typography.labelMedium,
-                        fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Normal,
-                        color = if (isSelected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant,
-                    )
-                    Spacer(Modifier.height(6.dp))
-                    val color by animateColorAsState(
-                        if (isSelected) MaterialTheme.colorScheme.primary else Color.Transparent
-                    )
-                    Box(Modifier.fillMaxWidth().height(3.dp).clip(RoundedCornerShape(2.dp)).background(color))
-                }
-            }
-        }
-    }
-}
-
 // ─── 14. SideMenuReveal ───
 @Composable
 fun SideMenuReveal(modifier: Modifier = Modifier) {

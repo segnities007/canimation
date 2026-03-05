@@ -1719,17 +1719,6 @@ val exampleCategories: List<ExampleCategory> = listOf(
         tags = listOf("TEXT"),
         examples = listOf(
             ExampleItem(
-                title = "Typewriter Text",
-                description = "Characters appear one by one like a typewriter",
-                demoType = "component",
-                componentKey = "TypewriterText",
-                codeSnippet = """TypewriterText(
-    text = "Welcome to my app!",
-    typingSpeed = 50L,
-    modifier = Modifier.fillMaxWidth(),
-)""",
-            ),
-            ExampleItem(
                 title = "Scramble Text",
                 description = "Random characters resolve into target text",
                 demoType = "component",
@@ -1774,17 +1763,6 @@ val exampleCategories: List<ExampleCategory> = listOf(
 )""",
             ),
             ExampleItem(
-                title = "Text Gradient Anim",
-                description = "Animated gradient sweep across text",
-                demoType = "component",
-                componentKey = "TextGradientAnim",
-                codeSnippet = """TextGradientAnim(
-    text = "Gradient Text",
-    colors = listOf(Color.Cyan, Color.Magenta),
-    modifier = Modifier.fillMaxWidth(),
-)""",
-            ),
-            ExampleItem(
                 title = "Rolling Digits",
                 description = "Digits roll like a slot machine",
                 demoType = "component",
@@ -1813,17 +1791,6 @@ val exampleCategories: List<ExampleCategory> = listOf(
     text = "Hover Me",
     underlineColor = Color.Blue,
     modifier = Modifier.padding(8.dp),
-)""",
-            ),
-            ExampleItem(
-                title = "Blinking Cursor",
-                description = "Terminal-style blinking cursor animation",
-                demoType = "component",
-                componentKey = "BlinkingCursor",
-                codeSnippet = """BlinkingCursor(
-    cursorChar = "|",
-    blinkInterval = 500L,
-    modifier = Modifier.padding(4.dp),
 )""",
             ),
             ExampleItem(
@@ -2028,17 +1995,6 @@ val exampleCategories: List<ExampleCategory> = listOf(
 )""",
             ),
             ExampleItem(
-                title = "Stacked Cards",
-                description = "Cards stacked with depth perspective",
-                demoType = "component",
-                componentKey = "StackedCards",
-                codeSnippet = """StackedCards(
-    cardCount = 3,
-    offsetStep = 8.dp,
-    modifier = Modifier.size(200.dp),
-)""",
-            ),
-            ExampleItem(
                 title = "Card Stack Swipe",
                 description = "Swipeable card stack like a dating app",
                 demoType = "component",
@@ -2074,17 +2030,6 @@ val exampleCategories: List<ExampleCategory> = listOf(
 )""",
             ),
             ExampleItem(
-                title = "Jumping Dots",
-                description = "Dots jump up and down in sequence",
-                demoType = "component",
-                componentKey = "JumpingDots",
-                codeSnippet = """JumpingDots(
-    dotCount = 3,
-    jumpHeight = 20.dp,
-    modifier = Modifier.padding(16.dp),
-)""",
-            ),
-            ExampleItem(
                 title = "Shimmer Effect",
                 description = "Shimmering placeholder for loading content",
                 demoType = "component",
@@ -2093,28 +2038,6 @@ val exampleCategories: List<ExampleCategory> = listOf(
     modifier = Modifier
         .fillMaxWidth()
         .height(200.dp),
-)""",
-            ),
-            ExampleItem(
-                title = "Loading Spinner",
-                description = "Classic spinning loader animation",
-                demoType = "component",
-                componentKey = "LoadingSpinner",
-                codeSnippet = """LoadingSpinner(
-    strokeWidth = 4.dp,
-    color = Color.Blue,
-    modifier = Modifier.size(48.dp),
-)""",
-            ),
-            ExampleItem(
-                title = "Loading Ripple",
-                description = "Ripple rings expand outward from center",
-                demoType = "component",
-                componentKey = "LoadingRipple",
-                codeSnippet = """LoadingRipple(
-    rippleColor = Color.Cyan,
-    rippleCount = 3,
-    modifier = Modifier.size(80.dp),
 )""",
             ),
             ExampleItem(
@@ -2139,17 +2062,6 @@ val exampleCategories: List<ExampleCategory> = listOf(
     strokeWidth = 8.dp,
     color = Color.Green,
     modifier = Modifier.size(64.dp),
-)""",
-            ),
-            ExampleItem(
-                title = "Progress Steps",
-                description = "Step-by-step progress with transitions",
-                demoType = "component",
-                componentKey = "ProgressSteps",
-                codeSnippet = """ProgressSteps(
-    totalSteps = 5,
-    currentStep = 3,
-    modifier = Modifier.fillMaxWidth(),
 )""",
             ),
             ExampleItem(
@@ -2188,17 +2100,6 @@ val exampleCategories: List<ExampleCategory> = listOf(
 )""",
             ),
             ExampleItem(
-                title = "Step Indicator",
-                description = "Multi-step progress indicator",
-                demoType = "component",
-                componentKey = "StepIndicator",
-                codeSnippet = """StepIndicator(
-    steps = listOf("Cart", "Address", "Payment"),
-    currentStep = 1,
-    modifier = Modifier.fillMaxWidth(),
-)""",
-            ),
-            ExampleItem(
                 title = "Progress Scrubber",
                 description = "Draggable progress scrubber control",
                 demoType = "component",
@@ -2228,40 +2129,6 @@ val exampleCategories: List<ExampleCategory> = listOf(
                 codeSnippet = """AnimatedCounter(
     targetValue = 1234,
     label = "Total Users",
-    modifier = Modifier.padding(16.dp),
-)""",
-            ),
-            ExampleItem(
-                title = "Number Trend",
-                description = "Number with up/down trend indicator",
-                demoType = "component",
-                componentKey = "NumberTrend",
-                codeSnippet = """NumberTrend(
-    value = 85.5f,
-    trend = TrendDirection.Up,
-    modifier = Modifier.padding(12.dp),
-)""",
-            ),
-            ExampleItem(
-                title = "Number Counter",
-                description = "Simple animated number counter",
-                demoType = "component",
-                componentKey = "NumberCounter",
-                codeSnippet = """NumberCounter(
-    from = 0,
-    to = 9999,
-    duration = 2000,
-    modifier = Modifier.padding(16.dp),
-)""",
-            ),
-            ExampleItem(
-                title = "Countdown Timer",
-                description = "Animated countdown from a start value",
-                demoType = "component",
-                componentKey = "CountdownTimer",
-                codeSnippet = """CountdownTimer(
-    totalSeconds = 120,
-    onFinished = { /* timer done */ },
     modifier = Modifier.padding(16.dp),
 )""",
             ),
@@ -2312,17 +2179,6 @@ val exampleCategories: List<ExampleCategory> = listOf(
 )""",
             ),
             ExampleItem(
-                title = "Expandable Accordion",
-                description = "Accordion sections expand and collapse",
-                demoType = "component",
-                componentKey = "ExpandableAccordion",
-                codeSnippet = """ExpandableAccordion(
-    title = "FAQ Section",
-    content = { Text("Detailed answer here") },
-    modifier = Modifier.fillMaxWidth(),
-)""",
-            ),
-            ExampleItem(
                 title = "Mega Menu Reveal",
                 description = "Large dropdown menu with reveal animation",
                 demoType = "component",
@@ -2330,16 +2186,6 @@ val exampleCategories: List<ExampleCategory> = listOf(
                 codeSnippet = """MegaMenuReveal(
     menuItems = listOf("Products", "Services", "About"),
     revealDuration = 400,
-    modifier = Modifier.fillMaxWidth(),
-)""",
-            ),
-            ExampleItem(
-                title = "Accordion Menu",
-                description = "Nested accordion menu with smooth transitions",
-                demoType = "component",
-                componentKey = "AccordionMenu",
-                codeSnippet = """AccordionMenu(
-    sections = listOf("General", "Account", "Privacy"),
     modifier = Modifier.fillMaxWidth(),
 )""",
             ),
@@ -2363,18 +2209,6 @@ val exampleCategories: List<ExampleCategory> = listOf(
     items = listOf("Share", "Edit", "Delete"),
     radius = 80.dp,
     modifier = Modifier.size(200.dp),
-)""",
-            ),
-            ExampleItem(
-                title = "Segmented Control",
-                description = "iOS-style segmented control with animation",
-                demoType = "component",
-                componentKey = "SegmentedControl",
-                codeSnippet = """SegmentedControl(
-    segments = listOf("Day", "Week", "Month"),
-    selectedIndex = 0,
-    onSegmentSelected = { index -> /* update */ },
-    modifier = Modifier.fillMaxWidth(),
 )""",
             ),
             ExampleItem(
@@ -2524,17 +2358,6 @@ val exampleCategories: List<ExampleCategory> = listOf(
 )""",
             ),
             ExampleItem(
-                title = "Spring Toggle",
-                description = "Toggle with spring bounce animation",
-                demoType = "component",
-                componentKey = "SpringToggle",
-                codeSnippet = """SpringToggle(
-    isOn = true,
-    onToggle = { isOn -> /* update */ },
-    modifier = Modifier.padding(8.dp),
-)""",
-            ),
-            ExampleItem(
                 title = "Spring Chip",
                 description = "Chip component with spring selection animation",
                 demoType = "component",
@@ -2544,17 +2367,6 @@ val exampleCategories: List<ExampleCategory> = listOf(
     selected = true,
     onClick = { /* toggle */ },
     modifier = Modifier.padding(4.dp),
-)""",
-            ),
-            ExampleItem(
-                title = "Notification Badge",
-                description = "Animated notification badge with count",
-                demoType = "component",
-                componentKey = "NotificationBadge",
-                codeSnippet = """NotificationBadge(
-    count = 5,
-    badgeColor = Color.Red,
-    modifier = Modifier.size(20.dp),
 )""",
             ),
             ExampleItem(
@@ -2604,17 +2416,6 @@ val exampleCategories: List<ExampleCategory> = listOf(
 )""",
             ),
             ExampleItem(
-                title = "Morphing Shapes",
-                description = "Shapes morph smoothly between forms",
-                demoType = "component",
-                componentKey = "MorphingShapes",
-                codeSnippet = """MorphingShapes(
-    fromShape = MorphShape.Circle,
-    toShape = MorphShape.Star,
-    modifier = Modifier.size(120.dp),
-)""",
-            ),
-            ExampleItem(
                 title = "Gradient Shift",
                 description = "Animated gradient color shifting",
                 demoType = "component",
@@ -2623,17 +2424,6 @@ val exampleCategories: List<ExampleCategory> = listOf(
     colors = listOf(Color.Magenta, Color.Cyan),
     shiftSpeed = 2000,
     modifier = Modifier.fillMaxWidth(),
-)""",
-            ),
-            ExampleItem(
-                title = "Breathing Glow",
-                description = "Element pulses with a breathing glow",
-                demoType = "component",
-                componentKey = "BreathingGlow",
-                codeSnippet = """BreathingGlow(
-    glowColor = Color.Blue,
-    glowRadius = 20.dp,
-    modifier = Modifier.size(100.dp),
 )""",
             ),
             ExampleItem(
@@ -2694,17 +2484,6 @@ val exampleCategories: List<ExampleCategory> = listOf(
     blurRadius = 10.dp,
     focusArea = FocusArea.Center,
     modifier = Modifier.fillMaxSize(),
-)""",
-            ),
-            ExampleItem(
-                title = "Expanding Rings",
-                description = "Concentric rings expand outward",
-                demoType = "component",
-                componentKey = "ExpandingRings",
-                codeSnippet = """ExpandingRings(
-    ringCount = 3,
-    ringColor = Color.Cyan,
-    modifier = Modifier.size(150.dp),
 )""",
             ),
             ExampleItem(
@@ -2809,17 +2588,6 @@ val exampleCategories: List<ExampleCategory> = listOf(
 )""",
             ),
             ExampleItem(
-                title = "Orbit Animation",
-                description = "Objects orbit around a center point",
-                demoType = "component",
-                componentKey = "OrbitAnimation",
-                codeSnippet = """OrbitAnimation(
-    orbitRadius = 80.dp,
-    orbitSpeed = 3000L,
-    modifier = Modifier.size(200.dp),
-)""",
-            ),
-            ExampleItem(
                 title = "Parallax Layers",
                 description = "Layered parallax scrolling effect",
                 demoType = "component",
@@ -2828,19 +2596,6 @@ val exampleCategories: List<ExampleCategory> = listOf(
     layerCount = 3,
     depthFactor = 0.5f,
     modifier = Modifier.fillMaxSize(),
-)""",
-            ),
-            ExampleItem(
-                title = "DNA Helix",
-                description = "Animated double helix DNA structure",
-                demoType = "component",
-                componentKey = "DnaHelix",
-                codeSnippet = """DnaHelix(
-    helixColor = Color.Cyan,
-    rotationSpeed = 4000L,
-    modifier = Modifier
-        .fillMaxWidth()
-        .height(200.dp),
 )""",
             ),
             ExampleItem(
@@ -3131,28 +2886,6 @@ val exampleCategories: List<ExampleCategory> = listOf(
 )""",
             ),
             ExampleItem(
-                title = "Typing Indicator",
-                description = "Chat typing indicator (3 bouncing dots)",
-                demoType = "component",
-                componentKey = "TypingIndicator",
-                codeSnippet = """TypingIndicator(
-    dotCount = 3,
-    dotColor = Color.Gray,
-    modifier = Modifier.padding(8.dp),
-)""",
-            ),
-            ExampleItem(
-                title = "Skeleton Text",
-                description = "Skeleton loading for text content",
-                demoType = "component",
-                componentKey = "SkeletonText",
-                codeSnippet = """SkeletonText(
-    lineCount = 3,
-    lineHeight = 16.dp,
-    modifier = Modifier.fillMaxWidth(),
-)""",
-            ),
-            ExampleItem(
                 title = "Swipe Card",
                 description = "Card that can be swiped away",
                 demoType = "component",
@@ -3196,18 +2929,6 @@ val exampleCategories: List<ExampleCategory> = listOf(
     reelCount = 3,
     spinDuration = 2000L,
     modifier = Modifier.padding(16.dp),
-)""",
-            ),
-            ExampleItem(
-                title = "Typewriter Cursor",
-                description = "Blinking cursor with text typing effect",
-                demoType = "component",
-                componentKey = "TypewriterCursor",
-                codeSnippet = """TypewriterCursor(
-    text = "Typing effect...",
-    cursorChar = "_",
-    typingSpeed = 80L,
-    modifier = Modifier.fillMaxWidth(),
 )""",
             ),
             ExampleItem(
@@ -3396,7 +3117,6 @@ val exampleCategories: List<ExampleCategory> = listOf(
         tags = listOf("UI", "NAVIGATION"),
         examples = listOf(
             ExampleItem("Animated Breadcrumb", "Staggered breadcrumb trail", "AnimatedBreadcrumb(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Fade.Up,\n))", demoType = "component", componentKey = "AnimatedBreadcrumb"),
-            ExampleItem("Stepper Progress", "Multi-step progress indicator", "StepperProgress(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Scale.Pop,\n))", demoType = "component", componentKey = "StepperProgress"),
             ExampleItem("Animated Nav Item", "Bottom nav with animated selection", "AnimatedNavItem(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Drop.Light,\n))", demoType = "component", componentKey = "AnimatedNavItem"),
         ),
     ),
@@ -3422,7 +3142,6 @@ val exampleCategories: List<ExampleCategory> = listOf(
         examples = listOf(
             ExampleItem("Animated Tag Cloud", "Floating tag cloud entry", "AnimatedTagCloud(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Float.ScaleUp,\n))", demoType = "component", componentKey = "AnimatedTagCloud"),
             ExampleItem("Color Swatch Picker", "Animated color selector", "ColorSwatchPicker(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Elastic.Snap,\n))", demoType = "component", componentKey = "ColorSwatchPicker"),
-            ExampleItem("Animated Toggle Card", "Settings toggle with stretch", "AnimatedToggleCard(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Stretch.Horizontal,\n))", demoType = "component", componentKey = "AnimatedToggleCard"),
             ExampleItem("Animated Chip Group", "Filter chip group animation", "AnimatedChipGroup(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Fade.Gentle,\n))", demoType = "component", componentKey = "AnimatedChipGroup"),
             ExampleItem("Animated Pricing Toggle", "Monthly/Annual price switch", "AnimatedPricingToggle(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Shrink.Subtle,\n))", demoType = "component", componentKey = "AnimatedPricingToggle"),
         ),
@@ -3436,7 +3155,6 @@ val exampleCategories: List<ExampleCategory> = listOf(
         examples = listOf(
             ExampleItem("Pulse Ring", "Expanding pulse ring animation", "PulseRing(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Scale.Expand,\n))", demoType = "component", componentKey = "PulseRing"),
             ExampleItem("Wave Progress Bar", "Sine wave progress indicator", "WaveProgressBar(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Wave.Gentle,\n))", demoType = "component", componentKey = "WaveProgressBar"),
-            ExampleItem("Animated Sine Wave", "Continuous sine wave", "AnimatedSineWave(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Wave.Drift,\n))", demoType = "component", componentKey = "AnimatedSineWave"),
         ),
     ),
     ExampleCategory(
@@ -3462,7 +3180,6 @@ val exampleCategories: List<ExampleCategory> = listOf(
         tags = listOf("TEXT", "UI"),
         examples = listOf(
             ExampleItem("Text Fade Reveal", "Word-by-word fade reveal", "TextFadeReveal(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Fade.Up,\n))", demoType = "component", componentKey = "TextFadeReveal"),
-            ExampleItem("Text Count Up", "Animated number counter", "TextCountUp(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Scale.Pop,\n))", demoType = "component", componentKey = "TextCountUp"),
             ExampleItem("Text Highlighter", "Sweeping text highlight", "TextHighlighter(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Reveal.Left,\n))", demoType = "component", componentKey = "TextHighlighter"),
             ExampleItem("Text Shuffle Word", "Cycling word animation", "TextShuffleWord(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Fade.Gentle,\n))", demoType = "component", componentKey = "TextShuffleWord"),
             ExampleItem("Text Gradient Reveal", "Gradient sweep text reveal", "TextGradientReveal(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Slide.RightSubtle,\n))", demoType = "component", componentKey = "TextGradientReveal"),
@@ -3491,7 +3208,6 @@ val exampleCategories: List<ExampleCategory> = listOf(
         accentLabel = "NAV",
         tags = listOf("NAV", "NAVIGATION"),
         examples = listOf(
-            ExampleItem("Tab Bar Indicator", "Sliding tab selection indicator", "TabBarIndicator(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Slide.RightSubtle,\n))", demoType = "component", componentKey = "TabBarIndicator"),
             ExampleItem("Side Menu Reveal", "Staggered side menu entry", "SideMenuReveal(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Slide.LeftSubtle,\n))", demoType = "component", componentKey = "SideMenuReveal"),
             ExampleItem("Pagination Dots", "Page indicator dots", "PaginationDots(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Scale.Pop,\n))", demoType = "component", componentKey = "PaginationDots"),
             ExampleItem("Command Palette", "Quick command search palette", "CommandPalette(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Fade.Down,\n))", demoType = "component", componentKey = "CommandPalette"),
@@ -3534,7 +3250,6 @@ val exampleCategories: List<ExampleCategory> = listOf(
         tags = listOf("VISUAL", "CANVAS"),
         examples = listOf(
             ExampleItem("Orbit Dots", "Orbital dot animation", "OrbitDots(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Rotate.In,\n))", demoType = "component", componentKey = "OrbitDots"),
-            ExampleItem("Concentric Rings", "Expanding ripple rings", "ConcentricRings(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Scale.Expand,\n))", demoType = "component", componentKey = "ConcentricRings"),
             ExampleItem("Bouncing Loader", "Three-dot bouncing loader", "BouncingLoader(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Bounce.In,\n))", demoType = "component", componentKey = "BouncingLoader"),
             ExampleItem("Glow Pulse", "Pulsing glow orb", "GlowPulse(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Scale.Pop,\n))", demoType = "component", componentKey = "GlowPulse"),
             ExampleItem("Waveform Bars", "Audio waveform visualization", "WaveformBars(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Wave.Gentle,\n))", demoType = "component", componentKey = "WaveformBars"),
@@ -3640,8 +3355,6 @@ val exampleCategories: List<ExampleCategory> = listOf(
         accentLabel = "NAV",
         tags = listOf("NAV", "NAVIGATION"),
         examples = listOf(
-            ExampleItem("Animated Tabs", "Sliding tab bar", "AnimatedTabs(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Slide.RightSubtle,\n))", demoType = "component", componentKey = "AnimatedTabs"),
-            ExampleItem("Breadcrumb Trail", "Progressive breadcrumb path", "AnimatedBreadcrumbTrail(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Fade.Right,\n))", demoType = "component", componentKey = "AnimatedBreadcrumbTrail"),
             ExampleItem("Bottom Nav Bar", "Animated bottom navigation", "BottomNavBar(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Spring.PopIn,\n))", demoType = "component", componentKey = "BottomNavBar"),
         ),
     ),

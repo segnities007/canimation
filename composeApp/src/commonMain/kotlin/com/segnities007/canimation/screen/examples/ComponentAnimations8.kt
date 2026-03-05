@@ -14,12 +14,8 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.StrokeCap
-import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
@@ -219,26 +215,6 @@ fun OrbitDots(modifier: Modifier = Modifier) {
         }
     }
 }
-
-// ─── 8. ConcentricRings ───
-@Composable
-fun ConcentricRings(modifier: Modifier = Modifier) {
-    val transition = rememberInfiniteTransition()
-    val scale1 by transition.animateFloat(0.3f, 1.2f, infiniteRepeatable(tween(2000), RepeatMode.Restart))
-    val scale2 by transition.animateFloat(0.3f, 1.2f, infiniteRepeatable(tween(2000, delayMillis = 500), RepeatMode.Restart))
-    val scale3 by transition.animateFloat(0.3f, 1.2f, infiniteRepeatable(tween(2000, delayMillis = 1000), RepeatMode.Restart))
-    val primaryColor = MaterialTheme.colorScheme.primary
-    Box(modifier.fillMaxWidth().height(80.dp), contentAlignment = Alignment.Center) {
-        Canvas(Modifier.size(64.dp)) {
-            val c = Offset(size.width / 2, size.height / 2)
-            listOf(scale1, scale2, scale3).forEachIndexed { i, s ->
-                val alpha = (1f - (s - 0.3f) / 0.9f).coerceIn(0f, 0.6f)
-                drawCircle(primaryColor.copy(alpha = alpha), radius = size.minDimension / 2 * s, center = c, style = Stroke(2f))
-            }
-        }
-    }
-}
-
 // ─── 9. BouncingLoader ───
 @Composable
 fun BouncingLoader(modifier: Modifier = Modifier) {

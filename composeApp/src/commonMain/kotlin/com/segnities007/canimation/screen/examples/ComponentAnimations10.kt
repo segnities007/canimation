@@ -1,6 +1,5 @@
 package com.segnities007.canimation.screen.examples
 
-import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Canvas
@@ -14,7 +13,6 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
@@ -24,9 +22,7 @@ import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import io.github.canimation.core.Canimation
@@ -229,54 +225,6 @@ fun MusicPlayerCard(modifier: Modifier = Modifier) {
         }
     }
 }
-
-// ═══════════════════════════════════════════════════════════
-//  MORE NAVIGATION ANIMATIONS
-// ═══════════════════════════════════════════════════════════
-
-// ─── 9. AnimatedTabs ───
-@Composable
-fun AnimatedTabs(modifier: Modifier = Modifier) {
-    val tabs = listOf("Home", "Search", "Profile")
-    var selected by remember { mutableIntStateOf(0) }
-    LaunchedEffect(Unit) { while (true) { delay(1500); selected = (selected + 1) % tabs.size } }
-    Surface(shape = RoundedCornerShape(12.dp), color = MaterialTheme.colorScheme.surfaceVariant, modifier = modifier.fillMaxWidth().padding(16.dp)) {
-        Row(Modifier.fillMaxWidth().padding(4.dp)) {
-            tabs.forEachIndexed { i, tab ->
-                val isSelected = i == selected
-                val bg by animateColorAsState(if (isSelected) MaterialTheme.colorScheme.primary else Color.Transparent)
-                val textColor by animateColorAsState(if (isSelected) MaterialTheme.colorScheme.onPrimary else MaterialTheme.colorScheme.onSurfaceVariant)
-                Surface(shape = RoundedCornerShape(8.dp), color = bg, modifier = Modifier.weight(1f).clickable { selected = i }) {
-                    Text(tab, Modifier.padding(vertical = 10.dp), textAlign = TextAlign.Center, style = MaterialTheme.typography.labelMedium, fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Normal, color = textColor)
-                }
-            }
-        }
-    }
-}
-
-// ─── 10. AnimatedBreadcrumbTrail ───
-@Composable
-fun AnimatedBreadcrumbTrail(modifier: Modifier = Modifier) {
-    val paths = listOf(listOf("Home"), listOf("Home", "Products"), listOf("Home", "Products", "Shoes"), listOf("Home", "Products", "Shoes", "Nike"))
-    var pathIdx by remember { mutableIntStateOf(0) }
-    LaunchedEffect(Unit) { while (true) { delay(1500); pathIdx = (pathIdx + 1) % paths.size } }
-    Row(modifier.fillMaxWidth().padding(16.dp), verticalAlignment = Alignment.CenterVertically) {
-        paths[pathIdx].forEachIndexed { i, segment ->
-            var vis by remember { mutableStateOf(false) }
-            LaunchedEffect(segment, pathIdx) { vis = false; delay(50 + i * 80L); vis = true }
-            if (i > 0) Text(" / ", style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
-            Box(Modifier.canimation(visible = vis, effect = Canimation.Fade.Right)) {
-                Text(
-                    segment,
-                    style = MaterialTheme.typography.labelMedium,
-                    fontWeight = if (i == paths[pathIdx].lastIndex) FontWeight.Bold else FontWeight.Normal,
-                    color = if (i == paths[pathIdx].lastIndex) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant,
-                )
-            }
-        }
-    }
-}
-
 // ─── 11. BottomNavBar ───
 @Composable
 fun BottomNavBar(modifier: Modifier = Modifier) {

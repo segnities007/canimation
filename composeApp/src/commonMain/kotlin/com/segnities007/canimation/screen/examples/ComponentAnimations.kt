@@ -34,11 +34,11 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -116,109 +116,6 @@ fun AnimatedCounter(
         }
     }
 }
-
-// ============================================================
-// 2. Number Trend (up/down with color)
-// ============================================================
-
-@Composable
-fun NumberTrend(
-    initialValue: Int = 420,
-    modifier: Modifier = Modifier,
-) {
-    var entryVisible by remember { mutableStateOf(false) }
-    LaunchedEffect(Unit) { entryVisible = true }
-
-    var value by remember { mutableIntStateOf(420) }
-    var prevValue by remember { mutableIntStateOf(420) }
-    var phase by remember { mutableIntStateOf(0) }
-
-    val changes = listOf(+18, -7, +42, -23, +11, -3, +55, -31)
-
-    LaunchedEffect(Unit) {
-        while (true) {
-            delay(1800)
-            prevValue = value
-            val delta = changes[phase % changes.size]
-            value += delta
-            phase++
-        }
-    }
-
-    val diff = value - prevValue
-    val trendColor = when {
-        diff > 0 -> Color(0xFF4CAF50)
-        diff < 0 -> Color(0xFFF44336)
-        else -> MaterialTheme.colorScheme.onSurface
-    }
-    val arrow = when {
-        diff > 0 -> "↑"
-        diff < 0 -> "↓"
-        else -> ""
-    }
-
-    val animatedColor by animateColorAsState(
-        targetValue = trendColor,
-        animationSpec = tween(400),
-    )
-
-    Column(modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Fade.Up), horizontalAlignment = Alignment.CenterHorizontally) {
-        Text(
-            text = value.toString(),
-            style = MaterialTheme.typography.displaySmall.copy(
-                fontWeight = FontWeight.Bold,
-                fontFamily = FontFamily.Monospace,
-            ),
-            color = animatedColor,
-        )
-        if (diff != 0) {
-            Text(
-                text = "$arrow ${if (diff > 0) "+" else ""}$diff",
-                style = MaterialTheme.typography.labelMedium,
-                color = animatedColor.copy(alpha = 0.8f),
-            )
-        }
-    }
-}
-
-// ============================================================
-// 3. Typewriter Text
-// ============================================================
-
-@Composable
-fun TypewriterText(
-    text: String = "Hello, Canimation!",
-    charDelayMs: Long = 80,
-    modifier: Modifier = Modifier,
-) {
-    var entryVisible by remember { mutableStateOf(false) }
-    LaunchedEffect(Unit) { entryVisible = true }
-
-    var visibleCount by remember { mutableIntStateOf(0) }
-
-    LaunchedEffect(Unit) {
-        while (true) {
-            visibleCount = 0
-            delay(400)
-            for (i in 1..text.length) {
-                visibleCount = i
-                delay(charDelayMs)
-            }
-            delay(2000)
-        }
-    }
-
-    Text(
-        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Fade.In),
-        text = text.take(visibleCount) + if (visibleCount < text.length) "▌" else "",
-        style = MaterialTheme.typography.titleLarge.copy(
-            fontFamily = FontFamily.Monospace,
-            fontWeight = FontWeight.Bold,
-        ),
-        color = MaterialTheme.colorScheme.primary,
-    )
-}
-
 // ============================================================
 // 4. Scramble Text
 // ============================================================
@@ -356,46 +253,6 @@ fun PulseLoadingDots(dotCount: Int = 3,
         }
     }
 }
-
-// ============================================================
-// 7. Jumping Dots
-// ============================================================
-
-@Composable
-fun JumpingDots(dotCount: Int = 3,
-    modifier: Modifier = Modifier,
-) {
-    var entryVisible by remember { mutableStateOf(false) }
-    LaunchedEffect(Unit) { entryVisible = true }
-
-    val infiniteTransition = rememberInfiniteTransition()
-
-    Row(
-        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Fade.Up),
-
-        horizontalArrangement = Arrangement.spacedBy(6.dp),
-        verticalAlignment = Alignment.Bottom,
-    ) {
-        repeat(dotCount) { index ->
-            val offsetY by infiniteTransition.animateFloat(
-                initialValue = 0f,
-                targetValue = -16f,
-                animationSpec = infiniteRepeatable(
-                    animation = tween(400, delayMillis = index * 150, easing = FastOutSlowInEasing),
-                    repeatMode = RepeatMode.Reverse,
-                ),
-            )
-            Box(
-                modifier = Modifier
-                    .size(10.dp)
-                    .offset { IntOffset(0, offsetY.roundToInt()) }
-                    .clip(CircleShape)
-                    .background(MaterialTheme.colorScheme.primary),
-            )
-        }
-    }
-}
-
 // ============================================================
 // 8. Shimmer / Skeleton Loading
 // ============================================================
@@ -561,91 +418,6 @@ fun AnimatedTabs(
         }
     }
 }
-
-// ============================================================
-// 10. Expandable Accordion
-// ============================================================
-
-@Composable
-fun ExpandableAccordion(
-    modifier: Modifier = Modifier,
-) {
-    var entryVisible by remember { mutableStateOf(false) }
-    LaunchedEffect(Unit) { entryVisible = true }
-
-    var expandedIndex by remember { mutableIntStateOf(-1) }
-    val items = listOf("What is Canimation?" to "A Compose Multiplatform animation library.",
-        "How to use?" to "Add the dependency and use CanimationVisibility.",
-        "Platforms?" to "Android, iOS, Desktop, and Web.")
-
-    LaunchedEffect(Unit) {
-        while (true) {
-            delay(2000)
-            expandedIndex = (expandedIndex + 1) % (items.size + 1)
-            if (expandedIndex == items.size) expandedIndex = -1
-        }
-    }
-
-    Column(
-        verticalArrangement = Arrangement.spacedBy(4.dp),
-        modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Fade.Up).fillMaxWidth().padding(horizontal = 8.dp),
-    ) {
-        items.forEachIndexed { index, (question, answer) ->
-            val isExpanded = index == expandedIndex
-            val contentAlpha by animateFloatAsState(
-                targetValue = if (isExpanded) 1f else 0f,
-                animationSpec = tween(300),
-            )
-            val contentHeight by animateFloatAsState(
-                targetValue = if (isExpanded) 1f else 0f,
-                animationSpec = spring(stiffness = Spring.StiffnessMediumLow),
-            )
-
-            Surface(
-                shape = RoundedCornerShape(8.dp),
-                color = MaterialTheme.colorScheme.surfaceVariant,
-                border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline.copy(alpha = 0.5f)),
-                modifier = Modifier.fillMaxWidth().clickable {
-                    expandedIndex = if (expandedIndex == index) -1 else index
-                },
-            ) {
-                Column(modifier = Modifier.padding(12.dp)) {
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.SpaceBetween,
-                        verticalAlignment = Alignment.CenterVertically,
-                    ) {
-                        Text(
-                            text = question,
-                            style = MaterialTheme.typography.bodyMedium,
-                            fontWeight = FontWeight.Bold,
-                            color = MaterialTheme.colorScheme.onSurface,
-                        )
-                        Text(
-                            text = if (isExpanded) "−" else "+",
-                            style = MaterialTheme.typography.titleMedium,
-                            color = MaterialTheme.colorScheme.primary,
-                        )
-                    }
-                    if (contentHeight > 0.01f) {
-                        Spacer(Modifier.height((8 * contentHeight).dp))
-                        Text(
-                            text = answer,
-                            modifier = Modifier.graphicsLayer {
-                                alpha = contentAlpha
-                                scaleY = contentHeight
-                                transformOrigin = androidx.compose.ui.graphics.TransformOrigin(0.5f, 0f)
-                            },
-                            style = MaterialTheme.typography.bodySmall,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant,
-                        )
-                    }
-                }
-            }
-        }
-    }
-}
-
 // ============================================================
 // 11. Flip Card (3D)
 // ============================================================
@@ -1145,99 +917,6 @@ fun BouncySpringList(
         }
     }
 }
-
-// ============================================================
-// 19. SVG-style Loading Spinner
-// ============================================================
-
-@Composable
-fun LoadingSpinner(
-    spinnerSize: Int = 48,
-    modifier: Modifier = Modifier,
-) {
-    var entryVisible by remember { mutableStateOf(false) }
-    LaunchedEffect(Unit) { entryVisible = true }
-
-    val infiniteTransition = rememberInfiniteTransition()
-    val rotation by infiniteTransition.animateFloat(
-        initialValue = 0f,
-        targetValue = 360f,
-        animationSpec = infiniteRepeatable(
-            animation = tween(1000, easing = LinearEasing),
-            repeatMode = RepeatMode.Restart,
-        ),
-    )
-
-    Box(contentAlignment = Alignment.Center) {
-        androidx.compose.foundation.Canvas(
-            modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Scale.Pop).size(48.dp).graphicsLayer { rotationZ = rotation },
-        ) {
-            val strokeWidth = 4.dp.toPx()
-            drawArc(
-                color = Color.Gray.copy(alpha = 0.2f),
-                startAngle = 0f,
-                sweepAngle = 360f,
-                useCenter = false,
-                style = androidx.compose.ui.graphics.drawscope.Stroke(width = strokeWidth),
-            )
-            drawArc(
-                color = Color(0xFF9B8AFF),
-                startAngle = 0f,
-                sweepAngle = 90f,
-                useCenter = false,
-                style = androidx.compose.ui.graphics.drawscope.Stroke(
-                    width = strokeWidth,
-                    cap = androidx.compose.ui.graphics.StrokeCap.Round,
-                ),
-            )
-        }
-    }
-}
-
-// ============================================================
-// 20. Loading Ripple
-// ============================================================
-
-@Composable
-fun LoadingRipple(
-    rippleCount: Int = 3,
-    modifier: Modifier = Modifier,
-) {
-    var entryVisible by remember { mutableStateOf(false) }
-    LaunchedEffect(Unit) { entryVisible = true }
-
-    val infiniteTransition = rememberInfiniteTransition()
-
-    Box(contentAlignment = Alignment.Center, modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Scale.Pop).size(80.dp)) {
-        repeat(3) { index ->
-            val scale by infiniteTransition.animateFloat(
-                initialValue = 0.3f,
-                targetValue = 1.5f,
-                animationSpec = infiniteRepeatable(
-                    animation = tween(1500, delayMillis = index * 500, easing = LinearEasing),
-                    repeatMode = RepeatMode.Restart,
-                ),
-            )
-            val alpha by infiniteTransition.animateFloat(
-                initialValue = 0.6f,
-                targetValue = 0f,
-                animationSpec = infiniteRepeatable(
-                    animation = tween(1500, delayMillis = index * 500, easing = LinearEasing),
-                    repeatMode = RepeatMode.Restart,
-                ),
-            )
-            Box(
-                modifier = Modifier
-                    .size(40.dp)
-                    .scale(scale)
-                    .alpha(alpha)
-                    .clip(CircleShape)
-                    .background(MaterialTheme.colorScheme.primary.copy(alpha = 0.5f)),
-            )
-        }
-    }
-}
-
 // ============================================================
 // 21. Swipe Actions
 // ============================================================
