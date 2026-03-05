@@ -340,6 +340,7 @@ The `composeApp` module is an interactive showcase with **290+ gallery examples*
 ./gradlew :composeApp:run                              # Desktop
 ./gradlew :composeApp:wasmJsBrowserDevelopmentRun      # Web (WasmJs)
 ./gradlew :composeApp:assembleDebug                    # Android
+bash scripts/security-audit.sh                         # Security baseline audit
 ```
 
 ## Documentation

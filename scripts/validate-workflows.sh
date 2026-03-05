@@ -27,7 +27,7 @@ if [ ! -f "$PR_FILE" ]; then
   echo "ERROR: $PR_FILE does not exist"
   ERRORS=$((ERRORS + 1))
 else
-  for job in linux-check format-check lint-detekt unit-test integration-test artifact-build coverage-verify flake-scan; do
+  for job in linux-check security-audit format-check lint-detekt unit-test integration-test artifact-build coverage-verify flake-scan; do
     check_job "$PR_FILE" "$job"
   done
   check_runner "$PR_FILE" "ubuntu-24.04"

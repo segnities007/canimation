@@ -25,6 +25,12 @@ jobs:
       - uses: gradle/actions/setup-gradle@v4
       - run: ./gradlew check
 
+  security-audit:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - run: bash scripts/security-audit.sh
+
   format-check:
     runs-on: ubuntu-24.04
     steps:
