@@ -29,6 +29,9 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Check
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -54,7 +57,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import canimation.composeapp.generated.resources.*
 import kotlinx.coroutines.delay
+import org.jetbrains.compose.resources.stringResource
 import kotlin.math.PI
 import kotlin.math.roundToInt
 import kotlin.math.sin
@@ -235,14 +240,36 @@ fun HoldToConfirm(
                         ),
                 )
                 // Label
-                Text(
-                    text = if (confirmed) "✓ Confirmed" else "Hold to confirm",
-                    modifier = Modifier.fillMaxWidth(),
-                    textAlign = TextAlign.Center,
-                    style = MaterialTheme.typography.labelMedium,
-                    fontWeight = FontWeight.Bold,
-                    color = bgColor,
-                )
+                if (confirmed) {
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.Center,
+                        verticalAlignment = Alignment.CenterVertically,
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.Check,
+                            contentDescription = null,
+                            tint = bgColor,
+                            modifier = Modifier.size(16.dp),
+                        )
+                        Spacer(Modifier.width(4.dp))
+                        Text(
+                            text = stringResource(Res.string.examples_confirmed),
+                            style = MaterialTheme.typography.labelMedium,
+                            fontWeight = FontWeight.Bold,
+                            color = bgColor,
+                        )
+                    }
+                } else {
+                    Text(
+                        text = stringResource(Res.string.examples_hold_to_confirm),
+                        modifier = Modifier.fillMaxWidth(),
+                        textAlign = TextAlign.Center,
+                        style = MaterialTheme.typography.labelMedium,
+                        fontWeight = FontWeight.Bold,
+                        color = bgColor,
+                    )
+                }
             }
         }
     }
@@ -380,7 +407,7 @@ fun StaggerFromCenter(itemCount: Int = 7,
 
 @Composable
 fun TickerMarquee(
-    text: String = "  ★ Canimation  ★ Compose Multiplatform  ★ Animations  ★ Presets  ",
+    text: String? = null,
     modifier: Modifier = Modifier,
 ) {
     var entryVisible by remember { mutableStateOf(false) }
@@ -396,7 +423,8 @@ fun TickerMarquee(
         ),
     )
 
-    val repeatedText = text.repeat(3)
+    val tickerText = text ?: stringResource(Res.string.examples_ticker_default)
+    val repeatedText = tickerText.repeat(3)
 
     Box(
         modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Fade.In)
@@ -497,4 +525,3 @@ fun BouncySpringList(
 // ============================================================
 // 21. Swipe Actions
 // ============================================================
-

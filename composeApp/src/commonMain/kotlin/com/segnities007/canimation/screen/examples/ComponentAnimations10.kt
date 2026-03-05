@@ -8,6 +8,19 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Cloud
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.LocationOn
+import androidx.compose.material.icons.filled.MusicNote
+import androidx.compose.material.icons.filled.Pause
+import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.PlayArrow
+import androidx.compose.material.icons.filled.Restaurant
+import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.filled.WaterDrop
+import androidx.compose.material.icons.filled.WbSunny
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -20,14 +33,18 @@ import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import canimation.composeapp.generated.resources.*
 import io.github.canimation.core.Canimation
 import io.github.canimation.core.canimation
 import kotlinx.coroutines.delay
+import org.jetbrains.compose.resources.StringResource
+import org.jetbrains.compose.resources.stringResource
 import kotlin.math.PI
 import kotlin.math.cos
 import kotlin.math.sin
@@ -35,6 +52,16 @@ import kotlin.math.sin
 // ═══════════════════════════════════════════════════════════
 //  MORE TEXT ANIMATIONS
 // ═══════════════════════════════════════════════════════════
+
+private data class WeatherItem(
+    val icon: ImageVector,
+    val summary: StringResource,
+)
+
+private data class BottomNavItem(
+    val icon: ImageVector,
+    val label: StringResource,
+)
 
 // ─── 1. TypewriterEffect ───
 @Composable
@@ -130,7 +157,12 @@ fun RecipeCard(modifier: Modifier = Modifier) {
         Surface(shape = RoundedCornerShape(12.dp), color = MaterialTheme.colorScheme.surfaceVariant) {
             Column(Modifier.padding(14.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
-                    Text("🍕", style = MaterialTheme.typography.headlineSmall)
+                    Icon(
+                        imageVector = Icons.Default.Restaurant,
+                        contentDescription = null,
+                        tint = MaterialTheme.colorScheme.onSurface,
+                        modifier = Modifier.size(24.dp),
+                    )
                     Spacer(Modifier.width(8.dp))
                     Column {
                         Text("Margherita Pizza", style = MaterialTheme.typography.labelLarge, fontWeight = FontWeight.Bold)
@@ -152,7 +184,11 @@ fun RecipeCard(modifier: Modifier = Modifier) {
 // ─── 6. WeatherCard ───
 @Composable
 fun WeatherCard(modifier: Modifier = Modifier) {
-    val weathers = listOf("☀️" to "Sunny 28°", "🌧️" to "Rainy 18°", "⛅" to "Cloudy 22°")
+    val weathers = listOf(
+        WeatherItem(Icons.Default.WbSunny, Res.string.examples_weather_sunny),
+        WeatherItem(Icons.Default.WaterDrop, Res.string.examples_weather_rainy),
+        WeatherItem(Icons.Default.Cloud, Res.string.examples_weather_cloudy),
+    )
     var idx by remember { mutableIntStateOf(0) }
     LaunchedEffect(Unit) { while (true) { delay(2500); idx = (idx + 1) % weathers.size } }
     var vis by remember { mutableStateOf(false) }
@@ -160,10 +196,19 @@ fun WeatherCard(modifier: Modifier = Modifier) {
     Box(modifier.fillMaxWidth().padding(16.dp).canimation(visible = vis, effect = Canimation.Fade.Gentle)) {
         Surface(shape = RoundedCornerShape(12.dp), color = Color(0xFF3B82F6).copy(alpha = 0.1f), border = BorderStroke(1.dp, Color(0xFF3B82F6).copy(alpha = 0.2f))) {
             Row(Modifier.padding(14.dp).fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
-                Text(weathers[idx].first, style = MaterialTheme.typography.headlineMedium)
+                Icon(
+                    imageVector = weathers[idx].icon,
+                    contentDescription = null,
+                    tint = Color(0xFF3B82F6),
+                    modifier = Modifier.size(28.dp),
+                )
                 Spacer(Modifier.width(12.dp))
                 Column {
-                    Text(weathers[idx].second, style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
+                    Text(
+                        text = stringResource(weathers[idx].summary),
+                        style = MaterialTheme.typography.titleMedium,
+                        fontWeight = FontWeight.Bold,
+                    )
                     Text("San Francisco", style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
                 }
             }
@@ -190,7 +235,21 @@ fun EventCard(modifier: Modifier = Modifier) {
                     Text("Kotlin Conf 2026", style = MaterialTheme.typography.labelLarge, fontWeight = FontWeight.Bold)
                     Text("Copenhagen, Denmark", style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
                     Spacer(Modifier.height(4.dp))
-                    Text("📍 Bella Center", style = MaterialTheme.typography.labelSmall)
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(4.dp),
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.LocationOn,
+                            contentDescription = null,
+                            tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                            modifier = Modifier.size(14.dp),
+                        )
+                        Text(
+                            text = stringResource(Res.string.examples_location_bella_center),
+                            style = MaterialTheme.typography.labelSmall,
+                        )
+                    }
                 }
             }
         }
@@ -209,14 +268,26 @@ fun MusicPlayerCard(modifier: Modifier = Modifier) {
             Column(Modifier.padding(14.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Surface(shape = RoundedCornerShape(8.dp), color = MaterialTheme.colorScheme.primary, modifier = Modifier.size(40.dp)) {
-                        Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) { Text("🎵", fontSize = 18.sp) }
+                        Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                            Icon(
+                                imageVector = Icons.Default.MusicNote,
+                                contentDescription = null,
+                                tint = MaterialTheme.colorScheme.onPrimary,
+                                modifier = Modifier.size(20.dp),
+                            )
+                        }
                     }
                     Spacer(Modifier.width(10.dp))
                     Column(Modifier.weight(1f)) {
                         Text("Kotlin Groove", style = MaterialTheme.typography.labelMedium, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.inverseOnSurface)
                         Text("Compose Orchestra", style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.inverseOnSurface.copy(alpha = 0.6f))
                     }
-                    Text(if (playing) "⏸" else "▶", style = MaterialTheme.typography.titleMedium, color = MaterialTheme.colorScheme.inverseOnSurface, modifier = Modifier.clickable { playing = !playing })
+                    Icon(
+                        imageVector = if (playing) Icons.Default.Pause else Icons.Default.PlayArrow,
+                        contentDescription = null,
+                        tint = MaterialTheme.colorScheme.inverseOnSurface,
+                        modifier = Modifier.clickable { playing = !playing }.size(20.dp),
+                    )
                 }
                 Box(Modifier.fillMaxWidth().height(4.dp).clip(RoundedCornerShape(2.dp)).background(MaterialTheme.colorScheme.inverseOnSurface.copy(alpha = 0.1f))) {
                     Box(Modifier.fillMaxWidth(progress.value).fillMaxHeight().clip(RoundedCornerShape(2.dp)).background(MaterialTheme.colorScheme.inversePrimary))
@@ -228,21 +299,37 @@ fun MusicPlayerCard(modifier: Modifier = Modifier) {
 // ─── 11. BottomNavBar ───
 @Composable
 fun BottomNavBar(modifier: Modifier = Modifier) {
-    val items = listOf("🏠" to "Home", "🔍" to "Search", "❤️" to "Saved", "👤" to "Profile")
+    val items = listOf(
+        BottomNavItem(Icons.Default.Home, Res.string.examples_nav_home),
+        BottomNavItem(Icons.Default.Search, Res.string.examples_nav_search),
+        BottomNavItem(Icons.Default.Favorite, Res.string.examples_nav_saved),
+        BottomNavItem(Icons.Default.Person, Res.string.examples_nav_profile),
+    )
     var selected by remember { mutableIntStateOf(0) }
     LaunchedEffect(Unit) { while (true) { delay(1500); selected = (selected + 1) % items.size } }
     Surface(shape = RoundedCornerShape(16.dp), color = MaterialTheme.colorScheme.surfaceVariant, modifier = modifier.fillMaxWidth().padding(16.dp)) {
         Row(Modifier.fillMaxWidth().padding(horizontal = 8.dp, vertical = 10.dp), horizontalArrangement = Arrangement.SpaceEvenly) {
-            items.forEachIndexed { i, (icon, label) ->
+            items.forEachIndexed { i, item ->
                 val isSelected = i == selected
                 val scale by animateFloatAsState(if (isSelected) 1.15f else 1f, spring(dampingRatio = 0.5f))
                 Column(
                     horizontalAlignment = Alignment.CenterHorizontally,
                     modifier = Modifier.graphicsLayer { scaleX = scale; scaleY = scale }.clickable { selected = i },
                 ) {
-                    Text(icon, fontSize = if (isSelected) 20.sp else 16.sp)
+                    Icon(
+                        imageVector = item.icon,
+                        contentDescription = null,
+                        tint = if (isSelected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant,
+                        modifier = Modifier.size(if (isSelected) 20.dp else 16.dp),
+                    )
                     if (isSelected) {
-                        Text(label, style = MaterialTheme.typography.labelSmall, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.primary, fontSize = 9.sp)
+                        Text(
+                            text = stringResource(item.label),
+                            style = MaterialTheme.typography.labelSmall,
+                            fontWeight = FontWeight.Bold,
+                            color = MaterialTheme.colorScheme.primary,
+                            fontSize = 9.sp,
+                        )
                     }
                 }
             }

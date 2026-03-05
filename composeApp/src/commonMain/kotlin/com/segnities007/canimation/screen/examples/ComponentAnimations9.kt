@@ -9,6 +9,12 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AttachFile
+import androidx.compose.material.icons.filled.CameraAlt
+import androidx.compose.material.icons.filled.Check
+import androidx.compose.material.icons.filled.Close
+import androidx.compose.material.icons.filled.NoteAlt
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -23,14 +29,18 @@ import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.drawscope.rotate
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import canimation.composeapp.generated.resources.*
 import io.github.canimation.core.Canimation
 import io.github.canimation.core.canimation
 import kotlinx.coroutines.delay
+import org.jetbrains.compose.resources.StringResource
+import org.jetbrains.compose.resources.stringResource
 import kotlin.math.PI
 import kotlin.math.cos
 import kotlin.math.sin
@@ -38,6 +48,11 @@ import kotlin.math.sin
 // ═══════════════════════════════════════════════════════════
 //  MORE UI COMPONENTS
 // ═══════════════════════════════════════════════════════════
+
+private data class FabActionItem(
+    val icon: ImageVector,
+    val label: StringResource,
+)
 
 // ─── 1. AnimatedBottomSheet ───
 
@@ -88,10 +103,15 @@ fun AnimatedFab(modifier: Modifier = Modifier) {
     var expanded by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { while (true) { delay(1500); expanded = !expanded } }
     val rotation by animateFloatAsState(if (expanded) 45f else 0f, spring(stiffness = 300f))
+    val actions = listOf(
+        FabActionItem(Icons.Default.CameraAlt, Res.string.examples_action_camera),
+        FabActionItem(Icons.Default.AttachFile, Res.string.examples_action_attach),
+        FabActionItem(Icons.Default.NoteAlt, Res.string.examples_action_note),
+    )
     Box(modifier.fillMaxWidth().padding(16.dp), contentAlignment = Alignment.Center) {
         Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(8.dp)) {
             if (expanded) {
-                listOf("📷" to "Camera", "📎" to "Attach", "📝" to "Note").forEachIndexed { i, (icon, label) ->
+                actions.forEachIndexed { i, action ->
                     var itemVis by remember { mutableStateOf(false) }
                     LaunchedEffect(expanded) { if (expanded) { delay(i * 100L); itemVis = true } else itemVis = false }
                     Row(
@@ -99,9 +119,19 @@ fun AnimatedFab(modifier: Modifier = Modifier) {
                         verticalAlignment = Alignment.CenterVertically,
                         horizontalArrangement = Arrangement.spacedBy(8.dp),
                     ) {
-                        Text(label, style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                        Text(
+                            text = stringResource(action.label),
+                            style = MaterialTheme.typography.labelSmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        )
                         Surface(shape = CircleShape, color = MaterialTheme.colorScheme.secondaryContainer, modifier = Modifier.size(40.dp)) {
-                            Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) { Text(icon) }
+                            Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                                Icon(
+                                    imageVector = action.icon,
+                                    contentDescription = null,
+                                    tint = MaterialTheme.colorScheme.onSecondaryContainer,
+                                )
+                            }
                         }
                     }
                 }
@@ -137,7 +167,12 @@ fun AnimatedChipInput(modifier: Modifier = Modifier) {
                             Row(Modifier.padding(horizontal = 10.dp, vertical = 4.dp), verticalAlignment = Alignment.CenterVertically) {
                                 Text(chip, style = MaterialTheme.typography.labelSmall)
                                 Spacer(Modifier.width(4.dp))
-                                Text("✕", style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                                Icon(
+                                    imageVector = Icons.Default.Close,
+                                    contentDescription = null,
+                                    tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                                    modifier = Modifier.size(14.dp),
+                                )
                             }
                         }
                     }
@@ -196,7 +231,21 @@ fun AnimatedStepper(modifier: Modifier = Modifier) {
                 val bg by animateColorAsState(when { done -> Color(0xFF22C55E); active -> MaterialTheme.colorScheme.primary; else -> MaterialTheme.colorScheme.outlineVariant })
                 Surface(shape = CircleShape, color = bg, modifier = Modifier.size(28.dp)) {
                     Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                        Text(if (done) "✓" else "${i + 1}", style = MaterialTheme.typography.labelSmall, color = Color.White, fontWeight = FontWeight.Bold)
+                        if (done) {
+                            Icon(
+                                imageVector = Icons.Default.Check,
+                                contentDescription = null,
+                                tint = Color.White,
+                                modifier = Modifier.size(16.dp),
+                            )
+                        } else {
+                            Text(
+                                text = "${i + 1}",
+                                style = MaterialTheme.typography.labelSmall,
+                                color = Color.White,
+                                fontWeight = FontWeight.Bold,
+                            )
+                        }
                     }
                 }
                 Spacer(Modifier.height(4.dp))

@@ -8,20 +8,36 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AutoAwesome
+import androidx.compose.material.icons.filled.Bolt
+import androidx.compose.material.icons.filled.Lock
+import androidx.compose.material.icons.filled.Star
+import androidx.compose.material.icons.filled.StarOutline
+import androidx.compose.material.icons.filled.Tune
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import canimation.composeapp.generated.resources.*
 import io.github.canimation.core.Canimation
 import io.github.canimation.core.canimation
 import kotlinx.coroutines.delay
+import org.jetbrains.compose.resources.StringResource
+import org.jetbrains.compose.resources.stringResource
 import kotlin.math.PI
 import kotlin.math.sin
+
+private data class FeatureItem(
+    val label: StringResource,
+    val icon: ImageVector,
+)
 
 // ─── 1. AnimatedBreadcrumb ───
 @Composable
@@ -128,10 +144,11 @@ fun AnimatedRating(modifier: Modifier = Modifier) {
                 modifier = Modifier.size(32.dp).canimation(visible = vis, effect = Canimation.Scale.Pop),
                 contentAlignment = Alignment.Center,
             ) {
-                Text(
-                    text = if (star <= rating) "★" else "☆",
-                    style = MaterialTheme.typography.titleLarge,
-                    color = if (star <= rating) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.outlineVariant,
+                Icon(
+                    imageVector = if (star <= rating) Icons.Default.Star else Icons.Default.StarOutline,
+                    contentDescription = null,
+                    tint = if (star <= rating) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.outlineVariant,
+                    modifier = Modifier.size(22.dp),
                 )
             }
         }
@@ -365,11 +382,16 @@ fun AnimatedPricingToggle(modifier: Modifier = Modifier) {
 // ─── 17. AnimatedFeatureGrid ───
 @Composable
 fun AnimatedFeatureGrid(modifier: Modifier = Modifier) {
-    val features = listOf("Fast" to "⚡", "Secure" to "🔒", "Simple" to "✨", "Flexible" to "🎯")
+    val features = listOf(
+        FeatureItem(Res.string.examples_feature_fast, Icons.Default.Bolt),
+        FeatureItem(Res.string.examples_feature_secure, Icons.Default.Lock),
+        FeatureItem(Res.string.examples_feature_simple, Icons.Default.AutoAwesome),
+        FeatureItem(Res.string.examples_feature_flexible, Icons.Default.Tune),
+    )
     Column(modifier.fillMaxWidth().padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
         features.chunked(2).forEachIndexed { rowIdx, row ->
             Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                row.forEachIndexed { colIdx, (label, emoji) ->
+                row.forEachIndexed { colIdx, feature ->
                     var visible by remember { mutableStateOf(false) }
                     LaunchedEffect(Unit) { delay((rowIdx * 2 + colIdx) * 150L); visible = true }
                     Surface(
@@ -378,9 +400,18 @@ fun AnimatedFeatureGrid(modifier: Modifier = Modifier) {
                         modifier = Modifier.weight(1f).canimation(visible = visible, effect = Canimation.Diagonal.BottomRight),
                     ) {
                         Column(Modifier.padding(16.dp), horizontalAlignment = Alignment.CenterHorizontally) {
-                            Text(emoji, style = MaterialTheme.typography.headlineMedium)
+                            Icon(
+                                imageVector = feature.icon,
+                                contentDescription = null,
+                                tint = MaterialTheme.colorScheme.primary,
+                                modifier = Modifier.size(26.dp),
+                            )
                             Spacer(Modifier.height(4.dp))
-                            Text(label, style = MaterialTheme.typography.labelMedium, fontWeight = FontWeight.SemiBold)
+                            Text(
+                                text = stringResource(feature.label),
+                                style = MaterialTheme.typography.labelMedium,
+                                fontWeight = FontWeight.SemiBold,
+                            )
                         }
                     }
                 }

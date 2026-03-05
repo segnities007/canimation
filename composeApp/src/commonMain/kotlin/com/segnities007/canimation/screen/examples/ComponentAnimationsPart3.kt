@@ -29,6 +29,9 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Check
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -54,7 +57,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import canimation.composeapp.generated.resources.*
 import kotlinx.coroutines.delay
+import org.jetbrains.compose.resources.stringResource
 import kotlin.math.PI
 import kotlin.math.roundToInt
 import kotlin.math.sin
@@ -68,11 +73,12 @@ import io.github.canimation.core.canimation
 
 @Composable
 fun SwipeActions(
-    label: String = "Swipe me →",
+    label: String? = null,
     modifier: Modifier = Modifier,
 ) {
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
+    val resolvedLabel = label ?: stringResource(Res.string.examples_swipe_me)
 
     var phase by remember { mutableIntStateOf(0) }
 
@@ -114,7 +120,23 @@ fun SwipeActions(
                 .background(Color(0xFF4CAF50)),
             contentAlignment = Alignment.Center,
         ) {
-            Text("✓ Done", style = MaterialTheme.typography.labelSmall, color = Color.White, fontWeight = FontWeight.Bold)
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(4.dp),
+            ) {
+                Icon(
+                    imageVector = Icons.Default.Check,
+                    contentDescription = null,
+                    tint = Color.White,
+                    modifier = Modifier.size(14.dp),
+                )
+                Text(
+                    text = stringResource(Res.string.examples_done),
+                    style = MaterialTheme.typography.labelSmall,
+                    color = Color.White,
+                    fontWeight = FontWeight.Bold,
+                )
+            }
         }
         // Item on top
         Surface(
@@ -125,12 +147,16 @@ fun SwipeActions(
                 .fillMaxWidth()
                 .height(48.dp)
                 .graphicsLayer { translationX = offsetX },
-        ) {
-            Box(Modifier.fillMaxSize().padding(horizontal = 12.dp), contentAlignment = Alignment.CenterStart) {
-                Text("Swipe me →", style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurface)
+            ) {
+                Box(Modifier.fillMaxSize().padding(horizontal = 12.dp), contentAlignment = Alignment.CenterStart) {
+                    Text(
+                        text = "$resolvedLabel ->",
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.onSurface,
+                    )
+                }
             }
         }
-    }
 }
 
 // ============================================================

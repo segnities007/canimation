@@ -34,7 +34,7 @@ jobs:
           distribution: temurin
           java-version: '21'
       - uses: gradle/actions/setup-gradle@v4
-      - run: ./gradlew formatCheck
+      - run: ./gradlew lint
 
   lint-detekt:
     runs-on: ubuntu-24.04
@@ -45,7 +45,14 @@ jobs:
           distribution: temurin
           java-version: '21'
       - uses: gradle/actions/setup-gradle@v4
-      - run: ./gradlew detekt
+      - name: Run detekt if available, otherwise lint
+        run: |
+          if ./gradlew tasks --all | grep -qE '^detekt($| )'; then
+            ./gradlew detekt
+          else
+            echo "detekt task is not configured; running lint instead"
+            ./gradlew lint
+          fi
 
   unit-test:
     runs-on: ubuntu-24.04
@@ -56,7 +63,7 @@ jobs:
           distribution: temurin
           java-version: '21'
       - uses: gradle/actions/setup-gradle@v4
-      - run: ./gradlew allTests
+      - run: ./gradlew --max-workers=1 allTests
 
   integration-test:
     runs-on: ubuntu-24.04

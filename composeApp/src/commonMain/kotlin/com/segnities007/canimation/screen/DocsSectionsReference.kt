@@ -50,6 +50,7 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import canimation.composeapp.generated.resources.*
 import io.github.canimation.core.Canimation
 import io.github.canimation.core.CanimationEffect
 import io.github.canimation.core.CanimationPreset
@@ -58,6 +59,7 @@ import io.github.canimation.core.canimation
 import io.github.canimation.core.canimationEmphasize
 import io.github.canimation.core.canimationEnter
 import kotlinx.coroutines.delay
+import org.jetbrains.compose.resources.stringResource
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━ API Surface ━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -70,12 +72,13 @@ internal fun ApiSurfaceContent(stage: Int) {
         PageTitle("API Surface", "Every way to animate — pick your level of control")
 
         ApiCard(
-            "✨ Modifier.canimation(visible, effect)",
-            "RECOMMENDED",
-            "Compose effects with the + operator. Use Canimation.* namespace.",
-            """Modifier.canimation(visible = true, effect = Canimation.Fade.Up)
+            signature = stringResource(Res.string.docs_api_modifier_canimation_signature),
+            badge = "RECOMMENDED",
+            desc = "Compose effects with the + operator. Use Canimation.* namespace.",
+            code = """Modifier.canimation(visible = true, effect = Canimation.Fade.Up)
 Modifier.canimation(visible = true, effect = Canimation.Scale.Pop + Canimation.Fade.In)
 Modifier.canimation(visible = true, effect = Canimation.Entrance.Drop)""",
+            icon = Icons.Default.AutoAwesome,
         )
         ApiCard(
             "Modifier.canimationTransition(visible, enter, exit)",
@@ -271,7 +274,11 @@ internal fun AtomicDesignContent(stage: Int) {
             "inspired by Atomic Design methodology."
         )
 
-        SectionCard("🔵 Atoms", "Single-property animation primitives — the smallest building blocks") {
+        SectionCard(
+            title = stringResource(Res.string.docs_atomic_atoms_title),
+            description = "Single-property animation primitives — the smallest building blocks",
+            icon = Icons.Default.Tune,
+        ) {
             Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
                 AtomicDemoRow("Canimation.Fade.In", "Opacity only", Canimation.Fade.In)
                 AtomicDemoRow("Canimation.Slide.Up", "Translation only", Canimation.Slide.Up)
@@ -280,7 +287,11 @@ internal fun AtomicDesignContent(stage: Int) {
             }
         }
 
-        SectionCard("🟢 Molecules", "Two-property combinations — atoms working together") {
+        SectionCard(
+            title = stringResource(Res.string.docs_atomic_molecules_title),
+            description = "Two-property combinations — atoms working together",
+            icon = Icons.Default.AutoAwesome,
+        ) {
             Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
                 AtomicDemoRow("Canimation.Fade.Up", "fade + slideUp", Canimation.Fade.Up)
                 AtomicDemoRow("Canimation.Scale.Pop", "scale + overshoot", Canimation.Scale.Pop)
@@ -290,7 +301,11 @@ internal fun AtomicDesignContent(stage: Int) {
             }
         }
 
-        SectionCard("🔴 Organisms", "Complex multi-property effects — molecules forming patterns") {
+        SectionCard(
+            title = stringResource(Res.string.docs_atomic_organisms_title),
+            description = "Complex multi-property effects — molecules forming patterns",
+            icon = Icons.Default.Visibility,
+        ) {
             Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
                 AtomicDemoRow("Canimation.Attention.Tada", "scale + rotation emphasis", Canimation.Attention.Tada)
                 AtomicDemoRow("Canimation.Entrance.Drop", "offset + fade dramatic entry", Canimation.Entrance.Drop)

@@ -9,6 +9,17 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AutoAwesome
+import androidx.compose.material.icons.filled.Check
+import androidx.compose.material.icons.filled.CheckCircle
+import androidx.compose.material.icons.filled.Close
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.FavoriteBorder
+import androidx.compose.material.icons.filled.Folder
+import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.filled.Upload
+import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -17,6 +28,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -44,7 +56,12 @@ fun AnimatedBanner(modifier: Modifier = Modifier) {
             modifier = Modifier.fillMaxWidth(),
         ) {
             Row(Modifier.padding(14.dp), verticalAlignment = Alignment.CenterVertically) {
-                Text("🎉", style = MaterialTheme.typography.titleMedium)
+                Icon(
+                    imageVector = Icons.Default.AutoAwesome,
+                    contentDescription = null,
+                    tint = Color.White,
+                    modifier = Modifier.size(20.dp),
+                )
                 Spacer(Modifier.width(10.dp))
                 Column(Modifier.weight(1f)) {
                     Text("New Release!", style = MaterialTheme.typography.labelMedium, fontWeight = FontWeight.Bold, color = Color.White)
@@ -277,10 +294,14 @@ fun LikeButton(modifier: Modifier = Modifier) {
     LaunchedEffect(Unit) { while (true) { delay(1800); liked = !liked } }
     val scale by animateFloatAsState(if (liked) 1.3f else 1f, spring(dampingRatio = 0.4f, stiffness = 300f))
     Box(modifier.fillMaxWidth().padding(16.dp), contentAlignment = Alignment.Center) {
-        Text(
-            text = if (liked) "❤️" else "🤍",
-            style = MaterialTheme.typography.headlineMedium,
-            modifier = Modifier.graphicsLayer { scaleX = scale; scaleY = scale }.clickable { liked = !liked },
+        Icon(
+            imageVector = if (liked) Icons.Default.Favorite else Icons.Default.FavoriteBorder,
+            contentDescription = null,
+            tint = if (liked) Color(0xFFE11D48) else MaterialTheme.colorScheme.outline,
+            modifier = Modifier
+                .graphicsLayer { scaleX = scale; scaleY = scale }
+                .clickable { liked = !liked }
+                .size(32.dp),
         )
     }
 }
@@ -360,7 +381,12 @@ fun AnimatedPasswordField(modifier: Modifier = Modifier) {
         Surface(shape = RoundedCornerShape(8.dp), color = MaterialTheme.colorScheme.surfaceVariant, border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline), modifier = Modifier.fillMaxWidth()) {
             Row(Modifier.padding(12.dp), verticalAlignment = Alignment.CenterVertically) {
                 Text("●".repeat(text.length), style = MaterialTheme.typography.bodyLarge, fontFamily = FontFamily.Monospace, modifier = Modifier.weight(1f))
-                Text("👁", style = MaterialTheme.typography.labelMedium)
+                Icon(
+                    imageVector = Icons.Default.Visibility,
+                    contentDescription = null,
+                    tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                    modifier = Modifier.size(18.dp),
+                )
             }
         }
     }
@@ -381,8 +407,17 @@ fun AnimatedFileUpload(modifier: Modifier = Modifier) {
         }
     }
     Column(modifier.fillMaxWidth().padding(16.dp), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(8.dp)) {
-        val icon = when (stateIdx) { 0 -> "📁"; 1 -> "⬆️"; else -> "✅" }
-        Text(icon, style = MaterialTheme.typography.headlineMedium)
+        val icon: ImageVector = when (stateIdx) {
+            0 -> Icons.Default.Folder
+            1 -> Icons.Default.Upload
+            else -> Icons.Default.CheckCircle
+        }
+        Icon(
+            imageVector = icon,
+            contentDescription = null,
+            tint = if (stateIdx == 2) Color(0xFF22C55E) else MaterialTheme.colorScheme.onSurface,
+            modifier = Modifier.size(30.dp),
+        )
         Text(
             when (stateIdx) { 0 -> "Drop file here"; 1 -> "Uploading ${(progress.value * 100).toInt()}%"; else -> "Upload complete!" },
             style = MaterialTheme.typography.labelMedium,
@@ -442,7 +477,12 @@ fun AnimatedSearchBar(modifier: Modifier = Modifier) {
             modifier = Modifier.width(width.dp).height(48.dp).clickable { expanded = !expanded },
         ) {
             Row(Modifier.padding(horizontal = 14.dp), verticalAlignment = Alignment.CenterVertically) {
-                Text("🔍", style = MaterialTheme.typography.titleSmall)
+                Icon(
+                    imageVector = Icons.Default.Search,
+                    contentDescription = null,
+                    tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                    modifier = Modifier.size(18.dp),
+                )
                 if (expanded) {
                     Spacer(Modifier.width(8.dp))
                     Text("Search animations...", style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.5f))
@@ -478,8 +518,18 @@ fun AnimatedFormValidation(modifier: Modifier = Modifier) {
                     modifier = Modifier.weight(1f),
                 )
                 when (stateIdx) {
-                    2 -> Text("✓", color = Color(0xFF22C55E), fontWeight = FontWeight.Bold)
-                    3 -> Text("✗", color = Color(0xFFEF4444), fontWeight = FontWeight.Bold)
+                    2 -> Icon(
+                        imageVector = Icons.Default.Check,
+                        contentDescription = null,
+                        tint = Color(0xFF22C55E),
+                        modifier = Modifier.size(16.dp),
+                    )
+                    3 -> Icon(
+                        imageVector = Icons.Default.Close,
+                        contentDescription = null,
+                        tint = Color(0xFFEF4444),
+                        modifier = Modifier.size(16.dp),
+                    )
                     else -> {}
                 }
             }

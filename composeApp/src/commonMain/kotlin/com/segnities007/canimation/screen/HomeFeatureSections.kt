@@ -227,7 +227,7 @@ internal fun CodeExampleSection(stage: Int) {
                         |    CanimationProvider(
                         |        policy = CanimationPolicy.SystemAware
                         |    ) {
-                        |        // ✨ Recommended: Effect API
+                        |        // Recommended: Effect API
                         |        Box(
                         |            Modifier.canimation(
                         |                visible = isVisible,

@@ -6,6 +6,12 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.PlayArrow
+import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -16,6 +22,7 @@ import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -127,7 +134,13 @@ fun SlotMachine(
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
-    val symbols = listOf("7", "★", "♦", "♣", "♥")
+    val symbols = listOf(
+        Icons.Default.Star,
+        Icons.Default.Favorite,
+        Icons.Default.PlayArrow,
+        Icons.Default.Settings,
+        Icons.Default.Home,
+    )
     var slots by remember { mutableStateOf(List(3) { symbols.random() }) }
     var spinning by remember { mutableStateOf(false) }
 
@@ -148,14 +161,19 @@ fun SlotMachine(
         Text("Slot Machine", style = MaterialTheme.typography.titleSmall)
         Spacer(Modifier.height(8.dp))
         Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-            slots.forEach { symbol ->
+            slots.forEach { symbol: ImageVector ->
                 Surface(
                     shape = RoundedCornerShape(8.dp),
                     tonalElevation = 4.dp,
                     modifier = Modifier.size(48.dp),
                 ) {
                     Box(contentAlignment = Alignment.Center) {
-                        Text(symbol, style = MaterialTheme.typography.headlineMedium)
+                        Icon(
+                            imageVector = symbol,
+                            contentDescription = null,
+                            tint = MaterialTheme.colorScheme.primary,
+                            modifier = Modifier.size(24.dp),
+                        )
                     }
                 }
             }

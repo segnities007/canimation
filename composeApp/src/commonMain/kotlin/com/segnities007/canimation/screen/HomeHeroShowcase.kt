@@ -18,8 +18,11 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.Button
 import androidx.compose.material3.FilledTonalButton
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -256,7 +259,12 @@ internal fun ShowcaseShape(shape: String, accent: Color) {
             border = BorderStroke(1.dp, accent.copy(alpha = 0.5f)), modifier = Modifier.size(40.dp)) {}
         "pill" -> Surface(shape = RoundedCornerShape(50), color = accent.copy(alpha = 0.2f),
             border = BorderStroke(1.dp, accent.copy(alpha = 0.4f)), modifier = Modifier.size(56.dp, 28.dp)) {}
-        "star" -> Text("✦", style = MaterialTheme.typography.headlineMedium, color = accent)
+        "star" -> Icon(
+            imageVector = Icons.Default.Star,
+            contentDescription = null,
+            tint = accent,
+            modifier = Modifier.size(24.dp),
+        )
         "diamond" -> Surface(shape = RoundedCornerShape(4.dp), color = accent.copy(alpha = 0.25f),
             border = BorderStroke(1.dp, accent.copy(alpha = 0.5f)),
             modifier = Modifier.size(32.dp).graphicsLayer { rotationZ = 45f }) {}
@@ -315,4 +323,3 @@ internal fun ShowcaseShape(shape: String, accent: Color) {
             modifier = Modifier.size(40.dp)) {}
     }
 }
-

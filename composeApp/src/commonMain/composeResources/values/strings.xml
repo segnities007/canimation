@@ -1,0 +1,35 @@
+<resources>
+    <string name="docs_api_modifier_canimation_signature">Modifier.canimation(visible, effect)</string>
+    <string name="docs_atomic_atoms_title">Atoms</string>
+    <string name="docs_atomic_molecules_title">Molecules</string>
+    <string name="docs_atomic_organisms_title">Organisms</string>
+
+    <string name="examples_action_camera">Camera</string>
+    <string name="examples_action_attach">Attach</string>
+    <string name="examples_action_note">Note</string>
+
+    <string name="examples_theme_dark_mode">Dark Mode</string>
+    <string name="examples_theme_light_mode">Light Mode</string>
+
+    <string name="examples_weather_sunny">Sunny 28 deg</string>
+    <string name="examples_weather_rainy">Rainy 18 deg</string>
+    <string name="examples_weather_cloudy">Cloudy 22 deg</string>
+    <string name="examples_location_bella_center">Bella Center</string>
+
+    <string name="examples_nav_home">Home</string>
+    <string name="examples_nav_search">Search</string>
+    <string name="examples_nav_saved">Saved</string>
+    <string name="examples_nav_profile">Profile</string>
+
+    <string name="examples_feature_fast">Fast</string>
+    <string name="examples_feature_secure">Secure</string>
+    <string name="examples_feature_simple">Simple</string>
+    <string name="examples_feature_flexible">Flexible</string>
+
+    <string name="examples_chip_new">New</string>
+    <string name="examples_confirmed">Confirmed</string>
+    <string name="examples_hold_to_confirm">Hold to confirm</string>
+    <string name="examples_ticker_default">  * Canimation  * Compose Multiplatform  * Animations  * Presets  </string>
+    <string name="examples_done">Done</string>
+    <string name="examples_swipe_me">Swipe me</string>
+</resources>

@@ -9,6 +9,11 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Check
+import androidx.compose.material.icons.filled.DarkMode
+import androidx.compose.material.icons.filled.LightMode
+import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -28,9 +33,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import canimation.composeapp.generated.resources.*
 import io.github.canimation.core.Canimation
 import io.github.canimation.core.canimation
 import kotlinx.coroutines.delay
+import org.jetbrains.compose.resources.stringResource
 import kotlin.math.PI
 import kotlin.math.cos
 import kotlin.math.sin
@@ -201,7 +208,16 @@ fun AnimatedColorPicker(modifier: Modifier = Modifier) {
                 Box(
                     Modifier.graphicsLayer { scaleX = scale; scaleY = scale }.size(28.dp).clip(CircleShape).background(color).clickable { selected = i },
                     contentAlignment = Alignment.Center,
-                ) { if (isSelected) Text("✓", color = Color.White, fontSize = 12.sp, fontWeight = FontWeight.Bold) }
+                ) {
+                    if (isSelected) {
+                        Icon(
+                            imageVector = Icons.Default.Check,
+                            contentDescription = null,
+                            tint = Color.White,
+                            modifier = Modifier.size(14.dp),
+                        )
+                    }
+                }
             }
         }
         Box(Modifier.fillMaxWidth(0.6f).height(32.dp).clip(RoundedCornerShape(8.dp)).background(colors[selected]))
@@ -216,7 +232,12 @@ fun AnimatedNotificationBell(modifier: Modifier = Modifier) {
     val shake by animateFloatAsState(if (hasNotif) 1f else 0f, spring(dampingRatio = 0.3f, stiffness = 600f))
     Box(modifier.fillMaxWidth().padding(16.dp), contentAlignment = Alignment.Center) {
         Box(contentAlignment = Alignment.TopEnd) {
-            Text("🔔", style = MaterialTheme.typography.headlineMedium, modifier = Modifier.graphicsLayer { rotationZ = shake * 15f })
+            Icon(
+                imageVector = Icons.Default.Notifications,
+                contentDescription = null,
+                tint = MaterialTheme.colorScheme.onSurface,
+                modifier = Modifier.graphicsLayer { rotationZ = shake * 15f }.size(28.dp),
+            )
             if (hasNotif) {
                 var vis by remember { mutableStateOf(false) }
                 LaunchedEffect(Unit) { vis = true }
@@ -301,13 +322,22 @@ fun AnimatedThemeToggle(modifier: Modifier = Modifier) {
             modifier = Modifier.fillMaxWidth(0.5f).height(48.dp).clickable { isDark = !isDark },
         ) {
             Row(Modifier.fillMaxSize().padding(horizontal = 12.dp), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Center) {
-                Text(
-                    if (isDark) "🌙" else "☀️",
-                    modifier = Modifier.graphicsLayer { rotationZ = rotation },
-                    style = MaterialTheme.typography.titleMedium,
+                Icon(
+                    imageVector = if (isDark) Icons.Default.DarkMode else Icons.Default.LightMode,
+                    contentDescription = null,
+                    tint = fgColor,
+                    modifier = Modifier.graphicsLayer { rotationZ = rotation }.size(20.dp),
                 )
                 Spacer(Modifier.width(8.dp))
-                Text(if (isDark) "Dark Mode" else "Light Mode", color = fgColor, style = MaterialTheme.typography.labelMedium, fontWeight = FontWeight.Bold)
+                Text(
+                    text = stringResource(
+                        if (isDark) Res.string.examples_theme_dark_mode
+                        else Res.string.examples_theme_light_mode,
+                    ),
+                    color = fgColor,
+                    style = MaterialTheme.typography.labelMedium,
+                    fontWeight = FontWeight.Bold,
+                )
             }
         }
     }

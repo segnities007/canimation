@@ -8,6 +8,9 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Inbox
+import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -262,19 +265,31 @@ fun ProductCard(modifier: Modifier = Modifier) {
         color = MaterialTheme.colorScheme.surface,
         border = BorderStroke(1.dp, MaterialTheme.colorScheme.outlineVariant),
         modifier = modifier.fillMaxWidth().padding(16.dp).canimation(visible = vis, effect = Canimation.Diagonal.BottomRight),
-    ) {
-        Column {
-            Box(Modifier.fillMaxWidth().height(80.dp).background(MaterialTheme.colorScheme.primaryContainer), contentAlignment = Alignment.Center) {
-                Text("📦", style = MaterialTheme.typography.headlineLarge)
-            }
-            Column(Modifier.padding(12.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
-                Text("Animation Kit", style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold)
-                Text("$49.99", style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.primary, fontWeight = FontWeight.Bold)
-                Row(horizontalArrangement = Arrangement.spacedBy(2.dp)) {
-                    repeat(5) { Text("★", style = MaterialTheme.typography.labelSmall, color = Color(0xFFF59E0B)) }
+        ) {
+            Column {
+                Box(Modifier.fillMaxWidth().height(80.dp).background(MaterialTheme.colorScheme.primaryContainer), contentAlignment = Alignment.Center) {
+                    Icon(
+                        imageVector = Icons.Default.Inbox,
+                        contentDescription = null,
+                        tint = MaterialTheme.colorScheme.primary,
+                        modifier = Modifier.size(32.dp),
+                    )
+                }
+                Column(Modifier.padding(12.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
+                    Text("Animation Kit", style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold)
+                    Text("$49.99", style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.primary, fontWeight = FontWeight.Bold)
+                    Row(horizontalArrangement = Arrangement.spacedBy(2.dp)) {
+                        repeat(5) {
+                            Icon(
+                                imageVector = Icons.Default.Star,
+                                contentDescription = null,
+                                tint = Color(0xFFF59E0B),
+                                modifier = Modifier.size(14.dp),
+                            )
+                        }
+                    }
                 }
             }
-        }
     }
 }
 // ─── 14. SideMenuReveal ───

@@ -72,12 +72,30 @@ internal fun PageTitle(title: String, subtitle: String) {
 }
 
 @Composable
-internal fun SectionCard(title: String, description: String, content: @Composable () -> Unit) {
+internal fun SectionCard(
+    title: String,
+    description: String,
+    icon: ImageVector? = null,
+    content: @Composable () -> Unit,
+) {
     Column(
         Modifier.fillMaxWidth(),
         verticalArrangement = Arrangement.spacedBy(12.dp),
     ) {
-        Text(title, style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
+        ) {
+            if (icon != null) {
+                Icon(
+                    imageVector = icon,
+                    contentDescription = null,
+                    tint = MaterialTheme.colorScheme.primary,
+                    modifier = Modifier.size(18.dp),
+                )
+            }
+            Text(title, style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
+        }
         Text(description, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
         content()
     }
@@ -105,7 +123,13 @@ internal fun AtomicLevelRow(level: String, description: String, examples: String
 }
 
 @Composable
-internal fun ApiCard(signature: String, badge: String, desc: String, code: String) {
+internal fun ApiCard(
+    signature: String,
+    badge: String,
+    desc: String,
+    code: String,
+    icon: ImageVector? = null,
+) {
     Surface(
         shape = RoundedCornerShape(10.dp),
         color = MaterialTheme.colorScheme.surface,
@@ -114,7 +138,21 @@ internal fun ApiCard(signature: String, badge: String, desc: String, code: Strin
     ) {
         Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
             Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                Text(signature, fontFamily = FontFamily.Monospace, style = MaterialTheme.typography.labelMedium, fontWeight = FontWeight.Bold, modifier = Modifier.weight(1f))
+                if (icon != null) {
+                    Icon(
+                        imageVector = icon,
+                        contentDescription = null,
+                        tint = MaterialTheme.colorScheme.primary,
+                        modifier = Modifier.size(16.dp),
+                    )
+                }
+                Text(
+                    signature,
+                    fontFamily = FontFamily.Monospace,
+                    style = MaterialTheme.typography.labelMedium,
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier.weight(1f),
+                )
                 Surface(
                     shape = RoundedCornerShape(4.dp),
                     color = MaterialTheme.colorScheme.primary.copy(alpha = 0.12f),
