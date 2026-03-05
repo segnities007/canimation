@@ -73,7 +73,6 @@ fun MegaMenuReveal(
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
-    val items = listOf("Home", "Products", "About", "Blog", "Contact")
     var visible by remember { mutableStateOf(false) }
 
     LaunchedEffect(Unit) {
@@ -137,7 +136,6 @@ fun SmoothTabIndicator(
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
-    val tabs = listOf("All", "Recent", "Popular")
     var selected by remember { mutableIntStateOf(0) }
 
     LaunchedEffect(Unit) {
@@ -170,7 +168,6 @@ fun SmoothTabIndicator(
                 }
             }
         }
-        val tabWidth = 260f / tabs.size
         Canvas(modifier = Modifier.fillMaxWidth().height(3.dp)) {
             val x = indicatorOffset * (size.width / tabs.size)
             drawRoundRect(
@@ -197,7 +194,6 @@ fun RevealTextEffect(
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
-    val text = "Reveal Animation"
     var count by remember { mutableIntStateOf(0) }
 
     LaunchedEffect(Unit) {
@@ -243,7 +239,6 @@ fun ScatterText(
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
-    val text = "SCATTER"
     var scattered by remember { mutableStateOf(false) }
 
     LaunchedEffect(Unit) {
@@ -310,17 +305,6 @@ fun InfiniteLoadingList(
         }
     }
 
-    val items = (0 until 4).map { i ->
-        val idx = batch * 4 + i
-        val alpha by animateFloatAsState(1f, tween(500, delayMillis = i * 120))
-        val offsetY by animateFloatAsState(0f, tween(500, delayMillis = i * 120))
-        Triple(idx, alpha, offsetY)
-    }
-
-    // Re-trigger via key
-    var trigger by remember { mutableStateOf(false) }
-    LaunchedEffect(batch) { trigger = !trigger }
-
     Column(
         modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Scale.Pop).width(220.dp).height(180.dp).padding(8.dp),
         verticalArrangement = Arrangement.spacedBy(6.dp),
@@ -364,7 +348,6 @@ fun InfiniteLoadingList(
 /** Stack of cards that auto-swipe away one by one (Tinder-style) */
 @Composable
 fun CardStackSwipe(
-    cards: List<String> = listOf("Card A", "Card B", "Card C", "Card D"),
     modifier: Modifier = Modifier,
 ) {
     var entryVisible by remember { mutableStateOf(false) }
@@ -467,7 +450,6 @@ fun HorizontalScrollGallery(
 /** iOS-style slider with animated track fill and haptic-style knob */
 @Composable
 fun IOSSlider(
-    initialValue: Float = 0.5f,
     modifier: Modifier = Modifier,
 ) {
     var entryVisible by remember { mutableStateOf(false) }
@@ -514,7 +496,6 @@ fun IOSSlider(
 /** Checkbox that draws a checkmark path when toggled */
 @Composable
 fun CheckboxAnimation(
-    initialChecked: Boolean = false,
     modifier: Modifier = Modifier,
 ) {
     var entryVisible by remember { mutableStateOf(false) }
@@ -568,7 +549,6 @@ fun CheckboxAnimation(
 /** Material switch with bouncy thumb animation */
 @Composable
 fun SwitchAnimation(
-    initialState: Boolean = false,
     modifier: Modifier = Modifier,
 ) {
     var entryVisible by remember { mutableStateOf(false) }
@@ -619,7 +599,6 @@ fun SwitchAnimation(
 /** Toast that slides in from top, stays, slides out */
 @Composable
 fun ToastNotification(
-    message: String = "✓ Action completed",
     modifier: Modifier = Modifier,
 ) {
     var entryVisible by remember { mutableStateOf(false) }
@@ -675,7 +654,6 @@ fun ToastNotification(
 /** Button that subtly moves toward a simulated touch position */
 @Composable
 fun MagneticButton(
-    label: String = "Hover Me",
     modifier: Modifier = Modifier,
 ) {
     var entryVisible by remember { mutableStateOf(false) }
@@ -718,7 +696,6 @@ fun MagneticButton(
 /** Material ripple effect that radiates from center */
 @Composable
 fun RippleButton(
-    label: String = "Press",
     modifier: Modifier = Modifier,
 ) {
     var entryVisible by remember { mutableStateOf(false) }
@@ -807,7 +784,6 @@ fun FloatingParticles(
 /** Header that slides up/hides when scrolling down, reveals on up */
 @Composable
 fun ScrollDirectionHeader(
-    title: String = "App Header",
     modifier: Modifier = Modifier,
 ) {
     var entryVisible by remember { mutableStateOf(false) }
@@ -874,7 +850,6 @@ fun TextLineReveal(
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
-    val lines = listOf("Design is", "not just what", "it looks like.", "It's how it works.")
     var visible by remember { mutableStateOf(false) }
 
     LaunchedEffect(Unit) {
@@ -916,7 +891,6 @@ fun TextLineReveal(
 /** Image placeholder that zooms from thumbnail to hero size */
 @Composable
 fun ZoomHeroImage(
-    title: String = "Hero View",
     modifier: Modifier = Modifier,
 ) {
     var entryVisible by remember { mutableStateOf(false) }
@@ -967,7 +941,6 @@ fun ZoomHeroImage(
 /** Horizontal progress bar with draggable scrubber thumb */
 @Composable
 fun ProgressScrubber(
-    duration: String = "3:00",
     modifier: Modifier = Modifier,
 ) {
     var entryVisible by remember { mutableStateOf(false) }
@@ -1020,7 +993,6 @@ fun VerticalCarousel(
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
-    val items = listOf("Slide 1", "Slide 2", "Slide 3", "Slide 4")
     var current by remember { mutableIntStateOf(0) }
     val offset = remember { Animatable(0f) }
 
@@ -1194,7 +1166,6 @@ fun PulsingAvatar(
 /** Side drawer that opens with elastic overshoot spring */
 @Composable
 fun ElasticDrawer(
-    menuItems: List<String> = listOf("Home", "Settings", "About"),
     modifier: Modifier = Modifier,
 ) {
     var entryVisible by remember { mutableStateOf(false) }

@@ -365,7 +365,6 @@ fun CommandPalette(modifier: Modifier = Modifier) {
 fun MiniBarChart(modifier: Modifier = Modifier) {
     val values = listOf(0.4f, 0.7f, 0.5f, 0.9f, 0.6f, 0.8f, 0.3f)
     val primaryColor = MaterialTheme.colorScheme.primary
-    val surfaceColor = MaterialTheme.colorScheme.surfaceVariant
     Column(modifier.fillMaxWidth().padding(16.dp)) {
         Row(Modifier.fillMaxWidth().height(60.dp), horizontalArrangement = Arrangement.SpaceEvenly, verticalAlignment = Alignment.Bottom) {
             values.forEachIndexed { i, v ->

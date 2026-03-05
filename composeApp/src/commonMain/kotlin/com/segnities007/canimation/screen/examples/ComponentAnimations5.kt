@@ -30,7 +30,6 @@ import kotlin.math.sin
 
 @Composable
 fun WaveformVisualizer(
-    barCount: Int = 20,
     modifier: Modifier = Modifier,
 ) {
     var entryVisible by remember { mutableStateOf(false) }
@@ -74,7 +73,6 @@ fun WaveformVisualizer(
 
 @Composable
 fun RadialProgress(
-    targetProgress: Float = 0.75f,
     modifier: Modifier = Modifier,
 ) {
     var entryVisible by remember { mutableStateOf(false) }
@@ -110,7 +108,6 @@ fun RadialProgress(
 
 @Composable
 fun MatrixRain(
-    title: String = "Matrix Rain",
     modifier: Modifier = Modifier,
 ) {
     var entryVisible by remember { mutableStateOf(false) }
@@ -157,7 +154,6 @@ fun MatrixRain(
 
 @Composable
 fun PulseButton(
-    label: String = "Tap",
     modifier: Modifier = Modifier,
 ) {
     var entryVisible by remember { mutableStateOf(false) }
@@ -190,7 +186,6 @@ fun PulseButton(
 
 @Composable
 fun NeumorphismCard(
-    title: String = "Neumorphism Card",
     modifier: Modifier = Modifier,
 ) {
     var entryVisible by remember { mutableStateOf(false) }
@@ -226,8 +221,6 @@ fun NeumorphismCard(
 
 @Composable
 fun GradientBorderCard(
-    title: String = "Gradient Border",
-    subtitle: String = "Animated",
     modifier: Modifier = Modifier,
 ) {
     var entryVisible by remember { mutableStateOf(false) }
@@ -273,7 +266,6 @@ fun GradientBorderCard(
 
 @Composable
 fun FlipCounter(
-    targetValue: Int = 42,
     modifier: Modifier = Modifier,
 ) {
     var entryVisible by remember { mutableStateOf(false) }
@@ -318,8 +310,6 @@ fun FlipCounter(
 
 @Composable
 fun ExpandableChip(
-    label: String = "KMP",
-    expandedLabel: String = "Kotlin Multiplatform",
     modifier: Modifier = Modifier,
 ) {
     var entryVisible by remember { mutableStateOf(false) }
@@ -358,7 +348,6 @@ fun ExpandableChip(
 
 @Composable
 fun StackedNotifications(
-    notifications: List<String> = listOf("New message", "Build passed", "Review requested"),
     modifier: Modifier = Modifier,
 ) {
     var entryVisible by remember { mutableStateOf(false) }
@@ -393,7 +382,6 @@ fun StackedNotifications(
 
 @Composable
 fun CircularRevealCard(
-    title: String = "Circular Reveal",
     modifier: Modifier = Modifier,
 ) {
     var entryVisible by remember { mutableStateOf(false) }
@@ -437,7 +425,6 @@ fun CircularRevealCard(
 
 @Composable
 fun SwipeCard(
-    label: String = "Tap to swipe",
     modifier: Modifier = Modifier,
 ) {
     var entryVisible by remember { mutableStateOf(false) }
@@ -620,7 +607,6 @@ fun WaterDroplet(
 
 @Composable
 fun SlotMachine(
-    symbols: List<String> = listOf("🍒", "🍋", "🍊", "⭐", "💎"),
     modifier: Modifier = Modifier,
 ) {
     var entryVisible by remember { mutableStateOf(false) }
@@ -675,7 +661,6 @@ fun MusicEqualizer(
     LaunchedEffect(Unit) { entryVisible = true }
 
     val transition = rememberInfiniteTransition()
-    val barCount = 5
     val primary = MaterialTheme.colorScheme.primary
 
     val barHeights = (0 until barCount).map { i ->

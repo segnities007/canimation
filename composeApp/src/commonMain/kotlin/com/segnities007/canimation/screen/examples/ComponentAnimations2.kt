@@ -38,7 +38,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
@@ -113,7 +112,6 @@ fun GradientShift(boxSize: Dp = 200.dp,
 
 @Composable
 fun SkeletonLoader(
-    lineCount: Int = 3,
     modifier: Modifier = Modifier,
 ) {
     var entryVisible by remember { mutableStateOf(false) }
@@ -617,7 +615,6 @@ fun SlidingReveal(text: String = "Hello, World!",
 
 @Composable
 fun FocusBlurEffect(
-    items: List<String> = listOf("Design", "Build", "Test", "Deploy"),
     modifier: Modifier = Modifier,
 ) {
     var entryVisible by remember { mutableStateOf(false) }
@@ -875,7 +872,6 @@ fun GlitchText(text: String = "GLITCH",
 
 @Composable
 fun VerticalTicker(
-    items: List<String> = listOf("Kotlin", "Compose", "Multiplatform", "Animation", "Design"),
     modifier: Modifier = Modifier,
 ) {
     var entryVisible by remember { mutableStateOf(false) }
@@ -1005,7 +1001,6 @@ fun HeartbeatLine(canvasSize: Dp = 240.dp,
 
 @Composable
 fun ExpandingSearch(
-    placeholder: String = "Search...",
     modifier: Modifier = Modifier,
 ) {
     var entryVisible by remember { mutableStateOf(false) }

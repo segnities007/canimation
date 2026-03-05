@@ -46,7 +46,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.drawscope.Stroke
-import androidx.compose.ui.graphics.drawscope.rotate
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.IntOffset
@@ -101,7 +100,6 @@ fun CardBorderTrace(
 /** Card that lifts on hover with shadow animation */
 @Composable
 fun CardLiftHover(
-    title: String = "Lift",
     modifier: Modifier = Modifier,
 ) {
     var entryVisible by remember { mutableStateOf(false) }
@@ -132,7 +130,6 @@ fun CardLiftHover(
 /** Card with animated gradient border */
 @Composable
 fun CardGradientBorder(
-    title: String = "Gradient",
     modifier: Modifier = Modifier,
 ) {
     var entryVisible by remember { mutableStateOf(false) }
@@ -172,8 +169,6 @@ fun CardGradientBorder(
 /** Card expand/collapse animation */
 @Composable
 fun CardExpandCollapse(
-    title: String = "Card Title",
-    content: String = "Expanded content with more details...",
     modifier: Modifier = Modifier,
 ) {
     var entryVisible by remember { mutableStateOf(false) }
@@ -207,7 +202,6 @@ fun CardExpandCollapse(
 /** Card with parallax tilt effect */
 @Composable
 fun CardParallaxTilt(
-    title: String = "Parallax",
     modifier: Modifier = Modifier,
 ) {
     var entryVisible by remember { mutableStateOf(false) }
@@ -244,7 +238,6 @@ fun CardParallaxTilt(
 /** Card with glassmorphism frosted effect */
 @Composable
 fun CardGlassmorphism(
-    title: String = "Glass",
     modifier: Modifier = Modifier,
 ) {
     var entryVisible by remember { mutableStateOf(false) }
@@ -286,7 +279,6 @@ fun CardGlassmorphism(
 /** Card with reveal wipe animation */
 @Composable
 fun CardRevealWipe(
-    title: String = "Reveal",
     modifier: Modifier = Modifier,
 ) {
     var entryVisible by remember { mutableStateOf(false) }
@@ -424,7 +416,6 @@ fun CardMagneticSnap(
 /** Animated progress bar with glow */
 @Composable
 fun GlowProgressBar(
-    targetProgress: Float = 0.7f,
     modifier: Modifier = Modifier,
 ) {
     var entryVisible by remember { mutableStateOf(false) }
@@ -520,7 +511,6 @@ fun MorphProgressIndicator(
 /** Text with animated underline */
 @Composable
 fun AnimatedUnderlineText(
-    text: String = "Hover me",
     modifier: Modifier = Modifier,
 ) {
     var entryVisible by remember { mutableStateOf(false) }
@@ -558,7 +548,6 @@ fun AnimatedUnderlineText(
 /** Animated tag / chip that scales in with spring */
 @Composable
 fun SpringChip(
-    label: String = "New ✨",
     modifier: Modifier = Modifier,
 ) {
     var entryVisible by remember { mutableStateOf(false) }
@@ -857,7 +846,6 @@ fun TypewriterDelete(
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
-    val text = "canimation"
     var count by remember { mutableIntStateOf(0) }
     var deleting by remember { mutableStateOf(false) }
 
@@ -894,7 +882,6 @@ fun TypewriterDelete(
 /** Animated gradient text */
 @Composable
 fun AnimatedGradientText(
-    text: String = "canimation",
     modifier: Modifier = Modifier,
 ) {
     var entryVisible by remember { mutableStateOf(false) }

@@ -259,7 +259,6 @@ fun PulseLoadingDots(dotCount: Int = 3,
 
 @Composable
 fun ShimmerEffect(
-    lineCount: Int = 3,
     modifier: Modifier = Modifier,
 ) {
     var entryVisible by remember { mutableStateOf(false) }
@@ -370,7 +369,6 @@ fun AnimatedTabs(
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
-    val tabs = listOf("Home", "Search", "Profile")
     var selectedIndex by remember { mutableIntStateOf(0) }
 
     LaunchedEffect(Unit) {
@@ -866,8 +864,6 @@ fun BouncySpringList(
         }
     }
 
-    val items = listOf("Inbox", "Starred", "Sent", "Drafts", "Trash")
-
     Column(
         verticalArrangement = Arrangement.spacedBy(4.dp),
         modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Spring.In).fillMaxWidth().padding(horizontal = 8.dp),
@@ -1195,7 +1191,6 @@ fun EngagementStats(
 
 @Composable
 fun MultiStateBadge(
-    states: List<String> = listOf("New", "Processing", "Complete", "Archived"),
     modifier: Modifier = Modifier,
 ) {
     var entryVisible by remember { mutableStateOf(false) }
