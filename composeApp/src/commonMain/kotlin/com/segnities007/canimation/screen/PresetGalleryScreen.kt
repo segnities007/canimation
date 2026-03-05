@@ -26,7 +26,6 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -41,15 +40,10 @@ import com.segnities007.canimation.component.PresetPreviewTuning
 import com.segnities007.canimation.component.tunePresetSpec
 import io.github.canimation.core.CanimationPreset
 import io.github.canimation.core.CanimationPresetSpec
-import io.github.canimation.core.CanimationSpec
-import io.github.canimation.core.CanimationPolicy
-import io.github.canimation.core.CanimationProvider
 import io.github.canimation.presets.PresetsExtensionRegistry
 import io.github.canimation.core.Canimation
 import io.github.canimation.core.canimation
 import kotlinx.coroutines.delay
-import kotlin.math.abs
-import kotlin.math.roundToInt
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
@@ -59,112 +53,116 @@ fun PresetGalleryScreen(
     autoPlayTick: Int = 0,
     tuning: PresetPreviewTuning = PresetPreviewTuning(),
 ) {
-    var autoPlayTickLocal by remember { mutableIntStateOf(0) }
-    var motionFilter by remember { mutableStateOf(MotionFilter.All) }
-    var headerStage by remember { mutableIntStateOf(-1) }
-
-    var codeDialogPreset by remember { mutableStateOf<CanimationPreset?>(null) }
-
-    LaunchedEffect(Unit) {
-        for (i in 0..3) { headerStage = i; delay(80) }
+    var uiState by remember { mutableStateOf(PresetGalleryUiState()) }
+    val onEvent: (PresetGalleryEvent) -> Unit = { event ->
+        uiState = reducePresetGalleryState(uiState, event)
     }
 
-    // Sync external tick
-    LaunchedEffect(autoPlayTick) {
-        autoPlayTickLocal = autoPlayTick
+    LaunchedEffect(Unit) {
+        for (i in 0..3) {
+            onEvent(PresetGalleryEvent.HeaderStageUpdated(i))
+            delay(80)
+        }
     }
 
     val allPresetSpecs = PresetsExtensionRegistry.allPresetSpecs
 
-    val filteredPresets = remember(allPresetSpecs, motionFilter) {
+    val filteredPresets = remember(allPresetSpecs, uiState.motionFilter) {
         CanimationPreset.entries.filter { preset ->
-            matchesMotionFilter(allPresetSpecs.getValue(preset).fullEnter, motionFilter)
+            matchesMotionFilter(allPresetSpecs.getValue(preset).fullEnter, uiState.motionFilter)
         }
     }
 
-    CanimationProvider(policy = CanimationPolicy.AlwaysFull) {
-        Box(
-            modifier = modifier.fillMaxSize(),
-            contentAlignment = Alignment.TopCenter,
+    Box(
+        modifier = modifier.fillMaxSize(),
+        contentAlignment = Alignment.TopCenter,
+    ) {
+        LazyVerticalGrid(
+            columns = GridCells.Adaptive(minSize = 220.dp),
+            modifier = Modifier.widthIn(max = 1200.dp),
+            contentPadding = PaddingValues(horizontal = 24.dp, vertical = 24.dp),
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
+            verticalArrangement = Arrangement.spacedBy(8.dp),
         ) {
-            LazyVerticalGrid(
-                columns = GridCells.Adaptive(minSize = 220.dp),
-                modifier = Modifier.widthIn(max = 1200.dp),
-                contentPadding = PaddingValues(horizontal = 24.dp, vertical = 24.dp),
-                horizontalArrangement = Arrangement.spacedBy(8.dp),
-                verticalArrangement = Arrangement.spacedBy(8.dp),
-            ) {
-                item(span = { GridItemSpan(maxLineSpan) }) {
-                    Column(
-                        modifier = Modifier.padding(bottom = 8.dp),
+            item(span = { GridItemSpan(maxLineSpan) }) {
+                Column(
+                    modifier = Modifier.padding(bottom = 8.dp),
+                    verticalArrangement = Arrangement.spacedBy(8.dp),
+                ) {
+                    Text(
+                        text = "GALLERY",
+                        style = MaterialTheme.typography.labelLarge,
+                        color = MaterialTheme.colorScheme.primary,
+                        fontWeight = FontWeight.Bold,
+                        modifier = Modifier.canimation(
+                            visible = uiState.headerStage >= 0,
+                            effect = Canimation.Fade.Up,
+                        ),
+                    )
+                    Text(
+                        text = "${CanimationPreset.entries.size} Presets",
+                        style = MaterialTheme.typography.headlineMedium,
+                        fontWeight = FontWeight.Bold,
+                        modifier = Modifier.canimation(
+                            visible = uiState.headerStage >= 1,
+                            effect = Canimation.Fade.Up,
+                        ),
+                    )
+                    Text(
+                        text = "Browse, compare, and tune every built-in animation",
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        modifier = Modifier.canimation(
+                            visible = uiState.headerStage >= 2,
+                            effect = Canimation.Fade.Up,
+                        ),
+                    )
+                    FlowRow(
+                        horizontalArrangement = Arrangement.spacedBy(8.dp),
                         verticalArrangement = Arrangement.spacedBy(8.dp),
+                        modifier = Modifier
+                            .padding(top = 4.dp)
+                            .canimation(visible = uiState.headerStage >= 3, effect = Canimation.Fade.Up),
                     ) {
-                        Text(
-                            text = "GALLERY",
-                            style = MaterialTheme.typography.labelLarge,
-                            color = MaterialTheme.colorScheme.primary,
-                            fontWeight = FontWeight.Bold,
-                            modifier = Modifier.canimation(visible = headerStage >= 0, effect = Canimation.Fade.Up),
-                        )
-                        Text(
-                            text = "${CanimationPreset.entries.size} Presets",
-                            style = MaterialTheme.typography.headlineMedium,
-                            fontWeight = FontWeight.Bold,
-                            modifier = Modifier.canimation(visible = headerStage >= 1, effect = Canimation.Fade.Up),
-                        )
-                        Text(
-                            text = "Browse, compare, and tune every built-in animation",
-                            style = MaterialTheme.typography.bodyMedium,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant,
-                            modifier = Modifier.canimation(visible = headerStage >= 2, effect = Canimation.Fade.Up),
-                        )
-                        FlowRow(
-                            horizontalArrangement = Arrangement.spacedBy(8.dp),
-                            verticalArrangement = Arrangement.spacedBy(8.dp),
-                            modifier = Modifier
-                                .padding(top = 4.dp)
-                                .canimation(visible = headerStage >= 3, effect = Canimation.Fade.Up),
-                        ) {
-                            MotionFilter.entries.forEach { filter ->
-                                FilterChip(
-                                    selected = motionFilter == filter,
-                                    onClick = { motionFilter = filter },
-                                    label = { Text(filter.label) },
-                                )
-                            }
+                        MotionFilter.entries.forEach { filter ->
+                            FilterChip(
+                                selected = uiState.motionFilter == filter,
+                                onClick = { onEvent(PresetGalleryEvent.MotionFilterSelected(filter)) },
+                                label = { Text(filter.label) },
+                            )
                         }
                     }
                 }
+            }
 
-                items(filteredPresets, key = { it.name }) { preset ->
-                    var visible by remember { mutableStateOf(false) }
-                    LaunchedEffect(preset) { visible = true }
-                    Box(Modifier.canimation(visible = visible, effect = Canimation.Fade.Up)) {
-                        AnimationShowcase(
-                            title = presetDescription(preset),
-                            preset = preset,
-                            baseSpec = allPresetSpecs.getValue(preset),
-                            tuning = tuning,
-                            autoPlayEnabled = autoPlayEnabled,
-                            autoPlayTick = autoPlayTickLocal,
-                            selectedForCompare = false,
-                            onCardClick = { tapped ->
-                                codeDialogPreset = tapped
-                            },
-                        )
-                    }
+            items(filteredPresets, key = { it.name }) { preset ->
+                var visible by remember { mutableStateOf(false) }
+                LaunchedEffect(preset) { visible = true }
+                Box(Modifier.canimation(visible = visible, effect = Canimation.Fade.Up)) {
+                    AnimationShowcase(
+                        title = presetDescription(preset),
+                        preset = preset,
+                        baseSpec = allPresetSpecs.getValue(preset),
+                        tuning = tuning,
+                        autoPlayEnabled = autoPlayEnabled,
+                        autoPlayTick = autoPlayTick,
+                        selectedForCompare = false,
+                        onCardClick = { tapped ->
+                            onEvent(PresetGalleryEvent.CodeDialogOpened(tapped))
+                        },
+                    )
                 }
             }
+        }
 
-            val dialogPreset = codeDialogPreset
-            if (dialogPreset != null) {
-                val dialogSpec = tunePresetSpec(allPresetSpecs.getValue(dialogPreset), tuning)
-                CodeSampleDialog(
-                    preset = dialogPreset,
-                    spec = dialogSpec,
-                    onDismiss = { codeDialogPreset = null },
-                )
-            }
+        val dialogPreset = uiState.codeDialogPreset
+        if (dialogPreset != null) {
+            val dialogSpec = tunePresetSpec(allPresetSpecs.getValue(dialogPreset), tuning)
+            CodeSampleDialog(
+                preset = dialogPreset,
+                spec = dialogSpec,
+                onDismiss = { onEvent(PresetGalleryEvent.CodeDialogClosed) },
+            )
         }
     }
 }
@@ -175,8 +173,12 @@ private fun CodeSampleDialog(
     spec: CanimationPresetSpec,
     onDismiss: () -> Unit,
 ) {
+    // Temporary(2026-06-30, ticket: CLIPBOARD-API-MIGRATION):
+    // Compose 1.10.0 common API does not expose a stable plain-text ClipEntry factory.
+    // Remove this suppression after LocalClipboard gains a common text writer helper.
+    @Suppress("DEPRECATION")
     val clipboard = LocalClipboardManager.current
-    val codeSample = remember(preset, spec) { buildCodeSample(preset, spec) }
+    val codeSample = remember(preset, spec) { buildPresetCodeSample(preset, spec) }
     var dialogVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { dialogVisible = true }
 
@@ -217,171 +219,4 @@ private fun CodeSampleDialog(
             }
         },
     )
-}
-
-private fun buildCodeSample(
-    preset: CanimationPreset,
-    spec: CanimationPresetSpec,
-): String {
-    return buildString {
-        appendLine("// Preset API")
-        appendLine("Modifier.canimationTransition(")
-        appendLine("    visible = visible,")
-        appendLine("    enterPreset = CanimationPreset.${preset.name},")
-        appendLine("    exitPreset = CanimationPreset.${preset.name},")
-        appendLine(")")
-        appendLine()
-        appendLine("// Tuned custom spec currently shown in gallery")
-        appendLine("val enterFullSpec = CanimationSpec(")
-        appendSpecFields(spec.fullEnter)
-        appendLine(")")
-        appendLine()
-        appendLine("val enterReducedSpec = CanimationSpec(")
-        appendSpecFields(spec.reducedEnter)
-        appendLine(")")
-        appendLine()
-        appendLine("val exitFullSpec = CanimationSpec(")
-        appendSpecFields(spec.fullExit)
-        appendLine(")")
-        appendLine()
-        appendLine("val exitReducedSpec = CanimationSpec(")
-        appendSpecFields(spec.reducedExit)
-        appendLine(")")
-        appendLine()
-        appendLine("Modifier.canimationTransition(")
-        appendLine("    visible = visible,")
-        appendLine("    enterFullSpec = enterFullSpec,")
-        appendLine("    enterReducedSpec = enterReducedSpec,")
-        appendLine("    exitFullSpec = exitFullSpec,")
-        appendLine("    exitReducedSpec = exitReducedSpec,")
-        appendLine(")")
-    }
-}
-
-private fun StringBuilder.appendSpecFields(spec: CanimationSpec) {
-    appendLine("    durationMs = ${spec.durationMs},")
-    appendLine("    easing = EasingTokens.Default.standard, // replace if needed")
-    spec.alpha?.let { appendLine("    alpha = CanimationRange(${it.from.fmt2()}f, ${it.to.fmt2()}f),") }
-    spec.offsetX?.let { appendLine("    offsetX = CanimationDpRange(${it.from.value.fmt2()}.dp, ${it.to.value.fmt2()}.dp),") }
-    spec.offsetY?.let { appendLine("    offsetY = CanimationDpRange(${it.from.value.fmt2()}.dp, ${it.to.value.fmt2()}.dp),") }
-    spec.scale?.let { appendLine("    scale = CanimationRange(${it.from.fmt2()}f, ${it.to.fmt2()}f),") }
-    spec.rotation?.let { appendLine("    rotation = CanimationRange(${it.from.fmt2()}f, ${it.to.fmt2()}f),") }
-}
-
-private fun Float.fmt2(): String {
-    val rounded = (this * 100).roundToInt()
-    val sign = if (rounded < 0) "-" else ""
-    val absValue = abs(rounded)
-    return "$sign${absValue / 100}.${(absValue % 100).toString().padStart(2, '0')}"
-}
-
-private enum class MotionFilter(val label: String) {
-    All("All"),
-    Translation("Move"),
-    Scale("Scale"),
-    Rotation("Rotate"),
-    AlphaOnly("Fade Only"),
-}
-
-private fun matchesMotionFilter(spec: CanimationSpec, filter: MotionFilter): Boolean {
-    return when (filter) {
-        MotionFilter.All -> true
-        MotionFilter.Translation -> spec.offsetX != null || spec.offsetY != null
-        MotionFilter.Scale -> spec.scale != null
-        MotionFilter.Rotation -> spec.rotation != null
-        MotionFilter.AlphaOnly -> spec.offsetX == null && spec.offsetY == null && spec.scale == null && spec.rotation == null
-    }
-}
-
-private fun presetDescription(preset: CanimationPreset): String = when (preset) {
-    CanimationPreset.FadeUp -> "Fade + slide up"
-    CanimationPreset.Fade -> "Alpha crossfade"
-    CanimationPreset.ScaleIn -> "Scale from 92%"
-    CanimationPreset.SlideLeft -> "Slide from right"
-    CanimationPreset.SlideRight -> "Slide from left"
-    CanimationPreset.FadeDown -> "Fade + slide down"
-    CanimationPreset.ScaleUp -> "Scale from 108%"
-    CanimationPreset.ZoomIn -> "Zoom from 50%"
-    CanimationPreset.ZoomOut -> "Zoom from 150%"
-    CanimationPreset.Pop -> "Overshoot pop"
-    CanimationPreset.Expand -> "Scale from 0%"
-    CanimationPreset.SlideUp -> "Long slide up"
-    CanimationPreset.SlideDown -> "Long slide down"
-    CanimationPreset.ElevateIn -> "Subtle rise + scale"
-    CanimationPreset.DropIn -> "Drop with bounce"
-    CanimationPreset.RotateIn -> "CCW rotate entry"
-    CanimationPreset.RotateClockwise -> "CW rotate entry"
-    CanimationPreset.SpinIn -> "360° spin + scale"
-    CanimationPreset.FlipIn -> "180° flip entry"
-    CanimationPreset.SwingIn -> "Swing + slide"
-    CanimationPreset.ZoomInUp -> "Zoom + upward"
-    CanimationPreset.ZoomInDown -> "Zoom + downward"
-    CanimationPreset.ZoomInLeft -> "Zoom + from left"
-    CanimationPreset.ZoomInRight -> "Zoom + from right"
-    CanimationPreset.BackInUp -> "Back easing up"
-    CanimationPreset.BackInDown -> "Back easing down"
-    CanimationPreset.ShrinkIn -> "Shrink from 200%"
-    CanimationPreset.GentleFade -> "600ms gentle fade"
-    CanimationPreset.Snap -> "Instant 10ms cut"
-    // Animate.css inspired
-    CanimationPreset.BounceIn -> "Bouncy scale entry"
-    CanimationPreset.BounceInDown -> "Bounce from top"
-    CanimationPreset.BounceInLeft -> "Bounce from left"
-    CanimationPreset.BounceInRight -> "Bounce from right"
-    CanimationPreset.FadeInLeftBig -> "Big slide from left"
-    CanimationPreset.FadeInRightBig -> "Big slide from right"
-    CanimationPreset.LightSpeedInRight -> "Fast slide + tilt"
-    CanimationPreset.LightSpeedInLeft -> "Fast slide left + tilt"
-    CanimationPreset.JackInTheBox -> "Scale + rotate combo"
-    CanimationPreset.RollIn -> "Roll + slide left"
-    // Framer Motion inspired
-    CanimationPreset.SpringIn -> "Spring overshoot scale"
-    CanimationPreset.SpringSlideUp -> "Spring slide up"
-    CanimationPreset.SpringFadeIn -> "Spring fade + scale"
-    // AnimXYZ inspired
-    CanimationPreset.FlipUp -> "Flip + upward slide"
-    CanimationPreset.FlipDown -> "Flip + downward slide"
-    CanimationPreset.TiltIn -> "Tilt + scale entry"
-    // Material Motion inspired
-    CanimationPreset.FadeThrough -> "Material fade-through"
-    CanimationPreset.SharedAxisX -> "Shared axis horizontal"
-    CanimationPreset.SharedAxisY -> "Shared axis vertical"
-    CanimationPreset.EmphasizedEntry -> "Emphasized decelerate"
-    // Animate.css remaining directional
-    CanimationPreset.BackInLeft -> "Back ease from left"
-    CanimationPreset.BackInRight -> "Back ease from right"
-    CanimationPreset.BounceInUp -> "Bounce from bottom"
-    CanimationPreset.FadeInDownBig -> "Big fade from top"
-    CanimationPreset.FadeInUpBig -> "Big fade from bottom"
-    CanimationPreset.FadeInLeft -> "Fade from left"
-    CanimationPreset.FadeInRight -> "Fade from right"
-    CanimationPreset.FadeInTopLeft -> "Diagonal top-left"
-    CanimationPreset.FadeInTopRight -> "Diagonal top-right"
-    CanimationPreset.FadeInBottomLeft -> "Diagonal bottom-left"
-    CanimationPreset.FadeInBottomRight -> "Diagonal bottom-right"
-    CanimationPreset.RotateInDownLeft -> "Rotate down-left"
-    CanimationPreset.RotateInDownRight -> "Rotate down-right"
-    CanimationPreset.RotateInUpLeft -> "Rotate up-left"
-    CanimationPreset.RotateInUpRight -> "Rotate up-right"
-    CanimationPreset.FlipInY -> "Vertical flip"
-    // Animate.css attention seekers
-    CanimationPreset.Pulse -> "Scale pulse"
-    CanimationPreset.HeartBeat -> "Heartbeat pulse"
-    CanimationPreset.Tada -> "Tada emphasis"
-    CanimationPreset.Wobble -> "Side wobble"
-    CanimationPreset.Swing -> "Swing rotation"
-    CanimationPreset.RubberBand -> "Rubber band stretch"
-    CanimationPreset.Bounce -> "Bounce emphasis"
-    CanimationPreset.Flash -> "Quick flash"
-    CanimationPreset.ShakeX -> "Horizontal shake"
-    CanimationPreset.ShakeY -> "Vertical shake"
-    CanimationPreset.HeadShake -> "Head shake"
-    CanimationPreset.Jello -> "Jello wobble"
-    // AnimXYZ compositions
-    CanimationPreset.FadeSmall -> "Fade + shrink"
-    CanimationPreset.FadeBig -> "Fade + grow"
-    CanimationPreset.FadeUpLeft -> "Fade up-left"
-    CanimationPreset.FadeDownRight -> "Fade down-right"
-    CanimationPreset.RotateScale -> "Rotate + scale"
-    CanimationPreset.UpBig -> "Big upward slide"
 }

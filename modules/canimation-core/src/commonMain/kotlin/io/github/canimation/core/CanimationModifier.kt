@@ -1,6 +1,5 @@
 package io.github.canimation.core
 
-import androidx.compose.animation.core.CubicBezierEasing
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.composed
 import androidx.compose.ui.platform.debugInspectorInfo
@@ -34,7 +33,7 @@ fun Modifier.canimation(
     },
 ) {
     val context = LocalCanimationContext.current
-    val defaultEasing = CubicBezierEasing(0.2f, 0.0f, 0.0f, 1.0f)
+    val defaultEasing = EasingTokens.Default.standard
 
     val spec = when (context.level) {
         CanimationLevel.Full -> effect.toEnterSpec(defaultEasing)
@@ -70,7 +69,7 @@ fun Modifier.canimationTransition(
     },
 ) {
     val context = LocalCanimationContext.current
-    val defaultEasing = CubicBezierEasing(0.2f, 0.0f, 0.0f, 1.0f)
+    val defaultEasing = EasingTokens.Default.standard
 
     val enterSpec = enter.toEnterSpec(defaultEasing)
     val exitSpec = exit?.toEnterSpec(defaultEasing) ?: enterSpec.reversed()

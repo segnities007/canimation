@@ -14,7 +14,7 @@
 ## タスク一覧
 
 ### AP-001
-- 状態: TODO
+- 状態: 未着手
 - 目的: `canimation-a11y` module include
 - 前提条件: なし
 - 対象ファイル: `settings.gradle.kts`
@@ -28,7 +28,7 @@
 - 証跡: `AP-001_*`
 
 ### AP-002
-- 状態: TODO
+- 状態: 未着手
 - 目的: a11y build 設定
 - 前提条件: AP-001
 - 対象ファイル: `modules/canimation-a11y/build.gradle.kts`
@@ -42,7 +42,7 @@
 - 証跡: `AP-002_*`
 
 ### AP-003
-- 状態: TODO
+- 状態: 未着手
 - 目的: a11y package marker
 - 前提条件: AP-002
 - 対象ファイル: `modules/canimation-a11y/src/commonMain/kotlin/io/github/canimation/a11y/A11yMarker.kt`
@@ -56,7 +56,7 @@
 - 証跡: `AP-003_*`
 
 ### AP-004
-- 状態: TODO
+- 状態: 未着手
 - 目的: SystemMotionPreference 定義
 - 前提条件: AP-003
 - 対象ファイル: `modules/canimation-a11y/src/commonMain/kotlin/io/github/canimation/a11y/SystemMotionPreference.kt`
@@ -70,7 +70,7 @@
 - 証跡: `AP-004_*`
 
 ### AP-005
-- 状態: TODO
+- 状態: 未着手
 - 目的: MotionPreferenceDataSource 契約
 - 前提条件: AP-004
 - 対象ファイル: `modules/canimation-a11y/src/commonMain/kotlin/io/github/canimation/a11y/MotionPreferenceDataSource.kt`
@@ -85,7 +85,7 @@
 - 証跡: `AP-005_*`
 
 ### AP-006
-- 状態: TODO
+- 状態: 未着手
 - 目的: A11yMotionPolicyAdapter 実装
 - 前提条件: AP-005
 - 対象ファイル: `modules/canimation-a11y/src/commonMain/kotlin/io/github/canimation/a11y/A11yMotionPolicyAdapter.kt`
@@ -99,7 +99,7 @@
 - 証跡: `AP-006_*`
 
 ### AP-007
-- 状態: TODO
+- 状態: 未着手
 - 目的: A11y adapter test
 - 前提条件: AP-006
 - 対象ファイル: `modules/canimation-a11y/src/commonTest/kotlin/io/github/canimation/a11y/A11yMotionPolicyAdapterTest.kt`
@@ -113,7 +113,7 @@
 - 証跡: `AP-007_*`
 
 ### AP-008
-- 状態: TODO
+- 状態: 未着手
 - 目的: Android platform include
 - 前提条件: AP-007
 - 対象ファイル: `settings.gradle.kts`
@@ -127,7 +127,7 @@
 - 証跡: `AP-008_*`
 
 ### AP-009
-- 状態: TODO
+- 状態: 未着手
 - 目的: Android platform build
 - 前提条件: AP-008
 - 対象ファイル: `modules/canimation-platform-android/build.gradle.kts`
@@ -141,7 +141,7 @@
 - 証跡: `AP-009_*`
 
 ### AP-010
-- 状態: TODO
+- 状態: 未着手
 - 目的: Android motion preference 実装
 - 前提条件: AP-009
 - 対象ファイル: `modules/canimation-platform-android/src/androidMain/kotlin/io/github/canimation/platform/android/AndroidMotionPreferenceDataSource.kt`
@@ -155,7 +155,7 @@
 - 証跡: `AP-010_*`
 
 ### AP-011
-- 状態: TODO
+- 状態: 未着手
 - 目的: Android preference test
 - 前提条件: AP-010
 - 対象ファイル: `modules/canimation-platform-android/src/androidUnitTest/kotlin/io/github/canimation/platform/android/AndroidMotionPreferenceDataSourceTest.kt`
@@ -169,7 +169,7 @@
 - 証跡: `AP-011_*`
 
 ### AP-012
-- 状態: TODO
+- 状態: 未着手
 - 目的: Desktop platform include
 - 前提条件: AP-007
 - 対象ファイル: `settings.gradle.kts`
@@ -183,7 +183,7 @@
 - 証跡: `AP-012_*`
 
 ### AP-013
-- 状態: TODO
+- 状態: 未着手
 - 目的: Desktop platform build
 - 前提条件: AP-012
 - 対象ファイル: `modules/canimation-platform-desktop/build.gradle.kts`
@@ -197,7 +197,7 @@
 - 証跡: `AP-013_*`
 
 ### AP-014
-- 状態: TODO
+- 状態: 未着手
 - 目的: Desktop motion preference 実装
 - 前提条件: AP-013
 - 対象ファイル: `modules/canimation-platform-desktop/src/desktopMain/kotlin/io/github/canimation/platform/desktop/DesktopMotionPreferenceDataSource.kt`
@@ -211,7 +211,7 @@
 - 証跡: `AP-014_*`
 
 ### AP-015
-- 状態: TODO
+- 状態: 未着手
 - 目的: Desktop preference test
 - 前提条件: AP-014
 - 対象ファイル: `modules/canimation-platform-desktop/src/desktopTest/kotlin/io/github/canimation/platform/desktop/DesktopMotionPreferenceDataSourceTest.kt`
@@ -225,7 +225,7 @@
 - 証跡: `AP-015_*`
 
 ### AP-016
-- 状態: TODO
+- 状態: 未着手
 - 目的: iOS platform include
 - 前提条件: AP-007
 - 対象ファイル: `settings.gradle.kts`
@@ -239,7 +239,7 @@
 - 証跡: `AP-016_*`
 
 ### AP-017
-- 状態: TODO
+- 状態: 未着手
 - 目的: iOS platform build
 - 前提条件: AP-016
 - 対象ファイル: `modules/canimation-platform-ios/build.gradle.kts`
@@ -253,7 +253,7 @@
 - 証跡: `AP-017_*`
 
 ### AP-018
-- 状態: TODO
+- 状態: 未着手
 - 目的: iOS motion preference 実装
 - 前提条件: AP-017
 - 対象ファイル: `modules/canimation-platform-ios/src/iosMain/kotlin/io/github/canimation/platform/ios/IosMotionPreferenceDataSource.kt`
@@ -267,7 +267,7 @@
 - 証跡: `AP-018_*`
 
 ### AP-019
-- 状態: TODO
+- 状態: 未着手
 - 目的: iOS preference test
 - 前提条件: AP-018
 - 対象ファイル: `modules/canimation-platform-ios/src/iosTest/kotlin/io/github/canimation/platform/ios/IosMotionPreferenceDataSourceTest.kt`
@@ -281,7 +281,7 @@
 - 証跡: `AP-019_*`
 
 ### AP-020
-- 状態: TODO
+- 状態: 未着手
 - 目的: Web platform include
 - 前提条件: AP-007
 - 対象ファイル: `settings.gradle.kts`
@@ -295,7 +295,7 @@
 - 証跡: `AP-020_*`
 
 ### AP-021
-- 状態: TODO
+- 状態: 未着手
 - 目的: Web platform build
 - 前提条件: AP-020
 - 対象ファイル: `modules/canimation-platform-web/build.gradle.kts`
@@ -309,7 +309,7 @@
 - 証跡: `AP-021_*`
 
 ### AP-022
-- 状態: TODO
+- 状態: 未着手
 - 目的: Web motion preference 実装
 - 前提条件: AP-021
 - 対象ファイル: `modules/canimation-platform-web/src/jsMain/kotlin/io/github/canimation/platform/web/WebMotionPreferenceDataSource.kt`
@@ -323,7 +323,7 @@
 - 証跡: `AP-022_*`
 
 ### AP-023
-- 状態: TODO
+- 状態: 未着手
 - 目的: Web preference test
 - 前提条件: AP-022
 - 対象ファイル: `modules/canimation-platform-web/src/jsTest/kotlin/io/github/canimation/platform/web/WebMotionPreferenceDataSourceTest.kt`
@@ -337,7 +337,7 @@
 - 証跡: `AP-023_*`
 
 ### AP-024
-- 状態: TODO
+- 状態: 未着手
 - 目的: Android no-op fallback 実装
 - 前提条件: AP-011
 - 対象ファイル: `modules/canimation-platform-android/src/androidMain/kotlin/io/github/canimation/platform/android/AndroidMotionPreferenceFallback.kt`
@@ -351,7 +351,7 @@
 - 証跡: `AP-024_*`
 
 ### AP-025
-- 状態: TODO
+- 状態: 未着手
 - 目的: Desktop no-op fallback 実装
 - 前提条件: AP-015
 - 対象ファイル: `modules/canimation-platform-desktop/src/desktopMain/kotlin/io/github/canimation/platform/desktop/DesktopMotionPreferenceFallback.kt`
@@ -365,7 +365,7 @@
 - 証跡: `AP-025_*`
 
 ### AP-026
-- 状態: TODO
+- 状態: 未着手
 - 目的: iOS no-op fallback 実装
 - 前提条件: AP-019
 - 対象ファイル: `modules/canimation-platform-ios/src/iosMain/kotlin/io/github/canimation/platform/ios/IosMotionPreferenceFallback.kt`
@@ -379,7 +379,7 @@
 - 証跡: `AP-026_*`
 
 ### AP-027
-- 状態: TODO
+- 状態: 未着手
 - 目的: Web no-op fallback 実装
 - 前提条件: AP-023
 - 対象ファイル: `modules/canimation-platform-web/src/jsMain/kotlin/io/github/canimation/platform/web/WebMotionPreferenceFallback.kt`
@@ -393,7 +393,7 @@
 - 証跡: `AP-027_*`
 
 ### AP-028
-- 状態: TODO
+- 状態: 未着手
 - 目的: SystemAware integration test
 - 前提条件: AP-027
 - 対象ファイル: `modules/canimation-a11y/src/commonTest/kotlin/io/github/canimation/a11y/SystemAwareIntegrationTest.kt`
@@ -407,7 +407,7 @@
 - 証跡: `AP-028_*`
 
 ### AP-029
-- 状態: TODO
+- 状態: 未着手
 - 目的: a11y API KDoc 指針作成
 - 前提条件: AP-028
 - 対象ファイル: `modules/canimation-a11y/src/commonMain/kotlin/io/github/canimation/a11y/README_API_KDOC.md`
@@ -421,7 +421,7 @@
 - 証跡: `AP-029_*`
 
 ### AP-030
-- 状態: TODO
+- 状態: 未着手
 - 目的: Tier1 A11y 手動検証書
 - 前提条件: AP-029
 - 対象ファイル: `docs/a11y-tier1-validation.md`
@@ -435,7 +435,7 @@
 - 証跡: `AP-030_*`
 
 ### AP-031
-- 状態: TODO
+- 状態: 未着手
 - 目的: Tier2 互換検証書
 - 前提条件: AP-030
 - 対象ファイル: `docs/a11y-tier2-compatibility.md`
@@ -449,7 +449,7 @@
 - 証跡: `AP-031_*`
 
 ### AP-032
-- 状態: TODO
+- 状態: 未着手
 - 目的: a11y 総合 check 結果記録
 - 前提条件: AP-031
 - 対象ファイル: `docs/task-results/a11y-platform-result.md`

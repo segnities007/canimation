@@ -32,7 +32,7 @@
 
 ## 4. Task 状態
 
-- `TODO`
+- `NOT_STARTED`
 - `IN_PROGRESS`
 - `BLOCKED`
 - `DONE`

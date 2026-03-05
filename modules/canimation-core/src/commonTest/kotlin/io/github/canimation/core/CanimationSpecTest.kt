@@ -70,9 +70,9 @@ class CanimationSpecTest {
             offsetY = CanimationDpRange(16.dp, 0.dp),
         )
         val reduced = spec.toReduced()
-        assertNotNull(reduced.offsetY)
-        assertEquals(4.dp, reduced.offsetY!!.from)
-        assertEquals(0.dp, reduced.offsetY!!.to)
+        val offsetY = assertNotNull(reduced.offsetY)
+        assertEquals(4.dp, offsetY.from)
+        assertEquals(0.dp, offsetY.to)
     }
 
     @Test
@@ -83,8 +83,9 @@ class CanimationSpecTest {
             alpha = CanimationRange(0f, 1f),
         )
         val reduced = spec.toReduced()
-        assertEquals(0f, reduced.alpha!!.from)
-        assertEquals(1f, reduced.alpha!!.to)
+        val alpha = assertNotNull(reduced.alpha)
+        assertEquals(0f, alpha.from)
+        assertEquals(1f, alpha.to)
     }
 
     @Test
@@ -96,10 +97,12 @@ class CanimationSpecTest {
             offsetY = CanimationDpRange(16.dp, 0.dp),
         )
         val reversed = spec.reversed()
-        assertEquals(1f, reversed.alpha!!.from)
-        assertEquals(0f, reversed.alpha!!.to)
-        assertEquals(0.dp, reversed.offsetY!!.from)
-        assertEquals(16.dp, reversed.offsetY!!.to)
+        val alpha = assertNotNull(reversed.alpha)
+        val offsetY = assertNotNull(reversed.offsetY)
+        assertEquals(1f, alpha.from)
+        assertEquals(0f, alpha.to)
+        assertEquals(0.dp, offsetY.from)
+        assertEquals(16.dp, offsetY.to)
     }
 
     @Test

@@ -48,12 +48,12 @@ fun CanimationNavHost(
     ) {
         composable<HomeRoute> {
             HomeScreen(
-                onNavigate = { route ->
-                    when (route) {
-                        "presets" -> navController.navigate(PresetGalleryRoute)
-                        "examples" -> navController.navigate(ExamplesRoute)
-                        "docs" -> navController.navigate(DocsRoute)
-                        "api" -> navController.navigate(ApiReferenceRoute)
+                onNavigate = { destination ->
+                    when (destination) {
+                        HomeDestination.PresetGallery -> navController.navigate(PresetGalleryRoute)
+                        HomeDestination.Examples -> navController.navigate(ExamplesRoute)
+                        HomeDestination.Docs -> navController.navigate(DocsRoute)
+                        HomeDestination.ApiReference -> navController.navigate(ApiReferenceRoute)
                     }
                 },
             )

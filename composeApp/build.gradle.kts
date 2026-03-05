@@ -76,6 +76,9 @@ kotlin {
         jsMain.dependencies {
             implementation(project(":canimation-platform-web"))
         }
+        iosMain.dependencies {
+            implementation(project(":canimation-platform-ios"))
+        }
     }
 }
 

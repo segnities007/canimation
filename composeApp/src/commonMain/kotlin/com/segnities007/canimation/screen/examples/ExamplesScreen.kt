@@ -40,263 +40,189 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import io.github.canimation.core.Canimation
-import io.github.canimation.core.CanimationEffect
-import io.github.canimation.core.CanimationPolicy
-import io.github.canimation.core.CanimationPreset
-import io.github.canimation.core.CanimationProvider
-import io.github.canimation.core.CanimationVisibility
 import io.github.canimation.core.canimation
-import io.github.canimation.core.canimationEmphasize
 import kotlinx.coroutines.delay
-
-// ─── Category color mapping ───
-private val tagColors: Map<String, Color> = mapOf(
-    "ENTRANCE" to Color(0xFF6366F1),   // indigo
-    "EMPHASIS" to Color(0xFFEC4899),    // pink
-    "PATTERN" to Color(0xFF8B5CF6),     // violet
-    "MATERIAL" to Color(0xFF14B8A6),    // teal
-    "DIRECTION" to Color(0xFF3B82F6),   // blue
-    "3D" to Color(0xFFF97316),          // orange
-    "UI" to Color(0xFF22C55E),          // green
-    "TEXT" to Color(0xFFEAB308),         // yellow
-    "CARDS" to Color(0xFFE11D48),       // rose
-    "LOADING" to Color(0xFF06B6D4),     // cyan
-    "DATA" to Color(0xFF7C3AED),        // purple
-    "NAVIGATION" to Color(0xFF0EA5E9),  // sky
-    "INTERACTIVE" to Color(0xFFF59E0B), // amber
-    "CANVAS" to Color(0xFFD946EF),      // fuchsia
-    "LAYOUT" to Color(0xFF10B981),      // emerald
-    "SCALE" to Color(0xFF6366F1),       // indigo
-    "MOVEMENT" to Color(0xFF3B82F6),    // blue
-    "ROTATE" to Color(0xFFF97316),      // orange
-    "SUBTLE" to Color(0xFF94A3B8),      // slate
-    "PHYSICS" to Color(0xFF0891B2),     // cyan-dark
-    "CHARTS" to Color(0xFF7C3AED),      // purple
-    "GALLERY" to Color(0xFFE11D48),     // rose
-    "NAV" to Color(0xFF0EA5E9),         // sky
-    "VISUAL" to Color(0xFFD946EF),      // fuchsia
-)
-
-private fun tagColor(tag: String): Color = tagColors[tag] ?: Color(0xFF6366F1)
-
-// Flat item for the grid
-data class GalleryItem(
-    val item: ExampleItem,
-    val tag: String,
-    val globalIndex: Int,
-)
-
-private val filterTags = listOf(
-    "ALL", "ENTRANCE", "EMPHASIS", "PATTERN",
-    "MATERIAL", "DIRECTION", "3D", "UI",
-    "TEXT", "CARDS", "LOADING", "DATA",
-    "NAV", "INTERACTIVE", "VISUAL", "PHYSICS",
-    "CHARTS", "GALLERY",
-)
-
-// Pre-built flat list
-val allGalleryItems: List<GalleryItem> by lazy {
-    var idx = 0
-    exampleCategories.flatMap { cat ->
-        cat.examples.map { example ->
-            GalleryItem(
-                item = example,
-                tag = cat.accentLabel,
-                globalIndex = idx++,
-            )
-        }
-    }
-}
 
 @Composable
 fun ExamplesScreen(
     onItemClick: (Int) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    var searchQuery by remember { mutableStateOf("") }
-    var selectedTag by remember { mutableStateOf("ALL") }
-    var headerStage by remember { mutableIntStateOf(-1) }
-    var showFilters by remember { mutableStateOf(true) }
+    var uiState by remember { mutableStateOf(ExamplesUiState()) }
+    val onEvent: (ExamplesEvent) -> Unit = { event ->
+        uiState = reduceExamplesState(uiState, event)
+    }
 
-    LaunchedEffect(Unit) { for (i in 0..3) { delay(50); headerStage = i } }
-
-    val filteredItems by remember(searchQuery, selectedTag) {
-        derivedStateOf {
-            allGalleryItems.filter { gi ->
-                val matchesSearch = searchQuery.isBlank() ||
-                    gi.item.title.contains(searchQuery, ignoreCase = true) ||
-                    gi.item.description.contains(searchQuery, ignoreCase = true) ||
-                    gi.tag.contains(searchQuery, ignoreCase = true)
-                val matchesTag = selectedTag == "ALL" || gi.tag == selectedTag
-                matchesSearch && matchesTag
-            }
+    LaunchedEffect(Unit) {
+        for (i in 0..3) {
+            delay(50)
+            onEvent(ExamplesEvent.HeaderStageUpdated(i))
         }
     }
 
-    CanimationProvider(policy = CanimationPolicy.AlwaysFull) {
-        Box(
-            modifier = modifier.fillMaxSize(),
-            contentAlignment = Alignment.TopCenter,
+    val filteredItems by remember(uiState.searchQuery, uiState.selectedTag) {
+        derivedStateOf {
+            filterGalleryItems(allGalleryItems, uiState)
+        }
+    }
+
+    Box(
+        modifier = modifier.fillMaxSize(),
+        contentAlignment = Alignment.TopCenter,
+    ) {
+        LazyVerticalGrid(
+            columns = GridCells.Adaptive(minSize = 200.dp),
+            modifier = Modifier.widthIn(max = 1400.dp),
+            contentPadding = PaddingValues(
+                horizontal = 24.dp,
+                vertical = 24.dp,
+            ),
+            horizontalArrangement = Arrangement.spacedBy(10.dp),
+            verticalArrangement = Arrangement.spacedBy(10.dp),
         ) {
-            LazyVerticalGrid(
-                columns = GridCells.Adaptive(minSize = 200.dp),
-                modifier = Modifier.widthIn(max = 1400.dp),
-                contentPadding = PaddingValues(
-                    horizontal = 24.dp,
-                    vertical = 24.dp,
-                ),
-                horizontalArrangement = Arrangement.spacedBy(10.dp),
-                verticalArrangement = Arrangement.spacedBy(10.dp),
-            ) {
-                // Header
-                item(span = { GridItemSpan(maxLineSpan) }) {
-                    Column(
-                        modifier = Modifier.padding(bottom = 8.dp),
-                        verticalArrangement = Arrangement.spacedBy(10.dp),
+            // Header
+            item(span = { GridItemSpan(maxLineSpan) }) {
+                Column(
+                    modifier = Modifier.padding(bottom = 8.dp),
+                    verticalArrangement = Arrangement.spacedBy(10.dp),
+                ) {
+                    Text(
+                        text = "GALLERY",
+                        style = MaterialTheme.typography.labelLarge,
+                        color = MaterialTheme.colorScheme.primary,
+                        fontWeight = FontWeight.Bold,
+                        modifier = Modifier.canimation(
+                            visible = uiState.headerStage >= 0,
+                            effect = Canimation.Fade.Up,
+                        ),
+                    )
+                    Text(
+                        text = "Animation Gallery",
+                        style = MaterialTheme.typography.headlineMedium,
+                        fontWeight = FontWeight.Bold,
+                        modifier = Modifier.canimation(
+                            visible = uiState.headerStage >= 1,
+                            effect = Canimation.Fade.Up,
+                        ),
+                    )
+                    Text(
+                        text = "${allGalleryItems.size} animations",
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        modifier = Modifier.canimation(
+                            visible = uiState.headerStage >= 2,
+                            effect = Canimation.Fade.Up,
+                        ),
+                    )
+
+                    // Search bar + filter icon
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(8.dp),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .canimation(
+                                visible = uiState.headerStage >= 3,
+                                effect = Canimation.Fade.Up,
+                            ),
                     ) {
-                        Text(
-                            text = "GALLERY",
-                            style = MaterialTheme.typography.labelLarge,
-                            color = MaterialTheme.colorScheme.primary,
-                            fontWeight = FontWeight.Bold,
-                            modifier = Modifier.canimation(
-                                visible = headerStage >= 0,
-                                effect = Canimation.Fade.Up,
-                            ),
-                        )
-                        Text(
-                            text = "Animation Gallery",
-                            style = MaterialTheme.typography.headlineMedium,
-                            fontWeight = FontWeight.Bold,
-                            modifier = Modifier.canimation(
-                                visible = headerStage >= 1,
-                                effect = Canimation.Fade.Up,
-                            ),
-                        )
-                        Text(
-                            text = "${allGalleryItems.size} animations",
-                            style = MaterialTheme.typography.bodyMedium,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant,
-                            modifier = Modifier.canimation(
-                                visible = headerStage >= 2,
-                                effect = Canimation.Fade.Up,
-                            ),
-                        )
-
-                        // Search bar + filter icon
-                        Row(
-                            verticalAlignment = Alignment.CenterVertically,
-                            horizontalArrangement = Arrangement.spacedBy(8.dp),
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .canimation(
-                                    visible = headerStage >= 3,
-                                    effect = Canimation.Fade.Up,
-                                ),
-                        ) {
-                            OutlinedTextField(
-                                value = searchQuery,
-                                onValueChange = { searchQuery = it },
-                                placeholder = { Text("Search animations...") },
-                                leadingIcon = {
-                                    Icon(
-                                        Icons.Default.Search,
-                                        contentDescription = "Search",
-                                        tint = MaterialTheme.colorScheme.onSurfaceVariant,
-                                    )
-                                },
-                                singleLine = true,
-                                shape = RoundedCornerShape(12.dp),
-                                modifier = Modifier.weight(1f),
-                                colors = OutlinedTextFieldDefaults.colors(
-                                    focusedBorderColor = MaterialTheme.colorScheme.primary,
-                                    unfocusedBorderColor = MaterialTheme.colorScheme.outline,
-                                    focusedContainerColor = MaterialTheme.colorScheme.surface,
-                                    unfocusedContainerColor = MaterialTheme.colorScheme.surface,
-                                ),
-                            )
-                            IconButton(onClick = { showFilters = !showFilters }) {
+                        OutlinedTextField(
+                            value = uiState.searchQuery,
+                            onValueChange = { onEvent(ExamplesEvent.SearchQueryChanged(it)) },
+                            placeholder = { Text("Search animations...") },
+                            leadingIcon = {
                                 Icon(
-                                    imageVector = Icons.Default.FilterList,
-                                    contentDescription = "Filter",
-                                    tint = if (selectedTag != "ALL")
-                                        MaterialTheme.colorScheme.primary
-                                    else MaterialTheme.colorScheme.onSurfaceVariant,
+                                    Icons.Default.Search,
+                                    contentDescription = "Search",
+                                    tint = MaterialTheme.colorScheme.onSurfaceVariant,
                                 )
-                            }
-                        }
-
-                        // Filter chips (toggled by filter icon)
-                        if (showFilters) {
-                            Row(
-                                horizontalArrangement = Arrangement.spacedBy(6.dp),
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .horizontalScroll(rememberScrollState()),
-                            ) {
-                                filterTags.forEach { label ->
-                                    val chipColor = tagColor(label)
-                                    FilterChip(
-                                        selected = selectedTag == label,
-                                        onClick = {
-                                            selectedTag =
-                                                if (selectedTag == label) "ALL" else label
-                                        },
-                                        label = {
-                                            Text(
-                                                text = label,
-                                                style = MaterialTheme.typography.labelSmall,
-                                                fontWeight = if (selectedTag == label) FontWeight.Bold
-                                                else FontWeight.Normal,
-                                            )
-                                        },
-                                        leadingIcon = if (label != "ALL") {
-                                            {
-                                                Box(
-                                                    Modifier.size(8.dp)
-                                                        .background(chipColor, CircleShape)
-                                                )
-                                            }
-                                        } else null,
-                                        colors = FilterChipDefaults.filterChipColors(
-                                            selectedContainerColor = chipColor.copy(alpha = 0.15f),
-                                            selectedLabelColor = chipColor,
-                                        ),
-                                    )
-                                }
-                            }
-                        }
-
-                        // Results count
-                        if (searchQuery.isNotBlank() || selectedTag != "ALL") {
-                            Text(
-                                text = "${filteredItems.size} results",
-                                style = MaterialTheme.typography.labelSmall,
-                                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                            },
+                            singleLine = true,
+                            shape = RoundedCornerShape(12.dp),
+                            modifier = Modifier.weight(1f),
+                            colors = OutlinedTextFieldDefaults.colors(
+                                focusedBorderColor = MaterialTheme.colorScheme.primary,
+                                unfocusedBorderColor = MaterialTheme.colorScheme.outline,
+                                focusedContainerColor = MaterialTheme.colorScheme.surface,
+                                unfocusedContainerColor = MaterialTheme.colorScheme.surface,
+                            ),
+                        )
+                        IconButton(onClick = { onEvent(ExamplesEvent.FiltersToggled) }) {
+                            Icon(
+                                imageVector = Icons.Default.FilterList,
+                                contentDescription = "Filter",
+                                tint = if (uiState.selectedTag != ALL_TAG)
+                                    MaterialTheme.colorScheme.primary
+                                else MaterialTheme.colorScheme.onSurfaceVariant,
                             )
                         }
                     }
-                }
 
-                // Flat animation cards
-                items(filteredItems, key = { it.globalIndex }) { galleryItem ->
-                    AnimationPreviewCard(
-                        galleryItem = galleryItem,
-                        onClick = { onItemClick(galleryItem.globalIndex) },
-                    )
+                    // Filter chips (toggled by filter icon)
+                    if (uiState.showFilters) {
+                        Row(
+                            horizontalArrangement = Arrangement.spacedBy(6.dp),
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .horizontalScroll(rememberScrollState()),
+                        ) {
+                            filterTags.forEach { label ->
+                                val chipColor = tagColor(label)
+                                FilterChip(
+                                    selected = uiState.selectedTag == label,
+                                    onClick = { onEvent(ExamplesEvent.TagSelected(label)) },
+                                    label = {
+                                        Text(
+                                            text = label,
+                                            style = MaterialTheme.typography.labelSmall,
+                                            fontWeight = if (uiState.selectedTag == label) FontWeight.Bold
+                                            else FontWeight.Normal,
+                                        )
+                                    },
+                                    leadingIcon = if (label != ALL_TAG) {
+                                        {
+                                            Box(
+                                                Modifier.size(8.dp)
+                                                    .background(chipColor, CircleShape)
+                                            )
+                                        }
+                                    } else null,
+                                    colors = FilterChipDefaults.filterChipColors(
+                                        selectedContainerColor = chipColor.copy(alpha = 0.15f),
+                                        selectedLabelColor = chipColor,
+                                    ),
+                                )
+                            }
+                        }
+                    }
+
+                    // Results count
+                    if (uiState.searchQuery.isNotBlank() || uiState.selectedTag != ALL_TAG) {
+                        Text(
+                            text = "${filteredItems.size} results",
+                            style = MaterialTheme.typography.labelSmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        )
+                    }
                 }
+            }
+
+            // Flat animation cards
+            items(filteredItems, key = { it.globalIndex }) { galleryItem ->
+                AnimationPreviewCard(
+                    galleryItem = galleryItem,
+                    onClick = { onItemClick(galleryItem.globalIndex) },
+                )
             }
         }
     }
@@ -374,153 +300,6 @@ private fun AnimationPreviewCard(
                     )
                 }
             }
-        }
-    }
-}
-
-// ===== Live Preview Renderers =====
-
-@Composable
-internal fun LivePreview(item: ExampleItem) {
-    when (item.demoType) {
-        "effect", "composition" -> EffectPreview(item.effect ?: Canimation.Fade.In)
-        "transition" -> TransitionPreview(item.enterEffect, item.exitEffect)
-        "stagger" -> StaggerPreview(item.effect ?: Canimation.Fade.Up)
-        "emphasis" -> EmphasisPreview(item.preset)
-        "component" -> ComponentPreview(item.componentKey)
-        else -> PresetPreview(item.preset)
-    }
-}
-
-@Composable
-private fun EffectPreview(effect: CanimationEffect) {
-    var visible by remember { mutableStateOf(false) }
-    LaunchedEffect(Unit) {
-        delay(300)
-        while (true) { visible = true; delay(1800); visible = false; delay(600) }
-    }
-    Surface(
-        shape = RoundedCornerShape(10.dp),
-        color = MaterialTheme.colorScheme.primaryContainer,
-        border = BorderStroke(1.dp, MaterialTheme.colorScheme.primary.copy(alpha = 0.4f)),
-        modifier = Modifier
-            .size(56.dp)
-            .canimation(visible = visible, effect = effect),
-    ) {
-        Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-            Text("\u2726", style = MaterialTheme.typography.titleMedium)
-        }
-    }
-}
-
-@Composable
-private fun TransitionPreview(enter: CanimationEffect?, exit: CanimationEffect?) {
-    var visible by remember { mutableStateOf(false) }
-    LaunchedEffect(Unit) {
-        delay(300)
-        while (true) { visible = true; delay(1800); visible = false; delay(600) }
-    }
-    Surface(
-        shape = RoundedCornerShape(10.dp),
-        color = MaterialTheme.colorScheme.secondaryContainer,
-        border = BorderStroke(1.dp, MaterialTheme.colorScheme.secondary.copy(alpha = 0.4f)),
-        modifier = Modifier.size(56.dp).let { mod ->
-            if (enter != null) mod.canimation(visible = visible, effect = enter) else mod
-        },
-    ) {
-        Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-            Text("\u21C4", style = MaterialTheme.typography.titleMedium)
-        }
-    }
-}
-
-@Composable
-private fun StaggerPreview(effect: CanimationEffect) {
-    Row(
-        horizontalArrangement = Arrangement.spacedBy(4.dp),
-        verticalAlignment = Alignment.CenterVertically,
-    ) {
-        repeat(3) { i ->
-            var visible by remember { mutableStateOf(false) }
-            LaunchedEffect(Unit) {
-                delay(300L + i * 120L)
-                while (true) { visible = true; delay(2000); visible = false; delay(600) }
-            }
-            Surface(
-                shape = RoundedCornerShape(6.dp),
-                color = MaterialTheme.colorScheme.primaryContainer,
-                modifier = Modifier
-                    .size(width = 28.dp, height = 36.dp)
-                    .canimation(visible = visible, effect = effect),
-            ) {}
-        }
-    }
-}
-
-@Composable
-private fun EmphasisPreview(preset: CanimationPreset) {
-    var active by remember { mutableStateOf(false) }
-    LaunchedEffect(Unit) {
-        delay(400)
-        while (true) { active = true; delay(1600); active = false; delay(600) }
-    }
-    Surface(
-        shape = RoundedCornerShape(10.dp),
-        color = MaterialTheme.colorScheme.primaryContainer,
-        border = BorderStroke(1.dp, MaterialTheme.colorScheme.primary.copy(alpha = 0.4f)),
-        modifier = Modifier
-            .size(56.dp)
-            .canimationEmphasize(active = active, preset = preset),
-    ) {
-        Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-            Text("A", style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
-        }
-    }
-}
-
-@Composable
-private fun PresetPreview(preset: CanimationPreset) {
-    var visible by remember { mutableStateOf(false) }
-    LaunchedEffect(Unit) {
-        delay(300)
-        while (true) { visible = true; delay(1800); visible = false; delay(600) }
-    }
-    Box(modifier = Modifier.size(56.dp), contentAlignment = Alignment.Center) {
-        CanimationVisibility(
-            visible = visible,
-            enterPreset = preset,
-            exitPreset = preset,
-        ) {
-            Surface(
-                shape = RoundedCornerShape(10.dp),
-                color = MaterialTheme.colorScheme.primaryContainer,
-                border = BorderStroke(1.dp, MaterialTheme.colorScheme.primary.copy(alpha = 0.4f)),
-            ) {
-                Box(Modifier.size(48.dp))
-            }
-        }
-    }
-}
-
-@Composable
-private fun ComponentPreview(componentKey: String?) {
-    if (componentKey == null) return
-    val demo = componentDemos[componentKey]
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .clip(RoundedCornerShape(topStart = 14.dp, topEnd = 14.dp)),
-        contentAlignment = Alignment.Center,
-    ) {
-        // Constrain component demos to prevent overflow
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(140.dp)
-                .clip(RoundedCornerShape(topStart = 14.dp, topEnd = 14.dp)),
-            contentAlignment = Alignment.Center,
-        ) {
-            demo?.invoke()
         }
     }
 }

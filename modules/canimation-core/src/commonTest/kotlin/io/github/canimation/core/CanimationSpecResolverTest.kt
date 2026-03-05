@@ -4,13 +4,31 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 
 class CanimationSpecResolverTest {
+    private val testRegistry: PresetRegistry =
+        PresetRegistry.create(
+            specs = mapOf(
+                CanimationPreset.Fade to CanimationPresetSpec(
+                    fullEnter = CanimationSpec(durationMs = 220, easing = EasingTokens.Default.standard),
+                    fullExit = CanimationSpec(durationMs = 220, easing = EasingTokens.Default.accelerate),
+                    reducedEnter = CanimationSpec(durationMs = 120, easing = EasingTokens.Default.decelerate),
+                    reducedExit = CanimationSpec(durationMs = 120, easing = EasingTokens.Default.accelerate),
+                ),
+                CanimationPreset.FadeUp to CanimationPresetSpec(
+                    fullEnter = CanimationSpec(durationMs = 220, easing = EasingTokens.Default.standard),
+                    fullExit = CanimationSpec(durationMs = 220, easing = EasingTokens.Default.accelerate),
+                    reducedEnter = CanimationSpec(durationMs = 120, easing = EasingTokens.Default.decelerate),
+                    reducedExit = CanimationSpec(durationMs = 120, easing = EasingTokens.Default.accelerate),
+                ),
+            ),
+        )
+
     @Test
     fun resolveFullEnterReturnsFullEnterFromRegistry() {
         val spec = CanimationSpecResolver.resolve(
             preset = CanimationPreset.FadeUp,
             level = CanimationLevel.Full,
             direction = AnimationDirection.Enter,
-            registry = PresetRegistry.Default,
+            registry = testRegistry,
         )
         assertEquals(220, spec.durationMs)
     }
@@ -21,7 +39,7 @@ class CanimationSpecResolverTest {
             preset = CanimationPreset.FadeUp,
             level = CanimationLevel.Reduced,
             direction = AnimationDirection.Enter,
-            registry = PresetRegistry.Default,
+            registry = testRegistry,
         )
         assertEquals(120, spec.durationMs)
     }
@@ -32,7 +50,7 @@ class CanimationSpecResolverTest {
             preset = CanimationPreset.FadeUp,
             level = CanimationLevel.Off,
             direction = AnimationDirection.Enter,
-            registry = PresetRegistry.Default,
+            registry = testRegistry,
         )
         assertEquals(0, spec.durationMs)
     }

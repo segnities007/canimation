@@ -305,7 +305,7 @@ fun WaveProgressBar(modifier: Modifier = Modifier) {
         drawRoundRect(color = trackColor, size = size, cornerRadius = androidx.compose.ui.geometry.CornerRadius(h / 2))
         val filledW = w * progress
         for (x in 0..filledW.toInt()) {
-            val waveY = (sin(phase + x * 0.05f) * 2).toFloat()
+            val waveY = sin(phase + x * 0.05f) * 2
             drawCircle(color = primaryColor, radius = 1.5f, center = androidx.compose.ui.geometry.Offset(x.toFloat(), h / 2 + waveY))
         }
     }

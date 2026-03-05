@@ -416,8 +416,8 @@ fun SparkLine(modifier: Modifier = Modifier) {
             val points = 60
             for (i in 0 until points - 1) {
                 val x1 = w * i / points; val x2 = w * (i + 1) / points
-                val y1 = h / 2 + sin(phase + i * 0.15f).toFloat() * h * 0.35f
-                val y2 = h / 2 + sin(phase + (i + 1) * 0.15f).toFloat() * h * 0.35f
+                val y1 = h / 2 + sin(phase + i * 0.15f) * h * 0.35f
+                val y2 = h / 2 + sin(phase + (i + 1) * 0.15f) * h * 0.35f
                 drawLine(primaryColor, Offset(x1, y1), Offset(x2, y2), 2f, StrokeCap.Round)
             }
         }
