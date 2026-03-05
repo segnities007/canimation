@@ -3606,4 +3606,56 @@ val exampleCategories: List<ExampleCategory> = listOf(
             ExampleItem("Theme Toggle", "Dark/light mode toggle", "AnimatedThemeToggle(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Rotate.In,\n))", demoType = "component", componentKey = "AnimatedThemeToggle"),
         ),
     ),
+    // ─── ComponentAnimations10 categories ───
+    ExampleCategory(
+        id = "text-advanced",
+        title = "Text Effects",
+        subtitle = "Advanced text animation patterns",
+        accentLabel = "TEXT",
+        tags = listOf("TEXT", "UI"),
+        examples = listOf(
+            ExampleItem("Typewriter Effect", "Character-by-character typing", "TypewriterEffect(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Fade.Gentle,\n))", demoType = "component", componentKey = "TypewriterEffect"),
+            ExampleItem("Text Morph", "Cycling word transition", "TextMorph(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Fade.Up,\n))", demoType = "component", componentKey = "TextMorph"),
+            ExampleItem("Text Strikethrough", "Price comparison animation", "TextStrikethrough(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Scale.Pop,\n))", demoType = "component", componentKey = "TextStrikethrough"),
+            ExampleItem("Text Glitch", "RGB glitch text effect", "TextGlitch(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Glitch.Subtle,\n))", demoType = "component", componentKey = "TextGlitch"),
+        ),
+    ),
+    ExampleCategory(
+        id = "cards-advanced",
+        title = "Rich Cards",
+        subtitle = "Feature-rich animated card layouts",
+        accentLabel = "CARDS",
+        tags = listOf("CARDS", "UI"),
+        examples = listOf(
+            ExampleItem("Recipe Card", "Food recipe card", "RecipeCard(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Rise.In,\n))", demoType = "component", componentKey = "RecipeCard"),
+            ExampleItem("Weather Card", "Cycling weather display", "WeatherCard(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Fade.Gentle,\n))", demoType = "component", componentKey = "WeatherCard"),
+            ExampleItem("Event Card", "Calendar event card", "EventCard(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Slide.LeftSubtle,\n))", demoType = "component", componentKey = "EventCard"),
+            ExampleItem("Music Player Card", "Audio player interface", "MusicPlayerCard(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Float.Up,\n))", demoType = "component", componentKey = "MusicPlayerCard"),
+        ),
+    ),
+    ExampleCategory(
+        id = "nav-advanced",
+        title = "Navigation Bars",
+        subtitle = "Animated navigation bar patterns",
+        accentLabel = "NAV",
+        tags = listOf("NAV", "NAVIGATION"),
+        examples = listOf(
+            ExampleItem("Animated Tabs", "Sliding tab bar", "AnimatedTabs(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Slide.RightSubtle,\n))", demoType = "component", componentKey = "AnimatedTabs"),
+            ExampleItem("Breadcrumb Trail", "Progressive breadcrumb path", "AnimatedBreadcrumbTrail(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Fade.Right,\n))", demoType = "component", componentKey = "AnimatedBreadcrumbTrail"),
+            ExampleItem("Bottom Nav Bar", "Animated bottom navigation", "BottomNavBar(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Spring.PopIn,\n))", demoType = "component", componentKey = "BottomNavBar"),
+        ),
+    ),
+    ExampleCategory(
+        id = "data-advanced",
+        title = "Data Visualizations",
+        subtitle = "Advanced animated chart components",
+        accentLabel = "CHARTS",
+        tags = listOf("CHARTS", "DATA"),
+        examples = listOf(
+            ExampleItem("Radar Chart", "Animated radar/spider chart", "RadarChart(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Scale.Pop,\n))", demoType = "component", componentKey = "RadarChart"),
+            ExampleItem("Horizontal Bar Chart", "Animated horizontal bars", "HorizontalBarChart(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Slide.RightSubtle,\n))", demoType = "component", componentKey = "HorizontalBarChart"),
+            ExampleItem("Gauge Chart", "Semi-circle gauge meter", "GaugeChart(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Rotate.In,\n))", demoType = "component", componentKey = "GaugeChart"),
+            ExampleItem("Live Counter", "Real-time number counter", "LiveCounter(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Micro.NudgeUp,\n))", demoType = "component", componentKey = "LiveCounter"),
+        ),
+    ),
 )
