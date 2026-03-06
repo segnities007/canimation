@@ -14,12 +14,20 @@ import androidx.compose.material.icons.filled.AutoAwesome
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.Close
+import androidx.compose.material.icons.filled.ArrowDropDown
+import androidx.compose.material.icons.filled.ArrowDropUp
+import androidx.compose.material.icons.filled.ArrowForward
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material.icons.filled.Folder
+import androidx.compose.material.icons.filled.Help
+import androidx.compose.material.icons.filled.KeyboardArrowUp
+import androidx.compose.material.icons.filled.KeyboardArrowDown
+import androidx.compose.material.icons.filled.Remove
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Upload
 import androidx.compose.material.icons.filled.Visibility
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -39,6 +47,8 @@ import kotlinx.coroutines.delay
 import kotlin.math.PI
 import kotlin.math.cos
 import kotlin.math.sin
+import canimation.composeapp.generated.resources.*
+import org.jetbrains.compose.resources.stringResource
 
 // ═══════════════════════════════════════════════════════════
 //  UI COMPONENT ANIMATIONS
@@ -64,10 +74,10 @@ fun AnimatedBanner(modifier: Modifier = Modifier) {
                 )
                 Spacer(Modifier.width(10.dp))
                 Column(Modifier.weight(1f)) {
-                    Text("New Release!", style = MaterialTheme.typography.labelMedium, fontWeight = FontWeight.Bold, color = Color.White)
-                    Text("v2.0 with 190+ effects", style = MaterialTheme.typography.bodySmall, color = Color.White.copy(alpha = 0.8f))
+                    Text(stringResource(Res.string.demo_new_release), style = MaterialTheme.typography.labelMedium, fontWeight = FontWeight.Bold, color = Color.White)
+                    Text(stringResource(Res.string.component_release_details), style = MaterialTheme.typography.bodySmall, color = Color.White.copy(alpha = 0.8f))
                 }
-                Text("→", style = MaterialTheme.typography.titleMedium, color = Color.White)
+                Icon(Icons.Default.ArrowForward, contentDescription = null, tint = Color.White)
             }
         }
     }
@@ -81,12 +91,12 @@ fun AnimatedTooltip(modifier: Modifier = Modifier) {
     Column(modifier.fillMaxWidth().padding(16.dp), horizontalAlignment = Alignment.CenterHorizontally) {
         Box(Modifier.canimation(visible = vis, effect = Canimation.Float.Up)) {
             Surface(shape = RoundedCornerShape(8.dp), color = MaterialTheme.colorScheme.inverseSurface) {
-                Text("Hover me for info!", Modifier.padding(horizontal = 12.dp, vertical = 6.dp), style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.inverseOnSurface)
+                Text(stringResource(Res.string.demo_hover_for_info), Modifier.padding(horizontal = 12.dp, vertical = 6.dp), style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.inverseOnSurface)
             }
         }
         Spacer(Modifier.height(8.dp))
         Surface(shape = RoundedCornerShape(8.dp), color = MaterialTheme.colorScheme.primaryContainer, modifier = Modifier.size(48.dp, 32.dp)) {
-            Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) { Text("?", fontWeight = FontWeight.Bold) }
+            Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) { Icon(Icons.Default.Help, contentDescription = null) }
         }
     }
 }
@@ -94,7 +104,11 @@ fun AnimatedTooltip(modifier: Modifier = Modifier) {
 // ─── 3. AnimatedAlert ───
 @Composable
 fun AnimatedAlert(modifier: Modifier = Modifier) {
-    val alerts = listOf("Success" to Color(0xFF22C55E), "Warning" to Color(0xFFF59E0B), "Error" to Color(0xFFEF4444))
+    val alerts = listOf(
+        stringResource(Res.string.component_alert_success) to Color(0xFF22C55E),
+        stringResource(Res.string.component_alert_warning) to Color(0xFFF59E0B),
+        stringResource(Res.string.component_alert_error) to Color(0xFFEF4444),
+    )
     var idx by remember { mutableIntStateOf(0) }
     LaunchedEffect(Unit) { while (true) { delay(2000); idx = (idx + 1) % alerts.size } }
     var vis by remember { mutableStateOf(false) }
@@ -105,7 +119,7 @@ fun AnimatedAlert(modifier: Modifier = Modifier) {
             Row(Modifier.padding(12.dp), verticalAlignment = Alignment.CenterVertically) {
                 Surface(shape = CircleShape, color = color, modifier = Modifier.size(8.dp)) {}
                 Spacer(Modifier.width(10.dp))
-                Text("$label: Operation completed.", style = MaterialTheme.typography.bodySmall, color = color)
+                Text(stringResource(Res.string.component_operation_completed, label), style = MaterialTheme.typography.bodySmall, color = color)
             }
         }
     }
@@ -124,8 +138,11 @@ fun AnimatedDropdown(modifier: Modifier = Modifier) {
             modifier = Modifier.fillMaxWidth().clickable { expanded = !expanded },
         ) {
             Row(Modifier.padding(12.dp), verticalAlignment = Alignment.CenterVertically) {
-                Text("Select option", Modifier.weight(1f), style = MaterialTheme.typography.bodyMedium)
-                Text(if (expanded) "▲" else "▼", style = MaterialTheme.typography.labelSmall)
+                Text(stringResource(Res.string.demo_select_option), Modifier.weight(1f), style = MaterialTheme.typography.bodyMedium)
+                Icon(
+                    imageVector = if (expanded) Icons.Default.ArrowDropUp else Icons.Default.ArrowDropDown,
+                    contentDescription = null,
+                )
             }
         }
         if (expanded) {
@@ -164,8 +181,8 @@ fun AnimatedProgressCard(modifier: Modifier = Modifier) {
     ) {
         Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
             Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
-                Text("Upload Progress", style = MaterialTheme.typography.labelMedium)
-                Text("${(progress.value * 100).toInt()}%", style = MaterialTheme.typography.labelMedium, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.primary)
+                Text(stringResource(Res.string.demo_upload_progress), style = MaterialTheme.typography.labelMedium)
+                Text(stringResource(Res.string.component_percent_value, (progress.value * 100).toInt()), style = MaterialTheme.typography.labelMedium, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.primary)
             }
             Box(Modifier.fillMaxWidth().height(8.dp).clip(RoundedCornerShape(4.dp)).background(MaterialTheme.colorScheme.outline.copy(alpha = 0.2f))) {
                 Box(Modifier.fillMaxWidth(progress.value).fillMaxHeight().clip(RoundedCornerShape(4.dp)).background(MaterialTheme.colorScheme.primary))
@@ -189,14 +206,14 @@ fun AnimatedDialog(modifier: Modifier = Modifier) {
                     tonalElevation = 8.dp,
                 ) {
                     Column(Modifier.padding(20.dp).widthIn(max = 240.dp), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(12.dp)) {
-                        Text("Confirm Action", style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold)
-                        Text("Apply this animation?", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant, textAlign = TextAlign.Center)
+                        Text(stringResource(Res.string.demo_confirm_action), style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold)
+                        Text(stringResource(Res.string.demo_apply_this), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant, textAlign = TextAlign.Center)
                         Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                             Surface(shape = RoundedCornerShape(8.dp), color = MaterialTheme.colorScheme.surfaceVariant) {
-                                Text("Cancel", Modifier.padding(horizontal = 16.dp, vertical = 8.dp), style = MaterialTheme.typography.labelMedium)
+                                Text(stringResource(Res.string.demo_cancel), Modifier.padding(horizontal = 16.dp, vertical = 8.dp), style = MaterialTheme.typography.labelMedium)
                             }
                             Surface(shape = RoundedCornerShape(8.dp), color = MaterialTheme.colorScheme.primary) {
-                                Text("Apply", Modifier.padding(horizontal = 16.dp, vertical = 8.dp), style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onPrimary)
+                                Text(stringResource(Res.string.demo_apply), Modifier.padding(horizontal = 16.dp, vertical = 8.dp), style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onPrimary)
                             }
                         }
                     }
@@ -315,13 +332,13 @@ fun QuantitySelector(modifier: Modifier = Modifier) {
     LaunchedEffect(qty) { vis = false; delay(30); vis = true }
     Row(modifier.fillMaxWidth().padding(16.dp), horizontalArrangement = Arrangement.Center, verticalAlignment = Alignment.CenterVertically) {
         Surface(shape = CircleShape, color = MaterialTheme.colorScheme.primaryContainer, modifier = Modifier.size(36.dp).clickable { if (qty > 1) qty-- }) {
-            Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) { Text("−", fontWeight = FontWeight.Bold) }
+            Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) { Icon(Icons.Default.Remove, contentDescription = null) }
         }
         Box(Modifier.width(48.dp).canimation(visible = vis, effect = Canimation.Scale.Pop), contentAlignment = Alignment.Center) {
-            Text("$qty", style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.Bold)
+            Text(qty.toString(), style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.Bold)
         }
         Surface(shape = CircleShape, color = MaterialTheme.colorScheme.primaryContainer, modifier = Modifier.size(36.dp).clickable { qty++ }) {
-            Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) { Text("+", fontWeight = FontWeight.Bold) }
+            Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) { Icon(Icons.Default.Add, contentDescription = null) }
         }
     }
 }
@@ -356,8 +373,8 @@ fun SliderControl(modifier: Modifier = Modifier) {
     val progress by transition.animateFloat(0f, 1f, infiniteRepeatable(tween(3000), RepeatMode.Reverse))
     Column(modifier.fillMaxWidth().padding(16.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
         Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
-            Text("Volume", style = MaterialTheme.typography.labelMedium)
-            Text("${(progress * 100).toInt()}%", style = MaterialTheme.typography.labelMedium, fontWeight = FontWeight.Bold, fontFamily = FontFamily.Monospace)
+            Text(stringResource(Res.string.demo_volume), style = MaterialTheme.typography.labelMedium)
+            Text(stringResource(Res.string.component_percent_value, (progress * 100).toInt()), style = MaterialTheme.typography.labelMedium, fontWeight = FontWeight.Bold, fontFamily = FontFamily.Monospace)
         }
         Slider(value = progress, onValueChange = {}, modifier = Modifier.fillMaxWidth())
     }
@@ -376,11 +393,11 @@ fun AnimatedPasswordField(modifier: Modifier = Modifier) {
         }
     }
     Column(modifier.fillMaxWidth().padding(16.dp)) {
-        Text("Password", style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
+        Text(stringResource(Res.string.demo_password), style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
         Spacer(Modifier.height(4.dp))
         Surface(shape = RoundedCornerShape(8.dp), color = MaterialTheme.colorScheme.surfaceVariant, border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline), modifier = Modifier.fillMaxWidth()) {
             Row(Modifier.padding(12.dp), verticalAlignment = Alignment.CenterVertically) {
-                Text("●".repeat(text.length), style = MaterialTheme.typography.bodyLarge, fontFamily = FontFamily.Monospace, modifier = Modifier.weight(1f))
+                Text("*".repeat(text.length), style = MaterialTheme.typography.bodyLarge, fontFamily = FontFamily.Monospace, modifier = Modifier.weight(1f))
                 Icon(
                     imageVector = Icons.Default.Visibility,
                     contentDescription = null,
@@ -447,17 +464,17 @@ fun AnimatedVote(modifier: Modifier = Modifier) {
     Row(modifier.fillMaxWidth().padding(16.dp), horizontalArrangement = Arrangement.Center, verticalAlignment = Alignment.CenterVertically) {
         Surface(shape = RoundedCornerShape(8.dp), color = MaterialTheme.colorScheme.primaryContainer, modifier = Modifier.clickable { upCount++ }) {
             Row(Modifier.padding(horizontal = 12.dp, vertical = 8.dp), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(6.dp)) {
-                Text("▲", style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.primary)
+                Icon(Icons.Default.KeyboardArrowUp, contentDescription = null, tint = MaterialTheme.colorScheme.primary)
                 Box(Modifier.canimation(visible = upVis, effect = Canimation.Scale.Pop)) {
-                    Text("$upCount", style = MaterialTheme.typography.labelMedium, fontWeight = FontWeight.Bold)
+                    Text(upCount.toString(), style = MaterialTheme.typography.labelMedium, fontWeight = FontWeight.Bold)
                 }
             }
         }
         Spacer(Modifier.width(12.dp))
         Surface(shape = RoundedCornerShape(8.dp), color = MaterialTheme.colorScheme.errorContainer, modifier = Modifier.clickable { downCount++ }) {
             Row(Modifier.padding(horizontal = 12.dp, vertical = 8.dp), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(6.dp)) {
-                Text("▼", style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.error)
-                Text("$downCount", style = MaterialTheme.typography.labelMedium, fontWeight = FontWeight.Bold)
+                Icon(Icons.Default.KeyboardArrowDown, contentDescription = null, tint = MaterialTheme.colorScheme.error)
+                Text(downCount.toString(), style = MaterialTheme.typography.labelMedium, fontWeight = FontWeight.Bold)
             }
         }
     }
@@ -485,7 +502,7 @@ fun AnimatedSearchBar(modifier: Modifier = Modifier) {
                 )
                 if (expanded) {
                     Spacer(Modifier.width(8.dp))
-                    Text("Search animations...", style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.5f))
+                    Text(stringResource(Res.string.examples_search_placeholder), style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.5f))
                 }
             }
         }
@@ -502,7 +519,7 @@ fun AnimatedFormValidation(modifier: Modifier = Modifier) {
         when (stateIdx) { 2 -> Color(0xFF22C55E); 3 -> Color(0xFFEF4444); else -> MaterialTheme.colorScheme.outline }
     )
     Column(modifier.fillMaxWidth().padding(16.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
-        Text("Email", style = MaterialTheme.typography.labelMedium)
+        Text(stringResource(Res.string.demo_email), style = MaterialTheme.typography.labelMedium)
         Surface(
             shape = RoundedCornerShape(8.dp),
             color = MaterialTheme.colorScheme.surfaceVariant,
@@ -537,7 +554,7 @@ fun AnimatedFormValidation(modifier: Modifier = Modifier) {
         if (stateIdx == 3) {
             var vis by remember { mutableStateOf(false) }
             LaunchedEffect(Unit) { vis = true }
-            Text("Please enter a valid email", style = MaterialTheme.typography.labelSmall, color = Color(0xFFEF4444), modifier = Modifier.canimation(visible = vis, effect = Canimation.Micro.NudgeUp))
+            Text(stringResource(Res.string.demo_valid_email), style = MaterialTheme.typography.labelSmall, color = Color(0xFFEF4444), modifier = Modifier.canimation(visible = vis, effect = Canimation.Micro.NudgeUp))
         }
     }
 }

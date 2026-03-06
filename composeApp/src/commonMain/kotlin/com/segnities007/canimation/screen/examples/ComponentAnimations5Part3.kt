@@ -26,8 +26,10 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import canimation.composeapp.generated.resources.*
 import io.github.canimation.core.Canimation
 import io.github.canimation.core.canimation
+import org.jetbrains.compose.resources.stringResource
 import kotlinx.coroutines.delay
 import kotlin.math.PI
 import kotlin.math.cos
@@ -55,7 +57,7 @@ fun RotatingCube(
         modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Fade.Up),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        Text("Rotating Cube", style = MaterialTheme.typography.titleSmall)
+        Text(stringResource(Res.string.demo_rotating_cube), style = MaterialTheme.typography.titleSmall)
         Spacer(Modifier.height(8.dp))
         Canvas(Modifier.size(80.dp)) {
             val cx = size.width / 2
@@ -108,7 +110,7 @@ fun WaterDroplet(
         modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Blur.Soft),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        Text("Water Droplet", style = MaterialTheme.typography.titleSmall)
+        Text(stringResource(Res.string.demo_water_droplet), style = MaterialTheme.typography.titleSmall)
         Spacer(Modifier.height(8.dp))
         Canvas(Modifier.size(100.dp)) {
             val center = Offset(size.width / 2, size.height / 2)
@@ -158,7 +160,7 @@ fun SlotMachine(
         modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Page.BottomSheet),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        Text("Slot Machine", style = MaterialTheme.typography.titleSmall)
+        Text(stringResource(Res.string.demo_slot_machine), style = MaterialTheme.typography.titleSmall)
         Spacer(Modifier.height(8.dp))
         Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
             slots.forEach { symbol: ImageVector ->
@@ -179,7 +181,7 @@ fun SlotMachine(
             }
         }
         Spacer(Modifier.height(8.dp))
-        Button(onClick = { spinning = true }, enabled = !spinning) { Text("Spin") }
+        Button(onClick = { spinning = true }, enabled = !spinning) { Text(stringResource(Res.string.demo_spin)) }
     }
 }
 
@@ -214,7 +216,7 @@ fun MusicEqualizer(
         modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Fade.Up),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        Text("Music Equalizer", style = MaterialTheme.typography.titleSmall)
+        Text(stringResource(Res.string.demo_music_equalizer), style = MaterialTheme.typography.titleSmall)
         Spacer(Modifier.height(8.dp))
         Canvas(Modifier.size(80.dp, 60.dp)) {
             val barWidth = size.width / (barCount * 2f)

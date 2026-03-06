@@ -31,15 +31,3 @@ internal fun reduceExamplesState(
     is ExamplesEvent.HeaderStageUpdated -> current.copy(headerStage = event.stage)
     ExamplesEvent.FiltersToggled -> current.copy(showFilters = !current.showFilters)
 }
-
-internal fun filterGalleryItems(
-    items: List<GalleryItem>,
-    state: ExamplesUiState,
-): List<GalleryItem> = items.filter { galleryItem ->
-    val matchesSearch = state.searchQuery.isBlank() ||
-        galleryItem.item.title.contains(state.searchQuery, ignoreCase = true) ||
-        galleryItem.item.description.contains(state.searchQuery, ignoreCase = true) ||
-        galleryItem.tag.contains(state.searchQuery, ignoreCase = true)
-    val matchesTag = state.selectedTag == ALL_TAG || galleryItem.tag == state.selectedTag
-    matchesSearch && matchesTag
-}

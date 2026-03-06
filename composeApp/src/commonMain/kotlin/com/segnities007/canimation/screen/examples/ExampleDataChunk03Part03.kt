@@ -3,237 +3,204 @@ package com.segnities007.canimation.screen.examples
 import io.github.canimation.core.Canimation
 import io.github.canimation.core.CanimationEffect
 import io.github.canimation.core.CanimationPreset
+import canimation.composeapp.generated.resources.*
+
 
 
 internal val exampleCategoriesChunk03Part03: List<ExampleCategory> = listOf(
         // ── Audio & Visualization ──
         ExampleCategory(
             id = "audio-viz",
-            title = "Audio & Visualization",
-            subtitle = "Waveforms, visual effects, and animated graphics",
+            title = Res.string.examples_data_audio_viz_title,
+            subtitle = Res.string.examples_data_audio_viz_subtitle,
             accentLabel = "VISUAL",
             tags = listOf("VISUAL"),
             examples = listOf(
                 ExampleItem(
-                    title = "Waveform Visualizer",
-                    description = "Animated audio waveform bars",
+                    title = Res.string.examples_data_audio_viz_item_01_title,
+                    description = Res.string.examples_data_audio_viz_item_01_description,
                     demoType = DemoType.Component,
                     componentKey = ComponentDemoKeys.WaveformVisualizer,
-                    codeSnippet = """WaveformVisualizer(
-        barCount = 20,
-        barColor = Color.Cyan,
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(100.dp),
-    )""",
+                    codeSnippet = Res.string.examples_data_audio_viz_item_01_code,
                 ),
                 ExampleItem(
-                    title = "Matrix Rain",
-                    description = "Columns of cascading characters",
+                    title = Res.string.examples_data_audio_viz_item_02_title,
+                    description = Res.string.examples_data_audio_viz_item_02_description,
                     demoType = DemoType.Component,
                     componentKey = ComponentDemoKeys.MatrixRain,
-                    codeSnippet = """MatrixRain(
-        columnCount = 15,
-        rainColor = Color.Green,
-        modifier = Modifier.fillMaxSize(),
-    )""",
+                    codeSnippet = Res.string.examples_data_audio_viz_item_02_code,
                 ),
                 ExampleItem(
-                    title = "Music Equalizer",
-                    description = "Animated equalizer bars",
+                    title = Res.string.examples_data_audio_viz_item_03_title,
+                    description = Res.string.examples_data_audio_viz_item_03_description,
                     demoType = DemoType.Component,
                     componentKey = ComponentDemoKeys.MusicEqualizer,
-                    codeSnippet = """MusicEqualizer(
-        barCount = 5,
-        barColor = Color.Magenta,
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(60.dp),
-    )""",
+                    codeSnippet = Res.string.examples_data_audio_viz_item_03_code,
                 ),
                 ExampleItem(
-                    title = "Water Droplet",
-                    description = "Water droplet ripple effect",
+                    title = Res.string.examples_data_audio_viz_item_04_title,
+                    description = Res.string.examples_data_audio_viz_item_04_description,
                     demoType = DemoType.Component,
                     componentKey = ComponentDemoKeys.WaterDroplet,
-                    codeSnippet = """WaterDroplet(
-        dropColor = Color.Cyan,
-        rippleRadius = 40.dp,
-        modifier = Modifier.size(120.dp),
-    )""",
+                    codeSnippet = Res.string.examples_data_audio_viz_item_04_code,
                 ),
             ),
         ),
         // ── Modern UI Components ──
         ExampleCategory(
             id = "modern-ui",
-            title = "Modern UI Components",
-            subtitle = "Interactive buttons, cards, indicators, and controls",
+            title = Res.string.examples_data_modern_ui_title,
+            subtitle = Res.string.examples_data_modern_ui_subtitle,
             accentLabel = "UI",
             tags = listOf("UI"),
             examples = listOf(
                 ExampleItem(
-                    title = "Pulse Button",
-                    description = "Button that pulses when idle",
+                    title = Res.string.examples_data_modern_ui_item_01_title,
+                    description = Res.string.examples_data_modern_ui_item_01_description,
                     demoType = DemoType.Component,
                     componentKey = ComponentDemoKeys.PulseButton,
-                    codeSnippet = """PulseButton(
-        text = "Tap Me",
-        pulseColor = Color.Blue,
-        onClick = { /* action */ },
-        modifier = Modifier.padding(16.dp),
-    )""",
+                    codeSnippet = Res.string.examples_data_modern_ui_item_05_code,
                 ),
                 ExampleItem(
-                    title = "Neumorphism Card",
-                    description = "Card with animated shadow depth",
+                    title = Res.string.examples_data_modern_ui_item_02_title,
+                    description = Res.string.examples_data_modern_ui_item_02_description,
                     demoType = DemoType.Component,
                     componentKey = ComponentDemoKeys.NeumorphismCard,
-                    codeSnippet = """NeumorphismCard(
-        shadowColor = Color.Gray,
-        elevation = 8.dp,
-        modifier = Modifier.size(200.dp),
-    )""",
+                    codeSnippet = Res.string.examples_data_modern_ui_item_06_code,
                 ),
                 ExampleItem(
-                    title = "Gradient Border Card",
-                    description = "Card with animated gradient border",
+                    title = Res.string.examples_data_modern_ui_item_03_title,
+                    description = Res.string.examples_data_modern_ui_item_03_description,
                     demoType = DemoType.Component,
                     componentKey = ComponentDemoKeys.GradientBorderCard,
-                    codeSnippet = """GradientBorderCard(
-        colors = listOf(Color.Magenta, Color.Cyan),
-        borderWidth = 2.dp,
-        modifier = Modifier.size(200.dp),
-    )""",
+                    codeSnippet = Res.string.examples_data_modern_ui_item_07_code,
                 ),
                 ExampleItem(
-                    title = "Flip Counter",
-                    description = "Digit flip counter",
+                    title = Res.string.examples_data_modern_ui_item_04_title,
+                    description = Res.string.examples_data_modern_ui_item_04_description,
                     demoType = DemoType.Component,
                     componentKey = ComponentDemoKeys.FlipCounter,
-                    codeSnippet = """FlipCounter(
-        targetValue = 42,
-        digitCount = 2,
-        modifier = Modifier.padding(16.dp),
-    )""",
+                    codeSnippet = Res.string.examples_data_modern_ui_item_08_code,
                 ),
                 ExampleItem(
-                    title = "Expandable Chip",
-                    description = "Chip that expands with content",
+                    title = Res.string.examples_data_modern_ui_item_05_title,
+                    description = Res.string.examples_data_modern_ui_item_05_description,
                     demoType = DemoType.Component,
                     componentKey = ComponentDemoKeys.ExpandableChip,
-                    codeSnippet = """ExpandableChip(
-        label = "Details",
-        expandedContent = { Text("Extra info") },
-        modifier = Modifier.padding(8.dp),
-    )""",
+                    codeSnippet = Res.string.examples_data_modern_ui_item_09_code,
                 ),
                 ExampleItem(
-                    title = "Stacked Notifications",
-                    description = "Stacked notification cards",
+                    title = Res.string.examples_data_modern_ui_item_06_title,
+                    description = Res.string.examples_data_modern_ui_item_06_description,
                     demoType = DemoType.Component,
                     componentKey = ComponentDemoKeys.StackedNotifications,
-                    codeSnippet = """StackedNotifications(
-        notifications = listOf("New message", "Update available"),
-        maxVisible = 3,
-        modifier = Modifier.fillMaxWidth(),
-    )""",
+                    codeSnippet = Res.string.examples_data_modern_ui_item_10_code,
                 ),
                 ExampleItem(
-                    title = "Circular Reveal Card",
-                    description = "Card with circular reveal animation",
+                    title = Res.string.examples_data_modern_ui_item_07_title,
+                    description = Res.string.examples_data_modern_ui_item_07_description,
                     demoType = DemoType.Component,
                     componentKey = ComponentDemoKeys.CircularRevealCard,
-                    codeSnippet = """CircularRevealCard(
-        revealDuration = 600,
-        modifier = Modifier.size(200.dp),
-    )""",
+                    codeSnippet = Res.string.examples_data_modern_ui_item_11_code,
                 ),
                 ExampleItem(
-                    title = "Swipe Card",
-                    description = "Card that can be swiped away",
+                    title = Res.string.examples_data_modern_ui_item_08_title,
+                    description = Res.string.examples_data_modern_ui_item_08_description,
                     demoType = DemoType.Component,
                     componentKey = ComponentDemoKeys.SwipeCard,
-                    codeSnippet = """SwipeCard(
-        onSwipeLeft = { /* dismiss */ },
-        onSwipeRight = { /* accept */ },
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(200.dp),
-    )""",
+                    codeSnippet = Res.string.examples_data_modern_ui_item_12_code,
                 ),
                 ExampleItem(
-                    title = "Animated Checkmark",
-                    description = "Animated checkmark with circle",
+                    title = Res.string.examples_data_modern_ui_item_09_title,
+                    description = Res.string.examples_data_modern_ui_item_09_description,
                     demoType = DemoType.Component,
                     componentKey = ComponentDemoKeys.AnimatedCheckmark,
-                    codeSnippet = """AnimatedCheckmark(
-        checked = true,
-        checkColor = Color.Green,
-        modifier = Modifier.size(48.dp),
-    )""",
+                    codeSnippet = Res.string.examples_data_modern_ui_item_13_code,
                 ),
                 ExampleItem(
-                    title = "Rotating Cube",
-                    description = "2D representation of a rotating cube",
+                    title = Res.string.examples_data_modern_ui_item_10_title,
+                    description = Res.string.examples_data_modern_ui_item_10_description,
                     demoType = DemoType.Component,
                     componentKey = ComponentDemoKeys.RotatingCube,
-                    codeSnippet = """RotatingCube(
-        cubeSize = 100.dp,
-        rotationSpeed = 3000L,
-        modifier = Modifier.size(150.dp),
-    )""",
+                    codeSnippet = Res.string.examples_data_modern_ui_item_14_code,
                 ),
                 ExampleItem(
-                    title = "Slot Machine",
-                    description = "Simple slot machine with rolling numbers",
+                    title = Res.string.examples_data_modern_ui_item_11_title,
+                    description = Res.string.examples_data_modern_ui_item_11_description,
                     demoType = DemoType.Component,
                     componentKey = ComponentDemoKeys.SlotMachine,
-                    codeSnippet = """SlotMachine(
-        reelCount = 3,
-        spinDuration = 2000L,
-        modifier = Modifier.padding(16.dp),
-    )""",
+                    codeSnippet = Res.string.examples_data_modern_ui_item_15_code,
                 ),
                 ExampleItem(
-                    title = "Radial Progress",
-                    description = "Circular progress with animated arc",
+                    title = Res.string.examples_data_modern_ui_item_12_title,
+                    description = Res.string.examples_data_modern_ui_item_12_description,
                     demoType = DemoType.Component,
                     componentKey = ComponentDemoKeys.RadialProgress,
-                    codeSnippet = """RadialProgress(
-        progress = 0.7f,
-        strokeWidth = 6.dp,
-        color = Color.Blue,
-        modifier = Modifier.size(80.dp),
-    )""",
+                    codeSnippet = Res.string.examples_data_modern_ui_item_16_code,
                 ),
             ),
         ),
         ExampleCategory(
             id = "wave",
-            title = "Wave",
-            subtitle = "Wave-like motion effects",
+            title = Res.string.examples_data_wave_title,
+            subtitle = Res.string.examples_data_wave_subtitle,
             accentLabel = "ENTRANCE",
             tags = listOf("ENTRANCE"),
             examples = listOf(
-                ExampleItem("Wave Gentle", "Gentle floating wave motion", "Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Wave.Gentle,\n)", effect = Canimation.Wave.Gentle),
-                ExampleItem("Wave Strong", "Strong wave with rotation", "Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Wave.Strong,\n)", effect = Canimation.Wave.Strong),
-                ExampleItem("Wave Ripple", "Ripple expansion effect", "Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Wave.Ripple,\n)", effect = Canimation.Wave.Ripple),
-                ExampleItem("Wave Float", "Floating upward effect", "Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Wave.Float,\n)", effect = Canimation.Wave.Float),
-                ExampleItem("Wave Drift", "Gentle diagonal drift", "Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Wave.Drift,\n)", effect = Canimation.Wave.Drift),
+                ExampleItem(
+                    title = Res.string.examples_data_wave_item_17_title,
+                    description = Res.string.examples_data_wave_item_17_description,
+                    codeSnippet = Res.string.examples_data_wave_item_17_code, effect = Canimation.Wave.Gentle
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_wave_item_18_title,
+                    description = Res.string.examples_data_wave_item_18_description,
+                    codeSnippet = Res.string.examples_data_wave_item_18_code, effect = Canimation.Wave.Strong
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_wave_item_19_title,
+                    description = Res.string.examples_data_wave_item_19_description,
+                    codeSnippet = Res.string.examples_data_wave_item_19_code, effect = Canimation.Wave.Ripple
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_wave_item_20_title,
+                    description = Res.string.examples_data_wave_item_20_description,
+                    codeSnippet = Res.string.examples_data_wave_item_20_code, effect = Canimation.Wave.Float
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_wave_item_21_title,
+                    description = Res.string.examples_data_wave_item_21_description,
+                    codeSnippet = Res.string.examples_data_wave_item_21_code, effect = Canimation.Wave.Drift
+                ),
             ),
         ),
         ExampleCategory(
             id = "glitch",
-            title = "Glitch",
-            subtitle = "Digital glitch effects",
+            title = Res.string.examples_data_glitch_title,
+            subtitle = Res.string.examples_data_glitch_subtitle,
             accentLabel = "ENTRANCE",
             tags = listOf("ENTRANCE"),
             examples = listOf(
-                ExampleItem("Glitch In", "Digital glitch entry", "Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Glitch.In,\n)", effect = Canimation.Glitch.In),
-                ExampleItem("Glitch Shake", "Glitchy shake", "Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Glitch.Shake,\n)", effect = Canimation.Glitch.Shake),
-                ExampleItem("Glitch Flicker", "Flickering appearance", "Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Glitch.Flicker,\n)", effect = Canimation.Glitch.Flicker),
-                ExampleItem("Glitch Distort", "Distorted entry", "Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Glitch.Distort,\n)", effect = Canimation.Glitch.Distort),
+                ExampleItem(
+                    title = Res.string.examples_data_glitch_item_22_title,
+                    description = Res.string.examples_data_glitch_item_22_description,
+                    codeSnippet = Res.string.examples_data_glitch_item_22_code, effect = Canimation.Glitch.In
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_glitch_item_23_title,
+                    description = Res.string.examples_data_glitch_item_23_description,
+                    codeSnippet = Res.string.examples_data_glitch_item_23_code, effect = Canimation.Glitch.Shake
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_glitch_item_24_title,
+                    description = Res.string.examples_data_glitch_item_24_description,
+                    codeSnippet = Res.string.examples_data_glitch_item_24_code, effect = Canimation.Glitch.Flicker
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_glitch_item_25_title,
+                    description = Res.string.examples_data_glitch_item_25_description,
+                    codeSnippet = Res.string.examples_data_glitch_item_25_code, effect = Canimation.Glitch.Distort
+                ),
             ),
         ),
 )

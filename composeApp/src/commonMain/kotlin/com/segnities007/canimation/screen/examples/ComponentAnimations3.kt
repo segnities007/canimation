@@ -55,8 +55,10 @@ import kotlin.math.PI
 import kotlin.math.cos
 import kotlin.math.roundToInt
 import kotlin.math.sin
+import canimation.composeapp.generated.resources.*
 import io.github.canimation.core.Canimation
 import io.github.canimation.core.canimation
+import org.jetbrains.compose.resources.stringResource
 
 // ===== CARD ANIMATIONS =====
 
@@ -123,7 +125,7 @@ fun CardLiftHover(
             .graphicsLayer { translationY = translateY },
     ) {
         Box(contentAlignment = Alignment.Center) {
-            Text("Lift", style = MaterialTheme.typography.labelMedium, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.onPrimaryContainer)
+            Text(stringResource(Res.string.demo_lift), style = MaterialTheme.typography.labelMedium, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.onPrimaryContainer)
         }
     }
 }
@@ -163,7 +165,7 @@ fun CardGradientBorder(
             .background(MaterialTheme.colorScheme.surface),
         contentAlignment = Alignment.Center,
     ) {
-        Text("Gradient", style = MaterialTheme.typography.labelMedium, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.onSurface)
+        Text(stringResource(Res.string.demo_gradient), style = MaterialTheme.typography.labelMedium, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.onSurface)
     }
 }
 
@@ -192,9 +194,9 @@ fun CardExpandCollapse(
             modifier = Modifier.padding(12.dp),
             verticalArrangement = Arrangement.spacedBy(4.dp),
         ) {
-            Text("Card Title", style = MaterialTheme.typography.labelMedium, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.onPrimaryContainer)
+            Text(stringResource(Res.string.demo_card_title), style = MaterialTheme.typography.labelMedium, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.onPrimaryContainer)
             if (expanded) {
-                Text("Expanded content with more details...", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.7f))
+                Text(stringResource(Res.string.demo_expanded_content), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.7f))
             }
         }
     }
@@ -231,7 +233,7 @@ fun CardParallaxTilt(
             },
     ) {
         Box(contentAlignment = Alignment.Center) {
-            Text("Parallax", style = MaterialTheme.typography.labelMedium, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.onPrimaryContainer)
+            Text(stringResource(Res.string.demo_parallax), style = MaterialTheme.typography.labelMedium, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.onPrimaryContainer)
         }
     }
 }
@@ -271,7 +273,7 @@ fun CardGlassmorphism(
             modifier = Modifier.size(140.dp, 80.dp),
         ) {
             Box(contentAlignment = Alignment.Center) {
-                Text("Glass", style = MaterialTheme.typography.labelMedium, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.onSurface)
+                Text(stringResource(Res.string.demo_glass), style = MaterialTheme.typography.labelMedium, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.onSurface)
             }
         }
     }
@@ -301,7 +303,7 @@ fun CardRevealWipe(
             modifier = Modifier.fillMaxSize().background(MaterialTheme.colorScheme.surfaceVariant),
             contentAlignment = Alignment.Center,
         ) {
-            Text("Reveal", style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.4f))
+            Text(stringResource(Res.string.demo_reveal), style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.4f))
         }
         // Wipe overlay
         Box(
@@ -312,7 +314,7 @@ fun CardRevealWipe(
             contentAlignment = Alignment.Center,
         ) {
             if (clip > 0.3f) {
-                Text("Reveal", style = MaterialTheme.typography.labelMedium, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.onPrimaryContainer)
+                Text(stringResource(Res.string.demo_reveal), style = MaterialTheme.typography.labelMedium, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.onPrimaryContainer)
             }
         }
     }

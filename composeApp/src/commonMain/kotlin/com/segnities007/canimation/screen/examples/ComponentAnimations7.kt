@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.KeyboardCommandKey
 import androidx.compose.material.icons.filled.Inbox
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.*
@@ -24,11 +25,13 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import canimation.composeapp.generated.resources.*
 import io.github.canimation.core.Canimation
 import io.github.canimation.core.canimation
 import kotlinx.coroutines.delay
 import kotlin.math.PI
 import kotlin.math.sin
+import org.jetbrains.compose.resources.stringResource
 
 // ═══════════════════════════════════════════════════════════
 //  TEXT ANIMATIONS
@@ -37,7 +40,12 @@ import kotlin.math.sin
 // ─── 1. TextFadeReveal ───
 @Composable
 fun TextFadeReveal(modifier: Modifier = Modifier) {
-    val words = listOf("Build", "Animate", "Ship", "Delight")
+    val words = listOf(
+        stringResource(Res.string.component_word_build),
+        stringResource(Res.string.component_word_animate),
+        stringResource(Res.string.component_word_ship),
+        stringResource(Res.string.component_word_delight),
+    )
     var index by remember { mutableIntStateOf(0) }
     LaunchedEffect(Unit) { while (true) { delay(1500); index = (index + 1) % words.size } }
     var vis by remember { mutableStateOf(false) }
@@ -88,13 +96,18 @@ fun TextHighlighter(modifier: Modifier = Modifier) {
 // ─── 4. TextShuffleWord ───
 @Composable
 fun TextShuffleWord(modifier: Modifier = Modifier) {
-    val options = listOf("developers", "designers", "creators", "teams")
+    val options = listOf(
+        stringResource(Res.string.component_target_developers),
+        stringResource(Res.string.component_target_designers),
+        stringResource(Res.string.component_target_creators),
+        stringResource(Res.string.component_target_teams),
+    )
     var idx by remember { mutableIntStateOf(0) }
     LaunchedEffect(Unit) { while (true) { delay(2000); idx = (idx + 1) % options.size } }
     var vis by remember { mutableStateOf(false) }
     LaunchedEffect(idx) { vis = false; delay(50); vis = true }
     Column(modifier.fillMaxWidth().padding(16.dp), horizontalAlignment = Alignment.CenterHorizontally) {
-        Text("Built for", style = MaterialTheme.typography.bodyLarge, color = MaterialTheme.colorScheme.onSurfaceVariant)
+        Text(stringResource(Res.string.component_built_for), style = MaterialTheme.typography.bodyLarge, color = MaterialTheme.colorScheme.onSurfaceVariant)
         Box(Modifier.canimation(visible = vis, effect = Canimation.Slide.UpSubtle)) {
             Text(options[idx], style = MaterialTheme.typography.headlineSmall, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.primary)
         }
@@ -133,7 +146,7 @@ fun TextRotateWords(modifier: Modifier = Modifier) {
     var vis by remember { mutableStateOf(false) }
     LaunchedEffect(idx) { vis = false; delay(50); vis = true }
     Row(modifier.fillMaxWidth().padding(16.dp), horizontalArrangement = Arrangement.Center) {
-        Text("Animations are ", style = MaterialTheme.typography.bodyLarge)
+        Text(stringResource(Res.string.demo_animations_are), style = MaterialTheme.typography.bodyLarge)
         Box(Modifier.canimation(visible = vis, effect = Canimation.Flip.In)) {
             Text(words[idx], style = MaterialTheme.typography.bodyLarge, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.primary)
         }
@@ -157,12 +170,12 @@ fun ProfileCard(modifier: Modifier = Modifier) {
         Row(Modifier.padding(16.dp), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
             Surface(shape = CircleShape, color = Color(0xFF6366F1), modifier = Modifier.size(48.dp)) {
                 Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                    Text("JD", color = Color.White, fontWeight = FontWeight.Bold)
+                    Text(stringResource(Res.string.demo_jd), color = Color.White, fontWeight = FontWeight.Bold)
                 }
             }
             Column {
-                Text("Jane Doe", style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
-                Text("Senior Engineer", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                Text(stringResource(Res.string.demo_jane_doe), style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
+                Text(stringResource(Res.string.demo_senior_engineer), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
             }
         }
     }
@@ -180,9 +193,9 @@ fun PricingCard(modifier: Modifier = Modifier) {
         modifier = modifier.fillMaxWidth().padding(16.dp).canimation(visible = vis, effect = Canimation.Scale.Pop),
     ) {
         Column(Modifier.padding(20.dp), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(8.dp)) {
-            Text("PRO", style = MaterialTheme.typography.labelLarge, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.primary)
-            Text("$29/mo", style = MaterialTheme.typography.headlineMedium, fontWeight = FontWeight.Bold)
-            Text("Unlimited animations", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+            Text(stringResource(Res.string.component_pro), style = MaterialTheme.typography.labelLarge, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.primary)
+            Text(stringResource(Res.string.component_price_29mo), style = MaterialTheme.typography.headlineMedium, fontWeight = FontWeight.Bold)
+            Text(stringResource(Res.string.component_unlimited_animations), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
         }
     }
 }
@@ -201,10 +214,10 @@ fun NotificationCard(modifier: Modifier = Modifier) {
             Row(Modifier.padding(12.dp), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(10.dp)) {
                 Surface(shape = CircleShape, color = MaterialTheme.colorScheme.tertiary, modifier = Modifier.size(8.dp)) {}
                 Column(Modifier.weight(1f)) {
-                    Text("New animation added!", style = MaterialTheme.typography.labelMedium, fontWeight = FontWeight.Bold)
-                    Text("Canimation.Wave.Gentle is now available", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                    Text(stringResource(Res.string.component_new_animation_added), style = MaterialTheme.typography.labelMedium, fontWeight = FontWeight.Bold)
+                    Text(stringResource(Res.string.component_wave_gentle_available), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
                 }
-                Text("2m", style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                Text(stringResource(Res.string.component_2m), style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
             }
         }
     }
@@ -221,11 +234,11 @@ fun TestimonialCard(modifier: Modifier = Modifier) {
         modifier = modifier.fillMaxWidth().padding(16.dp).canimation(visible = vis, effect = Canimation.Float.Gentle),
     ) {
         Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
-            Text("\"\"\"", style = MaterialTheme.typography.headlineLarge, color = MaterialTheme.colorScheme.primary.copy(alpha = 0.3f))
-            Text("This library made our app feel alive. The API is incredibly intuitive.", style = MaterialTheme.typography.bodyMedium)
+            Text(stringResource(Res.string.component_quote_mark), style = MaterialTheme.typography.headlineLarge, color = MaterialTheme.colorScheme.primary.copy(alpha = 0.3f))
+            Text(stringResource(Res.string.component_testimonial_quote), style = MaterialTheme.typography.bodyMedium)
             Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                 Surface(shape = CircleShape, color = Color(0xFFEC4899), modifier = Modifier.size(24.dp)) {}
-                Text("— Alex K.", style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                Text(stringResource(Res.string.component_testimonial_author), style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
             }
         }
     }
@@ -246,10 +259,10 @@ fun MetricCard(modifier: Modifier = Modifier) {
         modifier = modifier.fillMaxWidth().padding(16.dp),
     ) {
         Column(Modifier.padding(16.dp)) {
-            Text("Active Users", style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
+            Text(stringResource(Res.string.component_active_users), style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
             Row(verticalAlignment = Alignment.Bottom, horizontalArrangement = Arrangement.spacedBy(4.dp)) {
-                Text("$value", style = MaterialTheme.typography.headlineMedium, fontWeight = FontWeight.Bold, fontFamily = FontFamily.Monospace)
-                Text("+8.2%", style = MaterialTheme.typography.labelSmall, color = Color(0xFF22C55E), fontWeight = FontWeight.Bold, modifier = Modifier.padding(bottom = 6.dp))
+                Text(value.toString(), style = MaterialTheme.typography.headlineMedium, fontWeight = FontWeight.Bold, fontFamily = FontFamily.Monospace)
+                Text(stringResource(Res.string.component_growth_82), style = MaterialTheme.typography.labelSmall, color = Color(0xFF22C55E), fontWeight = FontWeight.Bold, modifier = Modifier.padding(bottom = 6.dp))
             }
         }
     }
@@ -276,8 +289,8 @@ fun ProductCard(modifier: Modifier = Modifier) {
                     )
                 }
                 Column(Modifier.padding(12.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
-                    Text("Animation Kit", style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold)
-                    Text("$49.99", style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.primary, fontWeight = FontWeight.Bold)
+                    Text(stringResource(Res.string.component_product_animation_kit), style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold)
+                    Text(stringResource(Res.string.component_product_price_49), style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.primary, fontWeight = FontWeight.Bold)
                     Row(horizontalArrangement = Arrangement.spacedBy(2.dp)) {
                         repeat(5) {
                             Icon(
@@ -295,7 +308,12 @@ fun ProductCard(modifier: Modifier = Modifier) {
 // ─── 14. SideMenuReveal ───
 @Composable
 fun SideMenuReveal(modifier: Modifier = Modifier) {
-    val items = listOf("Dashboard", "Analytics", "Settings", "Logout")
+    val items = listOf(
+        stringResource(Res.string.component_menu_dashboard),
+        stringResource(Res.string.component_menu_analytics),
+        stringResource(Res.string.component_menu_settings),
+        stringResource(Res.string.component_menu_logout),
+    )
     Column(modifier.fillMaxWidth().padding(16.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
         items.forEachIndexed { i, item ->
             var vis by remember { mutableStateOf(false) }
@@ -340,7 +358,12 @@ fun PaginationDots(modifier: Modifier = Modifier) {
 // ─── 16. CommandPalette ───
 @Composable
 fun CommandPalette(modifier: Modifier = Modifier) {
-    val items = listOf("Open File...", "Go to Line", "Toggle Theme", "Run Build")
+    val items = listOf(
+        stringResource(Res.string.component_command_open_file),
+        stringResource(Res.string.component_command_go_to_line),
+        stringResource(Res.string.component_command_toggle_theme),
+        stringResource(Res.string.component_command_run_build),
+    )
     var highlighted by remember { mutableIntStateOf(-1) }
     LaunchedEffect(Unit) { while (true) { for (i in items.indices) { highlighted = i; delay(800) }; highlighted = -1; delay(500) } }
 
@@ -352,9 +375,9 @@ fun CommandPalette(modifier: Modifier = Modifier) {
     ) {
         Column {
             Row(Modifier.fillMaxWidth().padding(12.dp), verticalAlignment = Alignment.CenterVertically) {
-                Text("⌘", style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                Icon(Icons.Default.KeyboardCommandKey, contentDescription = null, tint = MaterialTheme.colorScheme.onSurfaceVariant)
                 Spacer(Modifier.width(8.dp))
-                Text("Type a command...", style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.5f))
+                Text(stringResource(Res.string.component_type_a_command), style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.5f))
             }
             HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant)
             items.forEachIndexed { i, item ->
@@ -391,7 +414,15 @@ fun MiniBarChart(modifier: Modifier = Modifier) {
         }
         Spacer(Modifier.height(4.dp))
         Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly) {
-            listOf("M", "T", "W", "T", "F", "S", "S").forEach {
+            listOf(
+                stringResource(Res.string.component_day_m),
+                stringResource(Res.string.component_day_t),
+                stringResource(Res.string.component_day_w),
+                stringResource(Res.string.component_day_t),
+                stringResource(Res.string.component_day_f),
+                stringResource(Res.string.component_day_s),
+                stringResource(Res.string.component_day_s),
+            ).forEach {
                 Text(it, style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.width(16.dp), textAlign = TextAlign.Center)
             }
         }
@@ -410,7 +441,7 @@ fun DonutChart(modifier: Modifier = Modifier) {
             drawArc(trackColor, 0f, 360f, false, style = Stroke(12f, cap = StrokeCap.Round))
             drawArc(primaryColor, -90f, 360f * progress.value, false, style = Stroke(12f, cap = StrokeCap.Round))
         }
-        Text("${(progress.value * 100).toInt()}%", style = MaterialTheme.typography.labelLarge, fontWeight = FontWeight.Bold)
+        Text(stringResource(Res.string.component_percent_value, (progress.value * 100).toInt()), style = MaterialTheme.typography.labelLarge, fontWeight = FontWeight.Bold)
     }
 }
 
@@ -424,7 +455,7 @@ fun SparkLine(modifier: Modifier = Modifier) {
     )
     val primaryColor = MaterialTheme.colorScheme.primary
     Column(modifier.fillMaxWidth().padding(16.dp)) {
-        Text("Performance", style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
+        Text(stringResource(Res.string.component_performance), style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
         Spacer(Modifier.height(4.dp))
         Canvas(Modifier.fillMaxWidth().height(40.dp)) {
             val w = size.width; val h = size.height
@@ -442,11 +473,16 @@ fun SparkLine(modifier: Modifier = Modifier) {
 // ─── 20. DataTable ───
 @Composable
 fun DataTable(modifier: Modifier = Modifier) {
-    val rows = listOf("Fade" to "23ms", "Scale" to "18ms", "Bounce" to "45ms", "Spring" to "32ms")
+    val rows = listOf(
+        stringResource(Res.string.component_row_fade) to stringResource(Res.string.component_duration_23ms),
+        stringResource(Res.string.component_row_scale) to stringResource(Res.string.component_duration_18ms),
+        stringResource(Res.string.component_row_bounce) to stringResource(Res.string.component_duration_45ms),
+        stringResource(Res.string.component_row_spring) to stringResource(Res.string.component_duration_32ms),
+    )
     Column(modifier.fillMaxWidth().padding(16.dp)) {
         Row(Modifier.fillMaxWidth().padding(vertical = 6.dp)) {
-            Text("Effect", Modifier.weight(1f), style = MaterialTheme.typography.labelMedium, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.onSurfaceVariant)
-            Text("Duration", style = MaterialTheme.typography.labelMedium, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.onSurfaceVariant)
+            Text(stringResource(Res.string.component_effect), Modifier.weight(1f), style = MaterialTheme.typography.labelMedium, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.onSurfaceVariant)
+            Text(stringResource(Res.string.component_duration), style = MaterialTheme.typography.labelMedium, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.onSurfaceVariant)
         }
         HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant)
         rows.forEachIndexed { i, (name, dur) ->

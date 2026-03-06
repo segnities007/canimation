@@ -19,8 +19,10 @@ import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import canimation.composeapp.generated.resources.*
 import io.github.canimation.core.Canimation
 import io.github.canimation.core.canimation
+import org.jetbrains.compose.resources.stringResource
 import kotlinx.coroutines.delay
 import kotlin.math.PI
 import kotlin.math.cos
@@ -44,7 +46,7 @@ fun ExpandableChip(
         modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Micro.Pulse),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        Text("Expandable Chip", style = MaterialTheme.typography.titleSmall)
+        Text(stringResource(Res.string.demo_expandable_chip), style = MaterialTheme.typography.titleSmall)
         Spacer(Modifier.height(8.dp))
         Surface(
             shape = RoundedCornerShape(20.dp),
@@ -56,7 +58,10 @@ fun ExpandableChip(
         ) {
             Box(contentAlignment = Alignment.Center) {
                 Text(
-                    if (expanded) "Kotlin Multiplatform" else "KMP",
+                    stringResource(
+                        if (expanded) Res.string.component_kotlin_multiplatform
+                        else Res.string.component_kmp,
+                    ),
                     style = MaterialTheme.typography.labelMedium,
                     maxLines = 1,
                 )
@@ -74,13 +79,17 @@ fun StackedNotifications(
     var entryVisible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entryVisible = true }
 
-    val items = listOf("New message", "Build passed", "Review requested")
+    val items = listOf(
+        stringResource(Res.string.component_notification_new_message),
+        stringResource(Res.string.component_notification_build_passed),
+        stringResource(Res.string.component_notification_review_requested),
+    )
 
     Column(
         modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Swipe.Right),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        Text("Stacked Notifications", style = MaterialTheme.typography.titleSmall)
+        Text(stringResource(Res.string.component_stacked_notifications), style = MaterialTheme.typography.titleSmall)
         Spacer(Modifier.height(8.dp))
         Box(modifier = Modifier.height(100.dp).width(200.dp)) {
             items.forEachIndexed { idx, text ->
@@ -122,7 +131,7 @@ fun CircularRevealCard(
         modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Reveal.Center),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        Text("Circular Reveal", style = MaterialTheme.typography.titleSmall)
+        Text(stringResource(Res.string.component_circular_reveal), style = MaterialTheme.typography.titleSmall)
         Spacer(Modifier.height(8.dp))
         Box(
             Modifier
@@ -138,7 +147,7 @@ fun CircularRevealCard(
                     center = Offset(size.width / 2, size.height / 2),
                 )
             }
-            Text("Reveal", style = MaterialTheme.typography.bodyMedium)
+            Text(stringResource(Res.string.component_reveal), style = MaterialTheme.typography.bodyMedium)
         }
     }
 }
@@ -160,7 +169,7 @@ fun SwipeCard(
         modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Swipe.Left),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        Text("Swipe Card", style = MaterialTheme.typography.titleSmall)
+        Text(stringResource(Res.string.component_swipe_card), style = MaterialTheme.typography.titleSmall)
         Spacer(Modifier.height(8.dp))
         Surface(
             shape = RoundedCornerShape(12.dp),
@@ -176,7 +185,7 @@ fun SwipeCard(
                     MaterialTheme.colorScheme.primaryContainer.copy(alpha = cardAlpha),
                 ),
             ) {
-                Text("Tap to swipe", style = MaterialTheme.typography.bodyMedium)
+                Text(stringResource(Res.string.component_tap_to_swipe), style = MaterialTheme.typography.bodyMedium)
             }
         }
     }
@@ -206,7 +215,7 @@ fun AnimatedCheckmark(
         modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Reveal.Center),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        Text("Animated Checkmark", style = MaterialTheme.typography.titleSmall)
+        Text(stringResource(Res.string.component_animated_checkmark), style = MaterialTheme.typography.titleSmall)
         Spacer(Modifier.height(8.dp))
         Canvas(Modifier.size(64.dp)) {
             drawCircle(primary, radius = size.minDimension / 2 * progress.value, style = Stroke(4f))
@@ -234,4 +243,3 @@ fun AnimatedCheckmark(
 }
 
 // ─── 17. RotatingCube ───────────────────────────────────────────────
-

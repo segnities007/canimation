@@ -109,7 +109,7 @@ fun ColorMorph(
         contentAlignment = Alignment.Center,
     ) {
         Text(
-            text = "Tap",
+            text = stringResource(Res.string.demo_tap),
             style = MaterialTheme.typography.labelMedium,
             color = Color.White,
             fontWeight = FontWeight.Bold,

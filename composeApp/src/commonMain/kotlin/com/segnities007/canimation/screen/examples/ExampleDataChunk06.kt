@@ -3,73 +3,159 @@ package com.segnities007.canimation.screen.examples
 import io.github.canimation.core.Canimation
 import io.github.canimation.core.CanimationEffect
 import io.github.canimation.core.CanimationPreset
+import canimation.composeapp.generated.resources.*
+
 
 internal val exampleCategoriesChunk06: List<ExampleCategory> = listOf(
         ExampleCategory(
             id = "interactive-advanced",
-            title = "Interactive Advanced",
-            subtitle = "Rich interactive animated components",
+            title = Res.string.examples_data_interactive_advanced_title,
+            subtitle = Res.string.examples_data_interactive_advanced_subtitle,
             accentLabel = "INTERACTIVE",
             tags = listOf("INTERACTIVE", "UI"),
             examples = listOf(
-                ExampleItem("Segmented Control", "Animated segment selector", "SegmentedControl(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Fade.Gentle,\n))", demoType = DemoType.Component, componentKey = ComponentDemoKeys.SegmentedControl),
-                ExampleItem("Animated Switch", "Custom toggle switch", "AnimatedSwitch(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Spring.PopIn,\n))", demoType = DemoType.Component, componentKey = ComponentDemoKeys.AnimatedSwitch),
-                ExampleItem("Animated PIN Input", "PIN code entry with dots", "AnimatedPinInput(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Scale.Pop,\n))", demoType = DemoType.Component, componentKey = ComponentDemoKeys.AnimatedPinInput),
-                ExampleItem("Animated Color Picker", "Color swatch selector", "AnimatedColorPicker(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Spring.PopIn,\n))", demoType = DemoType.Component, componentKey = ComponentDemoKeys.AnimatedColorPicker),
-                ExampleItem("Notification Bell", "Bell with badge animation", "AnimatedNotificationBell(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Attention.Swing,\n))", demoType = DemoType.Component, componentKey = ComponentDemoKeys.AnimatedNotificationBell),
-                ExampleItem("Countdown Timer", "Circular countdown timer", "AnimatedCountdownTimer(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Scale.Pop,\n))", demoType = DemoType.Component, componentKey = ComponentDemoKeys.AnimatedCountdownTimer),
-                ExampleItem("Animated Credit Card", "3D card flip animation", "AnimatedCreditCard(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Flip.Horizontal,\n))", demoType = DemoType.Component, componentKey = ComponentDemoKeys.AnimatedCreditCard),
-                ExampleItem("Theme Toggle", "Dark/light mode toggle", "AnimatedThemeToggle(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Rotate.In,\n))", demoType = DemoType.Component, componentKey = ComponentDemoKeys.AnimatedThemeToggle),
+                ExampleItem(
+                    title = Res.string.examples_data_interactive_advanced_item_01_title,
+                    description = Res.string.examples_data_interactive_advanced_item_01_description,
+                    codeSnippet = Res.string.examples_data_interactive_advanced_item_01_code, demoType = DemoType.Component, componentKey = ComponentDemoKeys.SegmentedControl
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_interactive_advanced_item_02_title,
+                    description = Res.string.examples_data_interactive_advanced_item_02_description,
+                    codeSnippet = Res.string.examples_data_interactive_advanced_item_02_code, demoType = DemoType.Component, componentKey = ComponentDemoKeys.AnimatedSwitch
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_interactive_advanced_item_03_title,
+                    description = Res.string.examples_data_interactive_advanced_item_03_description,
+                    codeSnippet = Res.string.examples_data_interactive_advanced_item_03_code, demoType = DemoType.Component, componentKey = ComponentDemoKeys.AnimatedPinInput
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_interactive_advanced_item_04_title,
+                    description = Res.string.examples_data_interactive_advanced_item_04_description,
+                    codeSnippet = Res.string.examples_data_interactive_advanced_item_04_code, demoType = DemoType.Component, componentKey = ComponentDemoKeys.AnimatedColorPicker
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_interactive_advanced_item_05_title,
+                    description = Res.string.examples_data_interactive_advanced_item_05_description,
+                    codeSnippet = Res.string.examples_data_interactive_advanced_item_05_code, demoType = DemoType.Component, componentKey = ComponentDemoKeys.AnimatedNotificationBell
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_interactive_advanced_item_06_title,
+                    description = Res.string.examples_data_interactive_advanced_item_06_description,
+                    codeSnippet = Res.string.examples_data_interactive_advanced_item_06_code, demoType = DemoType.Component, componentKey = ComponentDemoKeys.AnimatedCountdownTimer
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_interactive_advanced_item_07_title,
+                    description = Res.string.examples_data_interactive_advanced_item_07_description,
+                    codeSnippet = Res.string.examples_data_interactive_advanced_item_07_code, demoType = DemoType.Component, componentKey = ComponentDemoKeys.AnimatedCreditCard
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_interactive_advanced_item_08_title,
+                    description = Res.string.examples_data_interactive_advanced_item_08_description,
+                    codeSnippet = Res.string.examples_data_interactive_advanced_item_08_code, demoType = DemoType.Component, componentKey = ComponentDemoKeys.AnimatedThemeToggle
+                ),
             ),
         ),
         // ─── ComponentAnimations10 categories ───
         ExampleCategory(
             id = "text-advanced",
-            title = "Text Effects",
-            subtitle = "Advanced text animation patterns",
+            title = Res.string.examples_data_text_advanced_title,
+            subtitle = Res.string.examples_data_text_advanced_subtitle,
             accentLabel = "TEXT",
             tags = listOf("TEXT", "UI"),
             examples = listOf(
-                ExampleItem("Typewriter Effect", "Character-by-character typing", "TypewriterEffect(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Fade.Gentle,\n))", demoType = DemoType.Component, componentKey = ComponentDemoKeys.TypewriterEffect),
-                ExampleItem("Text Morph", "Cycling word transition", "TextMorph(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Fade.Up,\n))", demoType = DemoType.Component, componentKey = ComponentDemoKeys.TextMorph),
-                ExampleItem("Text Strikethrough", "Price comparison animation", "TextStrikethrough(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Scale.Pop,\n))", demoType = DemoType.Component, componentKey = ComponentDemoKeys.TextStrikethrough),
-                ExampleItem("Text Glitch", "RGB glitch text effect", "TextGlitch(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Glitch.Subtle,\n))", demoType = DemoType.Component, componentKey = ComponentDemoKeys.TextGlitch),
+                ExampleItem(
+                    title = Res.string.examples_data_text_advanced_item_09_title,
+                    description = Res.string.examples_data_text_advanced_item_09_description,
+                    codeSnippet = Res.string.examples_data_text_advanced_item_09_code, demoType = DemoType.Component, componentKey = ComponentDemoKeys.TypewriterEffect
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_text_advanced_item_10_title,
+                    description = Res.string.examples_data_text_advanced_item_10_description,
+                    codeSnippet = Res.string.examples_data_text_advanced_item_10_code, demoType = DemoType.Component, componentKey = ComponentDemoKeys.TextMorph
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_text_advanced_item_11_title,
+                    description = Res.string.examples_data_text_advanced_item_11_description,
+                    codeSnippet = Res.string.examples_data_text_advanced_item_11_code, demoType = DemoType.Component, componentKey = ComponentDemoKeys.TextStrikethrough
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_text_advanced_item_12_title,
+                    description = Res.string.examples_data_text_advanced_item_12_description,
+                    codeSnippet = Res.string.examples_data_text_advanced_item_12_code, demoType = DemoType.Component, componentKey = ComponentDemoKeys.TextGlitch
+                ),
             ),
         ),
         ExampleCategory(
             id = "cards-advanced",
-            title = "Rich Cards",
-            subtitle = "Feature-rich animated card layouts",
+            title = Res.string.examples_data_cards_advanced_title,
+            subtitle = Res.string.examples_data_cards_advanced_subtitle,
             accentLabel = "CARDS",
             tags = listOf("CARDS", "UI"),
             examples = listOf(
-                ExampleItem("Recipe Card", "Food recipe card", "RecipeCard(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Rise.In,\n))", demoType = DemoType.Component, componentKey = ComponentDemoKeys.RecipeCard),
-                ExampleItem("Weather Card", "Cycling weather display", "WeatherCard(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Fade.Gentle,\n))", demoType = DemoType.Component, componentKey = ComponentDemoKeys.WeatherCard),
-                ExampleItem("Event Card", "Calendar event card", "EventCard(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Slide.LeftSubtle,\n))", demoType = DemoType.Component, componentKey = ComponentDemoKeys.EventCard),
-                ExampleItem("Music Player Card", "Audio player interface", "MusicPlayerCard(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Float.Up,\n))", demoType = DemoType.Component, componentKey = ComponentDemoKeys.MusicPlayerCard),
+                ExampleItem(
+                    title = Res.string.examples_data_cards_advanced_item_13_title,
+                    description = Res.string.examples_data_cards_advanced_item_13_description,
+                    codeSnippet = Res.string.examples_data_cards_advanced_item_13_code, demoType = DemoType.Component, componentKey = ComponentDemoKeys.RecipeCard
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_cards_advanced_item_14_title,
+                    description = Res.string.examples_data_cards_advanced_item_14_description,
+                    codeSnippet = Res.string.examples_data_cards_advanced_item_14_code, demoType = DemoType.Component, componentKey = ComponentDemoKeys.WeatherCard
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_cards_advanced_item_15_title,
+                    description = Res.string.examples_data_cards_advanced_item_15_description,
+                    codeSnippet = Res.string.examples_data_cards_advanced_item_15_code, demoType = DemoType.Component, componentKey = ComponentDemoKeys.EventCard
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_cards_advanced_item_16_title,
+                    description = Res.string.examples_data_cards_advanced_item_16_description,
+                    codeSnippet = Res.string.examples_data_cards_advanced_item_16_code, demoType = DemoType.Component, componentKey = ComponentDemoKeys.MusicPlayerCard
+                ),
             ),
         ),
         ExampleCategory(
             id = "nav-advanced",
-            title = "Navigation Bars",
-            subtitle = "Animated navigation bar patterns",
+            title = Res.string.examples_data_nav_advanced_title,
+            subtitle = Res.string.examples_data_nav_advanced_subtitle,
             accentLabel = "NAV",
             tags = listOf("NAV", "NAVIGATION"),
             examples = listOf(
-                ExampleItem("Bottom Nav Bar", "Animated bottom navigation", "BottomNavBar(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Spring.PopIn,\n))", demoType = DemoType.Component, componentKey = ComponentDemoKeys.BottomNavBar),
+                ExampleItem(
+                    title = Res.string.examples_data_nav_advanced_item_17_title,
+                    description = Res.string.examples_data_nav_advanced_item_17_description,
+                    codeSnippet = Res.string.examples_data_nav_advanced_item_17_code, demoType = DemoType.Component, componentKey = ComponentDemoKeys.BottomNavBar
+                ),
             ),
         ),
         ExampleCategory(
             id = "data-advanced",
-            title = "Data Visualizations",
-            subtitle = "Advanced animated chart components",
+            title = Res.string.examples_data_data_advanced_title,
+            subtitle = Res.string.examples_data_data_advanced_subtitle,
             accentLabel = "CHARTS",
             tags = listOf("CHARTS", "DATA"),
             examples = listOf(
-                ExampleItem("Radar Chart", "Animated radar/spider chart", "RadarChart(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Scale.Pop,\n))", demoType = DemoType.Component, componentKey = ComponentDemoKeys.RadarChart),
-                ExampleItem("Horizontal Bar Chart", "Animated horizontal bars", "HorizontalBarChart(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Slide.RightSubtle,\n))", demoType = DemoType.Component, componentKey = ComponentDemoKeys.HorizontalBarChart),
-                ExampleItem("Gauge Chart", "Semi-circle gauge meter", "GaugeChart(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Rotate.In,\n))", demoType = DemoType.Component, componentKey = ComponentDemoKeys.GaugeChart),
-                ExampleItem("Live Counter", "Real-time number counter", "LiveCounter(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Micro.NudgeUp,\n))", demoType = DemoType.Component, componentKey = ComponentDemoKeys.LiveCounter),
+                ExampleItem(
+                    title = Res.string.examples_data_data_advanced_item_18_title,
+                    description = Res.string.examples_data_data_advanced_item_18_description,
+                    codeSnippet = Res.string.examples_data_data_advanced_item_18_code, demoType = DemoType.Component, componentKey = ComponentDemoKeys.RadarChart
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_data_advanced_item_19_title,
+                    description = Res.string.examples_data_data_advanced_item_19_description,
+                    codeSnippet = Res.string.examples_data_data_advanced_item_19_code, demoType = DemoType.Component, componentKey = ComponentDemoKeys.HorizontalBarChart
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_data_advanced_item_20_title,
+                    description = Res.string.examples_data_data_advanced_item_20_description,
+                    codeSnippet = Res.string.examples_data_data_advanced_item_20_code, demoType = DemoType.Component, componentKey = ComponentDemoKeys.GaugeChart
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_data_advanced_item_21_title,
+                    description = Res.string.examples_data_data_advanced_item_21_description,
+                    codeSnippet = Res.string.examples_data_data_advanced_item_21_code, demoType = DemoType.Component, componentKey = ComponentDemoKeys.LiveCounter
+                ),
             ),
         ),
 )

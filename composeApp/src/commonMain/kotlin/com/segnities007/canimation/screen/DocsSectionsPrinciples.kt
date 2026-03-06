@@ -57,6 +57,8 @@ import io.github.canimation.core.CanimationVisibility
 import io.github.canimation.core.canimation
 import io.github.canimation.core.canimationEmphasize
 import io.github.canimation.core.canimationEnter
+import canimation.composeapp.generated.resources.*
+import org.jetbrains.compose.resources.stringResource
 import kotlinx.coroutines.delay
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━ Core Principles ━━━━━━━━━━━━━━━━━━━━━━━━
@@ -68,24 +70,21 @@ internal fun CorePrinciplesContent(stage: Int) {
         Modifier.canimation(visible = stage >= 0, effect = Canimation.Fade.Up),
         verticalArrangement = Arrangement.spacedBy(24.dp),
     ) {
-        PageTitle("Core Principles", "The values that shape every API decision")
+        PageTitle(stringResource(Res.string.docs_principles_title), stringResource(Res.string.docs_principles_desc))
 
         Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(12.dp)) {
             PrincipleCard(
                 Modifier.weight(1f),
                 icon = Icons.Default.Tune,
-                title = "Composability Over Configuration",
-                body = "Instead of massive parameter lists, combine small focused effects with +. " +
-                       "CanimationEffect.fade() + CanimationEffect.slideUp() is more expressive than " +
-                       "any config object.",
+                title = stringResource(Res.string.docs_composability_title),
+                body = stringResource(Res.string.docs_composability_body),
                 effect = Canimation.Fade.Up,
             )
             PrincipleCard(
                 Modifier.weight(1f),
                 icon = Icons.Default.AccessibilityNew,
-                title = "Accessibility Is Not Optional",
-                body = "Every animation respects CanimationPolicy. When the OS says 'reduce motion', " +
-                       "we listen automatically. No extra code. No opt-in.",
+                title = stringResource(Res.string.docs_a11y_title),
+                body = stringResource(Res.string.docs_a11y_body),
                 effect = Canimation.Scale.Pop,
             )
         }
@@ -93,17 +92,15 @@ internal fun CorePrinciplesContent(stage: Int) {
             PrincipleCard(
                 Modifier.weight(1f),
                 icon = Icons.Default.Lightbulb,
-                title = "Progressive Disclosure",
-                body = "Start with Modifier.canimation(visible, Canimation.Fade.Up). Need more? " +
-                       "Use CanimationEffect primitives. Need full control? Drop to CanimationSpec.",
+                title = stringResource(Res.string.docs_progressive_title),
+                body = stringResource(Res.string.docs_progressive_body),
                 effect = Canimation.Slide.Up,
             )
             PrincipleCard(
                 Modifier.weight(1f),
                 icon = Icons.Default.Visibility,
-                title = "Show, Don't Tell",
-                body = "This entire documentation site is built with canimation — every card entrance, " +
-                       "every demo uses the same API you'll use in your app.",
+                title = stringResource(Res.string.docs_show_title),
+                body = stringResource(Res.string.docs_show_body),
                 effect = Canimation.Bounce.In,
             )
         }
@@ -152,35 +149,28 @@ internal fun InspirationContent(stage: Int) {
         Modifier.canimation(visible = stage >= 0, effect = Canimation.Fade.Up),
         verticalArrangement = Arrangement.spacedBy(24.dp),
     ) {
-        PageTitle("Inspiration & References", "Standing on the shoulders of giants")
+        PageTitle(stringResource(Res.string.docs_inspiration_title), stringResource(Res.string.docs_inspiration_desc))
 
-        BodyText(
-            "canimation didn't emerge in a vacuum. We carefully studied the animation ecosystem " +
-            "across web, mobile, and design systems."
-        )
+        BodyText(stringResource(Res.string.docs_inspiration_intro))
 
         InspirationCard(
-            name = "Motion.dev (Framer Motion)",
-            lesson = "The composable, declarative API pattern. Our CanimationEffect + operator " +
-                     "and the Canimation.* namespace are directly inspired by this philosophy.",
+            name = stringResource(Res.string.docs_inspiration_motion_dev),
+            lesson = stringResource(Res.string.docs_inspiration_motion_dev_lesson),
             demoEffect = Canimation.Fade.Up + CanimationEffect.scale(0.95f),
         )
         InspirationCard(
-            name = "Animate.css",
-            lesson = "The power of named presets. Our 100+ CanimationPreset entries " +
-                     "follow this exact pattern — one line, done.",
+            name = stringResource(Res.string.docs_inspiration_animate_css),
+            lesson = stringResource(Res.string.docs_inspiration_animate_css_lesson),
             demoEffect = Canimation.Bounce.In,
         )
         InspirationCard(
-            name = "AnimXYZ",
-            lesson = "Compositional CSS animation utilities with multi-axis control. " +
-                     "Influenced our enter/exit distinction and multi-axis composition.",
+            name = stringResource(Res.string.docs_inspiration_animxyz),
+            lesson = stringResource(Res.string.docs_inspiration_animxyz_lesson),
             demoEffect = Canimation.Slide.Left + Canimation.Fade.In,
         )
         InspirationCard(
-            name = "Material Design Motion",
-            lesson = "Meaningful transitions with container transform and shared axis. " +
-                     "Our Material.* namespace comes directly from Material Motion.",
+            name = stringResource(Res.string.docs_inspiration_material),
+            lesson = stringResource(Res.string.docs_inspiration_material_lesson),
             demoEffect = Canimation.Material.FadeThrough,
         )
     }
@@ -227,17 +217,14 @@ internal fun DifferentiatorsContent(stage: Int) {
         Modifier.canimation(visible = stage >= 0, effect = Canimation.Fade.Up),
         verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
-        PageTitle("What Sets canimation Apart", "More than just another animation library")
+        PageTitle(stringResource(Res.string.docs_differentiators_title), stringResource(Res.string.docs_differentiators_desc))
 
         val items = listOf(
-            Triple("Compose-Native", "Built from the ground up for Compose's graphicsLayer, " +
-                "state-driven rendering, and recomposition model.", Canimation.Fade.Up),
-            Triple("Truly Multiplatform", "One API, five targets. Android, iOS, Desktop, Web (JS), Web (WasmJs).", Canimation.Scale.Pop),
-            Triple("Effect Algebra", "The + operator composes effects predictably: properties from the right " +
-                "override the left, duration takes the maximum.", Canimation.Slide.Left + Canimation.Fade.In),
-            Triple("Atomic Design", "Organized as Atoms (Fade.In), Molecules (Fade.Up), Organisms (Entrance.Drop). " +
-                "Pick the complexity level you need.", Canimation.Entrance.Elevate),
-            Triple("A11y by Default", "CanimationProvider + CanimationPolicy means accessibility is the default behavior.", Canimation.Fade.Gentle),
+            Triple(stringResource(Res.string.docs_diff_compose_native), stringResource(Res.string.docs_diff_compose_native_desc), Canimation.Fade.Up),
+            Triple(stringResource(Res.string.docs_diff_multiplatform), stringResource(Res.string.docs_diff_multiplatform_desc), Canimation.Scale.Pop),
+            Triple(stringResource(Res.string.docs_diff_algebra), stringResource(Res.string.docs_diff_algebra_desc), Canimation.Slide.Left + Canimation.Fade.In),
+            Triple(stringResource(Res.string.docs_diff_atomic), stringResource(Res.string.docs_diff_atomic_desc), Canimation.Entrance.Elevate),
+            Triple(stringResource(Res.string.docs_diff_a11y), stringResource(Res.string.docs_diff_a11y_desc), Canimation.Fade.Gentle),
         )
 
         items.forEachIndexed { i, (title, desc, effect) ->
@@ -286,29 +273,27 @@ internal fun RoadmapContent(stage: Int) {
         Modifier.canimation(visible = stage >= 0, effect = Canimation.Fade.Up),
         verticalArrangement = Arrangement.spacedBy(20.dp),
     ) {
-        PageTitle("Vision & Roadmap", "Where canimation is heading")
+        PageTitle(stringResource(Res.string.docs_roadmap_title), stringResource(Res.string.docs_roadmap_desc))
 
-        BodyText(
-            "canimation aims to be the definitive animation toolkit for Compose Multiplatform."
-        )
+        BodyText(stringResource(Res.string.docs_roadmap_intro))
 
-        SectionLabel("NOW")
-        RoadmapItem("100+ animation effects across 13 categories (Atoms, Molecules, Organisms)")
-        RoadmapItem("CanimationEffect DSL with algebraic + composition")
-        RoadmapItem("Atomic Design organization: Fade, Scale, Slide, Rotate, Bounce, Spring, Flip, Zoom, Attention, Entrance, Material, Morph")
-        RoadmapItem("Full accessibility support with CanimationPolicy")
-        RoadmapItem("Five-platform support: Android, iOS, Desktop, Web JS, Web WasmJs")
+        SectionLabel(stringResource(Res.string.docs_roadmap_now))
+        RoadmapItem(stringResource(Res.string.docs_roadmap_now_1))
+        RoadmapItem(stringResource(Res.string.docs_roadmap_now_2))
+        RoadmapItem(stringResource(Res.string.docs_roadmap_now_3))
+        RoadmapItem(stringResource(Res.string.docs_roadmap_now_4))
+        RoadmapItem(stringResource(Res.string.docs_roadmap_now_5))
 
-        SectionLabel("NEXT")
-        RoadmapItem("Layout animations — shared element transitions and container transforms")
-        RoadmapItem("Gesture-driven animations — spring-based drag, swipe, and fling")
-        RoadmapItem("Scroll-linked animations — parallax, reveal, and pinning")
-        RoadmapItem("Stagger orchestration — automatic stagger for list items")
+        SectionLabel(stringResource(Res.string.docs_roadmap_next))
+        RoadmapItem(stringResource(Res.string.docs_roadmap_next_1))
+        RoadmapItem(stringResource(Res.string.docs_roadmap_next_2))
+        RoadmapItem(stringResource(Res.string.docs_roadmap_next_3))
+        RoadmapItem(stringResource(Res.string.docs_roadmap_next_4))
 
-        SectionLabel("FUTURE")
-        RoadmapItem("Visual animation editor — design animations graphically, export as code")
-        RoadmapItem("AI-assisted motion — suggest appropriate animations based on context")
-        RoadmapItem("Design system integration — Material 3, iOS HIG, and custom token presets")
+        SectionLabel(stringResource(Res.string.docs_roadmap_future))
+        RoadmapItem(stringResource(Res.string.docs_roadmap_future_1))
+        RoadmapItem(stringResource(Res.string.docs_roadmap_future_2))
+        RoadmapItem(stringResource(Res.string.docs_roadmap_future_3))
     }
 }
 

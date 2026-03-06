@@ -29,6 +29,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AutoAwesome
+import androidx.compose.material.icons.filled.Lens
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -153,7 +154,12 @@ fun CardMagneticSnap(
                 .graphicsLayer { translationX = offsetX },
         ) {
             Box(contentAlignment = Alignment.Center) {
-                Text("•", color = MaterialTheme.colorScheme.onPrimaryContainer)
+                Icon(
+                    imageVector = Icons.Default.Lens,
+                    contentDescription = null,
+                    tint = MaterialTheme.colorScheme.onPrimaryContainer,
+                    modifier = Modifier.size(10.dp),
+                )
             }
         }
     }
@@ -278,7 +284,7 @@ fun AnimatedUnderlineText(
         verticalArrangement = Arrangement.spacedBy(2.dp),
     ) {
         Text(
-            text = "Hover me",
+            text = stringResource(Res.string.demo_hover_me_lower),
             style = MaterialTheme.typography.titleMedium,
             fontWeight = FontWeight.Bold,
             color = MaterialTheme.colorScheme.onSurface,

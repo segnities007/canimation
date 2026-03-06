@@ -19,9 +19,11 @@ import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import canimation.composeapp.generated.resources.*
 import io.github.canimation.core.Canimation
 import io.github.canimation.core.canimation
 import kotlinx.coroutines.delay
+import org.jetbrains.compose.resources.stringResource
 import kotlin.math.PI
 import kotlin.math.cos
 import kotlin.math.sin
@@ -43,7 +45,7 @@ fun WaveformVisualizer(
         modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Fade.Up),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        Text("Waveform", style = MaterialTheme.typography.titleSmall)
+        Text(stringResource(Res.string.component_waveform), style = MaterialTheme.typography.titleSmall)
         Spacer(Modifier.height(8.dp))
         Row(
             horizontalArrangement = Arrangement.spacedBy(3.dp),
@@ -90,7 +92,7 @@ fun RadialProgress(
         modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Fade.Up),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        Text("Radial Progress", style = MaterialTheme.typography.titleSmall)
+        Text(stringResource(Res.string.component_radial_progress), style = MaterialTheme.typography.titleSmall)
         Spacer(Modifier.height(8.dp))
         Box(contentAlignment = Alignment.Center, modifier = Modifier.size(100.dp)) {
             Canvas(Modifier.size(100.dp)) {
@@ -100,7 +102,7 @@ fun RadialProgress(
                     style = Stroke(10f, cap = StrokeCap.Round),
                 )
             }
-            Text("${(progress.value * 100).toInt()}%", fontWeight = FontWeight.Bold)
+            Text(stringResource(Res.string.component_percent_value, (progress.value * 100).toInt()), fontWeight = FontWeight.Bold)
         }
     }
 }
@@ -132,7 +134,7 @@ fun MatrixRain(
         modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Fade.Up),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        Text("Matrix Rain", style = MaterialTheme.typography.titleSmall)
+        Text(stringResource(Res.string.component_matrix_rain), style = MaterialTheme.typography.titleSmall)
         Spacer(Modifier.height(4.dp))
         Row(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
             displayChars.forEach { col ->
@@ -172,13 +174,13 @@ fun PulseButton(
         modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Fade.Up),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        Text("Pulse Button", style = MaterialTheme.typography.titleSmall)
+        Text(stringResource(Res.string.component_pulse_button), style = MaterialTheme.typography.titleSmall)
         Spacer(Modifier.height(8.dp))
         Box(contentAlignment = Alignment.Center) {
             Canvas(Modifier.size((60 * scale).dp)) {
                 drawCircle(primary.copy(alpha = 0.25f))
             }
-            Button(onClick = {}) { Text("Tap") }
+            Button(onClick = {}) { Text(stringResource(Res.string.component_tap)) }
         }
     }
 }
@@ -203,7 +205,7 @@ fun NeumorphismCard(
         modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Blur.Soft),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        Text("Neumorphism Card", style = MaterialTheme.typography.titleSmall)
+        Text(stringResource(Res.string.component_neumorphism_card), style = MaterialTheme.typography.titleSmall)
         Spacer(Modifier.height(8.dp))
         Surface(
             shape = RoundedCornerShape(16.dp),
@@ -212,7 +214,7 @@ fun NeumorphismCard(
             modifier = Modifier.size(140.dp, 90.dp),
         ) {
             Box(contentAlignment = Alignment.Center) {
-                Text("Depth: ${elevation.toInt()}", style = MaterialTheme.typography.bodyMedium)
+                Text(stringResource(Res.string.component_depth_value, elevation.toInt()), style = MaterialTheme.typography.bodyMedium)
             }
         }
     }
@@ -246,7 +248,7 @@ fun GradientBorderCard(
         modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Reveal.Center),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        Text("Gradient Border", style = MaterialTheme.typography.titleSmall)
+        Text(stringResource(Res.string.component_gradient_border), style = MaterialTheme.typography.titleSmall)
         Spacer(Modifier.height(8.dp))
         Box(
             Modifier
@@ -258,7 +260,7 @@ fun GradientBorderCard(
                 .background(MaterialTheme.colorScheme.surface),
             contentAlignment = Alignment.Center,
         ) {
-            Text("Animated", style = MaterialTheme.typography.bodyMedium)
+            Text(stringResource(Res.string.component_animated), style = MaterialTheme.typography.bodyMedium)
         }
     }
 }
@@ -284,7 +286,7 @@ fun FlipCounter(
         modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Fade.Up),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        Text("Flip Counter", style = MaterialTheme.typography.titleSmall)
+        Text(stringResource(Res.string.component_flip_counter), style = MaterialTheme.typography.titleSmall)
         Spacer(Modifier.height(8.dp))
         Row(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
             val digits = (count % 10000).toString().padStart(4, '0')
@@ -308,4 +310,3 @@ fun FlipCounter(
 }
 
 // ─── 9. ExpandableChip ──────────────────────────────────────────────
-

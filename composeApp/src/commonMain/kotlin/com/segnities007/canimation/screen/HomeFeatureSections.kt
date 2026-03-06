@@ -20,6 +20,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.FilledTonalButton
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -40,12 +41,16 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.segnities007.canimation.navigation.HomeDestination
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowForward
 import io.github.canimation.core.CanimationEffect
 import io.github.canimation.core.CanimationPreset
 import io.github.canimation.core.CanimationVisibility
 import io.github.canimation.core.Canimation
 import io.github.canimation.core.canimation
+import canimation.composeapp.generated.resources.*
 import kotlinx.coroutines.delay
+import org.jetbrains.compose.resources.stringResource
 
 // ======= FEATURES WITH LIVE DEMOS =======
 
@@ -55,13 +60,13 @@ internal fun FeaturesSection(stage: Int, presetCount: Int) {
         Box(Modifier.canimation(visible = stage >= 8, effect = Canimation.Fade.Up)) {
             Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                 Text(
-                    text = "WHY CANIMATION",
+                    text = stringResource(Res.string.features_label),
                     style = MaterialTheme.typography.labelLarge,
                     color = MaterialTheme.colorScheme.secondary,
                     fontWeight = FontWeight.Bold,
                 )
                 Text(
-                    text = "Built for every use case",
+                    text = stringResource(Res.string.features_title),
                     style = MaterialTheme.typography.headlineMedium,
                     fontWeight = FontWeight.Bold,
                     color = MaterialTheme.colorScheme.onBackground,
@@ -78,22 +83,22 @@ internal fun FeaturesSection(stage: Int, presetCount: Int) {
                 horizontalArrangement = Arrangement.spacedBy(12.dp),
             ) {
                 LiveFeatureCard(
-                    title = "$presetCount Presets",
-                    subtitle = "Bounce, Spring, Flip, Material Motion and more",
+                    title = stringResource(Res.string.features_presets_count, presetCount),
+                    subtitle = stringResource(Res.string.features_presets_subtitle),
                     demoPreset = CanimationPreset.BounceIn,
                     demoDelay = 0L,
                     modifier = Modifier.weight(1f),
                 )
                 LiveFeatureCard(
-                    title = "Accessibility",
-                    subtitle = "System-aware Reduce Motion policies",
+                    title = stringResource(Res.string.features_accessibility),
+                    subtitle = stringResource(Res.string.features_accessibility_subtitle),
                     demoPreset = CanimationPreset.GentleFade,
                     demoDelay = 400L,
                     modifier = Modifier.weight(1f),
                 )
                 LiveFeatureCard(
-                    title = "Diagnostics",
-                    subtitle = "Real-time FPS and jank overlay",
+                    title = stringResource(Res.string.features_diagnostics),
+                    subtitle = stringResource(Res.string.features_diagnostics_subtitle),
                     demoPreset = CanimationPreset.Pulse,
                     demoDelay = 800L,
                     modifier = Modifier.weight(1f),
@@ -105,22 +110,22 @@ internal fun FeaturesSection(stage: Int, presetCount: Int) {
                 horizontalArrangement = Arrangement.spacedBy(12.dp),
             ) {
                 LiveFeatureCard(
-                    title = "Testable",
-                    subtitle = "Deterministic test clock for assertions",
+                    title = stringResource(Res.string.features_testable),
+                    subtitle = stringResource(Res.string.features_testable_subtitle),
                     demoPreset = CanimationPreset.Snap,
                     demoDelay = 200L,
                     modifier = Modifier.weight(1f),
                 )
                 LiveFeatureCard(
-                    title = "Multiplatform",
-                    subtitle = "Android, iOS, Desktop, and Web",
+                    title = stringResource(Res.string.features_multiplatform),
+                    subtitle = stringResource(Res.string.features_multiplatform_subtitle),
                     demoPreset = CanimationPreset.SpringSlideUp,
                     demoDelay = 600L,
                     modifier = Modifier.weight(1f),
                 )
                 LiveFeatureCard(
-                    title = "Token System",
-                    subtitle = "Duration, easing, distance, spring tokens",
+                    title = stringResource(Res.string.features_token_system),
+                    subtitle = stringResource(Res.string.features_token_system_subtitle),
                     demoPreset = CanimationPreset.SharedAxisY,
                     demoDelay = 1000L,
                     modifier = Modifier.weight(1f),
@@ -197,13 +202,13 @@ internal fun CodeExampleSection(stage: Int) {
             Box(Modifier.canimation(visible = stage >= 9, effect = Canimation.Fade.Up)) {
                 Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                     Text(
-                        text = "QUICK START",
+                        text = stringResource(Res.string.quickstart_label),
                         style = MaterialTheme.typography.labelLarge,
                         color = MaterialTheme.colorScheme.primary,
                         fontWeight = FontWeight.Bold,
                     )
                     Text(
-                        text = "Simple, expressive API",
+                        text = stringResource(Res.string.quickstart_title),
                         style = MaterialTheme.typography.headlineMedium,
                         fontWeight = FontWeight.Bold,
                         color = MaterialTheme.colorScheme.onBackground,
@@ -273,13 +278,13 @@ internal fun ExploreSection(onNavigate: (HomeDestination) -> Unit) {
         Box(Modifier.canimation(visible = entryStage >= 0, effect = Canimation.Fade.Up)) {
             Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                 Text(
-                    text = "EXPLORE",
+                    text = stringResource(Res.string.explore_label),
                     style = MaterialTheme.typography.labelLarge,
                     color = MaterialTheme.colorScheme.secondary,
                     fontWeight = FontWeight.Bold,
                 )
                 Text(
-                    text = "Dive deeper",
+                    text = stringResource(Res.string.explore_title),
                     style = MaterialTheme.typography.headlineMedium,
                     fontWeight = FontWeight.Bold,
                     color = MaterialTheme.colorScheme.onBackground,
@@ -291,23 +296,23 @@ internal fun ExploreSection(onNavigate: (HomeDestination) -> Unit) {
 
         listOf(
             Triple(
-                "Preset Gallery",
-                "All built-in presets with interactive demos",
+                stringResource(Res.string.explore_preset_gallery),
+                stringResource(Res.string.explore_preset_gallery_desc),
                 HomeDestination.PresetGallery,
             ),
             Triple(
-                "Examples",
-                "Categorized interactive examples — fade, scale, spring, attention seekers & more",
+                stringResource(Res.string.explore_examples),
+                stringResource(Res.string.explore_examples_desc),
                 HomeDestination.Examples,
             ),
             Triple(
-                "API Reference",
-                "Complete documentation of every Modifier, Composable, data class, and namespace effect",
+                stringResource(Res.string.explore_api_reference),
+                stringResource(Res.string.explore_api_reference_desc),
                 HomeDestination.ApiReference,
             ),
             Triple(
-                "Documentation",
-                "Getting started guide, Atomic Design concepts, and interactive playground",
+                stringResource(Res.string.explore_documentation),
+                stringResource(Res.string.explore_documentation_desc),
                 HomeDestination.Docs,
             ),
         ).forEachIndexed { index, (title, description, route) ->
@@ -337,10 +342,10 @@ internal fun ExploreSection(onNavigate: (HomeDestination) -> Unit) {
                                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                             )
                         }
-                        Text(
-                            "→",
-                            style = MaterialTheme.typography.titleLarge,
-                            color = MaterialTheme.colorScheme.primary,
+                        Icon(
+                            imageVector = Icons.Default.ArrowForward,
+                            contentDescription = null,
+                            tint = MaterialTheme.colorScheme.primary,
                         )
                     }
                 }
@@ -367,14 +372,19 @@ internal fun PlatformSection(stage: Int) {
             ) {
                 Box(Modifier.canimation(visible = stage >= 8, effect = Canimation.Fade.Up)) {
                     Text(
-                        text = "Built for every platform",
+                        text = stringResource(Res.string.platform_title),
                         style = MaterialTheme.typography.headlineSmall,
                         fontWeight = FontWeight.Bold,
                         color = MaterialTheme.colorScheme.onBackground,
                     )
                 }
                 Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-                    listOf("Android", "iOS", "Desktop", "Web").forEachIndexed { index, platform ->
+                    listOf(
+                        stringResource(Res.string.platform_android),
+                        stringResource(Res.string.platform_ios),
+                        stringResource(Res.string.platform_desktop),
+                        stringResource(Res.string.platform_web),
+                    ).forEachIndexed { index, platform ->
                         Box(Modifier.canimation(
                             visible = stage >= 8 + index,
                             effect = Canimation.Bounce.In,
@@ -415,7 +425,7 @@ internal fun FooterSection() {
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Text(
-            text = "Apache License 2.0 · canimation contributors",
+            text = stringResource(Res.string.footer_license),
             style = MaterialTheme.typography.bodySmall,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
         )

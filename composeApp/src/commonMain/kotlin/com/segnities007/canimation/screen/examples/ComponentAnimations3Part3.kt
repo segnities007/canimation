@@ -27,6 +27,9 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -55,8 +58,10 @@ import kotlin.math.PI
 import kotlin.math.cos
 import kotlin.math.roundToInt
 import kotlin.math.sin
+import canimation.composeapp.generated.resources.*
 import io.github.canimation.core.Canimation
 import io.github.canimation.core.canimation
+import org.jetbrains.compose.resources.stringResource
 
 // ===== CARD ANIMATIONS =====
 
@@ -201,7 +206,12 @@ fun CircularMenu(
                 .background(MaterialTheme.colorScheme.primary),
             contentAlignment = Alignment.Center,
         ) {
-            Text("+", style = MaterialTheme.typography.labelSmall, fontWeight = FontWeight.Bold, color = Color.White)
+            Icon(
+                imageVector = Icons.Default.Add,
+                contentDescription = null,
+                tint = Color.White,
+                modifier = Modifier.size(14.dp),
+            )
         }
     }
 }
@@ -343,7 +353,7 @@ fun AnimatedGradientText(
 
     Text(
         modifier = modifier.canimation(visible = entryVisible, effect = Canimation.Fade.In),
-        text = "canimation",
+        text = stringResource(Res.string.demo_canimation),
         style = MaterialTheme.typography.headlineSmall.copy(
             brush = Brush.horizontalGradient(
                 listOf(primary, secondary, tertiary, primary),

@@ -11,6 +11,8 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AutoAwesome
 import androidx.compose.material.icons.filled.Bolt
+import androidx.compose.material.icons.filled.ChevronRight
+import androidx.compose.material.icons.filled.Lens
 import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.filled.StarOutline
@@ -42,7 +44,12 @@ private data class FeatureItem(
 // ─── 1. AnimatedBreadcrumb ───
 @Composable
 fun AnimatedBreadcrumb(modifier: Modifier = Modifier) {
-    val items = listOf("Home", "Products", "Electronics", "Phones")
+    val items = listOf(
+        stringResource(Res.string.component_breadcrumb_home),
+        stringResource(Res.string.component_breadcrumb_products),
+        stringResource(Res.string.component_breadcrumb_electronics),
+        stringResource(Res.string.component_breadcrumb_phones),
+    )
     Row(modifier.fillMaxWidth().padding(16.dp), verticalAlignment = Alignment.CenterVertically) {
         items.forEachIndexed { i, label ->
             var visible by remember { mutableStateOf(false) }
@@ -57,7 +64,12 @@ fun AnimatedBreadcrumb(modifier: Modifier = Modifier) {
                 )
             }
             if (i < items.lastIndex) {
-                Text(" / ", color = MaterialTheme.colorScheme.outline, modifier = Modifier.padding(horizontal = 4.dp))
+                Icon(
+                    imageVector = Icons.Default.ChevronRight,
+                    contentDescription = null,
+                    tint = MaterialTheme.colorScheme.outline,
+                    modifier = Modifier.padding(horizontal = 4.dp).size(16.dp),
+                )
             }
         }
     }
@@ -65,7 +77,16 @@ fun AnimatedBreadcrumb(modifier: Modifier = Modifier) {
 // ─── 3. AnimatedTagCloud ───
 @Composable
 fun AnimatedTagCloud(modifier: Modifier = Modifier) {
-    val tags = listOf("Kotlin", "Compose", "Animation", "Multiplatform", "UI", "Design", "Motion", "Effect")
+    val tags = listOf(
+        stringResource(Res.string.component_tag_kotlin),
+        stringResource(Res.string.component_tag_compose),
+        stringResource(Res.string.component_tag_animation),
+        stringResource(Res.string.component_tag_multiplatform),
+        stringResource(Res.string.component_tag_ui),
+        stringResource(Res.string.component_tag_design),
+        stringResource(Res.string.component_tag_motion),
+        stringResource(Res.string.component_tag_effect),
+    )
     Column(modifier.fillMaxWidth().padding(16.dp)) {
         @OptIn(ExperimentalLayoutApi::class)
         FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
@@ -89,7 +110,12 @@ fun AnimatedTagCloud(modifier: Modifier = Modifier) {
 // ─── 4. AnimatedTimeline ───
 @Composable
 fun AnimatedTimeline(modifier: Modifier = Modifier) {
-    val events = listOf("Created" to "Jan 1", "In Progress" to "Jan 5", "Review" to "Jan 10", "Shipped" to "Jan 12")
+    val events = listOf(
+        stringResource(Res.string.component_timeline_created) to stringResource(Res.string.component_timeline_jan_1),
+        stringResource(Res.string.component_timeline_in_progress) to stringResource(Res.string.component_timeline_jan_5),
+        stringResource(Res.string.component_timeline_review) to stringResource(Res.string.component_timeline_jan_10),
+        stringResource(Res.string.component_timeline_shipped) to stringResource(Res.string.component_timeline_jan_12),
+    )
     Column(modifier.fillMaxWidth().padding(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
         events.forEachIndexed { i, (title, date) ->
             var visible by remember { mutableStateOf(false) }
@@ -191,11 +217,11 @@ fun AnimatedStatCard(modifier: Modifier = Modifier) {
     ) {
         Row(Modifier.padding(16.dp), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.SpaceBetween) {
             Column {
-                Text("Revenue", style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
-                Text("$12,450", style = MaterialTheme.typography.headlineSmall, fontWeight = FontWeight.Bold)
+                Text(stringResource(Res.string.component_revenue), style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                Text(stringResource(Res.string.component_revenue_value), style = MaterialTheme.typography.headlineSmall, fontWeight = FontWeight.Bold)
             }
             Surface(shape = RoundedCornerShape(8.dp), color = Color(0xFF22C55E).copy(alpha = 0.15f)) {
-                Text("+12.5%", modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp),
+                Text(stringResource(Res.string.component_growth_value), modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp),
                     color = Color(0xFF22C55E), style = MaterialTheme.typography.labelSmall, fontWeight = FontWeight.Bold)
             }
         }
@@ -359,10 +385,10 @@ fun AnimatedPricingToggle(modifier: Modifier = Modifier) {
 
     Column(modifier.fillMaxWidth().padding(16.dp), horizontalAlignment = Alignment.CenterHorizontally) {
         Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-            Text("Monthly", style = MaterialTheme.typography.labelMedium,
+            Text(stringResource(Res.string.component_monthly), style = MaterialTheme.typography.labelMedium,
                 color = if (!annual) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant)
             Switch(checked = annual, onCheckedChange = {})
-            Text("Annual", style = MaterialTheme.typography.labelMedium,
+            Text(stringResource(Res.string.component_annual), style = MaterialTheme.typography.labelMedium,
                 color = if (annual) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant)
         }
         Spacer(Modifier.height(8.dp))

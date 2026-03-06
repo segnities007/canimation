@@ -48,7 +48,9 @@ import io.github.canimation.core.CanimationPreset
 import io.github.canimation.core.CanimationVisibility
 import io.github.canimation.core.Canimation
 import io.github.canimation.core.canimation
+import canimation.composeapp.generated.resources.*
 import kotlinx.coroutines.delay
+import org.jetbrains.compose.resources.stringResource
 
 // ======= HERO =======
 
@@ -71,7 +73,7 @@ internal fun HeroSection(stage: Int, presetCount: Int, onNavigate: (HomeDestinat
             ) {
                 Box(Modifier.canimation(visible = stage >= 0, effect = Canimation.Fade.Up)) {
                     Text(
-                        text = "canimation",
+                        text = stringResource(Res.string.app_title),
                         style = MaterialTheme.typography.displayLarge.copy(
                             brush = Brush.linearGradient(
                                 listOf(MaterialTheme.colorScheme.primary, MaterialTheme.colorScheme.onPrimaryContainer, MaterialTheme.colorScheme.secondary),
@@ -83,7 +85,7 @@ internal fun HeroSection(stage: Int, presetCount: Int, onNavigate: (HomeDestinat
 
                 Box(Modifier.canimation(visible = stage >= 1, effect = Canimation.Fade.Up)) {
                     Text(
-                        text = "A production-grade animation library\nfor Compose Multiplatform.",
+                        text = stringResource(Res.string.hero_subtitle),
                         style = MaterialTheme.typography.headlineSmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                         textAlign = TextAlign.Center,
@@ -97,11 +99,11 @@ internal fun HeroSection(stage: Int, presetCount: Int, onNavigate: (HomeDestinat
                     modifier = Modifier.horizontalScroll(rememberScrollState()),
                 ) {
                     listOf(
-                        "100+ Effects" to Canimation.Fade.Up,
-                        "Atomic Design" to Canimation.Entrance.Elevate,
-                        "Accessible" to Canimation.Scale.In,
-                        "Multiplatform" to Canimation.Bounce.In,
-                        "Open Source" to Canimation.Scale.Pop,
+                        stringResource(Res.string.hero_badge_effects) to Canimation.Fade.Up,
+                        stringResource(Res.string.hero_badge_atomic) to Canimation.Entrance.Elevate,
+                        stringResource(Res.string.hero_badge_accessible) to Canimation.Scale.In,
+                        stringResource(Res.string.hero_badge_multiplatform) to Canimation.Bounce.In,
+                        stringResource(Res.string.hero_badge_open_source) to Canimation.Scale.Pop,
                     ).forEachIndexed { index, (label, effect) ->
                         Box(Modifier.canimation(visible = stage >= 2 + index, effect = effect)) {
                             Surface(
@@ -125,10 +127,10 @@ internal fun HeroSection(stage: Int, presetCount: Int, onNavigate: (HomeDestinat
                 Box(Modifier.canimation(visible = stage >= 7, effect = Canimation.Scale.Pop)) {
                     Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
                         Button(onClick = { onNavigate(HomeDestination.Docs) }) {
-                            Text("Get Started")
+                            Text(stringResource(Res.string.hero_get_started))
                         }
                         FilledTonalButton(onClick = { onNavigate(HomeDestination.Examples) }) {
-                            Text("Examples")
+                            Text(stringResource(Res.string.hero_examples))
                         }
                     }
                 }
@@ -146,13 +148,13 @@ internal fun LiveShowcaseSection(stage: Int) {
             Box(Modifier.canimation(visible = stage >= 7, effect = Canimation.Fade.Up)) {
                 Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                     Text(
-                        text = "SHOWCASE",
+                        text = stringResource(Res.string.showcase_label),
                         style = MaterialTheme.typography.labelLarge,
                         color = MaterialTheme.colorScheme.primary,
                         fontWeight = FontWeight.Bold,
                     )
                     Text(
-                        text = "Animations that move",
+                        text = stringResource(Res.string.showcase_title),
                         style = MaterialTheme.typography.headlineMedium,
                         fontWeight = FontWeight.Bold,
                         color = MaterialTheme.colorScheme.onBackground,
@@ -164,22 +166,22 @@ internal fun LiveShowcaseSection(stage: Int) {
 
             data class ShowcaseItem(val name: String, val effect: CanimationEffect, val shape: String, val color: Color)
             val showcaseItems = listOf(
-                ShowcaseItem("Fade Up", Canimation.Fade.Up, "circle", Color(0xFF6366F1)),
-                ShowcaseItem("Scale Pop", Canimation.Scale.Pop, "pill", Color(0xFFEC4899)),
-                ShowcaseItem("Bounce In", Canimation.Bounce.In, "star", Color(0xFF14B8A6)),
-                ShowcaseItem("Spring Up", Canimation.Spring.Up, "diamond", Color(0xFFF59E0B)),
-                ShowcaseItem("Flip In", Canimation.Flip.In, "text", Color(0xFF3B82F6)),
-                ShowcaseItem("Diagonal TL", Canimation.Diagonal.TopLeft, "row", Color(0xFF8B5CF6)),
-                ShowcaseItem("Drop Heavy", Canimation.Drop.Heavy, "button", Color(0xFF22C55E)),
-                ShowcaseItem("Tilt Swing", Canimation.Tilt.Swing, "card", Color(0xFFE11D48)),
-                ShowcaseItem("Elastic Snap", Canimation.Elastic.Snap, "badge", Color(0xFF06B6D4)),
-                ShowcaseItem("Rise Scale", Canimation.Rise.Scale, "icon", Color(0xFFF97316)),
-                ShowcaseItem("Float Up", Canimation.Float.Up, "avatar", Color(0xFF7C3AED)),
-                ShowcaseItem("Shrink In", Canimation.Shrink.Out, "ring", Color(0xFF0EA5E9)),
-                ShowcaseItem("Stretch Snap", Canimation.Stretch.Snap, "line", Color(0xFFD946EF)),
-                ShowcaseItem("Wave Gentle", Canimation.Wave.Gentle, "dots", Color(0xFF10B981)),
-                ShowcaseItem("Glitch In", Canimation.Glitch.In, "tag", Color(0xFFEF4444)),
-                ShowcaseItem("Cinematic", Canimation.Cinematic.Dolly, "chip", Color(0xFF0891B2)),
+                ShowcaseItem(stringResource(Res.string.showcase_fade_up), Canimation.Fade.Up, "circle", Color(0xFF6366F1)),
+                ShowcaseItem(stringResource(Res.string.showcase_scale_pop), Canimation.Scale.Pop, "pill", Color(0xFFEC4899)),
+                ShowcaseItem(stringResource(Res.string.showcase_bounce_in), Canimation.Bounce.In, "star", Color(0xFF14B8A6)),
+                ShowcaseItem(stringResource(Res.string.showcase_spring_up), Canimation.Spring.Up, "diamond", Color(0xFFF59E0B)),
+                ShowcaseItem(stringResource(Res.string.showcase_flip_in), Canimation.Flip.In, "text", Color(0xFF3B82F6)),
+                ShowcaseItem(stringResource(Res.string.showcase_diagonal_tl), Canimation.Diagonal.TopLeft, "row", Color(0xFF8B5CF6)),
+                ShowcaseItem(stringResource(Res.string.showcase_drop_heavy), Canimation.Drop.Heavy, "button", Color(0xFF22C55E)),
+                ShowcaseItem(stringResource(Res.string.showcase_tilt_swing), Canimation.Tilt.Swing, "card", Color(0xFFE11D48)),
+                ShowcaseItem(stringResource(Res.string.showcase_elastic_snap), Canimation.Elastic.Snap, "badge", Color(0xFF06B6D4)),
+                ShowcaseItem(stringResource(Res.string.showcase_rise_scale), Canimation.Rise.Scale, "icon", Color(0xFFF97316)),
+                ShowcaseItem(stringResource(Res.string.showcase_float_up), Canimation.Float.Up, "avatar", Color(0xFF7C3AED)),
+                ShowcaseItem(stringResource(Res.string.showcase_shrink_in), Canimation.Shrink.Out, "ring", Color(0xFF0EA5E9)),
+                ShowcaseItem(stringResource(Res.string.showcase_stretch_snap), Canimation.Stretch.Snap, "line", Color(0xFFD946EF)),
+                ShowcaseItem(stringResource(Res.string.showcase_wave_gentle), Canimation.Wave.Gentle, "dots", Color(0xFF10B981)),
+                ShowcaseItem(stringResource(Res.string.showcase_glitch_in), Canimation.Glitch.In, "tag", Color(0xFFEF4444)),
+                ShowcaseItem(stringResource(Res.string.showcase_cinematic), Canimation.Cinematic.Dolly, "chip", Color(0xFF0891B2)),
             )
             Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
                 showcaseItems.chunked(4).forEachIndexed { rowIndex, row ->
@@ -268,12 +270,12 @@ internal fun ShowcaseShape(shape: String, accent: Color) {
         "diamond" -> Surface(shape = RoundedCornerShape(4.dp), color = accent.copy(alpha = 0.25f),
             border = BorderStroke(1.dp, accent.copy(alpha = 0.5f)),
             modifier = Modifier.size(32.dp).graphicsLayer { rotationZ = 45f }) {}
-        "text" -> Text("Abc", style = MaterialTheme.typography.titleMedium, color = accent, fontWeight = FontWeight.Bold)
+        "text" -> Text(stringResource(Res.string.showcase_demo_abc), style = MaterialTheme.typography.titleMedium, color = accent, fontWeight = FontWeight.Bold)
         "row" -> Row(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
             repeat(3) { Box(Modifier.size(12.dp).background(accent.copy(alpha = 0.4f), RoundedCornerShape(3.dp))) }
         }
         "button" -> Surface(shape = RoundedCornerShape(8.dp), color = accent) {
-            Text("Click", Modifier.padding(horizontal = 10.dp, vertical = 4.dp),
+            Text(stringResource(Res.string.showcase_demo_click), Modifier.padding(horizontal = 10.dp, vertical = 4.dp),
                 style = MaterialTheme.typography.labelSmall, color = Color.White)
         }
         "card" -> Surface(shape = RoundedCornerShape(8.dp), color = accent.copy(alpha = 0.15f),
@@ -285,13 +287,18 @@ internal fun ShowcaseShape(shape: String, accent: Color) {
             }
         }
         "badge" -> Surface(shape = RoundedCornerShape(12.dp), color = accent) {
-            Text("NEW", Modifier.padding(horizontal = 8.dp, vertical = 2.dp),
+            Text(stringResource(Res.string.showcase_demo_new), Modifier.padding(horizontal = 8.dp, vertical = 2.dp),
                 style = MaterialTheme.typography.labelSmall, color = Color.White, fontWeight = FontWeight.Bold)
         }
-        "icon" -> Text("◈", style = MaterialTheme.typography.headlineMedium, color = accent)
+        "icon" -> Icon(
+            imageVector = Icons.Default.Star,
+            contentDescription = null,
+            tint = accent,
+            modifier = Modifier.size(24.dp),
+        )
         "avatar" -> Surface(shape = CircleShape, color = accent, modifier = Modifier.size(36.dp)) {
             Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()) {
-                Text("A", style = MaterialTheme.typography.labelLarge, color = Color.White, fontWeight = FontWeight.Bold)
+                Text(stringResource(Res.string.showcase_demo_avatar), style = MaterialTheme.typography.labelLarge, color = Color.White, fontWeight = FontWeight.Bold)
             }
         }
         "ring" -> Box(Modifier.size(40.dp).background(Color.Transparent, CircleShape)
@@ -309,14 +316,14 @@ internal fun ShowcaseShape(shape: String, accent: Color) {
         }
         "tag" -> Surface(shape = RoundedCornerShape(4.dp), color = accent.copy(alpha = 0.15f),
             border = BorderStroke(1.dp, accent.copy(alpha = 0.4f))) {
-            Text("#tag", Modifier.padding(horizontal = 6.dp, vertical = 2.dp),
+            Text(stringResource(Res.string.showcase_demo_tag), Modifier.padding(horizontal = 6.dp, vertical = 2.dp),
                 style = MaterialTheme.typography.labelSmall, color = accent)
         }
         "chip" -> Surface(shape = RoundedCornerShape(16.dp), color = accent.copy(alpha = 0.15f)) {
             Row(Modifier.padding(horizontal = 8.dp, vertical = 4.dp), verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(4.dp)) {
                 Surface(shape = CircleShape, color = accent, modifier = Modifier.size(8.dp)) {}
-                Text("Label", style = MaterialTheme.typography.labelSmall, color = accent)
+                Text(stringResource(Res.string.showcase_demo_label), style = MaterialTheme.typography.labelSmall, color = accent)
             }
         }
         else -> Surface(shape = RoundedCornerShape(8.dp), color = accent.copy(alpha = 0.25f),

@@ -95,7 +95,7 @@ fun ApiReferenceScreen(modifier: Modifier = Modifier) {
                         ),
                     )
                     Text(
-                        text = "${apiEntries.size} API entries — Modifiers, Composables, Data Classes, Namespace effects, and more",
+                        text = stringResource(Res.string.api_ref_header_count, apiEntries.size),
                         style = MaterialTheme.typography.bodyMedium,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                         modifier = Modifier.canimation(
@@ -123,7 +123,7 @@ fun ApiReferenceScreen(modifier: Modifier = Modifier) {
                             onClick = { onEvent(ApiReferenceEvent.FilterSelected(filter)) },
                             label = {
                                 Text(
-                                    text = "${stringResource(filter.labelRes)} ($count)",
+                                    text = stringResource(Res.string.api_ref_filter_count, stringResource(filter.labelRes), count),
                                     style = MaterialTheme.typography.labelSmall,
                                     fontWeight = if (uiState.selectedFilter == filter) FontWeight.Bold else FontWeight.Normal,
                                 )
@@ -165,7 +165,7 @@ fun ApiReferenceScreen(modifier: Modifier = Modifier) {
                                     letterSpacing = 1.5.sp,
                                 )
                                 Text(
-                                    text = "${entries.size}",
+                                    text = entries.size.toString(),
                                     style = MaterialTheme.typography.labelSmall,
                                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                                 )
@@ -174,40 +174,13 @@ fun ApiReferenceScreen(modifier: Modifier = Modifier) {
                     }
                 }
 
-                if (category == RefFilter.Namespace) {
-                    val subGroups = entries.groupBy { entry ->
-                        entry.name.removePrefix("Canimation.").substringBefore(".")
-                    }
-                    subGroups.forEach { (subCategory, subEntries) ->
-                        item(key = "sub-${category.name}-$subCategory") {
-                            Text(
-                                text = subCategory,
-                                style = MaterialTheme.typography.labelMedium,
-                                color = MaterialTheme.colorScheme.tertiary,
-                                fontWeight = FontWeight.Bold,
-                                letterSpacing = 1.sp,
-                                modifier = Modifier.padding(top = 12.dp, bottom = 4.dp),
-                            )
-                        }
-                        items(subEntries, key = { it.name }) { entry ->
-                            var visible by remember { mutableStateOf(false) }
-                            LaunchedEffect(entry.name) { visible = true }
-                            Box(
-                                Modifier.canimation(visible = visible, effect = Canimation.Fade.Up),
-                            ) {
-                                ApiEntryCard(entry)
-                            }
-                        }
-                    }
-                } else {
-                    items(entries, key = { it.name }) { entry ->
-                        var visible by remember { mutableStateOf(false) }
-                        LaunchedEffect(entry.name) { visible = true }
-                        Box(
-                            Modifier.canimation(visible = visible, effect = Canimation.Fade.Up),
-                        ) {
-                            ApiEntryCard(entry)
-                        }
+                items(entries, key = { it.name.toString() }) { entry ->
+                    var visible by remember { mutableStateOf(false) }
+                    LaunchedEffect(entry.name) { visible = true }
+                    Box(
+                        Modifier.canimation(visible = visible, effect = Canimation.Fade.Up),
+                    ) {
+                        ApiEntryCard(entry)
                     }
                 }
             }

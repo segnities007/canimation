@@ -49,6 +49,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import canimation.composeapp.generated.resources.*
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlin.math.PI
@@ -58,6 +59,7 @@ import kotlin.math.roundToInt
 import kotlin.math.sin
 import io.github.canimation.core.Canimation
 import io.github.canimation.core.canimation
+import org.jetbrains.compose.resources.stringResource
 // ============================================================
 // 2. GradientShift
 // ============================================================
@@ -332,7 +334,7 @@ fun ExpandingSearch(
             if (expanded) {
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(
-                    text = "Search...",
+                    text = stringResource(Res.string.demo_search_placeholder),
                     modifier = Modifier.graphicsLayer { alpha = textAlpha },
                     color = onPrimary,
                     style = MaterialTheme.typography.bodyLarge,

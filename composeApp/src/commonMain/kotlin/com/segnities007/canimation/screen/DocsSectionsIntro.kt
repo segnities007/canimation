@@ -57,6 +57,8 @@ import io.github.canimation.core.CanimationVisibility
 import io.github.canimation.core.canimation
 import io.github.canimation.core.canimationEmphasize
 import io.github.canimation.core.canimationEnter
+import canimation.composeapp.generated.resources.*
+import org.jetbrains.compose.resources.stringResource
 import kotlinx.coroutines.delay
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━ Overview ━━━━━━━━━━━━━━━━━━━━━━━━
@@ -69,12 +71,12 @@ internal fun OverviewContent(stage: Int) {
     ) {
         Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
             Text(
-                "Getting Started",
+                stringResource(Res.string.docs_overview_title),
                 style = MaterialTheme.typography.displaySmall,
                 fontWeight = FontWeight.Black,
             )
             Text(
-                "Production-ready animations for Compose Multiplatform.\nMake your UI speak through motion.",
+                stringResource(Res.string.docs_overview_subtitle),
                 style = MaterialTheme.typography.bodyLarge,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 lineHeight = 26.sp,
@@ -83,7 +85,7 @@ internal fun OverviewContent(stage: Int) {
 
         HeroDemo()
 
-        SectionCard("Getting Started", "Add one dependency, wrap your app, animate anything.") {
+        SectionCard(stringResource(Res.string.docs_getting_started_title), stringResource(Res.string.docs_getting_started_desc)) {
             Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
                 CodeBlock("""// 1. Add dependency
 implementation("io.github.canimation:canimation-core:<version>")
@@ -98,15 +100,15 @@ Modifier.canimation(visible = show, effect = Canimation.Fade.Up)""")
             }
         }
 
-        SectionCard("Atomic Design", "Animations organized into Atoms, Molecules, and Organisms.") {
+        SectionCard(stringResource(Res.string.docs_atomic_design_title), stringResource(Res.string.docs_atomic_design_desc)) {
             Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                AtomicLevelRow("Atoms", "Single-property primitives", "Fade.In, Slide.Up, Scale.In, Rotate.In")
-                AtomicLevelRow("Molecules", "Two-property combos", "Fade.Up, Scale.Pop, Zoom.In, Spring.Up")
-                AtomicLevelRow("Organisms", "Complex multi-property", "Attention.Pulse, Entrance.Drop, Material.FadeThrough")
+                AtomicLevelRow(stringResource(Res.string.docs_atoms_label), stringResource(Res.string.docs_atoms_desc), stringResource(Res.string.docs_atoms_examples))
+                AtomicLevelRow(stringResource(Res.string.docs_molecules_label), stringResource(Res.string.docs_molecules_desc), stringResource(Res.string.docs_molecules_examples))
+                AtomicLevelRow(stringResource(Res.string.docs_organisms_label), stringResource(Res.string.docs_organisms_desc), stringResource(Res.string.docs_organisms_examples))
             }
         }
 
-        SectionCard("What's New", "Expanded Canimation namespace with 100+ effects.") {
+        SectionCard(stringResource(Res.string.docs_whats_new_title), stringResource(Res.string.docs_whats_new_desc)) {
             Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
                 listOf(
                     "Canimation.Attention" to "Pulse, HeartBeat, Tada, Wobble, Swing, RubberBand, Jello, Flash, ShakeX, ShakeY...",
@@ -148,17 +150,17 @@ internal fun QuickStartContent(stage: Int) {
         Modifier.canimation(visible = stage >= 0, effect = Canimation.Fade.Up),
         verticalArrangement = Arrangement.spacedBy(24.dp),
     ) {
-        PageTitle("Quick Start", "Three steps to your first animation")
+        PageTitle(stringResource(Res.string.docs_quickstart_title), stringResource(Res.string.docs_quickstart_desc))
 
-        StepBlock(1, "Add the dependency",
+        StepBlock(1, stringResource(Res.string.docs_step1_title),
             """// build.gradle.kts (commonMain)
 implementation("io.github.canimation:canimation-core:<version>")
 implementation("io.github.canimation:canimation-presets:<version>")""")
-        StepBlock(2, "Wrap your app with CanimationProvider",
+        StepBlock(2, stringResource(Res.string.docs_step2_title),
             """CanimationProvider(policy = CanimationPolicy.SystemAware) {
     MyApp()
 }""")
-        StepBlock(3, "Animate anything with one line",
+        StepBlock(3, stringResource(Res.string.docs_step3_title),
             """// Recommended: Effect API
 Modifier.canimation(visible = show, effect = Canimation.Fade.Up)
 
@@ -172,7 +174,7 @@ Modifier.canimation(visible = show, effect = Canimation.Material.FadeThrough)
 // Attention seekers for emphasis
 Modifier.canimation(visible = pulse, effect = Canimation.Attention.Tada)""")
 
-        DemoBox("Effect API in action") { EffectDemo() }
+        DemoBox(stringResource(Res.string.docs_effect_demo_title)) { EffectDemo() }
     }
 }
 
@@ -184,31 +186,20 @@ internal fun PhilosophyContent(stage: Int) {
         Modifier.canimation(visible = stage >= 0, effect = Canimation.Fade.Up),
         verticalArrangement = Arrangement.spacedBy(24.dp),
     ) {
-        PageTitle("Design Philosophy", "What we believe about animation and why canimation exists")
+        PageTitle(stringResource(Res.string.docs_philosophy_title), stringResource(Res.string.docs_philosophy_desc))
 
-        BodyText(
-            "Animation is not decoration — it is communication. Every transition, every entrance, " +
-            "every emphasis tells the user something: where they came from, where they're going, " +
-            "and what matters right now."
-        )
-        BodyText(
-            "canimation was born from the conviction that great animation should be as easy to add " +
-            "as a color or a font, not a week-long engineering project."
-        )
+        BodyText(stringResource(Res.string.docs_philosophy_body1))
+        BodyText(stringResource(Res.string.docs_philosophy_body2))
 
         PhilosophyDemo()
 
-        BodyText(
-            "The result is a library where a single line — Modifier.canimation(visible, Canimation.Fade.Up) — " +
-            "gives you production-quality motion that respects accessibility settings, adapts to platform conventions, " +
-            "and composes naturally with other effects via the + operator."
-        )
+        BodyText(stringResource(Res.string.docs_philosophy_body3))
     }
 }
 
 @Composable
 private fun PhilosophyDemo() {
-    DemoBox("Animation as Communication") {
+    DemoBox(stringResource(Res.string.docs_philosophy_demo_title)) {
         var step by remember { mutableIntStateOf(0) }
         LaunchedEffect(Unit) {
             while (true) { for (i in 0..3) { delay(if (i == 0) 800L else 1200L); step = i }; delay(1600); step = -1; delay(600) }
@@ -220,9 +211,9 @@ private fun PhilosophyDemo() {
         ) {
             Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
                 listOf(
-                    "Origin" to Canimation.Fade.Left,
-                    "Focus" to Canimation.Scale.Pop,
-                    "Destination" to Canimation.Fade.Right,
+                    stringResource(Res.string.docs_philosophy_origin) to Canimation.Fade.Left,
+                    stringResource(Res.string.docs_philosophy_focus) to Canimation.Scale.Pop,
+                    stringResource(Res.string.docs_philosophy_destination) to Canimation.Fade.Right,
                 ).forEachIndexed { i, (label, effect) ->
                     Surface(
                         shape = RoundedCornerShape(10.dp),
@@ -256,9 +247,9 @@ private fun PhilosophyDemo() {
             Text(
                 when {
                     step < 0 -> ""
-                    step == 0 -> "← Where you came from"
-                    step == 1 -> "◉ What matters now"
-                    else -> "→ Where you're going"
+                    step == 0 -> stringResource(Res.string.docs_philosophy_hint_origin)
+                    step == 1 -> stringResource(Res.string.docs_philosophy_hint_focus)
+                    else -> stringResource(Res.string.docs_philosophy_hint_destination)
                 },
                 style = MaterialTheme.typography.labelSmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,

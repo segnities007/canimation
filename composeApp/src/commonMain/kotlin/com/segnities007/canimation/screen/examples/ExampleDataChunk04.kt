@@ -3,167 +3,381 @@ package com.segnities007.canimation.screen.examples
 import io.github.canimation.core.Canimation
 import io.github.canimation.core.CanimationEffect
 import io.github.canimation.core.CanimationPreset
+import canimation.composeapp.generated.resources.*
+
 
 internal val exampleCategoriesChunk04: List<ExampleCategory> = listOf(
         ExampleCategory(
             id = "elastic",
-            title = "Elastic",
-            subtitle = "Elastic spring-like effects",
+            title = Res.string.examples_data_elastic_title,
+            subtitle = Res.string.examples_data_elastic_subtitle,
             accentLabel = "ENTRANCE",
             tags = listOf("ENTRANCE"),
             examples = listOf(
-                ExampleItem("Elastic In", "Elastic stretch entry", "Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Elastic.In,\n)", effect = Canimation.Elastic.In),
-                ExampleItem("Elastic Stretch", "Full elastic stretch", "Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Elastic.Stretch,\n)", effect = Canimation.Elastic.Stretch),
-                ExampleItem("Elastic Squash", "Squash compression", "Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Elastic.Squash,\n)", effect = Canimation.Elastic.Squash),
-                ExampleItem("Elastic Snap", "Snappy elastic entry", "Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Elastic.Snap,\n)", effect = Canimation.Elastic.Snap),
-                ExampleItem("Elastic Wobble", "Wobbly elastic", "Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Elastic.Wobble,\n)", effect = Canimation.Elastic.Wobble),
+                ExampleItem(
+                    title = Res.string.examples_data_elastic_item_01_title,
+                    description = Res.string.examples_data_elastic_item_01_description,
+                    codeSnippet = Res.string.examples_data_elastic_item_01_code, effect = Canimation.Elastic.In
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_elastic_item_02_title,
+                    description = Res.string.examples_data_elastic_item_02_description,
+                    codeSnippet = Res.string.examples_data_elastic_item_02_code, effect = Canimation.Elastic.Stretch
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_elastic_item_03_title,
+                    description = Res.string.examples_data_elastic_item_03_description,
+                    codeSnippet = Res.string.examples_data_elastic_item_03_code, effect = Canimation.Elastic.Squash
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_elastic_item_04_title,
+                    description = Res.string.examples_data_elastic_item_04_description,
+                    codeSnippet = Res.string.examples_data_elastic_item_04_code, effect = Canimation.Elastic.Snap
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_elastic_item_05_title,
+                    description = Res.string.examples_data_elastic_item_05_description,
+                    codeSnippet = Res.string.examples_data_elastic_item_05_code, effect = Canimation.Elastic.Wobble
+                ),
             ),
         ),
         ExampleCategory(
             id = "cinematic",
-            title = "Cinematic",
-            subtitle = "Cinematic film-inspired effects",
+            title = Res.string.examples_data_cinematic_title,
+            subtitle = Res.string.examples_data_cinematic_subtitle,
             accentLabel = "ENTRANCE",
             tags = listOf("ENTRANCE"),
             examples = listOf(
-                ExampleItem("Cinematic Curtain", "Curtain reveal from top", "Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Cinematic.Curtain,\n)", effect = Canimation.Cinematic.Curtain),
-                ExampleItem("Cinematic Zoom Pan", "Camera zoom pan", "Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Cinematic.ZoomPan,\n)", effect = Canimation.Cinematic.ZoomPan),
-                ExampleItem("Cinematic Dolly", "Dolly zoom effect", "Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Cinematic.Dolly,\n)", effect = Canimation.Cinematic.Dolly),
-                ExampleItem("Cinematic Reveal", "Subtle cinematic reveal", "Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Cinematic.Reveal,\n)", effect = Canimation.Cinematic.Reveal),
-                ExampleItem("Cinematic Fade", "Fade to black style", "Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Cinematic.FadeToBlack,\n)", effect = Canimation.Cinematic.FadeToBlack),
-                ExampleItem("Cinematic Dramatic", "Dramatic entrance", "Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Cinematic.Dramatic,\n)", effect = Canimation.Cinematic.Dramatic),
+                ExampleItem(
+                    title = Res.string.examples_data_cinematic_item_06_title,
+                    description = Res.string.examples_data_cinematic_item_06_description,
+                    codeSnippet = Res.string.examples_data_cinematic_item_06_code, effect = Canimation.Cinematic.Curtain
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_cinematic_item_07_title,
+                    description = Res.string.examples_data_cinematic_item_07_description,
+                    codeSnippet = Res.string.examples_data_cinematic_item_07_code, effect = Canimation.Cinematic.ZoomPan
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_cinematic_item_08_title,
+                    description = Res.string.examples_data_cinematic_item_08_description,
+                    codeSnippet = Res.string.examples_data_cinematic_item_08_code, effect = Canimation.Cinematic.Dolly
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_cinematic_item_09_title,
+                    description = Res.string.examples_data_cinematic_item_09_description,
+                    codeSnippet = Res.string.examples_data_cinematic_item_09_code, effect = Canimation.Cinematic.Reveal
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_cinematic_item_10_title,
+                    description = Res.string.examples_data_cinematic_item_10_description,
+                    codeSnippet = Res.string.examples_data_cinematic_item_10_code, effect = Canimation.Cinematic.FadeToBlack
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_cinematic_item_11_title,
+                    description = Res.string.examples_data_cinematic_item_11_description,
+                    codeSnippet = Res.string.examples_data_cinematic_item_11_code, effect = Canimation.Cinematic.Dramatic
+                ),
             ),
         ),
         ExampleCategory(
             id = "playful",
-            title = "Playful",
-            subtitle = "Playful fun effects",
+            title = Res.string.examples_data_playful_title,
+            subtitle = Res.string.examples_data_playful_subtitle,
             accentLabel = "ENTRANCE",
             tags = listOf("ENTRANCE"),
             examples = listOf(
-                ExampleItem("Playful Wiggle", "Fun wiggle entry", "Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Playful.Wiggle,\n)", effect = Canimation.Playful.Wiggle),
-                ExampleItem("Playful Hop", "Hop bounce entry", "Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Playful.Hop,\n)", effect = Canimation.Playful.Hop),
-                ExampleItem("Playful Spin", "Playful spin entry", "Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Playful.Spin,\n)", effect = Canimation.Playful.Spin),
-                ExampleItem("Playful Pop", "Quick playful pop", "Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Playful.Pop,\n)", effect = Canimation.Playful.Pop),
-                ExampleItem("Playful Twirl", "Twirling entry", "Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Playful.Twirl,\n)", effect = Canimation.Playful.Twirl),
-                ExampleItem("Playful Boing", "Spring boing effect", "Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Playful.Boing,\n)", effect = Canimation.Playful.Boing),
+                ExampleItem(
+                    title = Res.string.examples_data_playful_item_12_title,
+                    description = Res.string.examples_data_playful_item_12_description,
+                    codeSnippet = Res.string.examples_data_playful_item_12_code, effect = Canimation.Playful.Wiggle
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_playful_item_13_title,
+                    description = Res.string.examples_data_playful_item_13_description,
+                    codeSnippet = Res.string.examples_data_playful_item_13_code, effect = Canimation.Playful.Hop
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_playful_item_14_title,
+                    description = Res.string.examples_data_playful_item_14_description,
+                    codeSnippet = Res.string.examples_data_playful_item_14_code, effect = Canimation.Playful.Spin
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_playful_item_15_title,
+                    description = Res.string.examples_data_playful_item_15_description,
+                    codeSnippet = Res.string.examples_data_playful_item_15_code, effect = Canimation.Playful.Pop
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_playful_item_16_title,
+                    description = Res.string.examples_data_playful_item_16_description,
+                    codeSnippet = Res.string.examples_data_playful_item_16_code, effect = Canimation.Playful.Twirl
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_playful_item_17_title,
+                    description = Res.string.examples_data_playful_item_17_description,
+                    codeSnippet = Res.string.examples_data_playful_item_17_code, effect = Canimation.Playful.Boing
+                ),
             ),
         ),
         ExampleCategory(
             id = "diagonal",
-            title = "Diagonal",
-            subtitle = "Diagonal movement entries",
+            title = Res.string.examples_data_diagonal_title,
+            subtitle = Res.string.examples_data_diagonal_subtitle,
             accentLabel = "MOVEMENT",
             tags = listOf("ENTRANCE", "MOVEMENT"),
             examples = listOf(
-                ExampleItem("Diagonal Top Left", "Enter from top-left corner", "Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Diagonal.TopLeft,\n)", effect = Canimation.Diagonal.TopLeft),
-                ExampleItem("Diagonal Top Right", "Enter from top-right corner", "Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Diagonal.TopRight,\n)", effect = Canimation.Diagonal.TopRight),
-                ExampleItem("Diagonal Bottom Left", "Enter from bottom-left corner", "Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Diagonal.BottomLeft,\n)", effect = Canimation.Diagonal.BottomLeft),
-                ExampleItem("Diagonal Bottom Right", "Enter from bottom-right corner", "Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Diagonal.BottomRight,\n)", effect = Canimation.Diagonal.BottomRight),
-                ExampleItem("Diagonal Subtle", "Subtle diagonal entry", "Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Diagonal.Subtle,\n)", effect = Canimation.Diagonal.Subtle),
+                ExampleItem(
+                    title = Res.string.examples_data_diagonal_item_18_title,
+                    description = Res.string.examples_data_diagonal_item_18_description,
+                    codeSnippet = Res.string.examples_data_diagonal_item_18_code, effect = Canimation.Diagonal.TopLeft
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_diagonal_item_19_title,
+                    description = Res.string.examples_data_diagonal_item_19_description,
+                    codeSnippet = Res.string.examples_data_diagonal_item_19_code, effect = Canimation.Diagonal.TopRight
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_diagonal_item_20_title,
+                    description = Res.string.examples_data_diagonal_item_20_description,
+                    codeSnippet = Res.string.examples_data_diagonal_item_20_code, effect = Canimation.Diagonal.BottomLeft
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_diagonal_item_21_title,
+                    description = Res.string.examples_data_diagonal_item_21_description,
+                    codeSnippet = Res.string.examples_data_diagonal_item_21_code, effect = Canimation.Diagonal.BottomRight
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_diagonal_item_22_title,
+                    description = Res.string.examples_data_diagonal_item_22_description,
+                    codeSnippet = Res.string.examples_data_diagonal_item_22_code, effect = Canimation.Diagonal.Subtle
+                ),
             ),
         ),
         ExampleCategory(
             id = "shrink",
-            title = "Shrink",
-            subtitle = "Shrink-from-large entry animations",
+            title = Res.string.examples_data_shrink_title,
+            subtitle = Res.string.examples_data_shrink_subtitle,
             accentLabel = "SCALE",
             tags = listOf("ENTRANCE", "SCALE"),
             examples = listOf(
-                ExampleItem("Shrink Out", "Shrink from oversized", "Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Shrink.Out,\n)", effect = Canimation.Shrink.Out),
-                ExampleItem("Shrink Subtle", "Subtle shrink entry", "Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Shrink.Subtle,\n)", effect = Canimation.Shrink.Subtle),
-                ExampleItem("Shrink Rotate", "Shrink with rotation", "Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Shrink.Rotate,\n)", effect = Canimation.Shrink.Rotate),
-                ExampleItem("Shrink Fade Down", "Shrink and drift down", "Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Shrink.FadeDown,\n)", effect = Canimation.Shrink.FadeDown),
+                ExampleItem(
+                    title = Res.string.examples_data_shrink_item_23_title,
+                    description = Res.string.examples_data_shrink_item_23_description,
+                    codeSnippet = Res.string.examples_data_shrink_item_23_code, effect = Canimation.Shrink.Out
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_shrink_item_24_title,
+                    description = Res.string.examples_data_shrink_item_24_description,
+                    codeSnippet = Res.string.examples_data_shrink_item_24_code, effect = Canimation.Shrink.Subtle
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_shrink_item_25_title,
+                    description = Res.string.examples_data_shrink_item_25_description,
+                    codeSnippet = Res.string.examples_data_shrink_item_25_code, effect = Canimation.Shrink.Rotate
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_shrink_item_26_title,
+                    description = Res.string.examples_data_shrink_item_26_description,
+                    codeSnippet = Res.string.examples_data_shrink_item_26_code, effect = Canimation.Shrink.FadeDown
+                ),
             ),
         ),
         ExampleCategory(
             id = "tilt",
-            title = "Tilt",
-            subtitle = "Tilting skew entries",
+            title = Res.string.examples_data_tilt_title,
+            subtitle = Res.string.examples_data_tilt_subtitle,
             accentLabel = "ROTATE",
             tags = listOf("ENTRANCE", "ROTATE"),
             examples = listOf(
-                ExampleItem("Tilt Left", "Tilt in from left", "Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Tilt.Left,\n)", effect = Canimation.Tilt.Left),
-                ExampleItem("Tilt Right", "Tilt in from right", "Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Tilt.Right,\n)", effect = Canimation.Tilt.Right),
-                ExampleItem("Tilt Up", "Tilt entry from above", "Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Tilt.Up,\n)", effect = Canimation.Tilt.Up),
-                ExampleItem("Tilt Down", "Tilt entry from below", "Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Tilt.Down,\n)", effect = Canimation.Tilt.Down),
-                ExampleItem("Tilt Swing", "Swinging tilt entry", "Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Tilt.Swing,\n)", effect = Canimation.Tilt.Swing),
+                ExampleItem(
+                    title = Res.string.examples_data_tilt_item_27_title,
+                    description = Res.string.examples_data_tilt_item_27_description,
+                    codeSnippet = Res.string.examples_data_tilt_item_27_code, effect = Canimation.Tilt.Left
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_tilt_item_28_title,
+                    description = Res.string.examples_data_tilt_item_28_description,
+                    codeSnippet = Res.string.examples_data_tilt_item_28_code, effect = Canimation.Tilt.Right
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_tilt_item_29_title,
+                    description = Res.string.examples_data_tilt_item_29_description,
+                    codeSnippet = Res.string.examples_data_tilt_item_29_code, effect = Canimation.Tilt.Up
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_tilt_item_30_title,
+                    description = Res.string.examples_data_tilt_item_30_description,
+                    codeSnippet = Res.string.examples_data_tilt_item_30_code, effect = Canimation.Tilt.Down
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_tilt_item_31_title,
+                    description = Res.string.examples_data_tilt_item_31_description,
+                    codeSnippet = Res.string.examples_data_tilt_item_31_code, effect = Canimation.Tilt.Swing
+                ),
             ),
         ),
         ExampleCategory(
             id = "float",
-            title = "Float",
-            subtitle = "Gentle floating animations",
+            title = Res.string.examples_data_float_title,
+            subtitle = Res.string.examples_data_float_subtitle,
             accentLabel = "SUBTLE",
             tags = listOf("ENTRANCE", "SUBTLE"),
             examples = listOf(
-                ExampleItem("Float Up", "Float up gently", "Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Float.Up,\n)", effect = Canimation.Float.Up),
-                ExampleItem("Float Down", "Float down gently", "Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Float.Down,\n)", effect = Canimation.Float.Down),
-                ExampleItem("Float Gentle", "Very gentle float", "Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Float.Gentle,\n)", effect = Canimation.Float.Gentle),
-                ExampleItem("Float Scale Up", "Float with subtle scale", "Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Float.ScaleUp,\n)", effect = Canimation.Float.ScaleUp),
+                ExampleItem(
+                    title = Res.string.examples_data_float_item_32_title,
+                    description = Res.string.examples_data_float_item_32_description,
+                    codeSnippet = Res.string.examples_data_float_item_32_code, effect = Canimation.Float.Up
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_float_item_33_title,
+                    description = Res.string.examples_data_float_item_33_description,
+                    codeSnippet = Res.string.examples_data_float_item_33_code, effect = Canimation.Float.Down
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_float_item_34_title,
+                    description = Res.string.examples_data_float_item_34_description,
+                    codeSnippet = Res.string.examples_data_float_item_34_code, effect = Canimation.Float.Gentle
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_float_item_35_title,
+                    description = Res.string.examples_data_float_item_35_description,
+                    codeSnippet = Res.string.examples_data_float_item_35_code, effect = Canimation.Float.ScaleUp
+                ),
             ),
         ),
         ExampleCategory(
             id = "drop",
-            title = "Drop",
-            subtitle = "Gravity-like drop entries",
+            title = Res.string.examples_data_drop_title,
+            subtitle = Res.string.examples_data_drop_subtitle,
             accentLabel = "MOVEMENT",
             tags = listOf("ENTRANCE", "MOVEMENT"),
             examples = listOf(
-                ExampleItem("Drop In", "Standard drop entry", "Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Drop.In,\n)", effect = Canimation.Drop.In),
-                ExampleItem("Drop Heavy", "Heavy slam drop", "Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Drop.Heavy,\n)", effect = Canimation.Drop.Heavy),
-                ExampleItem("Drop Light", "Light feather drop", "Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Drop.Light,\n)", effect = Canimation.Drop.Light),
-                ExampleItem("Drop Rotate", "Drop with rotation", "Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Drop.Rotate,\n)", effect = Canimation.Drop.Rotate),
+                ExampleItem(
+                    title = Res.string.examples_data_drop_item_36_title,
+                    description = Res.string.examples_data_drop_item_36_description,
+                    codeSnippet = Res.string.examples_data_drop_item_36_code, effect = Canimation.Drop.In
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_drop_item_37_title,
+                    description = Res.string.examples_data_drop_item_37_description,
+                    codeSnippet = Res.string.examples_data_drop_item_37_code, effect = Canimation.Drop.Heavy
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_drop_item_38_title,
+                    description = Res.string.examples_data_drop_item_38_description,
+                    codeSnippet = Res.string.examples_data_drop_item_38_code, effect = Canimation.Drop.Light
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_drop_item_39_title,
+                    description = Res.string.examples_data_drop_item_39_description,
+                    codeSnippet = Res.string.examples_data_drop_item_39_code, effect = Canimation.Drop.Rotate
+                ),
             ),
         ),
         ExampleCategory(
             id = "rise",
-            title = "Rise",
-            subtitle = "Ascending rise entries",
+            title = Res.string.examples_data_rise_title,
+            subtitle = Res.string.examples_data_rise_subtitle,
             accentLabel = "MOVEMENT",
             tags = listOf("ENTRANCE", "MOVEMENT"),
             examples = listOf(
-                ExampleItem("Rise In", "Standard rise entry", "Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Rise.In,\n)", effect = Canimation.Rise.In),
-                ExampleItem("Rise Slow", "Slow rising entry", "Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Rise.Slow,\n)", effect = Canimation.Rise.Slow),
-                ExampleItem("Rise Scale", "Rise with scale", "Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Rise.Scale,\n)", effect = Canimation.Rise.Scale),
-                ExampleItem("Rise Rotate", "Rise with rotation", "Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Rise.Rotate,\n)", effect = Canimation.Rise.Rotate),
+                ExampleItem(
+                    title = Res.string.examples_data_rise_item_40_title,
+                    description = Res.string.examples_data_rise_item_40_description,
+                    codeSnippet = Res.string.examples_data_rise_item_40_code, effect = Canimation.Rise.In
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_rise_item_41_title,
+                    description = Res.string.examples_data_rise_item_41_description,
+                    codeSnippet = Res.string.examples_data_rise_item_41_code, effect = Canimation.Rise.Slow
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_rise_item_42_title,
+                    description = Res.string.examples_data_rise_item_42_description,
+                    codeSnippet = Res.string.examples_data_rise_item_42_code, effect = Canimation.Rise.Scale
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_rise_item_43_title,
+                    description = Res.string.examples_data_rise_item_43_description,
+                    codeSnippet = Res.string.examples_data_rise_item_43_code, effect = Canimation.Rise.Rotate
+                ),
             ),
         ),
         ExampleCategory(
             id = "stretch",
-            title = "Stretch",
-            subtitle = "Stretch deformation entries",
+            title = Res.string.examples_data_stretch_title,
+            subtitle = Res.string.examples_data_stretch_subtitle,
             accentLabel = "SCALE",
             tags = listOf("ENTRANCE", "SCALE"),
             examples = listOf(
-                ExampleItem("Stretch Horizontal", "Horizontal stretch entry", "Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Stretch.Horizontal,\n)", effect = Canimation.Stretch.Horizontal),
-                ExampleItem("Stretch Vertical", "Vertical stretch entry", "Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Stretch.Vertical,\n)", effect = Canimation.Stretch.Vertical),
-                ExampleItem("Stretch Both", "Stretch from both axes", "Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Stretch.Both,\n)", effect = Canimation.Stretch.Both),
-                ExampleItem("Stretch Snap", "Stretch with snap", "Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Stretch.Snap,\n)", effect = Canimation.Stretch.Snap),
+                ExampleItem(
+                    title = Res.string.examples_data_stretch_item_44_title,
+                    description = Res.string.examples_data_stretch_item_44_description,
+                    codeSnippet = Res.string.examples_data_stretch_item_44_code, effect = Canimation.Stretch.Horizontal
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_stretch_item_45_title,
+                    description = Res.string.examples_data_stretch_item_45_description,
+                    codeSnippet = Res.string.examples_data_stretch_item_45_code, effect = Canimation.Stretch.Vertical
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_stretch_item_46_title,
+                    description = Res.string.examples_data_stretch_item_46_description,
+                    codeSnippet = Res.string.examples_data_stretch_item_46_code, effect = Canimation.Stretch.Both
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_stretch_item_47_title,
+                    description = Res.string.examples_data_stretch_item_47_description,
+                    codeSnippet = Res.string.examples_data_stretch_item_47_code, effect = Canimation.Stretch.Snap
+                ),
             ),
         ),
         ExampleCategory(
             id = "navigation-ui",
-            title = "Navigation UI",
-            subtitle = "Animated navigation components",
+            title = Res.string.examples_data_navigation_ui_title,
+            subtitle = Res.string.examples_data_navigation_ui_subtitle,
             accentLabel = "UI",
             tags = listOf("UI", "NAVIGATION"),
             examples = listOf(
-                ExampleItem("Animated Breadcrumb", "Staggered breadcrumb trail", "AnimatedBreadcrumb(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Fade.Up,\n))", demoType = DemoType.Component, componentKey = ComponentDemoKeys.AnimatedBreadcrumb),
-                ExampleItem("Animated Nav Item", "Bottom nav with animated selection", "AnimatedNavItem(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Drop.Light,\n))", demoType = DemoType.Component, componentKey = ComponentDemoKeys.AnimatedNavItem),
+                ExampleItem(
+                    title = Res.string.examples_data_navigation_ui_item_48_title,
+                    description = Res.string.examples_data_navigation_ui_item_48_description,
+                    codeSnippet = Res.string.examples_data_navigation_ui_item_48_code, demoType = DemoType.Component, componentKey = ComponentDemoKeys.AnimatedBreadcrumb
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_navigation_ui_item_49_title,
+                    description = Res.string.examples_data_navigation_ui_item_49_description,
+                    codeSnippet = Res.string.examples_data_navigation_ui_item_49_code, demoType = DemoType.Component, componentKey = ComponentDemoKeys.AnimatedNavItem
+                ),
             ),
         ),
         ExampleCategory(
             id = "data-display",
-            title = "Data Display",
-            subtitle = "Animated data visualization components",
+            title = Res.string.examples_data_data_display_title,
+            subtitle = Res.string.examples_data_data_display_subtitle,
             accentLabel = "UI",
             tags = listOf("UI", "DATA"),
             examples = listOf(
-                ExampleItem("Animated Timeline", "Staggered event timeline", "AnimatedTimeline(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Rise.In,\n))", demoType = DemoType.Component, componentKey = ComponentDemoKeys.AnimatedTimeline),
-                ExampleItem("Animated Stat Card", "Stats card with tilt entry", "AnimatedStatCard(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Tilt.Swing,\n))", demoType = DemoType.Component, componentKey = ComponentDemoKeys.AnimatedStatCard),
-                ExampleItem("Animated KPI", "Key performance indicators", "AnimatedKpi(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Rise.Scale,\n))", demoType = DemoType.Component, componentKey = ComponentDemoKeys.AnimatedKpi),
-                ExampleItem("Animated Rating", "Star rating animation", "AnimatedRating(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Scale.Pop,\n))", demoType = DemoType.Component, componentKey = ComponentDemoKeys.AnimatedRating),
+                ExampleItem(
+                    title = Res.string.examples_data_data_display_item_50_title,
+                    description = Res.string.examples_data_data_display_item_50_description,
+                    codeSnippet = Res.string.examples_data_data_display_item_50_code, demoType = DemoType.Component, componentKey = ComponentDemoKeys.AnimatedTimeline
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_data_display_item_51_title,
+                    description = Res.string.examples_data_data_display_item_51_description,
+                    codeSnippet = Res.string.examples_data_data_display_item_51_code, demoType = DemoType.Component, componentKey = ComponentDemoKeys.AnimatedStatCard
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_data_display_item_52_title,
+                    description = Res.string.examples_data_data_display_item_52_description,
+                    codeSnippet = Res.string.examples_data_data_display_item_52_code, demoType = DemoType.Component, componentKey = ComponentDemoKeys.AnimatedKpi
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_data_display_item_53_title,
+                    description = Res.string.examples_data_data_display_item_53_description,
+                    codeSnippet = Res.string.examples_data_data_display_item_53_code, demoType = DemoType.Component, componentKey = ComponentDemoKeys.AnimatedRating
+                ),
             ),
         ),
 )

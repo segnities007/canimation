@@ -102,7 +102,7 @@ fun PresetGalleryScreen(
                         ),
                     )
                     Text(
-                        text = "${CanimationPreset.entries.size} Presets",
+                        text = stringResource(Res.string.gallery_presets_count, CanimationPreset.entries.size),
                         style = MaterialTheme.typography.headlineMedium,
                         fontWeight = FontWeight.Bold,
                         modifier = Modifier.canimation(
@@ -188,7 +188,7 @@ private fun CodeSampleDialog(
         onDismissRequest = onDismiss,
         title = {
             Box(Modifier.canimation(visible = dialogVisible, effect = Canimation.Scale.Pop)) {
-                Text("${preset.name} code sample")
+                Text(stringResource(Res.string.gallery_code_sample_title, preset.name))
             }
         },
         text = {

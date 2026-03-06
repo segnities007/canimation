@@ -1,22 +1,32 @@
 package com.segnities007.canimation.screen
 
-internal enum class RefFilter(val label: String) {
-    All("All"),
-    Modifiers("Modifiers"),
-    Composables("Composables"),
-    DataClasses("Data Classes"),
-    Namespace("Canimation.*"),
-    Factories("Factories"),
-    Enums("Enums & Policies"),
+import canimation.composeapp.generated.resources.Res
+import canimation.composeapp.generated.resources.api_filter_all
+import canimation.composeapp.generated.resources.api_filter_composables
+import canimation.composeapp.generated.resources.api_filter_data_classes
+import canimation.composeapp.generated.resources.api_filter_enums
+import canimation.composeapp.generated.resources.api_filter_factories
+import canimation.composeapp.generated.resources.api_filter_modifiers
+import canimation.composeapp.generated.resources.api_filter_namespace
+import org.jetbrains.compose.resources.StringResource
+
+internal enum class RefFilter(val labelRes: StringResource) {
+    All(Res.string.api_filter_all),
+    Modifiers(Res.string.api_filter_modifiers),
+    Composables(Res.string.api_filter_composables),
+    DataClasses(Res.string.api_filter_data_classes),
+    Namespace(Res.string.api_filter_namespace),
+    Factories(Res.string.api_filter_factories),
+    Enums(Res.string.api_filter_enums),
 }
 
 internal data class ApiEntry(
-    val name: String,
-    val signature: String,
-    val description: String,
+    val name: StringResource,
+    val signature: StringResource,
+    val description: StringResource,
     val category: RefFilter,
-    val badge: String = "",
-    val codeExample: String = "",
+    val badge: StringResource? = null,
+    val codeExample: StringResource? = null,
 )
 
 internal data class ApiReferenceUiState(
