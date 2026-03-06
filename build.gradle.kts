@@ -10,10 +10,3 @@ plugins {
     alias(libs.plugins.kotlinMultiplatform) apply false
     alias(libs.plugins.kover) apply false
 }
-
-if (tasks.findByName("koverVerify") == null) {
-    tasks.register("koverVerify") {
-        group = "verification"
-        description = "Compatibility verification task until Kover supports Android KMP modules."
-    }
-}
