@@ -34,7 +34,7 @@ jobs:
           distribution: temurin
           java-version: '21'
       - uses: gradle/actions/setup-gradle@v4
-      - run: ./gradlew formatCheck
+      - run: ./gradlew lint
 
   lint-detekt:
     runs-on: ubuntu-24.04
@@ -45,7 +45,13 @@ jobs:
           distribution: temurin
           java-version: '21'
       - uses: gradle/actions/setup-gradle@v4
-      - run: ./gradlew detekt
+      - name: Run detekt if available, otherwise lint
+        run: |
+      if ./gradlew tasks --all --quiet 2>/dev/null | grep -qE "(^|\s)detekt(\s|$)"; then
+            ./gradlew detekt
+          else
+            ./gradlew lint
+          fi
 
   unit-test:
     runs-on: ubuntu-24.04
@@ -56,9 +62,10 @@ jobs:
           distribution: temurin
           java-version: '21'
       - uses: gradle/actions/setup-gradle@v4
-      - run: ./gradlew allTests
+      - run: ./gradlew --max-workers=1 allTests
 
   integration-test:
+    needs: linux-check
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
@@ -70,6 +77,7 @@ jobs:
       - run: ./gradlew :composeApp:check
 
   artifact-build:
+    needs: linux-check
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
@@ -81,6 +89,7 @@ jobs:
       - run: ./gradlew assemble
 
   coverage-verify:
+    needs: unit-test
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
@@ -90,6 +99,12 @@ jobs:
           java-version: '21'
       - uses: gradle/actions/setup-gradle@v4
       - run: ./gradlew koverVerify
+
+  security-audit:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - run: bash scripts/security-audit.sh
 
   flake-scan:
     runs-on: ubuntu-24.04

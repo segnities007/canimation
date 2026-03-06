@@ -69,6 +69,9 @@ jobs:
           CANIMATION_MAVEN_URL: ${{ secrets.CANIMATION_MAVEN_URL }}
           CANIMATION_MAVEN_USERNAME: ${{ secrets.CANIMATION_MAVEN_USERNAME }}
           CANIMATION_MAVEN_PASSWORD: ${{ secrets.CANIMATION_MAVEN_PASSWORD }}
+          CANIMATION_SIGNING_KEY: ${{ secrets.CANIMATION_SIGNING_KEY }}
+          CANIMATION_SIGNING_PASSWORD: ${{ secrets.CANIMATION_SIGNING_PASSWORD }}
+          CANIMATION_SIGNING_KEY_ID: ${{ secrets.CANIMATION_SIGNING_KEY_ID }}
         run: ./gradlew publish
 
   docs-deploy:
