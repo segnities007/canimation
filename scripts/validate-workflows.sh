@@ -21,16 +21,16 @@ check_runner() {
   fi
 }
 
-# Validate pr.yml (CI)
-PR_FILE=".github/workflows/pr.yml"
-if [ ! -f "$PR_FILE" ]; then
-  echo "ERROR: $PR_FILE does not exist"
+# Validate ci.yml
+CI_FILE=".github/workflows/ci.yml"
+if [ ! -f "$CI_FILE" ]; then
+  echo "ERROR: $CI_FILE does not exist"
   ERRORS=$((ERRORS + 1))
 else
-  for job in lint test build security-audit coverage; do
-    check_job "$PR_FILE" "$job"
+  for job in lint test build security-audit; do
+    check_job "$CI_FILE" "$job"
   done
-  check_runner "$PR_FILE" "ubuntu-24.04"
+  check_runner "$CI_FILE" "ubuntu-24.04"
 fi
 
 # Validate release.yml

@@ -19,12 +19,7 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 15
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-java@v4
-        with:
-          distribution: temurin
-          java-version: '21'
-      - uses: gradle/actions/setup-gradle@v4
+      - uses: ./.github/actions/setup-build
       - name: Build Wasm production bundle
         run: ./gradlew :composeApp:wasmJsBrowserProductionWebpack
       - name: Upload Pages artifact

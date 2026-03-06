@@ -17,14 +17,8 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 25
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-java@v4
-        with:
-          distribution: temurin
-          java-version: '21'
-      - uses: gradle/actions/setup-gradle@v4
-      - run: ./gradlew allTests --max-workers=2
-      - run: ./gradlew koverVerify
+      - uses: ./.github/actions/setup-build
+      - run: ./gradlew allTests koverVerify --max-workers=2
 
   publish:
     needs: check
@@ -32,12 +26,7 @@ jobs:
     timeout-minutes: 20
     environment: release
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-java@v4
-        with:
-          distribution: temurin
-          java-version: '21'
-      - uses: gradle/actions/setup-gradle@v4
+      - uses: ./.github/actions/setup-build
       - name: Publish
         env:
           CANIMATION_MAVEN_URL: ${{ secrets.CANIMATION_MAVEN_URL }}
