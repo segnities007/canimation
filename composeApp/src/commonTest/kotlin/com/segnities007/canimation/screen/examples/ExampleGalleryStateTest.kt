@@ -1,5 +1,6 @@
 package com.segnities007.canimation.screen.examples
 
+import canimation.composeapp.generated.resources.Res
 import io.github.canimation.core.Canimation
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -20,25 +21,35 @@ class ExampleGalleryStateTest {
     @Test
     fun filterGalleryItemsAppliesSearchAndTagTogether() {
         val items = listOf(
-            GalleryItem(
-                item = ExampleItem(
-                    title = "Fade Up",
-                    description = "Simple entrance",
-                    codeSnippet = "Modifier.canimation(...)",
-                    effect = Canimation.Fade.Up,
+            ResolvedGalleryItem(
+                galleryItem = GalleryItem(
+                    item = ExampleItem(
+                        title = Res.string.gallery_label,
+                        description = Res.string.gallery_description,
+                        codeSnippet = Res.string.app_title,
+                        effect = Canimation.Fade.Up,
+                    ),
+                    tag = "ENTRANCE",
+                    globalIndex = 0,
                 ),
-                tag = "ENTRANCE",
-                globalIndex = 0,
+                title = "Fade Up",
+                description = "Simple entrance",
+                tagLabel = "Entrance",
             ),
-            GalleryItem(
-                item = ExampleItem(
-                    title = "Pulse",
-                    description = "Attention seeker",
-                    codeSnippet = "Modifier.canimationEmphasize(...)",
-                    demoType = DemoType.Emphasis,
+            ResolvedGalleryItem(
+                galleryItem = GalleryItem(
+                    item = ExampleItem(
+                        title = Res.string.gallery_label,
+                        description = Res.string.gallery_description,
+                        codeSnippet = Res.string.app_title,
+                        demoType = DemoType.Emphasis,
+                    ),
+                    tag = "EMPHASIS",
+                    globalIndex = 1,
                 ),
-                tag = "EMPHASIS",
-                globalIndex = 1,
+                title = "Pulse",
+                description = "Attention seeker",
+                tagLabel = "Emphasis",
             ),
         )
 
@@ -46,6 +57,6 @@ class ExampleGalleryStateTest {
         val filtered = filterGalleryItems(items, state)
 
         assertEquals(1, filtered.size)
-        assertEquals("Pulse", filtered.first().item.title)
+        assertEquals("Pulse", filtered.first().title)
     }
 }

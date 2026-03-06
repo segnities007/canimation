@@ -7,6 +7,13 @@ internal data class ExamplesUiState(
     val showFilters: Boolean = true,
 )
 
+internal data class ResolvedGalleryItem(
+    val galleryItem: GalleryItem,
+    val title: String,
+    val description: String,
+    val tagLabel: String,
+)
+
 internal sealed interface ExamplesEvent {
     data class SearchQueryChanged(val query: String) : ExamplesEvent
     data class TagSelected(val tag: String) : ExamplesEvent
@@ -30,4 +37,16 @@ internal fun reduceExamplesState(
     }
     is ExamplesEvent.HeaderStageUpdated -> current.copy(headerStage = event.stage)
     ExamplesEvent.FiltersToggled -> current.copy(showFilters = !current.showFilters)
+}
+
+internal fun filterGalleryItems(
+    items: List<ResolvedGalleryItem>,
+    state: ExamplesUiState,
+): List<ResolvedGalleryItem> = items.filter { resolvedItem ->
+    val matchesSearch = state.searchQuery.isBlank() ||
+        resolvedItem.title.contains(state.searchQuery, ignoreCase = true) ||
+        resolvedItem.description.contains(state.searchQuery, ignoreCase = true) ||
+        resolvedItem.tagLabel.contains(state.searchQuery, ignoreCase = true)
+    val matchesTag = state.selectedTag == ALL_TAG || resolvedItem.galleryItem.tag == state.selectedTag
+    matchesSearch && matchesTag
 }

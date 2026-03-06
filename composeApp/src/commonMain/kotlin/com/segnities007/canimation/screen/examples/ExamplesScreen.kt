@@ -80,14 +80,7 @@ fun ExamplesScreen(
         )
     }
     val filteredItems = remember(resolvedGalleryItems, uiState.searchQuery, uiState.selectedTag) {
-        resolvedGalleryItems.filter { resolvedItem ->
-            val matchesSearch = uiState.searchQuery.isBlank() ||
-                resolvedItem.title.contains(uiState.searchQuery, ignoreCase = true) ||
-                resolvedItem.description.contains(uiState.searchQuery, ignoreCase = true) ||
-                resolvedItem.tagLabel.contains(uiState.searchQuery, ignoreCase = true)
-            val matchesTag = uiState.selectedTag == ALL_TAG || resolvedItem.galleryItem.tag == uiState.selectedTag
-            matchesSearch && matchesTag
-        }
+        filterGalleryItems(resolvedGalleryItems, uiState)
     }
 
     Box(
@@ -241,13 +234,6 @@ fun ExamplesScreen(
         }
     }
 }
-
-private data class ResolvedGalleryItem(
-    val galleryItem: GalleryItem,
-    val title: String,
-    val description: String,
-    val tagLabel: String,
-)
 
 // ===== Preview Card =====
 
