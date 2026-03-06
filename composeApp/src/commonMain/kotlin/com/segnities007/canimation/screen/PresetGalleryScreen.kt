@@ -44,6 +44,8 @@ import io.github.canimation.presets.PresetsExtensionRegistry
 import io.github.canimation.core.Canimation
 import io.github.canimation.core.canimation
 import kotlinx.coroutines.delay
+import canimation.composeapp.generated.resources.*
+import org.jetbrains.compose.resources.stringResource
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
@@ -90,7 +92,7 @@ fun PresetGalleryScreen(
                     verticalArrangement = Arrangement.spacedBy(8.dp),
                 ) {
                     Text(
-                        text = "GALLERY",
+                        text = stringResource(Res.string.gallery_label),
                         style = MaterialTheme.typography.labelLarge,
                         color = MaterialTheme.colorScheme.primary,
                         fontWeight = FontWeight.Bold,
@@ -109,7 +111,7 @@ fun PresetGalleryScreen(
                         ),
                     )
                     Text(
-                        text = "Browse, compare, and tune every built-in animation",
+                        text = stringResource(Res.string.gallery_description),
                         style = MaterialTheme.typography.bodyMedium,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                         modifier = Modifier.canimation(
@@ -128,7 +130,7 @@ fun PresetGalleryScreen(
                             FilterChip(
                                 selected = uiState.motionFilter == filter,
                                 onClick = { onEvent(PresetGalleryEvent.MotionFilterSelected(filter)) },
-                                label = { Text(filter.label) },
+                                label = { Text(stringResource(filter.labelRes)) },
                             )
                         }
                     }
@@ -210,12 +212,12 @@ private fun CodeSampleDialog(
             TextButton(
                 onClick = { clipboard.setText(AnnotatedString(codeSample)) },
             ) {
-                Text("Copy")
+                Text(stringResource(Res.string.gallery_copy))
             }
         },
         dismissButton = {
             TextButton(onClick = onDismiss) {
-                Text("Close")
+                Text(stringResource(Res.string.gallery_close))
             }
         },
     )
