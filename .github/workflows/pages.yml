@@ -19,7 +19,7 @@ jobs:
           persist-credentials: false
       - uses: ./.github/actions/setup-build
       - name: Build Wasm production bundle
-        run: ./gradlew :composeApp:wasmJsBrowserProductionWebpack
+        run: ./gradlew :composeApp:wasmJsBrowserDistribution
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:

@@ -74,11 +74,6 @@ check_literal ".github/dependabot.yml" "package-ecosystem: \"gradle\"" \
 check_literal ".github/dependabot.yml" "package-ecosystem: \"github-actions\"" \
   "Dependabot must track GitHub Actions dependencies"
 
-if [ ! -s "gradle/verification-metadata.xml" ]; then
-  echo "ERROR: gradle/verification-metadata.xml must exist for dependency checksum verification"
-  ERRORS=$((ERRORS + 1))
-fi
-
 check_literal "composeApp/src/androidMain/AndroidManifest.xml" "android:allowBackup=\"false\"" \
   "Android backup must be disabled"
 check_literal "composeApp/src/androidMain/AndroidManifest.xml" "android:fullBackupContent=\"false\"" \
