@@ -13,7 +13,7 @@
 ## タスク一覧
 
 ### RO-001
-- 状態: TODO
+- 状態: 未着手
 - 目的: version を固定
 - 前提条件: なし
 - 対象ファイル: `gradle.properties`
@@ -27,7 +27,7 @@
 - 証跡: `RO-001_*`
 
 ### RO-002
-- 状態: TODO
+- 状態: 未着手
 - 目的: バージョン運用規約作成
 - 前提条件: RO-001
 - 対象ファイル: `docs/release-versioning-policy.md`
@@ -41,7 +41,7 @@
 - 証跡: `RO-002_*`
 
 ### RO-003
-- 状態: TODO
+- 状態: 未着手
 - 目的: 公開 metadata 集約設定
 - 前提条件: RO-002
 - 対象ファイル: `build-logic/publishing.gradle.kts`
@@ -57,7 +57,7 @@
 - 証跡: `RO-003_*`
 
 ### RO-004
-- 状態: TODO
+- 状態: 未着手
 - 目的: 署名設定
 - 前提条件: RO-003
 - 対象ファイル: `gradle/signing.gradle.kts`
@@ -73,7 +73,7 @@
 - 証跡: `RO-004_*`
 
 ### RO-005
-- 状態: TODO
+- 状態: 未着手
 - 目的: CHANGELOG 作成
 - 前提条件: RO-004
 - 対象ファイル: `CHANGELOG.md`
@@ -87,7 +87,7 @@
 - 証跡: `RO-005_*`
 
 ### RO-006
-- 状態: TODO
+- 状態: 未着手
 - 目的: README 最終化
 - 前提条件: RO-005
 - 対象ファイル: `README.md`
@@ -102,7 +102,7 @@
 - 証跡: `RO-006_*`
 
 ### RO-007
-- 状態: TODO
+- 状態: 未着手
 - 目的: API docs 設定
 - 前提条件: RO-006
 - 対象ファイル: `build.gradle.kts`
@@ -116,7 +116,7 @@
 - 証跡: `RO-007_*`
 
 ### RO-008
-- 状態: TODO
+- 状態: 未着手
 - 目的: release note 草案
 - 前提条件: RO-007
 - 対象ファイル: `docs/release-note-draft.md`
@@ -130,7 +130,7 @@
 - 証跡: `RO-008_*`
 
 ### RO-009
-- 状態: TODO
+- 状態: 未着手
 - 目的: release dry-run 実行記録
 - 前提条件: RO-008
 - 対象ファイル: `docs/release-dry-run-report.md`
@@ -145,7 +145,7 @@
 - 証跡: `RO-009_*`
 
 ### RO-010
-- 状態: TODO
+- 状態: 未着手
 - 目的: RC タグ手順書作成
 - 前提条件: RO-009
 - 対象ファイル: `docs/release-tagging-rc.md`
@@ -159,7 +159,7 @@
 - 証跡: `RO-010_*`
 
 ### RO-011
-- 状態: TODO
+- 状態: 未着手
 - 目的: RC タグ作成・push・検証ログ
 - 前提条件: RO-010
 - 対象ファイル: `docs/release-tagging-rc-log.md`
@@ -175,7 +175,7 @@
 - 証跡: `RO-011_*`
 
 ### RO-012
-- 状態: TODO
+- 状態: 未着手
 - 目的: 本番タグ手順書作成
 - 前提条件: RO-011
 - 対象ファイル: `docs/release-tagging-ga.md`
@@ -189,7 +189,7 @@
 - 証跡: `RO-012_*`
 
 ### RO-013
-- 状態: TODO
+- 状態: 未着手
 - 目的: 本番タグ作成・push・検証ログ
 - 前提条件: RO-012
 - 対象ファイル: `docs/release-tagging-ga-log.md`
@@ -205,7 +205,7 @@
 - 証跡: `RO-013_*`
 
 ### RO-014
-- 状態: TODO
+- 状態: 未着手
 - 目的: publish 実行ログ
 - 前提条件: RO-013
 - 対象ファイル: `docs/publish-run-log.md`
@@ -220,7 +220,7 @@
 - 証跡: `RO-014_*`
 
 ### RO-015
-- 状態: TODO
+- 状態: 未着手
 - 目的: post-release smoke 手順書
 - 前提条件: RO-014
 - 対象ファイル: `docs/post-release-smoke-procedure.md`
@@ -234,7 +234,7 @@
 - 証跡: `RO-015_*`
 
 ### RO-016
-- 状態: TODO
+- 状態: 未着手
 - 目的: post-release smoke 実行ログ
 - 前提条件: RO-015
 - 対象ファイル: `docs/post-release-smoke-report.md`
@@ -248,7 +248,7 @@
 - 証跡: `RO-016_*`
 
 ### RO-017
-- 状態: TODO
+- 状態: 未着手
 - 目的: release announcement 作成
 - 前提条件: RO-016
 - 対象ファイル: `docs/release-announcement.md`
@@ -262,7 +262,7 @@
 - 証跡: `RO-017_*`
 
 ### RO-018
-- 状態: TODO
+- 状態: 未着手
 - 目的: 初期運用監視規約作成
 - 前提条件: RO-017
 - 対象ファイル: `docs/initial-ops-monitoring.md`
@@ -276,7 +276,7 @@
 - 証跡: `RO-018_*`
 
 ### RO-019
-- 状態: TODO
+- 状態: 未着手
 - 目的: 初期運用報告書作成
 - 前提条件: RO-018
 - 対象ファイル: `docs/initial-ops-report.md`
@@ -290,7 +290,7 @@
 - 証跡: `RO-019_*`
 
 ### RO-020
-- 状態: TODO
+- 状態: 未着手
 - 目的: 次版バックログ作成
 - 前提条件: RO-019
 - 対象ファイル: `docs/next-backlog.md`
@@ -304,7 +304,7 @@
 - 証跡: `RO-020_*`
 
 ### RO-021
-- 状態: TODO
+- 状態: 未着手
 - 目的: release+ops 総合判定記録
 - 前提条件: RO-020
 - 対象ファイル: `docs/task-results/release-ops-result.md`

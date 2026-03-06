@@ -15,6 +15,10 @@ data class DurationTokens(
     val medium: Duration,
     val long: Duration,
 ) {
+    val shortMs: Int get() = short.inWholeMilliseconds.toInt()
+    val mediumMs: Int get() = medium.inWholeMilliseconds.toInt()
+    val longMs: Int get() = long.inWholeMilliseconds.toInt()
+
     companion object {
         val Default = DurationTokens(
             short = 120.milliseconds,

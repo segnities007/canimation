@@ -14,7 +14,7 @@
 ## タスク一覧
 
 ### DG-001
-- 状態: TODO
+- 状態: 未着手
 - 目的: diagnostics module include
 - 前提条件: なし
 - 対象ファイル: `settings.gradle.kts`
@@ -28,7 +28,7 @@
 - 証跡: `DG-001_*`
 
 ### DG-002
-- 状態: TODO
+- 状態: 未着手
 - 目的: diagnostics build 設定
 - 前提条件: DG-001
 - 対象ファイル: `modules/canimation-diagnostics/build.gradle.kts`
@@ -42,7 +42,7 @@
 - 証跡: `DG-002_*`
 
 ### DG-003
-- 状態: TODO
+- 状態: 未着手
 - 目的: diagnostics package marker
 - 前提条件: DG-002
 - 対象ファイル: `modules/canimation-diagnostics/src/commonMain/kotlin/io/github/canimation/diagnostics/DiagnosticsMarker.kt`
@@ -56,7 +56,7 @@
 - 証跡: `DG-003_*`
 
 ### DG-004
-- 状態: TODO
+- 状態: 未着手
 - 目的: FrameMetrics 実装
 - 前提条件: DG-003
 - 対象ファイル: `modules/canimation-diagnostics/src/commonMain/kotlin/io/github/canimation/diagnostics/FrameMetrics.kt`
@@ -70,7 +70,7 @@
 - 証跡: `DG-004_*`
 
 ### DG-005
-- 状態: TODO
+- 状態: 未着手
 - 目的: DiagnosticsCollector 契約
 - 前提条件: DG-004
 - 対象ファイル: `modules/canimation-diagnostics/src/commonMain/kotlin/io/github/canimation/diagnostics/DiagnosticsCollector.kt`
@@ -84,7 +84,7 @@
 - 証跡: `DG-005_*`
 
 ### DG-006
-- 状態: TODO
+- 状態: 未着手
 - 目的: JankCalculator 実装
 - 前提条件: DG-005
 - 対象ファイル: `modules/canimation-diagnostics/src/commonMain/kotlin/io/github/canimation/diagnostics/JankCalculator.kt`
@@ -98,7 +98,7 @@
 - 証跡: `DG-006_*`
 
 ### DG-007
-- 状態: TODO
+- 状態: 未着手
 - 目的: Diagnostics facade 実装
 - 前提条件: DG-006
 - 対象ファイル: `modules/canimation-diagnostics/src/commonMain/kotlin/io/github/canimation/diagnostics/CanimationDiagnosticsFacade.kt`
@@ -112,7 +112,7 @@
 - 証跡: `DG-007_*`
 
 ### DG-008
-- 状態: TODO
+- 状態: 未着手
 - 目的: Diagnostics overlay 実装
 - 前提条件: DG-007
 - 対象ファイル: `modules/canimation-diagnostics/src/commonMain/kotlin/io/github/canimation/diagnostics/CanimationDiagnosticsOverlay.kt`
@@ -126,7 +126,7 @@
 - 証跡: `DG-008_*`
 
 ### DG-009
-- 状態: TODO
+- 状態: 未着手
 - 目的: PerfMeasurementUtils 実装
 - 前提条件: DG-008
 - 対象ファイル: `modules/canimation-diagnostics/src/commonMain/kotlin/io/github/canimation/diagnostics/PerfMeasurementUtils.kt`
@@ -140,7 +140,7 @@
 - 証跡: `DG-009_*`
 
 ### DG-010
-- 状態: TODO
+- 状態: 未着手
 - 目的: JankCalculator test
 - 前提条件: DG-009
 - 対象ファイル: `modules/canimation-diagnostics/src/commonTest/kotlin/io/github/canimation/diagnostics/JankCalculatorTest.kt`
@@ -154,7 +154,7 @@
 - 証跡: `DG-010_*`
 
 ### DG-011
-- 状態: TODO
+- 状態: 未着手
 - 目的: Overlay test
 - 前提条件: DG-010
 - 対象ファイル: `modules/canimation-diagnostics/src/commonTest/kotlin/io/github/canimation/diagnostics/CanimationDiagnosticsOverlayTest.kt`
@@ -169,7 +169,7 @@
 - 証跡: `DG-011_*`
 
 ### DG-012
-- 状態: TODO
+- 状態: 未着手
 - 目的: Android collector 実装
 - 前提条件: DG-011
 - 対象ファイル: `modules/canimation-platform-android/src/androidMain/kotlin/io/github/canimation/platform/android/AndroidFrameMetricsCollector.kt`
@@ -183,7 +183,7 @@
 - 証跡: `DG-012_*`
 
 ### DG-013
-- 状態: TODO
+- 状態: 未着手
 - 目的: Android collector test
 - 前提条件: DG-012
 - 対象ファイル: `modules/canimation-platform-android/src/androidUnitTest/kotlin/io/github/canimation/platform/android/AndroidFrameMetricsCollectorTest.kt`
@@ -197,7 +197,7 @@
 - 証跡: `DG-013_*`
 
 ### DG-014
-- 状態: TODO
+- 状態: 未着手
 - 目的: Desktop collector 実装
 - 前提条件: DG-011
 - 対象ファイル: `modules/canimation-platform-desktop/src/desktopMain/kotlin/io/github/canimation/platform/desktop/DesktopFrameMetricsCollector.kt`
@@ -211,7 +211,7 @@
 - 証跡: `DG-014_*`
 
 ### DG-015
-- 状態: TODO
+- 状態: 未着手
 - 目的: Desktop collector test
 - 前提条件: DG-014
 - 対象ファイル: `modules/canimation-platform-desktop/src/desktopTest/kotlin/io/github/canimation/platform/desktop/DesktopFrameMetricsCollectorTest.kt`
@@ -225,7 +225,7 @@
 - 証跡: `DG-015_*`
 
 ### DG-016
-- 状態: TODO
+- 状態: 未着手
 - 目的: iOS collector no-op 実装
 - 前提条件: DG-011
 - 対象ファイル: `modules/canimation-platform-ios/src/iosMain/kotlin/io/github/canimation/platform/ios/IosFrameMetricsCollector.kt`
@@ -239,7 +239,7 @@
 - 証跡: `DG-016_*`
 
 ### DG-017
-- 状態: TODO
+- 状態: 未着手
 - 目的: Web collector no-op 実装
 - 前提条件: DG-011
 - 対象ファイル: `modules/canimation-platform-web/src/jsMain/kotlin/io/github/canimation/platform/web/WebFrameMetricsCollector.kt`
@@ -253,7 +253,7 @@
 - 証跡: `DG-017_*`
 
 ### DG-018
-- 状態: TODO
+- 状態: 未着手
 - 目的: iOS collector no-op test
 - 前提条件: DG-016
 - 対象ファイル: `modules/canimation-platform-ios/src/iosTest/kotlin/io/github/canimation/platform/ios/IosCollectorNoopTest.kt`
@@ -267,7 +267,7 @@
 - 証跡: `DG-018_*`
 
 ### DG-019
-- 状態: TODO
+- 状態: 未着手
 - 目的: Web collector no-op test
 - 前提条件: DG-017
 - 対象ファイル: `modules/canimation-platform-web/src/jsTest/kotlin/io/github/canimation/platform/web/WebCollectorNoopTest.kt`
@@ -281,7 +281,7 @@
 - 証跡: `DG-019_*`
 
 ### DG-020
-- 状態: TODO
+- 状態: 未着手
 - 目的: Diagnostics KDoc 指針
 - 前提条件: DG-013, DG-015, DG-018, DG-019
 - 対象ファイル: `modules/canimation-diagnostics/src/commonMain/kotlin/io/github/canimation/diagnostics/README_API_KDOC.md`
@@ -295,7 +295,7 @@
 - 証跡: `DG-020_*`
 
 ### DG-021
-- 状態: TODO
+- 状態: 未着手
 - 目的: diagnostics usage 文書
 - 前提条件: DG-020
 - 対象ファイル: `docs/diagnostics-usage.md`
@@ -310,7 +310,7 @@
 - 証跡: `DG-021_*`
 
 ### DG-022
-- 状態: TODO
+- 状態: 未着手
 - 目的: diagnostics 総合 check 結果記録
 - 前提条件: DG-021
 - 対象ファイル: `docs/task-results/diagnostics-platform-result.md`

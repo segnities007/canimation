@@ -16,7 +16,7 @@
 ## タスク一覧
 
 ### CP-001
-- 状態: TODO
+- 状態: 未着手
 - 目的: `canimation-core` を settings に登録
 - 前提条件: なし
 - 対象ファイル: `settings.gradle.kts`
@@ -30,7 +30,7 @@
 - 証跡: `CP-001_*`
 
 ### CP-002
-- 状態: TODO
+- 状態: 未着手
 - 目的: `canimation-core` の build 設定作成
 - 前提条件: CP-001
 - 対象ファイル: `modules/canimation-core/build.gradle.kts`
@@ -45,7 +45,7 @@
 - 証跡: `CP-002_*`
 
 ### CP-003
-- 状態: TODO
+- 状態: 未着手
 - 目的: core package marker を作成
 - 前提条件: CP-002
 - 対象ファイル: `modules/canimation-core/src/commonMain/kotlin/io/github/canimation/core/CoreMarker.kt`
@@ -59,7 +59,7 @@
 - 証跡: `CP-003_*`
 
 ### CP-004
-- 状態: TODO
+- 状態: 未着手
 - 目的: DurationTokens 実装
 - 前提条件: CP-003
 - 対象ファイル: `modules/canimation-core/src/commonMain/kotlin/io/github/canimation/core/DurationTokens.kt`
@@ -73,7 +73,7 @@
 - 証跡: `CP-004_*`
 
 ### CP-005
-- 状態: TODO
+- 状態: 未着手
 - 目的: EasingTokens 実装
 - 前提条件: CP-003
 - 対象ファイル: `modules/canimation-core/src/commonMain/kotlin/io/github/canimation/core/EasingTokens.kt`
@@ -87,7 +87,7 @@
 - 証跡: `CP-005_*`
 
 ### CP-006
-- 状態: TODO
+- 状態: 未着手
 - 目的: DistanceTokens 実装
 - 前提条件: CP-003
 - 対象ファイル: `modules/canimation-core/src/commonMain/kotlin/io/github/canimation/core/DistanceTokens.kt`
@@ -101,7 +101,7 @@
 - 証跡: `CP-006_*`
 
 ### CP-007
-- 状態: TODO
+- 状態: 未着手
 - 目的: SpringTokens 実装
 - 前提条件: CP-003
 - 対象ファイル: `modules/canimation-core/src/commonMain/kotlin/io/github/canimation/core/SpringTokens.kt`
@@ -115,7 +115,7 @@
 - 証跡: `CP-007_*`
 
 ### CP-008
-- 状態: TODO
+- 状態: 未着手
 - 目的: CanimationTokens 実装
 - 前提条件: CP-004, CP-005, CP-006, CP-007
 - 対象ファイル: `modules/canimation-core/src/commonMain/kotlin/io/github/canimation/core/CanimationTokens.kt`
@@ -130,7 +130,7 @@
 - 証跡: `CP-008_*`
 
 ### CP-009
-- 状態: TODO
+- 状態: 未着手
 - 目的: CanimationLevel 実装
 - 前提条件: CP-003
 - 対象ファイル: `modules/canimation-core/src/commonMain/kotlin/io/github/canimation/core/CanimationLevel.kt`
@@ -144,7 +144,7 @@
 - 証跡: `CP-009_*`
 
 ### CP-010
-- 状態: TODO
+- 状態: 未着手
 - 目的: CanimationPolicy 実装
 - 前提条件: CP-003
 - 対象ファイル: `modules/canimation-core/src/commonMain/kotlin/io/github/canimation/core/CanimationPolicy.kt`
@@ -158,7 +158,7 @@
 - 証跡: `CP-010_*`
 
 ### CP-011
-- 状態: TODO
+- 状態: 未着手
 - 目的: PolicyResolver 実装
 - 前提条件: CP-009, CP-010
 - 対象ファイル: `modules/canimation-core/src/commonMain/kotlin/io/github/canimation/core/CanimationPolicyResolver.kt`
@@ -172,7 +172,7 @@
 - 証跡: `CP-011_*`
 
 ### CP-012
-- 状態: TODO
+- 状態: 未着手
 - 目的: CanimationPreset 実装
 - 前提条件: CP-003
 - 対象ファイル: `modules/canimation-core/src/commonMain/kotlin/io/github/canimation/core/CanimationPreset.kt`
@@ -186,7 +186,7 @@
 - 証跡: `CP-012_*`
 
 ### CP-013
-- 状態: TODO
+- 状態: 未着手
 - 目的: CanimationPresetSpec 型実装
 - 前提条件: CP-013a
 - 対象ファイル: `modules/canimation-core/src/commonMain/kotlin/io/github/canimation/core/CanimationPresetSpec.kt`
@@ -200,7 +200,7 @@
 - 証跡: `CP-013_*`
 
 ### CP-013a
-- 状態: TODO
+- 状態: 未着手
 - 目的: CanimationSpec / CanimationRange / CanimationDpRange 型実装（カスタムアニメーション定義用）
 - 前提条件: CP-003
 - 対象ファイル: `modules/canimation-core/src/commonMain/kotlin/io/github/canimation/core/CanimationSpec.kt`
@@ -219,7 +219,7 @@
 - 証跡: `CP-013a_*`
 
 ### CP-013b
-- 状態: TODO
+- 状態: 未着手
 - 目的: PresetRegistry 実装（core 組み込み版）
 - 前提条件: CP-013, CP-012, CP-009
 - 対象ファイル: `modules/canimation-core/src/commonMain/kotlin/io/github/canimation/core/PresetRegistry.kt`
@@ -238,7 +238,7 @@
 - 証跡: `CP-013b_*`
 
 ### CP-014
-- 状態: TODO
+- 状態: 未着手
 - 目的: SpecResolver 実装
 - 前提条件: CP-013b
 - 対象ファイル: `modules/canimation-core/src/commonMain/kotlin/io/github/canimation/core/CanimationSpecResolver.kt`
@@ -254,7 +254,7 @@
 - 証跡: `CP-014_*`
 
 ### CP-015
-- 状態: TODO
+- 状態: 未着手
 - 目的: CanimationContext 実装
 - 前提条件: CP-014
 - 対象ファイル: `modules/canimation-core/src/commonMain/kotlin/io/github/canimation/core/CanimationContext.kt`
@@ -268,7 +268,7 @@
 - 証跡: `CP-015_*`
 
 ### CP-016
-- 状態: TODO
+- 状態: 未着手
 - 目的: LocalCanimationContext 実装
 - 前提条件: CP-015
 - 対象ファイル: `modules/canimation-core/src/commonMain/kotlin/io/github/canimation/core/LocalCanimationContext.kt`
@@ -282,7 +282,7 @@
 - 証跡: `CP-016_*`
 
 ### CP-017
-- 状態: TODO
+- 状態: 未着手
 - 目的: CanimationProvider 実装
 - 前提条件: CP-016
 - 対象ファイル: `modules/canimation-core/src/commonMain/kotlin/io/github/canimation/core/CanimationProvider.kt`
@@ -296,7 +296,7 @@
 - 証跡: `CP-017_*`
 
 ### CP-018
-- 状態: TODO
+- 状態: 未着手
 - 目的: canimationEnter 実装
 - 前提条件: CP-017
 - 対象ファイル: `modules/canimation-core/src/commonMain/kotlin/io/github/canimation/core/CanimationEnterModifier.kt`
@@ -311,7 +311,7 @@
 - 証跡: `CP-018_*`
 
 ### CP-018a
-- 状態: TODO
+- 状態: 未着手
 - 目的: canimationExit 実装
 - 前提条件: CP-017
 - 対象ファイル: `modules/canimation-core/src/commonMain/kotlin/io/github/canimation/core/CanimationExitModifier.kt`
@@ -327,7 +327,7 @@
 - 証跡: `CP-018a_*`
 
 ### CP-018b
-- 状態: TODO
+- 状態: 未着手
 - 目的: canimationTransition 実装
 - 前提条件: CP-018, CP-018a
 - 対象ファイル: `modules/canimation-core/src/commonMain/kotlin/io/github/canimation/core/CanimationTransitionModifier.kt`
@@ -343,7 +343,7 @@
 - 証跡: `CP-018b_*`
 
 ### CP-019
-- 状態: TODO
+- 状態: 未着手
 - 目的: canimationEmphasize 実装
 - 前提条件: CP-018
 - 対象ファイル: `modules/canimation-core/src/commonMain/kotlin/io/github/canimation/core/CanimationEmphasizeModifier.kt`
@@ -357,7 +357,7 @@
 - 証跡: `CP-019_*`
 
 ### CP-020
-- 状態: TODO
+- 状態: 未着手
 - 目的: CanimationVisibility 実装
 - 前提条件: CP-018b
 - 対象ファイル: `modules/canimation-core/src/commonMain/kotlin/io/github/canimation/core/CanimationVisibility.kt`
@@ -373,7 +373,7 @@
 - 証跡: `CP-020_*`
 
 ### CP-021
-- 状態: TODO
+- 状態: 未着手
 - 目的: TokensDefault test
 - 前提条件: CP-020
 - 対象ファイル: `modules/canimation-core/src/commonTest/kotlin/io/github/canimation/core/CanimationTokensDefaultTest.kt`
@@ -387,7 +387,7 @@
 - 証跡: `CP-021_*`
 
 ### CP-022
-- 状態: TODO
+- 状態: 未着手
 - 目的: PolicyResolver test
 - 前提条件: CP-020
 - 対象ファイル: `modules/canimation-core/src/commonTest/kotlin/io/github/canimation/core/CanimationPolicyResolverTest.kt`
@@ -401,7 +401,7 @@
 - 証跡: `CP-022_*`
 
 ### CP-023
-- 状態: TODO
+- 状態: 未着手
 - 目的: SpecResolver test
 - 前提条件: CP-020
 - 対象ファイル: `modules/canimation-core/src/commonTest/kotlin/io/github/canimation/core/CanimationSpecResolverTest.kt`
@@ -415,7 +415,7 @@
 - 証跡: `CP-023_*`
 
 ### CP-024
-- 状態: TODO
+- 状態: 未着手
 - 目的: Enter modifier integration test
 - 前提条件: CP-020
 - 対象ファイル: `modules/canimation-core/src/commonTest/kotlin/io/github/canimation/core/CanimationEnterIntegrationTest.kt`
@@ -429,7 +429,7 @@
 - 証跡: `CP-024_*`
 
 ### CP-024a
-- 状態: TODO
+- 状態: 未着手
 - 目的: Exit modifier integration test
 - 前提条件: CP-020
 - 対象ファイル: `modules/canimation-core/src/commonTest/kotlin/io/github/canimation/core/CanimationExitIntegrationTest.kt`
@@ -444,7 +444,7 @@
 - 証跡: `CP-024a_*`
 
 ### CP-024b
-- 状態: TODO
+- 状態: 未着手
 - 目的: Transition modifier integration test
 - 前提条件: CP-020
 - 対象ファイル: `modules/canimation-core/src/commonTest/kotlin/io/github/canimation/core/CanimationTransitionIntegrationTest.kt`
@@ -459,7 +459,7 @@
 - 証跡: `CP-024b_*`
 
 ### CP-024c
-- 状態: TODO
+- 状態: 未着手
 - 目的: CanimationSpec test
 - 前提条件: CP-020
 - 対象ファイル: `modules/canimation-core/src/commonTest/kotlin/io/github/canimation/core/CanimationSpecTest.kt`
@@ -475,7 +475,7 @@
 - 証跡: `CP-024c_*`
 
 ### CP-024d
-- 状態: TODO
+- 状態: 未着手
 - 目的: PresetRegistry test
 - 前提条件: CP-020
 - 対象ファイル: `modules/canimation-core/src/commonTest/kotlin/io/github/canimation/core/PresetRegistryTest.kt`
@@ -491,7 +491,7 @@
 - 証跡: `CP-024d_*`
 
 ### CP-025
-- 状態: TODO
+- 状態: 未着手
 - 目的: Emphasize modifier integration test
 - 前提条件: CP-020
 - 対象ファイル: `modules/canimation-core/src/commonTest/kotlin/io/github/canimation/core/CanimationEmphasizeIntegrationTest.kt`
@@ -505,7 +505,7 @@
 - 証跡: `CP-025_*`
 
 ### CP-026
-- 状態: TODO
+- 状態: 未着手
 - 目的: Visibility integration test
 - 前提条件: CP-020
 - 対象ファイル: `modules/canimation-core/src/commonTest/kotlin/io/github/canimation/core/CanimationVisibilityIntegrationTest.kt`
@@ -521,7 +521,7 @@
 - 証跡: `CP-026_*`
 
 ### CP-027
-- 状態: TODO
+- 状態: 未着手
 - 目的: Presets module include
 - 前提条件: CP-020
 - 対象ファイル: `settings.gradle.kts`
@@ -535,7 +535,7 @@
 - 証跡: `CP-027_*`
 
 ### CP-028
-- 状態: TODO
+- 状態: 未着手
 - 目的: presets build 設定
 - 前提条件: CP-027
 - 対象ファイル: `modules/canimation-presets/build.gradle.kts`
@@ -549,7 +549,7 @@
 - 証跡: `CP-028_*`
 
 ### CP-029
-- 状態: TODO
+- 状態: 未着手
 - 目的: FadeUpPreset 実装
 - 前提条件: CP-028
 - 対象ファイル: `modules/canimation-presets/src/commonMain/kotlin/io/github/canimation/presets/FadeUpPreset.kt`
@@ -563,7 +563,7 @@
 - 証跡: `CP-029_*`
 
 ### CP-030
-- 状態: TODO
+- 状態: 未着手
 - 目的: FadePreset 実装
 - 前提条件: CP-028
 - 対象ファイル: `modules/canimation-presets/src/commonMain/kotlin/io/github/canimation/presets/FadePreset.kt`
@@ -577,7 +577,7 @@
 - 証跡: `CP-030_*`
 
 ### CP-031
-- 状態: TODO
+- 状態: 未着手
 - 目的: ScaleInPreset 実装
 - 前提条件: CP-028
 - 対象ファイル: `modules/canimation-presets/src/commonMain/kotlin/io/github/canimation/presets/ScaleInPreset.kt`
@@ -591,7 +591,7 @@
 - 証跡: `CP-031_*`
 
 ### CP-032
-- 状態: TODO
+- 状態: 未着手
 - 目的: SlideLeftPreset 実装
 - 前提条件: CP-028
 - 対象ファイル: `modules/canimation-presets/src/commonMain/kotlin/io/github/canimation/presets/SlideLeftPreset.kt`
@@ -605,7 +605,7 @@
 - 証跡: `CP-032_*`
 
 ### CP-033
-- 状態: TODO
+- 状態: 未着手
 - 目的: SlideRightPreset 実装
 - 前提条件: CP-028
 - 対象ファイル: `modules/canimation-presets/src/commonMain/kotlin/io/github/canimation/presets/SlideRightPreset.kt`
@@ -619,7 +619,7 @@
 - 証跡: `CP-033_*`
 
 ### CP-034
-- 状態: TODO
+- 状態: 未着手
 - 目的: PresetsExtensionRegistry 実装
 - 前提条件: CP-029, CP-030, CP-031, CP-032, CP-033
 - 対象ファイル: `modules/canimation-presets/src/commonMain/kotlin/io/github/canimation/presets/PresetsExtensionRegistry.kt`
@@ -635,7 +635,7 @@
 - 証跡: `CP-034_*`
 
 ### CP-035
-- 状態: TODO
+- 状態: 未着手
 - 目的: PresetsExtensionRegistry test
 - 前提条件: CP-034
 - 対象ファイル: `modules/canimation-presets/src/commonTest/kotlin/io/github/canimation/presets/PresetsExtensionRegistryTest.kt`
@@ -650,7 +650,7 @@
 - 証跡: `CP-035_*`
 
 ### CP-036
-- 状態: TODO
+- 状態: 未着手
 - 目的: FadeUpPreset test
 - 前提条件: CP-029
 - 対象ファイル: `modules/canimation-presets/src/commonTest/kotlin/io/github/canimation/presets/FadeUpPresetTest.kt`
@@ -664,7 +664,7 @@
 - 証跡: `CP-036_*`
 
 ### CP-037
-- 状態: TODO
+- 状態: 未着手
 - 目的: FadePreset test
 - 前提条件: CP-030
 - 対象ファイル: `modules/canimation-presets/src/commonTest/kotlin/io/github/canimation/presets/FadePresetTest.kt`
@@ -678,7 +678,7 @@
 - 証跡: `CP-037_*`
 
 ### CP-038
-- 状態: TODO
+- 状態: 未着手
 - 目的: ScaleInPreset test
 - 前提条件: CP-031
 - 対象ファイル: `modules/canimation-presets/src/commonTest/kotlin/io/github/canimation/presets/ScaleInPresetTest.kt`
@@ -692,7 +692,7 @@
 - 証跡: `CP-038_*`
 
 ### CP-039
-- 状態: TODO
+- 状態: 未着手
 - 目的: SlideLeftPreset test
 - 前提条件: CP-032
 - 対象ファイル: `modules/canimation-presets/src/commonTest/kotlin/io/github/canimation/presets/SlideLeftPresetTest.kt`
@@ -706,7 +706,7 @@
 - 証跡: `CP-039_*`
 
 ### CP-040
-- 状態: TODO
+- 状態: 未着手
 - 目的: SlideRightPreset test
 - 前提条件: CP-033
 - 対象ファイル: `modules/canimation-presets/src/commonTest/kotlin/io/github/canimation/presets/SlideRightPresetTest.kt`
@@ -720,7 +720,7 @@
 - 証跡: `CP-040_*`
 
 ### CP-041
-- 状態: TODO
+- 状態: 未着手
 - 目的: core API KDoc 整備
 - 前提条件: CP-040
 - 対象ファイル: `modules/canimation-core/src/commonMain/kotlin/io/github/canimation/core/README_API_KDOC.md`
@@ -734,7 +734,7 @@
 - 証跡: `CP-041_*`
 
 ### CP-042
-- 状態: TODO
+- 状態: 未着手
 - 目的: core smoke integration test
 - 前提条件: CP-041
 - 対象ファイル: `modules/canimation-core/src/commonTest/kotlin/io/github/canimation/core/CoreSmokeIntegrationTest.kt`
@@ -748,7 +748,7 @@
 - 証跡: `CP-042_*`
 
 ### CP-043
-- 状態: TODO
+- 状態: 未着手
 - 目的: core/presets 総合 check
 - 前提条件: CP-042
 - 対象ファイル: `docs/task-results/core-presets-result.md`
@@ -763,7 +763,7 @@
 - 証跡: `CP-043_*`
 
 ### CP-044
-- 状態: TODO
+- 状態: 未着手
 - 目的: task-pack 完了確認
 - 前提条件: CP-043
 - 対象ファイル: `docs/task-results/core-presets-signoff.md`

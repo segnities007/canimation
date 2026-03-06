@@ -1,6 +1,5 @@
 package io.github.canimation.core
 
-import androidx.compose.animation.core.Spring
 import androidx.compose.runtime.Immutable
 
 /**

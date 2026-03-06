@@ -14,7 +14,7 @@
 ## タスク一覧
 
 ### TS-100
-- 状態: TODO
+- 状態: 未着手
 - 目的: Gradle Wrapper バージョン固定
 - 前提条件: なし
 - 対象ファイル: `gradle/wrapper/gradle-wrapper.properties`
@@ -28,7 +28,7 @@
 - 証跡: `TS-100_*`
 
 ### TS-101
-- 状態: TODO
+- 状態: 未着手
 - 目的: ライブラリバージョン固定
 - 前提条件: TS-100
 - 対象ファイル: `gradle/libs.versions.toml`
@@ -42,7 +42,7 @@
 - 証跡: `TS-101_*`
 
 ### TS-102
-- 状態: TODO
+- 状態: 未着手
 - 目的: gradle.properties の固定値整備
 - 前提条件: TS-101
 - 対象ファイル: `gradle.properties`
@@ -56,7 +56,7 @@
 - 証跡: `TS-102_*`
 
 ### TS-103
-- 状態: TODO
+- 状態: 未着手
 - 目的: toolchain 検証ログ作成
 - 前提条件: TS-102
 - 対象ファイル: `docs/toolchain-verification.md`
@@ -71,7 +71,7 @@
 - 証跡: `TS-103_*`
 
 ### TS-104
-- 状態: TODO
+- 状態: 未着手
 - 目的: AI証跡ディレクトリ規約作成
 - 前提条件: TS-103
 - 対象ファイル: `docs/ai-evidence/README.md`
@@ -85,7 +85,7 @@
 - 証跡: `TS-104_*`
 
 ### TS-001
-- 状態: TODO
+- 状態: 未着手
 - 目的: canimation-test module include
 - 前提条件: TS-104
 - 対象ファイル: `settings.gradle.kts`
@@ -99,7 +99,7 @@
 - 証跡: `TS-001_*`
 
 ### TS-002
-- 状態: TODO
+- 状態: 未着手
 - 目的: canimation-test build 設定
 - 前提条件: TS-001
 - 対象ファイル: `modules/canimation-test/build.gradle.kts`
@@ -113,7 +113,7 @@
 - 証跡: `TS-002_*`
 
 ### TS-003
-- 状態: TODO
+- 状態: 未着手
 - 目的: CanimationTestClock 実装
 - 前提条件: TS-002
 - 対象ファイル: `modules/canimation-test/src/commonMain/kotlin/io/github/canimation/test/CanimationTestClock.kt`
@@ -127,7 +127,7 @@
 - 証跡: `TS-003_*`
 
 ### TS-004
-- 状態: TODO
+- 状態: 未着手
 - 目的: CanimationTestHost 実装
 - 前提条件: TS-003
 - 対象ファイル: `modules/canimation-test/src/commonMain/kotlin/io/github/canimation/test/CanimationTestHost.kt`
@@ -141,7 +141,7 @@
 - 証跡: `TS-004_*`
 
 ### TS-005
-- 状態: TODO
+- 状態: 未着手
 - 目的: TestClock test
 - 前提条件: TS-004
 - 対象ファイル: `modules/canimation-test/src/commonTest/kotlin/io/github/canimation/test/CanimationTestClockTest.kt`
@@ -156,7 +156,7 @@
 - 証跡: `TS-005_*`
 
 ### TS-006
-- 状態: TODO
+- 状態: 未着手
 - 目的: TestHost test
 - 前提条件: TS-005
 - 対象ファイル: `modules/canimation-test/src/commonTest/kotlin/io/github/canimation/test/CanimationTestHostTest.kt`
@@ -171,7 +171,7 @@
 - 証跡: `TS-006_*`
 
 ### TS-007
-- 状態: TODO
+- 状態: 未着手
 - 目的: integration base 実装
 - 前提条件: TS-006
 - 対象ファイル: `modules/canimation-core/src/commonTest/kotlin/io/github/canimation/core/IntegrationTestBase.kt`
@@ -185,7 +185,7 @@
 - 証跡: `TS-007_*`
 
 ### TS-008
-- 状態: TODO
+- 状態: 未着手
 - 目的: EnterTransition integration test
 - 前提条件: TS-007
 - 対象ファイル: `modules/canimation-core/src/commonTest/kotlin/io/github/canimation/core/EnterTransitionIntegrationTest.kt`
@@ -199,7 +199,7 @@
 - 証跡: `TS-008_*`
 
 ### TS-009
-- 状態: TODO
+- 状態: 未着手
 - 目的: LevelSwitch integration test
 - 前提条件: TS-008
 - 対象ファイル: `modules/canimation-core/src/commonTest/kotlin/io/github/canimation/core/LevelSwitchIntegrationTest.kt`
@@ -213,7 +213,7 @@
 - 証跡: `TS-009_*`
 
 ### TS-010
-- 状態: TODO
+- 状態: 未着手
 - 目的: Provider default safety test
 - 前提条件: TS-009
 - 対象ファイル: `modules/canimation-core/src/commonTest/kotlin/io/github/canimation/core/ProviderDefaultSafetyTest.kt`
@@ -227,7 +227,7 @@
 - 証跡: `TS-010_*`
 
 ### TS-011
-- 状態: TODO
+- 状態: 未着手
 - 目的: golden base 実装
 - 前提条件: TS-010
 - 対象ファイル: `modules/canimation-core/src/commonTest/kotlin/io/github/canimation/core/GoldenTestBase.kt`
@@ -241,7 +241,7 @@
 - 証跡: `TS-011_*`
 
 ### TS-012
-- 状態: TODO
+- 状態: 未着手
 - 目的: preset golden test 実装
 - 前提条件: TS-011
 - 対象ファイル: `modules/canimation-core/src/commonTest/kotlin/io/github/canimation/core/PresetGoldenTest.kt`
@@ -255,7 +255,7 @@
 - 証跡: `TS-012_*`
 
 ### TS-013
-- 状態: TODO
+- 状態: 未着手
 - 目的: sample-chat include
 - 前提条件: TS-012
 - 対象ファイル: `settings.gradle.kts`
@@ -269,7 +269,7 @@
 - 証跡: `TS-013_*`
 
 ### TS-014
-- 状態: TODO
+- 状態: 未着手
 - 目的: sample-chat build 設定
 - 前提条件: TS-013
 - 対象ファイル: `samples/sample-chat/build.gradle.kts`
@@ -283,7 +283,7 @@
 - 証跡: `TS-014_*`
 
 ### TS-015
-- 状態: TODO
+- 状態: 未着手
 - 目的: ChatScreen 実装
 - 前提条件: TS-014
 - 対象ファイル: `samples/sample-chat/src/commonMain/kotlin/io/github/canimation/sample/chat/ChatScreen.kt`
@@ -297,7 +297,7 @@
 - 証跡: `TS-015_*`
 
 ### TS-016
-- 状態: TODO
+- 状態: 未着手
 - 目的: ChatApp 実装
 - 前提条件: TS-015
 - 対象ファイル: `samples/sample-chat/src/commonMain/kotlin/io/github/canimation/sample/chat/ChatApp.kt`
@@ -312,7 +312,7 @@
 - 証跡: `TS-016_*`
 
 ### TS-017
-- 状態: TODO
+- 状態: 未着手
 - 目的: sample-commerce include
 - 前提条件: TS-016
 - 対象ファイル: `settings.gradle.kts`
@@ -326,7 +326,7 @@
 - 証跡: `TS-017_*`
 
 ### TS-018
-- 状態: TODO
+- 状態: 未着手
 - 目的: sample-commerce build 設定
 - 前提条件: TS-017
 - 対象ファイル: `samples/sample-commerce/build.gradle.kts`
@@ -340,7 +340,7 @@
 - 証跡: `TS-018_*`
 
 ### TS-019
-- 状態: TODO
+- 状態: 未着手
 - 目的: ProductCard 実装
 - 前提条件: TS-018
 - 対象ファイル: `samples/sample-commerce/src/commonMain/kotlin/io/github/canimation/sample/commerce/ProductCard.kt`
@@ -355,7 +355,7 @@
 - 証跡: `TS-019_*`
 
 ### TS-020
-- 状態: TODO
+- 状態: 未着手
 - 目的: CommerceApp 実装
 - 前提条件: TS-019
 - 対象ファイル: `samples/sample-commerce/src/commonMain/kotlin/io/github/canimation/sample/commerce/CommerceApp.kt`
@@ -370,7 +370,7 @@
 - 証跡: `TS-020_*`
 
 ### TS-021
-- 状態: TODO
+- 状態: 未着手
 - 目的: パフォーマンス実行スクリプト作成（固定プロファイル準拠）
 - 前提条件: TS-020
 - 対象ファイル: `scripts/run-perf-scenarios.sh`
@@ -389,7 +389,7 @@
 - 証跡: `TS-021_*`
 
 ### TS-022
-- 状態: TODO
+- 状態: 未着手
 - 目的: unit test 集計レポート作成
 - 前提条件: TS-021
 - 対象ファイル: `docs/unit-test-report.md`
@@ -403,7 +403,7 @@
 - 証跡: `TS-022_*`
 
 ### TS-023
-- 状態: TODO
+- 状態: 未着手
 - 目的: integration test レポート作成
 - 前提条件: TS-022
 - 対象ファイル: `docs/integration-test-report.md`
@@ -417,7 +417,7 @@
 - 証跡: `TS-023_*`
 
 ### TS-024
-- 状態: TODO
+- 状態: 未着手
 - 目的: perf report 作成
 - 前提条件: TS-023
 - 対象ファイル: `docs/perf-report.md`
@@ -433,7 +433,7 @@
 - 証跡: `TS-024_*`
 
 ### TS-025
-- 状態: TODO
+- 状態: 未着手
 - 目的: workflow 検証スクリプト作成
 - 前提条件: TS-024
 - 対象ファイル: `scripts/validate-workflows.sh`
@@ -450,7 +450,7 @@
 - 証跡: `TS-025_*`
 
 ### TS-026
-- 状態: TODO
+- 状態: 未着手
 - 目的: PR workflow 作成
 - 前提条件: TS-025
 - 対象ファイル: `.github/workflows/pr.yml`
@@ -465,7 +465,7 @@
 - 証跡: `TS-026_*`
 
 ### TS-027
-- 状態: TODO
+- 状態: 未着手
 - 目的: release workflow 作成
 - 前提条件: TS-026
 - 対象ファイル: `.github/workflows/release.yml`
@@ -480,7 +480,7 @@
 - 証跡: `TS-027_*`
 
 ### TS-028
-- 状態: TODO
+- 状態: 未着手
 - 目的: ai-evidence-check 実装
 - 前提条件: TS-027
 - 対象ファイル: `scripts/ai-evidence-check.sh`
@@ -495,7 +495,7 @@
 - 証跡: `TS-028_*`
 
 ### TS-029
-- 状態: TODO
+- 状態: 未着手
 - 目的: QA 中間結果記録（workflow/証跡）
 - 前提条件: TS-028
 - 対象ファイル: `docs/task-results/test-samples-ci-result.md`
@@ -509,7 +509,7 @@
 - 証跡: `TS-029_*`
 
 ### TS-030
-- 状態: TODO
+- 状態: 未着手
 - 目的: カバレッジ閾値設定
 - 前提条件: TS-029
 - 対象ファイル: `build.gradle.kts`
@@ -525,7 +525,7 @@
 - 証跡: `TS-030_*`
 
 ### TS-031
-- 状態: TODO
+- 状態: 未着手
 - 目的: フレーク率測定スクリプト作成
 - 前提条件: TS-030
 - 対象ファイル: `scripts/measure-flake-rate.sh`
@@ -542,7 +542,7 @@
 - 証跡: `TS-031_*`
 
 ### TS-032
-- 状態: TODO
+- 状態: 未着手
 - 目的: 品質ゲート測定レポート作成
 - 前提条件: TS-031
 - 対象ファイル: `docs/quality-gate-report.md`
@@ -558,7 +558,7 @@
 - 証跡: `TS-032_*`
 
 ### TS-033
-- 状態: TODO
+- 状態: 未着手
 - 目的: QA 最終結果記録
 - 前提条件: TS-032
 - 対象ファイル: `docs/task-results/test-samples-ci-result.md`

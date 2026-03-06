@@ -1,141 +1,222 @@
 package com.segnities007.canimation.screen
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.widthIn
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.text.selection.SelectionContainer
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.FilterChip
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalClipboardManager
+import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.text.font.FontWeight
 import com.segnities007.canimation.component.AnimationShowcase
+import com.segnities007.canimation.component.PresetPreviewTuning
+import com.segnities007.canimation.component.tunePresetSpec
 import io.github.canimation.core.CanimationPreset
+import io.github.canimation.core.CanimationPresetSpec
+import io.github.canimation.presets.PresetsExtensionRegistry
+import io.github.canimation.core.Canimation
+import io.github.canimation.core.canimation
+import kotlinx.coroutines.delay
 
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
-fun PresetGalleryScreen(modifier: Modifier = Modifier) {
-    Column(modifier = modifier.fillMaxSize()) {
-        Column(modifier = Modifier.padding(horizontal = 16.dp, vertical = 12.dp)) {
-            Text(
-                text = "Preset Gallery",
-                style = MaterialTheme.typography.headlineSmall,
-            )
-            Text(
-                text = "${CanimationPreset.entries.size} presets · Inspired by Motion.dev, Animate.css, Framer Motion, AnimXYZ, Material Motion",
-                style = MaterialTheme.typography.bodySmall,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-            )
-        }
+fun PresetGalleryScreen(
+    modifier: Modifier = Modifier,
+    autoPlayEnabled: Boolean = true,
+    autoPlayTick: Int = 0,
+    tuning: PresetPreviewTuning = PresetPreviewTuning(),
+) {
+    var uiState by remember { mutableStateOf(PresetGalleryUiState()) }
+    val onEvent: (PresetGalleryEvent) -> Unit = { event ->
+        uiState = reducePresetGalleryState(uiState, event)
+    }
 
+    LaunchedEffect(Unit) {
+        for (i in 0..3) {
+            onEvent(PresetGalleryEvent.HeaderStageUpdated(i))
+            delay(80)
+        }
+    }
+
+    val allPresetSpecs = PresetsExtensionRegistry.allPresetSpecs
+
+    val filteredPresets = remember(allPresetSpecs, uiState.motionFilter) {
+        CanimationPreset.entries.filter { preset ->
+            matchesMotionFilter(allPresetSpecs.getValue(preset).fullEnter, uiState.motionFilter)
+        }
+    }
+
+    Box(
+        modifier = modifier.fillMaxSize(),
+        contentAlignment = Alignment.TopCenter,
+    ) {
         LazyVerticalGrid(
-            columns = GridCells.Adaptive(minSize = 160.dp),
-            contentPadding = PaddingValues(horizontal = 12.dp, vertical = 4.dp),
+            columns = GridCells.Adaptive(minSize = 220.dp),
+            modifier = Modifier.widthIn(max = 1200.dp),
+            contentPadding = PaddingValues(horizontal = 24.dp, vertical = 24.dp),
             horizontalArrangement = Arrangement.spacedBy(8.dp),
             verticalArrangement = Arrangement.spacedBy(8.dp),
         ) {
-            items(CanimationPreset.entries) { preset ->
-                AnimationShowcase(
-                    title = presetDescription(preset),
-                    preset = preset,
-                )
+            item(span = { GridItemSpan(maxLineSpan) }) {
+                Column(
+                    modifier = Modifier.padding(bottom = 8.dp),
+                    verticalArrangement = Arrangement.spacedBy(8.dp),
+                ) {
+                    Text(
+                        text = "GALLERY",
+                        style = MaterialTheme.typography.labelLarge,
+                        color = MaterialTheme.colorScheme.primary,
+                        fontWeight = FontWeight.Bold,
+                        modifier = Modifier.canimation(
+                            visible = uiState.headerStage >= 0,
+                            effect = Canimation.Fade.Up,
+                        ),
+                    )
+                    Text(
+                        text = "${CanimationPreset.entries.size} Presets",
+                        style = MaterialTheme.typography.headlineMedium,
+                        fontWeight = FontWeight.Bold,
+                        modifier = Modifier.canimation(
+                            visible = uiState.headerStage >= 1,
+                            effect = Canimation.Fade.Up,
+                        ),
+                    )
+                    Text(
+                        text = "Browse, compare, and tune every built-in animation",
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        modifier = Modifier.canimation(
+                            visible = uiState.headerStage >= 2,
+                            effect = Canimation.Fade.Up,
+                        ),
+                    )
+                    FlowRow(
+                        horizontalArrangement = Arrangement.spacedBy(8.dp),
+                        verticalArrangement = Arrangement.spacedBy(8.dp),
+                        modifier = Modifier
+                            .padding(top = 4.dp)
+                            .canimation(visible = uiState.headerStage >= 3, effect = Canimation.Fade.Up),
+                    ) {
+                        MotionFilter.entries.forEach { filter ->
+                            FilterChip(
+                                selected = uiState.motionFilter == filter,
+                                onClick = { onEvent(PresetGalleryEvent.MotionFilterSelected(filter)) },
+                                label = { Text(filter.label) },
+                            )
+                        }
+                    }
+                }
             }
+
+            items(filteredPresets, key = { it.name }) { preset ->
+                var visible by remember { mutableStateOf(false) }
+                LaunchedEffect(preset) { visible = true }
+                Box(Modifier.canimation(visible = visible, effect = Canimation.Fade.Up)) {
+                    AnimationShowcase(
+                        title = presetDescription(preset),
+                        preset = preset,
+                        baseSpec = allPresetSpecs.getValue(preset),
+                        tuning = tuning,
+                        autoPlayEnabled = autoPlayEnabled,
+                        autoPlayTick = autoPlayTick,
+                        selectedForCompare = false,
+                        onCardClick = { tapped ->
+                            onEvent(PresetGalleryEvent.CodeDialogOpened(tapped))
+                        },
+                    )
+                }
+            }
+        }
+
+        val dialogPreset = uiState.codeDialogPreset
+        if (dialogPreset != null) {
+            val dialogSpec = tunePresetSpec(allPresetSpecs.getValue(dialogPreset), tuning)
+            CodeSampleDialog(
+                preset = dialogPreset,
+                spec = dialogSpec,
+                onDismiss = { onEvent(PresetGalleryEvent.CodeDialogClosed) },
+            )
         }
     }
 }
 
-private fun presetDescription(preset: CanimationPreset): String = when (preset) {
-    CanimationPreset.FadeUp -> "Fade + slide up"
-    CanimationPreset.Fade -> "Alpha crossfade"
-    CanimationPreset.ScaleIn -> "Scale from 92%"
-    CanimationPreset.SlideLeft -> "Slide from right"
-    CanimationPreset.SlideRight -> "Slide from left"
-    CanimationPreset.FadeDown -> "Fade + slide down"
-    CanimationPreset.ScaleUp -> "Scale from 108%"
-    CanimationPreset.ZoomIn -> "Zoom from 50%"
-    CanimationPreset.ZoomOut -> "Zoom from 150%"
-    CanimationPreset.Pop -> "Overshoot pop"
-    CanimationPreset.Expand -> "Scale from 0%"
-    CanimationPreset.SlideUp -> "Long slide up"
-    CanimationPreset.SlideDown -> "Long slide down"
-    CanimationPreset.ElevateIn -> "Subtle rise + scale"
-    CanimationPreset.DropIn -> "Drop with bounce"
-    CanimationPreset.RotateIn -> "CCW rotate entry"
-    CanimationPreset.RotateClockwise -> "CW rotate entry"
-    CanimationPreset.SpinIn -> "360° spin + scale"
-    CanimationPreset.FlipIn -> "180° flip entry"
-    CanimationPreset.SwingIn -> "Swing + slide"
-    CanimationPreset.ZoomInUp -> "Zoom + upward"
-    CanimationPreset.ZoomInDown -> "Zoom + downward"
-    CanimationPreset.ZoomInLeft -> "Zoom + from left"
-    CanimationPreset.ZoomInRight -> "Zoom + from right"
-    CanimationPreset.BackInUp -> "Back easing up"
-    CanimationPreset.BackInDown -> "Back easing down"
-    CanimationPreset.ShrinkIn -> "Shrink from 200%"
-    CanimationPreset.GentleFade -> "600ms gentle fade"
-    CanimationPreset.Snap -> "Instant 10ms cut"
-    // Animate.css inspired
-    CanimationPreset.BounceIn -> "Bouncy scale entry"
-    CanimationPreset.BounceInDown -> "Bounce from top"
-    CanimationPreset.BounceInLeft -> "Bounce from left"
-    CanimationPreset.BounceInRight -> "Bounce from right"
-    CanimationPreset.FadeInLeftBig -> "Big slide from left"
-    CanimationPreset.FadeInRightBig -> "Big slide from right"
-    CanimationPreset.LightSpeedInRight -> "Fast slide + tilt"
-    CanimationPreset.LightSpeedInLeft -> "Fast slide left + tilt"
-    CanimationPreset.JackInTheBox -> "Scale + rotate combo"
-    CanimationPreset.RollIn -> "Roll + slide left"
-    // Framer Motion inspired
-    CanimationPreset.SpringIn -> "Spring overshoot scale"
-    CanimationPreset.SpringSlideUp -> "Spring slide up"
-    CanimationPreset.SpringFadeIn -> "Spring fade + scale"
-    // AnimXYZ inspired
-    CanimationPreset.FlipUp -> "Flip + upward slide"
-    CanimationPreset.FlipDown -> "Flip + downward slide"
-    CanimationPreset.TiltIn -> "Tilt + scale entry"
-    // Material Motion inspired
-    CanimationPreset.FadeThrough -> "Material fade-through"
-    CanimationPreset.SharedAxisX -> "Shared axis horizontal"
-    CanimationPreset.SharedAxisY -> "Shared axis vertical"
-    CanimationPreset.EmphasizedEntry -> "Emphasized decelerate"
-    // Animate.css remaining directional
-    CanimationPreset.BackInLeft -> "Back ease from left"
-    CanimationPreset.BackInRight -> "Back ease from right"
-    CanimationPreset.BounceInUp -> "Bounce from bottom"
-    CanimationPreset.FadeInDownBig -> "Big fade from top"
-    CanimationPreset.FadeInUpBig -> "Big fade from bottom"
-    CanimationPreset.FadeInLeft -> "Fade from left"
-    CanimationPreset.FadeInRight -> "Fade from right"
-    CanimationPreset.FadeInTopLeft -> "Diagonal top-left"
-    CanimationPreset.FadeInTopRight -> "Diagonal top-right"
-    CanimationPreset.FadeInBottomLeft -> "Diagonal bottom-left"
-    CanimationPreset.FadeInBottomRight -> "Diagonal bottom-right"
-    CanimationPreset.RotateInDownLeft -> "Rotate down-left"
-    CanimationPreset.RotateInDownRight -> "Rotate down-right"
-    CanimationPreset.RotateInUpLeft -> "Rotate up-left"
-    CanimationPreset.RotateInUpRight -> "Rotate up-right"
-    CanimationPreset.FlipInY -> "Vertical flip"
-    // Animate.css attention seekers
-    CanimationPreset.Pulse -> "Scale pulse"
-    CanimationPreset.HeartBeat -> "Heartbeat pulse"
-    CanimationPreset.Tada -> "Tada emphasis"
-    CanimationPreset.Wobble -> "Side wobble"
-    CanimationPreset.Swing -> "Swing rotation"
-    CanimationPreset.RubberBand -> "Rubber band stretch"
-    CanimationPreset.Bounce -> "Bounce emphasis"
-    CanimationPreset.Flash -> "Quick flash"
-    CanimationPreset.ShakeX -> "Horizontal shake"
-    CanimationPreset.ShakeY -> "Vertical shake"
-    CanimationPreset.HeadShake -> "Head shake"
-    CanimationPreset.Jello -> "Jello wobble"
-    // AnimXYZ compositions
-    CanimationPreset.FadeSmall -> "Fade + shrink"
-    CanimationPreset.FadeBig -> "Fade + grow"
-    CanimationPreset.FadeUpLeft -> "Fade up-left"
-    CanimationPreset.FadeDownRight -> "Fade down-right"
-    CanimationPreset.RotateScale -> "Rotate + scale"
-    CanimationPreset.UpBig -> "Big upward slide"
+@Composable
+private fun CodeSampleDialog(
+    preset: CanimationPreset,
+    spec: CanimationPresetSpec,
+    onDismiss: () -> Unit,
+) {
+    // Temporary(2026-06-30, ticket: CLIPBOARD-API-MIGRATION):
+    // Compose 1.10.0 common API does not expose a stable plain-text ClipEntry factory.
+    // Remove this suppression after LocalClipboard gains a common text writer helper.
+    @Suppress("DEPRECATION")
+    val clipboard = LocalClipboardManager.current
+    val codeSample = remember(preset, spec) { buildPresetCodeSample(preset, spec) }
+    var dialogVisible by remember { mutableStateOf(false) }
+    LaunchedEffect(Unit) { dialogVisible = true }
+
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = {
+            Box(Modifier.canimation(visible = dialogVisible, effect = Canimation.Scale.Pop)) {
+                Text("${preset.name} code sample")
+            }
+        },
+        text = {
+            Box(Modifier.canimation(visible = dialogVisible, effect = Canimation.Fade.In)) {
+                SelectionContainer {
+                    Column(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(320.dp)
+                            .verticalScroll(rememberScrollState()),
+                    ) {
+                        Text(
+                            text = codeSample,
+                            style = MaterialTheme.typography.bodySmall,
+                        )
+                    }
+                }
+            }
+        },
+        confirmButton = {
+            TextButton(
+                onClick = { clipboard.setText(AnnotatedString(codeSample)) },
+            ) {
+                Text("Copy")
+            }
+        },
+        dismissButton = {
+            TextButton(onClick = onDismiss) {
+                Text("Close")
+            }
+        },
+    )
 }

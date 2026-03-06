@@ -4,4 +4,24 @@ html, body {
     margin: 0;
     padding: 0;
     overflow: hidden;
+    background-color: #0A0A12;
+}
+
+@media (prefers-color-scheme: light) {
+    html, body {
+        background-color: #FFFBFE;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    #loading svg circle:last-child {
+        stroke: #D0BCFF;
+    }
+}
+
+#loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }

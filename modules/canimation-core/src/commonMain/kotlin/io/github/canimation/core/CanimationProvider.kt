@@ -7,7 +7,8 @@ import androidx.compose.runtime.CompositionLocalProvider
  * Provides animation configuration to the composable tree.
  *
  * Wrap your application or a subtree to control animation tokens, policy, and presets.
- * When omitted, safe defaults are used (Full motion, default tokens, built-in presets).
+ * When omitted, safe defaults are used:
+ * `policy = SystemAware` and `systemReducedMotion = null` (resolved to reduced motion).
  *
  * @param tokens Animation timing, easing, distance, and spring tokens.
  * @param policy Policy for determining animation level from system preferences.

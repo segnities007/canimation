@@ -1,0 +1,27 @@
+name: Scheduled Quality Checks
+
+on:
+  schedule:
+    - cron: '0 9 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  flake-scan:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/setup-build
+      - name: Run flake scan
+        run: bash scripts/measure-flake-rate.sh
+      - name: Upload flake report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: flake-report
+          path: docs/quality/flake-rate.json
+          retention-days: 90

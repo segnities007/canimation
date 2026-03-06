@@ -1,6 +1,5 @@
 package io.github.canimation.core
 
-import androidx.compose.animation.core.CubicBezierEasing
 import androidx.compose.animation.core.Easing
 import androidx.compose.runtime.Immutable
 import androidx.compose.ui.unit.Dp
@@ -63,10 +62,9 @@ data class CanimationSpec(
      * - `easing` → decelerate
      */
     fun toReduced(): CanimationSpec {
-        val reducedEasing = CubicBezierEasing(0.0f, 0.0f, 0.0f, 1.0f) // decelerate
         return CanimationSpec(
-            durationMs = 120,
-            easing = reducedEasing,
+            durationMs = DurationTokens.Default.shortMs,
+            easing = EasingTokens.Default.decelerate,
             alpha = alpha,
             offsetX = offsetX?.let { CanimationDpRange(it.from * 0.25f, it.to * 0.25f) },
             offsetY = offsetY?.let { CanimationDpRange(it.from * 0.25f, it.to * 0.25f) },
@@ -90,10 +88,9 @@ data class CanimationSpec(
      * - durationMs → unchanged
      */
     fun reversed(): CanimationSpec {
-        val accelerateEasing = CubicBezierEasing(0.3f, 0.0f, 1.0f, 1.0f) // accelerate
         return CanimationSpec(
             durationMs = durationMs,
-            easing = accelerateEasing,
+            easing = EasingTokens.Default.accelerate,
             alpha = alpha?.let { CanimationRange(it.to, it.from) },
             offsetX = offsetX?.let { CanimationDpRange(it.to, it.from) },
             offsetY = offsetY?.let { CanimationDpRange(it.to, it.from) },

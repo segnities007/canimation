@@ -24,6 +24,9 @@ kotlin {
             implementation(libs.androidx.core.ktx)
             implementation(libs.kotlinx.coroutinesCore)
         }
+        androidUnitTest.dependencies {
+            implementation(libs.kotlin.test)
+        }
     }
 }
 

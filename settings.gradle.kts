@@ -25,6 +25,22 @@ dependencyResolutionManagement {
             }
         }
         mavenCentral()
+        exclusiveContent {
+            forRepository {
+                ivy("https://nodejs.org/dist") {
+                    name = "Node.js distributions"
+                    patternLayout {
+                        artifact("v[revision]/[artifact](-v[revision]-[classifier]).[ext]")
+                    }
+                    metadataSources {
+                        artifact()
+                    }
+                }
+            }
+            filter {
+                includeModule("org.nodejs", "node")
+            }
+        }
     }
 }
 

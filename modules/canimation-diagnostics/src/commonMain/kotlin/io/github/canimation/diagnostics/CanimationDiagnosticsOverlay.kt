@@ -11,6 +11,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.runtime.withFrameNanos
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -19,7 +20,8 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.foundation.text.BasicText
-import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.isActive
 
 /**
  * Debug overlay that displays real-time animation performance metrics.
@@ -49,25 +51,31 @@ fun CanimationDiagnosticsOverlay(
         if (enabled) {
             var metrics by remember { mutableStateOf(FrameMetrics()) }
 
-            LaunchedEffect(collector) {
+            LaunchedEffect(collector, jankThresholdMs) {
                 if (collector != null) {
                     collector.start()
-                    collector.observeMetrics().collect { metrics = it }
+                    try {
+                        collector.observeMetrics().collect { metrics = it }
+                    } finally {
+                        collector.stop()
+                    }
                 } else {
-                    // Simple fallback: track frame intervals using withFrameNanos-like approach
+                    // Fallback: sample Compose frame times directly.
                     val frameTimes = mutableListOf<Float>()
-                    var lastFrameTime = currentNanos()
-                    while (true) {
-                        delay(16L)
-                        val now = currentNanos()
-                        val frameTimeMs = (now - lastFrameTime) / 1_000_000f
-                        lastFrameTime = now
-                        frameTimes.add(frameTimeMs)
-                        if (frameTimes.size > 120) frameTimes.removeAt(0)
-                        metrics = CanimationDiagnosticsFacade.computeMetrics(
-                            frameTimes,
-                            jankThresholdMs,
-                        )
+                    var lastFrameNanos = 0L
+                    while (isActive) {
+                        withFrameNanos { frameNanos ->
+                            if (lastFrameNanos != 0L) {
+                                val frameTimeMs = (frameNanos - lastFrameNanos) / 1_000_000f
+                                frameTimes.add(frameTimeMs)
+                                if (frameTimes.size > 120) frameTimes.removeAt(0)
+                                metrics = CanimationDiagnosticsFacade.computeMetrics(
+                                    frameTimes,
+                                    jankThresholdMs,
+                                )
+                            }
+                            lastFrameNanos = frameNanos
+                        }
                     }
                 }
             }
@@ -114,5 +122,3 @@ fun CanimationDiagnosticsOverlay(
         }
     }
 }
-
-internal expect fun currentNanos(): Long
