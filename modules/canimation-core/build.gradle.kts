@@ -40,14 +40,14 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-            implementation(compose.runtime)
-            implementation(compose.foundation)
-            implementation(compose.ui)
-            implementation(compose.animation)
+            implementation(libs.compose.runtime)
+            implementation(libs.compose.foundation)
+            implementation(libs.compose.ui)
+            implementation(libs.compose.animation)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
-            implementation(compose.animation)
+            implementation(libs.compose.animation)
         }
     }
 }

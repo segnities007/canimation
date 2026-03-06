@@ -14,7 +14,7 @@ kotlin {
             implementation(project(":canimation-core"))
             implementation(project(":canimation-a11y"))
             implementation(project(":canimation-diagnostics"))
-            implementation(compose.runtime)
+            implementation(libs.compose.runtime)
             implementation(libs.kotlinx.coroutinesCore)
         }
         jsTest.dependencies {

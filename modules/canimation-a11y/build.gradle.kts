@@ -41,7 +41,7 @@ kotlin {
     sourceSets {
         commonMain.dependencies {
             api(project(":canimation-core"))
-            implementation(compose.runtime)
+            implementation(libs.compose.runtime)
             implementation(libs.kotlinx.coroutinesCore)
         }
         commonTest.dependencies {
