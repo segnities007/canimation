@@ -47,12 +47,17 @@ jobs:
           distribution: temurin
           java-version: '21'
       - uses: gradle/actions/setup-gradle@v4
-      - name: Sign publications
+      - name: Sign publications if available
         env:
           CANIMATION_SIGNING_KEY: ${{ secrets.CANIMATION_SIGNING_KEY }}
           CANIMATION_SIGNING_PASSWORD: ${{ secrets.CANIMATION_SIGNING_PASSWORD }}
           CANIMATION_SIGNING_KEY_ID: ${{ secrets.CANIMATION_SIGNING_KEY_ID }}
-        run: ./gradlew signAllPublications
+        run: |
+          if ./gradlew tasks --all | grep -qE '^signAllPublications($| )'; then
+            ./gradlew signAllPublications
+          else
+            echo "signAllPublications task is not configured; signing will run as part of publish if supported."
+          fi
 
   publish:
     needs: sign
@@ -69,6 +74,9 @@ jobs:
           CANIMATION_MAVEN_URL: ${{ secrets.CANIMATION_MAVEN_URL }}
           CANIMATION_MAVEN_USERNAME: ${{ secrets.CANIMATION_MAVEN_USERNAME }}
           CANIMATION_MAVEN_PASSWORD: ${{ secrets.CANIMATION_MAVEN_PASSWORD }}
+          CANIMATION_SIGNING_KEY: ${{ secrets.CANIMATION_SIGNING_KEY }}
+          CANIMATION_SIGNING_PASSWORD: ${{ secrets.CANIMATION_SIGNING_PASSWORD }}
+          CANIMATION_SIGNING_KEY_ID: ${{ secrets.CANIMATION_SIGNING_KEY_ID }}
         run: ./gradlew publish
 
   docs-deploy:

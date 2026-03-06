@@ -70,6 +70,7 @@ jobs:
       - run: ./gradlew --max-workers=1 allTests
 
   integration-test:
+    needs: linux-check
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
@@ -81,6 +82,7 @@ jobs:
       - run: ./gradlew :composeApp:check
 
   artifact-build:
+    needs: linux-check
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
@@ -92,6 +94,7 @@ jobs:
       - run: ./gradlew assemble
 
   coverage-verify:
+    needs: unit-test
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
