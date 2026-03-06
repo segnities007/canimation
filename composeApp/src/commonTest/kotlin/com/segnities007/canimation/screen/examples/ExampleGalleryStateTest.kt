@@ -1,6 +1,5 @@
 package com.segnities007.canimation.screen.examples
 
-import canimation.composeapp.generated.resources.Res
 import io.github.canimation.core.Canimation
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -20,15 +19,11 @@ class ExampleGalleryStateTest {
 
     @Test
     fun filterGalleryItemsAppliesSearchAndTagTogether() {
+        val baseExample = allGalleryItems.first().item
         val items = listOf(
             ResolvedGalleryItem(
                 galleryItem = GalleryItem(
-                    item = ExampleItem(
-                        title = Res.string.gallery_label,
-                        description = Res.string.gallery_description,
-                        codeSnippet = Res.string.app_title,
-                        effect = Canimation.Fade.Up,
-                    ),
+                    item = baseExample.copy(effect = Canimation.Fade.Up),
                     tag = "ENTRANCE",
                     globalIndex = 0,
                 ),
@@ -38,12 +33,7 @@ class ExampleGalleryStateTest {
             ),
             ResolvedGalleryItem(
                 galleryItem = GalleryItem(
-                    item = ExampleItem(
-                        title = Res.string.gallery_label,
-                        description = Res.string.gallery_description,
-                        codeSnippet = Res.string.app_title,
-                        demoType = DemoType.Emphasis,
-                    ),
+                    item = baseExample.copy(demoType = DemoType.Emphasis, effect = null),
                     tag = "EMPHASIS",
                     globalIndex = 1,
                 ),
