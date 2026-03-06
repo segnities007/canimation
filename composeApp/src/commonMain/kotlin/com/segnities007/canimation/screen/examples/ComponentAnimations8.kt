@@ -10,17 +10,17 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowForward
+import androidx.compose.material.icons.automirrored.filled.Help
 import androidx.compose.material.icons.filled.AutoAwesome
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material.icons.filled.ArrowDropUp
-import androidx.compose.material.icons.filled.ArrowForward
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material.icons.filled.Folder
-import androidx.compose.material.icons.filled.Help
 import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.Remove
@@ -77,7 +77,7 @@ fun AnimatedBanner(modifier: Modifier = Modifier) {
                     Text(stringResource(Res.string.demo_new_release), style = MaterialTheme.typography.labelMedium, fontWeight = FontWeight.Bold, color = Color.White)
                     Text(stringResource(Res.string.component_release_details), style = MaterialTheme.typography.bodySmall, color = Color.White.copy(alpha = 0.8f))
                 }
-                Icon(Icons.Default.ArrowForward, contentDescription = null, tint = Color.White)
+                Icon(Icons.AutoMirrored.Filled.ArrowForward, contentDescription = null, tint = Color.White)
             }
         }
     }
@@ -96,7 +96,7 @@ fun AnimatedTooltip(modifier: Modifier = Modifier) {
         }
         Spacer(Modifier.height(8.dp))
         Surface(shape = RoundedCornerShape(8.dp), color = MaterialTheme.colorScheme.primaryContainer, modifier = Modifier.size(48.dp, 32.dp)) {
-            Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) { Icon(Icons.Default.Help, contentDescription = null) }
+            Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) { Icon(Icons.AutoMirrored.Filled.Help, contentDescription = null) }
         }
     }
 }

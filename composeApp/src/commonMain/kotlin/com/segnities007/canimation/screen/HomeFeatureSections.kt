@@ -42,7 +42,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.segnities007.canimation.navigation.HomeDestination
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowForward
+import androidx.compose.material.icons.automirrored.filled.ArrowForward
 import io.github.canimation.core.CanimationEffect
 import io.github.canimation.core.CanimationPreset
 import io.github.canimation.core.CanimationVisibility
@@ -343,7 +343,7 @@ internal fun ExploreSection(onNavigate: (HomeDestination) -> Unit) {
                             )
                         }
                         Icon(
-                            imageVector = Icons.Default.ArrowForward,
+                            imageVector = Icons.AutoMirrored.Filled.ArrowForward,
                             contentDescription = null,
                             tint = MaterialTheme.colorScheme.primary,
                         )
