@@ -21,13 +21,13 @@ check_runner() {
   fi
 }
 
-# Validate pr.yml
+# Validate pr.yml (CI)
 PR_FILE=".github/workflows/pr.yml"
 if [ ! -f "$PR_FILE" ]; then
   echo "ERROR: $PR_FILE does not exist"
   ERRORS=$((ERRORS + 1))
 else
-  for job in linux-check security-audit format-check lint-detekt unit-test integration-test artifact-build coverage-verify flake-scan; do
+  for job in lint test build security-audit coverage; do
     check_job "$PR_FILE" "$job"
   done
   check_runner "$PR_FILE" "ubuntu-24.04"
@@ -39,10 +39,34 @@ if [ ! -f "$RELEASE_FILE" ]; then
   echo "ERROR: $RELEASE_FILE does not exist"
   ERRORS=$((ERRORS + 1))
 else
-  for job in check sign publish docs-deploy release-secrets-check; do
+  for job in check publish; do
     check_job "$RELEASE_FILE" "$job"
   done
   check_runner "$RELEASE_FILE" "ubuntu-24.04"
+fi
+
+# Validate schedule.yml
+SCHEDULE_FILE=".github/workflows/schedule.yml"
+if [ ! -f "$SCHEDULE_FILE" ]; then
+  echo "ERROR: $SCHEDULE_FILE does not exist"
+  ERRORS=$((ERRORS + 1))
+else
+  for job in flake-scan; do
+    check_job "$SCHEDULE_FILE" "$job"
+  done
+  check_runner "$SCHEDULE_FILE" "ubuntu-24.04"
+fi
+
+# Validate pages.yml
+PAGES_FILE=".github/workflows/pages.yml"
+if [ ! -f "$PAGES_FILE" ]; then
+  echo "ERROR: $PAGES_FILE does not exist"
+  ERRORS=$((ERRORS + 1))
+else
+  for job in build deploy; do
+    check_job "$PAGES_FILE" "$job"
+  done
+  check_runner "$PAGES_FILE" "ubuntu-24.04"
 fi
 
 if [ "$ERRORS" -gt 0 ]; then
