@@ -30,7 +30,7 @@ jobs:
         if: always()
         run: date -u '+%Y-%m-%dT%H:%M:%SZ'
       - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4
         with:
           path: composeApp/build/dist/wasmJs/productionExecutable
 
