@@ -18,8 +18,17 @@ jobs:
         with:
           persist-credentials: false
       - uses: ./.github/actions/setup-build
-      - name: Build Wasm production bundle
+      - name: Log build start
+        run: date -u '+%Y-%m-%dT%H:%M:%SZ'
+      - name: Compile Wasm production executable
+        run: ./gradlew :composeApp:compileProductionExecutableKotlinWasmJsOptimize --info
+      - name: Bundle production webpack output
+        run: ./gradlew :composeApp:jsBrowserProductionWebpack --info
+      - name: Assemble Wasm browser distribution
         run: ./gradlew :composeApp:wasmJsBrowserDistribution --info
+      - name: Log build end
+        if: always()
+        run: date -u '+%Y-%m-%dT%H:%M:%SZ'
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
