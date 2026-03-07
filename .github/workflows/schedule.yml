@@ -19,7 +19,7 @@ jobs:
       - name: Run flake scan
         run: bash scripts/measure-flake-rate.sh
       - name: Upload flake report
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         if: always()
         with:
           name: flake-report
