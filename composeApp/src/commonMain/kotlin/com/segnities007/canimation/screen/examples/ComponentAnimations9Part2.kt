@@ -154,7 +154,7 @@ fun AnimatedSwitch(modifier: Modifier = Modifier) {
     val thumbOffset by animateFloatAsState(if (on) 28f else 4f, spring(dampingRatio = 0.6f))
     val trackColor by animateColorAsState(if (on) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.outlineVariant)
     Row(modifier.fillMaxWidth().padding(16.dp), horizontalArrangement = Arrangement.Center, verticalAlignment = Alignment.CenterVertically) {
-        Text("Off", style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
+        Text(stringResource(Res.string.component_off), style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
         Spacer(Modifier.width(12.dp))
         Box(
             Modifier.width(52.dp).height(28.dp).clip(RoundedCornerShape(14.dp)).background(trackColor).clickable { on = !on },
@@ -162,7 +162,7 @@ fun AnimatedSwitch(modifier: Modifier = Modifier) {
             Box(Modifier.offset(x = thumbOffset.dp).size(20.dp).clip(CircleShape).background(Color.White))
         }
         Spacer(Modifier.width(12.dp))
-        Text("On", style = MaterialTheme.typography.labelMedium, color = if (on) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant, fontWeight = if (on) FontWeight.Bold else FontWeight.Normal)
+        Text(stringResource(Res.string.component_on), style = MaterialTheme.typography.labelMedium, color = if (on) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant, fontWeight = if (on) FontWeight.Bold else FontWeight.Normal)
     }
 }
 
@@ -242,7 +242,7 @@ fun AnimatedNotificationBell(modifier: Modifier = Modifier) {
                 var vis by remember { mutableStateOf(false) }
                 LaunchedEffect(Unit) { vis = true }
                 Box(Modifier.canimation(visible = vis, effect = Canimation.Scale.Pop).size(16.dp).clip(CircleShape).background(Color(0xFFEF4444)), contentAlignment = Alignment.Center) {
-                    Text("3", color = Color.White, fontSize = 9.sp, fontWeight = FontWeight.Bold)
+                    Text(stringResource(Res.string.component_notification_count), color = Color.White, fontSize = 9.sp, fontWeight = FontWeight.Bold)
                 }
             }
         }
@@ -292,14 +292,14 @@ fun AnimatedCreditCard(modifier: Modifier = Modifier) {
             ) {
                 if (rotationY <= 90f) {
                     Column(Modifier.padding(12.dp), verticalArrangement = Arrangement.SpaceBetween) {
-                        Text("VISA", color = Color.White, fontWeight = FontWeight.Bold, fontSize = 12.sp)
-                        Text("•••• •••• •••• 4242", color = Color.White.copy(alpha = 0.8f), fontFamily = FontFamily.Monospace, fontSize = 13.sp)
+                        Text(stringResource(Res.string.component_credit_card_brand), color = Color.White, fontWeight = FontWeight.Bold, fontSize = 12.sp)
+                        Text(stringResource(Res.string.component_credit_card_number), color = Color.White.copy(alpha = 0.8f), fontFamily = FontFamily.Monospace, fontSize = 13.sp)
                     }
                 } else {
                     Column(Modifier.padding(12.dp).graphicsLayer { scaleX = -1f }) {
                         Box(Modifier.fillMaxWidth().height(20.dp).background(Color(0xFF0F172A)))
                         Spacer(Modifier.height(6.dp))
-                        Text("CVV: ***", color = Color.White.copy(alpha = 0.6f), fontSize = 10.sp, fontFamily = FontFamily.Monospace)
+                        Text(stringResource(Res.string.component_credit_card_cvv), color = Color.White.copy(alpha = 0.6f), fontSize = 10.sp, fontFamily = FontFamily.Monospace)
                     }
                 }
             }

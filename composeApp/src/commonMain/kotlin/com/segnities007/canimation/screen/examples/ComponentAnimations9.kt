@@ -10,11 +10,13 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.AttachFile
 import androidx.compose.material.icons.filled.CameraAlt
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.NoteAlt
+import androidx.compose.material.icons.filled.Remove
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -72,9 +74,9 @@ fun AnimatedBottomSheet(modifier: Modifier = Modifier) {
             Column(horizontalAlignment = Alignment.CenterHorizontally, modifier = Modifier.fillMaxWidth()) {
                 Box(Modifier.width(40.dp).height(4.dp).clip(RoundedCornerShape(2.dp)).background(MaterialTheme.colorScheme.outline))
                 Spacer(Modifier.height(12.dp))
-                Text("Bottom Sheet Content", style = MaterialTheme.typography.titleSmall)
+                Text(stringResource(Res.string.component_bottom_sheet_content), style = MaterialTheme.typography.titleSmall)
                 Spacer(Modifier.height(4.dp))
-                Text("Swipe down to dismiss", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                Text(stringResource(Res.string.component_swipe_down_to_dismiss), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
             }
         }
     }
@@ -89,8 +91,8 @@ fun AnimatedSnackbar(modifier: Modifier = Modifier) {
         Box(Modifier.canimation(visible = vis, effect = Canimation.Slide.Up)) {
             Surface(shape = RoundedCornerShape(8.dp), color = MaterialTheme.colorScheme.inverseSurface) {
                 Row(Modifier.padding(horizontal = 16.dp, vertical = 12.dp), verticalAlignment = Alignment.CenterVertically) {
-                    Text("Item saved successfully", Modifier.weight(1f), style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.inverseOnSurface)
-                    Text("UNDO", style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.inversePrimary, fontWeight = FontWeight.Bold)
+                    Text(stringResource(Res.string.component_item_saved_successfully), Modifier.weight(1f), style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.inverseOnSurface)
+                    Text(stringResource(Res.string.component_undo), style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.inversePrimary, fontWeight = FontWeight.Bold)
                 }
             }
         }
@@ -142,7 +144,7 @@ fun AnimatedFab(modifier: Modifier = Modifier) {
                 modifier = Modifier.size(56.dp).clickable { expanded = !expanded },
             ) {
                 Box(Modifier.fillMaxSize().graphicsLayer { rotationZ = rotation }, contentAlignment = Alignment.Center) {
-                    Text("+", style = MaterialTheme.typography.headlineSmall, color = MaterialTheme.colorScheme.onPrimary)
+                    Icon(Icons.Default.Add, contentDescription = null, tint = MaterialTheme.colorScheme.onPrimary)
                 }
             }
         }
@@ -156,7 +158,7 @@ fun AnimatedChipInput(modifier: Modifier = Modifier) {
     var count by remember { mutableIntStateOf(0) }
     LaunchedEffect(Unit) { while (true) { delay(800); if (count < chips.size) count++ else { delay(1000); count = 0 } } }
     Column(modifier.fillMaxWidth().padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
-        Text("Tags", style = MaterialTheme.typography.labelMedium)
+        Text(stringResource(Res.string.component_tags), style = MaterialTheme.typography.labelMedium)
         Surface(shape = RoundedCornerShape(8.dp), color = MaterialTheme.colorScheme.surfaceVariant, border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline), modifier = Modifier.fillMaxWidth()) {
             Row(Modifier.padding(8.dp), horizontalArrangement = Arrangement.spacedBy(6.dp)) {
                 chips.take(count).forEachIndexed { i, chip ->
@@ -187,7 +189,11 @@ fun AnimatedChipInput(modifier: Modifier = Modifier) {
 fun AnimatedAccordion(modifier: Modifier = Modifier) {
     var openIdx by remember { mutableIntStateOf(-1) }
     LaunchedEffect(Unit) { while (true) { for (i in 0..2) { openIdx = i; delay(2000) }; openIdx = -1; delay(1000) } }
-    val items = listOf("Getting Started" to "Install with Gradle and add to your project.", "Usage" to "Use Modifier.canimation() on any composable.", "API Reference" to "190+ effects across 31 categories.")
+    val items = listOf(
+        stringResource(Res.string.component_accordion_title_1) to stringResource(Res.string.component_accordion_body_1),
+        stringResource(Res.string.component_accordion_title_2) to stringResource(Res.string.component_accordion_body_2),
+        stringResource(Res.string.component_accordion_title_3) to stringResource(Res.string.component_accordion_body_3),
+    )
     Column(modifier.fillMaxWidth().padding(16.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
         items.forEachIndexed { i, (title, content) ->
             val isOpen = i == openIdx
@@ -200,7 +206,10 @@ fun AnimatedAccordion(modifier: Modifier = Modifier) {
                 Column(Modifier.padding(12.dp)) {
                     Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
                         Text(title, style = MaterialTheme.typography.labelMedium, fontWeight = FontWeight.Bold)
-                        Text(if (isOpen) "−" else "+", fontWeight = FontWeight.Bold)
+                        Icon(
+                            imageVector = if (isOpen) Icons.Default.Remove else Icons.Default.Add,
+                            contentDescription = null,
+                        )
                     }
                     if (isOpen) {
                         var vis by remember { mutableStateOf(false) }
@@ -223,7 +232,12 @@ fun AnimatedAccordion(modifier: Modifier = Modifier) {
 fun AnimatedStepper(modifier: Modifier = Modifier) {
     var step by remember { mutableIntStateOf(0) }
     LaunchedEffect(Unit) { while (true) { delay(1500); step = (step + 1) % 4 } }
-    val labels = listOf("Cart", "Shipping", "Payment", "Confirm")
+    val labels = listOf(
+        stringResource(Res.string.component_step_cart),
+        stringResource(Res.string.component_step_shipping),
+        stringResource(Res.string.component_step_payment),
+        stringResource(Res.string.component_step_confirm),
+    )
     Row(modifier.fillMaxWidth().padding(16.dp), horizontalArrangement = Arrangement.SpaceEvenly, verticalAlignment = Alignment.CenterVertically) {
         labels.forEachIndexed { i, label ->
             val done = i < step; val active = i == step

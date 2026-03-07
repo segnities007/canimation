@@ -31,7 +31,9 @@ import io.github.canimation.core.CanimationPresetSpec
 import io.github.canimation.core.CanimationRange
 import io.github.canimation.core.CanimationSpec
 import io.github.canimation.core.canimationTransition
+import canimation.composeapp.generated.resources.*
 import kotlinx.coroutines.delay
+import org.jetbrains.compose.resources.stringResource
 import kotlin.math.roundToInt
 
 data class PresetPreviewTuning(
@@ -181,7 +183,7 @@ fun AnimationShowcase(
                         contentAlignment = Alignment.Center,
                     ) {
                         Text(
-                            text = "A",
+                            text = stringResource(Res.string.showcase_preview_text),
                             style = MaterialTheme.typography.labelMedium,
                             color = MaterialTheme.colorScheme.onPrimaryContainer,
                         )

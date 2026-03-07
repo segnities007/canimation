@@ -38,7 +38,6 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -49,9 +48,11 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import canimation.composeapp.generated.resources.*
 import io.github.canimation.core.Canimation
 import io.github.canimation.core.canimation
 import kotlinx.coroutines.delay
+import org.jetbrains.compose.resources.stringResource
 
 @Composable
 fun ExamplesScreen(
@@ -70,10 +71,16 @@ fun ExamplesScreen(
         }
     }
 
-    val filteredItems by remember(uiState.searchQuery, uiState.selectedTag) {
-        derivedStateOf {
-            filterGalleryItems(allGalleryItems, uiState)
-        }
+    val resolvedGalleryItems = allGalleryItems.map { galleryItem ->
+        ResolvedGalleryItem(
+            galleryItem = galleryItem,
+            title = stringResource(galleryItem.item.title),
+            description = stringResource(galleryItem.item.description),
+            tagLabel = stringResource(tagLabelRes(galleryItem.tag)),
+        )
+    }
+    val filteredItems = remember(resolvedGalleryItems, uiState.searchQuery, uiState.selectedTag) {
+        filterGalleryItems(resolvedGalleryItems, uiState)
     }
 
     Box(
@@ -97,7 +104,7 @@ fun ExamplesScreen(
                     verticalArrangement = Arrangement.spacedBy(10.dp),
                 ) {
                     Text(
-                        text = "GALLERY",
+                        text = stringResource(Res.string.examples_gallery_label),
                         style = MaterialTheme.typography.labelLarge,
                         color = MaterialTheme.colorScheme.primary,
                         fontWeight = FontWeight.Bold,
@@ -107,7 +114,7 @@ fun ExamplesScreen(
                         ),
                     )
                     Text(
-                        text = "Animation Gallery",
+                        text = stringResource(Res.string.examples_gallery_title),
                         style = MaterialTheme.typography.headlineMedium,
                         fontWeight = FontWeight.Bold,
                         modifier = Modifier.canimation(
@@ -116,7 +123,7 @@ fun ExamplesScreen(
                         ),
                     )
                     Text(
-                        text = "${allGalleryItems.size} animations",
+                        text = stringResource(Res.string.examples_gallery_count, allGalleryItems.size),
                         style = MaterialTheme.typography.bodyMedium,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                         modifier = Modifier.canimation(
@@ -139,11 +146,11 @@ fun ExamplesScreen(
                         OutlinedTextField(
                             value = uiState.searchQuery,
                             onValueChange = { onEvent(ExamplesEvent.SearchQueryChanged(it)) },
-                            placeholder = { Text("Search animations...") },
+                            placeholder = { Text(stringResource(Res.string.examples_search_placeholder)) },
                             leadingIcon = {
                                 Icon(
                                     Icons.Default.Search,
-                                    contentDescription = "Search",
+                                    contentDescription = stringResource(Res.string.examples_search_action),
                                     tint = MaterialTheme.colorScheme.onSurfaceVariant,
                                 )
                             },
@@ -160,7 +167,7 @@ fun ExamplesScreen(
                         IconButton(onClick = { onEvent(ExamplesEvent.FiltersToggled) }) {
                             Icon(
                                 imageVector = Icons.Default.FilterList,
-                                contentDescription = "Filter",
+                                contentDescription = stringResource(Res.string.examples_filter_action),
                                 tint = if (uiState.selectedTag != ALL_TAG)
                                     MaterialTheme.colorScheme.primary
                                 else MaterialTheme.colorScheme.onSurfaceVariant,
@@ -176,20 +183,20 @@ fun ExamplesScreen(
                                 .fillMaxWidth()
                                 .horizontalScroll(rememberScrollState()),
                         ) {
-                            filterTags.forEach { label ->
-                                val chipColor = tagColor(label)
+                            filterTags.forEach { tagId ->
+                                val chipColor = tagColor(tagId)
                                 FilterChip(
-                                    selected = uiState.selectedTag == label,
-                                    onClick = { onEvent(ExamplesEvent.TagSelected(label)) },
+                                    selected = uiState.selectedTag == tagId,
+                                    onClick = { onEvent(ExamplesEvent.TagSelected(tagId)) },
                                     label = {
                                         Text(
-                                            text = label,
+                                            text = stringResource(tagLabelRes(tagId)),
                                             style = MaterialTheme.typography.labelSmall,
-                                            fontWeight = if (uiState.selectedTag == label) FontWeight.Bold
+                                            fontWeight = if (uiState.selectedTag == tagId) FontWeight.Bold
                                             else FontWeight.Normal,
                                         )
                                     },
-                                    leadingIcon = if (label != ALL_TAG) {
+                                    leadingIcon = if (tagId != ALL_TAG) {
                                         {
                                             Box(
                                                 Modifier.size(8.dp)
@@ -209,7 +216,7 @@ fun ExamplesScreen(
                     // Results count
                     if (uiState.searchQuery.isNotBlank() || uiState.selectedTag != ALL_TAG) {
                         Text(
-                            text = "${filteredItems.size} results",
+                            text = stringResource(Res.string.examples_results_count, filteredItems.size),
                             style = MaterialTheme.typography.labelSmall,
                             color = MaterialTheme.colorScheme.onSurfaceVariant,
                         )
@@ -218,10 +225,10 @@ fun ExamplesScreen(
             }
 
             // Flat animation cards
-            items(filteredItems, key = { it.globalIndex }) { galleryItem ->
+            items(filteredItems, key = { it.galleryItem.globalIndex }) { galleryItem ->
                 AnimationPreviewCard(
                     galleryItem = galleryItem,
-                    onClick = { onItemClick(galleryItem.globalIndex) },
+                    onClick = { onItemClick(galleryItem.galleryItem.globalIndex) },
                 )
             }
         }
@@ -232,11 +239,11 @@ fun ExamplesScreen(
 
 @Composable
 private fun AnimationPreviewCard(
-    galleryItem: GalleryItem,
+    galleryItem: ResolvedGalleryItem,
     onClick: () -> Unit,
 ) {
-    val item = galleryItem.item
-    val accent = tagColor(galleryItem.tag)
+    val item = galleryItem.galleryItem.item
+    val accent = tagColor(galleryItem.galleryItem.tag)
     var entered by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { entered = true }
 
@@ -286,13 +293,13 @@ private fun AnimationPreviewCard(
                     verticalArrangement = Arrangement.spacedBy(2.dp),
                 ) {
                     Text(
-                        text = galleryItem.tag,
+                        text = galleryItem.tagLabel,
                         style = MaterialTheme.typography.labelSmall,
                         color = accent,
                         fontWeight = FontWeight.Bold,
                     )
                     Text(
-                        text = item.title,
+                        text = galleryItem.title,
                         style = MaterialTheme.typography.titleSmall,
                         fontWeight = FontWeight.Bold,
                         maxLines = 1,

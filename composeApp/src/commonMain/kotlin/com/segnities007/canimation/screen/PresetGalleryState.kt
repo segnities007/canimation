@@ -1,13 +1,20 @@
 package com.segnities007.canimation.screen
 
+import canimation.composeapp.generated.resources.Res
+import canimation.composeapp.generated.resources.filter_all
+import canimation.composeapp.generated.resources.filter_fade_only
+import canimation.composeapp.generated.resources.filter_move
+import canimation.composeapp.generated.resources.filter_rotate
+import canimation.composeapp.generated.resources.filter_scale
 import io.github.canimation.core.CanimationPreset
+import org.jetbrains.compose.resources.StringResource
 
-internal enum class MotionFilter(val label: String) {
-    All("All"),
-    Translation("Move"),
-    Scale("Scale"),
-    Rotation("Rotate"),
-    AlphaOnly("Fade Only"),
+internal enum class MotionFilter(val labelRes: StringResource) {
+    All(Res.string.filter_all),
+    Translation(Res.string.filter_move),
+    Scale(Res.string.filter_scale),
+    Rotation(Res.string.filter_rotate),
+    AlphaOnly(Res.string.filter_fade_only),
 }
 
 internal data class PresetGalleryUiState(

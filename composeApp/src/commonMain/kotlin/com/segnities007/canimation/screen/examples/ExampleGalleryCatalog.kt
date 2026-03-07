@@ -1,8 +1,38 @@
 package com.segnities007.canimation.screen.examples
 
 import androidx.compose.ui.graphics.Color
+import canimation.composeapp.generated.resources.*
+import org.jetbrains.compose.resources.StringResource
 
 internal const val ALL_TAG = "ALL"
+
+private val tagLabelResources: Map<String, StringResource> = mapOf(
+    ALL_TAG to Res.string.filter_all,
+    "ENTRANCE" to Res.string.examples_tag_entrance,
+    "EMPHASIS" to Res.string.examples_tag_emphasis,
+    "PATTERN" to Res.string.examples_tag_pattern,
+    "MATERIAL" to Res.string.examples_tag_material,
+    "DIRECTION" to Res.string.examples_tag_direction,
+    "3D" to Res.string.examples_tag_3d,
+    "UI" to Res.string.examples_tag_ui,
+    "TEXT" to Res.string.examples_tag_text,
+    "CARDS" to Res.string.examples_tag_cards,
+    "LOADING" to Res.string.examples_tag_loading,
+    "DATA" to Res.string.examples_tag_data,
+    "NAVIGATION" to Res.string.examples_tag_navigation,
+    "INTERACTIVE" to Res.string.examples_tag_interactive,
+    "CANVAS" to Res.string.examples_tag_canvas,
+    "LAYOUT" to Res.string.examples_tag_layout,
+    "SCALE" to Res.string.examples_tag_scale,
+    "MOVEMENT" to Res.string.examples_tag_movement,
+    "ROTATE" to Res.string.examples_tag_rotate,
+    "SUBTLE" to Res.string.examples_tag_subtle,
+    "PHYSICS" to Res.string.examples_tag_physics,
+    "CHARTS" to Res.string.examples_tag_charts,
+    "GALLERY" to Res.string.examples_tag_gallery,
+    "NAV" to Res.string.examples_tag_nav,
+    "VISUAL" to Res.string.examples_tag_visual,
+)
 
 private val tagColors: Map<String, Color> = mapOf(
     "ENTRANCE" to Color(0xFF6366F1),   // indigo
@@ -32,6 +62,8 @@ private val tagColors: Map<String, Color> = mapOf(
 )
 
 internal fun tagColor(tag: String): Color = tagColors[tag] ?: Color(0xFF6366F1)
+
+internal fun tagLabelRes(tag: String): StringResource = tagLabelResources.getValue(tag)
 
 internal data class GalleryItem(
     val item: ExampleItem,

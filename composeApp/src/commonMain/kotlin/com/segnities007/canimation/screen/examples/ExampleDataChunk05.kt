@@ -3,177 +3,419 @@ package com.segnities007.canimation.screen.examples
 import io.github.canimation.core.Canimation
 import io.github.canimation.core.CanimationEffect
 import io.github.canimation.core.CanimationPreset
+import canimation.composeapp.generated.resources.*
+
 
 internal val exampleCategoriesChunk05: List<ExampleCategory> = listOf(
         ExampleCategory(
             id = "interactive-controls",
-            title = "Interactive Controls",
-            subtitle = "Animated interactive UI controls",
+            title = Res.string.examples_data_interactive_controls_title_2,
+            subtitle = Res.string.examples_data_interactive_controls_subtitle_2,
             accentLabel = "UI",
             tags = listOf("UI", "INTERACTIVE"),
             examples = listOf(
-                ExampleItem("Animated Tag Cloud", "Floating tag cloud entry", "AnimatedTagCloud(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Float.ScaleUp,\n))", demoType = DemoType.Component, componentKey = ComponentDemoKeys.AnimatedTagCloud),
-                ExampleItem("Color Swatch Picker", "Animated color selector", "ColorSwatchPicker(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Elastic.Snap,\n))", demoType = DemoType.Component, componentKey = ComponentDemoKeys.ColorSwatchPicker),
-                ExampleItem("Animated Chip Group", "Filter chip group animation", "AnimatedChipGroup(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Fade.Gentle,\n))", demoType = DemoType.Component, componentKey = ComponentDemoKeys.AnimatedChipGroup),
-                ExampleItem("Animated Pricing Toggle", "Monthly/Annual price switch", "AnimatedPricingToggle(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Shrink.Subtle,\n))", demoType = DemoType.Component, componentKey = ComponentDemoKeys.AnimatedPricingToggle),
+                ExampleItem(
+                    title = Res.string.examples_data_interactive_controls_item_01_title_2,
+                    description = Res.string.examples_data_interactive_controls_item_01_description_2,
+                    codeSnippet = Res.string.examples_data_interactive_controls_item_01_code, demoType = DemoType.Component, componentKey = ComponentDemoKeys.AnimatedTagCloud
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_interactive_controls_item_02_title_2,
+                    description = Res.string.examples_data_interactive_controls_item_02_description_2,
+                    codeSnippet = Res.string.examples_data_interactive_controls_item_02_code, demoType = DemoType.Component, componentKey = ComponentDemoKeys.ColorSwatchPicker
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_interactive_controls_item_03_title_2,
+                    description = Res.string.examples_data_interactive_controls_item_03_description_2,
+                    codeSnippet = Res.string.examples_data_interactive_controls_item_03_code, demoType = DemoType.Component, componentKey = ComponentDemoKeys.AnimatedChipGroup
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_interactive_controls_item_04_title_2,
+                    description = Res.string.examples_data_interactive_controls_item_04_description_2,
+                    codeSnippet = Res.string.examples_data_interactive_controls_item_04_code, demoType = DemoType.Component, componentKey = ComponentDemoKeys.AnimatedPricingToggle
+                ),
             ),
         ),
         ExampleCategory(
             id = "visual-effects",
-            title = "Visual Effects",
-            subtitle = "Canvas-based visual animations",
+            title = Res.string.examples_data_visual_effects_title_2,
+            subtitle = Res.string.examples_data_visual_effects_subtitle_2,
             accentLabel = "CANVAS",
             tags = listOf("UI", "CANVAS"),
             examples = listOf(
-                ExampleItem("Pulse Ring", "Expanding pulse ring animation", "PulseRing(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Scale.Expand,\n))", demoType = DemoType.Component, componentKey = ComponentDemoKeys.PulseRing),
-                ExampleItem("Wave Progress Bar", "Sine wave progress indicator", "WaveProgressBar(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Wave.Gentle,\n))", demoType = DemoType.Component, componentKey = ComponentDemoKeys.WaveProgressBar),
+                ExampleItem(
+                    title = Res.string.examples_data_visual_effects_item_05_title_2,
+                    description = Res.string.examples_data_visual_effects_item_05_description_2,
+                    codeSnippet = Res.string.examples_data_visual_effects_item_05_code_2, demoType = DemoType.Component, componentKey = ComponentDemoKeys.PulseRing
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_visual_effects_item_06_title_2,
+                    description = Res.string.examples_data_visual_effects_item_06_description_2,
+                    codeSnippet = Res.string.examples_data_visual_effects_item_06_code_2, demoType = DemoType.Component, componentKey = ComponentDemoKeys.WaveProgressBar
+                ),
             ),
         ),
         ExampleCategory(
             id = "layout-patterns",
-            title = "Layout Patterns",
-            subtitle = "Animated layout components",
+            title = Res.string.examples_data_layout_patterns_title,
+            subtitle = Res.string.examples_data_layout_patterns_subtitle,
             accentLabel = "LAYOUT",
             tags = listOf("UI", "LAYOUT"),
             examples = listOf(
-                ExampleItem("Stacked Avatars", "Overlapping avatar group", "StackedAvatars(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Diagonal.Subtle,\n))", demoType = DemoType.Component, componentKey = ComponentDemoKeys.StackedAvatars),
-                ExampleItem("Animated Code Block", "Line-by-line code reveal", "AnimatedCodeBlock(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Slide.LeftSubtle,\n))", demoType = DemoType.Component, componentKey = ComponentDemoKeys.AnimatedCodeBlock),
-                ExampleItem("Animated List Item", "Staggered list entry", "AnimatedListItem(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Tilt.Left,\n))", demoType = DemoType.Component, componentKey = ComponentDemoKeys.AnimatedListItem),
-                ExampleItem("Animated Feature Grid", "Feature grid with diagonal entry", "AnimatedFeatureGrid(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Diagonal.BottomRight,\n))", demoType = DemoType.Component, componentKey = ComponentDemoKeys.AnimatedFeatureGrid),
-                ExampleItem("Animated Search Result", "Floating search results", "AnimatedSearchResult(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Float.Gentle,\n))", demoType = DemoType.Component, componentKey = ComponentDemoKeys.AnimatedSearchResult),
+                ExampleItem(
+                    title = Res.string.examples_data_layout_patterns_item_07_title,
+                    description = Res.string.examples_data_layout_patterns_item_07_description,
+                    codeSnippet = Res.string.examples_data_layout_patterns_item_07_code, demoType = DemoType.Component, componentKey = ComponentDemoKeys.StackedAvatars
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_layout_patterns_item_08_title,
+                    description = Res.string.examples_data_layout_patterns_item_08_description,
+                    codeSnippet = Res.string.examples_data_layout_patterns_item_08_code, demoType = DemoType.Component, componentKey = ComponentDemoKeys.AnimatedCodeBlock
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_layout_patterns_item_09_title,
+                    description = Res.string.examples_data_layout_patterns_item_09_description,
+                    codeSnippet = Res.string.examples_data_layout_patterns_item_09_code, demoType = DemoType.Component, componentKey = ComponentDemoKeys.AnimatedListItem
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_layout_patterns_item_10_title,
+                    description = Res.string.examples_data_layout_patterns_item_10_description,
+                    codeSnippet = Res.string.examples_data_layout_patterns_item_10_code, demoType = DemoType.Component, componentKey = ComponentDemoKeys.AnimatedFeatureGrid
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_layout_patterns_item_11_title,
+                    description = Res.string.examples_data_layout_patterns_item_11_description,
+                    codeSnippet = Res.string.examples_data_layout_patterns_item_11_code, demoType = DemoType.Component, componentKey = ComponentDemoKeys.AnimatedSearchResult
+                ),
             ),
         ),
         // ─── ComponentAnimations7 categories ───
         ExampleCategory(
             id = "text-animations",
-            title = "Text & Typography",
-            subtitle = "Animated text and typography effects",
+            title = Res.string.examples_data_text_animations_title,
+            subtitle = Res.string.examples_data_text_animations_subtitle,
             accentLabel = "TEXT",
             tags = listOf("TEXT", "UI"),
             examples = listOf(
-                ExampleItem("Text Fade Reveal", "Word-by-word fade reveal", "TextFadeReveal(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Fade.Up,\n))", demoType = DemoType.Component, componentKey = ComponentDemoKeys.TextFadeReveal),
-                ExampleItem("Text Highlighter", "Sweeping text highlight", "TextHighlighter(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Reveal.Left,\n))", demoType = DemoType.Component, componentKey = ComponentDemoKeys.TextHighlighter),
-                ExampleItem("Text Shuffle Word", "Cycling word animation", "TextShuffleWord(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Fade.Gentle,\n))", demoType = DemoType.Component, componentKey = ComponentDemoKeys.TextShuffleWord),
-                ExampleItem("Text Gradient Reveal", "Gradient sweep text reveal", "TextGradientReveal(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Slide.RightSubtle,\n))", demoType = DemoType.Component, componentKey = ComponentDemoKeys.TextGradientReveal),
-                ExampleItem("Text Rotate Words", "Rotating word carousel", "TextRotateWords(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Rotate.In,\n))", demoType = DemoType.Component, componentKey = ComponentDemoKeys.TextRotateWords),
+                ExampleItem(
+                    title = Res.string.examples_data_text_animations_item_12_title,
+                    description = Res.string.examples_data_text_animations_item_12_description,
+                    codeSnippet = Res.string.examples_data_text_animations_item_12_code, demoType = DemoType.Component, componentKey = ComponentDemoKeys.TextFadeReveal
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_text_animations_item_13_title,
+                    description = Res.string.examples_data_text_animations_item_13_description,
+                    codeSnippet = Res.string.examples_data_text_animations_item_13_code, demoType = DemoType.Component, componentKey = ComponentDemoKeys.TextHighlighter
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_text_animations_item_14_title,
+                    description = Res.string.examples_data_text_animations_item_14_description,
+                    codeSnippet = Res.string.examples_data_text_animations_item_14_code, demoType = DemoType.Component, componentKey = ComponentDemoKeys.TextShuffleWord
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_text_animations_item_15_title,
+                    description = Res.string.examples_data_text_animations_item_15_description,
+                    codeSnippet = Res.string.examples_data_text_animations_item_15_code, demoType = DemoType.Component, componentKey = ComponentDemoKeys.TextGradientReveal
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_text_animations_item_16_title,
+                    description = Res.string.examples_data_text_animations_item_16_description,
+                    codeSnippet = Res.string.examples_data_text_animations_item_16_code, demoType = DemoType.Component, componentKey = ComponentDemoKeys.TextRotateWords
+                ),
             ),
         ),
         ExampleCategory(
             id = "card-components",
-            title = "Card Components",
-            subtitle = "Rich animated card layouts",
+            title = Res.string.examples_data_card_components_title,
+            subtitle = Res.string.examples_data_card_components_subtitle,
             accentLabel = "CARDS",
             tags = listOf("CARDS", "UI"),
             examples = listOf(
-                ExampleItem("Profile Card", "User profile with avatar", "ProfileCard(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Scale.Pop,\n))", demoType = DemoType.Component, componentKey = ComponentDemoKeys.ProfileCard),
-                ExampleItem("Pricing Card", "Animated pricing plan", "PricingCard(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Rise.In,\n))", demoType = DemoType.Component, componentKey = ComponentDemoKeys.PricingCard),
-                ExampleItem("Notification Card", "Alert notification card", "NotificationCard(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Slide.DownSubtle,\n))", demoType = DemoType.Component, componentKey = ComponentDemoKeys.NotificationCard),
-                ExampleItem("Testimonial Card", "Customer review card", "TestimonialCard(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Fade.Gentle,\n))", demoType = DemoType.Component, componentKey = ComponentDemoKeys.TestimonialCard),
-                ExampleItem("Metric Card", "Data metric display card", "MetricCard(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Tilt.Swing,\n))", demoType = DemoType.Component, componentKey = ComponentDemoKeys.MetricCard),
-                ExampleItem("Product Card", "E-commerce product card", "ProductCard(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Float.Up,\n))", demoType = DemoType.Component, componentKey = ComponentDemoKeys.ProductCard),
+                ExampleItem(
+                    title = Res.string.examples_data_card_components_item_17_title,
+                    description = Res.string.examples_data_card_components_item_17_description,
+                    codeSnippet = Res.string.examples_data_card_components_item_17_code, demoType = DemoType.Component, componentKey = ComponentDemoKeys.ProfileCard
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_card_components_item_18_title,
+                    description = Res.string.examples_data_card_components_item_18_description,
+                    codeSnippet = Res.string.examples_data_card_components_item_18_code, demoType = DemoType.Component, componentKey = ComponentDemoKeys.PricingCard
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_card_components_item_19_title,
+                    description = Res.string.examples_data_card_components_item_19_description,
+                    codeSnippet = Res.string.examples_data_card_components_item_19_code, demoType = DemoType.Component, componentKey = ComponentDemoKeys.NotificationCard
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_card_components_item_20_title,
+                    description = Res.string.examples_data_card_components_item_20_description,
+                    codeSnippet = Res.string.examples_data_card_components_item_20_code, demoType = DemoType.Component, componentKey = ComponentDemoKeys.TestimonialCard
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_card_components_item_21_title,
+                    description = Res.string.examples_data_card_components_item_21_description,
+                    codeSnippet = Res.string.examples_data_card_components_item_21_code, demoType = DemoType.Component, componentKey = ComponentDemoKeys.MetricCard
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_card_components_item_22_title,
+                    description = Res.string.examples_data_card_components_item_22_description,
+                    codeSnippet = Res.string.examples_data_card_components_item_22_code, demoType = DemoType.Component, componentKey = ComponentDemoKeys.ProductCard
+                ),
             ),
         ),
         ExampleCategory(
             id = "nav-components",
-            title = "Navigation Components",
-            subtitle = "Animated navigation and menu patterns",
+            title = Res.string.examples_data_nav_components_title,
+            subtitle = Res.string.examples_data_nav_components_subtitle,
             accentLabel = "NAV",
             tags = listOf("NAV", "NAVIGATION"),
             examples = listOf(
-                ExampleItem("Side Menu Reveal", "Staggered side menu entry", "SideMenuReveal(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Slide.LeftSubtle,\n))", demoType = DemoType.Component, componentKey = ComponentDemoKeys.SideMenuReveal),
-                ExampleItem("Pagination Dots", "Page indicator dots", "PaginationDots(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Scale.Pop,\n))", demoType = DemoType.Component, componentKey = ComponentDemoKeys.PaginationDots),
-                ExampleItem("Command Palette", "Quick command search palette", "CommandPalette(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Fade.Down,\n))", demoType = DemoType.Component, componentKey = ComponentDemoKeys.CommandPalette),
+                ExampleItem(
+                    title = Res.string.examples_data_nav_components_item_23_title,
+                    description = Res.string.examples_data_nav_components_item_23_description,
+                    codeSnippet = Res.string.examples_data_nav_components_item_23_code, demoType = DemoType.Component, componentKey = ComponentDemoKeys.SideMenuReveal
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_nav_components_item_24_title,
+                    description = Res.string.examples_data_nav_components_item_24_description,
+                    codeSnippet = Res.string.examples_data_nav_components_item_24_code, demoType = DemoType.Component, componentKey = ComponentDemoKeys.PaginationDots
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_nav_components_item_25_title,
+                    description = Res.string.examples_data_nav_components_item_25_description,
+                    codeSnippet = Res.string.examples_data_nav_components_item_25_code, demoType = DemoType.Component, componentKey = ComponentDemoKeys.CommandPalette
+                ),
             ),
         ),
         ExampleCategory(
             id = "charts-data",
-            title = "Charts & Data Viz",
-            subtitle = "Animated charts and data displays",
+            title = Res.string.examples_data_charts_data_title,
+            subtitle = Res.string.examples_data_charts_data_subtitle,
             accentLabel = "CHARTS",
             tags = listOf("CHARTS", "DATA"),
             examples = listOf(
-                ExampleItem("Mini Bar Chart", "Animated bar chart", "MiniBarChart(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Rise.In,\n))", demoType = DemoType.Component, componentKey = ComponentDemoKeys.MiniBarChart),
-                ExampleItem("Donut Chart", "Animated donut/pie chart", "DonutChart(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Rotate.In,\n))", demoType = DemoType.Component, componentKey = ComponentDemoKeys.DonutChart),
-                ExampleItem("Spark Line", "Mini sparkline chart", "SparkLine(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Slide.RightSubtle,\n))", demoType = DemoType.Component, componentKey = ComponentDemoKeys.SparkLine),
-                ExampleItem("Data Table", "Staggered data table rows", "DataTable(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Fade.Up,\n))", demoType = DemoType.Component, componentKey = ComponentDemoKeys.DataTable),
+                ExampleItem(
+                    title = Res.string.examples_data_charts_data_item_26_title,
+                    description = Res.string.examples_data_charts_data_item_26_description,
+                    codeSnippet = Res.string.examples_data_charts_data_item_26_code, demoType = DemoType.Component, componentKey = ComponentDemoKeys.MiniBarChart
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_charts_data_item_27_title,
+                    description = Res.string.examples_data_charts_data_item_27_description,
+                    codeSnippet = Res.string.examples_data_charts_data_item_27_code, demoType = DemoType.Component, componentKey = ComponentDemoKeys.DonutChart
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_charts_data_item_28_title,
+                    description = Res.string.examples_data_charts_data_item_28_description,
+                    codeSnippet = Res.string.examples_data_charts_data_item_28_code, demoType = DemoType.Component, componentKey = ComponentDemoKeys.SparkLine
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_charts_data_item_29_title,
+                    description = Res.string.examples_data_charts_data_item_29_description,
+                    codeSnippet = Res.string.examples_data_charts_data_item_29_code, demoType = DemoType.Component, componentKey = ComponentDemoKeys.DataTable
+                ),
             ),
         ),
         // ─── ComponentAnimations8 categories ───
         ExampleCategory(
             id = "ui-patterns",
-            title = "UI Patterns",
-            subtitle = "Common UI components with animations",
+            title = Res.string.examples_data_ui_patterns_title,
+            subtitle = Res.string.examples_data_ui_patterns_subtitle,
             accentLabel = "UI",
             tags = listOf("UI", "INTERACTIVE"),
             examples = listOf(
-                ExampleItem("Animated Banner", "Slide-in notification banner", "AnimatedBanner(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Slide.DownSubtle,\n))", demoType = DemoType.Component, componentKey = ComponentDemoKeys.AnimatedBanner),
-                ExampleItem("Animated Tooltip", "Floating tooltip popover", "AnimatedTooltip(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Float.Up,\n))", demoType = DemoType.Component, componentKey = ComponentDemoKeys.AnimatedTooltip),
-                ExampleItem("Animated Alert", "Cycling status alerts", "AnimatedAlert(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Slide.LeftSubtle,\n))", demoType = DemoType.Component, componentKey = ComponentDemoKeys.AnimatedAlert),
-                ExampleItem("Animated Dropdown", "Expanding dropdown menu", "AnimatedDropdown(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Fade.Up,\n))", demoType = DemoType.Component, componentKey = ComponentDemoKeys.AnimatedDropdown),
-                ExampleItem("Animated Progress Card", "Upload progress indicator", "AnimatedProgressCard(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Scale.Pop,\n))", demoType = DemoType.Component, componentKey = ComponentDemoKeys.AnimatedProgressCard),
-                ExampleItem("Animated Dialog", "Modal dialog with scale entry", "AnimatedDialog(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Scale.Pop,\n))", demoType = DemoType.Component, componentKey = ComponentDemoKeys.AnimatedDialog),
+                ExampleItem(
+                    title = Res.string.examples_data_ui_patterns_item_30_title,
+                    description = Res.string.examples_data_ui_patterns_item_30_description,
+                    codeSnippet = Res.string.examples_data_ui_patterns_item_30_code, demoType = DemoType.Component, componentKey = ComponentDemoKeys.AnimatedBanner
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_ui_patterns_item_31_title,
+                    description = Res.string.examples_data_ui_patterns_item_31_description,
+                    codeSnippet = Res.string.examples_data_ui_patterns_item_31_code, demoType = DemoType.Component, componentKey = ComponentDemoKeys.AnimatedTooltip
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_ui_patterns_item_32_title,
+                    description = Res.string.examples_data_ui_patterns_item_32_description,
+                    codeSnippet = Res.string.examples_data_ui_patterns_item_32_code, demoType = DemoType.Component, componentKey = ComponentDemoKeys.AnimatedAlert
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_ui_patterns_item_33_title,
+                    description = Res.string.examples_data_ui_patterns_item_33_description,
+                    codeSnippet = Res.string.examples_data_ui_patterns_item_33_code, demoType = DemoType.Component, componentKey = ComponentDemoKeys.AnimatedDropdown
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_ui_patterns_item_34_title,
+                    description = Res.string.examples_data_ui_patterns_item_34_description,
+                    codeSnippet = Res.string.examples_data_ui_patterns_item_34_code, demoType = DemoType.Component, componentKey = ComponentDemoKeys.AnimatedProgressCard
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_ui_patterns_item_35_title,
+                    description = Res.string.examples_data_ui_patterns_item_35_description,
+                    codeSnippet = Res.string.examples_data_ui_patterns_item_35_code, demoType = DemoType.Component, componentKey = ComponentDemoKeys.AnimatedDialog
+                ),
             ),
         ),
         ExampleCategory(
             id = "visual-canvas",
-            title = "Visual & Canvas",
-            subtitle = "Canvas-based visual effects",
+            title = Res.string.examples_data_visual_canvas_title,
+            subtitle = Res.string.examples_data_visual_canvas_subtitle,
             accentLabel = "VISUAL",
             tags = listOf("VISUAL", "CANVAS"),
             examples = listOf(
-                ExampleItem("Orbit Dots", "Orbital dot animation", "OrbitDots(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Rotate.In,\n))", demoType = DemoType.Component, componentKey = ComponentDemoKeys.OrbitDots),
-                ExampleItem("Bouncing Loader", "Three-dot bouncing loader", "BouncingLoader(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Bounce.In,\n))", demoType = DemoType.Component, componentKey = ComponentDemoKeys.BouncingLoader),
-                ExampleItem("Glow Pulse", "Pulsing glow orb", "GlowPulse(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Scale.Pop,\n))", demoType = DemoType.Component, componentKey = ComponentDemoKeys.GlowPulse),
-                ExampleItem("Waveform Bars", "Audio waveform visualization", "WaveformBars(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Wave.Gentle,\n))", demoType = DemoType.Component, componentKey = ComponentDemoKeys.WaveformBars),
+                ExampleItem(
+                    title = Res.string.examples_data_visual_canvas_item_36_title,
+                    description = Res.string.examples_data_visual_canvas_item_36_description,
+                    codeSnippet = Res.string.examples_data_visual_canvas_item_36_code, demoType = DemoType.Component, componentKey = ComponentDemoKeys.OrbitDots
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_visual_canvas_item_37_title,
+                    description = Res.string.examples_data_visual_canvas_item_37_description,
+                    codeSnippet = Res.string.examples_data_visual_canvas_item_37_code, demoType = DemoType.Component, componentKey = ComponentDemoKeys.BouncingLoader
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_visual_canvas_item_38_title,
+                    description = Res.string.examples_data_visual_canvas_item_38_description,
+                    codeSnippet = Res.string.examples_data_visual_canvas_item_38_code, demoType = DemoType.Component, componentKey = ComponentDemoKeys.GlowPulse
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_visual_canvas_item_39_title,
+                    description = Res.string.examples_data_visual_canvas_item_39_description,
+                    codeSnippet = Res.string.examples_data_visual_canvas_item_39_code, demoType = DemoType.Component, componentKey = ComponentDemoKeys.WaveformBars
+                ),
             ),
         ),
         ExampleCategory(
             id = "interactive-widgets",
-            title = "Interactive Widgets",
-            subtitle = "User-interactive animated components",
+            title = Res.string.examples_data_interactive_widgets_title,
+            subtitle = Res.string.examples_data_interactive_widgets_subtitle,
             accentLabel = "INTERACTIVE",
             tags = listOf("INTERACTIVE", "UI"),
             examples = listOf(
-                ExampleItem("Like Button", "Heart toggle with spring", "LikeButton(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Spring.PopIn,\n))", demoType = DemoType.Component, componentKey = ComponentDemoKeys.LikeButton),
-                ExampleItem("Quantity Selector", "Animated +/- counter", "QuantitySelector(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Scale.Pop,\n))", demoType = DemoType.Component, componentKey = ComponentDemoKeys.QuantitySelector),
-                ExampleItem("Radio Selector", "Animated radio group", "RadioSelector(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Fade.Gentle,\n))", demoType = DemoType.Component, componentKey = ComponentDemoKeys.RadioSelector),
-                ExampleItem("Slider Control", "Animated volume slider", "SliderControl(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Slide.RightSubtle,\n))", demoType = DemoType.Component, componentKey = ComponentDemoKeys.SliderControl),
-                ExampleItem("Animated Password Field", "Password input animation", "AnimatedPasswordField(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Micro.NudgeUp,\n))", demoType = DemoType.Component, componentKey = ComponentDemoKeys.AnimatedPasswordField),
-                ExampleItem("Animated File Upload", "Multi-stage upload animation", "AnimatedFileUpload(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Float.Gentle,\n))", demoType = DemoType.Component, componentKey = ComponentDemoKeys.AnimatedFileUpload),
-                ExampleItem("Animated Vote", "Upvote/downvote counter", "AnimatedVote(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Scale.Pop,\n))", demoType = DemoType.Component, componentKey = ComponentDemoKeys.AnimatedVote),
-                ExampleItem("Animated Search Bar", "Expanding search input", "AnimatedSearchBar(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Stretch.Horizontal,\n))", demoType = DemoType.Component, componentKey = ComponentDemoKeys.AnimatedSearchBar),
-                ExampleItem("Animated Form Validation", "Live form field validation", "AnimatedFormValidation(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Micro.NudgeUp,\n))", demoType = DemoType.Component, componentKey = ComponentDemoKeys.AnimatedFormValidation),
+                ExampleItem(
+                    title = Res.string.examples_data_interactive_widgets_item_40_title,
+                    description = Res.string.examples_data_interactive_widgets_item_40_description,
+                    codeSnippet = Res.string.examples_data_interactive_widgets_item_40_code, demoType = DemoType.Component, componentKey = ComponentDemoKeys.LikeButton
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_interactive_widgets_item_41_title,
+                    description = Res.string.examples_data_interactive_widgets_item_41_description,
+                    codeSnippet = Res.string.examples_data_interactive_widgets_item_41_code, demoType = DemoType.Component, componentKey = ComponentDemoKeys.QuantitySelector
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_interactive_widgets_item_42_title,
+                    description = Res.string.examples_data_interactive_widgets_item_42_description,
+                    codeSnippet = Res.string.examples_data_interactive_widgets_item_42_code, demoType = DemoType.Component, componentKey = ComponentDemoKeys.RadioSelector
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_interactive_widgets_item_43_title,
+                    description = Res.string.examples_data_interactive_widgets_item_43_description,
+                    codeSnippet = Res.string.examples_data_interactive_widgets_item_43_code, demoType = DemoType.Component, componentKey = ComponentDemoKeys.SliderControl
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_interactive_widgets_item_44_title,
+                    description = Res.string.examples_data_interactive_widgets_item_44_description,
+                    codeSnippet = Res.string.examples_data_interactive_widgets_item_44_code, demoType = DemoType.Component, componentKey = ComponentDemoKeys.AnimatedPasswordField
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_interactive_widgets_item_45_title,
+                    description = Res.string.examples_data_interactive_widgets_item_45_description,
+                    codeSnippet = Res.string.examples_data_interactive_widgets_item_45_code, demoType = DemoType.Component, componentKey = ComponentDemoKeys.AnimatedFileUpload
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_interactive_widgets_item_46_title,
+                    description = Res.string.examples_data_interactive_widgets_item_46_description,
+                    codeSnippet = Res.string.examples_data_interactive_widgets_item_46_code, demoType = DemoType.Component, componentKey = ComponentDemoKeys.AnimatedVote
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_interactive_widgets_item_47_title,
+                    description = Res.string.examples_data_interactive_widgets_item_47_description,
+                    codeSnippet = Res.string.examples_data_interactive_widgets_item_47_code, demoType = DemoType.Component, componentKey = ComponentDemoKeys.AnimatedSearchBar
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_interactive_widgets_item_48_title,
+                    description = Res.string.examples_data_interactive_widgets_item_48_description,
+                    codeSnippet = Res.string.examples_data_interactive_widgets_item_48_code, demoType = DemoType.Component, componentKey = ComponentDemoKeys.AnimatedFormValidation
+                ),
             ),
         ),
         // ─── ComponentAnimations9 categories ───
         ExampleCategory(
             id = "ui-advanced",
-            title = "Advanced UI",
-            subtitle = "Complex animated UI components",
+            title = Res.string.examples_data_ui_advanced_title,
+            subtitle = Res.string.examples_data_ui_advanced_subtitle,
             accentLabel = "UI",
             tags = listOf("UI", "INTERACTIVE"),
             examples = listOf(
-                ExampleItem("Animated Bottom Sheet", "Slide-up bottom sheet", "AnimatedBottomSheet(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Slide.Up,\n))", demoType = DemoType.Component, componentKey = ComponentDemoKeys.AnimatedBottomSheet),
-                ExampleItem("Animated Snackbar", "Toast notification snackbar", "AnimatedSnackbar(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Slide.Up,\n))", demoType = DemoType.Component, componentKey = ComponentDemoKeys.AnimatedSnackbar),
-                ExampleItem("Animated FAB", "Expandable floating action button", "AnimatedFab(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Scale.Pop,\n))", demoType = DemoType.Component, componentKey = ComponentDemoKeys.AnimatedFab),
-                ExampleItem("Animated Chip Input", "Tag input with animated chips", "AnimatedChipInput(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Scale.Pop,\n))", demoType = DemoType.Component, componentKey = ComponentDemoKeys.AnimatedChipInput),
-                ExampleItem("Animated Accordion", "Collapsible accordion sections", "AnimatedAccordion(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Fade.Up,\n))", demoType = DemoType.Component, componentKey = ComponentDemoKeys.AnimatedAccordion),
-                ExampleItem("Animated Stepper", "Multi-step progress stepper", "AnimatedStepper(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Slide.RightSubtle,\n))", demoType = DemoType.Component, componentKey = ComponentDemoKeys.AnimatedStepper),
+                ExampleItem(
+                    title = Res.string.examples_data_ui_advanced_item_49_title,
+                    description = Res.string.examples_data_ui_advanced_item_49_description,
+                    codeSnippet = Res.string.examples_data_ui_advanced_item_49_code, demoType = DemoType.Component, componentKey = ComponentDemoKeys.AnimatedBottomSheet
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_ui_advanced_item_50_title,
+                    description = Res.string.examples_data_ui_advanced_item_50_description,
+                    codeSnippet = Res.string.examples_data_ui_advanced_item_50_code, demoType = DemoType.Component, componentKey = ComponentDemoKeys.AnimatedSnackbar
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_ui_advanced_item_51_title,
+                    description = Res.string.examples_data_ui_advanced_item_51_description,
+                    codeSnippet = Res.string.examples_data_ui_advanced_item_51_code, demoType = DemoType.Component, componentKey = ComponentDemoKeys.AnimatedFab
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_ui_advanced_item_52_title,
+                    description = Res.string.examples_data_ui_advanced_item_52_description,
+                    codeSnippet = Res.string.examples_data_ui_advanced_item_52_code, demoType = DemoType.Component, componentKey = ComponentDemoKeys.AnimatedChipInput
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_ui_advanced_item_53_title,
+                    description = Res.string.examples_data_ui_advanced_item_53_description,
+                    codeSnippet = Res.string.examples_data_ui_advanced_item_53_code, demoType = DemoType.Component, componentKey = ComponentDemoKeys.AnimatedAccordion
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_ui_advanced_item_54_title,
+                    description = Res.string.examples_data_ui_advanced_item_54_description,
+                    codeSnippet = Res.string.examples_data_ui_advanced_item_54_code, demoType = DemoType.Component, componentKey = ComponentDemoKeys.AnimatedStepper
+                ),
             ),
         ),
         ExampleCategory(
             id = "visual-advanced",
-            title = "Visual Patterns",
-            subtitle = "Geometric and particle visual effects",
+            title = Res.string.examples_data_visual_advanced_title,
+            subtitle = Res.string.examples_data_visual_advanced_subtitle,
             accentLabel = "VISUAL",
             tags = listOf("VISUAL", "CANVAS"),
             examples = listOf(
-                ExampleItem("Morphing Shape", "Square-to-circle morph", "MorphingShape(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Rotate.In,\n))", demoType = DemoType.Component, componentKey = ComponentDemoKeys.MorphingShape),
-                ExampleItem("Spiral Dots", "Spiraling dot pattern", "SpiralDots(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Rotate.In,\n))", demoType = DemoType.Component, componentKey = ComponentDemoKeys.SpiralDots),
-                ExampleItem("DNA Helix", "Double helix animation", "DnaHelixCanvas(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Wave.Gentle,\n))", demoType = DemoType.Component, componentKey = ComponentDemoKeys.DnaHelixCanvas),
-                ExampleItem("Hex Grid", "Animated hexagonal grid", "HexGrid(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Fade.Gentle,\n))", demoType = DemoType.Component, componentKey = ComponentDemoKeys.HexGrid),
-                ExampleItem("Particle Field", "Floating particle field", "ParticleField(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Float.Gentle,\n))", demoType = DemoType.Component, componentKey = ComponentDemoKeys.ParticleField),
-                ExampleItem("Rotating Squares", "Counter-rotating squares", "RotatingSquares(modifier = Modifier.canimation(\n    visible = isVisible,\n    effect = Canimation.Rotate.In,\n))", demoType = DemoType.Component, componentKey = ComponentDemoKeys.RotatingSquares),
+                ExampleItem(
+                    title = Res.string.examples_data_visual_advanced_item_55_title,
+                    description = Res.string.examples_data_visual_advanced_item_55_description,
+                    codeSnippet = Res.string.examples_data_visual_advanced_item_55_code, demoType = DemoType.Component, componentKey = ComponentDemoKeys.MorphingShape
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_visual_advanced_item_56_title,
+                    description = Res.string.examples_data_visual_advanced_item_56_description,
+                    codeSnippet = Res.string.examples_data_visual_advanced_item_56_code, demoType = DemoType.Component, componentKey = ComponentDemoKeys.SpiralDots
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_visual_advanced_item_57_title,
+                    description = Res.string.examples_data_visual_advanced_item_57_description,
+                    codeSnippet = Res.string.examples_data_visual_advanced_item_57_code, demoType = DemoType.Component, componentKey = ComponentDemoKeys.DnaHelixCanvas
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_visual_advanced_item_58_title,
+                    description = Res.string.examples_data_visual_advanced_item_58_description,
+                    codeSnippet = Res.string.examples_data_visual_advanced_item_58_code, demoType = DemoType.Component, componentKey = ComponentDemoKeys.HexGrid
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_visual_advanced_item_59_title,
+                    description = Res.string.examples_data_visual_advanced_item_59_description,
+                    codeSnippet = Res.string.examples_data_visual_advanced_item_59_code, demoType = DemoType.Component, componentKey = ComponentDemoKeys.ParticleField
+                ),
+                ExampleItem(
+                    title = Res.string.examples_data_visual_advanced_item_60_title,
+                    description = Res.string.examples_data_visual_advanced_item_60_description,
+                    codeSnippet = Res.string.examples_data_visual_advanced_item_60_code, demoType = DemoType.Component, componentKey = ComponentDemoKeys.RotatingSquares
+                ),
             ),
         ),
 )

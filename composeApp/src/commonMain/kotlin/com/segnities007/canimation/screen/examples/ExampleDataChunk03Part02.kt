@@ -3,347 +3,230 @@ package com.segnities007.canimation.screen.examples
 import io.github.canimation.core.Canimation
 import io.github.canimation.core.CanimationEffect
 import io.github.canimation.core.CanimationPreset
+import canimation.composeapp.generated.resources.*
+
 
 
 internal val exampleCategoriesChunk03Part02: List<ExampleCategory> = listOf(
         // ── Visual Effects ──
         ExampleCategory(
             id = "visual-effects",
-            title = "Visual Effects",
-            subtitle = "Eye-catching visual animations and effects",
+            title = Res.string.examples_data_visual_effects_title,
+            subtitle = Res.string.examples_data_visual_effects_subtitle,
             accentLabel = "VISUAL",
             tags = listOf("VISUAL"),
             examples = listOf(
                 ExampleItem(
-                    title = "Color Morph",
-                    description = "Smooth color morphing transitions",
+                    title = Res.string.examples_data_visual_effects_item_01_title,
+                    description = Res.string.examples_data_visual_effects_item_01_description,
                     demoType = DemoType.Component,
                     componentKey = ComponentDemoKeys.ColorMorph,
-                    codeSnippet = """ColorMorph(
-        colors = listOf(Color.Red, Color.Blue, Color.Green),
-        duration = 3000,
-        modifier = Modifier.size(150.dp),
-    )""",
+                    codeSnippet = Res.string.examples_data_visual_effects_item_01_code,
                 ),
                 ExampleItem(
-                    title = "Gradient Shift",
-                    description = "Animated gradient color shifting",
+                    title = Res.string.examples_data_visual_effects_item_02_title,
+                    description = Res.string.examples_data_visual_effects_item_02_description,
                     demoType = DemoType.Component,
                     componentKey = ComponentDemoKeys.GradientShift,
-                    codeSnippet = """GradientShift(
-        colors = listOf(Color.Magenta, Color.Cyan),
-        shiftSpeed = 2000,
-        modifier = Modifier.fillMaxWidth(),
-    )""",
+                    codeSnippet = Res.string.examples_data_visual_effects_item_02_code,
                 ),
                 ExampleItem(
-                    title = "Path Tracer",
-                    description = "Animated path drawing on canvas",
+                    title = Res.string.examples_data_visual_effects_item_03_title,
+                    description = Res.string.examples_data_visual_effects_item_03_description,
                     demoType = DemoType.Component,
                     componentKey = ComponentDemoKeys.PathTracer,
-                    codeSnippet = """PathTracer(
-        pathColor = Color.Cyan,
-        strokeWidth = 3.dp,
-        modifier = Modifier.size(200.dp),
-    )""",
+                    codeSnippet = Res.string.examples_data_visual_effects_item_03_code,
                 ),
                 ExampleItem(
-                    title = "Confetti Explosion",
-                    description = "Burst of confetti particles on trigger",
+                    title = Res.string.examples_data_visual_effects_item_04_title,
+                    description = Res.string.examples_data_visual_effects_item_04_description,
                     demoType = DemoType.Component,
                     componentKey = ComponentDemoKeys.ConfettiExplosion,
-                    codeSnippet = """ConfettiExplosion(
-        particleCount = 100,
-        colors = listOf(Color.Red, Color.Yellow, Color.Blue),
-        modifier = Modifier.fillMaxSize(),
-    )""",
+                    codeSnippet = Res.string.examples_data_visual_effects_item_04_code,
                 ),
                 ExampleItem(
-                    title = "Wave Effect",
-                    description = "Audio visualizer-style wave bars",
+                    title = Res.string.examples_data_visual_effects_item_05_title,
+                    description = Res.string.examples_data_visual_effects_item_05_description,
                     demoType = DemoType.Component,
                     componentKey = ComponentDemoKeys.WaveEffect,
-                    codeSnippet = """WaveEffect(
-        waveColor = Color.Blue,
-        amplitude = 20f,
-        frequency = 2f,
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(100.dp),
-    )""",
+                    codeSnippet = Res.string.examples_data_visual_effects_item_05_code,
                 ),
                 ExampleItem(
-                    title = "Sliding Reveal",
-                    description = "Content reveals with a sliding mask",
+                    title = Res.string.examples_data_visual_effects_item_06_title,
+                    description = Res.string.examples_data_visual_effects_item_06_description,
                     demoType = DemoType.Component,
                     componentKey = ComponentDemoKeys.SlidingReveal,
-                    codeSnippet = """SlidingReveal(
-        direction = RevealDirection.Left,
-        duration = 800,
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(200.dp),
-    )""",
+                    codeSnippet = Res.string.examples_data_visual_effects_item_06_code,
                 ),
                 ExampleItem(
-                    title = "Focus Blur Effect",
-                    description = "Focus shifts with blur transitions",
+                    title = Res.string.examples_data_visual_effects_item_07_title,
+                    description = Res.string.examples_data_visual_effects_item_07_description,
                     demoType = DemoType.Component,
                     componentKey = ComponentDemoKeys.FocusBlurEffect,
-                    codeSnippet = """FocusBlurEffect(
-        blurRadius = 10.dp,
-        focusArea = FocusArea.Center,
-        modifier = Modifier.fillMaxSize(),
-    )""",
+                    codeSnippet = Res.string.examples_data_visual_effects_item_07_code,
                 ),
                 ExampleItem(
-                    title = "Floating Particles",
-                    description = "Ambient floating particles background",
+                    title = Res.string.examples_data_visual_effects_item_08_title,
+                    description = Res.string.examples_data_visual_effects_item_08_description,
                     demoType = DemoType.Component,
                     componentKey = ComponentDemoKeys.FloatingParticles,
-                    codeSnippet = """FloatingParticles(
-        particleCount = 30,
-        particleColor = Color.White,
-        modifier = Modifier.fillMaxSize(),
-    )""",
+                    codeSnippet = Res.string.examples_data_visual_effects_item_08_code,
                 ),
                 ExampleItem(
-                    title = "Pulsing Avatar",
-                    description = "Avatar with pulsing ring animation",
+                    title = Res.string.examples_data_visual_effects_item_09_title,
+                    description = Res.string.examples_data_visual_effects_item_09_description,
                     demoType = DemoType.Component,
                     componentKey = ComponentDemoKeys.PulsingAvatar,
-                    codeSnippet = """PulsingAvatar(
-        imageSize = 64.dp,
-        pulseColor = Color.Green,
-        modifier = Modifier.size(80.dp),
-    )""",
+                    codeSnippet = Res.string.examples_data_visual_effects_item_09_code,
                 ),
                 ExampleItem(
-                    title = "Pulse Radar",
-                    description = "Radar-style pulse scanning animation",
+                    title = Res.string.examples_data_visual_effects_item_10_title,
+                    description = Res.string.examples_data_visual_effects_item_10_description,
                     demoType = DemoType.Component,
                     componentKey = ComponentDemoKeys.PulseRadar,
-                    codeSnippet = """PulseRadar(
-        radarColor = Color.Green,
-        pulseCount = 3,
-        modifier = Modifier.size(200.dp),
-    )""",
+                    codeSnippet = Res.string.examples_data_visual_effects_item_10_code,
                 ),
                 ExampleItem(
-                    title = "Heartbeat Line",
-                    description = "ECG-style heartbeat line animation",
+                    title = Res.string.examples_data_visual_effects_item_11_title,
+                    description = Res.string.examples_data_visual_effects_item_11_description,
                     demoType = DemoType.Component,
                     componentKey = ComponentDemoKeys.HeartbeatLine,
-                    codeSnippet = """HeartbeatLine(
-        lineColor = Color.Red,
-        strokeWidth = 2.dp,
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(60.dp),
-    )""",
+                    codeSnippet = Res.string.examples_data_visual_effects_item_11_code,
                 ),
             ),
         ),
         // ── Physics & Motion ──
         ExampleCategory(
             id = "physics-motion",
-            title = "Physics & Motion",
-            subtitle = "Physics-based and spring-driven animations",
+            title = Res.string.examples_data_physics_motion_title,
+            subtitle = Res.string.examples_data_physics_motion_subtitle,
             accentLabel = "PHYSICS",
             tags = listOf("PHYSICS"),
             examples = listOf(
                 ExampleItem(
-                    title = "Bouncy Spring List",
-                    description = "List items enter with spring bounce",
+                    title = Res.string.examples_data_physics_motion_item_01_title,
+                    description = Res.string.examples_data_physics_motion_item_01_description,
                     demoType = DemoType.Component,
                     componentKey = ComponentDemoKeys.BouncySpringList,
-                    codeSnippet = """BouncySpringList(
-        items = listOf("Item 1", "Item 2", "Item 3"),
-        stiffness = Spring.StiffnessLow,
-        modifier = Modifier.fillMaxWidth(),
-    )""",
+                    codeSnippet = Res.string.examples_data_physics_motion_item_12_code,
                 ),
                 ExampleItem(
-                    title = "Stagger From Center",
-                    description = "Items stagger outward from center",
+                    title = Res.string.examples_data_physics_motion_item_02_title,
+                    description = Res.string.examples_data_physics_motion_item_02_description,
                     demoType = DemoType.Component,
                     componentKey = ComponentDemoKeys.StaggerFromCenter,
-                    codeSnippet = """StaggerFromCenter(
-        itemCount = 7,
-        staggerDelay = 100L,
-        modifier = Modifier.fillMaxWidth(),
-    )""",
+                    codeSnippet = Res.string.examples_data_physics_motion_item_13_code,
                 ),
                 ExampleItem(
-                    title = "Ticker Marquee",
-                    description = "Scrolling ticker text marquee",
+                    title = Res.string.examples_data_physics_motion_item_03_title,
+                    description = Res.string.examples_data_physics_motion_item_03_description,
                     demoType = DemoType.Component,
                     componentKey = ComponentDemoKeys.TickerMarquee,
-                    codeSnippet = """TickerMarquee(
-        text = "Breaking News: Jetpack Compose is awesome!",
-        speed = 60.dp,
-        modifier = Modifier.fillMaxWidth(),
-    )""",
+                    codeSnippet = Res.string.examples_data_physics_motion_item_14_code,
                 ),
                 ExampleItem(
-                    title = "Spring Chain",
-                    description = "Chain of elements connected by springs",
+                    title = Res.string.examples_data_physics_motion_item_04_title,
+                    description = Res.string.examples_data_physics_motion_item_04_description,
                     demoType = DemoType.Component,
                     componentKey = ComponentDemoKeys.SpringChain,
-                    codeSnippet = """SpringChain(
-        nodeCount = 5,
-        stiffness = Spring.StiffnessMedium,
-        modifier = Modifier.fillMaxWidth(),
-    )""",
+                    codeSnippet = Res.string.examples_data_physics_motion_item_15_code,
                 ),
                 ExampleItem(
-                    title = "Parallax Layers",
-                    description = "Layered parallax scrolling effect",
+                    title = Res.string.examples_data_physics_motion_item_05_title,
+                    description = Res.string.examples_data_physics_motion_item_05_description,
                     demoType = DemoType.Component,
                     componentKey = ComponentDemoKeys.ParallaxLayers,
-                    codeSnippet = """ParallaxLayers(
-        layerCount = 3,
-        depthFactor = 0.5f,
-        modifier = Modifier.fillMaxSize(),
-    )""",
+                    codeSnippet = Res.string.examples_data_physics_motion_item_16_code,
                 ),
                 ExampleItem(
-                    title = "Pendulum Swing",
-                    description = "Pendulum swinging back and forth",
+                    title = Res.string.examples_data_physics_motion_item_06_title,
+                    description = Res.string.examples_data_physics_motion_item_06_description,
                     demoType = DemoType.Component,
                     componentKey = ComponentDemoKeys.PendulumSwing,
-                    codeSnippet = """PendulumSwing(
-        swingAngle = 30f,
-        period = 2000L,
-        modifier = Modifier.size(200.dp),
-    )""",
+                    codeSnippet = Res.string.examples_data_physics_motion_item_17_code,
                 ),
                 ExampleItem(
-                    title = "Bouncing Ball",
-                    description = "Ball bouncing with gravity physics",
+                    title = Res.string.examples_data_physics_motion_item_07_title,
+                    description = Res.string.examples_data_physics_motion_item_07_description,
                     demoType = DemoType.Component,
                     componentKey = ComponentDemoKeys.BouncingBall,
-                    codeSnippet = """BouncingBall(
-        ballSize = 24.dp,
-        bounceHeight = 100.dp,
-        modifier = Modifier.size(200.dp),
-    )""",
+                    codeSnippet = Res.string.examples_data_physics_motion_item_18_code,
                 ),
                 ExampleItem(
-                    title = "Slinky Spring",
-                    description = "Slinky-style cascading spring animation",
+                    title = Res.string.examples_data_physics_motion_item_08_title,
+                    description = Res.string.examples_data_physics_motion_item_08_description,
                     demoType = DemoType.Component,
                     componentKey = ComponentDemoKeys.SlinkySpring,
-                    codeSnippet = """SlinkySpring(
-        coilCount = 8,
-        springColor = Color.Gray,
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(150.dp),
-    )""",
+                    codeSnippet = Res.string.examples_data_physics_motion_item_19_code,
                 ),
             ),
         ),
         // ── Charts & Data Viz ──
         ExampleCategory(
             id = "charts-dataviz",
-            title = "Charts & Data Viz",
-            subtitle = "Animated charts and data visualizations",
+            title = Res.string.examples_data_charts_dataviz_title,
+            subtitle = Res.string.examples_data_charts_dataviz_subtitle,
             accentLabel = "CHARTS",
             tags = listOf("CHARTS"),
             examples = listOf(
                 ExampleItem(
-                    title = "Animated Pie Chart",
-                    description = "Pie chart with animated segment reveals",
+                    title = Res.string.examples_data_charts_dataviz_item_01_title,
+                    description = Res.string.examples_data_charts_dataviz_item_01_description,
                     demoType = DemoType.Component,
                     componentKey = ComponentDemoKeys.AnimatedPieChart,
-                    codeSnippet = """AnimatedPieChart(
-        data = listOf(30f, 25f, 20f, 15f, 10f),
-        colors = listOf(Color.Red, Color.Blue, Color.Green, Color.Yellow, Color.Cyan),
-        modifier = Modifier.size(200.dp),
-    )""",
+                    codeSnippet = Res.string.examples_data_charts_dataviz_item_20_code,
                 ),
                 ExampleItem(
-                    title = "Animated Bar Chart",
-                    description = "Bar chart with animated bar growth",
+                    title = Res.string.examples_data_charts_dataviz_item_02_title,
+                    description = Res.string.examples_data_charts_dataviz_item_02_description,
                     demoType = DemoType.Component,
                     componentKey = ComponentDemoKeys.AnimatedBarChart,
-                    codeSnippet = """AnimatedBarChart(
-        data = listOf(80f, 45f, 90f, 60f, 75f),
-        barColor = Color.Blue,
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(200.dp),
-    )""",
+                    codeSnippet = Res.string.examples_data_charts_dataviz_item_21_code,
                 ),
             ),
         ),
         // ── Galleries & Lists ──
         ExampleCategory(
             id = "galleries-lists",
-            title = "Galleries & Lists",
-            subtitle = "Animated galleries, carousels, and lists",
+            title = Res.string.examples_data_galleries_lists_title,
+            subtitle = Res.string.examples_data_galleries_lists_subtitle,
             accentLabel = "GALLERY",
             tags = listOf("GALLERY"),
             examples = listOf(
                 ExampleItem(
-                    title = "Infinite Loading List",
-                    description = "List that loads more items on scroll",
+                    title = Res.string.examples_data_galleries_lists_item_01_title,
+                    description = Res.string.examples_data_galleries_lists_item_01_description,
                     demoType = DemoType.Component,
                     componentKey = ComponentDemoKeys.InfiniteLoadingList,
-                    codeSnippet = """InfiniteLoadingList(
-        onLoadMore = { /* fetch next page */ },
-        modifier = Modifier.fillMaxSize(),
-    )""",
+                    codeSnippet = Res.string.examples_data_galleries_lists_item_22_code,
                 ),
                 ExampleItem(
-                    title = "Horizontal Scroll Gallery",
-                    description = "Horizontally scrolling image gallery",
+                    title = Res.string.examples_data_galleries_lists_item_02_title,
+                    description = Res.string.examples_data_galleries_lists_item_02_description,
                     demoType = DemoType.Component,
                     componentKey = ComponentDemoKeys.HorizontalScrollGallery,
-                    codeSnippet = """HorizontalScrollGallery(
-        itemCount = 10,
-        itemWidth = 150.dp,
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(200.dp),
-    )""",
+                    codeSnippet = Res.string.examples_data_galleries_lists_item_23_code,
                 ),
                 ExampleItem(
-                    title = "Vertical Carousel",
-                    description = "Vertically scrolling carousel with snap",
+                    title = Res.string.examples_data_galleries_lists_item_03_title,
+                    description = Res.string.examples_data_galleries_lists_item_03_description,
                     demoType = DemoType.Component,
                     componentKey = ComponentDemoKeys.VerticalCarousel,
-                    codeSnippet = """VerticalCarousel(
-        itemCount = 5,
-        itemHeight = 200.dp,
-        modifier = Modifier.fillMaxSize(),
-    )""",
+                    codeSnippet = Res.string.examples_data_galleries_lists_item_24_code,
                 ),
                 ExampleItem(
-                    title = "Waterfall Grid",
-                    description = "Pinterest-style waterfall grid layout",
+                    title = Res.string.examples_data_galleries_lists_item_04_title,
+                    description = Res.string.examples_data_galleries_lists_item_04_description,
                     demoType = DemoType.Component,
                     componentKey = ComponentDemoKeys.WaterfallGrid,
-                    codeSnippet = """WaterfallGrid(
-        columns = 2,
-        spacing = 8.dp,
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(8.dp),
-    )""",
+                    codeSnippet = Res.string.examples_data_galleries_lists_item_25_code,
                 ),
                 ExampleItem(
-                    title = "Zoom Hero Image",
-                    description = "Image zooms to hero view on tap",
+                    title = Res.string.examples_data_galleries_lists_item_05_title,
+                    description = Res.string.examples_data_galleries_lists_item_05_description,
                     demoType = DemoType.Component,
                     componentKey = ComponentDemoKeys.ZoomHeroImage,
-                    codeSnippet = """ZoomHeroImage(
-        maxZoom = 3f,
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(300.dp),
-    )""",
+                    codeSnippet = Res.string.examples_data_galleries_lists_item_26_code,
                 ),
             ),
         ),

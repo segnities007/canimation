@@ -37,6 +37,8 @@ import androidx.compose.ui.unit.dp
 import io.github.canimation.core.Canimation
 import io.github.canimation.core.CanimationPolicy
 import io.github.canimation.core.canimation
+import canimation.composeapp.generated.resources.*
+import org.jetbrains.compose.resources.stringResource
 import kotlinx.coroutines.delay
 
 internal data class AppSettingsSheetState(
@@ -90,7 +92,7 @@ internal fun SettingsBottomSheet(
             verticalArrangement = Arrangement.spacedBy(16.dp),
         ) {
             Text(
-                text = "Settings",
+                text = stringResource(Res.string.settings_title),
                 style = MaterialTheme.typography.titleLarge,
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier.canimation(visible = sheetStage >= 0, effect = Canimation.Fade.Up),
@@ -118,12 +120,12 @@ internal fun SettingsBottomSheet(
                     )
                     Column {
                         Text(
-                            text = "Dark Mode",
+                            text = stringResource(Res.string.settings_dark_mode),
                             style = MaterialTheme.typography.bodyLarge,
                             fontWeight = FontWeight.Medium,
                         )
                         Text(
-                            text = if (state.isDarkMode) "Dark theme active" else "Light theme active",
+                            text = if (state.isDarkMode) stringResource(Res.string.settings_dark_theme_active) else stringResource(Res.string.settings_light_theme_active),
                             style = MaterialTheme.typography.bodySmall,
                             color = MaterialTheme.colorScheme.onSurfaceVariant,
                         )
@@ -142,21 +144,21 @@ internal fun SettingsBottomSheet(
                 modifier = Modifier.canimation(visible = sheetStage >= 2, effect = Canimation.Fade.Up),
             ) {
                 Text(
-                    text = "Motion Policy",
+                    text = stringResource(Res.string.settings_motion_policy),
                     style = MaterialTheme.typography.bodyLarge,
                     fontWeight = FontWeight.Medium,
                 )
                 Text(
-                    text = "Controls how animations behave across the app",
+                    text = stringResource(Res.string.settings_motion_policy_desc),
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
                 Spacer(Modifier.height(4.dp))
                 listOf(
-                    Triple(CanimationPolicy.SystemAware, "System Aware", "Follows OS reduced motion setting"),
-                    Triple(CanimationPolicy.AlwaysFull, "Full Motion", "All animations at full intensity"),
-                    Triple(CanimationPolicy.AlwaysReduced, "Reduced Motion", "Simpler, shorter animations"),
-                    Triple(CanimationPolicy.AlwaysOff, "Motion Off", "Disable all animations"),
+                    Triple(CanimationPolicy.SystemAware, stringResource(Res.string.settings_policy_system_aware), stringResource(Res.string.settings_policy_system_aware_desc)),
+                    Triple(CanimationPolicy.AlwaysFull, stringResource(Res.string.settings_policy_full_motion), stringResource(Res.string.settings_policy_full_motion_desc)),
+                    Triple(CanimationPolicy.AlwaysReduced, stringResource(Res.string.settings_policy_reduced_motion), stringResource(Res.string.settings_policy_reduced_motion_desc)),
+                    Triple(CanimationPolicy.AlwaysOff, stringResource(Res.string.settings_policy_motion_off), stringResource(Res.string.settings_policy_motion_off_desc)),
                 ).forEachIndexed { idx, (candidate, label, desc) ->
                     Surface(
                         onClick = { actions.onPolicyChange(candidate) },
@@ -231,12 +233,12 @@ internal fun SettingsBottomSheet(
             ) {
                 Column {
                     Text(
-                        text = "Diagnostics Overlay",
+                        text = stringResource(Res.string.settings_diagnostics),
                         style = MaterialTheme.typography.bodyLarge,
                         fontWeight = FontWeight.Medium,
                     )
                     Text(
-                        text = "Shows FPS/p95/jank at the top-right",
+                        text = stringResource(Res.string.settings_diagnostics_desc),
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                     )
@@ -255,7 +257,7 @@ internal fun SettingsBottomSheet(
                     modifier = Modifier.canimation(visible = sheetStage >= 8, effect = Canimation.Fade.Up),
                 ) {
                     Text(
-                        text = "Preset Gallery",
+                        text = stringResource(Res.string.settings_preset_gallery),
                         style = MaterialTheme.typography.bodyLarge,
                         fontWeight = FontWeight.Medium,
                     )
@@ -265,7 +267,7 @@ internal fun SettingsBottomSheet(
                         horizontalArrangement = Arrangement.SpaceBetween,
                         verticalAlignment = Alignment.CenterVertically,
                     ) {
-                        Text("Auto play all presets", style = MaterialTheme.typography.bodyMedium)
+                        Text(stringResource(Res.string.settings_auto_play), style = MaterialTheme.typography.bodyMedium)
                         Switch(
                             checked = state.autoPlayEnabled,
                             onCheckedChange = actions.onAutoPlayChange,
@@ -273,35 +275,35 @@ internal fun SettingsBottomSheet(
                     }
 
                     SettingsSlider(
-                        label = "Cycle interval",
+                        label = stringResource(Res.string.settings_cycle_interval),
                         value = state.cycleMs,
                         onValueChange = actions.onCycleMsChange,
                         valueRange = 350f..2500f,
                         displayValue = "${state.cycleMs.toInt()}ms",
                     )
                     SettingsSlider(
-                        label = "Duration scale",
+                        label = stringResource(Res.string.settings_duration_scale),
                         value = state.durationScale,
                         onValueChange = actions.onDurationScaleChange,
                         valueRange = 0.5f..2.0f,
                         displayValue = "${fmtFloat(state.durationScale)}x",
                     )
                     SettingsSlider(
-                        label = "Distance scale",
+                        label = stringResource(Res.string.settings_distance_scale),
                         value = state.distanceScale,
                         onValueChange = actions.onDistanceScaleChange,
                         valueRange = 0.2f..2.5f,
                         displayValue = "${fmtFloat(state.distanceScale)}x",
                     )
                     SettingsSlider(
-                        label = "Scale intensity",
+                        label = stringResource(Res.string.settings_scale_intensity),
                         value = state.scaleIntensity,
                         onValueChange = actions.onScaleIntensityChange,
                         valueRange = 0.2f..2.5f,
                         displayValue = "${fmtFloat(state.scaleIntensity)}x",
                     )
                     SettingsSlider(
-                        label = "Rotation scale",
+                        label = stringResource(Res.string.settings_rotation_scale),
                         value = state.rotationScale,
                         onValueChange = actions.onRotationScaleChange,
                         valueRange = 0.2f..2.5f,
@@ -309,7 +311,7 @@ internal fun SettingsBottomSheet(
                     )
 
                     TextButton(onClick = actions.onResetParams) {
-                        Text("Reset parameters")
+                        Text(stringResource(Res.string.settings_reset_params))
                     }
                 }
             }

@@ -59,8 +59,10 @@ import kotlin.math.abs
 import kotlin.math.cos
 import kotlin.math.roundToInt
 import kotlin.math.sin
+import canimation.composeapp.generated.resources.*
 import io.github.canimation.core.Canimation
 import io.github.canimation.core.canimation
+import org.jetbrains.compose.resources.stringResource
 
 // ─── 1. MegaMenuReveal ──────────────────────────────────────────────
 
@@ -200,8 +202,8 @@ fun ProgressScrubber(
             )
         }
         Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
-            Text("${elapsed / 60}:${(elapsed % 60).let { if (it < 10) "0$it" else "$it" }}", style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurface)
-            Text("3:00", style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f))
+            Text("${elapsed / 60}:${(elapsed % 60).toString().padStart(2, '0')}", style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurface)
+            Text(stringResource(Res.string.component_timer_total), style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f))
         }
     }
 }
@@ -373,7 +375,7 @@ fun PulsingAvatar(
             contentAlignment = Alignment.Center,
         ) {
             Text(
-                text = "JD",
+                text = stringResource(Res.string.demo_jd),
                 color = MaterialTheme.colorScheme.onPrimary,
                 fontWeight = FontWeight.Bold,
                 style = MaterialTheme.typography.bodyLarge,
@@ -422,7 +424,7 @@ fun ElasticDrawer(
             contentAlignment = Alignment.Center,
         ) {
             Text(
-                text = "Main Content",
+                text = stringResource(Res.string.demo_main_content),
                 color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f),
             )
         }
@@ -443,7 +445,7 @@ fun ElasticDrawer(
         ) {
             Column(modifier = Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
                 Text(
-                    text = "Menu",
+                    text = stringResource(Res.string.demo_menu),
                     style = MaterialTheme.typography.titleMedium,
                     fontWeight = FontWeight.Bold,
                     color = MaterialTheme.colorScheme.onPrimaryContainer,

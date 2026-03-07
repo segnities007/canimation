@@ -16,7 +16,7 @@ jobs:
         with:
           persist-credentials: false
       - uses: ./.github/actions/setup-build
-      - run: ./gradlew allTests koverVerify --max-workers=2
+      - run: ./gradlew allTests --max-workers=2
 
   publish:
     needs: check

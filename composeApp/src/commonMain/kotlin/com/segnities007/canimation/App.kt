@@ -41,6 +41,8 @@ import com.segnities007.canimation.navigation.ROUTE_KEY_PRESET_GALLERY
 import com.segnities007.canimation.navigation.TopBarDestination
 import com.segnities007.canimation.navigation.matchesRoute
 import com.segnities007.canimation.theme.CanimationTheme
+import canimation.composeapp.generated.resources.*
+import org.jetbrains.compose.resources.stringResource
 import io.github.canimation.diagnostics.CanimationDiagnosticsOverlay
 import io.github.canimation.core.Canimation
 import io.github.canimation.core.CanimationPolicy
@@ -116,7 +118,7 @@ fun App() {
                                 verticalAlignment = Alignment.CenterVertically,
                             ) {
                                 Text(
-                                    text = "canimation",
+                                    text = stringResource(Res.string.app_title),
                                     style = MaterialTheme.typography.titleLarge,
                                     fontWeight = FontWeight.Bold,
                                     color = MaterialTheme.colorScheme.primary,
@@ -147,7 +149,7 @@ fun App() {
                                             ),
                                         ) {
                                             Text(
-                                                text = destination.label,
+                                                text = stringResource(destination.labelRes),
                                                 style = MaterialTheme.typography.labelLarge,
                                                 color = if (selected) MaterialTheme.colorScheme.primary
                                                 else MaterialTheme.colorScheme.onSurfaceVariant,
@@ -167,7 +169,7 @@ fun App() {
                                 ) {
                                     Icon(
                                         imageVector = if (isDarkMode) Icons.Default.DarkMode else Icons.Default.LightMode,
-                                        contentDescription = "Toggle dark mode",
+                                        contentDescription = stringResource(Res.string.cd_toggle_dark_mode),
                                     )
                                 }
 
@@ -180,7 +182,7 @@ fun App() {
                                 ) {
                                     Icon(
                                         imageVector = Icons.Default.Settings,
-                                        contentDescription = "Open settings",
+                                        contentDescription = stringResource(Res.string.cd_open_settings),
                                     )
                                 }
                             }

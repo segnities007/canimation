@@ -3,290 +3,211 @@ package com.segnities007.canimation.screen.examples
 import io.github.canimation.core.Canimation
 import io.github.canimation.core.CanimationEffect
 import io.github.canimation.core.CanimationPreset
+import canimation.composeapp.generated.resources.*
+
 
 
 internal val exampleCategoriesChunk02Part02: List<ExampleCategory> = listOf(
         // 18. Morph Effects
         ExampleCategory(
             id = "morph",
-            title = "Morph Effects",
-            subtitle = "Shape-morphing transitions",
+            title = Res.string.examples_data_morph_title,
+            subtitle = Res.string.examples_data_morph_subtitle,
             accentLabel = "ENTRANCE",
             tags = listOf("ENTRANCE"),
             examples = listOf(
                 ExampleItem(
-                    title = "Scale Up",
-                    description = "Morphing scale-up effect",
+                    title = Res.string.examples_data_morph_item_01_title,
+                    description = Res.string.examples_data_morph_item_01_description,
                     effect = Canimation.Morph.ScaleUp,
                     preset = CanimationPreset.ScaleUp,
-                    codeSnippet = """Modifier.canimation(
-        visible = isVisible,
-        effect = Canimation.Morph.ScaleUp,
-    )""",
+                    codeSnippet = Res.string.examples_data_morph_item_01_code,
                 ),
                 ExampleItem(
-                    title = "Expand",
-                    description = "Morphing expansion",
+                    title = Res.string.examples_data_morph_item_02_title,
+                    description = Res.string.examples_data_morph_item_02_description,
                     effect = Canimation.Morph.Expand,
                     preset = CanimationPreset.Expand,
-                    codeSnippet = """Modifier.canimation(
-        visible = isVisible,
-        effect = Canimation.Morph.Expand,
-    )""",
+                    codeSnippet = Res.string.examples_data_morph_item_02_code,
                 ),
                 ExampleItem(
-                    title = "Collapse",
-                    description = "Morphing collapse",
+                    title = Res.string.examples_data_morph_item_03_title,
+                    description = Res.string.examples_data_morph_item_03_description,
                     effect = Canimation.Morph.Collapse,
                     preset = CanimationPreset.ScaleIn,
-                    codeSnippet = """Modifier.canimation(
-        visible = isVisible,
-        effect = Canimation.Morph.Collapse,
-    )""",
+                    codeSnippet = Res.string.examples_data_morph_item_03_code,
                 ),
             ),
         ),
         // 19. Effect Composition
         ExampleCategory(
             id = "composition",
-            title = "Effect Composition",
-            subtitle = "Combining effects with the + operator",
+            title = Res.string.examples_data_composition_title,
+            subtitle = Res.string.examples_data_composition_subtitle,
             accentLabel = "PATTERN",
             tags = listOf("PATTERN"),
             examples = listOf(
                 ExampleItem(
-                    title = "Fade + Pop",
-                    description = "Fade in combined with pop scale",
+                    title = Res.string.examples_data_composition_item_01_title,
+                    description = Res.string.examples_data_composition_item_01_description,
                     demoType = DemoType.Composition,
                     effect = Canimation.Fade.In + Canimation.Scale.Pop,
                     preset = CanimationPreset.Pop,
-                    codeSnippet = """Modifier.canimation(
-        visible = isVisible,
-        effect = Canimation.Fade.In + Canimation.Scale.Pop,
-    )""",
+                    codeSnippet = Res.string.examples_data_composition_item_04_code,
                 ),
                 ExampleItem(
-                    title = "Fade Up + Rotate",
-                    description = "Fade up with rotation entrance",
+                    title = Res.string.examples_data_composition_item_02_title,
+                    description = Res.string.examples_data_composition_item_02_description,
                     demoType = DemoType.Composition,
                     effect = Canimation.Fade.Up + Canimation.Rotate.In,
                     preset = CanimationPreset.FadeUp,
-                    codeSnippet = """Modifier.canimation(
-        visible = isVisible,
-        effect = Canimation.Fade.Up + Canimation.Rotate.In,
-    )""",
+                    codeSnippet = Res.string.examples_data_composition_item_05_code,
                 ),
                 ExampleItem(
-                    title = "Zoom + Slide Up",
-                    description = "Zoom in while sliding upward",
+                    title = Res.string.examples_data_composition_item_03_title,
+                    description = Res.string.examples_data_composition_item_03_description,
                     demoType = DemoType.Composition,
                     effect = Canimation.Zoom.In + Canimation.Slide.Up,
                     preset = CanimationPreset.ZoomIn,
-                    codeSnippet = """Modifier.canimation(
-        visible = isVisible,
-        effect = Canimation.Zoom.In + Canimation.Slide.Up,
-    )""",
+                    codeSnippet = Res.string.examples_data_composition_item_06_code,
                 ),
                 ExampleItem(
-                    title = "Bounce + Fade",
-                    description = "Bounce in with fade",
+                    title = Res.string.examples_data_composition_item_04_title,
+                    description = Res.string.examples_data_composition_item_04_description,
                     demoType = DemoType.Composition,
                     effect = Canimation.Bounce.In + Canimation.Fade.In,
                     preset = CanimationPreset.BounceIn,
-                    codeSnippet = """Modifier.canimation(
-        visible = isVisible,
-        effect = Canimation.Bounce.In + Canimation.Fade.In,
-    )""",
+                    codeSnippet = Res.string.examples_data_composition_item_07_code,
                 ),
                 ExampleItem(
-                    title = "Spring Pop + Rotate",
-                    description = "Springy pop with clockwise rotation",
+                    title = Res.string.examples_data_composition_item_05_title,
+                    description = Res.string.examples_data_composition_item_05_description,
                     demoType = DemoType.Composition,
                     effect = Canimation.Spring.Pop + Canimation.Rotate.Clockwise,
                     preset = CanimationPreset.Pop,
-                    codeSnippet = """Modifier.canimation(
-        visible = isVisible,
-        effect = Canimation.Spring.Pop + Canimation.Rotate.Clockwise,
-    )""",
+                    codeSnippet = Res.string.examples_data_composition_item_08_code,
                 ),
                 ExampleItem(
-                    title = "Elevate + Gentle Fade",
-                    description = "Elevation entrance with gentle fade",
+                    title = Res.string.examples_data_composition_item_06_title,
+                    description = Res.string.examples_data_composition_item_06_description,
                     demoType = DemoType.Composition,
                     effect = Canimation.Entrance.Elevate + Canimation.Fade.Gentle,
                     preset = CanimationPreset.ElevateIn,
-                    codeSnippet = """Modifier.canimation(
-        visible = isVisible,
-        effect = Canimation.Entrance.Elevate + Canimation.Fade.Gentle,
-    )""",
+                    codeSnippet = Res.string.examples_data_composition_item_09_code,
                 ),
             ),
         ),
         // 20. Asymmetric Transitions
         ExampleCategory(
             id = "transitions",
-            title = "Asymmetric Transitions",
-            subtitle = "Different enter and exit effects",
+            title = Res.string.examples_data_transitions_title,
+            subtitle = Res.string.examples_data_transitions_subtitle,
             accentLabel = "PATTERN",
             tags = listOf("PATTERN"),
             examples = listOf(
                 ExampleItem(
-                    title = "Fade Up / Fade Down",
-                    description = "Enter fading up, exit fading down",
+                    title = Res.string.examples_data_transitions_item_01_title,
+                    description = Res.string.examples_data_transitions_item_01_description,
                     demoType = DemoType.Transition,
                     enterEffect = Canimation.Fade.Up,
                     exitEffect = Canimation.Fade.Down,
                     preset = CanimationPreset.FadeUp,
-                    codeSnippet = """Modifier.canimationTransition(
-        visible = isVisible,
-        enter = Canimation.Fade.Up,
-        exit = Canimation.Fade.Down,
-    )""",
+                    codeSnippet = Res.string.examples_data_transitions_item_10_code,
                 ),
                 ExampleItem(
-                    title = "Pop / Shrink",
-                    description = "Enter with pop, exit with shrink",
+                    title = Res.string.examples_data_transitions_item_02_title,
+                    description = Res.string.examples_data_transitions_item_02_description,
                     demoType = DemoType.Transition,
                     enterEffect = Canimation.Scale.Pop,
                     exitEffect = Canimation.Scale.Shrink,
                     preset = CanimationPreset.Pop,
-                    codeSnippet = """Modifier.canimationTransition(
-        visible = isVisible,
-        enter = Canimation.Scale.Pop,
-        exit = Canimation.Scale.Shrink,
-    )""",
+                    codeSnippet = Res.string.examples_data_transitions_item_11_code,
                 ),
                 ExampleItem(
-                    title = "Slide Left / Slide Right",
-                    description = "Enter sliding left, exit sliding right",
+                    title = Res.string.examples_data_transitions_item_03_title,
+                    description = Res.string.examples_data_transitions_item_03_description,
                     demoType = DemoType.Transition,
                     enterEffect = Canimation.Slide.Left,
                     exitEffect = Canimation.Slide.Right,
                     preset = CanimationPreset.SlideLeft,
-                    codeSnippet = """Modifier.canimationTransition(
-        visible = isVisible,
-        enter = Canimation.Slide.Left,
-        exit = Canimation.Slide.Right,
-    )""",
+                    codeSnippet = Res.string.examples_data_transitions_item_12_code,
                 ),
                 ExampleItem(
-                    title = "Zoom In / Zoom Out",
-                    description = "Enter zooming in, exit zooming out",
+                    title = Res.string.examples_data_transitions_item_04_title,
+                    description = Res.string.examples_data_transitions_item_04_description,
                     demoType = DemoType.Transition,
                     enterEffect = Canimation.Zoom.In,
                     exitEffect = Canimation.Zoom.Out,
                     preset = CanimationPreset.ZoomIn,
-                    codeSnippet = """Modifier.canimationTransition(
-        visible = isVisible,
-        enter = Canimation.Zoom.In,
-        exit = Canimation.Zoom.Out,
-    )""",
+                    codeSnippet = Res.string.examples_data_transitions_item_13_code,
                 ),
                 ExampleItem(
-                    title = "Drop / Collapse",
-                    description = "Enter with drop, exit with collapse",
+                    title = Res.string.examples_data_transitions_item_05_title,
+                    description = Res.string.examples_data_transitions_item_05_description,
                     demoType = DemoType.Transition,
                     enterEffect = Canimation.Entrance.Drop,
                     exitEffect = Canimation.Morph.Collapse,
                     preset = CanimationPreset.DropIn,
-                    codeSnippet = """Modifier.canimationTransition(
-        visible = isVisible,
-        enter = Canimation.Entrance.Drop,
-        exit = Canimation.Morph.Collapse,
-    )""",
+                    codeSnippet = Res.string.examples_data_transitions_item_14_code,
                 ),
                 ExampleItem(
-                    title = "Shared Axis X (symmetric)",
-                    description = "Same shared-axis both directions",
+                    title = Res.string.examples_data_transitions_item_06_title,
+                    description = Res.string.examples_data_transitions_item_06_description,
                     demoType = DemoType.Transition,
                     enterEffect = Canimation.Material.SharedAxisX,
                     exitEffect = Canimation.Material.SharedAxisX,
                     preset = CanimationPreset.SharedAxisX,
-                    codeSnippet = """Modifier.canimationTransition(
-        visible = isVisible,
-        enter = Canimation.Material.SharedAxisX,
-        exit = Canimation.Material.SharedAxisX,
-    )""",
+                    codeSnippet = Res.string.examples_data_transitions_item_15_code,
                 ),
             ),
         ),
         // 21. Stagger Patterns
         ExampleCategory(
             id = "stagger-patterns",
-            title = "Stagger Patterns",
-            subtitle = "Sequential staggered list animations",
+            title = Res.string.examples_data_stagger_patterns_title,
+            subtitle = Res.string.examples_data_stagger_patterns_subtitle,
             accentLabel = "PATTERN",
             tags = listOf("PATTERN"),
             examples = listOf(
                 ExampleItem(
-                    title = "Stagger Fade Up",
-                    description = "Staggered fade-up list items",
+                    title = Res.string.examples_data_stagger_patterns_item_01_title,
+                    description = Res.string.examples_data_stagger_patterns_item_01_description,
                     demoType = DemoType.Stagger,
                     effect = Canimation.Fade.Up,
                     preset = CanimationPreset.FadeUp,
-                    codeSnippet = """items.forEachIndexed { i, item ->
-        delay(i * Canimation.Stagger.Normal.toLong())
-        Modifier.canimation(
-            visible = true,
-            effect = Canimation.Fade.Up,
-        )
-    }""",
+                    codeSnippet = Res.string.examples_data_stagger_patterns_item_16_code,
                 ),
                 ExampleItem(
-                    title = "Stagger Scale Pop",
-                    description = "Staggered pop-in list items",
+                    title = Res.string.examples_data_stagger_patterns_item_02_title,
+                    description = Res.string.examples_data_stagger_patterns_item_02_description,
                     demoType = DemoType.Stagger,
                     effect = Canimation.Scale.Pop,
                     preset = CanimationPreset.Pop,
-                    codeSnippet = """items.forEachIndexed { i, item ->
-        delay(i * Canimation.Stagger.Quick.toLong())
-        Modifier.canimation(
-            visible = true,
-            effect = Canimation.Scale.Pop,
-        )
-    }""",
+                    codeSnippet = Res.string.examples_data_stagger_patterns_item_17_code,
                 ),
                 ExampleItem(
-                    title = "Stagger Slide Right",
-                    description = "Staggered slide from left",
+                    title = Res.string.examples_data_stagger_patterns_item_03_title,
+                    description = Res.string.examples_data_stagger_patterns_item_03_description,
                     demoType = DemoType.Stagger,
                     effect = Canimation.Slide.Right,
                     preset = CanimationPreset.SlideRight,
-                    codeSnippet = """items.forEachIndexed { i, item ->
-        delay(i * Canimation.Stagger.Slow.toLong())
-        Modifier.canimation(
-            visible = true,
-            effect = Canimation.Slide.Right,
-        )
-    }""",
+                    codeSnippet = Res.string.examples_data_stagger_patterns_item_18_code,
                 ),
                 ExampleItem(
-                    title = "Stagger Bounce In",
-                    description = "Staggered bouncing list items",
+                    title = Res.string.examples_data_stagger_patterns_item_04_title,
+                    description = Res.string.examples_data_stagger_patterns_item_04_description,
                     demoType = DemoType.Stagger,
                     effect = Canimation.Bounce.In,
                     preset = CanimationPreset.BounceIn,
-                    codeSnippet = """items.forEachIndexed { i, item ->
-        delay(i * Canimation.Stagger.Relaxed.toLong())
-        Modifier.canimation(
-            visible = true,
-            effect = Canimation.Bounce.In,
-        )
-    }""",
+                    codeSnippet = Res.string.examples_data_stagger_patterns_item_19_code,
                 ),
                 ExampleItem(
-                    title = "Stagger Spring Up",
-                    description = "Staggered spring slide-up",
+                    title = Res.string.examples_data_stagger_patterns_item_05_title,
+                    description = Res.string.examples_data_stagger_patterns_item_05_description,
                     demoType = DemoType.Stagger,
                     effect = Canimation.Spring.Up,
                     preset = CanimationPreset.SpringSlideUp,
-                    codeSnippet = """items.forEachIndexed { i, item ->
-        delay(i * Canimation.Stagger.Normal.toLong())
-        Modifier.canimation(
-            visible = true,
-            effect = Canimation.Spring.Up,
-        )
-    }""",
+                    codeSnippet = Res.string.examples_data_stagger_patterns_item_20_code,
                 ),
             ),
         ),

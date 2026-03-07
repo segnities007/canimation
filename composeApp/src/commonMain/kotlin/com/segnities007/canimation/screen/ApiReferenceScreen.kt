@@ -38,6 +38,8 @@ import androidx.compose.ui.unit.sp
 import io.github.canimation.core.Canimation
 import io.github.canimation.core.canimation
 import kotlinx.coroutines.delay
+import canimation.composeapp.generated.resources.*
+import org.jetbrains.compose.resources.stringResource
 
 @Composable
 fun ApiReferenceScreen(modifier: Modifier = Modifier) {
@@ -74,7 +76,7 @@ fun ApiReferenceScreen(modifier: Modifier = Modifier) {
             item(key = "header") {
                 Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                     Text(
-                        text = "API REFERENCE",
+                        text = stringResource(Res.string.api_ref_label),
                         style = MaterialTheme.typography.labelLarge,
                         color = MaterialTheme.colorScheme.primary,
                         fontWeight = FontWeight.Bold,
@@ -84,7 +86,7 @@ fun ApiReferenceScreen(modifier: Modifier = Modifier) {
                         ),
                     )
                     Text(
-                        text = "Complete API documentation",
+                        text = stringResource(Res.string.api_ref_title),
                         style = MaterialTheme.typography.headlineMedium,
                         fontWeight = FontWeight.Bold,
                         modifier = Modifier.canimation(
@@ -93,7 +95,7 @@ fun ApiReferenceScreen(modifier: Modifier = Modifier) {
                         ),
                     )
                     Text(
-                        text = "${apiEntries.size} API entries — Modifiers, Composables, Data Classes, Namespace effects, and more",
+                        text = stringResource(Res.string.api_ref_header_count, apiEntries.size),
                         style = MaterialTheme.typography.bodyMedium,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                         modifier = Modifier.canimation(
@@ -121,7 +123,7 @@ fun ApiReferenceScreen(modifier: Modifier = Modifier) {
                             onClick = { onEvent(ApiReferenceEvent.FilterSelected(filter)) },
                             label = {
                                 Text(
-                                    text = "${filter.label} ($count)",
+                                    text = stringResource(Res.string.api_ref_filter_count, stringResource(filter.labelRes), count),
                                     style = MaterialTheme.typography.labelSmall,
                                     fontWeight = if (uiState.selectedFilter == filter) FontWeight.Bold else FontWeight.Normal,
                                 )
@@ -156,14 +158,14 @@ fun ApiReferenceScreen(modifier: Modifier = Modifier) {
                                         .background(MaterialTheme.colorScheme.primary, CircleShape),
                                 )
                                 Text(
-                                    text = category.label.uppercase(),
+                                    text = stringResource(category.labelRes).uppercase(),
                                     style = MaterialTheme.typography.labelLarge,
                                     color = MaterialTheme.colorScheme.primary,
                                     fontWeight = FontWeight.Bold,
                                     letterSpacing = 1.5.sp,
                                 )
                                 Text(
-                                    text = "${entries.size}",
+                                    text = entries.size.toString(),
                                     style = MaterialTheme.typography.labelSmall,
                                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                                 )
@@ -172,40 +174,13 @@ fun ApiReferenceScreen(modifier: Modifier = Modifier) {
                     }
                 }
 
-                if (category == RefFilter.Namespace) {
-                    val subGroups = entries.groupBy { entry ->
-                        entry.name.removePrefix("Canimation.").substringBefore(".")
-                    }
-                    subGroups.forEach { (subCategory, subEntries) ->
-                        item(key = "sub-${category.name}-$subCategory") {
-                            Text(
-                                text = subCategory,
-                                style = MaterialTheme.typography.labelMedium,
-                                color = MaterialTheme.colorScheme.tertiary,
-                                fontWeight = FontWeight.Bold,
-                                letterSpacing = 1.sp,
-                                modifier = Modifier.padding(top = 12.dp, bottom = 4.dp),
-                            )
-                        }
-                        items(subEntries, key = { it.name }) { entry ->
-                            var visible by remember { mutableStateOf(false) }
-                            LaunchedEffect(entry.name) { visible = true }
-                            Box(
-                                Modifier.canimation(visible = visible, effect = Canimation.Fade.Up),
-                            ) {
-                                ApiEntryCard(entry)
-                            }
-                        }
-                    }
-                } else {
-                    items(entries, key = { it.name }) { entry ->
-                        var visible by remember { mutableStateOf(false) }
-                        LaunchedEffect(entry.name) { visible = true }
-                        Box(
-                            Modifier.canimation(visible = visible, effect = Canimation.Fade.Up),
-                        ) {
-                            ApiEntryCard(entry)
-                        }
+                items(entries, key = { it.name.toString() }) { entry ->
+                    var visible by remember { mutableStateOf(false) }
+                    LaunchedEffect(entry.name) { visible = true }
+                    Box(
+                        Modifier.canimation(visible = visible, effect = Canimation.Fade.Up),
+                    ) {
+                        ApiEntryCard(entry)
                     }
                 }
             }
@@ -225,12 +200,12 @@ fun ApiReferenceScreen(modifier: Modifier = Modifier) {
                         HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant)
                         Spacer(Modifier.height(16.dp))
                         Text(
-                            text = "canimation — Compose Multiplatform Animation Library",
+                            text = stringResource(Res.string.api_ref_footer_title),
                             style = MaterialTheme.typography.bodySmall,
                             color = MaterialTheme.colorScheme.onSurfaceVariant,
                         )
                         Text(
-                            text = "io.github.canimation:canimation-core",
+                            text = stringResource(Res.string.api_ref_footer_package),
                             style = MaterialTheme.typography.labelSmall,
                             fontFamily = FontFamily.Monospace,
                             color = MaterialTheme.colorScheme.onSurfaceVariant,

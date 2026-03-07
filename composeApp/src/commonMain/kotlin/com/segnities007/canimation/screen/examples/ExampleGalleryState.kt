@@ -7,6 +7,13 @@ internal data class ExamplesUiState(
     val showFilters: Boolean = true,
 )
 
+internal data class ResolvedGalleryItem(
+    val galleryItem: GalleryItem,
+    val title: String,
+    val description: String,
+    val tagLabel: String,
+)
+
 internal sealed interface ExamplesEvent {
     data class SearchQueryChanged(val query: String) : ExamplesEvent
     data class TagSelected(val tag: String) : ExamplesEvent
@@ -33,13 +40,13 @@ internal fun reduceExamplesState(
 }
 
 internal fun filterGalleryItems(
-    items: List<GalleryItem>,
+    items: List<ResolvedGalleryItem>,
     state: ExamplesUiState,
-): List<GalleryItem> = items.filter { galleryItem ->
+): List<ResolvedGalleryItem> = items.filter { resolvedItem ->
     val matchesSearch = state.searchQuery.isBlank() ||
-        galleryItem.item.title.contains(state.searchQuery, ignoreCase = true) ||
-        galleryItem.item.description.contains(state.searchQuery, ignoreCase = true) ||
-        galleryItem.tag.contains(state.searchQuery, ignoreCase = true)
-    val matchesTag = state.selectedTag == ALL_TAG || galleryItem.tag == state.selectedTag
+        resolvedItem.title.contains(state.searchQuery, ignoreCase = true) ||
+        resolvedItem.description.contains(state.searchQuery, ignoreCase = true) ||
+        resolvedItem.tagLabel.contains(state.searchQuery, ignoreCase = true)
+    val matchesTag = state.selectedTag == ALL_TAG || resolvedItem.galleryItem.tag == state.selectedTag
     matchesSearch && matchesTag
 }

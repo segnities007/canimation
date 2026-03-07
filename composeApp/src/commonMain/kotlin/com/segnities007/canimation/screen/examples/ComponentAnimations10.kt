@@ -66,7 +66,7 @@ private data class BottomNavItem(
 // ─── 1. TypewriterEffect ───
 @Composable
 fun TypewriterEffect(modifier: Modifier = Modifier) {
-    val text = "Hello, World!"
+    val text = stringResource(Res.string.demo_hello_world)
     var displayed by remember { mutableStateOf("") }
     LaunchedEffect(Unit) {
         while (true) {
@@ -88,14 +88,19 @@ fun TypewriterEffect(modifier: Modifier = Modifier) {
 // ─── 2. TextMorph ───
 @Composable
 fun TextMorph(modifier: Modifier = Modifier) {
-    val words = listOf("Fast", "Simple", "Beautiful", "Powerful")
+    val words = listOf(
+        stringResource(Res.string.component_text_fast),
+        stringResource(Res.string.component_text_simple),
+        stringResource(Res.string.component_text_beautiful),
+        stringResource(Res.string.component_text_powerful),
+    )
     var idx by remember { mutableIntStateOf(0) }
     LaunchedEffect(Unit) { while (true) { delay(2000); idx = (idx + 1) % words.size } }
     var vis by remember { mutableStateOf(false) }
     LaunchedEffect(idx) { vis = false; delay(50); vis = true }
     Box(modifier.fillMaxWidth().padding(16.dp), contentAlignment = Alignment.Center) {
         Row(verticalAlignment = Alignment.CenterVertically) {
-            Text("Animations are ", style = MaterialTheme.typography.bodyLarge)
+            Text(stringResource(Res.string.component_animations_are), style = MaterialTheme.typography.bodyLarge)
             Box(Modifier.canimation(visible = vis, effect = Canimation.Fade.Up)) {
                 Text(words[idx], style = MaterialTheme.typography.bodyLarge, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.primary)
             }
@@ -111,7 +116,7 @@ fun TextStrikethrough(modifier: Modifier = Modifier) {
     Box(modifier.fillMaxWidth().padding(16.dp), contentAlignment = Alignment.Center) {
         Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(4.dp)) {
             Text(
-                "Old Price: \$99.99",
+                stringResource(Res.string.component_old_price),
                 style = MaterialTheme.typography.bodyMedium,
                 textDecoration = if (struck) TextDecoration.LineThrough else TextDecoration.None,
                 color = if (struck) MaterialTheme.colorScheme.onSurfaceVariant else MaterialTheme.colorScheme.onSurface,
@@ -120,7 +125,7 @@ fun TextStrikethrough(modifier: Modifier = Modifier) {
                 var vis by remember { mutableStateOf(false) }
                 LaunchedEffect(Unit) { vis = true }
                 Text(
-                    "New Price: \$49.99",
+                    stringResource(Res.string.component_new_price),
                     modifier = Modifier.canimation(visible = vis, effect = Canimation.Scale.Pop),
                     style = MaterialTheme.typography.titleMedium,
                     fontWeight = FontWeight.Bold,
@@ -138,9 +143,9 @@ fun TextGlitch(modifier: Modifier = Modifier) {
     val offsetX by transition.animateFloat(0f, 2f, infiniteRepeatable(tween(150), RepeatMode.Reverse))
     val offsetY by transition.animateFloat(0f, -1f, infiniteRepeatable(tween(200), RepeatMode.Reverse))
     Box(modifier.fillMaxWidth().padding(16.dp), contentAlignment = Alignment.Center) {
-        Text("GLITCH", style = MaterialTheme.typography.headlineSmall, fontWeight = FontWeight.Black, color = Color(0xFF22D3EE).copy(alpha = 0.5f), modifier = Modifier.offset(x = offsetX.dp, y = offsetY.dp))
-        Text("GLITCH", style = MaterialTheme.typography.headlineSmall, fontWeight = FontWeight.Black, color = Color(0xFFEF4444).copy(alpha = 0.5f), modifier = Modifier.offset(x = (-offsetX).dp, y = (-offsetY).dp))
-        Text("GLITCH", style = MaterialTheme.typography.headlineSmall, fontWeight = FontWeight.Black)
+        Text(stringResource(Res.string.component_glitch), style = MaterialTheme.typography.headlineSmall, fontWeight = FontWeight.Black, color = Color(0xFF22D3EE).copy(alpha = 0.5f), modifier = Modifier.offset(x = offsetX.dp, y = offsetY.dp))
+        Text(stringResource(Res.string.component_glitch), style = MaterialTheme.typography.headlineSmall, fontWeight = FontWeight.Black, color = Color(0xFFEF4444).copy(alpha = 0.5f), modifier = Modifier.offset(x = (-offsetX).dp, y = (-offsetY).dp))
+        Text(stringResource(Res.string.component_glitch), style = MaterialTheme.typography.headlineSmall, fontWeight = FontWeight.Black)
     }
 }
 
@@ -165,12 +170,15 @@ fun RecipeCard(modifier: Modifier = Modifier) {
                     )
                     Spacer(Modifier.width(8.dp))
                     Column {
-                        Text("Margherita Pizza", style = MaterialTheme.typography.labelLarge, fontWeight = FontWeight.Bold)
-                        Text("25 min • Easy", style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                        Text(stringResource(Res.string.component_recipe_title), style = MaterialTheme.typography.labelLarge, fontWeight = FontWeight.Bold)
+                        Text(stringResource(Res.string.component_recipe_meta), style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
                     }
                 }
                 Row(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
-                    listOf("Italian", "Vegetarian").forEach { tag ->
+                    listOf(
+                        stringResource(Res.string.component_recipe_tag_italian),
+                        stringResource(Res.string.component_recipe_tag_vegetarian),
+                    ).forEach { tag ->
                         Surface(shape = RoundedCornerShape(12.dp), color = MaterialTheme.colorScheme.primaryContainer) {
                             Text(tag, Modifier.padding(horizontal = 8.dp, vertical = 2.dp), style = MaterialTheme.typography.labelSmall)
                         }
@@ -209,7 +217,7 @@ fun WeatherCard(modifier: Modifier = Modifier) {
                         style = MaterialTheme.typography.titleMedium,
                         fontWeight = FontWeight.Bold,
                     )
-                    Text("San Francisco", style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                    Text(stringResource(Res.string.component_weather_location), style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
                 }
             }
         }
@@ -226,14 +234,14 @@ fun EventCard(modifier: Modifier = Modifier) {
             Row(Modifier.padding(14.dp)) {
                 Surface(shape = RoundedCornerShape(8.dp), color = MaterialTheme.colorScheme.primary, modifier = Modifier.size(48.dp)) {
                     Column(Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Center) {
-                        Text("15", style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.onPrimary)
-                        Text("MAR", style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.7f))
+                        Text(stringResource(Res.string.component_event_day), style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.onPrimary)
+                        Text(stringResource(Res.string.component_event_month), style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.7f))
                     }
                 }
                 Spacer(Modifier.width(12.dp))
                 Column {
-                    Text("Kotlin Conf 2026", style = MaterialTheme.typography.labelLarge, fontWeight = FontWeight.Bold)
-                    Text("Copenhagen, Denmark", style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                    Text(stringResource(Res.string.component_event_title), style = MaterialTheme.typography.labelLarge, fontWeight = FontWeight.Bold)
+                    Text(stringResource(Res.string.component_event_location), style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
                     Spacer(Modifier.height(4.dp))
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
@@ -279,8 +287,8 @@ fun MusicPlayerCard(modifier: Modifier = Modifier) {
                     }
                     Spacer(Modifier.width(10.dp))
                     Column(Modifier.weight(1f)) {
-                        Text("Kotlin Groove", style = MaterialTheme.typography.labelMedium, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.inverseOnSurface)
-                        Text("Compose Orchestra", style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.inverseOnSurface.copy(alpha = 0.6f))
+                        Text(stringResource(Res.string.component_track_title), style = MaterialTheme.typography.labelMedium, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.inverseOnSurface)
+                        Text(stringResource(Res.string.component_track_artist), style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.inverseOnSurface.copy(alpha = 0.6f))
                     }
                     Icon(
                         imageVector = if (playing) Icons.Default.Pause else Icons.Default.PlayArrow,
@@ -401,7 +409,7 @@ fun HorizontalBarChart(modifier: Modifier = Modifier) {
                     Box(Modifier.fillMaxWidth(anims[i].value).fillMaxHeight().clip(RoundedCornerShape(4.dp)).background(MaterialTheme.colorScheme.primary.copy(alpha = 0.7f)))
                 }
                 Spacer(Modifier.width(6.dp))
-                Text("${(anims[i].value * 100).toInt()}%", style = MaterialTheme.typography.labelSmall, fontFamily = FontFamily.Monospace, modifier = Modifier.width(32.dp))
+                Text(stringResource(Res.string.component_percent_value, (anims[i].value * 100).toInt()), style = MaterialTheme.typography.labelSmall, fontFamily = FontFamily.Monospace, modifier = Modifier.width(48.dp))
             }
         }
     }
@@ -419,7 +427,7 @@ fun GaugeChart(modifier: Modifier = Modifier) {
             drawArc(primaryColor.copy(alpha = 0.1f), 180f, sweep, false, style = Stroke(8f, cap = StrokeCap.Round), topLeft = Offset(8f, 8f), size = Size(size.width - 16f, (size.height - 8f) * 2))
             drawArc(primaryColor, 180f, sweep * value, false, style = Stroke(8f, cap = StrokeCap.Round), topLeft = Offset(8f, 8f), size = Size(size.width - 16f, (size.height - 8f) * 2))
         }
-        Text("${(value * 100).toInt()}%", style = MaterialTheme.typography.labelLarge, fontWeight = FontWeight.Bold, fontFamily = FontFamily.Monospace, modifier = Modifier.padding(top = 16.dp))
+        Text(stringResource(Res.string.component_percent_value, (value * 100).toInt()), style = MaterialTheme.typography.labelLarge, fontWeight = FontWeight.Bold, fontFamily = FontFamily.Monospace, modifier = Modifier.padding(top = 16.dp))
     }
 }
 
@@ -431,7 +439,7 @@ fun LiveCounter(modifier: Modifier = Modifier) {
     var vis by remember { mutableStateOf(false) }
     LaunchedEffect(count) { vis = false; delay(20); vis = true }
     Column(modifier.fillMaxWidth().padding(16.dp), horizontalAlignment = Alignment.CenterHorizontally) {
-        Text("Active Users", style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+        Text(stringResource(Res.string.component_active_users), style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
         Spacer(Modifier.height(4.dp))
         Box(Modifier.canimation(visible = vis, effect = Canimation.Micro.NudgeUp)) {
             Row(verticalAlignment = Alignment.CenterVertically) {

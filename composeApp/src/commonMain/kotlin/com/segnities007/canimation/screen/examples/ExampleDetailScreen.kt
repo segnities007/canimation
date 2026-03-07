@@ -31,9 +31,11 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import canimation.composeapp.generated.resources.*
 import io.github.canimation.core.Canimation
 import io.github.canimation.core.canimation
 import kotlinx.coroutines.delay
+import org.jetbrains.compose.resources.stringResource
 
 @Composable
 fun ExampleDetailScreen(
@@ -47,12 +49,16 @@ fun ExampleDetailScreen(
 
     if (galleryItem == null) {
         Box(modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-            Text("Item not found")
+            Text(stringResource(Res.string.demo_item_not_found))
         }
         return
     }
 
     val item = galleryItem.item
+    val title = stringResource(item.title)
+    val description = stringResource(item.description)
+    val tagLabel = stringResource(tagLabelRes(galleryItem.tag))
+    val codeSnippet = stringResource(item.codeSnippet)
     var uiState by remember { mutableStateOf(ExampleDetailUiState()) }
     val onEvent: (ExampleDetailEvent) -> Unit = { event ->
         uiState = reduceExampleDetailState(uiState, event)
@@ -83,21 +89,21 @@ fun ExampleDetailScreen(
                         verticalAlignment = Alignment.CenterVertically,
                         horizontalArrangement = Arrangement.spacedBy(12.dp),
                     ) {
-                        TextButton(onClick = onBack) { Text("← Gallery") }
+                        TextButton(onClick = onBack) { Text(stringResource(Res.string.examples_detail_back_to_gallery)) }
                         Text(
-                            text = galleryItem.tag,
+                            text = tagLabel,
                             style = MaterialTheme.typography.labelSmall,
                             color = MaterialTheme.colorScheme.secondary,
                             fontWeight = FontWeight.Bold,
                         )
                     }
                     Text(
-                        text = item.title,
+                        text = title,
                         style = MaterialTheme.typography.headlineMedium,
                         fontWeight = FontWeight.Bold,
                     )
                     Text(
-                        text = item.description,
+                        text = description,
                         style = MaterialTheme.typography.bodyLarge,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                     )
@@ -106,7 +112,7 @@ fun ExampleDetailScreen(
 
             // Live Demo
             Box(Modifier.canimation(visible = uiState.entryStage >= 1, effect = Canimation.Fade.Up)) {
-                SectionCard(title = "Live Demo") {
+                SectionCard(title = stringResource(Res.string.examples_detail_live_demo)) {
                     Surface(
                         shape = RoundedCornerShape(12.dp),
                         color = MaterialTheme.colorScheme.surface,
@@ -129,39 +135,42 @@ fun ExampleDetailScreen(
 
             // Usage / Code
             Box(Modifier.canimation(visible = uiState.entryStage >= 2, effect = Canimation.Fade.Up)) {
-                SectionCard(title = "Usage") {
-                    CodeBlock(generateUsageCode(item))
+                SectionCard(title = stringResource(Res.string.examples_detail_usage)) {
+                    CodeBlock(generateUsageCode(item.demoType, codeSnippet))
                 }
             }
 
             // API Details
             Box(Modifier.canimation(visible = uiState.entryStage >= 3, effect = Canimation.Fade.Up)) {
-                SectionCard(title = "Implementation Details") {
+                SectionCard(title = stringResource(Res.string.examples_detail_implementation_details)) {
                     Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
-                        DetailRow("Type", formatDemoType(item.demoType))
-                        DetailRow("Category", galleryItem.tag)
+                        DetailRow(stringResource(Res.string.examples_detail_type), formatDemoType(item.demoType))
+                        DetailRow(stringResource(Res.string.examples_detail_category), tagLabel)
 
                         if (item.effect != null) {
-                            DetailRow("Effect", describeEffect(item.effect))
+                            DetailRow(stringResource(Res.string.examples_detail_effect), describeEffect(item.effect))
                         }
                         if (item.enterEffect != null) {
-                            DetailRow("Enter Effect", describeEffect(item.enterEffect))
+                            DetailRow(stringResource(Res.string.examples_detail_enter_effect), describeEffect(item.enterEffect))
                         }
                         if (item.exitEffect != null) {
-                            DetailRow("Exit Effect", describeEffect(item.exitEffect))
+                            DetailRow(stringResource(Res.string.examples_detail_exit_effect), describeEffect(item.exitEffect))
                         }
                         if (item.demoType == DemoType.Component) {
-                            DetailRow("Component", item.componentKey?.value ?: "—")
+                            DetailRow(
+                                stringResource(Res.string.examples_detail_component),
+                                item.componentKey?.value ?: stringResource(Res.string.examples_detail_component_none),
+                            )
                         }
 
                         Spacer(Modifier.height(4.dp))
                         Text(
-                            text = "How it works",
+                            text = stringResource(Res.string.examples_how_it_works),
                             style = MaterialTheme.typography.titleSmall,
                             fontWeight = FontWeight.Bold,
                         )
                         Text(
-                            text = generateHowItWorks(item),
+                            text = generateHowItWorks(item.demoType),
                             style = MaterialTheme.typography.bodyMedium,
                             color = MaterialTheme.colorScheme.onSurfaceVariant,
                         )
@@ -171,14 +180,14 @@ fun ExampleDetailScreen(
 
             // Integration Guide
             Box(Modifier.canimation(visible = uiState.entryStage >= 4, effect = Canimation.Fade.Up)) {
-                SectionCard(title = "Integration Guide") {
+                SectionCard(title = stringResource(Res.string.examples_detail_integration_guide)) {
                     Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
                         Text(
-                            text = generateIntegrationGuide(item, galleryItem.tag),
+                            text = generateIntegrationGuide(item.demoType, tagLabel),
                             style = MaterialTheme.typography.bodyMedium,
                             color = MaterialTheme.colorScheme.onSurfaceVariant,
                         )
-                        CodeBlock(generateFullExample(item))
+                        CodeBlock(generateFullExample(item.demoType, codeSnippet))
                     }
                 }
             }

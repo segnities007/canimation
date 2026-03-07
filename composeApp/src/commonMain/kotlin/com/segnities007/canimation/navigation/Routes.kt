@@ -1,6 +1,11 @@
 package com.segnities007.canimation.navigation
 
 import kotlinx.serialization.Serializable
+import org.jetbrains.compose.resources.StringResource
+import canimation.composeapp.generated.resources.Res
+import canimation.composeapp.generated.resources.nav_docs
+import canimation.composeapp.generated.resources.nav_api
+import canimation.composeapp.generated.resources.nav_gallery
 
 const val ROUTE_KEY_HOME = "HomeRoute"
 const val ROUTE_KEY_PRESET_GALLERY = "PresetGalleryRoute"
@@ -16,12 +21,12 @@ enum class HomeDestination {
 }
 
 enum class TopBarDestination(
-    val label: String,
+    val labelRes: StringResource,
     val routeKey: String,
 ) {
-    Docs(label = "Docs", routeKey = ROUTE_KEY_DOCS),
-    Api(label = "API", routeKey = ROUTE_KEY_API_REFERENCE),
-    Gallery(label = "Gallery", routeKey = ROUTE_KEY_EXAMPLES),
+    Docs(labelRes = Res.string.nav_docs, routeKey = ROUTE_KEY_DOCS),
+    Api(labelRes = Res.string.nav_api, routeKey = ROUTE_KEY_API_REFERENCE),
+    Gallery(labelRes = Res.string.nav_gallery, routeKey = ROUTE_KEY_EXAMPLES),
 }
 
 fun String?.matchesRoute(routeKey: String): Boolean = this?.contains(routeKey) == true

@@ -59,8 +59,10 @@ import kotlin.math.abs
 import kotlin.math.cos
 import kotlin.math.roundToInt
 import kotlin.math.sin
+import canimation.composeapp.generated.resources.*
 import io.github.canimation.core.Canimation
 import io.github.canimation.core.canimation
+import org.jetbrains.compose.resources.stringResource
 
 // ─── 1. MegaMenuReveal ──────────────────────────────────────────────
 
@@ -254,7 +256,7 @@ fun ToastNotification(
         ) {
             Box(modifier = Modifier.padding(12.dp), contentAlignment = Alignment.CenterStart) {
                 Text(
-                    text = "\u2713 Action completed",
+                    text = stringResource(Res.string.demo_action_completed),
                     color = MaterialTheme.colorScheme.inverseOnSurface,
                     style = MaterialTheme.typography.bodyMedium,
                     fontWeight = FontWeight.Medium,
@@ -300,7 +302,7 @@ fun MagneticButton(
         ) {
             Box(modifier = Modifier.padding(horizontal = 24.dp, vertical = 12.dp), contentAlignment = Alignment.Center) {
                 Text(
-                    text = "Hover Me",
+                    text = stringResource(Res.string.demo_hover_me),
                     color = MaterialTheme.colorScheme.onPrimary,
                     fontWeight = FontWeight.SemiBold,
                 )
@@ -341,7 +343,7 @@ fun RippleButton(
             )
         }
         Text(
-            text = "Press",
+            text = stringResource(Res.string.demo_press),
             color = Color.White,
             fontWeight = FontWeight.Bold,
         )
@@ -438,7 +440,7 @@ fun ScrollDirectionHeader(
         ) {
             Box(contentAlignment = Alignment.Center) {
                 Text(
-                    text = "App Header",
+                    text = stringResource(Res.string.demo_app_header),
                     color = MaterialTheme.colorScheme.onPrimary,
                     fontWeight = FontWeight.Bold,
                 )

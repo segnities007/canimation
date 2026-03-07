@@ -19,26 +19,27 @@ class ExampleGalleryStateTest {
 
     @Test
     fun filterGalleryItemsAppliesSearchAndTagTogether() {
+        val baseExample = allGalleryItems.first().item
         val items = listOf(
-            GalleryItem(
-                item = ExampleItem(
-                    title = "Fade Up",
-                    description = "Simple entrance",
-                    codeSnippet = "Modifier.canimation(...)",
-                    effect = Canimation.Fade.Up,
+            ResolvedGalleryItem(
+                galleryItem = GalleryItem(
+                    item = baseExample.copy(effect = Canimation.Fade.Up),
+                    tag = "ENTRANCE",
+                    globalIndex = 0,
                 ),
-                tag = "ENTRANCE",
-                globalIndex = 0,
+                title = "Fade Up",
+                description = "Simple entrance",
+                tagLabel = "Entrance",
             ),
-            GalleryItem(
-                item = ExampleItem(
-                    title = "Pulse",
-                    description = "Attention seeker",
-                    codeSnippet = "Modifier.canimationEmphasize(...)",
-                    demoType = DemoType.Emphasis,
+            ResolvedGalleryItem(
+                galleryItem = GalleryItem(
+                    item = baseExample.copy(demoType = DemoType.Emphasis, effect = null),
+                    tag = "EMPHASIS",
+                    globalIndex = 1,
                 ),
-                tag = "EMPHASIS",
-                globalIndex = 1,
+                title = "Pulse",
+                description = "Attention seeker",
+                tagLabel = "Emphasis",
             ),
         )
 
@@ -46,6 +47,6 @@ class ExampleGalleryStateTest {
         val filtered = filterGalleryItems(items, state)
 
         assertEquals(1, filtered.size)
-        assertEquals("Pulse", filtered.first().item.title)
+        assertEquals("Pulse", filtered.first().title)
     }
 }

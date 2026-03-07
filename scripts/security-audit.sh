@@ -14,6 +14,7 @@ else
 fi
 
 ERRORS=0
+ANDROID_MANIFEST="androidApp/src/main/AndroidManifest.xml"
 
 check_literal() {
   local file="$1"
@@ -74,11 +75,11 @@ check_literal ".github/dependabot.yml" "package-ecosystem: \"gradle\"" \
 check_literal ".github/dependabot.yml" "package-ecosystem: \"github-actions\"" \
   "Dependabot must track GitHub Actions dependencies"
 
-check_literal "composeApp/src/androidMain/AndroidManifest.xml" "android:allowBackup=\"false\"" \
+check_literal "$ANDROID_MANIFEST" "android:allowBackup=\"false\"" \
   "Android backup must be disabled"
-check_literal "composeApp/src/androidMain/AndroidManifest.xml" "android:fullBackupContent=\"false\"" \
+check_literal "$ANDROID_MANIFEST" "android:fullBackupContent=\"false\"" \
   "Android full backup must be disabled"
-check_literal "composeApp/src/androidMain/AndroidManifest.xml" "android:usesCleartextTraffic=\"false\"" \
+check_literal "$ANDROID_MANIFEST" "android:usesCleartextTraffic=\"false\"" \
   "Cleartext traffic must be disabled"
 
 check_literal "composeApp/src/webMain/resources/index.html" "Content-Security-Policy" \

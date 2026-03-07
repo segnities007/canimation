@@ -20,6 +20,9 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import canimation.composeapp.generated.resources.Res
+import canimation.composeapp.generated.resources.api_ref_example_label
+import org.jetbrains.compose.resources.stringResource
 
 @Composable
 internal fun ApiEntryCard(entry: ApiEntry) {
@@ -34,20 +37,20 @@ internal fun ApiEntryCard(entry: ApiEntry) {
             horizontalArrangement = Arrangement.spacedBy(8.dp),
         ) {
             Text(
-                text = entry.name,
+                text = stringResource(entry.name),
                 style = MaterialTheme.typography.titleMedium,
                 fontFamily = FontFamily.Monospace,
                 fontWeight = FontWeight.Bold,
                 color = MaterialTheme.colorScheme.primary,
                 modifier = Modifier.weight(1f, fill = false),
             )
-            if (entry.badge.isNotEmpty()) {
+            if (entry.badge != null) {
                 Surface(
                     shape = RoundedCornerShape(6.dp),
                     color = MaterialTheme.colorScheme.primary.copy(alpha = 0.12f),
                 ) {
                     Text(
-                        text = entry.badge,
+                        text = stringResource(entry.badge),
                         modifier = Modifier.padding(horizontal = 8.dp, vertical = 2.dp),
                         style = MaterialTheme.typography.labelSmall,
                         color = MaterialTheme.colorScheme.primary,
@@ -64,7 +67,7 @@ internal fun ApiEntryCard(entry: ApiEntry) {
             modifier = Modifier.fillMaxWidth(),
         ) {
             Text(
-                text = entry.signature,
+                text = stringResource(entry.signature),
                 modifier = Modifier.padding(12.dp),
                 fontFamily = FontFamily.Monospace,
                 style = MaterialTheme.typography.bodySmall,
@@ -74,12 +77,12 @@ internal fun ApiEntryCard(entry: ApiEntry) {
         }
 
         Text(
-            text = entry.description,
+            text = stringResource(entry.description),
             style = MaterialTheme.typography.bodySmall,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
         )
 
-        if (entry.codeExample.isNotEmpty()) {
+        if (entry.codeExample != null) {
             Surface(
                 shape = RoundedCornerShape(8.dp),
                 color = MaterialTheme.colorScheme.inverseSurface.copy(alpha = 0.06f),
@@ -88,7 +91,7 @@ internal fun ApiEntryCard(entry: ApiEntry) {
             ) {
                 Column(modifier = Modifier.padding(12.dp)) {
                     Text(
-                        text = "EXAMPLE",
+                        text = stringResource(Res.string.api_ref_example_label),
                         style = MaterialTheme.typography.labelSmall,
                         color = MaterialTheme.colorScheme.primary,
                         fontWeight = FontWeight.Bold,
@@ -96,7 +99,7 @@ internal fun ApiEntryCard(entry: ApiEntry) {
                     )
                     Spacer(Modifier.height(4.dp))
                     Text(
-                        text = entry.codeExample,
+                        text = stringResource(entry.codeExample),
                         fontFamily = FontFamily.Monospace,
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurface,

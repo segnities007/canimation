@@ -69,12 +69,12 @@ internal fun ApiSurfaceContent(stage: Int) {
         Modifier.canimation(visible = stage >= 0, effect = Canimation.Fade.Up),
         verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
-        PageTitle("API Surface", "Every way to animate — pick your level of control")
+        PageTitle(stringResource(Res.string.docs_ref_api_surface), stringResource(Res.string.docs_ref_every_way_to_animate_p))
 
         ApiCard(
             signature = stringResource(Res.string.docs_api_modifier_canimation_signature),
-            badge = "RECOMMENDED",
-            desc = "Compose effects with the + operator. Use Canimation.* namespace.",
+            badge = stringResource(Res.string.docs_ref_recommended),
+            desc = stringResource(Res.string.docs_ref_compose_effects_with_the),
             code = """Modifier.canimation(visible = true, effect = Canimation.Fade.Up)
 Modifier.canimation(visible = true, effect = Canimation.Scale.Pop + Canimation.Fade.In)
 Modifier.canimation(visible = true, effect = Canimation.Entrance.Drop)""",
@@ -158,11 +158,11 @@ internal fun NamespaceContent(stage: Int) {
         HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant)
 
         // Stagger helper
-        SectionLabel("UTILITIES")
-        NamespaceRow("Canimation.Stagger", listOf("Quick (40ms)", "Normal (70ms)", "Slow (120ms)", "Relaxed (200ms)"))
+        SectionLabel(stringResource(Res.string.docs_ref_utilities))
+        NamespaceRow(stringResource(Res.string.docs_ref_canimation_stagger), listOf(stringResource(Res.string.docs_ref_quick_40ms), stringResource(Res.string.docs_ref_normal_70ms), stringResource(Res.string.docs_ref_slow_120ms), stringResource(Res.string.docs_ref_relaxed_200ms)))
 
         // Effect primitives
-        Text("CanimationEffect Primitives", style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold)
+        Text(stringResource(Res.string.docs_ref_canimationeffect_primiti), style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold)
         FlowRow(
             horizontalArrangement = Arrangement.spacedBy(8.dp),
             verticalArrangement = Arrangement.spacedBy(8.dp),
@@ -200,7 +200,7 @@ internal fun PrimitivesContent(stage: Int) {
     ) {
         PageTitle("Effect Primitives", "Build custom animations from building blocks")
 
-        BodyText("Each primitive controls a single animation property. Combine with + to create complex effects.")
+        BodyText(stringResource(Res.string.docs_ref_each_primitive_controls))
 
         CodeBlock("""// Single primitives
 CanimationEffect.fade()              // alpha: 0 → 1
@@ -267,51 +267,51 @@ internal fun AtomicDesignContent(stage: Int) {
         Modifier.canimation(visible = stage >= 0, effect = Canimation.Fade.Up),
         verticalArrangement = Arrangement.spacedBy(24.dp),
     ) {
-        PageTitle("Atomic Design", "Animation hierarchy inspired by Brad Frost's Atomic Design")
+        PageTitle(stringResource(Res.string.docs_ref_atomic_design), stringResource(Res.string.docs_ref_animation_hierarchy_insp))
 
         BodyText(
-            "Animations in canimation are organized into three levels of complexity, " +
-            "inspired by Atomic Design methodology."
+            stringResource(Res.string.docs_ref_animations_in_canimation) +
+                stringResource(Res.string.docs_ref_inspired_by_atomic_desig)
         )
 
         SectionCard(
             title = stringResource(Res.string.docs_atomic_atoms_title),
-            description = "Single-property animation primitives — the smallest building blocks",
+            description = stringResource(Res.string.docs_ref_single_property_animatio),
             icon = Icons.Default.Tune,
         ) {
             Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
-                AtomicDemoRow("Canimation.Fade.In", "Opacity only", Canimation.Fade.In)
-                AtomicDemoRow("Canimation.Slide.Up", "Translation only", Canimation.Slide.Up)
-                AtomicDemoRow("Canimation.Scale.In", "Scale only", Canimation.Scale.In)
-                AtomicDemoRow("Canimation.Rotate.In", "Rotation only", Canimation.Rotate.In)
+                AtomicDemoRow(stringResource(Res.string.docs_ref_canimation_fade_in), stringResource(Res.string.docs_ref_opacity_only), Canimation.Fade.In)
+                AtomicDemoRow(stringResource(Res.string.docs_ref_canimation_slide_up), stringResource(Res.string.docs_ref_translation_only), Canimation.Slide.Up)
+                AtomicDemoRow(stringResource(Res.string.docs_ref_canimation_scale_in), stringResource(Res.string.docs_ref_scale_only), Canimation.Scale.In)
+                AtomicDemoRow(stringResource(Res.string.docs_ref_canimation_rotate_in), stringResource(Res.string.docs_ref_rotation_only), Canimation.Rotate.In)
             }
         }
 
         SectionCard(
             title = stringResource(Res.string.docs_atomic_molecules_title),
-            description = "Two-property combinations — atoms working together",
+            description = stringResource(Res.string.docs_ref_two_property_combination),
             icon = Icons.Default.AutoAwesome,
         ) {
             Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
-                AtomicDemoRow("Canimation.Fade.Up", "fade + slideUp", Canimation.Fade.Up)
-                AtomicDemoRow("Canimation.Scale.Pop", "scale + overshoot", Canimation.Scale.Pop)
-                AtomicDemoRow("Canimation.Zoom.In", "scale + fade", Canimation.Zoom.In)
-                AtomicDemoRow("Canimation.Spring.Up", "fade + slide + spring timing", Canimation.Spring.Up)
-                AtomicDemoRow("Canimation.Bounce.Down", "bounce + slideDown", Canimation.Bounce.Down)
+                AtomicDemoRow(stringResource(Res.string.docs_ref_canimation_fade_up), stringResource(Res.string.docs_ref_fade_slideup), Canimation.Fade.Up)
+                AtomicDemoRow(stringResource(Res.string.docs_ref_canimation_scale_pop), stringResource(Res.string.docs_ref_scale_overshoot), Canimation.Scale.Pop)
+                AtomicDemoRow(stringResource(Res.string.docs_ref_canimation_zoom_in), stringResource(Res.string.docs_ref_scale_fade), Canimation.Zoom.In)
+                AtomicDemoRow(stringResource(Res.string.docs_ref_canimation_spring_up), stringResource(Res.string.docs_ref_fade_slide_spring_ti), Canimation.Spring.Up)
+                AtomicDemoRow(stringResource(Res.string.docs_ref_canimation_bounce_down), stringResource(Res.string.docs_ref_bounce_slidedown), Canimation.Bounce.Down)
             }
         }
 
         SectionCard(
             title = stringResource(Res.string.docs_atomic_organisms_title),
-            description = "Complex multi-property effects — molecules forming patterns",
+            description = stringResource(Res.string.docs_ref_complex_multi_property),
             icon = Icons.Default.Visibility,
         ) {
             Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
-                AtomicDemoRow("Canimation.Attention.Tada", "scale + rotation emphasis", Canimation.Attention.Tada)
-                AtomicDemoRow("Canimation.Entrance.Drop", "offset + fade dramatic entry", Canimation.Entrance.Drop)
-                AtomicDemoRow("Canimation.Entrance.JackInTheBox", "scale + rotation + fade", Canimation.Entrance.JackInTheBox)
-                AtomicDemoRow("Canimation.Material.FadeThrough", "Material design pattern", Canimation.Material.FadeThrough)
-                AtomicDemoRow("Canimation.Elastic.In", "elastic stretch effect", Canimation.Elastic.In)
+                AtomicDemoRow(stringResource(Res.string.docs_ref_canimation_attention_tad), stringResource(Res.string.docs_ref_scale_rotation_emphasi), Canimation.Attention.Tada)
+                AtomicDemoRow(stringResource(Res.string.docs_ref_canimation_entrance_drop), stringResource(Res.string.docs_ref_offset_fade_dramatic_e), Canimation.Entrance.Drop)
+                AtomicDemoRow(stringResource(Res.string.docs_ref_canimation_entrance_jack), stringResource(Res.string.docs_ref_scale_rotation_fade), Canimation.Entrance.JackInTheBox)
+                AtomicDemoRow(stringResource(Res.string.docs_ref_canimation_material_fade), stringResource(Res.string.docs_ref_material_design_pattern), Canimation.Material.FadeThrough)
+                AtomicDemoRow(stringResource(Res.string.docs_ref_canimation_elastic_in), stringResource(Res.string.docs_ref_elastic_stretch_effect), Canimation.Elastic.In)
             }
         }
 
@@ -360,7 +360,7 @@ internal fun PlaygroundContent(stage: Int) {
         Modifier.canimation(visible = stage >= 0, effect = Canimation.Fade.Up),
         verticalArrangement = Arrangement.spacedBy(24.dp),
     ) {
-        PageTitle("Animation Playground", "See all effects in action")
+        PageTitle(stringResource(Res.string.docs_ref_animation_playground), stringResource(Res.string.docs_ref_see_all_effects_in_act))
 
         // Interactive animation grid
         val allEffects = listOf(
@@ -440,9 +440,9 @@ internal fun ModulesContent(stage: Int) {
         Modifier.canimation(visible = stage >= 0, effect = Canimation.Fade.Up),
         verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
-        PageTitle("Modules", "Modular architecture — import only what you need")
+        PageTitle(stringResource(Res.string.docs_ref_modules), stringResource(Res.string.docs_ref_modular_architecture_i))
 
-        ModuleRow("canimation-core", "Core engine, CanimationEffect, Modifier.canimation(), 100+ namespace effects", Icons.Default.AutoAwesome)
+        ModuleRow(stringResource(Res.string.docs_ref_canimation_core), stringResource(Res.string.docs_ref_core_engine_canimation), Icons.Default.AutoAwesome)
     }
 }
 
@@ -455,7 +455,7 @@ internal fun PlatformContent(stage: Int) {
         Modifier.canimation(visible = stage >= 0, effect = Canimation.Fade.Up),
         verticalArrangement = Arrangement.spacedBy(20.dp),
     ) {
-        PageTitle("Platform Support", "One API, five targets")
+        PageTitle(stringResource(Res.string.docs_ref_platform_support), stringResource(Res.string.docs_ref_one_api_five_targets))
 
         Surface(
             shape = RoundedCornerShape(16.dp),
@@ -468,7 +468,7 @@ internal fun PlatformContent(stage: Int) {
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.spacedBy(12.dp),
             ) {
-                Text("Compose Multiplatform", style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
+                Text(stringResource(Res.string.docs_ref_compose_multiplatform), style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
                 FlowRow(
                     horizontalArrangement = Arrangement.spacedBy(8.dp),
                     verticalArrangement = Arrangement.spacedBy(8.dp),

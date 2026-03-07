@@ -49,6 +49,7 @@ plugins {
 }
 
 include(":composeApp")
+include(":androidApp")
 
 // canimation library modules
 include(":canimation-core")
