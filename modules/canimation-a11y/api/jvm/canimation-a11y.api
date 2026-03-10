@@ -1,0 +1,20 @@
+public final class io/github/canimation/a11y/A11yMotionPolicyAdapter {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/a11y/A11yMotionPolicyAdapter;
+	public final fun resolve (Lio/github/canimation/core/CanimationPolicy;Lio/github/canimation/a11y/SystemMotionPreference;)Lio/github/canimation/core/CanimationLevel;
+	public final fun toReducedMotionFlag (Lio/github/canimation/a11y/SystemMotionPreference;)Z
+}
+
+public abstract interface class io/github/canimation/a11y/MotionPreferenceDataSource {
+	public abstract fun currentPreference ()Lio/github/canimation/a11y/SystemMotionPreference;
+	public abstract fun observePreference ()Lkotlinx/coroutines/flow/Flow;
+}
+
+public final class io/github/canimation/a11y/SystemMotionPreference : java/lang/Enum {
+	public static final field NoPreference Lio/github/canimation/a11y/SystemMotionPreference;
+	public static final field ReduceMotion Lio/github/canimation/a11y/SystemMotionPreference;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lio/github/canimation/a11y/SystemMotionPreference;
+	public static fun values ()[Lio/github/canimation/a11y/SystemMotionPreference;
+}
+

@@ -134,4 +134,118 @@ class PresetRegistryTest {
         val spec = registry.resolve(CanimationPreset.FadeUp, CanimationLevel.Full, AnimationDirection.Enter)
         assertEquals(500, spec.durationMs)
     }
+
+    @Test
+    fun unknownPresetFallsBackToFadeSpec() {
+        val registry = PresetRegistry.create(
+            specs = mapOf(
+                CanimationPreset.Fade to CanimationPresetSpec(
+                    fullEnter = CanimationSpec(durationMs = 111, easing = EasingTokens.Default.standard),
+                    fullExit = CanimationSpec(durationMs = 112, easing = EasingTokens.Default.accelerate),
+                    reducedEnter = CanimationSpec(durationMs = 55, easing = EasingTokens.Default.decelerate),
+                    reducedExit = CanimationSpec(durationMs = 56, easing = EasingTokens.Default.accelerate),
+                ),
+            ),
+        )
+
+        val spec = registry.resolve(
+            CanimationPreset.BounceIn,
+            CanimationLevel.Full,
+            AnimationDirection.Enter,
+        )
+
+        assertEquals(111, spec.durationMs)
+    }
+
+    @Test
+    fun createUsesDefaultRegistryAsFallback() {
+        val registry = PresetRegistry.create(emptyMap())
+
+        val expected = PresetRegistry.Default.resolve(
+            CanimationPreset.ZoomIn,
+            CanimationLevel.Full,
+            AnimationDirection.Enter,
+        )
+        val actual = registry.resolve(
+            CanimationPreset.ZoomIn,
+            CanimationLevel.Full,
+            AnimationDirection.Enter,
+        )
+
+        assertEquals(expected, actual)
+    }
+
+    @Test
+    fun createFallsBackToInstalledFadeWhenRequestedPresetIsMissing() {
+        withInstalledDefaults(
+            specs = mapOf(CanimationPreset.Fade to presetSpec(fullEnterDurationMs = 181)),
+        ) {
+            val registry = PresetRegistry.create(emptyMap())
+
+            val spec = registry.resolve(
+                CanimationPreset.ZoomIn,
+                CanimationLevel.Full,
+                AnimationDirection.Enter,
+            )
+
+            assertEquals(181, spec.durationMs)
+        }
+    }
+
+    private fun presetSpec(fullEnterDurationMs: Int): CanimationPresetSpec {
+        return CanimationPresetSpec(
+            fullEnter = CanimationSpec(
+                durationMs = fullEnterDurationMs,
+                easing = EasingTokens.Default.standard,
+            ),
+            fullExit = CanimationSpec(
+                durationMs = fullEnterDurationMs + 1,
+                easing = EasingTokens.Default.accelerate,
+            ),
+            reducedEnter = CanimationSpec(
+                durationMs = fullEnterDurationMs / 2,
+                easing = EasingTokens.Default.decelerate,
+            ),
+            reducedExit = CanimationSpec(
+                durationMs = (fullEnterDurationMs / 2) + 1,
+                easing = EasingTokens.Default.accelerate,
+            ),
+        )
+    }
+
+    private inline fun withInstalledDefaults(
+        specs: Map<CanimationPreset, CanimationPresetSpec>,
+        block: () -> Unit,
+    ) {
+        val previousFadeDefaults = mapOf(
+            CanimationPreset.Fade to CanimationPresetSpec(
+                fullEnter = PresetRegistry.Default.resolve(
+                    CanimationPreset.Fade,
+                    CanimationLevel.Full,
+                    AnimationDirection.Enter,
+                ),
+                fullExit = PresetRegistry.Default.resolve(
+                    CanimationPreset.Fade,
+                    CanimationLevel.Full,
+                    AnimationDirection.Exit,
+                ),
+                reducedEnter = PresetRegistry.Default.resolve(
+                    CanimationPreset.Fade,
+                    CanimationLevel.Reduced,
+                    AnimationDirection.Enter,
+                ),
+                reducedExit = PresetRegistry.Default.resolve(
+                    CanimationPreset.Fade,
+                    CanimationLevel.Reduced,
+                    AnimationDirection.Exit,
+                ),
+            ),
+        )
+        PresetRegistry.installDefaults(specs)
+        try {
+            block()
+        } finally {
+            PresetRegistry.installDefaults(previousFadeDefaults)
+        }
+    }
 }

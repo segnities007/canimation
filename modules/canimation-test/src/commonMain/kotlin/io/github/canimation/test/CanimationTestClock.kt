@@ -6,8 +6,14 @@ package io.github.canimation.test
  * Allows tests to control time progression explicitly, enabling reproducible
  * animation state verification.
  */
-class CanimationTestClock {
-    private var currentMillis: Long = 0L
+class CanimationTestClock(
+    initialTimeMillis: Long = 0L,
+) {
+    init {
+        require(initialTimeMillis >= 0) { "initialTimeMillis must be >= 0, was $initialTimeMillis" }
+    }
+
+    private var currentMillis: Long = initialTimeMillis
 
     /** Current virtual time in milliseconds. */
     val currentTimeMillis: Long get() = currentMillis

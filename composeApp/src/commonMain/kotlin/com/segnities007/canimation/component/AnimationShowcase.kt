@@ -2,37 +2,34 @@ package com.segnities007.canimation.component
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import androidx.compose.foundation.shape.CircleShape
+import canimation.composeapp.generated.resources.*
+import com.segnities007.canimation.compose.rememberReplayVisibility
 import io.github.canimation.core.CanimationDpRange
 import io.github.canimation.core.CanimationPreset
 import io.github.canimation.core.CanimationPresetSpec
 import io.github.canimation.core.CanimationRange
+import io.github.canimation.core.CanimationRecipeDescriptor
 import io.github.canimation.core.CanimationSpec
 import io.github.canimation.core.canimationTransition
-import canimation.composeapp.generated.resources.*
-import kotlinx.coroutines.delay
 import org.jetbrains.compose.resources.stringResource
 import kotlin.math.roundToInt
 
@@ -46,42 +43,35 @@ data class PresetPreviewTuning(
 fun tunePresetSpec(
     base: CanimationPresetSpec,
     tuning: PresetPreviewTuning,
-): CanimationPresetSpec {
-    return CanimationPresetSpec(
+): CanimationPresetSpec =
+    CanimationPresetSpec(
         fullEnter = tuneSpec(base.fullEnter, tuning),
         fullExit = tuneSpec(base.fullExit, tuning),
         reducedEnter = tuneSpec(base.reducedEnter, tuning),
         reducedExit = tuneSpec(base.reducedExit, tuning),
     )
-}
 
 private fun tuneSpec(
     spec: CanimationSpec,
     tuning: PresetPreviewTuning,
-): CanimationSpec {
-    return spec.copy(
+): CanimationSpec =
+    spec.copy(
         durationMs = (spec.durationMs * tuning.durationScale).roundToInt().coerceAtLeast(1),
         offsetX = spec.offsetX?.scaled(tuning.distanceScale),
         offsetY = spec.offsetY?.scaled(tuning.distanceScale),
         scale = spec.scale?.scaledAroundOne(tuning.scaleIntensity),
         rotation = spec.rotation?.scaled(tuning.rotationScale),
     )
-}
 
-private fun CanimationDpRange.scaled(factor: Float): CanimationDpRange {
-    return CanimationDpRange(from = from * factor, to = to * factor)
-}
+private fun CanimationDpRange.scaled(factor: Float): CanimationDpRange = CanimationDpRange(from = from * factor, to = to * factor)
 
-private fun CanimationRange.scaled(factor: Float): CanimationRange {
-    return CanimationRange(from = from * factor, to = to * factor)
-}
+private fun CanimationRange.scaled(factor: Float): CanimationRange = CanimationRange(from = from * factor, to = to * factor)
 
-private fun CanimationRange.scaledAroundOne(factor: Float): CanimationRange {
-    return CanimationRange(
+private fun CanimationRange.scaledAroundOne(factor: Float): CanimationRange =
+    CanimationRange(
         from = 1f + (from - 1f) * factor,
         to = 1f + (to - 1f) * factor,
     )
-}
 
 private operator fun Dp.times(factor: Float): Dp = (value * factor).dp
 
@@ -100,6 +90,7 @@ fun AnimationShowcase(
     title: String,
     preset: CanimationPreset,
     baseSpec: CanimationPresetSpec,
+    descriptor: CanimationRecipeDescriptor? = null,
     tuning: PresetPreviewTuning,
     autoPlayEnabled: Boolean,
     autoPlayTick: Int,
@@ -108,36 +99,33 @@ fun AnimationShowcase(
     modifier: Modifier = Modifier,
 ) {
     val previewSpec = remember(baseSpec, tuning) { tunePresetSpec(baseSpec, tuning) }
-    var visible by remember(preset) { mutableStateOf(false) }
-
-    suspend fun replay() {
-        visible = false
-        delay(220)
-        visible = true
-    }
-
-    LaunchedEffect(preset) {
-        replay()
-    }
-
-    LaunchedEffect(autoPlayEnabled, autoPlayTick) {
+    val replayKey =
         if (autoPlayEnabled) {
-            replay()
+            AnimationReplayKey(preset = preset, autoPlayTick = autoPlayTick)
+        } else {
+            preset
         }
-    }
+    val visible =
+        rememberReplayVisibility(
+            replayKey = replayKey,
+            resetDurationMillis = 220L,
+        )
 
     Card(
-        modifier = modifier
-            .fillMaxWidth()
-            .clickable { onCardClick(preset) },
-        colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.surfaceVariant,
-        ),
-        border = if (selectedForCompare) {
-            BorderStroke(2.dp, MaterialTheme.colorScheme.primary)
-        } else {
-            BorderStroke(1.dp, MaterialTheme.colorScheme.outline)
-        },
+        modifier =
+            modifier
+                .fillMaxWidth()
+                .clickable { onCardClick(preset) },
+        colors =
+            CardDefaults.cardColors(
+                containerColor = MaterialTheme.colorScheme.surfaceVariant,
+            ),
+        border =
+            if (selectedForCompare) {
+                BorderStroke(2.dp, MaterialTheme.colorScheme.primary)
+            } else {
+                BorderStroke(1.dp, MaterialTheme.colorScheme.outline)
+            },
     ) {
         Column(modifier = Modifier.padding(12.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
             Text(
@@ -150,32 +138,44 @@ fun AnimationShowcase(
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 maxLines = 2,
             )
+            descriptor?.let {
+                Text(
+                    text = "${it.semantic.intent} / ${it.semantic.surfaceRole} / ${it.semantic.intensity}",
+                    style = MaterialTheme.typography.labelSmall,
+                    color = MaterialTheme.colorScheme.primary,
+                    maxLines = 1,
+                )
+            }
 
             Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(120.dp),
+                modifier =
+                    Modifier
+                        .fillMaxWidth()
+                        .height(120.dp),
                 contentAlignment = Alignment.Center,
             ) {
                 Box(
-                    modifier = Modifier
-                        .size(6.dp)
-                        .background(
-                            color = MaterialTheme.colorScheme.outline,
-                            shape = CircleShape,
-                        ),
+                    modifier =
+                        Modifier
+                            .size(6.dp)
+                            .background(
+                                color = MaterialTheme.colorScheme.outline,
+                                shape = CircleShape,
+                            ),
                 )
                 Card(
-                    modifier = Modifier.canimationTransition(
-                        visible = visible,
-                        enterFullSpec = previewSpec.fullEnter,
-                        enterReducedSpec = previewSpec.reducedEnter,
-                        exitFullSpec = previewSpec.fullExit,
-                        exitReducedSpec = previewSpec.reducedExit,
-                    ),
-                    colors = CardDefaults.cardColors(
-                        containerColor = MaterialTheme.colorScheme.primaryContainer,
-                    ),
+                    modifier =
+                        Modifier.canimationTransition(
+                            visible = visible,
+                            enterFullSpec = previewSpec.fullEnter,
+                            enterReducedSpec = previewSpec.reducedEnter,
+                            exitFullSpec = previewSpec.fullExit,
+                            exitReducedSpec = previewSpec.reducedExit,
+                        ),
+                    colors =
+                        CardDefaults.cardColors(
+                            containerColor = MaterialTheme.colorScheme.primaryContainer,
+                        ),
                     border = BorderStroke(1.dp, MaterialTheme.colorScheme.primary),
                 ) {
                     Box(
@@ -193,3 +193,8 @@ fun AnimationShowcase(
         }
     }
 }
+
+private data class AnimationReplayKey(
+    val preset: CanimationPreset,
+    val autoPlayTick: Int,
+)

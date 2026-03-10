@@ -47,6 +47,7 @@ class PresetRegistry private constructor(
         return specs[preset]
             ?: fallback?.specs?.get(preset)
             ?: specs[CanimationPreset.Fade]
+            ?: fallback?.resolvePresetSpec(CanimationPreset.Fade)
             ?: FALLBACK_PRESET_SPEC
     }
 

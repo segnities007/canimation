@@ -1,0 +1,13 @@
+public final class io/github/canimation/test/CanimationTestClock {
+	public static final field $stable I
+	public fun <init> ()V
+	public final fun advanceBy (J)V
+	public final fun advanceTo (J)V
+	public final fun getCurrentTimeMillis ()J
+	public final fun reset ()V
+}
+
+public final class io/github/canimation/test/CanimationTestHostKt {
+	public static final fun CanimationTestHost (Lio/github/canimation/test/CanimationTestClock;Lio/github/canimation/core/CanimationLevel;Lio/github/canimation/core/CanimationTokens;Lio/github/canimation/core/PresetRegistry;Lkotlin/jvm/functions/Function2;Landroidx/compose/runtime/Composer;II)V
+}
+

@@ -1,0 +1,37 @@
+// Klib ABI Dump
+// Targets: [js]
+// Rendering settings:
+// - Signature version: 2
+// - Show manifest properties: true
+// - Show declarations: true
+
+// Library unique name: <io.github.canimation:canimation-platform-web>
+final class io.github.canimation.platform.web/WebMotionPreferenceDataSource : io.github.canimation.a11y/MotionPreferenceDataSource { // io.github.canimation.platform.web/WebMotionPreferenceDataSource|null[0]
+    constructor <init>() // io.github.canimation.platform.web/WebMotionPreferenceDataSource.<init>|<init>(){}[0]
+
+    final fun currentPreference(): io.github.canimation.a11y/SystemMotionPreference // io.github.canimation.platform.web/WebMotionPreferenceDataSource.currentPreference|currentPreference(){}[0]
+    final fun observePreference(): kotlinx.coroutines.flow/Flow<io.github.canimation.a11y/SystemMotionPreference> // io.github.canimation.platform.web/WebMotionPreferenceDataSource.observePreference|observePreference(){}[0]
+}
+
+final object io.github.canimation.platform.web/WebFrameMetricsCollector : io.github.canimation.diagnostics/DiagnosticsCollector, io.github.canimation.diagnostics/DiagnosticsCollectorAvailabilityProvider { // io.github.canimation.platform.web/WebFrameMetricsCollector|null[0]
+    final val availability // io.github.canimation.platform.web/WebFrameMetricsCollector.availability|{}availability[0]
+        final fun <get-availability>(): io.github.canimation.diagnostics/DiagnosticsCollectorAvailability // io.github.canimation.platform.web/WebFrameMetricsCollector.availability.<get-availability>|<get-availability>(){}[0]
+
+    final fun currentMetrics(): io.github.canimation.diagnostics/FrameMetrics // io.github.canimation.platform.web/WebFrameMetricsCollector.currentMetrics|currentMetrics(){}[0]
+    final fun observeMetrics(): kotlinx.coroutines.flow/Flow<io.github.canimation.diagnostics/FrameMetrics> // io.github.canimation.platform.web/WebFrameMetricsCollector.observeMetrics|observeMetrics(){}[0]
+    final fun start() // io.github.canimation.platform.web/WebFrameMetricsCollector.start|start(){}[0]
+    final fun stop() // io.github.canimation.platform.web/WebFrameMetricsCollector.stop|stop(){}[0]
+}
+
+final object io.github.canimation.platform.web/WebMotionPreferenceFallback : io.github.canimation.a11y/MotionPreferenceDataSource { // io.github.canimation.platform.web/WebMotionPreferenceFallback|null[0]
+    final fun currentPreference(): io.github.canimation.a11y/SystemMotionPreference // io.github.canimation.platform.web/WebMotionPreferenceFallback.currentPreference|currentPreference(){}[0]
+    final fun observePreference(): kotlinx.coroutines.flow/Flow<io.github.canimation.a11y/SystemMotionPreference> // io.github.canimation.platform.web/WebMotionPreferenceFallback.observePreference|observePreference(){}[0]
+}
+
+final val io.github.canimation.platform.web/io_github_canimation_platform_web_WebFrameMetricsCollector$stableprop // io.github.canimation.platform.web/io_github_canimation_platform_web_WebFrameMetricsCollector$stableprop|#static{}io_github_canimation_platform_web_WebFrameMetricsCollector$stableprop[0]
+final val io.github.canimation.platform.web/io_github_canimation_platform_web_WebMotionPreferenceDataSource$stableprop // io.github.canimation.platform.web/io_github_canimation_platform_web_WebMotionPreferenceDataSource$stableprop|#static{}io_github_canimation_platform_web_WebMotionPreferenceDataSource$stableprop[0]
+final val io.github.canimation.platform.web/io_github_canimation_platform_web_WebMotionPreferenceFallback$stableprop // io.github.canimation.platform.web/io_github_canimation_platform_web_WebMotionPreferenceFallback$stableprop|#static{}io_github_canimation_platform_web_WebMotionPreferenceFallback$stableprop[0]
+
+final fun io.github.canimation.platform.web/io_github_canimation_platform_web_WebFrameMetricsCollector$stableprop_getter(): kotlin/Int // io.github.canimation.platform.web/io_github_canimation_platform_web_WebFrameMetricsCollector$stableprop_getter|io_github_canimation_platform_web_WebFrameMetricsCollector$stableprop_getter(){}[0]
+final fun io.github.canimation.platform.web/io_github_canimation_platform_web_WebMotionPreferenceDataSource$stableprop_getter(): kotlin/Int // io.github.canimation.platform.web/io_github_canimation_platform_web_WebMotionPreferenceDataSource$stableprop_getter|io_github_canimation_platform_web_WebMotionPreferenceDataSource$stableprop_getter(){}[0]
+final fun io.github.canimation.platform.web/io_github_canimation_platform_web_WebMotionPreferenceFallback$stableprop_getter(): kotlin/Int // io.github.canimation.platform.web/io_github_canimation_platform_web_WebMotionPreferenceFallback$stableprop_getter|io_github_canimation_platform_web_WebMotionPreferenceFallback$stableprop_getter(){}[0]

@@ -4,6 +4,7 @@ import io.github.canimation.a11y.MotionPreferenceDataSource
 import io.github.canimation.a11y.SystemMotionPreference
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
+import java.awt.HeadlessException
 import java.awt.Toolkit
 
 /**
@@ -28,7 +29,10 @@ class DesktopMotionPreferenceDataSource : MotionPreferenceDataSource {
                 0, false -> SystemMotionPreference.ReduceMotion
                 else -> SystemMotionPreference.NoPreference
             }
-        } catch (_: Exception) {
+        } catch (_: HeadlessException) {
+            // Safe fallback
+            SystemMotionPreference.ReduceMotion
+        } catch (_: SecurityException) {
             // Safe fallback
             SystemMotionPreference.ReduceMotion
         }

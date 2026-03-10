@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-cd "$ROOT_DIR"
+source "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/lib/common.sh"
+enter_project_root
 
 README_FILE="README.md"
 PRESET_ENUM_FILE="modules/canimation-core/src/commonMain/kotlin/io/github/canimation/core/CanimationPreset.kt"
-REGISTRY_FILE="modules/canimation-presets/src/commonMain/kotlin/io/github/canimation/presets/PresetsExtensionRegistry.kt"
-GALLERY_FILE="composeApp/src/commonMain/kotlin/com/segnities007/canimation/screen/PresetGalleryScreen.kt"
+DEFAULTS_FILE="modules/canimation-presets/src/commonMain/kotlin/io/github/canimation/presets/PresetRegistryDefaults.kt"
+GALLERY_CATALOG_FILE="composeApp/src/commonMain/kotlin/com/segnities007/canimation/screen/PresetGalleryCatalog.kt"
 PRESET_DIR="modules/canimation-presets/src/commonMain/kotlin/io/github/canimation/presets"
 
 if ! command -v rg >/dev/null 2>&1; then
@@ -20,7 +20,7 @@ tmp_enum="$(mktemp)"
 trap 'rm -f "$tmp_rows" "$tmp_enum"' EXIT
 
 awk -F'|' '
-  /<summary>All 83 Presets<\/summary>/ { in_table=1; next }
+  /<summary>.*CanimationPreset.*<\/summary>/ { in_table=1; next }
   /<\/details>/ { in_table=0 }
   in_table && /^\|/ {
     name=$2
@@ -74,13 +74,13 @@ while IFS=$'\t' read -r name source; do
   if [ -z "${enum_present["$name"]+x}" ]; then
     enum_ok=0
   fi
-  if ! rg -q "CanimationPreset\\.$name to ${name}Preset\\.spec" "$REGISTRY_FILE"; then
+  if ! rg -q "CanimationPreset\\.$name" "$DEFAULTS_FILE" "$PRESET_DIR"/PresetRegistryDefaultsPart*.kt; then
     registry_ok=0
   fi
   if [ ! -f "$PRESET_DIR/${name}Preset.kt" ]; then
     file_ok=0
   fi
-  if ! rg -q "CanimationPreset\\.$name ->" "$GALLERY_FILE"; then
+  if ! rg -q "CanimationPreset\\.$name ->" "$GALLERY_CATALOG_FILE"; then
     gallery_ok=0
   fi
 
@@ -92,7 +92,7 @@ while IFS=$'\t' read -r name source; do
     [ "$enum_ok" -eq 0 ] && echo "  - missing in CanimationPreset enum"
     [ "$registry_ok" -eq 0 ] && echo "  - missing in PresetsExtensionRegistry mapping"
     [ "$file_ok" -eq 0 ] && echo "  - missing preset file: $PRESET_DIR/${name}Preset.kt"
-    [ "$gallery_ok" -eq 0 ] && echo "  - missing description mapping in PresetGalleryScreen"
+    [ "$gallery_ok" -eq 0 ] && echo "  - missing description mapping in PresetGalleryCatalog"
   fi
 done <"$tmp_rows"
 

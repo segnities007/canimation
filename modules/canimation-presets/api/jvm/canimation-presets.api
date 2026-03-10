@@ -1,0 +1,510 @@
+public final class io/github/canimation/presets/BackInDownPreset {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/presets/BackInDownPreset;
+	public final fun getSpec ()Lio/github/canimation/core/CanimationPresetSpec;
+}
+
+public final class io/github/canimation/presets/BackInLeftPreset {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/presets/BackInLeftPreset;
+	public final fun getSpec ()Lio/github/canimation/core/CanimationPresetSpec;
+}
+
+public final class io/github/canimation/presets/BackInRightPreset {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/presets/BackInRightPreset;
+	public final fun getSpec ()Lio/github/canimation/core/CanimationPresetSpec;
+}
+
+public final class io/github/canimation/presets/BackInUpPreset {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/presets/BackInUpPreset;
+	public final fun getSpec ()Lio/github/canimation/core/CanimationPresetSpec;
+}
+
+public final class io/github/canimation/presets/BounceInDownPreset {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/presets/BounceInDownPreset;
+	public final fun getSpec ()Lio/github/canimation/core/CanimationPresetSpec;
+}
+
+public final class io/github/canimation/presets/BounceInLeftPreset {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/presets/BounceInLeftPreset;
+	public final fun getSpec ()Lio/github/canimation/core/CanimationPresetSpec;
+}
+
+public final class io/github/canimation/presets/BounceInPreset {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/presets/BounceInPreset;
+	public final fun getSpec ()Lio/github/canimation/core/CanimationPresetSpec;
+}
+
+public final class io/github/canimation/presets/BounceInRightPreset {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/presets/BounceInRightPreset;
+	public final fun getSpec ()Lio/github/canimation/core/CanimationPresetSpec;
+}
+
+public final class io/github/canimation/presets/BounceInUpPreset {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/presets/BounceInUpPreset;
+	public final fun getSpec ()Lio/github/canimation/core/CanimationPresetSpec;
+}
+
+public final class io/github/canimation/presets/BouncePreset {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/presets/BouncePreset;
+	public final fun getSpec ()Lio/github/canimation/core/CanimationPresetSpec;
+}
+
+public final class io/github/canimation/presets/DropInPreset {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/presets/DropInPreset;
+	public final fun getSpec ()Lio/github/canimation/core/CanimationPresetSpec;
+}
+
+public final class io/github/canimation/presets/ElevateInPreset {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/presets/ElevateInPreset;
+	public final fun getSpec ()Lio/github/canimation/core/CanimationPresetSpec;
+}
+
+public final class io/github/canimation/presets/EmphasizedEntryPreset {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/presets/EmphasizedEntryPreset;
+	public final fun getSpec ()Lio/github/canimation/core/CanimationPresetSpec;
+}
+
+public final class io/github/canimation/presets/ExpandPreset {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/presets/ExpandPreset;
+	public final fun getSpec ()Lio/github/canimation/core/CanimationPresetSpec;
+}
+
+public final class io/github/canimation/presets/FadeBigPreset {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/presets/FadeBigPreset;
+	public final fun getSpec ()Lio/github/canimation/core/CanimationPresetSpec;
+}
+
+public final class io/github/canimation/presets/FadeDownPreset {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/presets/FadeDownPreset;
+	public final fun getSpec ()Lio/github/canimation/core/CanimationPresetSpec;
+}
+
+public final class io/github/canimation/presets/FadeDownRightPreset {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/presets/FadeDownRightPreset;
+	public final fun getSpec ()Lio/github/canimation/core/CanimationPresetSpec;
+}
+
+public final class io/github/canimation/presets/FadeInBottomLeftPreset {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/presets/FadeInBottomLeftPreset;
+	public final fun getSpec ()Lio/github/canimation/core/CanimationPresetSpec;
+}
+
+public final class io/github/canimation/presets/FadeInBottomRightPreset {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/presets/FadeInBottomRightPreset;
+	public final fun getSpec ()Lio/github/canimation/core/CanimationPresetSpec;
+}
+
+public final class io/github/canimation/presets/FadeInDownBigPreset {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/presets/FadeInDownBigPreset;
+	public final fun getSpec ()Lio/github/canimation/core/CanimationPresetSpec;
+}
+
+public final class io/github/canimation/presets/FadeInLeftBigPreset {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/presets/FadeInLeftBigPreset;
+	public final fun getSpec ()Lio/github/canimation/core/CanimationPresetSpec;
+}
+
+public final class io/github/canimation/presets/FadeInLeftPreset {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/presets/FadeInLeftPreset;
+	public final fun getSpec ()Lio/github/canimation/core/CanimationPresetSpec;
+}
+
+public final class io/github/canimation/presets/FadeInRightBigPreset {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/presets/FadeInRightBigPreset;
+	public final fun getSpec ()Lio/github/canimation/core/CanimationPresetSpec;
+}
+
+public final class io/github/canimation/presets/FadeInRightPreset {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/presets/FadeInRightPreset;
+	public final fun getSpec ()Lio/github/canimation/core/CanimationPresetSpec;
+}
+
+public final class io/github/canimation/presets/FadeInTopLeftPreset {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/presets/FadeInTopLeftPreset;
+	public final fun getSpec ()Lio/github/canimation/core/CanimationPresetSpec;
+}
+
+public final class io/github/canimation/presets/FadeInTopRightPreset {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/presets/FadeInTopRightPreset;
+	public final fun getSpec ()Lio/github/canimation/core/CanimationPresetSpec;
+}
+
+public final class io/github/canimation/presets/FadeInUpBigPreset {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/presets/FadeInUpBigPreset;
+	public final fun getSpec ()Lio/github/canimation/core/CanimationPresetSpec;
+}
+
+public final class io/github/canimation/presets/FadePreset {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/presets/FadePreset;
+	public final fun getSpec ()Lio/github/canimation/core/CanimationPresetSpec;
+}
+
+public final class io/github/canimation/presets/FadeSmallPreset {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/presets/FadeSmallPreset;
+	public final fun getSpec ()Lio/github/canimation/core/CanimationPresetSpec;
+}
+
+public final class io/github/canimation/presets/FadeThroughPreset {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/presets/FadeThroughPreset;
+	public final fun getSpec ()Lio/github/canimation/core/CanimationPresetSpec;
+}
+
+public final class io/github/canimation/presets/FadeUpLeftPreset {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/presets/FadeUpLeftPreset;
+	public final fun getSpec ()Lio/github/canimation/core/CanimationPresetSpec;
+}
+
+public final class io/github/canimation/presets/FadeUpPreset {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/presets/FadeUpPreset;
+	public final fun getSpec ()Lio/github/canimation/core/CanimationPresetSpec;
+}
+
+public final class io/github/canimation/presets/FlashPreset {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/presets/FlashPreset;
+	public final fun getSpec ()Lio/github/canimation/core/CanimationPresetSpec;
+}
+
+public final class io/github/canimation/presets/FlipDownPreset {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/presets/FlipDownPreset;
+	public final fun getSpec ()Lio/github/canimation/core/CanimationPresetSpec;
+}
+
+public final class io/github/canimation/presets/FlipInPreset {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/presets/FlipInPreset;
+	public final fun getSpec ()Lio/github/canimation/core/CanimationPresetSpec;
+}
+
+public final class io/github/canimation/presets/FlipInYPreset {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/presets/FlipInYPreset;
+	public final fun getSpec ()Lio/github/canimation/core/CanimationPresetSpec;
+}
+
+public final class io/github/canimation/presets/FlipUpPreset {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/presets/FlipUpPreset;
+	public final fun getSpec ()Lio/github/canimation/core/CanimationPresetSpec;
+}
+
+public final class io/github/canimation/presets/GentleFadePreset {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/presets/GentleFadePreset;
+	public final fun getSpec ()Lio/github/canimation/core/CanimationPresetSpec;
+}
+
+public final class io/github/canimation/presets/HeadShakePreset {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/presets/HeadShakePreset;
+	public final fun getSpec ()Lio/github/canimation/core/CanimationPresetSpec;
+}
+
+public final class io/github/canimation/presets/HeartBeatPreset {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/presets/HeartBeatPreset;
+	public final fun getSpec ()Lio/github/canimation/core/CanimationPresetSpec;
+}
+
+public final class io/github/canimation/presets/JackInTheBoxPreset {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/presets/JackInTheBoxPreset;
+	public final fun getSpec ()Lio/github/canimation/core/CanimationPresetSpec;
+}
+
+public final class io/github/canimation/presets/JelloPreset {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/presets/JelloPreset;
+	public final fun getSpec ()Lio/github/canimation/core/CanimationPresetSpec;
+}
+
+public final class io/github/canimation/presets/LightSpeedInLeftPreset {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/presets/LightSpeedInLeftPreset;
+	public final fun getSpec ()Lio/github/canimation/core/CanimationPresetSpec;
+}
+
+public final class io/github/canimation/presets/LightSpeedInRightPreset {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/presets/LightSpeedInRightPreset;
+	public final fun getSpec ()Lio/github/canimation/core/CanimationPresetSpec;
+}
+
+public final class io/github/canimation/presets/PopPreset {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/presets/PopPreset;
+	public final fun getSpec ()Lio/github/canimation/core/CanimationPresetSpec;
+}
+
+public final class io/github/canimation/presets/PresetsExtensionRegistry {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/presets/PresetsExtensionRegistry;
+	public final fun createExtendedRegistry (Ljava/util/Map;)Lio/github/canimation/core/PresetRegistry;
+	public static synthetic fun createExtendedRegistry$default (Lio/github/canimation/presets/PresetsExtensionRegistry;Ljava/util/Map;ILjava/lang/Object;)Lio/github/canimation/core/PresetRegistry;
+	public final fun descriptorFor (Lio/github/canimation/core/CanimationPreset;)Lio/github/canimation/core/CanimationRecipeDescriptor;
+	public final fun getAllPresetSpecs ()Ljava/util/Map;
+	public final fun getAllRecipeDescriptors ()Ljava/util/Map;
+	public final fun getRecipeRegistry ()Lio/github/canimation/core/CanimationRecipeRegistry;
+	public final fun specFor (Lio/github/canimation/core/CanimationPreset;)Lio/github/canimation/core/CanimationPresetSpec;
+}
+
+public final class io/github/canimation/presets/PulsePreset {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/presets/PulsePreset;
+	public final fun getSpec ()Lio/github/canimation/core/CanimationPresetSpec;
+}
+
+public final class io/github/canimation/presets/RollInPreset {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/presets/RollInPreset;
+	public final fun getSpec ()Lio/github/canimation/core/CanimationPresetSpec;
+}
+
+public final class io/github/canimation/presets/RotateClockwisePreset {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/presets/RotateClockwisePreset;
+	public final fun getSpec ()Lio/github/canimation/core/CanimationPresetSpec;
+}
+
+public final class io/github/canimation/presets/RotateInDownLeftPreset {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/presets/RotateInDownLeftPreset;
+	public final fun getSpec ()Lio/github/canimation/core/CanimationPresetSpec;
+}
+
+public final class io/github/canimation/presets/RotateInDownRightPreset {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/presets/RotateInDownRightPreset;
+	public final fun getSpec ()Lio/github/canimation/core/CanimationPresetSpec;
+}
+
+public final class io/github/canimation/presets/RotateInPreset {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/presets/RotateInPreset;
+	public final fun getSpec ()Lio/github/canimation/core/CanimationPresetSpec;
+}
+
+public final class io/github/canimation/presets/RotateInUpLeftPreset {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/presets/RotateInUpLeftPreset;
+	public final fun getSpec ()Lio/github/canimation/core/CanimationPresetSpec;
+}
+
+public final class io/github/canimation/presets/RotateInUpRightPreset {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/presets/RotateInUpRightPreset;
+	public final fun getSpec ()Lio/github/canimation/core/CanimationPresetSpec;
+}
+
+public final class io/github/canimation/presets/RotateScalePreset {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/presets/RotateScalePreset;
+	public final fun getSpec ()Lio/github/canimation/core/CanimationPresetSpec;
+}
+
+public final class io/github/canimation/presets/RubberBandPreset {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/presets/RubberBandPreset;
+	public final fun getSpec ()Lio/github/canimation/core/CanimationPresetSpec;
+}
+
+public final class io/github/canimation/presets/ScaleInPreset {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/presets/ScaleInPreset;
+	public final fun getSpec ()Lio/github/canimation/core/CanimationPresetSpec;
+}
+
+public final class io/github/canimation/presets/ScaleUpPreset {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/presets/ScaleUpPreset;
+	public final fun getSpec ()Lio/github/canimation/core/CanimationPresetSpec;
+}
+
+public final class io/github/canimation/presets/ShakeXPreset {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/presets/ShakeXPreset;
+	public final fun getSpec ()Lio/github/canimation/core/CanimationPresetSpec;
+}
+
+public final class io/github/canimation/presets/ShakeYPreset {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/presets/ShakeYPreset;
+	public final fun getSpec ()Lio/github/canimation/core/CanimationPresetSpec;
+}
+
+public final class io/github/canimation/presets/SharedAxisXPreset {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/presets/SharedAxisXPreset;
+	public final fun getSpec ()Lio/github/canimation/core/CanimationPresetSpec;
+}
+
+public final class io/github/canimation/presets/SharedAxisYPreset {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/presets/SharedAxisYPreset;
+	public final fun getSpec ()Lio/github/canimation/core/CanimationPresetSpec;
+}
+
+public final class io/github/canimation/presets/ShrinkInPreset {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/presets/ShrinkInPreset;
+	public final fun getSpec ()Lio/github/canimation/core/CanimationPresetSpec;
+}
+
+public final class io/github/canimation/presets/SlideDownPreset {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/presets/SlideDownPreset;
+	public final fun getSpec ()Lio/github/canimation/core/CanimationPresetSpec;
+}
+
+public final class io/github/canimation/presets/SlideLeftPreset {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/presets/SlideLeftPreset;
+	public final fun getSpec ()Lio/github/canimation/core/CanimationPresetSpec;
+}
+
+public final class io/github/canimation/presets/SlideRightPreset {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/presets/SlideRightPreset;
+	public final fun getSpec ()Lio/github/canimation/core/CanimationPresetSpec;
+}
+
+public final class io/github/canimation/presets/SlideUpPreset {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/presets/SlideUpPreset;
+	public final fun getSpec ()Lio/github/canimation/core/CanimationPresetSpec;
+}
+
+public final class io/github/canimation/presets/SnapPreset {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/presets/SnapPreset;
+	public final fun getSpec ()Lio/github/canimation/core/CanimationPresetSpec;
+}
+
+public final class io/github/canimation/presets/SpinInPreset {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/presets/SpinInPreset;
+	public final fun getSpec ()Lio/github/canimation/core/CanimationPresetSpec;
+}
+
+public final class io/github/canimation/presets/SpringFadeInPreset {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/presets/SpringFadeInPreset;
+	public final fun getSpec ()Lio/github/canimation/core/CanimationPresetSpec;
+}
+
+public final class io/github/canimation/presets/SpringInPreset {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/presets/SpringInPreset;
+	public final fun getSpec ()Lio/github/canimation/core/CanimationPresetSpec;
+}
+
+public final class io/github/canimation/presets/SpringSlideUpPreset {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/presets/SpringSlideUpPreset;
+	public final fun getSpec ()Lio/github/canimation/core/CanimationPresetSpec;
+}
+
+public final class io/github/canimation/presets/SwingInPreset {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/presets/SwingInPreset;
+	public final fun getSpec ()Lio/github/canimation/core/CanimationPresetSpec;
+}
+
+public final class io/github/canimation/presets/SwingPreset {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/presets/SwingPreset;
+	public final fun getSpec ()Lio/github/canimation/core/CanimationPresetSpec;
+}
+
+public final class io/github/canimation/presets/TadaPreset {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/presets/TadaPreset;
+	public final fun getSpec ()Lio/github/canimation/core/CanimationPresetSpec;
+}
+
+public final class io/github/canimation/presets/TiltInPreset {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/presets/TiltInPreset;
+	public final fun getSpec ()Lio/github/canimation/core/CanimationPresetSpec;
+}
+
+public final class io/github/canimation/presets/UpBigPreset {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/presets/UpBigPreset;
+	public final fun getSpec ()Lio/github/canimation/core/CanimationPresetSpec;
+}
+
+public final class io/github/canimation/presets/WobblePreset {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/presets/WobblePreset;
+	public final fun getSpec ()Lio/github/canimation/core/CanimationPresetSpec;
+}
+
+public final class io/github/canimation/presets/ZoomInDownPreset {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/presets/ZoomInDownPreset;
+	public final fun getSpec ()Lio/github/canimation/core/CanimationPresetSpec;
+}
+
+public final class io/github/canimation/presets/ZoomInLeftPreset {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/presets/ZoomInLeftPreset;
+	public final fun getSpec ()Lio/github/canimation/core/CanimationPresetSpec;
+}
+
+public final class io/github/canimation/presets/ZoomInPreset {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/presets/ZoomInPreset;
+	public final fun getSpec ()Lio/github/canimation/core/CanimationPresetSpec;
+}
+
+public final class io/github/canimation/presets/ZoomInRightPreset {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/presets/ZoomInRightPreset;
+	public final fun getSpec ()Lio/github/canimation/core/CanimationPresetSpec;
+}
+
+public final class io/github/canimation/presets/ZoomInUpPreset {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/presets/ZoomInUpPreset;
+	public final fun getSpec ()Lio/github/canimation/core/CanimationPresetSpec;
+}
+
+public final class io/github/canimation/presets/ZoomOutPreset {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/presets/ZoomOutPreset;
+	public final fun getSpec ()Lio/github/canimation/core/CanimationPresetSpec;
+}
+
