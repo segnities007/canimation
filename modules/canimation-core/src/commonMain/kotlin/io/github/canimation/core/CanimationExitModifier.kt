@@ -36,6 +36,31 @@ fun Modifier.canimationExit(
 }
 
 /**
+ * Applies an exit animation using custom specs and context-derived reduced-motion defaults.
+ *
+ * @param visible Whether the composable should be visible.
+ * @param fullSpec The full-motion exit spec.
+ */
+fun Modifier.canimationExit(
+    visible: Boolean,
+    fullSpec: CanimationSpec,
+): Modifier = composed(
+    inspectorInfo = debugInspectorInfo {
+        name = "canimationExit"
+        properties["visible"] = visible
+    },
+) {
+    val context = LocalCanimationContext.current
+    val spec = CanimationSpecResolver.resolveCustom(
+        level = context.level,
+        direction = AnimationDirection.Exit,
+        fullSpec = fullSpec,
+        reducedSpec = fullSpec.toReduced(context.tokens),
+    )
+    applyAnimationSpec(visible = !visible, spec = spec)
+}
+
+/**
  * Applies an exit animation using custom specs.
  *
  * @param visible Whether the composable should be visible.

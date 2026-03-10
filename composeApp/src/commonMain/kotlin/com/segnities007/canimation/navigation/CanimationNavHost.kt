@@ -12,12 +12,12 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.toRoute
 import com.segnities007.canimation.component.PresetPreviewTuning
-import com.segnities007.canimation.screen.ApiReferenceScreen
-import com.segnities007.canimation.screen.DocsScreen
-import com.segnities007.canimation.screen.HomeScreen
-import com.segnities007.canimation.screen.PresetGalleryScreen
-import com.segnities007.canimation.screen.examples.ExampleDetailScreen
-import com.segnities007.canimation.screen.examples.ExamplesScreen
+import com.segnities007.canimation.screen.apireference.ApiReferenceScreen
+import com.segnities007.canimation.screen.docs.DocsScreen
+import com.segnities007.canimation.screen.home.HomeScreen
+import com.segnities007.canimation.screen.presets.PresetGalleryScreen
+import com.segnities007.canimation.screen.examples.detail.ExampleDetailScreen
+import com.segnities007.canimation.screen.examples.gallery.ExamplesScreen
 
 @Composable
 fun CanimationNavHost(

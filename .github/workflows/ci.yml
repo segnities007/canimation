@@ -8,26 +8,40 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   lint:
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
         with:
           persist-credentials: false
-      - uses: ./.github/actions/setup-build
-      - run: ./gradlew lint
+      - name: Set up build environment
+        uses: ./.github/actions/setup-build
+      - name: Run lint
+        run: ./gradlew lint --max-workers=2 --no-daemon
 
   test:
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
         with:
           persist-credentials: false
-      - uses: ./.github/actions/setup-build
-      - run: ./gradlew allTests --max-workers=2
+      - name: Set up build environment
+        uses: ./.github/actions/setup-build
+      - name: Run all tests
+        run: ./gradlew allTests --max-workers=2 --no-daemon
       - name: Upload test results
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         if: always()
         with:
           name: test-results
@@ -36,26 +50,81 @@ jobs:
 
   build:
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
         with:
           persist-credentials: false
-      - uses: ./.github/actions/setup-build
-      - run: ./gradlew :androidApp:assembleDebug :composeApp:compileKotlinJvm
+      - name: Set up build environment
+        uses: ./.github/actions/setup-build
+      - name: Run build checks
+        run: ./gradlew :androidApp:assembleDebug :composeApp:compileKotlinJvm --max-workers=2 --no-daemon
+
+  build-apple:
+    runs-on: macos-15
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+        with:
+          persist-credentials: false
+      - name: Set up build environment
+        uses: ./.github/actions/setup-build
+      - name: Run Apple platform build checks
+        run: ./gradlew :composeApp:packageDistributionForCurrentOS :composeApp:linkDebugFrameworkIosSimulatorArm64 :canimation-platform-ios:compileKotlinIosSimulatorArm64 --max-workers=2 --no-daemon
 
   wasm-build:
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
         with:
           persist-credentials: false
-      - uses: ./.github/actions/setup-build
-      - run: ./gradlew :composeApp:compileKotlinWasmJs
+      - name: Set up build environment
+        uses: ./.github/actions/setup-build
+      - name: Run Wasm build checks
+        run: ./gradlew :composeApp:compileKotlinWasmJs --max-workers=2 --no-daemon
 
-  security-audit:
+  check:
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
         with:
           persist-credentials: false
-      - run: bash scripts/security-audit.sh
+      - name: Set up build environment
+        uses: ./.github/actions/setup-build
+      - name: Run release readiness checks
+        run: ./gradlew releaseReadiness --max-workers=2 --no-daemon
+
+  audit:
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+        with:
+          persist-credentials: false
+      - name: Set up build environment
+        uses: ./.github/actions/setup-build
+      - name: Run security audit
+        run: bash scripts/security-audit.sh
+      - name: Validate workflow shape
+        run: bash scripts/validate-workflows.sh
+      - name: Upload audit evidence
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        if: always()
+        with:
+          name: audit-evidence
+          path: |
+            docs/quality/security/security-audit-report.json
+            docs/quality/workflow/workflow-validation-report.json
+          retention-days: 7

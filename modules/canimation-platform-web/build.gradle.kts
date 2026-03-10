@@ -19,6 +19,8 @@ kotlin {
         }
         jsTest.dependencies {
             implementation(libs.kotlin.test)
+            implementation(libs.kotlinx.coroutinesCore)
+            implementation(libs.kotlinx.coroutinesTest)
         }
     }
 }

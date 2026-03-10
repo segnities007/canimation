@@ -12,12 +12,18 @@ kotlin {
         namespace = "io.github.canimation.platform.android"
         compileSdk = libs.versions.android.compileSdk.get().toInt()
         minSdk = libs.versions.android.minSdk.get().toInt()
+        withHostTestBuilder {}.configure {}
         compilerOptions {
             jvmTarget.set(JvmTarget.JVM_11)
         }
     }
 
     sourceSets {
+        val commonTest by getting {
+            dependencies {
+                implementation(libs.kotlin.test)
+            }
+        }
         androidMain.dependencies {
             implementation(project(":canimation-core"))
             implementation(project(":canimation-a11y"))
