@@ -10,8 +10,14 @@ plugins {
 kotlin {
     androidLibrary {
         namespace = "io.github.canimation.core"
-        compileSdk = libs.versions.android.compileSdk.get().toInt()
-        minSdk = libs.versions.android.minSdk.get().toInt()
+        compileSdk =
+            libs.versions.android.compileSdk
+                .get()
+                .toInt()
+        minSdk =
+            libs.versions.android.minSdk
+                .get()
+                .toInt()
         compilerOptions {
             jvmTarget.set(JvmTarget.JVM_11)
         }
@@ -40,6 +46,8 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
+            api(project(":canimation-semantics"))
+            api(project(":canimation-primitives"))
             implementation(libs.compose.runtime)
             implementation(libs.compose.foundation)
             implementation(libs.compose.ui)
@@ -48,7 +56,8 @@ kotlin {
         commonTest.dependencies {
             implementation(libs.kotlin.test)
             implementation(libs.compose.animation)
+            implementation(libs.compose.ui)
+            implementation(project(":canimation-recipes"))
         }
     }
 }
-

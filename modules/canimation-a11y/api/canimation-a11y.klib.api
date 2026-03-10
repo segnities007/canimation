@@ -1,0 +1,32 @@
+// Klib ABI Dump
+// Targets: [iosArm64, iosSimulatorArm64, js, wasmJs]
+// Rendering settings:
+// - Signature version: 2
+// - Show manifest properties: true
+// - Show declarations: true
+
+// Library unique name: <io.github.canimation:canimation-a11y>
+final enum class io.github.canimation.a11y/SystemMotionPreference : kotlin/Enum<io.github.canimation.a11y/SystemMotionPreference> { // io.github.canimation.a11y/SystemMotionPreference|null[0]
+    enum entry NoPreference // io.github.canimation.a11y/SystemMotionPreference.NoPreference|null[0]
+    enum entry ReduceMotion // io.github.canimation.a11y/SystemMotionPreference.ReduceMotion|null[0]
+
+    final val entries // io.github.canimation.a11y/SystemMotionPreference.entries|#static{}entries[0]
+        final fun <get-entries>(): kotlin.enums/EnumEntries<io.github.canimation.a11y/SystemMotionPreference> // io.github.canimation.a11y/SystemMotionPreference.entries.<get-entries>|<get-entries>#static(){}[0]
+
+    final fun valueOf(kotlin/String): io.github.canimation.a11y/SystemMotionPreference // io.github.canimation.a11y/SystemMotionPreference.valueOf|valueOf#static(kotlin.String){}[0]
+    final fun values(): kotlin/Array<io.github.canimation.a11y/SystemMotionPreference> // io.github.canimation.a11y/SystemMotionPreference.values|values#static(){}[0]
+}
+
+abstract interface io.github.canimation.a11y/MotionPreferenceDataSource { // io.github.canimation.a11y/MotionPreferenceDataSource|null[0]
+    abstract fun currentPreference(): io.github.canimation.a11y/SystemMotionPreference // io.github.canimation.a11y/MotionPreferenceDataSource.currentPreference|currentPreference(){}[0]
+    abstract fun observePreference(): kotlinx.coroutines.flow/Flow<io.github.canimation.a11y/SystemMotionPreference> // io.github.canimation.a11y/MotionPreferenceDataSource.observePreference|observePreference(){}[0]
+}
+
+final object io.github.canimation.a11y/A11yMotionPolicyAdapter { // io.github.canimation.a11y/A11yMotionPolicyAdapter|null[0]
+    final fun resolve(io.github.canimation.core/CanimationPolicy, io.github.canimation.a11y/SystemMotionPreference): io.github.canimation.core/CanimationLevel // io.github.canimation.a11y/A11yMotionPolicyAdapter.resolve|resolve(io.github.canimation.core.CanimationPolicy;io.github.canimation.a11y.SystemMotionPreference){}[0]
+    final fun toReducedMotionFlag(io.github.canimation.a11y/SystemMotionPreference): kotlin/Boolean // io.github.canimation.a11y/A11yMotionPolicyAdapter.toReducedMotionFlag|toReducedMotionFlag(io.github.canimation.a11y.SystemMotionPreference){}[0]
+}
+
+final val io.github.canimation.a11y/io_github_canimation_a11y_A11yMotionPolicyAdapter$stableprop // io.github.canimation.a11y/io_github_canimation_a11y_A11yMotionPolicyAdapter$stableprop|#static{}io_github_canimation_a11y_A11yMotionPolicyAdapter$stableprop[0]
+
+final fun io.github.canimation.a11y/io_github_canimation_a11y_A11yMotionPolicyAdapter$stableprop_getter(): kotlin/Int // io.github.canimation.a11y/io_github_canimation_a11y_A11yMotionPolicyAdapter$stableprop_getter|io_github_canimation_a11y_A11yMotionPolicyAdapter$stableprop_getter(){}[0]

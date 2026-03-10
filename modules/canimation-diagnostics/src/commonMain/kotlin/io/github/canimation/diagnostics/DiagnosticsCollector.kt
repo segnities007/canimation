@@ -6,7 +6,9 @@ import kotlinx.coroutines.flow.Flow
  * Contract for collecting frame rendering metrics on each platform.
  *
  * Platform modules provide actual implementations (Android, Desktop)
- * or no-op stubs (iOS, Web) for this interface.
+ * or no-op stubs (iOS, Web) for this interface. Collectors that cannot provide
+ * live metrics can additionally implement [DiagnosticsCollectorAvailabilityProvider]
+ * to expose that capability to UI or tooling layers.
  */
 interface DiagnosticsCollector {
     /** Start collecting frame metrics. */

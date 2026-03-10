@@ -1,0 +1,23 @@
+// Klib ABI Dump
+// Targets: [iosArm64, iosSimulatorArm64, js, wasmJs]
+// Rendering settings:
+// - Signature version: 2
+// - Show manifest properties: true
+// - Show declarations: true
+
+// Library unique name: <io.github.canimation:canimation-test>
+final class io.github.canimation.test/CanimationTestClock { // io.github.canimation.test/CanimationTestClock|null[0]
+    constructor <init>() // io.github.canimation.test/CanimationTestClock.<init>|<init>(){}[0]
+
+    final val currentTimeMillis // io.github.canimation.test/CanimationTestClock.currentTimeMillis|{}currentTimeMillis[0]
+        final fun <get-currentTimeMillis>(): kotlin/Long // io.github.canimation.test/CanimationTestClock.currentTimeMillis.<get-currentTimeMillis>|<get-currentTimeMillis>(){}[0]
+
+    final fun advanceBy(kotlin/Long) // io.github.canimation.test/CanimationTestClock.advanceBy|advanceBy(kotlin.Long){}[0]
+    final fun advanceTo(kotlin/Long) // io.github.canimation.test/CanimationTestClock.advanceTo|advanceTo(kotlin.Long){}[0]
+    final fun reset() // io.github.canimation.test/CanimationTestClock.reset|reset(){}[0]
+}
+
+final val io.github.canimation.test/io_github_canimation_test_CanimationTestClock$stableprop // io.github.canimation.test/io_github_canimation_test_CanimationTestClock$stableprop|#static{}io_github_canimation_test_CanimationTestClock$stableprop[0]
+
+final fun io.github.canimation.test/CanimationTestHost(io.github.canimation.test/CanimationTestClock, io.github.canimation.core/CanimationLevel?, io.github.canimation.core/CanimationTokens?, io.github.canimation.core/PresetRegistry?, kotlin/Function2<androidx.compose.runtime/Composer, kotlin/Int, kotlin/Unit>, androidx.compose.runtime/Composer?, kotlin/Int, kotlin/Int) // io.github.canimation.test/CanimationTestHost|CanimationTestHost(io.github.canimation.test.CanimationTestClock;io.github.canimation.core.CanimationLevel?;io.github.canimation.core.CanimationTokens?;io.github.canimation.core.PresetRegistry?;kotlin.Function2<androidx.compose.runtime.Composer,kotlin.Int,kotlin.Unit>;androidx.compose.runtime.Composer?;kotlin.Int;kotlin.Int){}[0]
+final fun io.github.canimation.test/io_github_canimation_test_CanimationTestClock$stableprop_getter(): kotlin/Int // io.github.canimation.test/io_github_canimation_test_CanimationTestClock$stableprop_getter|io_github_canimation_test_CanimationTestClock$stableprop_getter(){}[0]

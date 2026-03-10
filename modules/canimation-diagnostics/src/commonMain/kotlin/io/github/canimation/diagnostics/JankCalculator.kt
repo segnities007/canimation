@@ -1,5 +1,7 @@
 package io.github.canimation.diagnostics
 
+import kotlin.math.ceil
+
 /**
  * Calculates jank-related metrics from a list of frame times.
  */
@@ -20,12 +22,13 @@ object JankCalculator {
      * Calculates the p95 (95th percentile) frame time.
      *
      * @param frameTimesMs List of frame durations in milliseconds.
-     * @return The p95 frame time, or 0f if the list is empty.
+     * @return The p95 frame time using nearest-rank percentile semantics, or 0f if the list is empty.
      */
     fun calculateP95(frameTimesMs: List<Float>): Float {
         if (frameTimesMs.isEmpty()) return 0f
         val sorted = frameTimesMs.sorted()
-        val index = ((sorted.size - 1) * 0.95).toInt()
+        val index = ceil(sorted.size * 0.95).toInt()
+            .coerceIn(1, sorted.size) - 1
         return sorted[index]
     }
 

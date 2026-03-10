@@ -13,7 +13,9 @@ import androidx.compose.runtime.CompositionLocalProvider
  * @param tokens Animation timing, easing, distance, and spring tokens.
  * @param policy Policy for determining animation level from system preferences.
  * @param presetRegistry Registry of preset animation specifications.
- * @param systemReducedMotion Whether the OS has reduce-motion enabled. Provide from platform module.
+ * @param systemReducedMotion Whether the OS has reduce-motion enabled. Provide from a platform
+ * module when available; `null` is treated as reduced motion to preserve the accessibility-first
+ * safe fallback.
  * @param content The composable content tree.
  */
 @Composable
@@ -21,16 +23,33 @@ fun CanimationProvider(
     tokens: CanimationTokens = CanimationTokens.Default,
     policy: CanimationPolicy = CanimationPolicy.SystemAware,
     presetRegistry: PresetRegistry = PresetRegistry.Default,
+    recipeRegistry: CanimationRecipeRegistry = CanimationRecipeRegistry.Empty,
     systemReducedMotion: Boolean? = null,
     content: @Composable () -> Unit,
 ) {
-    val level = CanimationPolicyResolver.resolve(policy, systemReducedMotion)
-    val context = CanimationContext(
-        tokens = tokens,
-        level = level,
-        presetRegistry = presetRegistry,
-    )
+    val context =
+        resolveCanimationContext(
+            tokens = tokens,
+            policy = policy,
+            presetRegistry = presetRegistry,
+            recipeRegistry = recipeRegistry,
+            systemReducedMotion = systemReducedMotion,
+        )
     CompositionLocalProvider(LocalCanimationContext provides context) {
         content()
     }
 }
+
+internal fun resolveCanimationContext(
+    tokens: CanimationTokens,
+    policy: CanimationPolicy,
+    presetRegistry: PresetRegistry,
+    recipeRegistry: CanimationRecipeRegistry,
+    systemReducedMotion: Boolean?,
+): CanimationContext =
+    CanimationContext(
+        tokens = tokens,
+        level = CanimationPolicyResolver.resolve(policy, systemReducedMotion),
+        presetRegistry = presetRegistry,
+        recipeRegistry = recipeRegistry,
+    )

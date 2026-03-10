@@ -23,15 +23,30 @@ fun Modifier.canimationEmphasize(
     },
 ) {
     val context = LocalCanimationContext.current
+    val resolved = resolveEmphasizeSpec(
+        active = active,
+        preset = preset,
+        level = context.level,
+        registry = context.presetRegistry,
+    )
+    applyAnimationSpec(visible = resolved.applyAsVisible, spec = resolved.spec)
+}
+
+internal fun resolveEmphasizeSpec(
+    active: Boolean,
+    preset: CanimationPreset,
+    level: CanimationLevel,
+    registry: PresetRegistry,
+): ResolvedTransitionSpec {
     val direction = if (active) AnimationDirection.Enter else AnimationDirection.Exit
     val spec = CanimationSpecResolver.resolve(
         preset = preset,
-        level = context.level,
+        level = level,
         direction = direction,
-        registry = context.presetRegistry,
+        registry = registry,
     )
-    // Enter: active=true → animate toward spec.to (emphasized)
-    // Exit: active=false → animate toward spec.to (de-emphasized), so flip to !active=true
-    val effectiveVisible = if (direction == AnimationDirection.Exit) !active else active
-    applyAnimationSpec(visible = effectiveVisible, spec = spec)
+    return ResolvedTransitionSpec(
+        spec = spec,
+        applyAsVisible = direction != AnimationDirection.Exit || !active,
+    )
 }

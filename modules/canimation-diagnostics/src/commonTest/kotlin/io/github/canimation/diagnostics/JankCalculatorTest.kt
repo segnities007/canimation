@@ -45,4 +45,14 @@ class JankCalculatorTest {
     fun singleFrameTimeReturnsItself() {
         assertEquals(42f, JankCalculator.calculateP95(listOf(42f)))
     }
+
+    @Test
+    fun calculateP95UsesNearestRankForSmallSamples() {
+        assertEquals(24f, JankCalculator.calculateP95(listOf(18f, 24f)))
+    }
+
+    @Test
+    fun calculateP95SortsValuesBeforeSelectingPercentile() {
+        assertEquals(48f, JankCalculator.calculateP95(listOf(48f, 12f, 20f, 16f)))
+    }
 }

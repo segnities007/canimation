@@ -1,0 +1,10 @@
+{
+  "startedAtUtc": "2026-03-10T07:40:34Z",
+  "completedAtUtc": "2026-03-10T07:40:43Z",
+  "totalRuns": 1,
+  "passRuns": 1,
+  "failRuns": 0,
+  "flakeRate": 0.0,
+  "flakeThreshold": 1.0,
+  "gradleCommand": "./gradlew :canimation-core:jvmTest :canimation-presets:jvmTest :canimation-a11y:jvmTest :canimation-diagnostics:jvmTest :canimation-test:jvmTest"
+}

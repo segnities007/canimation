@@ -1,0 +1,92 @@
+// Klib ABI Dump
+// Targets: [iosArm64, iosSimulatorArm64, js, wasmJs]
+// Rendering settings:
+// - Signature version: 2
+// - Show manifest properties: true
+// - Show declarations: true
+
+// Library unique name: <io.github.canimation:canimation-diagnostics>
+abstract interface io.github.canimation.diagnostics/DiagnosticsCollector { // io.github.canimation.diagnostics/DiagnosticsCollector|null[0]
+    abstract fun currentMetrics(): io.github.canimation.diagnostics/FrameMetrics // io.github.canimation.diagnostics/DiagnosticsCollector.currentMetrics|currentMetrics(){}[0]
+    abstract fun observeMetrics(): kotlinx.coroutines.flow/Flow<io.github.canimation.diagnostics/FrameMetrics> // io.github.canimation.diagnostics/DiagnosticsCollector.observeMetrics|observeMetrics(){}[0]
+    abstract fun start() // io.github.canimation.diagnostics/DiagnosticsCollector.start|start(){}[0]
+    abstract fun stop() // io.github.canimation.diagnostics/DiagnosticsCollector.stop|stop(){}[0]
+}
+
+abstract interface io.github.canimation.diagnostics/DiagnosticsCollectorAvailabilityProvider { // io.github.canimation.diagnostics/DiagnosticsCollectorAvailabilityProvider|null[0]
+    abstract val availability // io.github.canimation.diagnostics/DiagnosticsCollectorAvailabilityProvider.availability|{}availability[0]
+        abstract fun <get-availability>(): io.github.canimation.diagnostics/DiagnosticsCollectorAvailability // io.github.canimation.diagnostics/DiagnosticsCollectorAvailabilityProvider.availability.<get-availability>|<get-availability>(){}[0]
+}
+
+final class io.github.canimation.diagnostics/DiagnosticsCollectorAvailability { // io.github.canimation.diagnostics/DiagnosticsCollectorAvailability|null[0]
+    constructor <init>(kotlin/Boolean, kotlin/String? = ...) // io.github.canimation.diagnostics/DiagnosticsCollectorAvailability.<init>|<init>(kotlin.Boolean;kotlin.String?){}[0]
+
+    final val isAvailable // io.github.canimation.diagnostics/DiagnosticsCollectorAvailability.isAvailable|{}isAvailable[0]
+        final fun <get-isAvailable>(): kotlin/Boolean // io.github.canimation.diagnostics/DiagnosticsCollectorAvailability.isAvailable.<get-isAvailable>|<get-isAvailable>(){}[0]
+    final val reason // io.github.canimation.diagnostics/DiagnosticsCollectorAvailability.reason|{}reason[0]
+        final fun <get-reason>(): kotlin/String? // io.github.canimation.diagnostics/DiagnosticsCollectorAvailability.reason.<get-reason>|<get-reason>(){}[0]
+
+    final fun component1(): kotlin/Boolean // io.github.canimation.diagnostics/DiagnosticsCollectorAvailability.component1|component1(){}[0]
+    final fun component2(): kotlin/String? // io.github.canimation.diagnostics/DiagnosticsCollectorAvailability.component2|component2(){}[0]
+    final fun copy(kotlin/Boolean = ..., kotlin/String? = ...): io.github.canimation.diagnostics/DiagnosticsCollectorAvailability // io.github.canimation.diagnostics/DiagnosticsCollectorAvailability.copy|copy(kotlin.Boolean;kotlin.String?){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // io.github.canimation.diagnostics/DiagnosticsCollectorAvailability.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // io.github.canimation.diagnostics/DiagnosticsCollectorAvailability.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // io.github.canimation.diagnostics/DiagnosticsCollectorAvailability.toString|toString(){}[0]
+
+    final object Companion { // io.github.canimation.diagnostics/DiagnosticsCollectorAvailability.Companion|null[0]
+        final val Available // io.github.canimation.diagnostics/DiagnosticsCollectorAvailability.Companion.Available|{}Available[0]
+            final fun <get-Available>(): io.github.canimation.diagnostics/DiagnosticsCollectorAvailability // io.github.canimation.diagnostics/DiagnosticsCollectorAvailability.Companion.Available.<get-Available>|<get-Available>(){}[0]
+    }
+}
+
+final class io.github.canimation.diagnostics/FrameMetrics { // io.github.canimation.diagnostics/FrameMetrics|null[0]
+    constructor <init>(kotlin/Float = ..., kotlin/Float = ..., kotlin/Int = ..., kotlin/Float = ...) // io.github.canimation.diagnostics/FrameMetrics.<init>|<init>(kotlin.Float;kotlin.Float;kotlin.Int;kotlin.Float){}[0]
+
+    final val fps // io.github.canimation.diagnostics/FrameMetrics.fps|{}fps[0]
+        final fun <get-fps>(): kotlin/Float // io.github.canimation.diagnostics/FrameMetrics.fps.<get-fps>|<get-fps>(){}[0]
+    final val frameTimeMs // io.github.canimation.diagnostics/FrameMetrics.frameTimeMs|{}frameTimeMs[0]
+        final fun <get-frameTimeMs>(): kotlin/Float // io.github.canimation.diagnostics/FrameMetrics.frameTimeMs.<get-frameTimeMs>|<get-frameTimeMs>(){}[0]
+    final val jankCount // io.github.canimation.diagnostics/FrameMetrics.jankCount|{}jankCount[0]
+        final fun <get-jankCount>(): kotlin/Int // io.github.canimation.diagnostics/FrameMetrics.jankCount.<get-jankCount>|<get-jankCount>(){}[0]
+    final val p95FrameTimeMs // io.github.canimation.diagnostics/FrameMetrics.p95FrameTimeMs|{}p95FrameTimeMs[0]
+        final fun <get-p95FrameTimeMs>(): kotlin/Float // io.github.canimation.diagnostics/FrameMetrics.p95FrameTimeMs.<get-p95FrameTimeMs>|<get-p95FrameTimeMs>(){}[0]
+
+    final fun component1(): kotlin/Float // io.github.canimation.diagnostics/FrameMetrics.component1|component1(){}[0]
+    final fun component2(): kotlin/Float // io.github.canimation.diagnostics/FrameMetrics.component2|component2(){}[0]
+    final fun component3(): kotlin/Int // io.github.canimation.diagnostics/FrameMetrics.component3|component3(){}[0]
+    final fun component4(): kotlin/Float // io.github.canimation.diagnostics/FrameMetrics.component4|component4(){}[0]
+    final fun copy(kotlin/Float = ..., kotlin/Float = ..., kotlin/Int = ..., kotlin/Float = ...): io.github.canimation.diagnostics/FrameMetrics // io.github.canimation.diagnostics/FrameMetrics.copy|copy(kotlin.Float;kotlin.Float;kotlin.Int;kotlin.Float){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // io.github.canimation.diagnostics/FrameMetrics.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // io.github.canimation.diagnostics/FrameMetrics.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // io.github.canimation.diagnostics/FrameMetrics.toString|toString(){}[0]
+}
+
+final object io.github.canimation.diagnostics/CanimationDiagnosticsFacade { // io.github.canimation.diagnostics/CanimationDiagnosticsFacade|null[0]
+    final fun computeMetrics(kotlin.collections/List<kotlin/Float>, kotlin/Int = ...): io.github.canimation.diagnostics/FrameMetrics // io.github.canimation.diagnostics/CanimationDiagnosticsFacade.computeMetrics|computeMetrics(kotlin.collections.List<kotlin.Float>;kotlin.Int){}[0]
+}
+
+final object io.github.canimation.diagnostics/JankCalculator { // io.github.canimation.diagnostics/JankCalculator|null[0]
+    final fun calculateFps(kotlin.collections/List<kotlin/Float>): kotlin/Float // io.github.canimation.diagnostics/JankCalculator.calculateFps|calculateFps(kotlin.collections.List<kotlin.Float>){}[0]
+    final fun calculateP95(kotlin.collections/List<kotlin/Float>): kotlin/Float // io.github.canimation.diagnostics/JankCalculator.calculateP95|calculateP95(kotlin.collections.List<kotlin.Float>){}[0]
+    final fun countJanks(kotlin.collections/List<kotlin/Float>, kotlin/Int = ...): kotlin/Int // io.github.canimation.diagnostics/JankCalculator.countJanks|countJanks(kotlin.collections.List<kotlin.Float>;kotlin.Int){}[0]
+}
+
+final object io.github.canimation.diagnostics/PerfMeasurementUtils { // io.github.canimation.diagnostics/PerfMeasurementUtils|null[0]
+    final fun degradationRatio(kotlin/Float, kotlin/Float): kotlin/Float // io.github.canimation.diagnostics/PerfMeasurementUtils.degradationRatio|degradationRatio(kotlin.Float;kotlin.Float){}[0]
+    final fun isWithinDegradationLimit(kotlin/Float, kotlin/Float, kotlin/Float = ...): kotlin/Boolean // io.github.canimation.diagnostics/PerfMeasurementUtils.isWithinDegradationLimit|isWithinDegradationLimit(kotlin.Float;kotlin.Float;kotlin.Float){}[0]
+}
+
+final val io.github.canimation.diagnostics/io_github_canimation_diagnostics_CanimationDiagnosticsFacade$stableprop // io.github.canimation.diagnostics/io_github_canimation_diagnostics_CanimationDiagnosticsFacade$stableprop|#static{}io_github_canimation_diagnostics_CanimationDiagnosticsFacade$stableprop[0]
+final val io.github.canimation.diagnostics/io_github_canimation_diagnostics_DiagnosticsCollectorAvailability$stableprop // io.github.canimation.diagnostics/io_github_canimation_diagnostics_DiagnosticsCollectorAvailability$stableprop|#static{}io_github_canimation_diagnostics_DiagnosticsCollectorAvailability$stableprop[0]
+final val io.github.canimation.diagnostics/io_github_canimation_diagnostics_DiagnosticsOverlayEvent_MetricsUpdated$stableprop // io.github.canimation.diagnostics/io_github_canimation_diagnostics_DiagnosticsOverlayEvent_MetricsUpdated$stableprop|#static{}io_github_canimation_diagnostics_DiagnosticsOverlayEvent_MetricsUpdated$stableprop[0]
+final val io.github.canimation.diagnostics/io_github_canimation_diagnostics_FrameMetrics$stableprop // io.github.canimation.diagnostics/io_github_canimation_diagnostics_FrameMetrics$stableprop|#static{}io_github_canimation_diagnostics_FrameMetrics$stableprop[0]
+final val io.github.canimation.diagnostics/io_github_canimation_diagnostics_JankCalculator$stableprop // io.github.canimation.diagnostics/io_github_canimation_diagnostics_JankCalculator$stableprop|#static{}io_github_canimation_diagnostics_JankCalculator$stableprop[0]
+final val io.github.canimation.diagnostics/io_github_canimation_diagnostics_PerfMeasurementUtils$stableprop // io.github.canimation.diagnostics/io_github_canimation_diagnostics_PerfMeasurementUtils$stableprop|#static{}io_github_canimation_diagnostics_PerfMeasurementUtils$stableprop[0]
+
+final fun io.github.canimation.diagnostics/CanimationDiagnosticsOverlay(kotlin/Boolean, kotlin/Boolean, kotlin/Boolean, kotlin/Int, io.github.canimation.diagnostics/DiagnosticsCollector?, kotlin/Function2<androidx.compose.runtime/Composer, kotlin/Int, kotlin/Unit>, androidx.compose.runtime/Composer?, kotlin/Int, kotlin/Int) // io.github.canimation.diagnostics/CanimationDiagnosticsOverlay|CanimationDiagnosticsOverlay(kotlin.Boolean;kotlin.Boolean;kotlin.Boolean;kotlin.Int;io.github.canimation.diagnostics.DiagnosticsCollector?;kotlin.Function2<androidx.compose.runtime.Composer,kotlin.Int,kotlin.Unit>;androidx.compose.runtime.Composer?;kotlin.Int;kotlin.Int){}[0]
+final fun io.github.canimation.diagnostics/io_github_canimation_diagnostics_CanimationDiagnosticsFacade$stableprop_getter(): kotlin/Int // io.github.canimation.diagnostics/io_github_canimation_diagnostics_CanimationDiagnosticsFacade$stableprop_getter|io_github_canimation_diagnostics_CanimationDiagnosticsFacade$stableprop_getter(){}[0]
+final fun io.github.canimation.diagnostics/io_github_canimation_diagnostics_DiagnosticsCollectorAvailability$stableprop_getter(): kotlin/Int // io.github.canimation.diagnostics/io_github_canimation_diagnostics_DiagnosticsCollectorAvailability$stableprop_getter|io_github_canimation_diagnostics_DiagnosticsCollectorAvailability$stableprop_getter(){}[0]
+final fun io.github.canimation.diagnostics/io_github_canimation_diagnostics_DiagnosticsOverlayEvent_MetricsUpdated$stableprop_getter(): kotlin/Int // io.github.canimation.diagnostics/io_github_canimation_diagnostics_DiagnosticsOverlayEvent_MetricsUpdated$stableprop_getter|io_github_canimation_diagnostics_DiagnosticsOverlayEvent_MetricsUpdated$stableprop_getter(){}[0]
+final fun io.github.canimation.diagnostics/io_github_canimation_diagnostics_FrameMetrics$stableprop_getter(): kotlin/Int // io.github.canimation.diagnostics/io_github_canimation_diagnostics_FrameMetrics$stableprop_getter|io_github_canimation_diagnostics_FrameMetrics$stableprop_getter(){}[0]
+final fun io.github.canimation.diagnostics/io_github_canimation_diagnostics_JankCalculator$stableprop_getter(): kotlin/Int // io.github.canimation.diagnostics/io_github_canimation_diagnostics_JankCalculator$stableprop_getter|io_github_canimation_diagnostics_JankCalculator$stableprop_getter(){}[0]
+final fun io.github.canimation.diagnostics/io_github_canimation_diagnostics_PerfMeasurementUtils$stableprop_getter(): kotlin/Int // io.github.canimation.diagnostics/io_github_canimation_diagnostics_PerfMeasurementUtils$stableprop_getter|io_github_canimation_diagnostics_PerfMeasurementUtils$stableprop_getter(){}[0]

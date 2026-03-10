@@ -1,0 +1,32 @@
+name: Question
+description: Ask a usage or support question within the project's documented support scope.
+title: "question: "
+labels:
+  - type:question
+body:
+  - type: textarea
+    id: goal
+    attributes:
+      label: What are you trying to do?
+      description: Describe the task, API, or migration you need help with.
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: Include relevant code, module, platform, or release-tag context.
+  - type: input
+    id: version
+    attributes:
+      label: Version and target
+      description: Library version or commit, Kotlin/Compose version, and platform.
+  - type: textarea
+    id: tried
+    attributes:
+      label: What have you already tried?
+      description: Mention any docs you read, recipes you tried, or migration steps you attempted.
+  - type: markdown
+    attributes:
+      value: |
+        For vulnerabilities, do not use this form. Follow `SECURITY.md`.

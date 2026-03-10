@@ -51,6 +51,9 @@
 
 ## 2. Architecture Baseline
 
+- 既定構成の第一参照先は `guideline/00-convention-over-configuration.md` とする。
+- 新規実装は「自由設計」ではなく、まず既定形へ合わせる。
+
 ### 2.1 Layer Responsibilities
 - UI Layer:
   - 描画、入力受付、Event 発行のみ。
@@ -204,6 +207,14 @@
 - 仕様変更・設計変更時は該当ドキュメントを同時更新する。
 - 重要な設計判断は ADR として残す。
 - 「なぜこの設計か」をコードから辿れる状態を保つ。
+- 技術領域別ガイドラインの SSoT は `guideline/` ディレクトリとする。
+- 変更前に、対象が属する技術領域を特定し、`guideline/README.md` と該当ガイドラインを確認する。
+- 複数領域にまたがる変更は、関係するすべてのガイドラインに従う。
+- `Kotlin` / `Kotlin Multiplatform` / `Jetpack Compose` / `Compose Multiplatform` / `Animation` / `Accessibility & I18N` / `Testing` / `Gradle` / `GitHub Actions` / `Release & API Compatibility` / `Platform Adapters` の運用ルールは `guideline/*.md` を参照する。
+- module build、workflow/script、docs/navigation/resource の既定形も `guideline/*.md` を参照する。
+- symbol 命名、file 内順序、Compose effect、test/workflow step のミクロ規約も `guideline/*.md` を参照する。
+- 新規実装の雛形は `guideline/templates/` を起点にする。
+- 領域ガイドラインに影響する変更は、対応する `guideline/*.md` を同時更新する。
 
 ## 15. Code Writing Tactics（立ち回り）
 
@@ -222,6 +233,7 @@ PR は以下すべてを満たすこと:
 - [ ] 変更箇所に対するテストが追加/更新されている
 - [ ] public API の互換性が確認されている
 - [ ] ドキュメント/コメントが更新されている
+- [ ] `guideline/*.md` の該当領域に反していない
 - [ ] パフォーマンス劣化がないか確認した
 - [ ] a11y/reduced-motion 影響を確認した
 
@@ -290,6 +302,17 @@ PR は以下すべてを満たすこと:
 - 長大ファイルは分割する。目安:
   - 300行超: 分割検討必須
   - 500行超: 分割しない変更は原則却下
+- 新規ファイル命名・配置は `guideline/00-convention-over-configuration.md` の既定形に従う。
+
+## 22.1 Convention Over Configuration
+
+- Screen を追加する場合、原則として `Screen + StateHolder + State/Event/Reducer` の組で作る。
+- 設定 UI、dialog、bottom sheet も screen-level state と責務が違う場合は専用 state holder を持つ。
+- preset は `1 preset 1 file` を既定とし、registry 接続点を固定する。
+- platform capability は `common contract + target adapter` を既定とし、platform API 直接参照を広げない。
+- workflow 名、job 名、test 配置も `guideline/00-convention-over-configuration.md` の標準形へ合わせる。
+- module の `build.gradle.kts` 骨格、script 定型、docs/navigation/resource 配置も既定形へ合わせる。
+- symbol 名、引数順、state holder shape、`LaunchedEffect` の key、workflow step 名も既定形へ合わせる。
 
 ## 23. Definition of Done（DoD）
 

@@ -2,8 +2,16 @@ package io.github.canimation.test
 
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertFailsWith
 
 class CanimationTestClockTest {
+    @Test
+    fun initialTimeCanBeProvided() {
+        val clock = CanimationTestClock(initialTimeMillis = 12L)
+
+        assertEquals(12L, clock.currentTimeMillis)
+    }
+
     @Test
     fun initialTimeIsZero() {
         val clock = CanimationTestClock()
@@ -38,5 +46,30 @@ class CanimationTestClockTest {
         clock.advanceBy(200L)
         clock.reset()
         assertEquals(0L, clock.currentTimeMillis)
+    }
+
+    @Test
+    fun constructorRejectsNegativeInitialTime() {
+        assertFailsWith<IllegalArgumentException> {
+            CanimationTestClock(initialTimeMillis = -1L)
+        }
+    }
+
+    @Test
+    fun advanceByRejectsNegativeDuration() {
+        val clock = CanimationTestClock()
+
+        assertFailsWith<IllegalArgumentException> {
+            clock.advanceBy(-1L)
+        }
+    }
+
+    @Test
+    fun advanceToRejectsGoingBackInTime() {
+        val clock = CanimationTestClock(initialTimeMillis = 10L)
+
+        assertFailsWith<IllegalArgumentException> {
+            clock.advanceTo(9L)
+        }
     }
 }
