@@ -4,6 +4,13 @@ title: "docs: "
 labels:
   - type:docs
 body:
+  - type: checkboxes
+    id: search
+    attributes:
+      label: Existing issue check
+      options:
+        - label: I searched existing issues and the docs index first
+          required: true
   - type: textarea
     id: gap
     attributes:
@@ -28,3 +35,10 @@ body:
     attributes:
       label: Evidence
       description: Link related docs, code paths, release notes, or screenshots if relevant.
+  - type: checkboxes
+    id: conduct
+    attributes:
+      label: Code of Conduct
+      options:
+        - label: I agree to follow this project's Code of Conduct
+          required: true

@@ -24,6 +24,10 @@
   - `js { browser() }`
   - `wasmJs { browser() }`
 - `commonMain.dependencies` に shared API / implementation を集める。
+- module build script は target 宣言を直接コピペせず、`build-logic/` の convention plugin を適用する。
+  - non-Compose full library: `canimation.multiplatform.library`
+  - Compose full library: `canimation.compose.multiplatform.library`
+  - target-specific adapter: `canimation.platform.<target>.library`
 
 ### Platform Module
 

@@ -5,6 +5,7 @@ on:
 
 permissions:
   contents: read
+  pull-requests: read
 
 concurrency:
   group: dependency-review-${{ github.event.pull_request.number || github.ref }}
@@ -12,15 +13,42 @@ concurrency:
 
 jobs:
   dependency-review:
+    name: Dependency Review / dependency-review
     runs-on: ubuntu-24.04
     permissions:
       contents: read
+      pull-requests: read
     steps:
       - name: Checkout repository
         uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
         with:
           persist-credentials: false
+      - name: Check dependency review support
+        id: dependency-review-support
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPOSITORY: ${{ github.repository }}
+        run: |
+          response_file="$RUNNER_TEMP/dependency-graph-response.json"
+          status_code=$(curl -sS -o "$response_file" -w "%{http_code}" \
+            -H "Authorization: Bearer ${GH_TOKEN}" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${REPOSITORY}/dependency-graph/sbom")
+
+          if [ "$status_code" = "200" ]; then
+            echo "supported=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          echo "supported=false" >> "$GITHUB_OUTPUT"
+          echo "Dependency review is unavailable for ${REPOSITORY}; skipping workflow failure."
+          cat "$response_file"
       - name: Run dependency review
+        if: steps.dependency-review-support.outputs.supported == 'true'
         uses: actions/dependency-review-action@da24556b548a50705dd671f47852072ea4c105d9 # v4.7.1
         with:
           config-file: ./.github/dependency-review-config.yml
+      - name: Record skipped dependency review
+        if: steps.dependency-review-support.outputs.supported != 'true'
+        run: |
+          echo "Dependency review was skipped because the repository does not expose dependency review support in this environment."

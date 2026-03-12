@@ -33,9 +33,10 @@ Platform details and current implementation notes live in `docs/explanation/arch
 
 ## Supported Tooling Baseline
 
-- Kotlin follows the version documented in `README.md` and `gradle/libs.versions.toml`
-- Compose Multiplatform follows the version documented in `README.md` and `gradle/libs.versions.toml`
-- Gradle follows the checked-in wrapper and repository build logic
+- Kotlin `2.3.0`
+- Compose Multiplatform `1.10.0`
+- Gradle `9.2.1`
+- JDK `21` for CI and maintainer validation baseline
 
 If you report a toolchain issue, include the exact repository commit or release tag plus your local Kotlin, Compose, Gradle, and platform versions.
 
@@ -49,6 +50,7 @@ If you report a toolchain issue, include the exact repository commit or release 
 
 - bug report: `.github/ISSUE_TEMPLATE/bug-report.yml`
 - feature request: `.github/ISSUE_TEMPLATE/feature-request.yml`
+- architecture or governance proposal: `.github/ISSUE_TEMPLATE/architecture-proposal.yml`
 - documentation issue: `.github/ISSUE_TEMPLATE/docs-request.yml`
 - usage or support question: `.github/ISSUE_TEMPLATE/question.yml`
 - sensitive vulnerability report: `SECURITY.md`
@@ -59,6 +61,20 @@ If you report a toolchain issue, include the exact repository commit or release 
 - reduced-motion, accessibility-contract, and public-API-compatibility issues are high priority
 - responses are best effort and maintainer-capacity dependent
 - this repository does not promise response-time SLAs
+- if you have not received maintainer feedback after 14 days, a single polite follow-up is appropriate
+
+## Review Ownership
+
+Review ownership is documented in `.github/CODEOWNERS`.
+Changes to architecture-significant modules, workflows, build logic, `SECURITY.md`, and `SUPPORT.md` are expected to receive owner review before merge.
+
+Current review responsibility is split across these roles even when the same person currently fulfills them:
+
+- architecture maintainer
+- release maintainer
+- accessibility/performance reviewer
+- platform adapter reviewer
+- security contact
 
 ## Out Of Scope
 
@@ -73,7 +89,9 @@ Maintainers may decline support for:
 
 - `README.md`
 - `CONTRIBUTING.md`
+- `MAINTAINERS.md`
 - `SECURITY.md`
 - `docs/README.md`
+- `docs/reference/governance/triage-and-label-taxonomy.md`
 - `docs/reference/release/versioning-policy.md`
 - `guideline/19-oss-governance-and-maintainer-experience.md`

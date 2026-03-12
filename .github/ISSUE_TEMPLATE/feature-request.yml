@@ -4,6 +4,13 @@ title: "feature: "
 labels:
   - type:feature
 body:
+  - type: checkboxes
+    id: search
+    attributes:
+      label: Existing issue check
+      options:
+        - label: I searched existing issues, docs, and non-goals first
+          required: true
   - type: textarea
     id: problem
     attributes:
@@ -38,3 +45,10 @@ body:
     attributes:
       label: Compatibility and migration impact
       description: Describe any stable API, compatibility-layer, or support-policy impact.
+  - type: checkboxes
+    id: conduct
+    attributes:
+      label: Code of Conduct
+      options:
+        - label: I agree to follow this project's Code of Conduct
+          required: true

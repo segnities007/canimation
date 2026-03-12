@@ -1,0 +1,65 @@
+name: Architecture proposal
+description: Propose an architecture-significant change before implementation begins.
+title: "architecture: "
+labels:
+  - type:feature
+  - status:needs-info
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form for architecture, migration-path, workflow-governance, or module-boundary proposals.
+        If the change is security-sensitive, use `SECURITY.md` instead of a public issue.
+  - type: checkboxes
+    id: search
+    attributes:
+      label: Existing discussions
+      description: Help keep architecture discussion in one place.
+      options:
+        - label: I searched existing issues, ADRs, and reference docs first
+          required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What architecture or governance problem exists today?
+    validations:
+      required: true
+  - type: textarea
+    id: proposed-change
+    attributes:
+      label: Proposed change
+      description: Describe the desired boundary, convention, workflow, or migration shape.
+    validations:
+      required: true
+  - type: textarea
+    id: affected-surfaces
+    attributes:
+      label: Affected surfaces
+      description: Which modules, docs, workflows, or public APIs would be affected?
+    validations:
+      required: true
+  - type: textarea
+    id: compatibility
+    attributes:
+      label: Compatibility and migration impact
+      description: Explain any public API, support, release, or migration impact.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Describe rejected alternatives, extension paths, or non-goal options.
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Required evidence
+      description: What tests, docs, quality evidence, or ADR updates would be required if this is accepted?
+  - type: checkboxes
+    id: conduct
+    attributes:
+      label: Code of Conduct
+      options:
+        - label: I agree to follow this project's Code of Conduct
+          required: true

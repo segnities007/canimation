@@ -14,6 +14,7 @@ concurrency:
 
 jobs:
   lint:
+    name: CI / lint
     runs-on: ubuntu-24.04
     permissions:
       contents: read
@@ -28,6 +29,7 @@ jobs:
         run: ./gradlew lint --max-workers=2 --no-daemon
 
   test:
+    name: CI / test
     runs-on: ubuntu-24.04
     permissions:
       contents: read
@@ -49,6 +51,7 @@ jobs:
           retention-days: 7
 
   build:
+    name: CI / build
     runs-on: ubuntu-24.04
     permissions:
       contents: read
@@ -60,9 +63,10 @@ jobs:
       - name: Set up build environment
         uses: ./.github/actions/setup-build
       - name: Run build checks
-        run: ./gradlew :androidApp:assembleDebug :composeApp:compileKotlinJvm --max-workers=2 --no-daemon
+        run: ./gradlew compileLibraryAndroid compileLibraryJvm :androidApp:assembleDebug :composeApp:compileKotlinJvm --max-workers=2 --no-daemon
 
   build-apple:
+    name: CI / build-apple
     runs-on: macos-15
     permissions:
       contents: read
@@ -74,9 +78,10 @@ jobs:
       - name: Set up build environment
         uses: ./.github/actions/setup-build
       - name: Run Apple platform build checks
-        run: ./gradlew :composeApp:packageDistributionForCurrentOS :composeApp:linkDebugFrameworkIosSimulatorArm64 :canimation-platform-ios:compileKotlinIosSimulatorArm64 --max-workers=2 --no-daemon
+        run: ./gradlew compileLibraryApple :composeApp:packageDistributionForCurrentOS :composeApp:linkDebugFrameworkIosSimulatorArm64 --max-workers=2 --no-daemon
 
   wasm-build:
+    name: CI / wasm-build
     runs-on: ubuntu-24.04
     permissions:
       contents: read
@@ -88,9 +93,10 @@ jobs:
       - name: Set up build environment
         uses: ./.github/actions/setup-build
       - name: Run Wasm build checks
-        run: ./gradlew :composeApp:compileKotlinWasmJs --max-workers=2 --no-daemon
+        run: ./gradlew compileLibraryWeb :composeApp:compileKotlinWasmJs --max-workers=2 --no-daemon
 
   check:
+    name: CI / check
     runs-on: ubuntu-24.04
     permissions:
       contents: read
@@ -105,6 +111,7 @@ jobs:
         run: ./gradlew releaseReadiness --max-workers=2 --no-daemon
 
   audit:
+    name: CI / audit
     runs-on: ubuntu-24.04
     permissions:
       contents: read
@@ -119,12 +126,15 @@ jobs:
         run: bash scripts/security-audit.sh
       - name: Validate workflow shape
         run: bash scripts/validate-workflows.sh
+      - name: Validate governance docs
+        run: bash scripts/validate-governance-docs.sh
       - name: Upload audit evidence
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         if: always()
         with:
           name: audit-evidence
           path: |
+            docs/quality/workflow/governance-docs-validation-report.json
             docs/quality/security/security-audit-report.json
             docs/quality/workflow/workflow-validation-report.json
           retention-days: 7

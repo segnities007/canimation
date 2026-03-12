@@ -4,6 +4,13 @@ title: "question: "
 labels:
   - type:question
 body:
+  - type: checkboxes
+    id: docs-check
+    attributes:
+      label: Docs and support check
+      options:
+        - label: I read the relevant docs and support policy first
+          required: true
   - type: textarea
     id: goal
     attributes:
@@ -30,3 +37,10 @@ body:
     attributes:
       value: |
         For vulnerabilities, do not use this form. Follow `SECURITY.md`.
+  - type: checkboxes
+    id: conduct
+    attributes:
+      label: Code of Conduct
+      options:
+        - label: I agree to follow this project's Code of Conduct
+          required: true

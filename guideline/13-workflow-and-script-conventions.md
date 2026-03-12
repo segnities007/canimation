@@ -19,6 +19,8 @@ workflow と shell script は放置すると最も散らかりやすい。ここ
   - `deploy`
   - `audit`
   - `check`
+- workflow job には explicit `name:` を付け、required status check 名が repository 全体で一意になるようにする。
+- branch protection / ruleset で使う check 名は `docs/reference/release/repository-protection-baseline.md` を SSoT にする。
 - setup は `.github/actions/setup-build` に寄せる。
 - `actions/checkout@v4` は `persist-credentials: false` を既定にする。
 - artifact upload は `actions/upload-artifact@v4` 系を使う。

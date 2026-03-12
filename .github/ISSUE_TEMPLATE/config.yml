@@ -9,3 +9,6 @@ contact_links:
   - name: Contributing guide
     url: https://github.com/segnities007/canimation/blob/main/CONTRIBUTING.md
     about: Review validation commands, PR expectations, and architecture-change rules.
+  - name: Maintainer roles
+    url: https://github.com/segnities007/canimation/blob/main/MAINTAINERS.md
+    about: Review maintainer responsibilities, owner-review boundaries, and follow-up expectations.

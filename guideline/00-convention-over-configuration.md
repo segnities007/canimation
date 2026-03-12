@@ -34,6 +34,10 @@ OSS governance と docs/knowledge の運用標準は
   - `.github/`
 - product code は `modules/` に集約し、sample host と混在させない。
 - build logic は `build-logic/` の convention plugin に集約し、module ごとの重複 build script を増やさない。
+- module の既定 plugin は `build-logic/` の convention plugin を使う。
+  - full KMP library: `canimation.multiplatform.library`
+  - Compose を使う full KMP library: `canimation.compose.multiplatform.library`
+  - platform adapter: `canimation.platform.<target>.library`
 - benchmark と sample は library と別 directory に分離し、consumer path を汚さない。
 
 ### Screen

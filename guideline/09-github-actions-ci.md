@@ -23,6 +23,7 @@
 - cloud 認証は長期 secret より OIDC を優先する。
 - build artifact は provenance を取れるものは attestation を付ける。
 - artifact upload/download は v4 系を使う。
+- static analysis workflow は default branch だけでなく active integration branch も対象にする。
 
 ## Performance and Reuse
 
@@ -30,6 +31,10 @@
 - cache key は lockfile と OS を含める。
 - cache retention と churn を監視し、thrashing を避ける。
 - artifact は成果物共有、cache は依存再利用に限定する。
+- library-first repository の CI では sample host だけでなく publishable module compile task を明示的に走らせる。
+  - Android/JVM: `compileLibraryAndroid`, `compileLibraryJvm`
+  - Apple: `compileLibraryApple`
+  - Web: `compileLibraryWeb`
 
 ## Operations
 

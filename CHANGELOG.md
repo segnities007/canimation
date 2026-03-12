@@ -11,6 +11,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Documentation and governance navigation now use a consistent docs index across `docs/tutorials`, `docs/how-to`, `docs/reference`, `docs/explanation`, `docs/architecture/decisions`, and `docs/quality`.
 - Contributor, support, security, and issue-intake documents now align more closely with the repository's current module map, release workflow, and best-effort maintainer support model.
+- Root governance now defines explicit review ownership through `.github/CODEOWNERS`, clearer scope/non-goal rules, and maintainer follow-up expectations.
+- README and contributor validation commands now include library-first compile aggregators so published modules are verified independently of sample hosts.
+- Governance drift validation now runs from `scripts/validate-governance-docs.sh` and CI/release audit flows.
+- Security audit coverage now checks release OIDC/provenance hardening and CodeQL coverage for the active `dev` branch.
+- Workflow jobs now use explicit unique check names, and the repository documents a stable protection/ruleset baseline for required status checks.
+- Root governance now includes `MAINTAINERS.md`, a dedicated architecture proposal issue form, and stronger issue-form intake requirements.
+- Label definitions now have an explicit SSoT in `.github/labels.yml`, with triage/reference docs and governance validation aligned to it.
 
 ### Deprecated
 

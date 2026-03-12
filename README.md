@@ -48,6 +48,20 @@ The long-term stable path is `semantics-first`:
 - preserve meaning in reduced/off modes
 - keep recipe metadata, docs metadata, and runtime spec in one SSoT
 
+## Scope and Non-Goals
+
+`canimation` is a semantic motion library for Compose Multiplatform.
+The project is intentionally optimized for reusable library behavior, accessibility-aware motion policy, and a documented migration path from effect-first APIs.
+
+Current non-goals:
+
+- becoming a generic design-system or component-kit replacement
+- supporting every possible animation style as stable public API
+- promising long-term maintenance for abandoned release lines
+- accepting architecture rewrites that bypass the documented migration path
+
+When a request is better handled by a wrapper, extension, fork, or showcase-only experiment, maintainers may direct it there instead of expanding the stable core.
+
 ## Current Repository Status
 
 This README describes the implementation that exists in the repository today.
@@ -478,6 +492,25 @@ Implementation notes:
   scales offset / scale / rotation channels down instead of dropping semantics entirely.
 - `PresetIntegrityAuditTest` verifies that reduced specs do not amplify motion.
 
+## Stability and Support Tiers
+
+Stable first-path surfaces:
+
+- `canimation-core`
+- `canimation-runtime`
+- `canimation-semantics`
+- `canimation-recipes`
+- `canimation-a11y`
+
+Lifecycle-isolated surfaces:
+
+- `canimation-compat` for migration and deprecation paths
+- `canimation-experimental` for opt-in unstable APIs
+- `canimation-diagnostics` and platform adapter modules for advanced or boundary-specific integration
+
+Operational support is strongest on `main` and the latest release tag.
+See [SUPPORT.md](SUPPORT.md) for supported lines, tooling baseline, and support expectations.
+
 ## Modules
 
 | Module | Description |
@@ -520,12 +553,13 @@ component demos organized in an Atomic Design hierarchy (Atoms, Molecules, Organ
 The repository's current baseline validation is centered on the same commands used in CI:
 
 ```bash
-./gradlew allTests :composeApp:compileKotlinJvm --max-workers=2 --no-daemon
-./gradlew :composeApp:compileKotlinWasmJs --max-workers=2 --no-daemon
-./gradlew :androidApp:assembleDebug --max-workers=2 --no-daemon
+./gradlew allTests compileLibraryAndroid compileLibraryJvm --max-workers=2 --no-daemon
+./gradlew compileLibraryApple compileLibraryWeb --max-workers=2 --no-daemon
+./gradlew :composeApp:compileKotlinJvm :composeApp:compileKotlinWasmJs :androidApp:assembleDebug --max-workers=2 --no-daemon
 ./gradlew releaseReadiness --max-workers=2 --no-daemon
 bash scripts/security-audit.sh
 bash scripts/validate-workflows.sh
+bash scripts/validate-governance-docs.sh
 ```
 
 > **Note:** Kotlin Gradle Plugin 2.3.0 currently emits JS/Wasm npm aggregation warnings during
@@ -552,15 +586,19 @@ See `.github/workflows/ci.yml` for the current validation shape.
 | [Semantic Taxonomy](docs/reference/semantics/taxonomy.md) | Stable motion classification |
 | [Descriptor Schema](docs/reference/recipes/descriptor-schema.md) | Recipe SSoT schema |
 | [API Migration Policy](docs/reference/api/migration-policy.md) | Stable path and compatibility migration |
+| [Triage And Label Taxonomy](docs/reference/governance/triage-and-label-taxonomy.md) | Intake paths, label classes, and triage baseline |
 | [Consumer App Structure](docs/reference/showcase/consumer-app-structure.md) | Showcase and consumer-app conventions |
 | [A11y Tier 1 Validation](docs/quality/accessibility/tier-1-validation.md) | Policy level validation matrix |
 | [A11y Tier 2 Compatibility](docs/quality/accessibility/tier-2-platform-compatibility.md) | Platform-specific a11y integration |
 | [Guideline Index](guideline/README.md) | Repository-wide implementation and review rules |
 | [Release Versioning Policy](docs/reference/release/versioning-policy.md) | SemVer & release tag conventions |
+| [Repository Protection Baseline](docs/reference/release/repository-protection-baseline.md) | Expected ruleset, owner-review, and required-check baseline |
 | [Contributing Guide](CONTRIBUTING.md) | Development flow, validation commands, and PR expectations |
+| [Maintainers](MAINTAINERS.md) | Maintainer roles, review ownership, and public follow-up expectations |
 | [Code of Conduct](CODE_OF_CONDUCT.md) | Community participation expectations |
 | [Security Policy](SECURITY.md) | Vulnerability reporting and support policy |
 | [Support Policy](SUPPORT.md) | Supported lines, expectations, and support boundaries |
+| [CODEOWNERS](.github/CODEOWNERS) | Review ownership for architecture, workflow, and governance changes |
 | [Issue Templates](.github/ISSUE_TEMPLATE/) | Bug, feature, docs, and question intake |
 | [License](LICENSE) | Apache License 2.0 text |
 
@@ -571,6 +609,7 @@ Contributions are welcome. Start with [CONTRIBUTING.md](CONTRIBUTING.md), then r
 Use [SECURITY.md](SECURITY.md) for sensitive reports and follow [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) in all project spaces.
 
 Operational support boundaries are documented in [SUPPORT.md](SUPPORT.md).
+Maintainer review ownership and roles are documented in [MAINTAINERS.md](MAINTAINERS.md).
 
 ## Acknowledgements
 

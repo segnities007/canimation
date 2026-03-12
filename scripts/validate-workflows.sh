@@ -129,6 +129,97 @@ PY
   fi
 }
 
+collect_workflow_job_names() {
+  python3 - <<'PY'
+from pathlib import Path
+import re
+
+for path in sorted(Path('.github/workflows').glob('*.yml')):
+    lines = path.read_text().splitlines()
+    in_jobs = False
+    current_job = None
+    current_name = None
+
+    def flush_current():
+        if current_job is not None:
+            effective_name = current_name if current_name is not None else current_job
+            explicit = 'yes' if current_name is not None else 'no'
+            print(f"{path}\t{current_job}\t{effective_name}\t{explicit}")
+
+    for line in lines:
+        if not in_jobs:
+            if re.match(r'^jobs:\s*$', line):
+                in_jobs = True
+            continue
+
+        if re.match(r'^[^ ]', line):
+            break
+
+        match = re.match(r'^  ([A-Za-z0-9_-]+):\s*$', line)
+        if match:
+            flush_current()
+            current_job = match.group(1)
+            current_name = None
+            continue
+
+        if current_job is not None:
+            name_match = re.match(r'^    name:\s*(.+?)\s*$', line)
+            if name_match:
+                value = name_match.group(1).strip()
+                if (value.startswith('"') and value.endswith('"')) or (value.startswith("'") and value.endswith("'")):
+                    value = value[1:-1]
+                current_name = value
+
+    flush_current()
+PY
+}
+
+check_unique_explicit_job_names() {
+  local job_names
+  local duplicate_file
+  job_names="$(collect_workflow_job_names)"
+  duplicate_file="${FINDINGS_FILE}.dup"
+
+  if [ -z "$job_names" ]; then
+    record_error "ERROR: no workflow jobs were collected for unique-name validation"
+    return
+  fi
+
+  while IFS=$'\t' read -r file job_name effective_name explicit_flag; do
+    [ -n "$file" ] || continue
+    if [ "$explicit_flag" != "yes" ]; then
+      record_error "ERROR: Workflow job '$job_name' must declare an explicit unique name in $file"
+    fi
+  done <<< "$job_names"
+
+  python3 - "$job_names" <<'PY' > "$duplicate_file"
+import collections
+import sys
+
+entries = [line for line in sys.argv[1].splitlines() if line.strip()]
+by_name = collections.defaultdict(list)
+
+for entry in entries:
+    file, job, effective_name, explicit = entry.split('\t')
+    by_name[effective_name].append((file, job))
+
+for effective_name, locations in sorted(by_name.items()):
+    if len(locations) <= 1:
+        continue
+    joined = ', '.join(f"{file}:{job}" for file, job in locations)
+    print(f"{effective_name} -> {joined}")
+PY
+
+  if [ -s "$duplicate_file" ]; then
+    while IFS= read -r finding; do
+      [ -n "$finding" ] || continue
+      record_error "ERROR: Workflow job names must be unique across workflows: $finding"
+    done < "$duplicate_file"
+  fi
+
+  rm -f "$duplicate_file"
+}
+
 write_report() {
   python3 - "$REPORT_FILE" "$FINDINGS_FILE" "$ERRORS" <<'PY'
 from pathlib import Path
@@ -161,6 +252,7 @@ report = {
         "expected runner family",
         "checkout persist-credentials=false",
         "third-party action full SHA pinning",
+        "explicit unique workflow job names",
     ],
     "findings": findings,
 }
@@ -301,6 +393,8 @@ if [ ! -f "$SETUP_BUILD_FILE" ]; then
 else
   check_sha_pins "$SETUP_BUILD_FILE"
 fi
+
+check_unique_explicit_job_names
 
 write_report
 rm -f "$FINDINGS_FILE"

@@ -27,10 +27,20 @@ Current repository reality matters:
 - security-sensitive report: use `SECURITY.md`, not a public issue
 - bug report: use `.github/ISSUE_TEMPLATE/bug-report.yml`
 - feature request: use `.github/ISSUE_TEMPLATE/feature-request.yml`
+- architecture or governance proposal: use `.github/ISSUE_TEMPLATE/architecture-proposal.yml`
 - documentation gap or drift: use `.github/ISSUE_TEMPLATE/docs-request.yml`
 - usage or support question: use `.github/ISSUE_TEMPLATE/question.yml`
 
 Before opening a large architecture, migration, or stable-public-API pull request, start with an issue so scope, acceptance criteria, and compatibility impact are visible before implementation starts.
+
+## Scope and Decision Rules
+
+- prefer changes that strengthen the documented semantics-first migration path
+- avoid speculative rewrites that create a second architecture beside the documented one
+- keep support, release, and workflow promises aligned with current maintainer capacity
+- if a request is better solved by an extension, fork, or showcase-only experiment, maintainers may redirect it there
+
+For architecture-significant changes, open an issue first, describe the target module boundary and compatibility story, and expect an ADR if the change affects stable architecture, workflow security posture, or public API tiering.
 
 ## Development Workflow
 
@@ -52,12 +62,13 @@ Before opening a large architecture, migration, or stable-public-API pull reques
 Run the repository checks that match your change before opening a pull request:
 
 ```bash
-./gradlew allTests :composeApp:compileKotlinJvm --max-workers=2 --no-daemon
-./gradlew :composeApp:compileKotlinWasmJs --max-workers=2 --no-daemon
-./gradlew :androidApp:assembleDebug --max-workers=2 --no-daemon
+./gradlew allTests compileLibraryAndroid compileLibraryJvm --max-workers=2 --no-daemon
+./gradlew compileLibraryApple compileLibraryWeb --max-workers=2 --no-daemon
+./gradlew :composeApp:compileKotlinJvm :composeApp:compileKotlinWasmJs :androidApp:assembleDebug --max-workers=2 --no-daemon
 ./gradlew releaseReadiness --max-workers=2 --no-daemon
 bash scripts/security-audit.sh
 bash scripts/validate-workflows.sh
+bash scripts/validate-governance-docs.sh
 ```
 
 Kotlin Gradle Plugin `2.3.0` currently emits JS/Wasm npm aggregation warnings during configuration.
@@ -72,10 +83,42 @@ If your change intentionally modifies the public library API, update the committ
 If you add or update external dependencies, refresh the committed Gradle verification metadata:
 
 ```bash
-./gradlew --write-verification-metadata sha256 allTests :composeApp:compileKotlinJvm --max-workers=2 --no-daemon
+./gradlew --write-verification-metadata sha256,pgp help
 ```
 
 If you touch workflow or script behavior, run the relevant script locally as part of your validation.
+
+## Labels and Issue Types
+
+The repository uses these label families as the default triage vocabulary:
+
+- type: `type:bug`, `type:feature`, `type:docs`, `type:question`, `type:security`
+- status: `status:needs-info`, `status:blocked`, `status:accepted`
+- priority: `priority:high`
+- onboarding: `good first issue`
+
+Issue templates map the main intake paths. If a report does not follow the right path, maintainers may redirect or close it after linking the correct template or policy document.
+Label definitions and triage semantics are documented in `docs/reference/governance/triage-and-label-taxonomy.md` and `.github/labels.yml`.
+
+## Response Expectations
+
+- maintainer replies are best effort, not SLA-backed
+- for normal issues and pull requests, a polite follow-up after 14 days without maintainer feedback is acceptable
+- repeated pings without new information may be closed as noise
+- architecture proposals should stay in public issue or PR discussion unless a private security path is required
+
+## Maintainer Review Ownership
+
+The repository currently routes owner review through `.github/CODEOWNERS`.
+Role ownership details live in `MAINTAINERS.md`.
+
+- stable public API and architecture changes: architecture maintainer review
+- release workflow or publish policy changes: release maintainer review
+- reduced-motion or accessibility contract changes: accessibility/performance review
+- platform adapter boundary changes: relevant platform review
+- security-sensitive workflow or secret-handling changes: security contact review
+
+At the moment these roles are fulfilled by the current repository owner, but the responsibility split is still documented so it can scale beyond a single maintainer.
 
 ## Pull Requests
 

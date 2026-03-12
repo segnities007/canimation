@@ -19,6 +19,7 @@
 - `CONTRIBUTING.md`
 - `SUPPORT.md`
 - `SECURITY.md`
+- `MAINTAINERS.md`
 - `CODE_OF_CONDUCT.md`
 - `CODEOWNERS`
 - `CHANGELOG.md`
@@ -114,6 +115,8 @@ owner review が必要な変更は self-merge を既定にしない。
 
 同一人物が兼務してもよいが、role と approval responsibility は分離して記述する。
 
+`MAINTAINERS.md` を role / review ownership / public follow-up expectation の root SSoT とする。
+
 ## Approval Rules
 
 - stable public API change
@@ -148,6 +151,7 @@ issue と PR は次の label class を既定にする。
 - support request と bug report を混在させない。
 - issue template で再現情報を先に集める。
 - architecture discussion は issue/discussion から始め、PR だけで完結させない。
+- label taxonomy の SSoT を明示し、issue form / labeler / docs で別定義しない。
 
 ## Review and Merge Policy
 
@@ -165,6 +169,8 @@ issue と PR は次の label class を既定にする。
 - third-party action は full SHA pin を既定にする。
 - reusable workflow と composite action を使い、CI の重複を減らす。
 - label / stale / issue form の automation は contributor の時間を節約する方向で使う。
+- required status checks 名は安定化し、workflow 間で衝突させない。
+- official repository の branch protection / ruleset baseline は stable doc から辿れるようにする。
 
 ## Public Communication Rule
 

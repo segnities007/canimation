@@ -16,30 +16,11 @@ FINDINGS_FILE="$(mktemp)"
 
 ensure_quality_dir "security"
 
-record_error() {
-  local message="$1"
-  echo "$message"
-  printf '%s\n' "$message" >> "$FINDINGS_FILE"
-  ERRORS=$((ERRORS + 1))
-}
-
 check_literal() {
   local file="$1"
   local literal="$2"
   local message="$3"
-  if [ ! -f "$file" ]; then
-    record_error "ERROR: required file is missing ($file)"
-    return
-  fi
-  if [ "$SEARCH_CMD" = "rg" ]; then
-    if ! rg -q --fixed-strings -- "$literal" "$file"; then
-      record_error "ERROR: $message ($file)"
-    fi
-  else
-    if ! grep -qF -- "$literal" "$file"; then
-      record_error "ERROR: $message ($file)"
-    fi
-  fi
+  check_literal_in_file "$file" "$literal" "$message" "$SEARCH_CMD" "$FINDINGS_FILE" ERRORS
 }
 
 search_regex() {
@@ -94,31 +75,9 @@ PY
 }
 
 write_report() {
-  python3 - "$REPORT_FILE" "$FINDINGS_FILE" "$ERRORS" <<'PY'
-from pathlib import Path
-import json
-import sys
-
-report_path = Path(sys.argv[1])
-findings_path = Path(sys.argv[2])
-error_count = int(sys.argv[3])
-findings = [line.strip() for line in findings_path.read_text().splitlines() if line.strip()]
-report = {
-    "result": "passed" if error_count == 0 else "failed",
-    "errorCount": error_count,
-    "auditedScopes": [
-        "dependency repositories",
-        "dependabot coverage",
-        "workflow security posture",
-        "Gradle verification metadata",
-        "Android manifest hardening",
-        "web security headers",
-        "secret pattern scan",
-    ],
-    "highRiskFindings": findings,
-}
-report_path.write_text(json.dumps(report, indent=2) + "\n")
-PY
+  local payload
+  payload='{"auditedScopes":["dependency repositories","dependabot coverage","workflow security posture","Gradle verification metadata","Android manifest hardening","web security headers","secret pattern scan"],"highRiskFindings":[]}'
+  write_json_report "$REPORT_FILE" "$FINDINGS_FILE" "$ERRORS" "$payload"
 }
 
 echo "== Security audit =="
@@ -137,10 +96,18 @@ check_literal ".github/workflows/codeql.yml" "github/codeql-action/init@" \
   "CodeQL init action must be configured"
 check_literal ".github/workflows/codeql.yml" "github/codeql-action/analyze@" \
   "CodeQL analyze action must be configured"
+check_literal ".github/workflows/codeql.yml" "branches: [main, dev]" \
+  "CodeQL must cover the active main and dev branches"
 check_literal ".github/workflows/labeler.yml" "actions/labeler@" \
   "Pull request labeler workflow must be configured"
 check_literal ".github/workflows/stale.yml" "actions/stale@" \
   "Stale management workflow must be configured"
+check_literal ".github/workflows/release.yml" "environment: release" \
+  "Release publishing must target the protected release environment"
+check_literal ".github/workflows/release.yml" "id-token: write" \
+  "Release publishing must request OIDC token permissions"
+check_literal ".github/workflows/release.yml" "actions/attest-build-provenance@" \
+  "Release workflow must attest publication provenance"
 check_literal ".github/dependency-review-config.yml" "fail-on-severity: moderate" \
   "Dependency review must fail on at least moderate severity"
 check_literal "gradle/verification-metadata.xml" "<verification-metadata" \
