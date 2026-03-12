@@ -30,6 +30,8 @@ bash scripts/security-audit.sh
   - Dependabot coverage for Gradle and GitHub Actions
   - dependency review policy in `.github/dependency-review-config.yml`
   - dependency verification metadata presence
+  - release workflow OIDC permission, protected environment usage, and provenance attestation
+  - CodeQL coverage for the active `main` and `dev` branches
   - Android manifest hardening flags
   - web entrypoint CSP / Permissions-Policy / referrer policy
 - workflow presence for dependency review, CodeQL, labeler, and stale management
@@ -43,6 +45,7 @@ bash scripts/security-audit.sh
 ## Known Limitations
 
 - this summary reflects repository-file checks only and does not prove external GitHub security settings such as secret scanning, private vulnerability reporting, or ruleset enforcement
+- intended GitHub-side protection baseline is documented separately in `docs/reference/release/repository-protection-baseline.md`
 
 ## Last Updated Trigger
 

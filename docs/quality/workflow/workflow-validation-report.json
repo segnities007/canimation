@@ -19,7 +19,8 @@
     "job-level permissions",
     "expected runner family",
     "checkout persist-credentials=false",
-    "third-party action full SHA pinning"
+    "third-party action full SHA pinning",
+    "explicit unique workflow job names"
   ],
   "findings": []
 }

@@ -36,7 +36,7 @@ If you are changing architecture or governance:
 - `docs/quality/`
   - accessibility, compatibility, performance, workflow, and security evidence
 
-Stable rules live in `guideline/`. Root governance documents such as `README.md`, `CONTRIBUTING.md`, `SUPPORT.md`, and `SECURITY.md` define contributor and maintainer contracts.
+Stable rules live in `guideline/`. Root governance documents such as `README.md`, `CONTRIBUTING.md`, `SUPPORT.md`, `SECURITY.md`, `MAINTAINERS.md`, `CODE_OF_CONDUCT.md`, and `.github/CODEOWNERS` define contributor and maintainer contracts.
 
 Dated proposals or working notes are not stable SSoT. Promote accepted content into `docs/`, `guideline/`, or an ADR.
 
@@ -47,6 +47,8 @@ Dated proposals or working notes are not stable SSoT. Promote accepted content i
 - `docs/reference/semantics/taxonomy.md`
 - `docs/reference/recipes/descriptor-schema.md`
 - `docs/reference/api/migration-policy.md`
+- `docs/reference/governance/triage-and-label-taxonomy.md`
 - `docs/reference/release/versioning-policy.md`
+- `docs/reference/release/repository-protection-baseline.md`
 - `docs/quality/README.md`
 - `docs/architecture/decisions/README.md`

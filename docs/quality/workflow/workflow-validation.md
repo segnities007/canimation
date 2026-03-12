@@ -14,6 +14,7 @@ workflow と release automation の validation 結果を stable path に残す�
 
 ```bash
 bash scripts/validate-workflows.sh
+bash scripts/validate-governance-docs.sh
 ```
 
 ## Required Inputs
@@ -35,21 +36,40 @@ bash scripts/validate-workflows.sh
   - `labeler.yml`
   - `stale.yml`
   - `.github/actions/setup-build/action.yml`
+- audited governance-doc surface includes:
+  - `README.md`
+  - `CONTRIBUTING.md`
+  - `SUPPORT.md`
+  - `SECURITY.md`
+  - `.github/CODEOWNERS`
+  - `.github/PULL_REQUEST_TEMPLATE.md`
+  - `docs/explanation/architecture/implementation-overview.md`
 - expected validation checks:
   - top-level permissions block
   - top-level concurrency block
   - expected job presence
   - job-level permissions block
+  - explicit unique workflow job names
   - expected runner family
   - `actions/checkout` uses `persist-credentials: false`
   - third-party actions are pinned to full SHAs
+  - governance docs retain aligned validation commands and review-ownership links
+  - `SUPPORT.md` tooling baseline stays aligned with repository source-of-truth files
+- CI build jobs additionally verify publishable library compile aggregators before sample-host compiles:
+  - `compileLibraryAndroid`
+  - `compileLibraryJvm`
+  - `compileLibraryApple`
+  - `compileLibraryWeb`
+- browser-based Kotlin/JS and Wasm tests rely on module-local Karma overrides in `composeApp/karma.config.d/`
 - machine-readable artifacts:
   - `docs/quality/workflow/workflow-validation-report.json`
+  - `docs/quality/workflow/governance-docs-validation-report.json`
   - `docs/quality/workflow/flake-rate.json`
 
 ## Known Limitations
 
 - validation is repository-shape based and does not prove GitHub-side branch protection or ruleset enforcement
+- intended GitHub-side baseline is documented in `docs/reference/release/repository-protection-baseline.md`
 
 ## Last Updated Trigger
 

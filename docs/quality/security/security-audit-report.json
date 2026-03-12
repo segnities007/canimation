@@ -10,5 +10,6 @@
     "web security headers",
     "secret pattern scan"
   ],
-  "highRiskFindings": []
+  "highRiskFindings": [],
+  "findings": []
 }
