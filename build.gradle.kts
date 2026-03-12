@@ -31,117 +31,274 @@ data class PublishedModuleMetadata(
     val description: String,
 )
 
+data class PublishedModuleVerification(
+    val androidCompileTask: String? = null,
+    val jvmCompileTask: String? = null,
+    val appleCompileTask: String? = null,
+    val webCompileTasks: List<String> = emptyList(),
+)
+
+data class PublishedModuleDefinition(
+    val path: String,
+    val metadata: PublishedModuleMetadata,
+    val verification: PublishedModuleVerification,
+)
+
 fun Project.moduleSourcePath(): String = projectDir.relativeTo(rootDir).invariantSeparatorsPath
 
-val publishableProjects =
+val publishedModules =
     listOf(
-        project(":canimation-core"),
-        project(":canimation-tokens"),
-        project(":canimation-primitives"),
-        project(":canimation-semantics"),
-        project(":canimation-recipes"),
-        project(":canimation-runtime"),
-        project(":canimation-presets"),
-        project(":canimation-a11y"),
-        project(":canimation-diagnostics"),
-        project(":canimation-test"),
-        project(":canimation-test-kit"),
-        project(":canimation-compat"),
-        project(":canimation-experimental"),
-        project(":canimation-platform-android"),
-        project(":canimation-platform-desktop"),
-        project(":canimation-platform-ios"),
-        project(":canimation-platform-web"),
+        PublishedModuleDefinition(
+            path = ":canimation-core",
+            metadata =
+                PublishedModuleMetadata(
+                    displayName = "canimation-core",
+                    description = "Core runtime APIs, provider state, and Compose modifier entry points for Canimation.",
+                ),
+            verification =
+                PublishedModuleVerification(
+                    androidCompileTask = ":canimation-core:compileAndroidMain",
+                    jvmCompileTask = ":canimation-core:compileKotlinJvm",
+                    appleCompileTask = ":canimation-core:compileKotlinIosSimulatorArm64",
+                    webCompileTasks = listOf(":canimation-core:compileKotlinJs", ":canimation-core:compileKotlinWasmJs"),
+                ),
+        ),
+        PublishedModuleDefinition(
+            path = ":canimation-tokens",
+            metadata =
+                PublishedModuleMetadata(
+                    displayName = "canimation-tokens",
+                    description = "Animation token source of truth for durations, easing, distance, and spring values.",
+                ),
+            verification =
+                PublishedModuleVerification(
+                    androidCompileTask = ":canimation-tokens:compileAndroidMain",
+                    jvmCompileTask = ":canimation-tokens:compileKotlinJvm",
+                    appleCompileTask = ":canimation-tokens:compileKotlinIosSimulatorArm64",
+                    webCompileTasks = listOf(":canimation-tokens:compileKotlinJs", ":canimation-tokens:compileKotlinWasmJs"),
+                ),
+        ),
+        PublishedModuleDefinition(
+            path = ":canimation-primitives",
+            metadata =
+                PublishedModuleMetadata(
+                    displayName = "canimation-primitives",
+                    description = "Primitive motion source of truth for effects, specs, and policy-level motion values.",
+                ),
+            verification =
+                PublishedModuleVerification(
+                    androidCompileTask = ":canimation-primitives:compileAndroidMain",
+                    jvmCompileTask = ":canimation-primitives:compileKotlinJvm",
+                    appleCompileTask = ":canimation-primitives:compileKotlinIosSimulatorArm64",
+                    webCompileTasks = listOf(":canimation-primitives:compileKotlinJs", ":canimation-primitives:compileKotlinWasmJs"),
+                ),
+        ),
+        PublishedModuleDefinition(
+            path = ":canimation-semantics",
+            metadata =
+                PublishedModuleMetadata(
+                    displayName = "canimation-semantics",
+                    description = "Semantic recipe source of truth for descriptor contracts, taxonomy, and registry behavior.",
+                ),
+            verification =
+                PublishedModuleVerification(
+                    androidCompileTask = ":canimation-semantics:compileAndroidMain",
+                    jvmCompileTask = ":canimation-semantics:compileKotlinJvm",
+                    appleCompileTask = ":canimation-semantics:compileKotlinIosSimulatorArm64",
+                    webCompileTasks = listOf(":canimation-semantics:compileKotlinJs", ":canimation-semantics:compileKotlinWasmJs"),
+                ),
+        ),
+        PublishedModuleDefinition(
+            path = ":canimation-recipes",
+            metadata =
+                PublishedModuleMetadata(
+                    displayName = "canimation-recipes",
+                    description = "Target-state first-party semantic recipe catalog and recipe access layer.",
+                ),
+            verification =
+                PublishedModuleVerification(
+                    androidCompileTask = ":canimation-recipes:compileAndroidMain",
+                    jvmCompileTask = ":canimation-recipes:compileKotlinJvm",
+                    appleCompileTask = ":canimation-recipes:compileKotlinIosSimulatorArm64",
+                    webCompileTasks = listOf(":canimation-recipes:compileKotlinJs", ":canimation-recipes:compileKotlinWasmJs"),
+                ),
+        ),
+        PublishedModuleDefinition(
+            path = ":canimation-runtime",
+            metadata =
+                PublishedModuleMetadata(
+                    displayName = "canimation-runtime",
+                    description = "Target-state runtime API for provider, modifier, visibility, and transitions.",
+                ),
+            verification =
+                PublishedModuleVerification(
+                    androidCompileTask = ":canimation-runtime:compileAndroidMain",
+                    jvmCompileTask = ":canimation-runtime:compileKotlinJvm",
+                    appleCompileTask = ":canimation-runtime:compileKotlinIosSimulatorArm64",
+                    webCompileTasks = listOf(":canimation-runtime:compileKotlinJs", ":canimation-runtime:compileKotlinWasmJs"),
+                ),
+        ),
+        PublishedModuleDefinition(
+            path = ":canimation-presets",
+            metadata =
+                PublishedModuleMetadata(
+                    displayName = "canimation-presets",
+                    description = "Preset registry and curated animation defaults for Canimation.",
+                ),
+            verification =
+                PublishedModuleVerification(
+                    androidCompileTask = ":canimation-presets:compileAndroidMain",
+                    jvmCompileTask = ":canimation-presets:compileKotlinJvm",
+                    appleCompileTask = ":canimation-presets:compileKotlinIosSimulatorArm64",
+                    webCompileTasks = listOf(":canimation-presets:compileKotlinJs", ":canimation-presets:compileKotlinWasmJs"),
+                ),
+        ),
+        PublishedModuleDefinition(
+            path = ":canimation-a11y",
+            metadata =
+                PublishedModuleMetadata(
+                    displayName = "canimation-a11y",
+                    description = "Accessibility and reduced-motion policy helpers for Canimation.",
+                ),
+            verification =
+                PublishedModuleVerification(
+                    androidCompileTask = ":canimation-a11y:compileAndroidMain",
+                    jvmCompileTask = ":canimation-a11y:compileKotlinJvm",
+                    appleCompileTask = ":canimation-a11y:compileKotlinIosSimulatorArm64",
+                    webCompileTasks = listOf(":canimation-a11y:compileKotlinJs", ":canimation-a11y:compileKotlinWasmJs"),
+                ),
+        ),
+        PublishedModuleDefinition(
+            path = ":canimation-diagnostics",
+            metadata =
+                PublishedModuleMetadata(
+                    displayName = "canimation-diagnostics",
+                    description = "Diagnostics overlays and frame-metrics helpers for Canimation.",
+                ),
+            verification =
+                PublishedModuleVerification(
+                    androidCompileTask = ":canimation-diagnostics:compileAndroidMain",
+                    jvmCompileTask = ":canimation-diagnostics:compileKotlinJvm",
+                    appleCompileTask = ":canimation-diagnostics:compileKotlinIosSimulatorArm64",
+                    webCompileTasks = listOf(":canimation-diagnostics:compileKotlinJs", ":canimation-diagnostics:compileKotlinWasmJs"),
+                ),
+        ),
+        PublishedModuleDefinition(
+            path = ":canimation-test",
+            metadata =
+                PublishedModuleMetadata(
+                    displayName = "canimation-test",
+                    description = "Test hosts and motion-testing utilities for Canimation consumers.",
+                ),
+            verification =
+                PublishedModuleVerification(
+                    androidCompileTask = ":canimation-test:compileAndroidMain",
+                    jvmCompileTask = ":canimation-test:compileKotlinJvm",
+                    appleCompileTask = ":canimation-test:compileKotlinIosSimulatorArm64",
+                    webCompileTasks = listOf(":canimation-test:compileKotlinJs", ":canimation-test:compileKotlinWasmJs"),
+                ),
+        ),
+        PublishedModuleDefinition(
+            path = ":canimation-test-kit",
+            metadata =
+                PublishedModuleMetadata(
+                    displayName = "canimation-test-kit",
+                    description = "Target-state testing surface for deterministic Canimation runtime tests.",
+                ),
+            verification =
+                PublishedModuleVerification(
+                    androidCompileTask = ":canimation-test-kit:compileAndroidMain",
+                    jvmCompileTask = ":canimation-test-kit:compileKotlinJvm",
+                    appleCompileTask = ":canimation-test-kit:compileKotlinIosSimulatorArm64",
+                    webCompileTasks = listOf(":canimation-test-kit:compileKotlinJs", ":canimation-test-kit:compileKotlinWasmJs"),
+                ),
+        ),
+        PublishedModuleDefinition(
+            path = ":canimation-compat",
+            metadata =
+                PublishedModuleMetadata(
+                    displayName = "canimation-compat",
+                    description = "Compatibility layer exposing effect-first and preset-first migration APIs.",
+                ),
+            verification =
+                PublishedModuleVerification(
+                    androidCompileTask = ":canimation-compat:compileAndroidMain",
+                    jvmCompileTask = ":canimation-compat:compileKotlinJvm",
+                    appleCompileTask = ":canimation-compat:compileKotlinIosSimulatorArm64",
+                    webCompileTasks = listOf(":canimation-compat:compileKotlinJs", ":canimation-compat:compileKotlinWasmJs"),
+                ),
+        ),
+        PublishedModuleDefinition(
+            path = ":canimation-experimental",
+            metadata =
+                PublishedModuleMetadata(
+                    displayName = "canimation-experimental",
+                    description = "Opt-in experimental motion surfaces isolated from the stable semantic API.",
+                ),
+            verification =
+                PublishedModuleVerification(
+                    androidCompileTask = ":canimation-experimental:compileAndroidMain",
+                    jvmCompileTask = ":canimation-experimental:compileKotlinJvm",
+                    appleCompileTask = ":canimation-experimental:compileKotlinIosSimulatorArm64",
+                    webCompileTasks = listOf(":canimation-experimental:compileKotlinJs", ":canimation-experimental:compileKotlinWasmJs"),
+                ),
+        ),
+        PublishedModuleDefinition(
+            path = ":canimation-platform-android",
+            metadata =
+                PublishedModuleMetadata(
+                    displayName = "canimation-platform-android",
+                    description = "Android platform adapters for system motion preference and diagnostics.",
+                ),
+            verification =
+                PublishedModuleVerification(
+                    androidCompileTask = ":canimation-platform-android:compileAndroidMain",
+                ),
+        ),
+        PublishedModuleDefinition(
+            path = ":canimation-platform-desktop",
+            metadata =
+                PublishedModuleMetadata(
+                    displayName = "canimation-platform-desktop",
+                    description = "Desktop JVM adapters for system motion preference and diagnostics.",
+                ),
+            verification =
+                PublishedModuleVerification(
+                    jvmCompileTask = ":canimation-platform-desktop:compileKotlinJvm",
+                ),
+        ),
+        PublishedModuleDefinition(
+            path = ":canimation-platform-ios",
+            metadata =
+                PublishedModuleMetadata(
+                    displayName = "canimation-platform-ios",
+                    description = "iOS adapters for system motion preference and diagnostics.",
+                ),
+            verification =
+                PublishedModuleVerification(
+                    appleCompileTask = ":canimation-platform-ios:compileKotlinIosSimulatorArm64",
+                ),
+        ),
+        PublishedModuleDefinition(
+            path = ":canimation-platform-web",
+            metadata =
+                PublishedModuleMetadata(
+                    displayName = "canimation-platform-web",
+                    description = "Web JS adapters for system motion preference and diagnostics.",
+                ),
+            verification =
+                PublishedModuleVerification(
+                    webCompileTasks = listOf(":canimation-platform-web:compileKotlinJs"),
+                ),
+        ),
     )
 
+val publishableProjects = publishedModules.map { module -> project(module.path) }
+
 val moduleMetadataByPath =
-    mapOf(
-        ":canimation-core" to
-            PublishedModuleMetadata(
-                displayName = "canimation-core",
-                description = "Core runtime APIs, provider state, and Compose modifier entry points for Canimation.",
-            ),
-        ":canimation-tokens" to
-            PublishedModuleMetadata(
-                displayName = "canimation-tokens",
-                description = "Animation token source of truth for durations, easing, distance, and spring values.",
-            ),
-        ":canimation-primitives" to
-            PublishedModuleMetadata(
-                displayName = "canimation-primitives",
-                description = "Primitive motion source of truth for effects, specs, and policy-level motion values.",
-            ),
-        ":canimation-semantics" to
-            PublishedModuleMetadata(
-                displayName = "canimation-semantics",
-                description = "Semantic recipe source of truth for descriptor contracts, taxonomy, and registry behavior.",
-            ),
-        ":canimation-recipes" to
-            PublishedModuleMetadata(
-                displayName = "canimation-recipes",
-                description = "Target-state first-party semantic recipe catalog and recipe access layer.",
-            ),
-        ":canimation-runtime" to
-            PublishedModuleMetadata(
-                displayName = "canimation-runtime",
-                description = "Target-state runtime API for provider, modifier, visibility, and transitions.",
-            ),
-        ":canimation-presets" to
-            PublishedModuleMetadata(
-                displayName = "canimation-presets",
-                description = "Preset registry and curated animation defaults for Canimation.",
-            ),
-        ":canimation-a11y" to
-            PublishedModuleMetadata(
-                displayName = "canimation-a11y",
-                description = "Accessibility and reduced-motion policy helpers for Canimation.",
-            ),
-        ":canimation-diagnostics" to
-            PublishedModuleMetadata(
-                displayName = "canimation-diagnostics",
-                description = "Diagnostics overlays and frame-metrics helpers for Canimation.",
-            ),
-        ":canimation-test" to
-            PublishedModuleMetadata(
-                displayName = "canimation-test",
-                description = "Test hosts and motion-testing utilities for Canimation consumers.",
-            ),
-        ":canimation-test-kit" to
-            PublishedModuleMetadata(
-                displayName = "canimation-test-kit",
-                description = "Target-state testing surface for deterministic Canimation runtime tests.",
-            ),
-        ":canimation-compat" to
-            PublishedModuleMetadata(
-                displayName = "canimation-compat",
-                description = "Compatibility layer exposing effect-first and preset-first migration APIs.",
-            ),
-        ":canimation-experimental" to
-            PublishedModuleMetadata(
-                displayName = "canimation-experimental",
-                description = "Opt-in experimental motion surfaces isolated from the stable semantic API.",
-            ),
-        ":canimation-platform-android" to
-            PublishedModuleMetadata(
-                displayName = "canimation-platform-android",
-                description = "Android platform adapters for system motion preference and diagnostics.",
-            ),
-        ":canimation-platform-desktop" to
-            PublishedModuleMetadata(
-                displayName = "canimation-platform-desktop",
-                description = "Desktop JVM adapters for system motion preference and diagnostics.",
-            ),
-        ":canimation-platform-ios" to
-            PublishedModuleMetadata(
-                displayName = "canimation-platform-ios",
-                description = "iOS adapters for system motion preference and diagnostics.",
-            ),
-        ":canimation-platform-web" to
-            PublishedModuleMetadata(
-                displayName = "canimation-platform-web",
-                description = "Web JS adapters for system motion preference and diagnostics.",
-            ),
-    )
+    publishedModules.associate { module ->
+        module.path to module.metadata
+    }
 
 group = providers.gradleProperty("group").get()
 version = providers.gradleProperty("version").get()
@@ -188,6 +345,30 @@ val checkLibraryAbi =
 val publishLibraryToMavenLocal =
     tasks.register("publishLibraryToMavenLocal") {
         dependsOn(publishableProjects.map { "${it.path}:publishToMavenLocal" })
+    }
+
+val compileLibraryAndroid =
+    tasks.register("compileLibraryAndroid") {
+        description = "Compiles Android library modules."
+        dependsOn(publishedModules.mapNotNull { module -> module.verification.androidCompileTask })
+    }
+
+val compileLibraryJvm =
+    tasks.register("compileLibraryJvm") {
+        description = "Compiles JVM library modules."
+        dependsOn(publishedModules.mapNotNull { module -> module.verification.jvmCompileTask })
+    }
+
+val compileLibraryApple =
+    tasks.register("compileLibraryApple") {
+        description = "Compiles Apple library modules."
+        dependsOn(publishedModules.mapNotNull { module -> module.verification.appleCompileTask })
+    }
+
+val compileLibraryWeb =
+    tasks.register("compileLibraryWeb") {
+        description = "Compiles JS and Wasm library modules."
+        dependsOn(publishedModules.flatMap { module -> module.verification.webCompileTasks })
     }
 
 tasks.register("releaseReadiness") {
