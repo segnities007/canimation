@@ -1,6 +1,7 @@
 package io.github.canimation.presets
 
 import io.github.canimation.core.CanimationCost
+import io.github.canimation.core.CanimationIntent
 import io.github.canimation.core.CanimationPreset
 import io.github.canimation.recipes.DefaultCanimationRecipeRegistry
 import kotlin.test.Test
@@ -53,5 +54,23 @@ class RecipeDescriptorIntegrityTest {
 
         assertTrue(merged.ids().any { it.value == "semantic.content.enter-subtle" })
         assertTrue(merged.ids().any { it.value == "preset.FadeUp" })
+    }
+
+    @Test
+    fun experimentalPresetDocsCarryDoNotUseGuidance() {
+        val descriptor = PresetsExtensionRegistry.descriptorFor(CanimationPreset.JackInTheBox)
+
+        assertEquals(CanimationIntent.Experimental, descriptor.semantic.intent)
+        assertNotNull(descriptor.docs.doNotUseWhen)
+        assertTrue(descriptor.docs.doNotUseWhen!!.isNotBlank())
+    }
+
+    @Test
+    fun feedbackPresetUsesAttentionFamilyAndControlSurfaceRole() {
+        val descriptor = PresetsExtensionRegistry.descriptorFor(CanimationPreset.Pulse)
+
+        assertEquals(CanimationIntent.Feedback, descriptor.semantic.intent)
+        assertEquals("Attention", descriptor.semantic.family)
+        assertEquals(io.github.canimation.core.CanimationSurfaceRole.Control, descriptor.semantic.surfaceRole)
     }
 }

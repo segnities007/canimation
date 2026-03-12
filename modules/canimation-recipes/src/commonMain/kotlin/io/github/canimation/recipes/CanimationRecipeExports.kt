@@ -60,7 +60,7 @@ val Canimation.Recovery: CanimationRecoveryRecipes
 val DefaultCanimationRecipeRegistry: CanimationRecipeRegistry =
     CoreDefaultCanimationRecipeRegistry.merge(
         PresetsExtensionRegistry.recipeRegistry,
-        CanimationRecipeRegistryMergePolicy.PreferHost,
+        CanimationRecipeRegistryMergePolicy.Fail,
     )
 
 fun defaultCanimationRecipeRegistry(

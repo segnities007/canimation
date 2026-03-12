@@ -30,4 +30,27 @@ class CanimationSemanticRecipeDescriptorTest {
         assertEquals(CanimationIntent.Surface, descriptor.semantic.intent)
         assertEquals(CanimationSurfaceRole.Overlay, descriptor.semantic.surfaceRole)
     }
+
+    @Test
+    fun exportedSemanticRecipesRemainRegistered() {
+        val exportedRecipes =
+            listOf(
+                Canimation.Content.EnterSubtle,
+                Canimation.Content.EnterStandard,
+                Canimation.Feedback.Press,
+                Canimation.Feedback.SelectionPulse,
+                Canimation.Navigation.Forward,
+                Canimation.Navigation.Backward,
+                Canimation.Surface.DialogReveal,
+                Canimation.Surface.SheetReveal,
+                Canimation.Emphasis.CallToAction,
+                Canimation.Transition.ContentSwap,
+                Canimation.Ambient.Highlight,
+                Canimation.Recovery.ErrorShake,
+            )
+
+        exportedRecipes.forEach { recipe ->
+            assertEquals(recipe.descriptor, DefaultCanimationRecipeRegistry.getValue(recipe.id))
+        }
+    }
 }

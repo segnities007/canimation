@@ -169,7 +169,14 @@ class CanimationRecipeRegistry(
                     "Duplicate recipe ids are not allowed: ${duplicates.joinToString { it.value }}",
                 )
 
-            CanimationRecipeRegistryMergePolicy.PreferHost -> this
+            CanimationRecipeRegistryMergePolicy.PreferHost ->
+                CanimationRecipeRegistry(
+                    descriptors +
+                        extension
+                            .all()
+                            .filterNot { descriptor -> descriptor.id in duplicates }
+                            .associateBy { descriptor -> descriptor.id },
+                )
             CanimationRecipeRegistryMergePolicy.PreferExtension ->
                 CanimationRecipeRegistry(descriptors + extension.all().associateBy { it.id })
         }

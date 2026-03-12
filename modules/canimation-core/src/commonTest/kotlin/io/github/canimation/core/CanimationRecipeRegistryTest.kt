@@ -29,6 +29,38 @@ class CanimationRecipeRegistryTest {
     }
 
     @Test
+    fun preferHostKeepsHostDescriptorAndAddsUniqueExtensionDescriptors() {
+        val duplicateId = Canimation.Content.EnterSubtle.id
+        val uniqueId = CanimationRecipeId("custom.unique")
+        val hostDescriptor = DefaultCanimationRecipeRegistry.getValue(duplicateId)
+        val extension =
+            CanimationRecipeRegistry(
+                mapOf(
+                    duplicateId to
+                        hostDescriptor.copy(
+                            docs = hostDescriptor.docs.copy(title = "Duplicate Override"),
+                        ),
+                    uniqueId to
+                        Canimation.Surface.DialogReveal.descriptor.copy(
+                            id = uniqueId,
+                            docs =
+                                Canimation.Surface.DialogReveal.descriptor.docs
+                                    .copy(title = "Unique Extension"),
+                        ),
+                ),
+            )
+
+        val merged =
+            DefaultCanimationRecipeRegistry.merge(
+                extension = extension,
+                policy = CanimationRecipeRegistryMergePolicy.PreferHost,
+            )
+
+        assertEquals(hostDescriptor, merged.getValue(duplicateId))
+        assertEquals("Unique Extension", merged.getValue(uniqueId).docs.title)
+    }
+
+    @Test
     fun registryResolveFallsBackToRecipeDescriptorWhenMissing() {
         val resolved = CanimationRecipeRegistry.Empty.resolve(Canimation.Content.EnterSubtle)
 

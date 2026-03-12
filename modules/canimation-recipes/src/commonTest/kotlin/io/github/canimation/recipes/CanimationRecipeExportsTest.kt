@@ -21,6 +21,7 @@ import io.github.canimation.core.CanimationSurfaceRole
 import io.github.canimation.core.EasingTokens
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertFailsWith
 import kotlin.test.assertTrue
 
 class CanimationRecipeExportsTest {
@@ -59,6 +60,13 @@ class CanimationRecipeExportsTest {
             PresetsExtensionRegistry.descriptorFor(CanimationPreset.FadeUp),
             registry.getValue(CanimationRecipeId("preset.FadeUp")),
         )
+    }
+
+    @Test
+    fun defaultRegistryRejectsDuplicatePresetIdsByDefault() {
+        assertFailsWith<IllegalStateException> {
+            defaultCanimationRecipeRegistry(customRegistry("preset.FadeUp", title = "Duplicate"))
+        }
     }
 
     @Test

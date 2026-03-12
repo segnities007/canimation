@@ -12,8 +12,10 @@ import io.github.canimation.core.PresetRegistry
  * SSoT: Built-in preset specs are defined in this module via [defaultPresetSpecs].
  */
 object PresetsExtensionRegistry {
+    private val builtInPresetRegistry: PresetRegistry = PresetRegistry.builtIns(defaultPresetSpecs)
+
     init {
-        PresetRegistry.installDefaults(defaultPresetSpecs)
+        PresetRegistry.installBuiltIns(builtInPresetRegistry)
     }
 
     /**
@@ -46,5 +48,5 @@ object PresetsExtensionRegistry {
      * @param additional Additional presets to register. These override defaults if keys conflict.
      */
     fun createExtendedRegistry(additional: Map<CanimationPreset, CanimationPresetSpec> = emptyMap()): PresetRegistry =
-        PresetRegistry.create(specs = defaultPresetSpecs + additional)
+        builtInPresetRegistry.withOverrides(additional)
 }
