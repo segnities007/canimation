@@ -54,12 +54,14 @@ fun PresetGalleryScreen(
     val uiState = stateHolder.uiState
 
     val allPresetSpecs = PresetsExtensionRegistry.allPresetSpecs
+    val presetEntries =
+        remember(allPresetSpecs) {
+            buildPresetGalleryEntries(allPresetSpecs)
+        }
 
-    val filteredPresets =
-        remember(allPresetSpecs, uiState.motionFilter) {
-            CanimationPreset.entries.filter { preset ->
-                matchesMotionFilter(allPresetSpecs.getValue(preset).fullEnter, uiState.motionFilter)
-            }
+    val filteredPresetEntries =
+        remember(presetEntries, uiState.motionFilter) {
+            filterPresetGalleryEntries(presetEntries, uiState.motionFilter)
         }
 
     Box(
@@ -90,7 +92,7 @@ fun PresetGalleryScreen(
                             ),
                     )
                     Text(
-                        text = stringResource(Res.string.gallery_presets_count, CanimationPreset.entries.size),
+                        text = stringResource(Res.string.gallery_presets_count, presetEntries.size),
                         style = MaterialTheme.typography.headlineMedium,
                         fontWeight = FontWeight.Bold,
                         modifier =
@@ -130,18 +132,18 @@ fun PresetGalleryScreen(
                 }
             }
 
-            items(filteredPresets, key = { it.name }) { preset ->
+            items(filteredPresetEntries, key = { it.preset.name }) { entry ->
                 val visible =
                     rememberReplayVisibility(
-                        replayKey = preset.name,
+                        replayKey = entry.preset.name,
                         resetDurationMillis = 0L,
                     )
                 Box(Modifier.canimation(visible = visible, effect = Canimation.Fade.Up)) {
                     AnimationShowcase(
-                        title = presetDescription(preset),
-                        preset = preset,
-                        baseSpec = allPresetSpecs.getValue(preset),
-                        descriptor = PresetsExtensionRegistry.descriptorFor(preset),
+                        title = entry.summary,
+                        preset = entry.preset,
+                        baseSpec = entry.baseSpec,
+                        descriptor = PresetsExtensionRegistry.descriptorFor(entry.preset),
                         tuning = tuning,
                         autoPlayEnabled = autoPlayEnabled,
                         autoPlayTick = autoPlayTick,
@@ -173,7 +175,7 @@ private fun CodeSampleDialog(
     onDismiss: () -> Unit,
 ) {
     val clipboardWriter = rememberClipboardTextWriter()
-    val codeSample = remember(preset, spec) { buildPresetCodeSample(preset, spec) }
+    val codeSample = remember(preset, spec) { buildPresetGalleryCodeSample(preset, spec) }
     val dialogVisible =
         rememberReplayVisibility(
             replayKey = preset,

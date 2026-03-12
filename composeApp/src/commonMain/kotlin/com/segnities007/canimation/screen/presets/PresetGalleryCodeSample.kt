@@ -6,7 +6,7 @@ import io.github.canimation.core.CanimationSpec
 import kotlin.math.abs
 import kotlin.math.roundToInt
 
-internal fun buildPresetCodeSample(
+internal fun buildPresetGalleryCodeSample(
     preset: CanimationPreset,
     spec: CanimationPresetSpec,
 ): String {

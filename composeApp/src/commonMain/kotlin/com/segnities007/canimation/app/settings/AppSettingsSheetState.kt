@@ -18,18 +18,43 @@ internal data class AppSettingsSheetState(
     val diagnosticsEnabled: Boolean,
 )
 
-internal data class AppSettingsSheetActions(
-    val onToggleDark: () -> Unit,
-    val onPolicyChange: (CanimationPolicy) -> Unit,
-    val onAutoPlayChange: (Boolean) -> Unit,
-    val onCycleMsChange: (Float) -> Unit,
-    val onDurationScaleChange: (Float) -> Unit,
-    val onDistanceScaleChange: (Float) -> Unit,
-    val onScaleIntensityChange: (Float) -> Unit,
-    val onRotationScaleChange: (Float) -> Unit,
-    val onResetParams: () -> Unit,
-    val onDiagnosticsEnabledChange: (Boolean) -> Unit,
-)
+internal sealed interface AppSettingsSheetEvent {
+    data object DarkModeToggled : AppSettingsSheetEvent
+
+    data class PolicyChanged(
+        val policy: CanimationPolicy,
+    ) : AppSettingsSheetEvent
+
+    data class AutoPlayEnabledChanged(
+        val enabled: Boolean,
+    ) : AppSettingsSheetEvent
+
+    data class CycleMsChanged(
+        val value: Float,
+    ) : AppSettingsSheetEvent
+
+    data class DurationScaleChanged(
+        val value: Float,
+    ) : AppSettingsSheetEvent
+
+    data class DistanceScaleChanged(
+        val value: Float,
+    ) : AppSettingsSheetEvent
+
+    data class ScaleIntensityChanged(
+        val value: Float,
+    ) : AppSettingsSheetEvent
+
+    data class RotationScaleChanged(
+        val value: Float,
+    ) : AppSettingsSheetEvent
+
+    data object PreviewTuningReset : AppSettingsSheetEvent
+
+    data class DiagnosticsEnabledChanged(
+        val enabled: Boolean,
+    ) : AppSettingsSheetEvent
+}
 
 internal fun AppUiState.toAppSettingsSheetState(
     isDarkMode: Boolean,
@@ -48,18 +73,22 @@ internal fun AppUiState.toAppSettingsSheetState(
         diagnosticsEnabled = diagnosticsEnabled,
     )
 
-internal fun AppStateHolder.appSettingsSheetActions(isDarkMode: Boolean): AppSettingsSheetActions =
-    AppSettingsSheetActions(
-        onToggleDark = {
-            onEvent(AppEvent.DarkOverrideChanged(!isDarkMode))
+internal fun AppStateHolder.onAppSettingsSheetEvent(
+    event: AppSettingsSheetEvent,
+    isDarkMode: Boolean,
+) {
+    onEvent(
+        when (event) {
+            AppSettingsSheetEvent.DarkModeToggled -> AppEvent.DarkOverrideChanged(!isDarkMode)
+            is AppSettingsSheetEvent.PolicyChanged -> AppEvent.PolicyChanged(event.policy)
+            is AppSettingsSheetEvent.AutoPlayEnabledChanged -> AppEvent.AutoPlayEnabledChanged(event.enabled)
+            is AppSettingsSheetEvent.CycleMsChanged -> AppEvent.CycleMsChanged(event.value)
+            is AppSettingsSheetEvent.DurationScaleChanged -> AppEvent.DurationScaleChanged(event.value)
+            is AppSettingsSheetEvent.DistanceScaleChanged -> AppEvent.DistanceScaleChanged(event.value)
+            is AppSettingsSheetEvent.ScaleIntensityChanged -> AppEvent.ScaleIntensityChanged(event.value)
+            is AppSettingsSheetEvent.RotationScaleChanged -> AppEvent.RotationScaleChanged(event.value)
+            AppSettingsSheetEvent.PreviewTuningReset -> AppEvent.PreviewTuningReset
+            is AppSettingsSheetEvent.DiagnosticsEnabledChanged -> AppEvent.DiagnosticsEnabledChanged(event.enabled)
         },
-        onPolicyChange = { onEvent(AppEvent.PolicyChanged(it)) },
-        onAutoPlayChange = { onEvent(AppEvent.AutoPlayEnabledChanged(it)) },
-        onCycleMsChange = { onEvent(AppEvent.CycleMsChanged(it)) },
-        onDurationScaleChange = { onEvent(AppEvent.DurationScaleChanged(it)) },
-        onDistanceScaleChange = { onEvent(AppEvent.DistanceScaleChanged(it)) },
-        onScaleIntensityChange = { onEvent(AppEvent.ScaleIntensityChanged(it)) },
-        onRotationScaleChange = { onEvent(AppEvent.RotationScaleChanged(it)) },
-        onResetParams = { onEvent(AppEvent.PreviewTuningReset) },
-        onDiagnosticsEnabledChange = { onEvent(AppEvent.DiagnosticsEnabledChanged(it)) },
     )
+}

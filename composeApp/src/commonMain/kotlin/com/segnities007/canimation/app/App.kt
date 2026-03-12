@@ -11,7 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.segnities007.canimation.app.settings.SettingsBottomSheet
-import com.segnities007.canimation.app.settings.appSettingsSheetActions
+import com.segnities007.canimation.app.settings.onAppSettingsSheetEvent
 import com.segnities007.canimation.app.settings.toAppSettingsSheetState
 import com.segnities007.canimation.app.shell.AppTopBar
 import com.segnities007.canimation.app.shell.navigateTopBarDestination
@@ -97,7 +97,9 @@ internal fun CanimationApp() {
                             isDarkMode = isDarkMode,
                             showPresetTuning = isOnPresetGallery,
                         ),
-                    actions = stateHolder.appSettingsSheetActions(isDarkMode = isDarkMode),
+                    onEvent = { event ->
+                        stateHolder.onAppSettingsSheetEvent(event = event, isDarkMode = isDarkMode)
+                    },
                     onDismiss = {
                         stateHolder.onEvent(AppEvent.SettingsVisibilityChanged(false))
                     },

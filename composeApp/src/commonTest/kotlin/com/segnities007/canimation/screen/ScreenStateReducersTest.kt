@@ -3,7 +3,8 @@ package com.segnities007.canimation.screen
 import androidx.compose.animation.core.LinearEasing
 import com.segnities007.canimation.app.settings.AppSettingsSheetStageEvent
 import com.segnities007.canimation.app.settings.AppSettingsSheetStageState
-import com.segnities007.canimation.app.settings.appSettingsSheetActions
+import com.segnities007.canimation.app.settings.AppSettingsSheetEvent
+import com.segnities007.canimation.app.settings.onAppSettingsSheetEvent
 import com.segnities007.canimation.app.settings.reduceAppSettingsSheetStageState
 import com.segnities007.canimation.app.settings.toAppSettingsSheetState
 import com.segnities007.canimation.app.state.AppEvent
@@ -24,8 +25,8 @@ import com.segnities007.canimation.screen.home.reduceHomeState
 import com.segnities007.canimation.screen.presets.MotionFilter
 import com.segnities007.canimation.screen.presets.PresetGalleryEvent
 import com.segnities007.canimation.screen.presets.PresetGalleryUiState
-import com.segnities007.canimation.screen.presets.buildPresetCodeSample
-import com.segnities007.canimation.screen.presets.matchesMotionFilter
+import com.segnities007.canimation.screen.presets.buildPresetGalleryCodeSample
+import com.segnities007.canimation.screen.presets.matches
 import com.segnities007.canimation.screen.presets.reducePresetGalleryState
 import io.github.canimation.core.CanimationPolicy
 import io.github.canimation.core.CanimationPreset
@@ -90,13 +91,18 @@ class ScreenStateReducersTest {
     }
 
     @Test
-    fun appSettingsSheetActionsDispatchIntoAppStateHolder() {
+    fun appSettingsSheetEventsDispatchIntoAppStateHolder() {
         val stateHolder = AppStateHolder()
-        val actions = stateHolder.appSettingsSheetActions(isDarkMode = true)
 
-        actions.onToggleDark()
-        actions.onPolicyChange(CanimationPolicy.AlwaysOff)
-        actions.onDiagnosticsEnabledChange(true)
+        stateHolder.onAppSettingsSheetEvent(AppSettingsSheetEvent.DarkModeToggled, isDarkMode = true)
+        stateHolder.onAppSettingsSheetEvent(
+            AppSettingsSheetEvent.PolicyChanged(CanimationPolicy.AlwaysOff),
+            isDarkMode = true,
+        )
+        stateHolder.onAppSettingsSheetEvent(
+            AppSettingsSheetEvent.DiagnosticsEnabledChanged(true),
+            isDarkMode = true,
+        )
 
         assertEquals(false, stateHolder.uiState.darkOverride)
         assertEquals(CanimationPolicy.AlwaysOff, stateHolder.uiState.policy)
@@ -166,8 +172,8 @@ class ScreenStateReducersTest {
                 rotation = CanimationRange(from = -30f, to = 0f),
             )
 
-        assertTrue(matchesMotionFilter(rotationOnly, MotionFilter.Rotation))
-        assertFalse(matchesMotionFilter(rotationOnly, MotionFilter.Scale))
+        assertTrue(MotionFilter.Rotation.matches(rotationOnly))
+        assertFalse(MotionFilter.Scale.matches(rotationOnly))
     }
 
     @Test
@@ -186,7 +192,7 @@ class ScreenStateReducersTest {
                 reducedExit = spec,
             )
 
-        val snippet = buildPresetCodeSample(CanimationPreset.FadeUp, presetSpec)
+        val snippet = buildPresetGalleryCodeSample(CanimationPreset.FadeUp, presetSpec)
 
         assertTrue(snippet.contains("CanimationPreset.FadeUp"))
         assertTrue(snippet.contains("Modifier.canimationTransition"))
