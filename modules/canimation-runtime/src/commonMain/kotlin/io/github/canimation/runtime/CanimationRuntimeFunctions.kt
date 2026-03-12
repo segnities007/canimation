@@ -20,7 +20,7 @@ import io.github.canimation.core.canimationTransition as coreCanimationTransitio
 fun CanimationProvider(
     tokens: CanimationTokens = CanimationTokens.Default,
     policy: CanimationPolicy = CanimationPolicy.SystemAware,
-    presetRegistry: PresetRegistry = PresetRegistry.Default,
+    presetRegistry: PresetRegistry = DefaultCanimationPresetRegistry,
     recipeRegistry: CanimationRecipeRegistry = DefaultCanimationRecipeRegistry,
     systemReducedMotion: Boolean? = null,
     content: @Composable () -> Unit,

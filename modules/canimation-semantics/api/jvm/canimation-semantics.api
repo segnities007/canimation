@@ -47,6 +47,7 @@ public final class io/github/canimation/core/CanimationRecipe {
 }
 
 public final class io/github/canimation/core/CanimationRecipeAccessibility {
+	public static final field $stable I
 	public fun <init> (Lio/github/canimation/core/CanimationReducedStrategy;ZLjava/lang/String;)V
 	public synthetic fun <init> (Lio/github/canimation/core/CanimationReducedStrategy;ZLjava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Lio/github/canimation/core/CanimationReducedStrategy;
@@ -63,6 +64,7 @@ public final class io/github/canimation/core/CanimationRecipeAccessibility {
 }
 
 public final class io/github/canimation/core/CanimationRecipeDescriptor {
+	public static final field $stable I
 	public synthetic fun <init> (Ljava/lang/String;Lio/github/canimation/core/CanimationRecipeSemantic;Lio/github/canimation/core/CanimationRecipeAccessibility;Lio/github/canimation/core/CanimationRecipePerformance;Lio/github/canimation/core/CanimationRecipeDocs;Lio/github/canimation/core/CanimationRecipeSpecSet;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1-PQFwi3Q ()Ljava/lang/String;
 	public final fun component2 ()Lio/github/canimation/core/CanimationRecipeSemantic;
@@ -84,6 +86,7 @@ public final class io/github/canimation/core/CanimationRecipeDescriptor {
 }
 
 public final class io/github/canimation/core/CanimationRecipeDocs {
+	public static final field $stable I
 	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/Set;)V
 	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/Set;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Ljava/lang/String;
@@ -118,6 +121,7 @@ public final class io/github/canimation/core/CanimationRecipeId {
 }
 
 public final class io/github/canimation/core/CanimationRecipePerformance {
+	public static final field $stable I
 	public fun <init> (Lio/github/canimation/core/CanimationCost;ZZLjava/lang/String;)V
 	public synthetic fun <init> (Lio/github/canimation/core/CanimationCost;ZZLjava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Lio/github/canimation/core/CanimationCost;
@@ -136,6 +140,7 @@ public final class io/github/canimation/core/CanimationRecipePerformance {
 }
 
 public final class io/github/canimation/core/CanimationRecipeRegistry {
+	public static final field $stable I
 	public static final field Companion Lio/github/canimation/core/CanimationRecipeRegistry$Companion;
 	public fun <init> (Ljava/util/Map;)V
 	public final fun all ()Ljava/util/Collection;
@@ -163,6 +168,7 @@ public final class io/github/canimation/core/CanimationRecipeRegistryMergePolicy
 }
 
 public final class io/github/canimation/core/CanimationRecipeSemantic {
+	public static final field $stable I
 	public fun <init> (Lio/github/canimation/core/CanimationIntent;Lio/github/canimation/core/CanimationSurfaceRole;Lio/github/canimation/core/CanimationIntensity;Ljava/lang/String;Ljava/util/Set;)V
 	public synthetic fun <init> (Lio/github/canimation/core/CanimationIntent;Lio/github/canimation/core/CanimationSurfaceRole;Lio/github/canimation/core/CanimationIntensity;Ljava/lang/String;Ljava/util/Set;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Lio/github/canimation/core/CanimationIntent;
@@ -183,6 +189,7 @@ public final class io/github/canimation/core/CanimationRecipeSemantic {
 }
 
 public final class io/github/canimation/core/CanimationRecipeSpecSet {
+	public static final field $stable I
 	public fun <init> (Lio/github/canimation/core/CanimationSpec;Lio/github/canimation/core/CanimationSpec;Lio/github/canimation/core/CanimationSpec;)V
 	public final fun component1 ()Lio/github/canimation/core/CanimationSpec;
 	public final fun component2 ()Lio/github/canimation/core/CanimationSpec;
@@ -220,4 +227,3 @@ public final class io/github/canimation/core/CanimationSurfaceRole : java/lang/E
 	public static fun valueOf (Ljava/lang/String;)Lio/github/canimation/core/CanimationSurfaceRole;
 	public static fun values ()[Lio/github/canimation/core/CanimationSurfaceRole;
 }
-

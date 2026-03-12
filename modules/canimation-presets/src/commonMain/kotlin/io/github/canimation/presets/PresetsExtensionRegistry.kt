@@ -10,13 +10,11 @@ import io.github.canimation.core.PresetRegistry
  * Preset registry extensions.
  *
  * SSoT: Built-in preset specs are defined in this module via [defaultPresetSpecs].
+ * Importing this object does not mutate core defaults; higher-level modules should pass the
+ * returned registry explicitly.
  */
 object PresetsExtensionRegistry {
     private val builtInPresetRegistry: PresetRegistry = PresetRegistry.builtIns(defaultPresetSpecs)
-
-    init {
-        PresetRegistry.installBuiltIns(builtInPresetRegistry)
-    }
 
     /**
      * Resolves a preset spec from the single source of truth registry.

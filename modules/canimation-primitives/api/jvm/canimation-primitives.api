@@ -7,6 +7,7 @@ public final class io/github/canimation/core/AnimationDirection : java/lang/Enum
 }
 
 public final class io/github/canimation/core/Canimation {
+	public static final field $stable I
 	public static final field INSTANCE Lio/github/canimation/core/Canimation;
 	public final fun getAttention ()Lio/github/canimation/core/CanimationAttention;
 	public final fun getBlur ()Lio/github/canimation/core/CanimationBlur;
@@ -41,6 +42,7 @@ public final class io/github/canimation/core/Canimation {
 }
 
 public final class io/github/canimation/core/CanimationAttention {
+	public static final field $stable I
 	public static final field INSTANCE Lio/github/canimation/core/CanimationAttention;
 	public final fun getFlash ()Lio/github/canimation/core/CanimationEffect;
 	public final fun getGlow ()Lio/github/canimation/core/CanimationEffect;
@@ -58,6 +60,7 @@ public final class io/github/canimation/core/CanimationAttention {
 }
 
 public final class io/github/canimation/core/CanimationBlur {
+	public static final field $stable I
 	public static final field INSTANCE Lio/github/canimation/core/CanimationBlur;
 	public final fun getIn ()Lio/github/canimation/core/CanimationEffect;
 	public final fun getOut ()Lio/github/canimation/core/CanimationEffect;
@@ -65,6 +68,7 @@ public final class io/github/canimation/core/CanimationBlur {
 }
 
 public final class io/github/canimation/core/CanimationBounce {
+	public static final field $stable I
 	public static final field INSTANCE Lio/github/canimation/core/CanimationBounce;
 	public final fun getDown ()Lio/github/canimation/core/CanimationEffect;
 	public final fun getIn ()Lio/github/canimation/core/CanimationEffect;
@@ -74,6 +78,7 @@ public final class io/github/canimation/core/CanimationBounce {
 }
 
 public final class io/github/canimation/core/CanimationCinematic {
+	public static final field $stable I
 	public static final field INSTANCE Lio/github/canimation/core/CanimationCinematic;
 	public final fun getCurtain ()Lio/github/canimation/core/CanimationEffect;
 	public final fun getDolly ()Lio/github/canimation/core/CanimationEffect;
@@ -84,6 +89,7 @@ public final class io/github/canimation/core/CanimationCinematic {
 }
 
 public final class io/github/canimation/core/CanimationDiagonal {
+	public static final field $stable I
 	public static final field INSTANCE Lio/github/canimation/core/CanimationDiagonal;
 	public final fun getBottomLeft ()Lio/github/canimation/core/CanimationEffect;
 	public final fun getBottomRight ()Lio/github/canimation/core/CanimationEffect;
@@ -93,6 +99,7 @@ public final class io/github/canimation/core/CanimationDiagonal {
 }
 
 public final class io/github/canimation/core/CanimationDpRange {
+	public static final field $stable I
 	public synthetic fun <init> (FFLkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1-D9Ej5fM ()F
 	public final fun component2-D9Ej5fM ()F
@@ -106,6 +113,7 @@ public final class io/github/canimation/core/CanimationDpRange {
 }
 
 public final class io/github/canimation/core/CanimationDrop {
+	public static final field $stable I
 	public static final field INSTANCE Lio/github/canimation/core/CanimationDrop;
 	public final fun getHeavy ()Lio/github/canimation/core/CanimationEffect;
 	public final fun getIn ()Lio/github/canimation/core/CanimationEffect;
@@ -114,6 +122,7 @@ public final class io/github/canimation/core/CanimationDrop {
 }
 
 public final class io/github/canimation/core/CanimationEffect {
+	public static final field $stable I
 	public static final field Companion Lio/github/canimation/core/CanimationEffect$Companion;
 	public fun <init> ()V
 	public fun <init> (Lio/github/canimation/core/CanimationRange;Lio/github/canimation/core/CanimationDpRange;Lio/github/canimation/core/CanimationDpRange;Lio/github/canimation/core/CanimationRange;Lio/github/canimation/core/CanimationRange;ILandroidx/compose/animation/core/Easing;)V
@@ -173,6 +182,7 @@ public final class io/github/canimation/core/CanimationEffect$Companion {
 }
 
 public final class io/github/canimation/core/CanimationElastic {
+	public static final field $stable I
 	public static final field INSTANCE Lio/github/canimation/core/CanimationElastic;
 	public final fun getIn ()Lio/github/canimation/core/CanimationEffect;
 	public final fun getSnap ()Lio/github/canimation/core/CanimationEffect;
@@ -182,6 +192,7 @@ public final class io/github/canimation/core/CanimationElastic {
 }
 
 public final class io/github/canimation/core/CanimationEntrance {
+	public static final field $stable I
 	public static final field INSTANCE Lio/github/canimation/core/CanimationEntrance;
 	public final fun getBackInDown ()Lio/github/canimation/core/CanimationEffect;
 	public final fun getBackInLeft ()Lio/github/canimation/core/CanimationEffect;
@@ -203,6 +214,7 @@ public final class io/github/canimation/core/CanimationEntrance {
 }
 
 public final class io/github/canimation/core/CanimationFade {
+	public static final field $stable I
 	public static final field INSTANCE Lio/github/canimation/core/CanimationFade;
 	public final fun getBig ()Lio/github/canimation/core/CanimationEffect;
 	public final fun getBottomLeft ()Lio/github/canimation/core/CanimationEffect;
@@ -225,6 +237,7 @@ public final class io/github/canimation/core/CanimationFade {
 }
 
 public final class io/github/canimation/core/CanimationFlip {
+	public static final field $stable I
 	public static final field INSTANCE Lio/github/canimation/core/CanimationFlip;
 	public final fun getDown ()Lio/github/canimation/core/CanimationEffect;
 	public final fun getIn ()Lio/github/canimation/core/CanimationEffect;
@@ -234,6 +247,7 @@ public final class io/github/canimation/core/CanimationFlip {
 }
 
 public final class io/github/canimation/core/CanimationFloat {
+	public static final field $stable I
 	public static final field INSTANCE Lio/github/canimation/core/CanimationFloat;
 	public final fun getDown ()Lio/github/canimation/core/CanimationEffect;
 	public final fun getGentle ()Lio/github/canimation/core/CanimationEffect;
@@ -242,6 +256,7 @@ public final class io/github/canimation/core/CanimationFloat {
 }
 
 public final class io/github/canimation/core/CanimationGlitch {
+	public static final field $stable I
 	public static final field INSTANCE Lio/github/canimation/core/CanimationGlitch;
 	public final fun getDistort ()Lio/github/canimation/core/CanimationEffect;
 	public final fun getFlicker ()Lio/github/canimation/core/CanimationEffect;
@@ -259,6 +274,7 @@ public final class io/github/canimation/core/CanimationLevel : java/lang/Enum {
 }
 
 public final class io/github/canimation/core/CanimationMaterial {
+	public static final field $stable I
 	public static final field INSTANCE Lio/github/canimation/core/CanimationMaterial;
 	public final fun getContainerTransform ()Lio/github/canimation/core/CanimationEffect;
 	public final fun getEmphasized ()Lio/github/canimation/core/CanimationEffect;
@@ -269,6 +285,7 @@ public final class io/github/canimation/core/CanimationMaterial {
 }
 
 public final class io/github/canimation/core/CanimationMicro {
+	public static final field $stable I
 	public static final field INSTANCE Lio/github/canimation/core/CanimationMicro;
 	public final fun getNudgeDown ()Lio/github/canimation/core/CanimationEffect;
 	public final fun getNudgeUp ()Lio/github/canimation/core/CanimationEffect;
@@ -278,6 +295,7 @@ public final class io/github/canimation/core/CanimationMicro {
 }
 
 public final class io/github/canimation/core/CanimationMorph {
+	public static final field $stable I
 	public static final field INSTANCE Lio/github/canimation/core/CanimationMorph;
 	public final fun getCollapse ()Lio/github/canimation/core/CanimationEffect;
 	public final fun getExpand ()Lio/github/canimation/core/CanimationEffect;
@@ -285,6 +303,7 @@ public final class io/github/canimation/core/CanimationMorph {
 }
 
 public final class io/github/canimation/core/CanimationPage {
+	public static final field $stable I
 	public static final field INSTANCE Lio/github/canimation/core/CanimationPage;
 	public final fun getBottomSheet ()Lio/github/canimation/core/CanimationEffect;
 	public final fun getCoverUp ()Lio/github/canimation/core/CanimationEffect;
@@ -294,6 +313,7 @@ public final class io/github/canimation/core/CanimationPage {
 }
 
 public final class io/github/canimation/core/CanimationPlayful {
+	public static final field $stable I
 	public static final field INSTANCE Lio/github/canimation/core/CanimationPlayful;
 	public final fun getBoing ()Lio/github/canimation/core/CanimationEffect;
 	public final fun getHop ()Lio/github/canimation/core/CanimationEffect;
@@ -307,6 +327,7 @@ public abstract interface class io/github/canimation/core/CanimationPolicy {
 }
 
 public final class io/github/canimation/core/CanimationPolicy$AlwaysFull : io/github/canimation/core/CanimationPolicy {
+	public static final field $stable I
 	public static final field INSTANCE Lio/github/canimation/core/CanimationPolicy$AlwaysFull;
 	public fun equals (Ljava/lang/Object;)Z
 	public fun hashCode ()I
@@ -314,6 +335,7 @@ public final class io/github/canimation/core/CanimationPolicy$AlwaysFull : io/gi
 }
 
 public final class io/github/canimation/core/CanimationPolicy$AlwaysOff : io/github/canimation/core/CanimationPolicy {
+	public static final field $stable I
 	public static final field INSTANCE Lio/github/canimation/core/CanimationPolicy$AlwaysOff;
 	public fun equals (Ljava/lang/Object;)Z
 	public fun hashCode ()I
@@ -321,6 +343,7 @@ public final class io/github/canimation/core/CanimationPolicy$AlwaysOff : io/git
 }
 
 public final class io/github/canimation/core/CanimationPolicy$AlwaysReduced : io/github/canimation/core/CanimationPolicy {
+	public static final field $stable I
 	public static final field INSTANCE Lio/github/canimation/core/CanimationPolicy$AlwaysReduced;
 	public fun equals (Ljava/lang/Object;)Z
 	public fun hashCode ()I
@@ -328,6 +351,7 @@ public final class io/github/canimation/core/CanimationPolicy$AlwaysReduced : io
 }
 
 public final class io/github/canimation/core/CanimationPolicy$SystemAware : io/github/canimation/core/CanimationPolicy {
+	public static final field $stable I
 	public static final field INSTANCE Lio/github/canimation/core/CanimationPolicy$SystemAware;
 	public fun equals (Ljava/lang/Object;)Z
 	public fun hashCode ()I
@@ -335,6 +359,7 @@ public final class io/github/canimation/core/CanimationPolicy$SystemAware : io/g
 }
 
 public final class io/github/canimation/core/CanimationRange {
+	public static final field $stable I
 	public fun <init> (FF)V
 	public final fun component1 ()F
 	public final fun component2 ()F
@@ -348,6 +373,7 @@ public final class io/github/canimation/core/CanimationRange {
 }
 
 public final class io/github/canimation/core/CanimationReveal {
+	public static final field $stable I
 	public static final field INSTANCE Lio/github/canimation/core/CanimationReveal;
 	public final fun getBottom ()Lio/github/canimation/core/CanimationEffect;
 	public final fun getCenter ()Lio/github/canimation/core/CanimationEffect;
@@ -356,6 +382,7 @@ public final class io/github/canimation/core/CanimationReveal {
 }
 
 public final class io/github/canimation/core/CanimationRise {
+	public static final field $stable I
 	public static final field INSTANCE Lio/github/canimation/core/CanimationRise;
 	public final fun getIn ()Lio/github/canimation/core/CanimationEffect;
 	public final fun getRotate ()Lio/github/canimation/core/CanimationEffect;
@@ -364,6 +391,7 @@ public final class io/github/canimation/core/CanimationRise {
 }
 
 public final class io/github/canimation/core/CanimationRotate {
+	public static final field $stable I
 	public static final field INSTANCE Lio/github/canimation/core/CanimationRotate;
 	public final fun getClockwise ()Lio/github/canimation/core/CanimationEffect;
 	public final fun getClockwiseFade ()Lio/github/canimation/core/CanimationEffect;
@@ -381,6 +409,7 @@ public final class io/github/canimation/core/CanimationRotate {
 }
 
 public final class io/github/canimation/core/CanimationScale {
+	public static final field $stable I
 	public static final field INSTANCE Lio/github/canimation/core/CanimationScale;
 	public final fun getDown ()Lio/github/canimation/core/CanimationEffect;
 	public final fun getDownFade ()Lio/github/canimation/core/CanimationEffect;
@@ -395,6 +424,7 @@ public final class io/github/canimation/core/CanimationScale {
 }
 
 public final class io/github/canimation/core/CanimationShrink {
+	public static final field $stable I
 	public static final field INSTANCE Lio/github/canimation/core/CanimationShrink;
 	public final fun getFadeDown ()Lio/github/canimation/core/CanimationEffect;
 	public final fun getOut ()Lio/github/canimation/core/CanimationEffect;
@@ -403,6 +433,7 @@ public final class io/github/canimation/core/CanimationShrink {
 }
 
 public final class io/github/canimation/core/CanimationSlide {
+	public static final field $stable I
 	public static final field INSTANCE Lio/github/canimation/core/CanimationSlide;
 	public final fun getDown ()Lio/github/canimation/core/CanimationEffect;
 	public final fun getDownBig ()Lio/github/canimation/core/CanimationEffect;
@@ -419,6 +450,7 @@ public final class io/github/canimation/core/CanimationSlide {
 }
 
 public final class io/github/canimation/core/CanimationSpec {
+	public static final field $stable I
 	public fun <init> (ILandroidx/compose/animation/core/Easing;Lio/github/canimation/core/CanimationRange;Lio/github/canimation/core/CanimationDpRange;Lio/github/canimation/core/CanimationDpRange;Lio/github/canimation/core/CanimationRange;Lio/github/canimation/core/CanimationRange;)V
 	public synthetic fun <init> (ILandroidx/compose/animation/core/Easing;Lio/github/canimation/core/CanimationRange;Lio/github/canimation/core/CanimationDpRange;Lio/github/canimation/core/CanimationDpRange;Lio/github/canimation/core/CanimationRange;Lio/github/canimation/core/CanimationRange;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()I
@@ -447,6 +479,7 @@ public final class io/github/canimation/core/CanimationSpec {
 }
 
 public final class io/github/canimation/core/CanimationSpring {
+	public static final field $stable I
 	public static final field INSTANCE Lio/github/canimation/core/CanimationSpring;
 	public final fun getBounce ()Lio/github/canimation/core/CanimationEffect;
 	public final fun getDown ()Lio/github/canimation/core/CanimationEffect;
@@ -458,6 +491,7 @@ public final class io/github/canimation/core/CanimationSpring {
 }
 
 public final class io/github/canimation/core/CanimationStagger {
+	public static final field $stable I
 	public static final field INSTANCE Lio/github/canimation/core/CanimationStagger;
 	public static final field Normal I
 	public static final field Quick I
@@ -466,6 +500,7 @@ public final class io/github/canimation/core/CanimationStagger {
 }
 
 public final class io/github/canimation/core/CanimationStretch {
+	public static final field $stable I
 	public static final field INSTANCE Lio/github/canimation/core/CanimationStretch;
 	public final fun getBoth ()Lio/github/canimation/core/CanimationEffect;
 	public final fun getHorizontal ()Lio/github/canimation/core/CanimationEffect;
@@ -474,6 +509,7 @@ public final class io/github/canimation/core/CanimationStretch {
 }
 
 public final class io/github/canimation/core/CanimationSwipe {
+	public static final field $stable I
 	public static final field INSTANCE Lio/github/canimation/core/CanimationSwipe;
 	public final fun getDown ()Lio/github/canimation/core/CanimationEffect;
 	public final fun getFlingLeft ()Lio/github/canimation/core/CanimationEffect;
@@ -484,6 +520,7 @@ public final class io/github/canimation/core/CanimationSwipe {
 }
 
 public final class io/github/canimation/core/CanimationTilt {
+	public static final field $stable I
 	public static final field INSTANCE Lio/github/canimation/core/CanimationTilt;
 	public final fun getDown ()Lio/github/canimation/core/CanimationEffect;
 	public final fun getLeft ()Lio/github/canimation/core/CanimationEffect;
@@ -493,6 +530,7 @@ public final class io/github/canimation/core/CanimationTilt {
 }
 
 public final class io/github/canimation/core/CanimationWave {
+	public static final field $stable I
 	public static final field INSTANCE Lio/github/canimation/core/CanimationWave;
 	public final fun getDrift ()Lio/github/canimation/core/CanimationEffect;
 	public final fun getFloat ()Lio/github/canimation/core/CanimationEffect;
@@ -502,6 +540,7 @@ public final class io/github/canimation/core/CanimationWave {
 }
 
 public final class io/github/canimation/core/CanimationZoom {
+	public static final field $stable I
 	public static final field INSTANCE Lio/github/canimation/core/CanimationZoom;
 	public final fun getDramatic ()Lio/github/canimation/core/CanimationEffect;
 	public final fun getIn ()Lio/github/canimation/core/CanimationEffect;
@@ -511,4 +550,3 @@ public final class io/github/canimation/core/CanimationZoom {
 	public final fun getInUp ()Lio/github/canimation/core/CanimationEffect;
 	public final fun getOut ()Lio/github/canimation/core/CanimationEffect;
 }
-

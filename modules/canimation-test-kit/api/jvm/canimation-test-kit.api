@@ -1,0 +1,17 @@
+public final class io/github/canimation/testkit/CanimationTestKitExportsKt {
+	public static final fun advanceByFrame (Lio/github/canimation/test/CanimationTestClock;J)V
+	public static synthetic fun advanceByFrame$default (Lio/github/canimation/test/CanimationTestClock;JILjava/lang/Object;)V
+	public static final fun advanceByFrames (Lio/github/canimation/test/CanimationTestClock;IJ)V
+	public static synthetic fun advanceByFrames$default (Lio/github/canimation/test/CanimationTestClock;IJILjava/lang/Object;)V
+	public static final fun canimationTestClock (J)Lio/github/canimation/test/CanimationTestClock;
+	public static synthetic fun canimationTestClock$default (JILjava/lang/Object;)Lio/github/canimation/test/CanimationTestClock;
+	public static final fun getDefaultCanimationRecipeRegistry ()Lio/github/canimation/core/CanimationRecipeRegistry;
+	public static final fun getDefaultCanimationTestComposition ()Lio/github/canimation/test/CanimationTestComposition;
+	public static final fun getDefaultCanimationTestPresetRegistry ()Lio/github/canimation/core/PresetRegistry;
+	public static final fun getDefaultCanimationTestRecipeRegistry ()Lio/github/canimation/core/CanimationRecipeRegistry;
+}
+
+public final class io/github/canimation/testkit/CanimationTestKitFunctionsKt {
+	public static final fun CanimationTestHost (Lio/github/canimation/test/CanimationTestClock;Lio/github/canimation/core/CanimationLevel;Lio/github/canimation/core/CanimationTokens;Lio/github/canimation/core/PresetRegistry;Lio/github/canimation/core/CanimationRecipeRegistry;Lkotlin/jvm/functions/Function2;Landroidx/compose/runtime/Composer;II)V
+	public static final fun CanimationTestHost (Lio/github/canimation/test/CanimationTestClock;Lio/github/canimation/test/CanimationTestComposition;Lkotlin/jvm/functions/Function2;Landroidx/compose/runtime/Composer;I)V
+}

@@ -507,4 +507,3 @@ public final class io/github/canimation/presets/ZoomOutPreset {
 	public static final field INSTANCE Lio/github/canimation/presets/ZoomOutPreset;
 	public final fun getSpec ()Lio/github/canimation/core/CanimationPresetSpec;
 }
-

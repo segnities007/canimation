@@ -5,8 +5,9 @@ import androidx.compose.runtime.Stable
 /**
  * Registry mapping [CanimationPreset] to their [CanimationPresetSpec].
  *
- * The [Default] instance contains built-in presets with values from the spec.
- * Users can create custom registries to override or extend preset definitions.
+ * [Default] starts from a safe fallback registry and may be replaced through legacy installation
+ * hooks. Higher-level modules such as `canimation-presets` or `canimation-runtime` should prefer
+ * explicit preset registry injection over hidden global mutation.
  */
 @Stable
 class PresetRegistry private constructor(
@@ -98,7 +99,10 @@ class PresetRegistry private constructor(
         private var builtInRegistry: PresetRegistry = fallbackRegistry
 
         /**
-         * Default registry containing built-in presets.
+         * Default registry used by low-level core entry points.
+         *
+         * This starts from a safe fallback registry and can be overridden through
+         * [installBuiltIns] for legacy compatibility.
          */
         val Default: PresetRegistry
             get() = builtInRegistry
@@ -115,6 +119,12 @@ class PresetRegistry private constructor(
             return PresetRegistry(specs = specs.toMap())
         }
 
+        /**
+         * Legacy compatibility hook for code that still installs built-in presets globally.
+         *
+         * Prefer passing a registry explicitly from higher-level modules instead of relying on this
+         * hidden global mutation path.
+         */
         fun installBuiltIns(registry: PresetRegistry) {
             builtInRegistry = registry
         }

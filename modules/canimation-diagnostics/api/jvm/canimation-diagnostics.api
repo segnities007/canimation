@@ -76,4 +76,3 @@ public final class io/github/canimation/diagnostics/PerfMeasurementUtils {
 	public final fun isWithinDegradationLimit (FFF)Z
 	public static synthetic fun isWithinDegradationLimit$default (Lio/github/canimation/diagnostics/PerfMeasurementUtils;FFFILjava/lang/Object;)Z
 }
-

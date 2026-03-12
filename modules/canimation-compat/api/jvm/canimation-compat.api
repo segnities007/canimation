@@ -1,6 +1,7 @@
 public final class io/github/canimation/compat/CanimationCompatExportsKt {
 	public static final fun getDefaultCanimationRecipeRegistry ()Lio/github/canimation/core/CanimationRecipeRegistry;
 }
+
 public final class io/github/canimation/compat/CanimationCompatFunctionsKt {
 	public static final fun CanimationProvider (Lio/github/canimation/core/CanimationTokens;Lio/github/canimation/core/CanimationPolicy;Lio/github/canimation/core/PresetRegistry;Lio/github/canimation/core/CanimationRecipeRegistry;Ljava/lang/Boolean;Lkotlin/jvm/functions/Function2;Landroidx/compose/runtime/Composer;II)V
 	public static final fun CanimationVisibility (ZLio/github/canimation/core/CanimationPreset;Lio/github/canimation/core/CanimationPreset;Lkotlin/jvm/functions/Function2;Landroidx/compose/runtime/Composer;II)V

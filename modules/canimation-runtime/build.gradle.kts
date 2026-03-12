@@ -7,6 +7,7 @@ kotlin {
         commonMain.dependencies {
             api(project(":canimation-core"))
             api(project(":canimation-recipes"))
+            implementation(project(":canimation-presets"))
             implementation(libs.compose.runtime)
             implementation(libs.compose.foundation)
             implementation(libs.compose.ui)

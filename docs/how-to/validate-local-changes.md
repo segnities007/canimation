@@ -14,31 +14,43 @@ bash scripts/validate-governance-docs.sh
 
 この script は CI でも使われる docs/governance alignment の最短チェックである。
 
-## 2. Core library tests and compiles
+## 2. Core test and coverage baseline
 
 library の baseline は次を使う。
 
 ```bash
-./gradlew allTests compileLibraryAndroid compileLibraryJvm --max-workers=2 --no-daemon
-./gradlew compileLibraryApple compileLibraryWeb --max-workers=2 --no-daemon
+./gradlew allTests --max-workers=2 --no-daemon
+./gradlew :koverHtmlReport :koverXmlReport --max-workers=2 --no-daemon
 ```
 
-## 3. App and release checks
+`allTests` と Kover は CI と同じく別 invocation で流す。
 
-showcase app と release readiness は次でそろえる。
+## 3. Platform and app checks
+
+platform compile と showcase host compile は次でそろえる。
 
 ```bash
-./gradlew :composeApp:compileKotlinJvm :composeApp:compileKotlinWasmJs :androidApp:assembleDebug --max-workers=2 --no-daemon
+./gradlew compileLibraryAndroid compileLibraryJvm :androidApp:assembleDebug :composeApp:compileKotlinJvm --max-workers=2 --no-daemon
+./gradlew compileLibraryApple :composeApp:packageDistributionForCurrentOS :composeApp:linkDebugFrameworkIosSimulatorArm64 --max-workers=2 --no-daemon
+./gradlew compileLibraryWeb :composeApp:compileKotlinWasmJs --max-workers=2 --no-daemon
+```
+
+## 4. Release and audit checks
+
+release / workflow / security まで含める場合は次を追加する。
+
+```bash
 ./gradlew releaseReadiness --max-workers=2 --no-daemon
-```
-
-## 4. Security and workflow checks
-
-workflow / governance 周辺まで含める場合は次を追加する。
-
-```bash
 bash scripts/security-audit.sh
 bash scripts/validate-workflows.sh
+bash scripts/validate-governance-docs.sh
+```
+
+docs / governance のみを触った場合は、最短では次だけでもよい。
+
+```bash
+bash scripts/validate-workflows.sh
+bash scripts/validate-governance-docs.sh
 ```
 
 ## Related

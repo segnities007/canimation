@@ -38,8 +38,10 @@ repository
 │   ├── canimation-semantics/
 │   ├── canimation-recipes/
 │   ├── canimation-runtime/
+│   ├── canimation-presets/
 │   ├── canimation-a11y/
 │   ├── canimation-diagnostics/
+│   ├── canimation-test/
 │   ├── canimation-compat/
 │   ├── canimation-experimental/
 │   ├── canimation-test-kit/
@@ -58,6 +60,10 @@ repository
 └── .github/
 ```
 
+この layout は end-state の repository baseline を表す。
+current repository では consumer app / host として `composeApp/`、`androidApp/`、`iosApp/` が root に残っており、
+`samples/` への集約は migration backlog として扱う。
+
 ## Root Directory Rules
 
 - `build-logic/`
@@ -67,7 +73,8 @@ repository
 - `modules/`
   - publishable artifact または publish-ready boundary だけを置く。
 - `samples/`
-  - consumer app、showcase、docs host を置く。library 本体を置かない。
+  - target-state では consumer app、showcase、docs host を集約する。library 本体を置かない。
+  - current repository では `composeApp/`、`androidApp/`、`iosApp/` が migration 前の host boundary として root に残る。
 - `benchmarks/`
   - performance / regression 計測専用。production code と混在させない。
 - `docs/`
@@ -95,6 +102,8 @@ repository
   - built-in descriptor pack と built-in registry
 - `canimation-runtime`
   - Compose-facing provider、modifier、visibility、transition、resolver
+- `canimation-presets`
+  - built-in preset 定義と preset registry の SSoT。migration 中は core-backed preset path も担う。
 - `canimation-a11y`
   - reduced-motion / motion-off policy、platform preference bridge contract
 
@@ -102,8 +111,13 @@ repository
 
 - `canimation-diagnostics`
   - metrics、overlay、benchmark support
+
+### Test Support Line
+
+- `canimation-test`
+  - low-level deterministic test clock と test host helper
 - `canimation-test-kit`
-  - fake clock、fixture、test host、matcher
+  - target-state test-facing wrapper surface。consumer/docs の first path はこちらを使う。
 
 ### Lifecycle-Isolated Line
 
@@ -170,6 +184,11 @@ experimental
   -> primitives
   -> tokens
 ```
+
+この diagram は `canimation-core` を取り除いた end-state 依存だけを表す。
+current migration では `canimation-runtime`、`canimation-presets`、`canimation-a11y`、
+`canimation-diagnostics`、`canimation-test`、`canimation-test-kit`、`canimation-compat`、
+`canimation-platform-*` がまだ `canimation-core` backed contract を経由する。
 
 禁止依存:
 
@@ -273,6 +292,9 @@ samples/showcase-app/.../
 └── platform/
 ```
 
+current repository の showcase source layout は `composeApp/src/commonMain/kotlin/com/segnities007/canimation/` にあり、
+`docs/reference/showcase/consumer-app-structure.md` を current SSoT とする。
+
 ## File Topology
 
 ### Public Contract File
@@ -334,6 +356,9 @@ FeatureAdapterTest.kt
   - consumer contract 外、public by default 禁止
 
 artifact 名と package 名で tier を推測できる状態を既定にする。
+current repository では tier の物理分離は partial であり、
+`canimation-experimental` / `canimation-compat` / owner module split は存在する一方、
+default consumer entry はまだ `canimation-core` を経由する。
 
 ## Pattern Selection Matrix
 

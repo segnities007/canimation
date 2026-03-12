@@ -58,6 +58,14 @@
 | `androidApp` | `composeApp` を包む薄い Android wrapper |
 | `iosApp` | Compose iOS controller を包む薄い SwiftUI host |
 
+## Repository Layout Note
+
+target-state の architecture 文書では consumer app 群の最終到達点として `samples/` を使う。
+一方、current repository では `composeApp/`、`androidApp/`、`iosApp/` が root に残っている。
+app 側の現状構成は `docs/reference/showcase/consumer-app-structure.md` を current SSoT とする。
+
+shared build convention は `settings.gradle.kts` から include される `build-logic/` にある。
+
 ## Public API と repository 内部実装
 
 利用者向け API の中心は `canimation-core` にある。
@@ -153,14 +161,18 @@ Web と iOS は empty metrics を返す fallback collector を使っている。
 現在の repository baseline は次のコマンドで検証している。
 
 ```bash
-./gradlew allTests compileLibraryAndroid compileLibraryJvm --max-workers=2 --no-daemon
-./gradlew compileLibraryApple compileLibraryWeb --max-workers=2 --no-daemon
-./gradlew :composeApp:compileKotlinJvm :composeApp:compileKotlinWasmJs :androidApp:assembleDebug --max-workers=2 --no-daemon
+./gradlew allTests --max-workers=2 --no-daemon
+./gradlew :koverHtmlReport :koverXmlReport --max-workers=2 --no-daemon
+./gradlew compileLibraryAndroid compileLibraryJvm :androidApp:assembleDebug :composeApp:compileKotlinJvm --max-workers=2 --no-daemon
+./gradlew compileLibraryApple :composeApp:packageDistributionForCurrentOS :composeApp:linkDebugFrameworkIosSimulatorArm64 --max-workers=2 --no-daemon
+./gradlew compileLibraryWeb :composeApp:compileKotlinWasmJs --max-workers=2 --no-daemon
 ./gradlew releaseReadiness --max-workers=2 --no-daemon
 bash scripts/security-audit.sh
 bash scripts/validate-workflows.sh
 bash scripts/validate-governance-docs.sh
 ```
+
+`allTests` と Kover report は CI と同様に別 invocation で実行する。
 
 browser-based JS / Wasm tests は Kotlin Multiplatform の Karma 既定に加え、
 `composeApp/karma.config.d/chrome-headless-ci.js` で CI 向け headless Chrome launcher を上書きする。

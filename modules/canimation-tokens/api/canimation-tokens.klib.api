@@ -153,3 +153,17 @@ final class io.github.canimation.core/SpringTokens { // io.github.canimation.cor
             final fun <get-Default>(): io.github.canimation.core/SpringTokens // io.github.canimation.core/SpringTokens.Companion.Default.<get-Default>|<get-Default>(){}[0]
     }
 }
+
+final val io.github.canimation.core/io_github_canimation_core_CanimationTokens$stableprop // io.github.canimation.core/io_github_canimation_core_CanimationTokens$stableprop|#static{}io_github_canimation_core_CanimationTokens$stableprop[0]
+final val io.github.canimation.core/io_github_canimation_core_DistanceTokens$stableprop // io.github.canimation.core/io_github_canimation_core_DistanceTokens$stableprop|#static{}io_github_canimation_core_DistanceTokens$stableprop[0]
+final val io.github.canimation.core/io_github_canimation_core_DurationTokens$stableprop // io.github.canimation.core/io_github_canimation_core_DurationTokens$stableprop|#static{}io_github_canimation_core_DurationTokens$stableprop[0]
+final val io.github.canimation.core/io_github_canimation_core_EasingTokens$stableprop // io.github.canimation.core/io_github_canimation_core_EasingTokens$stableprop|#static{}io_github_canimation_core_EasingTokens$stableprop[0]
+final val io.github.canimation.core/io_github_canimation_core_SpringSpec$stableprop // io.github.canimation.core/io_github_canimation_core_SpringSpec$stableprop|#static{}io_github_canimation_core_SpringSpec$stableprop[0]
+final val io.github.canimation.core/io_github_canimation_core_SpringTokens$stableprop // io.github.canimation.core/io_github_canimation_core_SpringTokens$stableprop|#static{}io_github_canimation_core_SpringTokens$stableprop[0]
+
+final fun io.github.canimation.core/io_github_canimation_core_CanimationTokens$stableprop_getter(): kotlin/Int // io.github.canimation.core/io_github_canimation_core_CanimationTokens$stableprop_getter|io_github_canimation_core_CanimationTokens$stableprop_getter(){}[0]
+final fun io.github.canimation.core/io_github_canimation_core_DistanceTokens$stableprop_getter(): kotlin/Int // io.github.canimation.core/io_github_canimation_core_DistanceTokens$stableprop_getter|io_github_canimation_core_DistanceTokens$stableprop_getter(){}[0]
+final fun io.github.canimation.core/io_github_canimation_core_DurationTokens$stableprop_getter(): kotlin/Int // io.github.canimation.core/io_github_canimation_core_DurationTokens$stableprop_getter|io_github_canimation_core_DurationTokens$stableprop_getter(){}[0]
+final fun io.github.canimation.core/io_github_canimation_core_EasingTokens$stableprop_getter(): kotlin/Int // io.github.canimation.core/io_github_canimation_core_EasingTokens$stableprop_getter|io_github_canimation_core_EasingTokens$stableprop_getter(){}[0]
+final fun io.github.canimation.core/io_github_canimation_core_SpringSpec$stableprop_getter(): kotlin/Int // io.github.canimation.core/io_github_canimation_core_SpringSpec$stableprop_getter|io_github_canimation_core_SpringSpec$stableprop_getter(){}[0]
+final fun io.github.canimation.core/io_github_canimation_core_SpringTokens$stableprop_getter(): kotlin/Int // io.github.canimation.core/io_github_canimation_core_SpringTokens$stableprop_getter|io_github_canimation_core_SpringTokens$stableprop_getter(){}[0]

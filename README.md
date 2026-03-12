@@ -71,7 +71,10 @@ This README describes the implementation that exists in the repository today.
   diagnostics, test helpers, and platform adapters are split so the implementation stays
   maintainable.
 - The target-state owner modules now physically exist for tokens, primitives, semantics,
-  recipes, runtime, compat, experimental, and test-kit surfaces.
+  recipes, and runtime, while support surfaces such as `canimation-presets`,
+  `canimation-a11y`, `canimation-diagnostics`, `canimation-test`, `canimation-test-kit`,
+  `canimation-compat`, `canimation-experimental`, and `canimation-platform-*` are already
+  isolated as separate modules.
 - The target architecture is stronger than the current implementation and is documented in
   `docs/reference/architecture/ideal-architecture-blueprint.md` and `guideline/18-target-state-architecture-and-package-topology.md`.
 
@@ -116,7 +119,8 @@ kotlin {
 
 > **Note:** The current implementation surface is centered on `canimation-core`.
 > Inside this repository, the showcase app also uses internal modules such as
-> `canimation-presets`, `canimation-a11y`, and `canimation-diagnostics`.
+> `canimation-presets`, `canimation-a11y`, `canimation-diagnostics`, and the test/support
+> modules that back local verification and showcase development.
 > The target-state surfaces `canimation-tokens`, `canimation-primitives`, `canimation-semantics`,
 > `canimation-recipes`, and `canimation-runtime` are now real modules and can be adopted incrementally.
 
@@ -553,9 +557,11 @@ component demos organized in an Atomic Design hierarchy (Atoms, Molecules, Organ
 The repository's current baseline validation is centered on the same commands used in CI:
 
 ```bash
-./gradlew allTests compileLibraryAndroid compileLibraryJvm --max-workers=2 --no-daemon
-./gradlew compileLibraryApple compileLibraryWeb --max-workers=2 --no-daemon
-./gradlew :composeApp:compileKotlinJvm :composeApp:compileKotlinWasmJs :androidApp:assembleDebug --max-workers=2 --no-daemon
+./gradlew allTests --max-workers=2 --no-daemon
+./gradlew :koverHtmlReport :koverXmlReport --max-workers=2 --no-daemon
+./gradlew compileLibraryAndroid compileLibraryJvm :androidApp:assembleDebug :composeApp:compileKotlinJvm --max-workers=2 --no-daemon
+./gradlew compileLibraryApple :composeApp:packageDistributionForCurrentOS :composeApp:linkDebugFrameworkIosSimulatorArm64 --max-workers=2 --no-daemon
+./gradlew compileLibraryWeb :composeApp:compileKotlinWasmJs --max-workers=2 --no-daemon
 ./gradlew releaseReadiness --max-workers=2 --no-daemon
 bash scripts/security-audit.sh
 bash scripts/validate-workflows.sh
@@ -566,6 +572,9 @@ bash scripts/validate-governance-docs.sh
 > configuration. These warnings come from upstream Kotlin/Gradle integration rather than this
 > repository's custom build logic, so treat them as known tooling noise unless a normal validation
 > command starts failing.
+>
+> CI intentionally runs `:koverHtmlReport` and `:koverXmlReport` in a separate Gradle invocation
+> from `allTests` to keep the current KMP/Android validation graph stable.
 
 When an intentional public library API change is accepted, refresh the checked ABI dumps:
 

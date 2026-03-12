@@ -4,6 +4,7 @@ import io.github.canimation.core.AnimationDirection
 import io.github.canimation.core.CanimationLevel
 import io.github.canimation.core.CanimationPreset
 import io.github.canimation.core.CanimationPresetSpec
+import io.github.canimation.core.PresetRegistry
 import io.github.canimation.core.CanimationSpec
 import io.github.canimation.core.EasingTokens
 import kotlin.test.Test
@@ -58,6 +59,24 @@ class PresetsExtensionRegistryTest {
             )
 
         assertEquals(expected, actual)
+    }
+
+    @Test
+    fun importingPresetExtensionsDoesNotMutateCoreDefaultRegistry() {
+        val fade =
+            PresetRegistry.Default.resolve(
+                CanimationPreset.Fade,
+                CanimationLevel.Full,
+                AnimationDirection.Enter,
+            )
+        val zoomIn =
+            PresetRegistry.Default.resolve(
+                CanimationPreset.ZoomIn,
+                CanimationLevel.Full,
+                AnimationDirection.Enter,
+            )
+
+        assertEquals(fade, zoomIn)
     }
 
     @Test

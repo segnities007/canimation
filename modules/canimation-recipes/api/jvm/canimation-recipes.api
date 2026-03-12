@@ -1,0 +1,82 @@
+public final class io/github/canimation/core/CanimationAmbientRecipes {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/core/CanimationAmbientRecipes;
+	public final fun getHighlight-ix8T0n8 ()Lio/github/canimation/core/CanimationRecipeDescriptor;
+}
+
+public final class io/github/canimation/core/CanimationContentRecipes {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/core/CanimationContentRecipes;
+	public final fun getEnterStandard-ix8T0n8 ()Lio/github/canimation/core/CanimationRecipeDescriptor;
+	public final fun getEnterSubtle-ix8T0n8 ()Lio/github/canimation/core/CanimationRecipeDescriptor;
+}
+
+public final class io/github/canimation/core/CanimationEmphasisRecipes {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/core/CanimationEmphasisRecipes;
+	public final fun getCallToAction-ix8T0n8 ()Lio/github/canimation/core/CanimationRecipeDescriptor;
+}
+
+public final class io/github/canimation/core/CanimationFeedbackRecipes {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/core/CanimationFeedbackRecipes;
+	public final fun getPress-ix8T0n8 ()Lio/github/canimation/core/CanimationRecipeDescriptor;
+	public final fun getSelectionPulse-ix8T0n8 ()Lio/github/canimation/core/CanimationRecipeDescriptor;
+}
+
+public final class io/github/canimation/core/CanimationNavigationRecipes {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/core/CanimationNavigationRecipes;
+	public final fun getBackward-ix8T0n8 ()Lio/github/canimation/core/CanimationRecipeDescriptor;
+	public final fun getForward-ix8T0n8 ()Lio/github/canimation/core/CanimationRecipeDescriptor;
+}
+
+public final class io/github/canimation/core/CanimationRecoveryRecipes {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/core/CanimationRecoveryRecipes;
+	public final fun getErrorShake-ix8T0n8 ()Lio/github/canimation/core/CanimationRecipeDescriptor;
+}
+
+public final class io/github/canimation/core/CanimationSemanticRecipeNamespacesKt {
+	public static final fun getAmbient (Lio/github/canimation/core/Canimation;)Lio/github/canimation/core/CanimationAmbientRecipes;
+	public static final fun getContent (Lio/github/canimation/core/Canimation;)Lio/github/canimation/core/CanimationContentRecipes;
+	public static final fun getEmphasis (Lio/github/canimation/core/Canimation;)Lio/github/canimation/core/CanimationEmphasisRecipes;
+	public static final fun getFeedback (Lio/github/canimation/core/Canimation;)Lio/github/canimation/core/CanimationFeedbackRecipes;
+	public static final fun getNavigation (Lio/github/canimation/core/Canimation;)Lio/github/canimation/core/CanimationNavigationRecipes;
+	public static final fun getRecovery (Lio/github/canimation/core/Canimation;)Lio/github/canimation/core/CanimationRecoveryRecipes;
+	public static final fun getSurface (Lio/github/canimation/core/Canimation;)Lio/github/canimation/core/CanimationSurfaceRecipes;
+	public static final fun getTransition (Lio/github/canimation/core/Canimation;)Lio/github/canimation/core/CanimationTransitionRecipes;
+}
+
+public final class io/github/canimation/core/CanimationSemanticRecipesKt {
+	public static final fun getDefaultCanimationRecipeRegistry ()Lio/github/canimation/core/CanimationRecipeRegistry;
+}
+
+public final class io/github/canimation/core/CanimationSurfaceRecipes {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/core/CanimationSurfaceRecipes;
+	public final fun getDialogReveal-ix8T0n8 ()Lio/github/canimation/core/CanimationRecipeDescriptor;
+	public final fun getSheetReveal-ix8T0n8 ()Lio/github/canimation/core/CanimationRecipeDescriptor;
+}
+
+public final class io/github/canimation/core/CanimationTransitionRecipes {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/core/CanimationTransitionRecipes;
+	public final fun getContentSwap-ix8T0n8 ()Lio/github/canimation/core/CanimationRecipeDescriptor;
+}
+
+public final class io/github/canimation/recipes/CanimationRecipeExportsKt {
+	public static final fun defaultCanimationRecipeRegistry (Ljava/lang/Iterable;Lio/github/canimation/core/CanimationRecipeRegistryMergePolicy;)Lio/github/canimation/core/CanimationRecipeRegistry;
+	public static final fun defaultCanimationRecipeRegistry ([Lio/github/canimation/core/CanimationRecipeRegistry;Lio/github/canimation/core/CanimationRecipeRegistryMergePolicy;)Lio/github/canimation/core/CanimationRecipeRegistry;
+	public static synthetic fun defaultCanimationRecipeRegistry$default (Ljava/lang/Iterable;Lio/github/canimation/core/CanimationRecipeRegistryMergePolicy;ILjava/lang/Object;)Lio/github/canimation/core/CanimationRecipeRegistry;
+	public static synthetic fun defaultCanimationRecipeRegistry$default ([Lio/github/canimation/core/CanimationRecipeRegistry;Lio/github/canimation/core/CanimationRecipeRegistryMergePolicy;ILjava/lang/Object;)Lio/github/canimation/core/CanimationRecipeRegistry;
+	public static final fun getAmbient (Lio/github/canimation/core/Canimation;)Lio/github/canimation/core/CanimationAmbientRecipes;
+	public static final fun getContent (Lio/github/canimation/core/Canimation;)Lio/github/canimation/core/CanimationContentRecipes;
+	public static final fun getDefaultCanimationRecipeRegistry ()Lio/github/canimation/core/CanimationRecipeRegistry;
+	public static final fun getEmphasis (Lio/github/canimation/core/Canimation;)Lio/github/canimation/core/CanimationEmphasisRecipes;
+	public static final fun getFeedback (Lio/github/canimation/core/Canimation;)Lio/github/canimation/core/CanimationFeedbackRecipes;
+	public static final fun getNavigation (Lio/github/canimation/core/Canimation;)Lio/github/canimation/core/CanimationNavigationRecipes;
+	public static final fun getRecovery (Lio/github/canimation/core/Canimation;)Lio/github/canimation/core/CanimationRecoveryRecipes;
+	public static final fun getSurface (Lio/github/canimation/core/Canimation;)Lio/github/canimation/core/CanimationSurfaceRecipes;
+	public static final fun getTransition (Lio/github/canimation/core/Canimation;)Lio/github/canimation/core/CanimationTransitionRecipes;
+}

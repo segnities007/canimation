@@ -2,6 +2,8 @@ package io.github.canimation.runtime
 
 import io.github.canimation.core.CanimationRecipeRegistry
 import io.github.canimation.core.CanimationRecipeRegistryMergePolicy
+import io.github.canimation.core.PresetRegistry
+import io.github.canimation.presets.PresetsExtensionRegistry
 import io.github.canimation.recipes.CanimationAmbientRecipes
 import io.github.canimation.recipes.CanimationContentRecipes
 import io.github.canimation.recipes.CanimationEmphasisRecipes
@@ -49,6 +51,9 @@ val Canimation.Ambient: CanimationAmbientRecipes
 @Suppress("UnusedReceiverParameter")
 val Canimation.Recovery: CanimationRecoveryRecipes
     get() = CanimationRecoveryRecipes
+
+@Suppress("unused")
+val DefaultCanimationPresetRegistry: PresetRegistry = PresetsExtensionRegistry.createExtendedRegistry()
 
 @Suppress("unused")
 val DefaultCanimationRecipeRegistry: CanimationRecipeRegistry = DefaultRecipeRegistry

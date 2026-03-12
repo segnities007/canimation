@@ -201,8 +201,8 @@ public final class io/github/canimation/core/PresetRegistry {
 }
 
 public final class io/github/canimation/core/PresetRegistry$Companion {
+	public final fun builtIns (Ljava/util/Map;)Lio/github/canimation/core/PresetRegistry;
 	public final fun create (Ljava/util/Map;)Lio/github/canimation/core/PresetRegistry;
 	public final fun getDefault ()Lio/github/canimation/core/PresetRegistry;
-	public final fun installDefaults (Ljava/util/Map;)V
+	public final fun installBuiltIns (Lio/github/canimation/core/PresetRegistry;)V
 }
-

@@ -17,4 +17,3 @@ public final class io/github/canimation/a11y/SystemMotionPreference : java/lang/
 	public static fun valueOf (Ljava/lang/String;)Lio/github/canimation/a11y/SystemMotionPreference;
 	public static fun values ()[Lio/github/canimation/a11y/SystemMotionPreference;
 }
-

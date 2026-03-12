@@ -159,8 +159,9 @@ final class io.github.canimation.core/PresetRegistry { // io.github.canimation.c
         final val Default // io.github.canimation.core/PresetRegistry.Companion.Default|{}Default[0]
             final fun <get-Default>(): io.github.canimation.core/PresetRegistry // io.github.canimation.core/PresetRegistry.Companion.Default.<get-Default>|<get-Default>(){}[0]
 
+        final fun builtIns(kotlin.collections/Map<io.github.canimation.core/CanimationPreset, io.github.canimation.core/CanimationPresetSpec>): io.github.canimation.core/PresetRegistry // io.github.canimation.core/PresetRegistry.Companion.builtIns|builtIns(kotlin.collections.Map<io.github.canimation.core.CanimationPreset,io.github.canimation.core.CanimationPresetSpec>){}[0]
         final fun create(kotlin.collections/Map<io.github.canimation.core/CanimationPreset, io.github.canimation.core/CanimationPresetSpec>): io.github.canimation.core/PresetRegistry // io.github.canimation.core/PresetRegistry.Companion.create|create(kotlin.collections.Map<io.github.canimation.core.CanimationPreset,io.github.canimation.core.CanimationPresetSpec>){}[0]
-        final fun installDefaults(kotlin.collections/Map<io.github.canimation.core/CanimationPreset, io.github.canimation.core/CanimationPresetSpec>) // io.github.canimation.core/PresetRegistry.Companion.installDefaults|installDefaults(kotlin.collections.Map<io.github.canimation.core.CanimationPreset,io.github.canimation.core.CanimationPresetSpec>){}[0]
+        final fun installBuiltIns(io.github.canimation.core/PresetRegistry) // io.github.canimation.core/PresetRegistry.Companion.installBuiltIns|installBuiltIns(io.github.canimation.core.PresetRegistry){}[0]
     }
 }
 

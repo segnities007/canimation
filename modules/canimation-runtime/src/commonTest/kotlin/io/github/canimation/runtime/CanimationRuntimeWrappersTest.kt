@@ -1,8 +1,10 @@
 package io.github.canimation.runtime
 
+import io.github.canimation.core.AnimationDirection
 import io.github.canimation.core.CanimationCost
 import io.github.canimation.core.CanimationIntensity
 import io.github.canimation.core.CanimationIntent
+import io.github.canimation.core.CanimationLevel
 import io.github.canimation.core.CanimationPreset
 import io.github.canimation.core.CanimationRecipeAccessibility
 import io.github.canimation.core.CanimationRecipeDescriptor
@@ -72,6 +74,19 @@ class CanimationRuntimeWrappersTest {
             PresetsExtensionRegistry.descriptorFor(CanimationPreset.FadeUp),
             DefaultCanimationRecipeRegistry.getValue(CanimationRecipeId("preset.FadeUp")),
         )
+    }
+
+    @Test
+    fun runtimeDefaultPresetRegistryUsesPresetSsotExplicitly() {
+        val expected = PresetsExtensionRegistry.allPresetSpecs.getValue(CanimationPreset.FadeUp).fullEnter
+        val actual =
+            DefaultCanimationPresetRegistry.resolve(
+                CanimationPreset.FadeUp,
+                CanimationLevel.Full,
+                AnimationDirection.Enter,
+            )
+
+        assertEquals(expected, actual)
     }
 
     private fun customRegistry(

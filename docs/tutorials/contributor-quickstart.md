@@ -19,15 +19,18 @@ repo contributor として、current architecture・読む順番・validation ba
 - consumer-facing implementation の中心はまだ `canimation-core`
 - target-state module として `canimation-tokens` / `canimation-primitives` /
   `canimation-semantics` / `canimation-recipes` / `canimation-runtime` / `canimation-a11y` が存在
-- isolated surface として `canimation-presets` / `canimation-diagnostics` /
-  `canimation-compat` / `canimation-experimental` / `canimation-platform-*` が分かれている
-- demo shell は `composeApp`、thin host は `androidApp` と `iosApp`
+- built-in preset SSoT は `canimation-presets`、test support は `canimation-test` と
+  `canimation-test-kit` に分かれている
+- isolated surface として `canimation-diagnostics` / `canimation-compat` /
+  `canimation-experimental` / `canimation-platform-*` が分かれている
+- current repository の demo shell は root の `composeApp`、thin host は `androidApp` と `iosApp`
 
 ## Step 3
 
 docs や governance だけを変更したら、まず次を実行する。
 
 ```bash
+bash scripts/validate-workflows.sh
 bash scripts/validate-governance-docs.sh
 ```
 
@@ -36,12 +39,15 @@ bash scripts/validate-governance-docs.sh
 実装や build に触れたら、CI と同じ baseline を使う。
 
 ```bash
-./gradlew allTests compileLibraryAndroid compileLibraryJvm --max-workers=2 --no-daemon
-./gradlew compileLibraryApple compileLibraryWeb --max-workers=2 --no-daemon
-./gradlew :composeApp:compileKotlinJvm :composeApp:compileKotlinWasmJs :androidApp:assembleDebug --max-workers=2 --no-daemon
+./gradlew allTests --max-workers=2 --no-daemon
+./gradlew :koverHtmlReport :koverXmlReport --max-workers=2 --no-daemon
+./gradlew compileLibraryAndroid compileLibraryJvm :androidApp:assembleDebug :composeApp:compileKotlinJvm --max-workers=2 --no-daemon
+./gradlew compileLibraryApple :composeApp:packageDistributionForCurrentOS :composeApp:linkDebugFrameworkIosSimulatorArm64 --max-workers=2 --no-daemon
+./gradlew compileLibraryWeb :composeApp:compileKotlinWasmJs --max-workers=2 --no-daemon
 ./gradlew releaseReadiness --max-workers=2 --no-daemon
 bash scripts/security-audit.sh
 bash scripts/validate-workflows.sh
+bash scripts/validate-governance-docs.sh
 ```
 
 ## Step 5

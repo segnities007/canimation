@@ -101,10 +101,16 @@ for file in \
   "README.md" \
   "CONTRIBUTING.md" \
   "docs/explanation/architecture/implementation-overview.md"; do
-  check_literal "$file" "compileLibraryAndroid compileLibraryJvm" \
-    "library Android/JVM validation command must be documented"
-  check_literal "$file" "compileLibraryApple compileLibraryWeb" \
-    "library Apple/Web validation command must be documented"
+  check_literal "$file" "allTests --max-workers=2 --no-daemon" \
+    "allTests validation command must be documented"
+  check_literal "$file" ":koverHtmlReport :koverXmlReport" \
+    "Kover coverage validation command must be documented"
+  check_literal "$file" "compileLibraryAndroid compileLibraryJvm :androidApp:assembleDebug :composeApp:compileKotlinJvm" \
+    "library Android/JVM and host validation command must be documented"
+  check_literal "$file" "compileLibraryApple :composeApp:packageDistributionForCurrentOS :composeApp:linkDebugFrameworkIosSimulatorArm64" \
+    "library Apple validation command must be documented"
+  check_literal "$file" "compileLibraryWeb :composeApp:compileKotlinWasmJs" \
+    "library Web validation command must be documented"
   check_literal "$file" "releaseReadiness" \
     "release readiness validation command must be documented"
   check_literal "$file" "bash scripts/validate-governance-docs.sh" \

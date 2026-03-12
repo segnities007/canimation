@@ -40,6 +40,10 @@ repository
 └── .github/
 ```
 
+この layout は end-state blueprint を表す。
+current repository では consumer app / host として `composeApp/`、`androidApp/`、`iosApp/` が root に残っており、
+`samples/` は migration 完了後の集約先として扱う。
+
 ## Canonical Module Architecture
 
 ```text
@@ -58,21 +62,28 @@ stable core line:
 - `canimation-semantics`
 - `canimation-recipes`
 - `canimation-runtime`
+- `canimation-presets`
 - `canimation-a11y`
 
 current implementation note:
 
 - these target-state modules now exist as publishable wrapper surfaces over the current core implementation
 - tokens, primitives, semantics, and recipe catalog ownership have already started moving out of `canimation-core`
+- `canimation-presets` remains the built-in preset and preset-registry SSoT during the migration
+- `canimation-test` and `canimation-test-kit` split low-level and target-state testing support
 - deeper runtime extraction from `canimation-core` is still a continuing migration step
 
-isolated line:
+support line:
 
+- `canimation-test`
 - `canimation-diagnostics`
 - `canimation-test-kit`
+- `canimation-platform-*`
+
+lifecycle-isolated line:
+
 - `canimation-compat`
 - `canimation-experimental`
-- `canimation-platform-*`
 
 ## Public API Shape
 

@@ -1,0 +1,14 @@
+// Klib ABI Dump
+// Targets: [iosArm64, iosSimulatorArm64, js, wasmJs]
+// Rendering settings:
+// - Signature version: 2
+// - Show manifest properties: true
+// - Show declarations: true
+
+// Library unique name: <io.github.canimation:canimation-experimental>
+open annotation class io.github.canimation.experimental/ExperimentalCanimationApi : kotlin/Annotation { // io.github.canimation.experimental/ExperimentalCanimationApi|null[0]
+    constructor <init>() // io.github.canimation.experimental/ExperimentalCanimationApi.<init>|<init>(){}[0]
+}
+
+final fun io.github.canimation.experimental/experimentalRecipeRegistry(kotlin.collections/Iterable<io.github.canimation.core/CanimationRecipeDescriptor>): io.github.canimation.core/CanimationRecipeRegistry // io.github.canimation.experimental/experimentalRecipeRegistry|experimentalRecipeRegistry(kotlin.collections.Iterable<io.github.canimation.core.CanimationRecipeDescriptor>){}[0]
+final fun io.github.canimation.experimental/experimentalRecipeRegistry(kotlin/Array<out io.github.canimation.core/CanimationRecipeDescriptor>...): io.github.canimation.core/CanimationRecipeRegistry // io.github.canimation.experimental/experimentalRecipeRegistry|experimentalRecipeRegistry(kotlin.Array<out|io.github.canimation.core.CanimationRecipeDescriptor>...){}[0]

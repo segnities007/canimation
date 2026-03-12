@@ -5,24 +5,49 @@ import io.github.canimation.core.CanimationLevel
 import io.github.canimation.core.CanimationRecipeRegistry
 import io.github.canimation.core.CanimationTokens
 import io.github.canimation.core.PresetRegistry
-import io.github.canimation.runtime.DefaultCanimationRecipeRegistry
+import io.github.canimation.test.CanimationTestComposition as CoreCanimationTestComposition
 import io.github.canimation.test.CanimationTestHost as CoreCanimationTestHost
 
 @Composable
 fun CanimationTestHost(
     clock: CanimationTestClock,
-    level: CanimationLevel = CanimationLevel.Full,
-    tokens: CanimationTokens = CanimationTokens.Default,
-    presetRegistry: PresetRegistry = PresetRegistry.Default,
-    recipeRegistry: CanimationRecipeRegistry = DefaultCanimationRecipeRegistry,
+    composition: CanimationTestComposition,
     content: @Composable () -> Unit,
 ) {
     CoreCanimationTestHost(
         clock = clock,
-        level = level,
-        tokens = tokens,
-        presetRegistry = presetRegistry,
-        recipeRegistry = recipeRegistry,
+        composition = composition,
+        content = content,
+    )
+}
+
+@Deprecated(
+    message = "Prefer the overload that accepts CanimationTestComposition so test inputs stay explicit.",
+    replaceWith =
+        ReplaceWith(
+            expression =
+                "CanimationTestHost(clock = clock, composition = CanimationTestComposition(presetRegistry = presetRegistry, recipeRegistry = recipeRegistry, level = level, tokens = tokens), content = content)",
+            imports = ["io.github.canimation.testkit.CanimationTestComposition"],
+        ),
+)
+@Composable
+fun CanimationTestHost(
+    clock: CanimationTestClock,
+    level: CanimationLevel = CanimationLevel.Full,
+    tokens: CanimationTokens = CanimationTokens.Default,
+    presetRegistry: PresetRegistry = DefaultCanimationTestPresetRegistry,
+    recipeRegistry: CanimationRecipeRegistry = DefaultCanimationTestRecipeRegistry,
+    content: @Composable () -> Unit,
+) {
+    CoreCanimationTestHost(
+        clock = clock,
+        composition =
+            CoreCanimationTestComposition(
+                presetRegistry = presetRegistry,
+                recipeRegistry = recipeRegistry,
+                level = level,
+                tokens = tokens,
+            ),
         content = content,
     )
 }

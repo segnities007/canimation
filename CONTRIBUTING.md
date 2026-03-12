@@ -55,6 +55,7 @@ For architecture-significant changes, open an issue first, describe the target m
 - use the Gradle wrapper shipped in the repository
 - use the versions defined in `gradle/libs.versions.toml`
 - use the module map in `settings.gradle.kts` as the current implementation source of truth
+- shared Gradle conventions are loaded from `build-logic/` through the included build in `settings.gradle.kts`
 - prefer small, reviewable changes over broad speculative rewrites
 
 ## Validation
@@ -62,9 +63,11 @@ For architecture-significant changes, open an issue first, describe the target m
 Run the repository checks that match your change before opening a pull request:
 
 ```bash
-./gradlew allTests compileLibraryAndroid compileLibraryJvm --max-workers=2 --no-daemon
-./gradlew compileLibraryApple compileLibraryWeb --max-workers=2 --no-daemon
-./gradlew :composeApp:compileKotlinJvm :composeApp:compileKotlinWasmJs :androidApp:assembleDebug --max-workers=2 --no-daemon
+./gradlew allTests --max-workers=2 --no-daemon
+./gradlew :koverHtmlReport :koverXmlReport --max-workers=2 --no-daemon
+./gradlew compileLibraryAndroid compileLibraryJvm :androidApp:assembleDebug :composeApp:compileKotlinJvm --max-workers=2 --no-daemon
+./gradlew compileLibraryApple :composeApp:packageDistributionForCurrentOS :composeApp:linkDebugFrameworkIosSimulatorArm64 --max-workers=2 --no-daemon
+./gradlew compileLibraryWeb :composeApp:compileKotlinWasmJs --max-workers=2 --no-daemon
 ./gradlew releaseReadiness --max-workers=2 --no-daemon
 bash scripts/security-audit.sh
 bash scripts/validate-workflows.sh
@@ -88,11 +91,8 @@ If you add or update external dependencies, refresh the committed Gradle verific
 
 If you touch workflow or script behavior, run the relevant script locally as part of your validation.
 
-If you touch CI coverage reporting, also verify the Kover JVM coverage report flow:
-
-```bash
-./gradlew :koverHtmlReport :koverXmlReport --max-workers=2 --no-daemon
-```
+CI intentionally runs Kover coverage generation in a separate Gradle invocation from
+`allTests`; keep the same split locally when you verify the baseline.
 
 ## Labels and Issue Types
 

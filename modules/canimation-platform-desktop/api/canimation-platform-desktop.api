@@ -23,4 +23,3 @@ public final class io/github/canimation/platform/desktop/DesktopMotionPreference
 	public fun currentPreference ()Lio/github/canimation/a11y/SystemMotionPreference;
 	public fun observePreference ()Lkotlinx/coroutines/flow/Flow;
 }
-

@@ -6,6 +6,7 @@ import io.github.canimation.core.CanimationPolicy
 import io.github.canimation.core.CanimationRecipeRegistry
 import io.github.canimation.core.CanimationSpec
 import io.github.canimation.core.CanimationTokens
+import io.github.canimation.runtime.DefaultCanimationPresetRegistry
 import io.github.canimation.runtime.DefaultCanimationRecipeRegistry
 import io.github.canimation.core.CanimationProvider as CoreCanimationProvider
 import io.github.canimation.core.CanimationVisibility as CoreCanimationVisibility
@@ -31,7 +32,7 @@ private const val COMPATIBILITY_MIGRATION_MESSAGE =
 fun CanimationProvider(
     tokens: CanimationTokens = CanimationTokens.Default,
     policy: CanimationPolicy = CanimationPolicy.SystemAware,
-    presetRegistry: PresetRegistry = PresetRegistry.Default,
+    presetRegistry: PresetRegistry = DefaultCanimationPresetRegistry,
     recipeRegistry: CanimationRecipeRegistry = DefaultCanimationRecipeRegistry,
     systemReducedMotion: Boolean? = null,
     content: @Composable () -> Unit,
