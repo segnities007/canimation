@@ -43,7 +43,7 @@ fun ApiReferenceScreen(modifier: Modifier = Modifier) {
     val uiState = stateHolder.uiState
 
     val filtered = remember(uiState.selectedFilter) {
-        filterApiEntries(apiEntries, uiState.selectedFilter)
+        filterApiReferenceEntries(apiReferenceEntries, uiState.selectedFilter)
     }
 
     val groupedByCategory = remember(filtered) {
@@ -82,7 +82,7 @@ fun ApiReferenceScreen(modifier: Modifier = Modifier) {
                         ),
                     )
                     Text(
-                        text = stringResource(Res.string.api_ref_header_count, apiEntries.size),
+                        text = stringResource(Res.string.api_ref_header_count, apiReferenceEntries.size),
                         style = MaterialTheme.typography.bodyMedium,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                         modifier = Modifier.canimation(
@@ -103,8 +103,8 @@ fun ApiReferenceScreen(modifier: Modifier = Modifier) {
                         .canimation(visible = uiState.headerStage >= 3, effect = Canimation.Fade.Up),
                 ) {
                     RefFilter.entries.forEach { filter ->
-                        val count = if (filter == RefFilter.All) apiEntries.size
-                        else apiEntries.count { it.category == filter }
+                        val count = if (filter == RefFilter.All) apiReferenceEntries.size
+                        else apiReferenceEntries.count { it.category == filter }
                         FilterChip(
                             selected = uiState.selectedFilter == filter,
                             onClick = {

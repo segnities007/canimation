@@ -47,7 +47,7 @@ internal fun reduceApiReferenceState(
     is ApiReferenceEvent.HeaderStageUpdated -> current.copy(headerStage = event.stage)
 }
 
-internal fun filterApiEntries(
+internal fun filterApiReferenceEntries(
     entries: List<ApiEntry>,
     filter: RefFilter,
 ): List<ApiEntry> {
