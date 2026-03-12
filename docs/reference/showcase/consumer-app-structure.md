@@ -17,7 +17,7 @@ composeApp/src/commonMain/kotlin/com/segnities007/canimation/
 │   ├── docs/
 │   ├── apireference/
 │   ├── presets/
-│   └── examples/
+│   └── showcase/
 │       ├── gallery/
 │       ├── detail/
 │       ├── data/
@@ -26,11 +26,11 @@ composeApp/src/commonMain/kotlin/com/segnities007/canimation/
 └── theme/
 ```
 
-- `screen/examples/gallery/` は showcase catalog の一覧 state と filter UI を持つ
-- `screen/examples/detail/` は single entry detail と live demo を持つ
-- `screen/examples/data/` は gallery/detail が参照する app-only catalog source を持つ
-- `screen/examples/component/` は component demo registry を持ち、catalog data と分離する
-- `screen/examples/preview/` は preview renderer を持つ
+- `screen/showcase/gallery/` は showcase catalog の一覧 state と filter UI を持つ
+- `screen/showcase/detail/` は single entry detail と live demo を持つ
+- `screen/showcase/data/` は gallery/detail が参照する app-only catalog source を持つ
+- `screen/showcase/component/` は component demo registry を持ち、catalog data と分離する
+- `screen/showcase/preview/` は preview renderer を持つ
 
 ## Canonical Showcase Layout
 
@@ -57,8 +57,8 @@ screen/showcase/
   - accessibility mode
   - stability tier
 - current app baseline:
-  - tag-based filtering over the app-only showcase catalog
-  - reducer-owned search query and selected tag state
+  - typed tag-based filtering over the app-only showcase catalog
+  - reducer-owned search query and selected tag state derived from catalog tag descriptors
 
 ## Pattern Minimum Set
 

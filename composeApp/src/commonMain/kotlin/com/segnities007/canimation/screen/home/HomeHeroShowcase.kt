@@ -125,7 +125,7 @@ internal fun HeroSection(stage: Int, presetCount: Int, onNavigate: (HomeDestinat
                         Button(onClick = { onNavigate(HomeDestination.Docs) }) {
                             Text(stringResource(Res.string.hero_get_started))
                         }
-                        FilledTonalButton(onClick = { onNavigate(HomeDestination.Examples) }) {
+                        FilledTonalButton(onClick = { onNavigate(HomeDestination.ShowcaseGallery) }) {
                             Text(stringResource(Res.string.hero_examples))
                         }
                     }

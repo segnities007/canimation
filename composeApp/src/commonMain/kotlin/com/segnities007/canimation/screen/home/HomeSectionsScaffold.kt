@@ -58,7 +58,7 @@ internal fun ExploreSection(stage: Int, onNavigate: (HomeDestination) -> Unit) {
 
         listOf(
             Triple(stringResource(Res.string.explore_preset_gallery), stringResource(Res.string.explore_preset_gallery_desc), HomeDestination.PresetGallery),
-            Triple(stringResource(Res.string.explore_examples), stringResource(Res.string.explore_examples_desc), HomeDestination.Examples),
+            Triple(stringResource(Res.string.explore_examples), stringResource(Res.string.explore_examples_desc), HomeDestination.ShowcaseGallery),
             Triple(stringResource(Res.string.explore_api_reference), stringResource(Res.string.explore_api_reference_desc), HomeDestination.ApiReference),
             Triple(stringResource(Res.string.explore_documentation), stringResource(Res.string.explore_documentation_desc), HomeDestination.Docs),
         ).forEachIndexed { index, (title, description, route) ->
