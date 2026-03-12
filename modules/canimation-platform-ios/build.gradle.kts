@@ -1,20 +1,8 @@
 plugins {
-    alias(libs.plugins.kotlinMultiplatform)
-    alias(libs.plugins.composeMultiplatform)
-    alias(libs.plugins.composeCompiler)
+    id("canimation.platform.ios.library")
 }
 
 kotlin {
-    listOf(
-        iosArm64(),
-        iosSimulatorArm64(),
-    ).forEach { iosTarget ->
-        iosTarget.binaries.framework {
-            baseName = "CanimationPlatformIos"
-            isStatic = true
-        }
-    }
-
     sourceSets {
         iosMain.dependencies {
             implementation(project(":canimation-core"))

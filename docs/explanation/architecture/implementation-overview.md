@@ -90,8 +90,8 @@
 - `AppState.kt`
 - `screen/docs/DocsStateHolder.kt`
 - `screen/presets/PresetGalleryState.kt`
-- `screen/examples/gallery/ExampleGalleryState.kt`
-- `screen/examples/detail/ExampleDetailState.kt`
+- `screen/showcase/gallery/ShowcaseGalleryState.kt`
+- `screen/showcase/detail/ShowcaseDetailState.kt`
 
 これにより showcase app では、予測しやすい UDF 形が保たれる。
 
@@ -153,12 +153,18 @@ Web と iOS は empty metrics を返す fallback collector を使っている。
 現在の repository baseline は次のコマンドで検証している。
 
 ```bash
-./gradlew allTests :composeApp:compileKotlinJvm --max-workers=2 --no-daemon
-./gradlew :composeApp:compileKotlinWasmJs --max-workers=2 --no-daemon
-./gradlew :androidApp:assembleDebug --max-workers=2 --no-daemon
+./gradlew allTests compileLibraryAndroid compileLibraryJvm --max-workers=2 --no-daemon
+./gradlew compileLibraryApple compileLibraryWeb --max-workers=2 --no-daemon
+./gradlew :composeApp:compileKotlinJvm :composeApp:compileKotlinWasmJs :androidApp:assembleDebug --max-workers=2 --no-daemon
+./gradlew releaseReadiness --max-workers=2 --no-daemon
 bash scripts/security-audit.sh
 bash scripts/validate-workflows.sh
+bash scripts/validate-governance-docs.sh
 ```
+
+browser-based JS / Wasm tests は Kotlin Multiplatform の Karma 既定に加え、
+`composeApp/karma.config.d/chrome-headless-ci.js` で CI 向け headless Chrome launcher を上書きする。
+これにより Linux CI や constrained local environment でも `--no-sandbox` と timeout 調整を一貫適用する。
 
 CI の形は `.github/workflows/ci.yml` にある。
 

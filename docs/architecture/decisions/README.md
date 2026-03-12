@@ -9,6 +9,11 @@
 - `docs/architecture/decisions/ADR-0003-use-immutable-explicit-registry-and-extension-model.md`
 - `docs/architecture/decisions/ADR-0004-adopt-tiered-public-api-with-compatibility-layer.md`
 - `docs/architecture/decisions/ADR-0005-adopt-structured-documentation-and-quality-evidence-ia.md`
+- `docs/architecture/decisions/ADR-0006-derive-showcase-gallery-tags-from-catalog-ssot.md`
+- `docs/architecture/decisions/ADR-0007-standardize-browser-test-launcher-for-js-and-wasm.md`
+- `docs/architecture/decisions/ADR-0008-adopt-showcase-package-topology-in-compose-app.md`
+- `docs/architecture/decisions/ADR-0009-adopt-build-logic-convention-plugins-and-library-first-release-readiness.md`
+- `docs/architecture/decisions/ADR-0010-define-repository-protection-baseline-and-unique-status-check-names.md`
 
 ## Use This Section When
 

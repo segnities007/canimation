@@ -12,7 +12,9 @@ Start here when you need the documented target-state architecture, public migrat
 - `docs/reference/recipes/registry-extension-model.md`
 - `docs/reference/api/migration-policy.md`
 - `docs/reference/showcase/consumer-app-structure.md`
+- `docs/reference/governance/triage-and-label-taxonomy.md`
 - `docs/reference/release/versioning-policy.md`
+- `docs/reference/release/repository-protection-baseline.md`
 
 ## See Also
 
