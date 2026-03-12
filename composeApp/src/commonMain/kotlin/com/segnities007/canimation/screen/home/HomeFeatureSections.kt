@@ -46,22 +46,12 @@ import androidx.compose.material.icons.automirrored.filled.ArrowForward
 import io.github.canimation.core.CanimationPreset
 import io.github.canimation.core.CanimationVisibility
 import io.github.canimation.core.Canimation
+import io.github.canimation.core.CanimationEffect
 import io.github.canimation.core.canimation
 import canimation.composeapp.generated.resources.Res
-import canimation.composeapp.generated.resources.features_accessibility
-import canimation.composeapp.generated.resources.features_accessibility_subtitle
-import canimation.composeapp.generated.resources.features_diagnostics
-import canimation.composeapp.generated.resources.features_diagnostics_subtitle
 import canimation.composeapp.generated.resources.features_label
-import canimation.composeapp.generated.resources.features_multiplatform
-import canimation.composeapp.generated.resources.features_multiplatform_subtitle
 import canimation.composeapp.generated.resources.features_presets_count
-import canimation.composeapp.generated.resources.features_presets_subtitle
-import canimation.composeapp.generated.resources.features_testable
-import canimation.composeapp.generated.resources.features_testable_subtitle
 import canimation.composeapp.generated.resources.features_title
-import canimation.composeapp.generated.resources.features_token_system
-import canimation.composeapp.generated.resources.features_token_system_subtitle
 import canimation.composeapp.generated.resources.quickstart_label
 import canimation.composeapp.generated.resources.quickstart_title
 import org.jetbrains.compose.resources.stringResource
@@ -91,60 +81,47 @@ internal fun FeaturesSection(stage: Int, presetCount: Int) {
         Spacer(Modifier.height(8.dp))
 
         Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
-            Row(
-                modifier = Modifier.fillMaxWidth()
-                    .canimation(visible = stage >= 9, effect = Canimation.Fade.Up),
-                horizontalArrangement = Arrangement.spacedBy(12.dp),
-            ) {
-                LiveFeatureCard(
-                    title = stringResource(Res.string.features_presets_count, presetCount),
-                    subtitle = stringResource(Res.string.features_presets_subtitle),
-                    demoPreset = CanimationPreset.BounceIn,
-                    demoDelay = 0L,
-                    modifier = Modifier.weight(1f),
-                )
-                LiveFeatureCard(
-                    title = stringResource(Res.string.features_accessibility),
-                    subtitle = stringResource(Res.string.features_accessibility_subtitle),
-                    demoPreset = CanimationPreset.GentleFade,
-                    demoDelay = 400L,
-                    modifier = Modifier.weight(1f),
-                )
-                LiveFeatureCard(
-                    title = stringResource(Res.string.features_diagnostics),
-                    subtitle = stringResource(Res.string.features_diagnostics_subtitle),
-                    demoPreset = CanimationPreset.Pulse,
-                    demoDelay = 800L,
-                    modifier = Modifier.weight(1f),
+            homeFeatureRows.forEachIndexed { index, row ->
+                FeatureCardRow(
+                    stage = stage,
+                    visibleStage = 9 + index,
+                    effect = if (index == 0) Canimation.Fade.Up else Canimation.Spring.Up,
+                    row = row,
+                    presetCount = presetCount,
                 )
             }
-            Row(
-                modifier = Modifier.fillMaxWidth()
-                    .canimation(visible = stage >= 10, effect = Canimation.Spring.Up),
-                horizontalArrangement = Arrangement.spacedBy(12.dp),
-            ) {
-                LiveFeatureCard(
-                    title = stringResource(Res.string.features_testable),
-                    subtitle = stringResource(Res.string.features_testable_subtitle),
-                    demoPreset = CanimationPreset.Snap,
-                    demoDelay = 200L,
-                    modifier = Modifier.weight(1f),
-                )
-                LiveFeatureCard(
-                    title = stringResource(Res.string.features_multiplatform),
-                    subtitle = stringResource(Res.string.features_multiplatform_subtitle),
-                    demoPreset = CanimationPreset.SpringSlideUp,
-                    demoDelay = 600L,
-                    modifier = Modifier.weight(1f),
-                )
-                LiveFeatureCard(
-                    title = stringResource(Res.string.features_token_system),
-                    subtitle = stringResource(Res.string.features_token_system_subtitle),
-                    demoPreset = CanimationPreset.SharedAxisY,
-                    demoDelay = 1000L,
-                    modifier = Modifier.weight(1f),
-                )
-            }
+        }
+    }
+}
+
+@Composable
+private fun FeatureCardRow(
+    stage: Int,
+    visibleStage: Int,
+    effect: CanimationEffect,
+    row: List<FeatureCardSpec>,
+    presetCount: Int,
+) {
+    Row(
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .canimation(visible = stage >= visibleStage, effect = effect),
+        horizontalArrangement = Arrangement.spacedBy(12.dp),
+    ) {
+        row.forEach { spec ->
+            LiveFeatureCard(
+                title =
+                    if (spec.usesPresetCount) {
+                        stringResource(spec.titleRes, presetCount)
+                    } else {
+                        stringResource(spec.titleRes)
+                    },
+                subtitle = stringResource(spec.subtitleRes),
+                demoPreset = spec.demoPreset,
+                demoDelay = spec.demoDelay,
+                modifier = Modifier.weight(1f),
+            )
         }
     }
 }
