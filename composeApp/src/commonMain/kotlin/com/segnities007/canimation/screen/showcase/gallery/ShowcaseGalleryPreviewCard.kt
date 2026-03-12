@@ -21,13 +21,20 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import canimation.composeapp.generated.resources.Res
+import canimation.composeapp.generated.resources.showcase_gallery_card_a11y
+import canimation.composeapp.generated.resources.showcase_gallery_preview_a11y
 import com.segnities007.canimation.compose.rememberDelayedEntryVisibility
 import com.segnities007.canimation.screen.showcase.preview.LivePreview
 import io.github.canimation.core.Canimation
 import io.github.canimation.core.canimation
+import org.jetbrains.compose.resources.stringResource
 
 @Composable
 internal fun ShowcaseGalleryPreviewCard(
@@ -38,6 +45,15 @@ internal fun ShowcaseGalleryPreviewCard(
     val item = galleryItem.entry.item
     val accent = galleryItem.entry.accentTag.accentColor
     val entered = rememberDelayedEntryVisibility(entryDelayMillis = 0L)
+    val cardTestTag = "showcase-gallery-card-${galleryItem.entry.globalIndex}"
+    val previewDescription = stringResource(Res.string.showcase_gallery_preview_a11y, galleryItem.title, galleryItem.demoTypeLabel)
+    val cardDescription =
+        stringResource(
+            Res.string.showcase_gallery_card_a11y,
+            galleryItem.title,
+            galleryItem.demoTypeLabel,
+            galleryItem.tagLabel,
+        )
 
     Card(
         onClick = onClick,
@@ -47,7 +63,11 @@ internal fun ShowcaseGalleryPreviewCard(
                 containerColor = MaterialTheme.colorScheme.surfaceVariant,
             ),
         border = BorderStroke(1.dp, accent.copy(alpha = 0.3f)),
-        modifier = modifier.canimation(visible = entered, effect = Canimation.Fade.Up),
+        modifier =
+            modifier
+                .testTag(cardTestTag)
+                .semantics { contentDescription = cardDescription }
+                .canimation(visible = entered, effect = Canimation.Fade.Up),
     ) {
         Column {
             Surface(
@@ -62,7 +82,12 @@ internal fun ShowcaseGalleryPreviewCard(
                     modifier = Modifier.fillMaxSize(),
                     contentAlignment = Alignment.Center,
                 ) {
-                    LivePreview(item = item)
+                    LivePreview(
+                        item = item,
+                        modifier = Modifier.fillMaxSize(),
+                        contentDescription = previewDescription,
+                        testTag = "$cardTestTag-preview",
+                    )
                 }
             }
 
@@ -94,6 +119,13 @@ internal fun ShowcaseGalleryPreviewCard(
                         text = galleryItem.title,
                         style = MaterialTheme.typography.titleSmall,
                         fontWeight = FontWeight.Bold,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis,
+                    )
+                    Text(
+                        text = galleryItem.demoTypeLabel,
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis,
                     )

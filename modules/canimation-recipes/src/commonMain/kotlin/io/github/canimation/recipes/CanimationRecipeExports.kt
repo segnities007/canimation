@@ -1,28 +1,21 @@
 package io.github.canimation.recipes
 
-import io.github.canimation.core.Canimation
-import io.github.canimation.core.CanimationRecipeRegistry
-import io.github.canimation.core.CanimationRecipeRegistryMergePolicy
-import io.github.canimation.core.CanimationAmbientRecipes as CoreCanimationAmbientRecipes
-import io.github.canimation.core.CanimationContentRecipes as CoreCanimationContentRecipes
-import io.github.canimation.core.CanimationEmphasisRecipes as CoreCanimationEmphasisRecipes
-import io.github.canimation.core.CanimationFeedbackRecipes as CoreCanimationFeedbackRecipes
-import io.github.canimation.core.CanimationNavigationRecipes as CoreCanimationNavigationRecipes
-import io.github.canimation.core.CanimationRecoveryRecipes as CoreCanimationRecoveryRecipes
-import io.github.canimation.core.CanimationSurfaceRecipes as CoreCanimationSurfaceRecipes
-import io.github.canimation.core.CanimationTransitionRecipes as CoreCanimationTransitionRecipes
-import io.github.canimation.core.DefaultCanimationRecipeRegistry as CoreDefaultCanimationRecipeRegistry
-import io.github.canimation.presets.PresetsExtensionRegistry as CorePresetsExtensionRegistry
+import io.github.canimation.primitives.Canimation
+import io.github.canimation.semantics.CanimationRecipeRegistry
+import io.github.canimation.semantics.CanimationRecipeRegistryMergePolicy
 
-typealias CanimationContentRecipes = CoreCanimationContentRecipes
-typealias CanimationFeedbackRecipes = CoreCanimationFeedbackRecipes
-typealias CanimationNavigationRecipes = CoreCanimationNavigationRecipes
-typealias CanimationSurfaceRecipes = CoreCanimationSurfaceRecipes
-typealias CanimationEmphasisRecipes = CoreCanimationEmphasisRecipes
-typealias CanimationTransitionRecipes = CoreCanimationTransitionRecipes
-typealias CanimationAmbientRecipes = CoreCanimationAmbientRecipes
-typealias CanimationRecoveryRecipes = CoreCanimationRecoveryRecipes
-typealias PresetsExtensionRegistry = CorePresetsExtensionRegistry
+/**
+ * Stage-1 module-owned recipe entrypoints bridging the legacy core namespace.
+ */
+typealias CanimationContentRecipes = io.github.canimation.core.CanimationContentRecipes
+typealias CanimationFeedbackRecipes = io.github.canimation.core.CanimationFeedbackRecipes
+typealias CanimationNavigationRecipes = io.github.canimation.core.CanimationNavigationRecipes
+typealias CanimationSurfaceRecipes = io.github.canimation.core.CanimationSurfaceRecipes
+typealias CanimationEmphasisRecipes = io.github.canimation.core.CanimationEmphasisRecipes
+typealias CanimationTransitionRecipes = io.github.canimation.core.CanimationTransitionRecipes
+typealias CanimationAmbientRecipes = io.github.canimation.core.CanimationAmbientRecipes
+typealias CanimationRecoveryRecipes = io.github.canimation.core.CanimationRecoveryRecipes
+typealias PresetsExtensionRegistry = io.github.canimation.presets.PresetsExtensionRegistry
 
 @Suppress("UnusedReceiverParameter")
 val Canimation.Content: CanimationContentRecipes
@@ -58,7 +51,7 @@ val Canimation.Recovery: CanimationRecoveryRecipes
 
 @Suppress("unused")
 val DefaultCanimationRecipeRegistry: CanimationRecipeRegistry =
-    CoreDefaultCanimationRecipeRegistry.merge(
+    io.github.canimation.core.DefaultCanimationRecipeRegistry.merge(
         PresetsExtensionRegistry.recipeRegistry,
         CanimationRecipeRegistryMergePolicy.Fail,
     )

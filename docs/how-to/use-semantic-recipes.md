@@ -3,6 +3,7 @@
 ## Goal
 
 semantic recipe API を使って、UI の意味に基づいて motion を適用する。
+セットアップから入りたい場合は [Consumer Quickstart](../tutorials/consumer-quickstart.md) を先に読む。
 
 ## 1. Provide the semantic recipe registry
 
@@ -49,6 +50,8 @@ CanimationVisibility(
 
 ## Related
 
-- `docs/reference/semantics/taxonomy.md`
-- `docs/reference/recipes/descriptor-schema.md`
-- `docs/reference/api/migration-policy.md`
+- [Consumer Quickstart](../tutorials/consumer-quickstart.md)
+- [Semantic Taxonomy](../reference/semantics/taxonomy.md)
+- [Descriptor Schema](../reference/recipes/descriptor-schema.md)
+- [API Migration Policy](../reference/api/migration-policy.md)
+- [Implementation Overview](../explanation/architecture/implementation-overview.md)

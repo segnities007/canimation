@@ -1,6 +1,7 @@
 package com.segnities007.canimation.screen.showcase.detail
 
 import com.segnities007.canimation.screen.showcase.data.ShowcaseDemoType
+import com.segnities007.canimation.screen.showcase.data.showcaseDemoTypeLabelRes
 
 import androidx.compose.runtime.Composable
 import canimation.composeapp.generated.resources.*
@@ -8,19 +9,7 @@ import io.github.canimation.core.CanimationEffect
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
-internal fun formatShowcaseDemoType(demoType: ShowcaseDemoType): String = stringResource(
-    when (demoType) {
-        ShowcaseDemoType.Effect -> Res.string.examples_detail_type_effect
-        ShowcaseDemoType.Transition -> Res.string.examples_detail_type_transition
-        ShowcaseDemoType.Composition -> Res.string.examples_detail_type_composition
-        ShowcaseDemoType.Stagger -> Res.string.examples_detail_type_stagger
-        ShowcaseDemoType.Emphasis -> Res.string.examples_detail_type_emphasis
-        ShowcaseDemoType.RealWorld -> Res.string.examples_detail_type_real_world
-        ShowcaseDemoType.Component -> Res.string.examples_detail_type_component
-        ShowcaseDemoType.EnterExit -> Res.string.examples_detail_type_enter_exit
-        ShowcaseDemoType.Visibility -> Res.string.examples_detail_type_visibility
-    }
-)
+internal fun formatShowcaseDemoType(demoType: ShowcaseDemoType): String = stringResource(showcaseDemoTypeLabelRes(demoType))
 
 @Composable
 internal fun describeEffect(effect: CanimationEffect): String {

@@ -42,13 +42,12 @@ fun CanimationVisibility(
     content: @Composable () -> Unit,
 ) {
     val context = LocalCanimationContext.current
-    val descriptor = context.recipeRegistry.resolve(recipe)
     val spec =
-        when (context.level) {
-            CanimationLevel.Full -> descriptor.specs.full
-            CanimationLevel.Reduced -> descriptor.specs.reduced
-            CanimationLevel.Off -> descriptor.specs.off
-        }
+        CanimationSpecResolver.resolveRecipe(
+            recipe = recipe,
+            level = context.level,
+            registry = context.recipeRegistry,
+        )
 
     AnimatedVisibility(
         visible = visible,

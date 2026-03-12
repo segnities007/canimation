@@ -45,6 +45,7 @@ fun ShowcaseDetailScreen(
         tagLabel = tagLabel,
         codeSnippet = codeSnippet,
         uiState = stateHolder.uiState,
+        onPreviewMotionSelected = { stateHolder.onEvent(ShowcaseDetailEvent.PreviewMotionSelected(it)) },
         onBack = onBack,
         modifier = modifier,
     )

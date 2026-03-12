@@ -25,6 +25,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import canimation.composeapp.generated.resources.*
@@ -38,14 +41,35 @@ import io.github.canimation.core.canimationEmphasize
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
-internal fun LivePreview(item: ShowcaseItem) {
-    when (item.demoType) {
-        ShowcaseDemoType.Effect, ShowcaseDemoType.Composition -> EffectPreview(item.effect ?: Canimation.Fade.In)
-        ShowcaseDemoType.Transition -> TransitionPreview(item.enterEffect)
-        ShowcaseDemoType.Stagger -> StaggerPreview(item.effect ?: Canimation.Fade.Up)
-        ShowcaseDemoType.Emphasis -> EmphasisPreview(item.preset)
-        ShowcaseDemoType.Component -> ComponentPreview(item.componentKey)
-        ShowcaseDemoType.RealWorld, ShowcaseDemoType.EnterExit, ShowcaseDemoType.Visibility -> PresetPreview(item.preset)
+internal fun LivePreview(
+    item: ShowcaseItem,
+    modifier: Modifier = Modifier,
+    contentDescription: String? = null,
+    testTag: String? = null,
+) {
+    val previewModifier =
+        modifier
+            .let { base -> if (testTag == null) base else base.testTag(testTag) }
+            .let { base ->
+                if (contentDescription == null) {
+                    base
+                } else {
+                    base.semantics { this.contentDescription = contentDescription }
+                }
+            }
+
+    Box(
+        modifier = previewModifier,
+        contentAlignment = Alignment.Center,
+    ) {
+        when (item.demoType) {
+            ShowcaseDemoType.Effect, ShowcaseDemoType.Composition -> EffectPreview(item.effect ?: Canimation.Fade.In)
+            ShowcaseDemoType.Transition -> TransitionPreview(item.enterEffect)
+            ShowcaseDemoType.Stagger -> StaggerPreview(item.effect ?: Canimation.Fade.Up)
+            ShowcaseDemoType.Emphasis -> EmphasisPreview(item.preset)
+            ShowcaseDemoType.Component -> ComponentPreview(item.componentKey)
+            ShowcaseDemoType.RealWorld, ShowcaseDemoType.EnterExit, ShowcaseDemoType.Visibility -> PresetPreview(item.preset)
+        }
     }
 }
 

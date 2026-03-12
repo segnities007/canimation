@@ -21,7 +21,7 @@ plugins {
     alias(libs.plugins.composeMultiplatform) apply false
     alias(libs.plugins.composeCompiler) apply false
     alias(libs.plugins.kotlinMultiplatform) apply false
-    alias(libs.plugins.kover) apply false
+    alias(libs.plugins.kover)
     alias(libs.plugins.dokka)
     alias(libs.plugins.dokkaJavadoc) apply false
 }
@@ -295,6 +295,15 @@ val publishedModules =
 
 val publishableProjects = publishedModules.map { module -> project(module.path) }
 
+val coverageProjects =
+    publishedModules
+        .filter { module ->
+            module.verification.androidCompileTask == null &&
+                module.verification.jvmCompileTask != null &&
+                module.verification.appleCompileTask == null &&
+                module.verification.webCompileTasks.isEmpty()
+        }.map { module -> project(module.path) }
+
 val moduleMetadataByPath =
     publishedModules.associate { module ->
         module.path to module.metadata
@@ -383,6 +392,9 @@ dependencies {
     publishableProjects.forEach { project ->
         add("dokka", project)
     }
+    coverageProjects.forEach { project ->
+        add("kover", project)
+    }
 }
 
 dokka {
@@ -391,6 +403,10 @@ dokka {
         outputDirectory.set(layout.buildDirectory.dir("dokka/html"))
         includes.from("README.md")
     }
+}
+
+configure(coverageProjects) {
+    apply(plugin = "org.jetbrains.kotlinx.kover")
 }
 
 configure(publishableProjects) {

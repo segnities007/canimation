@@ -35,14 +35,12 @@ fun Modifier.canimation(
             },
     ) {
         val context = LocalCanimationContext.current
-        val tokens = context.tokens
-
         val spec =
-            when (context.level) {
-                CanimationLevel.Full -> effect.toEnterSpec(tokens)
-                CanimationLevel.Reduced -> effect.toEnterSpec(tokens).toReduced(tokens)
-                CanimationLevel.Off -> effect.toEnterSpec(tokens).copy(durationMs = 0)
-            }
+            CanimationSpecResolver.resolveEffect(
+                effect = effect,
+                level = context.level,
+                tokens = context.tokens,
+            )
         applyAnimationSpec(visible = visible, spec = spec)
     }
 
@@ -62,13 +60,12 @@ fun Modifier.canimation(
             },
     ) {
         val context = LocalCanimationContext.current
-        val descriptor = context.recipeRegistry.resolve(recipe)
         val spec =
-            when (context.level) {
-                CanimationLevel.Full -> descriptor.specs.full
-                CanimationLevel.Reduced -> descriptor.specs.reduced
-                CanimationLevel.Off -> descriptor.specs.off
-            }
+            CanimationSpecResolver.resolveRecipe(
+                recipe = recipe,
+                level = context.level,
+                registry = context.recipeRegistry,
+            )
         applyAnimationSpec(visible = visible, spec = spec)
     }
 
@@ -100,19 +97,14 @@ fun Modifier.canimationTransition(
             },
     ) {
         val context = LocalCanimationContext.current
-        val tokens = context.tokens
-
-        val enterSpec = enter.toEnterSpec(tokens)
-        val exitSpec = exit?.toEnterSpec(tokens) ?: enterSpec.reversed(tokens)
-
         val spec =
-            when {
-                context.level == CanimationLevel.Off -> enterSpec.copy(durationMs = 0)
-                context.level == CanimationLevel.Reduced && visible -> enterSpec.toReduced(tokens)
-                context.level == CanimationLevel.Reduced && !visible -> exitSpec.toReduced(tokens)
-                visible -> enterSpec
-                else -> exitSpec
-            }
+            CanimationSpecResolver.resolveTransitionEffect(
+                visible = visible,
+                level = context.level,
+                enter = enter,
+                exit = exit,
+                tokens = context.tokens,
+            )
         applyAnimationSpec(visible = visible, spec = spec)
     }
 
@@ -134,12 +126,11 @@ fun Modifier.canimationTransition(
             },
     ) {
         val context = LocalCanimationContext.current
-        val descriptor = context.recipeRegistry.resolve(if (visible) enter else exit)
         val spec =
-            when (context.level) {
-                CanimationLevel.Full -> descriptor.specs.full
-                CanimationLevel.Reduced -> descriptor.specs.reduced
-                CanimationLevel.Off -> descriptor.specs.off
-            }
+            CanimationSpecResolver.resolveRecipe(
+                recipe = if (visible) enter else exit,
+                level = context.level,
+                registry = context.recipeRegistry,
+            )
         applyAnimationSpec(visible = visible, spec = spec)
     }

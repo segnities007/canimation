@@ -13,6 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.segnities007.canimation.screen.showcase.data.ShowcaseDemoType
 import com.segnities007.canimation.screen.showcase.data.ShowcaseTagId
 
 @Composable
@@ -20,10 +21,12 @@ internal fun ShowcaseGalleryContent(
     uiState: ShowcaseGalleryUiState,
     totalCount: Int,
     filterTags: List<ShowcaseGalleryFilterTag>,
+    demoTypeFilters: List<ShowcaseGalleryDemoTypeFilter>,
     filteredItems: List<ShowcaseGalleryDisplayItem>,
     onSearchQueryChanged: (String) -> Unit,
     onFiltersToggled: () -> Unit,
     onTagSelected: (ShowcaseTagId?) -> Unit,
+    onDemoTypeSelected: (ShowcaseDemoType?) -> Unit,
     onItemClick: (Int) -> Unit,
     modifier: Modifier = Modifier,
 ) {
@@ -47,10 +50,12 @@ internal fun ShowcaseGalleryContent(
                     uiState = uiState,
                     totalCount = totalCount,
                     filterTags = filterTags,
+                    demoTypeFilters = demoTypeFilters,
                     resultCount = filteredItems.size,
                     onSearchQueryChanged = onSearchQueryChanged,
                     onFiltersToggled = onFiltersToggled,
                     onTagSelected = onTagSelected,
+                    onDemoTypeSelected = onDemoTypeSelected,
                 )
             }
 

@@ -60,6 +60,11 @@ bash scripts/validate-governance-docs.sh
   - `compileLibraryJvm`
   - `compileLibraryApple`
   - `compileLibraryWeb`
+- CI test validation also generates Kover JVM coverage artifacts via:
+  - `:koverHtmlReport`
+  - `:koverXmlReport`
+  - current scope: `:canimation-platform-desktop`
+  - uploaded as the `coverage-report` artifact from `build/reports/kover/`
 - browser-based Kotlin/JS and Wasm tests rely on module-local Karma overrides in `composeApp/karma.config.d/`
 - machine-readable artifacts:
   - `docs/quality/workflow/workflow-validation-report.json`
@@ -69,6 +74,7 @@ bash scripts/validate-governance-docs.sh
 ## Known Limitations
 
 - validation is repository-shape based and does not prove GitHub-side branch protection or ruleset enforcement
+- the pinned Kover `0.9.1` flow currently covers the JVM-only desktop adapter module; Android KMP modules using `com.android.kotlin.multiplatform.library` remain validated by `allTests` until upstream Kover support is available
 - intended GitHub-side baseline is documented in `docs/reference/release/repository-protection-baseline.md`
 
 ## Last Updated Trigger

@@ -88,6 +88,12 @@ If you add or update external dependencies, refresh the committed Gradle verific
 
 If you touch workflow or script behavior, run the relevant script locally as part of your validation.
 
+If you touch CI coverage reporting, also verify the Kover JVM coverage report flow:
+
+```bash
+./gradlew :koverHtmlReport :koverXmlReport --max-workers=2 --no-daemon
+```
+
 ## Labels and Issue Types
 
 The repository uses these label families as the default triage vocabulary:

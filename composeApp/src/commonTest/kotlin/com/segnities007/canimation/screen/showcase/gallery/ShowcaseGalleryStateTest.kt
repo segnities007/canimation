@@ -20,7 +20,19 @@ class ShowcaseGalleryStateTest {
     }
 
     @Test
-    fun filterGalleryItemsAppliesSearchAndTagTogether() {
+    fun demoTypeSelectionTogglesBackToAllWhenSameTypeIsSelectedTwice() {
+        val base = ShowcaseGalleryUiState(selectedDemoType = ALL_DEMO_TYPE)
+
+        val selected = reduceShowcaseGalleryState(base, ShowcaseGalleryEvent.DemoTypeSelected(ShowcaseDemoType.Transition))
+        assertEquals(ShowcaseDemoType.Transition, selected.selectedDemoType)
+
+        val toggledBack =
+            reduceShowcaseGalleryState(selected, ShowcaseGalleryEvent.DemoTypeSelected(ShowcaseDemoType.Transition))
+        assertEquals(ALL_DEMO_TYPE, toggledBack.selectedDemoType)
+    }
+
+    @Test
+    fun filterGalleryItemsAppliesSearchTagAndDemoTypeTogether() {
         val baseExample = showcaseGalleryCatalog.entries.first().item
         val entranceTag = showcaseTagDescriptorsById.getValue(ShowcaseTagId.Entrance)
         val emphasisTag = showcaseTagDescriptorsById.getValue(ShowcaseTagId.Emphasis)
@@ -37,6 +49,7 @@ class ShowcaseGalleryStateTest {
                     title = "Fade Up",
                     description = "Simple entrance",
                     tagLabel = "Entrance",
+                    demoTypeLabel = "Modifier.canimation",
                 ),
                 ShowcaseGalleryDisplayItem(
                     entry =
@@ -49,10 +62,16 @@ class ShowcaseGalleryStateTest {
                     title = "Pulse",
                     description = "Attention seeker",
                     tagLabel = "Emphasis",
+                    demoTypeLabel = "Modifier.canimationEmphasize",
                 ),
             )
 
-        val state = ShowcaseGalleryUiState(searchQuery = "pulse", selectedTag = ShowcaseTagId.Emphasis)
+        val state =
+            ShowcaseGalleryUiState(
+                searchQuery = "modifier.canimationEmphasize",
+                selectedTag = ShowcaseTagId.Emphasis,
+                selectedDemoType = ShowcaseDemoType.Emphasis,
+            )
         val filtered = filterShowcaseGalleryItems(items, state)
 
         assertEquals(1, filtered.size)
@@ -64,6 +83,7 @@ class ShowcaseGalleryStateTest {
         val catalog = showcaseGalleryCatalog
 
         assertEquals(ALL_TAG, catalog.filterTags.first().id)
+        assertEquals(ALL_DEMO_TYPE, catalog.demoTypeFilters.first().demoType)
         assertEquals(catalog.entries.indices.toList(), catalog.entries.map { it.globalIndex })
     }
 
@@ -73,5 +93,13 @@ class ShowcaseGalleryStateTest {
         val categoryTagIds = showcaseGalleryCatalog.entries.flatMap { entry -> entry.tags.map { it.id } }.toSet()
 
         assertEquals(categoryTagIds, filterTagIds)
+    }
+
+    @Test
+    fun galleryCatalogDerivesDemoTypeFiltersFromEntries() {
+        val filterDemoTypes = showcaseGalleryCatalog.demoTypeFilters.mapNotNull(ShowcaseGalleryDemoTypeFilter::demoType).toSet()
+        val entryDemoTypes = showcaseGalleryCatalog.entries.map { entry -> entry.item.demoType }.toSet()
+
+        assertEquals(entryDemoTypes, filterDemoTypes)
     }
 }

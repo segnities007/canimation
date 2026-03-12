@@ -13,4 +13,16 @@ class ShowcaseDetailStateTest {
 
         assertEquals(3, updated.entryStage)
     }
+
+    @Test
+    fun previewMotionSelectionUpdatesReducerAndStateHolder() {
+        val base = ShowcaseDetailUiState(previewMotion = ShowcasePreviewMotion.Full)
+
+        val updated = reduceShowcaseDetailState(base, ShowcaseDetailEvent.PreviewMotionSelected(ShowcasePreviewMotion.Reduced))
+        val stateHolder = ShowcaseDetailStateHolder()
+        stateHolder.onEvent(ShowcaseDetailEvent.PreviewMotionSelected(ShowcasePreviewMotion.Off))
+
+        assertEquals(ShowcasePreviewMotion.Reduced, updated.previewMotion)
+        assertEquals(ShowcasePreviewMotion.Off, stateHolder.uiState.previewMotion)
+    }
 }

@@ -22,4 +22,10 @@ class CanimationPrimitiveExportsTest {
         assertEquals((-16).toFloat(), offsetY.from.value)
         assertEquals(0f, offsetY.to.value)
     }
+
+    @Test
+    fun primitivesPackageExposesHierarchicalNamespaceFacade() {
+        assertEquals(CanimationFade.Up, Canimation.Fade.Up)
+        assertEquals(CanimationSlide.Left, Canimation.Slide.Left)
+    }
 }

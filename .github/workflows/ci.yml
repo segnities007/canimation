@@ -30,6 +30,8 @@ jobs:
 
   test:
     name: CI / test
+    needs:
+      - audit
     runs-on: ubuntu-24.04
     permissions:
       contents: read
@@ -42,6 +44,8 @@ jobs:
         uses: ./.github/actions/setup-build
       - name: Run all tests
         run: ./gradlew allTests --max-workers=2 --no-daemon
+      - name: Generate coverage reports
+        run: ./gradlew :koverHtmlReport :koverXmlReport --max-workers=2 --no-daemon
       - name: Upload test results
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         if: always()
@@ -49,9 +53,20 @@ jobs:
           name: test-results
           path: '**/build/reports/tests/'
           retention-days: 7
+      - name: Upload coverage report
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        if: always()
+        with:
+          name: coverage-report
+          path: |
+            build/reports/kover/html/
+            build/reports/kover/report.xml
+          retention-days: 7
 
   build:
     name: CI / build
+    needs:
+      - test
     runs-on: ubuntu-24.04
     permissions:
       contents: read
@@ -67,6 +82,8 @@ jobs:
 
   build-apple:
     name: CI / build-apple
+    needs:
+      - test
     runs-on: macos-15
     permissions:
       contents: read
@@ -82,6 +99,8 @@ jobs:
 
   wasm-build:
     name: CI / wasm-build
+    needs:
+      - test
     runs-on: ubuntu-24.04
     permissions:
       contents: read
@@ -97,6 +116,10 @@ jobs:
 
   check:
     name: CI / check
+    needs:
+      - build
+      - build-apple
+      - wasm-build
     runs-on: ubuntu-24.04
     permissions:
       contents: read
@@ -112,6 +135,8 @@ jobs:
 
   audit:
     name: CI / audit
+    needs:
+      - lint
     runs-on: ubuntu-24.04
     permissions:
       contents: read

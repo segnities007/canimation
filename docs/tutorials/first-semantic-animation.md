@@ -3,6 +3,7 @@
 ## Goal
 
 最小構成で semantics-first animation を使い始める。
+セットアップから始める場合は [Consumer Quickstart](consumer-quickstart.md) を先に読む。
 
 ## Step 1
 
@@ -46,5 +47,7 @@ reduced/off mode では descriptor の reduced/off spec が自動的に使われ
 
 ## Next
 
-- `docs/how-to/use-semantic-recipes.md`
-- `docs/reference/semantics/taxonomy.md`
+- [Consumer Quickstart](consumer-quickstart.md)
+- [Use Semantic Recipes](../how-to/use-semantic-recipes.md)
+- [Semantic Taxonomy](../reference/semantics/taxonomy.md)
+- [Implementation Overview](../explanation/architecture/implementation-overview.md)
