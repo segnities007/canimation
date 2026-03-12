@@ -1,0 +1,14 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Support policy
+    url: https://github.com/segnities007/canimation/blob/main/SUPPORT.md
+    about: Check supported lines, support boundaries, and where to ask questions.
+  - name: Security policy
+    url: https://github.com/segnities007/canimation/blob/main/SECURITY.md
+    about: Report vulnerabilities privately and avoid opening public exploit issues.
+  - name: Contributing guide
+    url: https://github.com/segnities007/canimation/blob/main/CONTRIBUTING.md
+    about: Review validation commands, PR expectations, and architecture-change rules.
+  - name: Maintainer roles
+    url: https://github.com/segnities007/canimation/blob/main/MAINTAINERS.md
+    about: Review maintainer responsibilities, owner-review boundaries, and follow-up expectations.

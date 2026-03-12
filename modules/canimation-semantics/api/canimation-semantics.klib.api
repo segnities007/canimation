@@ -1,0 +1,287 @@
+// Klib ABI Dump
+// Targets: [iosArm64, iosSimulatorArm64, js, wasmJs]
+// Rendering settings:
+// - Signature version: 2
+// - Show manifest properties: true
+// - Show declarations: true
+
+// Library unique name: <io.github.canimation:canimation-semantics>
+final enum class io.github.canimation.core/CanimationCost : kotlin/Enum<io.github.canimation.core/CanimationCost> { // io.github.canimation.core/CanimationCost|null[0]
+    enum entry Draw // io.github.canimation.core/CanimationCost.Draw|null[0]
+    enum entry Layout // io.github.canimation.core/CanimationCost.Layout|null[0]
+    enum entry Transform // io.github.canimation.core/CanimationCost.Transform|null[0]
+
+    final val entries // io.github.canimation.core/CanimationCost.entries|#static{}entries[0]
+        final fun <get-entries>(): kotlin.enums/EnumEntries<io.github.canimation.core/CanimationCost> // io.github.canimation.core/CanimationCost.entries.<get-entries>|<get-entries>#static(){}[0]
+
+    final fun valueOf(kotlin/String): io.github.canimation.core/CanimationCost // io.github.canimation.core/CanimationCost.valueOf|valueOf#static(kotlin.String){}[0]
+    final fun values(): kotlin/Array<io.github.canimation.core/CanimationCost> // io.github.canimation.core/CanimationCost.values|values#static(){}[0]
+}
+
+final enum class io.github.canimation.core/CanimationIntensity : kotlin/Enum<io.github.canimation.core/CanimationIntensity> { // io.github.canimation.core/CanimationIntensity|null[0]
+    enum entry Standard // io.github.canimation.core/CanimationIntensity.Standard|null[0]
+    enum entry Strong // io.github.canimation.core/CanimationIntensity.Strong|null[0]
+    enum entry Subtle // io.github.canimation.core/CanimationIntensity.Subtle|null[0]
+
+    final val entries // io.github.canimation.core/CanimationIntensity.entries|#static{}entries[0]
+        final fun <get-entries>(): kotlin.enums/EnumEntries<io.github.canimation.core/CanimationIntensity> // io.github.canimation.core/CanimationIntensity.entries.<get-entries>|<get-entries>#static(){}[0]
+
+    final fun valueOf(kotlin/String): io.github.canimation.core/CanimationIntensity // io.github.canimation.core/CanimationIntensity.valueOf|valueOf#static(kotlin.String){}[0]
+    final fun values(): kotlin/Array<io.github.canimation.core/CanimationIntensity> // io.github.canimation.core/CanimationIntensity.values|values#static(){}[0]
+}
+
+final enum class io.github.canimation.core/CanimationIntent : kotlin/Enum<io.github.canimation.core/CanimationIntent> { // io.github.canimation.core/CanimationIntent|null[0]
+    enum entry Ambient // io.github.canimation.core/CanimationIntent.Ambient|null[0]
+    enum entry Content // io.github.canimation.core/CanimationIntent.Content|null[0]
+    enum entry Emphasis // io.github.canimation.core/CanimationIntent.Emphasis|null[0]
+    enum entry Experimental // io.github.canimation.core/CanimationIntent.Experimental|null[0]
+    enum entry Feedback // io.github.canimation.core/CanimationIntent.Feedback|null[0]
+    enum entry Navigation // io.github.canimation.core/CanimationIntent.Navigation|null[0]
+    enum entry Recovery // io.github.canimation.core/CanimationIntent.Recovery|null[0]
+    enum entry Surface // io.github.canimation.core/CanimationIntent.Surface|null[0]
+    enum entry Transition // io.github.canimation.core/CanimationIntent.Transition|null[0]
+
+    final val entries // io.github.canimation.core/CanimationIntent.entries|#static{}entries[0]
+        final fun <get-entries>(): kotlin.enums/EnumEntries<io.github.canimation.core/CanimationIntent> // io.github.canimation.core/CanimationIntent.entries.<get-entries>|<get-entries>#static(){}[0]
+
+    final fun valueOf(kotlin/String): io.github.canimation.core/CanimationIntent // io.github.canimation.core/CanimationIntent.valueOf|valueOf#static(kotlin.String){}[0]
+    final fun values(): kotlin/Array<io.github.canimation.core/CanimationIntent> // io.github.canimation.core/CanimationIntent.values|values#static(){}[0]
+}
+
+final enum class io.github.canimation.core/CanimationRecipeRegistryMergePolicy : kotlin/Enum<io.github.canimation.core/CanimationRecipeRegistryMergePolicy> { // io.github.canimation.core/CanimationRecipeRegistryMergePolicy|null[0]
+    enum entry Fail // io.github.canimation.core/CanimationRecipeRegistryMergePolicy.Fail|null[0]
+    enum entry PreferExtension // io.github.canimation.core/CanimationRecipeRegistryMergePolicy.PreferExtension|null[0]
+    enum entry PreferHost // io.github.canimation.core/CanimationRecipeRegistryMergePolicy.PreferHost|null[0]
+
+    final val entries // io.github.canimation.core/CanimationRecipeRegistryMergePolicy.entries|#static{}entries[0]
+        final fun <get-entries>(): kotlin.enums/EnumEntries<io.github.canimation.core/CanimationRecipeRegistryMergePolicy> // io.github.canimation.core/CanimationRecipeRegistryMergePolicy.entries.<get-entries>|<get-entries>#static(){}[0]
+
+    final fun valueOf(kotlin/String): io.github.canimation.core/CanimationRecipeRegistryMergePolicy // io.github.canimation.core/CanimationRecipeRegistryMergePolicy.valueOf|valueOf#static(kotlin.String){}[0]
+    final fun values(): kotlin/Array<io.github.canimation.core/CanimationRecipeRegistryMergePolicy> // io.github.canimation.core/CanimationRecipeRegistryMergePolicy.values|values#static(){}[0]
+}
+
+final enum class io.github.canimation.core/CanimationReducedStrategy : kotlin/Enum<io.github.canimation.core/CanimationReducedStrategy> { // io.github.canimation.core/CanimationReducedStrategy|null[0]
+    enum entry Alternative // io.github.canimation.core/CanimationReducedStrategy.Alternative|null[0]
+    enum entry Compress // io.github.canimation.core/CanimationReducedStrategy.Compress|null[0]
+    enum entry FadeOnly // io.github.canimation.core/CanimationReducedStrategy.FadeOnly|null[0]
+    enum entry Snap // io.github.canimation.core/CanimationReducedStrategy.Snap|null[0]
+
+    final val entries // io.github.canimation.core/CanimationReducedStrategy.entries|#static{}entries[0]
+        final fun <get-entries>(): kotlin.enums/EnumEntries<io.github.canimation.core/CanimationReducedStrategy> // io.github.canimation.core/CanimationReducedStrategy.entries.<get-entries>|<get-entries>#static(){}[0]
+
+    final fun valueOf(kotlin/String): io.github.canimation.core/CanimationReducedStrategy // io.github.canimation.core/CanimationReducedStrategy.valueOf|valueOf#static(kotlin.String){}[0]
+    final fun values(): kotlin/Array<io.github.canimation.core/CanimationReducedStrategy> // io.github.canimation.core/CanimationReducedStrategy.values|values#static(){}[0]
+}
+
+final enum class io.github.canimation.core/CanimationSurfaceRole : kotlin/Enum<io.github.canimation.core/CanimationSurfaceRole> { // io.github.canimation.core/CanimationSurfaceRole|null[0]
+    enum entry Container // io.github.canimation.core/CanimationSurfaceRole.Container|null[0]
+    enum entry Control // io.github.canimation.core/CanimationSurfaceRole.Control|null[0]
+    enum entry Decoration // io.github.canimation.core/CanimationSurfaceRole.Decoration|null[0]
+    enum entry Inline // io.github.canimation.core/CanimationSurfaceRole.Inline|null[0]
+    enum entry Item // io.github.canimation.core/CanimationSurfaceRole.Item|null[0]
+    enum entry Overlay // io.github.canimation.core/CanimationSurfaceRole.Overlay|null[0]
+    enum entry Page // io.github.canimation.core/CanimationSurfaceRole.Page|null[0]
+    enum entry Text // io.github.canimation.core/CanimationSurfaceRole.Text|null[0]
+
+    final val entries // io.github.canimation.core/CanimationSurfaceRole.entries|#static{}entries[0]
+        final fun <get-entries>(): kotlin.enums/EnumEntries<io.github.canimation.core/CanimationSurfaceRole> // io.github.canimation.core/CanimationSurfaceRole.entries.<get-entries>|<get-entries>#static(){}[0]
+
+    final fun valueOf(kotlin/String): io.github.canimation.core/CanimationSurfaceRole // io.github.canimation.core/CanimationSurfaceRole.valueOf|valueOf#static(kotlin.String){}[0]
+    final fun values(): kotlin/Array<io.github.canimation.core/CanimationSurfaceRole> // io.github.canimation.core/CanimationSurfaceRole.values|values#static(){}[0]
+}
+
+final class io.github.canimation.core/CanimationRecipeAccessibility { // io.github.canimation.core/CanimationRecipeAccessibility|null[0]
+    constructor <init>(io.github.canimation.core/CanimationReducedStrategy, kotlin/Boolean, kotlin/String = ...) // io.github.canimation.core/CanimationRecipeAccessibility.<init>|<init>(io.github.canimation.core.CanimationReducedStrategy;kotlin.Boolean;kotlin.String){}[0]
+
+    final val notes // io.github.canimation.core/CanimationRecipeAccessibility.notes|{}notes[0]
+        final fun <get-notes>(): kotlin/String // io.github.canimation.core/CanimationRecipeAccessibility.notes.<get-notes>|<get-notes>(){}[0]
+    final val reducedStrategy // io.github.canimation.core/CanimationRecipeAccessibility.reducedStrategy|{}reducedStrategy[0]
+        final fun <get-reducedStrategy>(): io.github.canimation.core/CanimationReducedStrategy // io.github.canimation.core/CanimationRecipeAccessibility.reducedStrategy.<get-reducedStrategy>|<get-reducedStrategy>(){}[0]
+    final val supportsOff // io.github.canimation.core/CanimationRecipeAccessibility.supportsOff|{}supportsOff[0]
+        final fun <get-supportsOff>(): kotlin/Boolean // io.github.canimation.core/CanimationRecipeAccessibility.supportsOff.<get-supportsOff>|<get-supportsOff>(){}[0]
+
+    final fun component1(): io.github.canimation.core/CanimationReducedStrategy // io.github.canimation.core/CanimationRecipeAccessibility.component1|component1(){}[0]
+    final fun component2(): kotlin/Boolean // io.github.canimation.core/CanimationRecipeAccessibility.component2|component2(){}[0]
+    final fun component3(): kotlin/String // io.github.canimation.core/CanimationRecipeAccessibility.component3|component3(){}[0]
+    final fun copy(io.github.canimation.core/CanimationReducedStrategy = ..., kotlin/Boolean = ..., kotlin/String = ...): io.github.canimation.core/CanimationRecipeAccessibility // io.github.canimation.core/CanimationRecipeAccessibility.copy|copy(io.github.canimation.core.CanimationReducedStrategy;kotlin.Boolean;kotlin.String){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // io.github.canimation.core/CanimationRecipeAccessibility.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // io.github.canimation.core/CanimationRecipeAccessibility.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // io.github.canimation.core/CanimationRecipeAccessibility.toString|toString(){}[0]
+}
+
+final class io.github.canimation.core/CanimationRecipeDescriptor { // io.github.canimation.core/CanimationRecipeDescriptor|null[0]
+    constructor <init>(io.github.canimation.core/CanimationRecipeId, io.github.canimation.core/CanimationRecipeSemantic, io.github.canimation.core/CanimationRecipeAccessibility, io.github.canimation.core/CanimationRecipePerformance, io.github.canimation.core/CanimationRecipeDocs, io.github.canimation.core/CanimationRecipeSpecSet) // io.github.canimation.core/CanimationRecipeDescriptor.<init>|<init>(io.github.canimation.core.CanimationRecipeId;io.github.canimation.core.CanimationRecipeSemantic;io.github.canimation.core.CanimationRecipeAccessibility;io.github.canimation.core.CanimationRecipePerformance;io.github.canimation.core.CanimationRecipeDocs;io.github.canimation.core.CanimationRecipeSpecSet){}[0]
+
+    final val accessibility // io.github.canimation.core/CanimationRecipeDescriptor.accessibility|{}accessibility[0]
+        final fun <get-accessibility>(): io.github.canimation.core/CanimationRecipeAccessibility // io.github.canimation.core/CanimationRecipeDescriptor.accessibility.<get-accessibility>|<get-accessibility>(){}[0]
+    final val docs // io.github.canimation.core/CanimationRecipeDescriptor.docs|{}docs[0]
+        final fun <get-docs>(): io.github.canimation.core/CanimationRecipeDocs // io.github.canimation.core/CanimationRecipeDescriptor.docs.<get-docs>|<get-docs>(){}[0]
+    final val id // io.github.canimation.core/CanimationRecipeDescriptor.id|{}id[0]
+        final fun <get-id>(): io.github.canimation.core/CanimationRecipeId // io.github.canimation.core/CanimationRecipeDescriptor.id.<get-id>|<get-id>(){}[0]
+    final val performance // io.github.canimation.core/CanimationRecipeDescriptor.performance|{}performance[0]
+        final fun <get-performance>(): io.github.canimation.core/CanimationRecipePerformance // io.github.canimation.core/CanimationRecipeDescriptor.performance.<get-performance>|<get-performance>(){}[0]
+    final val semantic // io.github.canimation.core/CanimationRecipeDescriptor.semantic|{}semantic[0]
+        final fun <get-semantic>(): io.github.canimation.core/CanimationRecipeSemantic // io.github.canimation.core/CanimationRecipeDescriptor.semantic.<get-semantic>|<get-semantic>(){}[0]
+    final val specs // io.github.canimation.core/CanimationRecipeDescriptor.specs|{}specs[0]
+        final fun <get-specs>(): io.github.canimation.core/CanimationRecipeSpecSet // io.github.canimation.core/CanimationRecipeDescriptor.specs.<get-specs>|<get-specs>(){}[0]
+
+    final fun component1(): io.github.canimation.core/CanimationRecipeId // io.github.canimation.core/CanimationRecipeDescriptor.component1|component1(){}[0]
+    final fun component2(): io.github.canimation.core/CanimationRecipeSemantic // io.github.canimation.core/CanimationRecipeDescriptor.component2|component2(){}[0]
+    final fun component3(): io.github.canimation.core/CanimationRecipeAccessibility // io.github.canimation.core/CanimationRecipeDescriptor.component3|component3(){}[0]
+    final fun component4(): io.github.canimation.core/CanimationRecipePerformance // io.github.canimation.core/CanimationRecipeDescriptor.component4|component4(){}[0]
+    final fun component5(): io.github.canimation.core/CanimationRecipeDocs // io.github.canimation.core/CanimationRecipeDescriptor.component5|component5(){}[0]
+    final fun component6(): io.github.canimation.core/CanimationRecipeSpecSet // io.github.canimation.core/CanimationRecipeDescriptor.component6|component6(){}[0]
+    final fun copy(io.github.canimation.core/CanimationRecipeId = ..., io.github.canimation.core/CanimationRecipeSemantic = ..., io.github.canimation.core/CanimationRecipeAccessibility = ..., io.github.canimation.core/CanimationRecipePerformance = ..., io.github.canimation.core/CanimationRecipeDocs = ..., io.github.canimation.core/CanimationRecipeSpecSet = ...): io.github.canimation.core/CanimationRecipeDescriptor // io.github.canimation.core/CanimationRecipeDescriptor.copy|copy(io.github.canimation.core.CanimationRecipeId;io.github.canimation.core.CanimationRecipeSemantic;io.github.canimation.core.CanimationRecipeAccessibility;io.github.canimation.core.CanimationRecipePerformance;io.github.canimation.core.CanimationRecipeDocs;io.github.canimation.core.CanimationRecipeSpecSet){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // io.github.canimation.core/CanimationRecipeDescriptor.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // io.github.canimation.core/CanimationRecipeDescriptor.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // io.github.canimation.core/CanimationRecipeDescriptor.toString|toString(){}[0]
+}
+
+final class io.github.canimation.core/CanimationRecipeDocs { // io.github.canimation.core/CanimationRecipeDocs|null[0]
+    constructor <init>(kotlin/String, kotlin/String, kotlin/String, kotlin/String? = ..., kotlin.collections/Set<io.github.canimation.core/CanimationRecipeId> = ...) // io.github.canimation.core/CanimationRecipeDocs.<init>|<init>(kotlin.String;kotlin.String;kotlin.String;kotlin.String?;kotlin.collections.Set<io.github.canimation.core.CanimationRecipeId>){}[0]
+
+    final val doNotUseWhen // io.github.canimation.core/CanimationRecipeDocs.doNotUseWhen|{}doNotUseWhen[0]
+        final fun <get-doNotUseWhen>(): kotlin/String? // io.github.canimation.core/CanimationRecipeDocs.doNotUseWhen.<get-doNotUseWhen>|<get-doNotUseWhen>(){}[0]
+    final val relatedRecipeIds // io.github.canimation.core/CanimationRecipeDocs.relatedRecipeIds|{}relatedRecipeIds[0]
+        final fun <get-relatedRecipeIds>(): kotlin.collections/Set<io.github.canimation.core/CanimationRecipeId> // io.github.canimation.core/CanimationRecipeDocs.relatedRecipeIds.<get-relatedRecipeIds>|<get-relatedRecipeIds>(){}[0]
+    final val summary // io.github.canimation.core/CanimationRecipeDocs.summary|{}summary[0]
+        final fun <get-summary>(): kotlin/String // io.github.canimation.core/CanimationRecipeDocs.summary.<get-summary>|<get-summary>(){}[0]
+    final val title // io.github.canimation.core/CanimationRecipeDocs.title|{}title[0]
+        final fun <get-title>(): kotlin/String // io.github.canimation.core/CanimationRecipeDocs.title.<get-title>|<get-title>(){}[0]
+    final val usageGuidance // io.github.canimation.core/CanimationRecipeDocs.usageGuidance|{}usageGuidance[0]
+        final fun <get-usageGuidance>(): kotlin/String // io.github.canimation.core/CanimationRecipeDocs.usageGuidance.<get-usageGuidance>|<get-usageGuidance>(){}[0]
+
+    final fun component1(): kotlin/String // io.github.canimation.core/CanimationRecipeDocs.component1|component1(){}[0]
+    final fun component2(): kotlin/String // io.github.canimation.core/CanimationRecipeDocs.component2|component2(){}[0]
+    final fun component3(): kotlin/String // io.github.canimation.core/CanimationRecipeDocs.component3|component3(){}[0]
+    final fun component4(): kotlin/String? // io.github.canimation.core/CanimationRecipeDocs.component4|component4(){}[0]
+    final fun component5(): kotlin.collections/Set<io.github.canimation.core/CanimationRecipeId> // io.github.canimation.core/CanimationRecipeDocs.component5|component5(){}[0]
+    final fun copy(kotlin/String = ..., kotlin/String = ..., kotlin/String = ..., kotlin/String? = ..., kotlin.collections/Set<io.github.canimation.core/CanimationRecipeId> = ...): io.github.canimation.core/CanimationRecipeDocs // io.github.canimation.core/CanimationRecipeDocs.copy|copy(kotlin.String;kotlin.String;kotlin.String;kotlin.String?;kotlin.collections.Set<io.github.canimation.core.CanimationRecipeId>){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // io.github.canimation.core/CanimationRecipeDocs.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // io.github.canimation.core/CanimationRecipeDocs.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // io.github.canimation.core/CanimationRecipeDocs.toString|toString(){}[0]
+}
+
+final class io.github.canimation.core/CanimationRecipePerformance { // io.github.canimation.core/CanimationRecipePerformance|null[0]
+    constructor <init>(io.github.canimation.core/CanimationCost, kotlin/Boolean, kotlin/Boolean, kotlin/String = ...) // io.github.canimation.core/CanimationRecipePerformance.<init>|<init>(io.github.canimation.core.CanimationCost;kotlin.Boolean;kotlin.Boolean;kotlin.String){}[0]
+
+    final val benchmarkRequired // io.github.canimation.core/CanimationRecipePerformance.benchmarkRequired|{}benchmarkRequired[0]
+        final fun <get-benchmarkRequired>(): kotlin/Boolean // io.github.canimation.core/CanimationRecipePerformance.benchmarkRequired.<get-benchmarkRequired>|<get-benchmarkRequired>(){}[0]
+    final val cost // io.github.canimation.core/CanimationRecipePerformance.cost|{}cost[0]
+        final fun <get-cost>(): io.github.canimation.core/CanimationCost // io.github.canimation.core/CanimationRecipePerformance.cost.<get-cost>|<get-cost>(){}[0]
+    final val listSafe // io.github.canimation.core/CanimationRecipePerformance.listSafe|{}listSafe[0]
+        final fun <get-listSafe>(): kotlin/Boolean // io.github.canimation.core/CanimationRecipePerformance.listSafe.<get-listSafe>|<get-listSafe>(){}[0]
+    final val notes // io.github.canimation.core/CanimationRecipePerformance.notes|{}notes[0]
+        final fun <get-notes>(): kotlin/String // io.github.canimation.core/CanimationRecipePerformance.notes.<get-notes>|<get-notes>(){}[0]
+
+    final fun component1(): io.github.canimation.core/CanimationCost // io.github.canimation.core/CanimationRecipePerformance.component1|component1(){}[0]
+    final fun component2(): kotlin/Boolean // io.github.canimation.core/CanimationRecipePerformance.component2|component2(){}[0]
+    final fun component3(): kotlin/Boolean // io.github.canimation.core/CanimationRecipePerformance.component3|component3(){}[0]
+    final fun component4(): kotlin/String // io.github.canimation.core/CanimationRecipePerformance.component4|component4(){}[0]
+    final fun copy(io.github.canimation.core/CanimationCost = ..., kotlin/Boolean = ..., kotlin/Boolean = ..., kotlin/String = ...): io.github.canimation.core/CanimationRecipePerformance // io.github.canimation.core/CanimationRecipePerformance.copy|copy(io.github.canimation.core.CanimationCost;kotlin.Boolean;kotlin.Boolean;kotlin.String){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // io.github.canimation.core/CanimationRecipePerformance.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // io.github.canimation.core/CanimationRecipePerformance.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // io.github.canimation.core/CanimationRecipePerformance.toString|toString(){}[0]
+}
+
+final class io.github.canimation.core/CanimationRecipeRegistry { // io.github.canimation.core/CanimationRecipeRegistry|null[0]
+    constructor <init>(kotlin.collections/Map<io.github.canimation.core/CanimationRecipeId, io.github.canimation.core/CanimationRecipeDescriptor>) // io.github.canimation.core/CanimationRecipeRegistry.<init>|<init>(kotlin.collections.Map<io.github.canimation.core.CanimationRecipeId,io.github.canimation.core.CanimationRecipeDescriptor>){}[0]
+
+    final fun all(): kotlin.collections/Collection<io.github.canimation.core/CanimationRecipeDescriptor> // io.github.canimation.core/CanimationRecipeRegistry.all|all(){}[0]
+    final fun descriptorFor(io.github.canimation.core/CanimationRecipeId): io.github.canimation.core/CanimationRecipeDescriptor? // io.github.canimation.core/CanimationRecipeRegistry.descriptorFor|descriptorFor(io.github.canimation.core.CanimationRecipeId){}[0]
+    final fun getValue(io.github.canimation.core/CanimationRecipeId): io.github.canimation.core/CanimationRecipeDescriptor // io.github.canimation.core/CanimationRecipeRegistry.getValue|getValue(io.github.canimation.core.CanimationRecipeId){}[0]
+    final fun ids(): kotlin.collections/Set<io.github.canimation.core/CanimationRecipeId> // io.github.canimation.core/CanimationRecipeRegistry.ids|ids(){}[0]
+    final fun merge(io.github.canimation.core/CanimationRecipeRegistry, io.github.canimation.core/CanimationRecipeRegistryMergePolicy = ...): io.github.canimation.core/CanimationRecipeRegistry // io.github.canimation.core/CanimationRecipeRegistry.merge|merge(io.github.canimation.core.CanimationRecipeRegistry;io.github.canimation.core.CanimationRecipeRegistryMergePolicy){}[0]
+    final fun resolve(io.github.canimation.core/CanimationRecipe): io.github.canimation.core/CanimationRecipeDescriptor // io.github.canimation.core/CanimationRecipeRegistry.resolve|resolve(io.github.canimation.core.CanimationRecipe){}[0]
+    final fun withDescriptor(io.github.canimation.core/CanimationRecipeDescriptor): io.github.canimation.core/CanimationRecipeRegistry // io.github.canimation.core/CanimationRecipeRegistry.withDescriptor|withDescriptor(io.github.canimation.core.CanimationRecipeDescriptor){}[0]
+    final fun withDescriptors(kotlin.collections/Iterable<io.github.canimation.core/CanimationRecipeDescriptor>): io.github.canimation.core/CanimationRecipeRegistry // io.github.canimation.core/CanimationRecipeRegistry.withDescriptors|withDescriptors(kotlin.collections.Iterable<io.github.canimation.core.CanimationRecipeDescriptor>){}[0]
+
+    final object Companion { // io.github.canimation.core/CanimationRecipeRegistry.Companion|null[0]
+        final val Empty // io.github.canimation.core/CanimationRecipeRegistry.Companion.Empty|{}Empty[0]
+            final fun <get-Empty>(): io.github.canimation.core/CanimationRecipeRegistry // io.github.canimation.core/CanimationRecipeRegistry.Companion.Empty.<get-Empty>|<get-Empty>(){}[0]
+    }
+}
+
+final class io.github.canimation.core/CanimationRecipeSemantic { // io.github.canimation.core/CanimationRecipeSemantic|null[0]
+    constructor <init>(io.github.canimation.core/CanimationIntent, io.github.canimation.core/CanimationSurfaceRole, io.github.canimation.core/CanimationIntensity, kotlin/String, kotlin.collections/Set<kotlin/String> = ...) // io.github.canimation.core/CanimationRecipeSemantic.<init>|<init>(io.github.canimation.core.CanimationIntent;io.github.canimation.core.CanimationSurfaceRole;io.github.canimation.core.CanimationIntensity;kotlin.String;kotlin.collections.Set<kotlin.String>){}[0]
+
+    final val family // io.github.canimation.core/CanimationRecipeSemantic.family|{}family[0]
+        final fun <get-family>(): kotlin/String // io.github.canimation.core/CanimationRecipeSemantic.family.<get-family>|<get-family>(){}[0]
+    final val intensity // io.github.canimation.core/CanimationRecipeSemantic.intensity|{}intensity[0]
+        final fun <get-intensity>(): io.github.canimation.core/CanimationIntensity // io.github.canimation.core/CanimationRecipeSemantic.intensity.<get-intensity>|<get-intensity>(){}[0]
+    final val intent // io.github.canimation.core/CanimationRecipeSemantic.intent|{}intent[0]
+        final fun <get-intent>(): io.github.canimation.core/CanimationIntent // io.github.canimation.core/CanimationRecipeSemantic.intent.<get-intent>|<get-intent>(){}[0]
+    final val surfaceRole // io.github.canimation.core/CanimationRecipeSemantic.surfaceRole|{}surfaceRole[0]
+        final fun <get-surfaceRole>(): io.github.canimation.core/CanimationSurfaceRole // io.github.canimation.core/CanimationRecipeSemantic.surfaceRole.<get-surfaceRole>|<get-surfaceRole>(){}[0]
+    final val tags // io.github.canimation.core/CanimationRecipeSemantic.tags|{}tags[0]
+        final fun <get-tags>(): kotlin.collections/Set<kotlin/String> // io.github.canimation.core/CanimationRecipeSemantic.tags.<get-tags>|<get-tags>(){}[0]
+
+    final fun component1(): io.github.canimation.core/CanimationIntent // io.github.canimation.core/CanimationRecipeSemantic.component1|component1(){}[0]
+    final fun component2(): io.github.canimation.core/CanimationSurfaceRole // io.github.canimation.core/CanimationRecipeSemantic.component2|component2(){}[0]
+    final fun component3(): io.github.canimation.core/CanimationIntensity // io.github.canimation.core/CanimationRecipeSemantic.component3|component3(){}[0]
+    final fun component4(): kotlin/String // io.github.canimation.core/CanimationRecipeSemantic.component4|component4(){}[0]
+    final fun component5(): kotlin.collections/Set<kotlin/String> // io.github.canimation.core/CanimationRecipeSemantic.component5|component5(){}[0]
+    final fun copy(io.github.canimation.core/CanimationIntent = ..., io.github.canimation.core/CanimationSurfaceRole = ..., io.github.canimation.core/CanimationIntensity = ..., kotlin/String = ..., kotlin.collections/Set<kotlin/String> = ...): io.github.canimation.core/CanimationRecipeSemantic // io.github.canimation.core/CanimationRecipeSemantic.copy|copy(io.github.canimation.core.CanimationIntent;io.github.canimation.core.CanimationSurfaceRole;io.github.canimation.core.CanimationIntensity;kotlin.String;kotlin.collections.Set<kotlin.String>){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // io.github.canimation.core/CanimationRecipeSemantic.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // io.github.canimation.core/CanimationRecipeSemantic.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // io.github.canimation.core/CanimationRecipeSemantic.toString|toString(){}[0]
+}
+
+final class io.github.canimation.core/CanimationRecipeSpecSet { // io.github.canimation.core/CanimationRecipeSpecSet|null[0]
+    constructor <init>(io.github.canimation.core/CanimationSpec, io.github.canimation.core/CanimationSpec, io.github.canimation.core/CanimationSpec) // io.github.canimation.core/CanimationRecipeSpecSet.<init>|<init>(io.github.canimation.core.CanimationSpec;io.github.canimation.core.CanimationSpec;io.github.canimation.core.CanimationSpec){}[0]
+
+    final val full // io.github.canimation.core/CanimationRecipeSpecSet.full|{}full[0]
+        final fun <get-full>(): io.github.canimation.core/CanimationSpec // io.github.canimation.core/CanimationRecipeSpecSet.full.<get-full>|<get-full>(){}[0]
+    final val off // io.github.canimation.core/CanimationRecipeSpecSet.off|{}off[0]
+        final fun <get-off>(): io.github.canimation.core/CanimationSpec // io.github.canimation.core/CanimationRecipeSpecSet.off.<get-off>|<get-off>(){}[0]
+    final val reduced // io.github.canimation.core/CanimationRecipeSpecSet.reduced|{}reduced[0]
+        final fun <get-reduced>(): io.github.canimation.core/CanimationSpec // io.github.canimation.core/CanimationRecipeSpecSet.reduced.<get-reduced>|<get-reduced>(){}[0]
+
+    final fun component1(): io.github.canimation.core/CanimationSpec // io.github.canimation.core/CanimationRecipeSpecSet.component1|component1(){}[0]
+    final fun component2(): io.github.canimation.core/CanimationSpec // io.github.canimation.core/CanimationRecipeSpecSet.component2|component2(){}[0]
+    final fun component3(): io.github.canimation.core/CanimationSpec // io.github.canimation.core/CanimationRecipeSpecSet.component3|component3(){}[0]
+    final fun copy(io.github.canimation.core/CanimationSpec = ..., io.github.canimation.core/CanimationSpec = ..., io.github.canimation.core/CanimationSpec = ...): io.github.canimation.core/CanimationRecipeSpecSet // io.github.canimation.core/CanimationRecipeSpecSet.copy|copy(io.github.canimation.core.CanimationSpec;io.github.canimation.core.CanimationSpec;io.github.canimation.core.CanimationSpec){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // io.github.canimation.core/CanimationRecipeSpecSet.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // io.github.canimation.core/CanimationRecipeSpecSet.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // io.github.canimation.core/CanimationRecipeSpecSet.toString|toString(){}[0]
+}
+
+final value class io.github.canimation.core/CanimationRecipe { // io.github.canimation.core/CanimationRecipe|null[0]
+    constructor <init>(io.github.canimation.core/CanimationRecipeDescriptor) // io.github.canimation.core/CanimationRecipe.<init>|<init>(io.github.canimation.core.CanimationRecipeDescriptor){}[0]
+
+    final val descriptor // io.github.canimation.core/CanimationRecipe.descriptor|{}descriptor[0]
+        final fun <get-descriptor>(): io.github.canimation.core/CanimationRecipeDescriptor // io.github.canimation.core/CanimationRecipe.descriptor.<get-descriptor>|<get-descriptor>(){}[0]
+    final val id // io.github.canimation.core/CanimationRecipe.id|{}id[0]
+        final fun <get-id>(): io.github.canimation.core/CanimationRecipeId // io.github.canimation.core/CanimationRecipe.id.<get-id>|<get-id>(){}[0]
+
+    final fun equals(kotlin/Any?): kotlin/Boolean // io.github.canimation.core/CanimationRecipe.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // io.github.canimation.core/CanimationRecipe.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // io.github.canimation.core/CanimationRecipe.toString|toString(){}[0]
+}
+
+final value class io.github.canimation.core/CanimationRecipeId { // io.github.canimation.core/CanimationRecipeId|null[0]
+    constructor <init>(kotlin/String) // io.github.canimation.core/CanimationRecipeId.<init>|<init>(kotlin.String){}[0]
+
+    final val value // io.github.canimation.core/CanimationRecipeId.value|{}value[0]
+        final fun <get-value>(): kotlin/String // io.github.canimation.core/CanimationRecipeId.value.<get-value>|<get-value>(){}[0]
+
+    final fun equals(kotlin/Any?): kotlin/Boolean // io.github.canimation.core/CanimationRecipeId.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // io.github.canimation.core/CanimationRecipeId.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // io.github.canimation.core/CanimationRecipeId.toString|toString(){}[0]
+}
+
+final val io.github.canimation.core/io_github_canimation_core_CanimationRecipeAccessibility$stableprop // io.github.canimation.core/io_github_canimation_core_CanimationRecipeAccessibility$stableprop|#static{}io_github_canimation_core_CanimationRecipeAccessibility$stableprop[0]
+final val io.github.canimation.core/io_github_canimation_core_CanimationRecipeDescriptor$stableprop // io.github.canimation.core/io_github_canimation_core_CanimationRecipeDescriptor$stableprop|#static{}io_github_canimation_core_CanimationRecipeDescriptor$stableprop[0]
+final val io.github.canimation.core/io_github_canimation_core_CanimationRecipeDocs$stableprop // io.github.canimation.core/io_github_canimation_core_CanimationRecipeDocs$stableprop|#static{}io_github_canimation_core_CanimationRecipeDocs$stableprop[0]
+final val io.github.canimation.core/io_github_canimation_core_CanimationRecipePerformance$stableprop // io.github.canimation.core/io_github_canimation_core_CanimationRecipePerformance$stableprop|#static{}io_github_canimation_core_CanimationRecipePerformance$stableprop[0]
+final val io.github.canimation.core/io_github_canimation_core_CanimationRecipeRegistry$stableprop // io.github.canimation.core/io_github_canimation_core_CanimationRecipeRegistry$stableprop|#static{}io_github_canimation_core_CanimationRecipeRegistry$stableprop[0]
+final val io.github.canimation.core/io_github_canimation_core_CanimationRecipeSemantic$stableprop // io.github.canimation.core/io_github_canimation_core_CanimationRecipeSemantic$stableprop|#static{}io_github_canimation_core_CanimationRecipeSemantic$stableprop[0]
+final val io.github.canimation.core/io_github_canimation_core_CanimationRecipeSpecSet$stableprop // io.github.canimation.core/io_github_canimation_core_CanimationRecipeSpecSet$stableprop|#static{}io_github_canimation_core_CanimationRecipeSpecSet$stableprop[0]
+
+final fun io.github.canimation.core/io_github_canimation_core_CanimationRecipeAccessibility$stableprop_getter(): kotlin/Int // io.github.canimation.core/io_github_canimation_core_CanimationRecipeAccessibility$stableprop_getter|io_github_canimation_core_CanimationRecipeAccessibility$stableprop_getter(){}[0]
+final fun io.github.canimation.core/io_github_canimation_core_CanimationRecipeDescriptor$stableprop_getter(): kotlin/Int // io.github.canimation.core/io_github_canimation_core_CanimationRecipeDescriptor$stableprop_getter|io_github_canimation_core_CanimationRecipeDescriptor$stableprop_getter(){}[0]
+final fun io.github.canimation.core/io_github_canimation_core_CanimationRecipeDocs$stableprop_getter(): kotlin/Int // io.github.canimation.core/io_github_canimation_core_CanimationRecipeDocs$stableprop_getter|io_github_canimation_core_CanimationRecipeDocs$stableprop_getter(){}[0]
+final fun io.github.canimation.core/io_github_canimation_core_CanimationRecipePerformance$stableprop_getter(): kotlin/Int // io.github.canimation.core/io_github_canimation_core_CanimationRecipePerformance$stableprop_getter|io_github_canimation_core_CanimationRecipePerformance$stableprop_getter(){}[0]
+final fun io.github.canimation.core/io_github_canimation_core_CanimationRecipeRegistry$stableprop_getter(): kotlin/Int // io.github.canimation.core/io_github_canimation_core_CanimationRecipeRegistry$stableprop_getter|io_github_canimation_core_CanimationRecipeRegistry$stableprop_getter(){}[0]
+final fun io.github.canimation.core/io_github_canimation_core_CanimationRecipeSemantic$stableprop_getter(): kotlin/Int // io.github.canimation.core/io_github_canimation_core_CanimationRecipeSemantic$stableprop_getter|io_github_canimation_core_CanimationRecipeSemantic$stableprop_getter(){}[0]
+final fun io.github.canimation.core/io_github_canimation_core_CanimationRecipeSpecSet$stableprop_getter(): kotlin/Int // io.github.canimation.core/io_github_canimation_core_CanimationRecipeSpecSet$stableprop_getter|io_github_canimation_core_CanimationRecipeSpecSet$stableprop_getter(){}[0]

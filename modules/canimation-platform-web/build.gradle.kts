@@ -1,14 +1,8 @@
 plugins {
-    alias(libs.plugins.kotlinMultiplatform)
-    alias(libs.plugins.composeMultiplatform)
-    alias(libs.plugins.composeCompiler)
+    id("canimation.platform.web.library")
 }
 
 kotlin {
-    js {
-        browser()
-    }
-
     sourceSets {
         jsMain.dependencies {
             implementation(project(":canimation-core"))
@@ -19,6 +13,8 @@ kotlin {
         }
         jsTest.dependencies {
             implementation(libs.kotlin.test)
+            implementation(libs.kotlinx.coroutinesCore)
+            implementation(libs.kotlinx.coroutinesTest)
         }
     }
 }

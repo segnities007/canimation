@@ -23,20 +23,14 @@ class AndroidMotionPreferenceDataSource(
     override fun observePreference(): Flow<SystemMotionPreference> = preferenceFlow
 
     private fun readPreference(): SystemMotionPreference {
-        return try {
-            val scale = Settings.Global.getFloat(
-                context.contentResolver,
-                Settings.Global.ANIMATOR_DURATION_SCALE,
-                1.0f,
-            )
-            if (scale == 0f) {
-                SystemMotionPreference.ReduceMotion
-            } else {
-                SystemMotionPreference.NoPreference
-            }
-        } catch (_: Exception) {
-            // Safe fallback: treat as reduced motion
+        val scale = Settings.Global.getString(
+            context.contentResolver,
+            Settings.Global.ANIMATOR_DURATION_SCALE,
+        )?.toFloatOrNull() ?: 1.0f
+        return if (scale == 0f) {
             SystemMotionPreference.ReduceMotion
+        } else {
+            SystemMotionPreference.NoPreference
         }
     }
 

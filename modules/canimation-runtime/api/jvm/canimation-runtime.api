@@ -1,0 +1,27 @@
+public final class io/github/canimation/runtime/CanimationRuntimeExportsKt {
+	public static final fun defaultCanimationRecipeRegistry (Ljava/lang/Iterable;Lio/github/canimation/core/CanimationRecipeRegistryMergePolicy;)Lio/github/canimation/core/CanimationRecipeRegistry;
+	public static final fun defaultCanimationRecipeRegistry ([Lio/github/canimation/core/CanimationRecipeRegistry;Lio/github/canimation/core/CanimationRecipeRegistryMergePolicy;)Lio/github/canimation/core/CanimationRecipeRegistry;
+	public static synthetic fun defaultCanimationRecipeRegistry$default (Ljava/lang/Iterable;Lio/github/canimation/core/CanimationRecipeRegistryMergePolicy;ILjava/lang/Object;)Lio/github/canimation/core/CanimationRecipeRegistry;
+	public static synthetic fun defaultCanimationRecipeRegistry$default ([Lio/github/canimation/core/CanimationRecipeRegistry;Lio/github/canimation/core/CanimationRecipeRegistryMergePolicy;ILjava/lang/Object;)Lio/github/canimation/core/CanimationRecipeRegistry;
+	public static final fun getAmbient (Lio/github/canimation/core/Canimation;)Lio/github/canimation/core/CanimationAmbientRecipes;
+	public static final fun getContent (Lio/github/canimation/core/Canimation;)Lio/github/canimation/core/CanimationContentRecipes;
+	public static final fun getDefaultCanimationPresetRegistry ()Lio/github/canimation/core/PresetRegistry;
+	public static final fun getDefaultCanimationRecipeRegistry ()Lio/github/canimation/core/CanimationRecipeRegistry;
+	public static final fun getEmphasis (Lio/github/canimation/core/Canimation;)Lio/github/canimation/core/CanimationEmphasisRecipes;
+	public static final fun getFeedback (Lio/github/canimation/core/Canimation;)Lio/github/canimation/core/CanimationFeedbackRecipes;
+	public static final fun getNavigation (Lio/github/canimation/core/Canimation;)Lio/github/canimation/core/CanimationNavigationRecipes;
+	public static final fun getRecovery (Lio/github/canimation/core/Canimation;)Lio/github/canimation/core/CanimationRecoveryRecipes;
+	public static final fun getSurface (Lio/github/canimation/core/Canimation;)Lio/github/canimation/core/CanimationSurfaceRecipes;
+	public static final fun getTransition (Lio/github/canimation/core/Canimation;)Lio/github/canimation/core/CanimationTransitionRecipes;
+}
+
+public final class io/github/canimation/runtime/CanimationRuntimeFunctionsKt {
+	public static final fun CanimationProvider (Lio/github/canimation/core/CanimationTokens;Lio/github/canimation/core/CanimationPolicy;Lio/github/canimation/core/PresetRegistry;Lio/github/canimation/core/CanimationRecipeRegistry;Ljava/lang/Boolean;Lkotlin/jvm/functions/Function2;Landroidx/compose/runtime/Composer;II)V
+	public static final fun CanimationTransition-Bz3IXIE (ZLio/github/canimation/core/CanimationRecipeDescriptor;Landroidx/compose/ui/Modifier;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;II)V
+	public static final fun CanimationVisibility-y6VYVj4 (ZLio/github/canimation/core/CanimationRecipeDescriptor;Lkotlin/jvm/functions/Function2;Landroidx/compose/runtime/Composer;I)V
+	public static final fun canimation (Landroidx/compose/ui/Modifier;ZLio/github/canimation/core/CanimationEffect;)Landroidx/compose/ui/Modifier;
+	public static final fun canimation-eT4p_Bs (Landroidx/compose/ui/Modifier;ZLio/github/canimation/core/CanimationRecipeDescriptor;)Landroidx/compose/ui/Modifier;
+	public static final fun canimationTransition (Landroidx/compose/ui/Modifier;ZLio/github/canimation/core/CanimationSpec;)Landroidx/compose/ui/Modifier;
+	public static final fun canimationTransition-LDiUoWE (Landroidx/compose/ui/Modifier;ZLio/github/canimation/core/CanimationRecipeDescriptor;Lio/github/canimation/core/CanimationRecipeDescriptor;)Landroidx/compose/ui/Modifier;
+	public static synthetic fun canimationTransition-LDiUoWE$default (Landroidx/compose/ui/Modifier;ZLio/github/canimation/core/CanimationRecipeDescriptor;Lio/github/canimation/core/CanimationRecipeDescriptor;ILjava/lang/Object;)Landroidx/compose/ui/Modifier;
+}

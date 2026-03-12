@@ -1,0 +1,16 @@
+<resources>
+    <!-- Label shown above showcase gallery chips that filter entries by API-oriented demo type. -->
+    <string name="showcase_gallery_demo_type_filter_label">API type</string>
+    <!-- Accessibility description for a showcase card action. %1$s is the demo title, %2$s the API type, and %3$s the category tag. -->
+    <string name="showcase_gallery_card_a11y">Open %1$s demo. API type %2$s. Category %3$s.</string>
+    <!-- Accessibility description for the rendered gallery preview. %1$s is the demo title and %2$s the API type. -->
+    <string name="showcase_gallery_preview_a11y">Preview of %1$s. API type %2$s.</string>
+    <!-- Section label for motion controls that only affect the showcase detail live preview. -->
+    <string name="showcase_detail_preview_policy_title">Preview motion</string>
+    <!-- Hint clarifying that the motion controls are scoped to the current showcase detail preview. -->
+    <string name="showcase_detail_preview_policy_hint">These controls affect only this live demo.</string>
+    <!-- Accessibility description for the preview motion control group. %1$s is the selected motion label. -->
+    <string name="showcase_detail_preview_policy_group_a11y">Preview motion controls. %1$s selected.</string>
+    <!-- Accessibility description for the live preview surface. %1$s is the demo title and %2$s the selected motion label. -->
+    <string name="showcase_detail_live_preview_a11y">Live preview of %1$s. Preview motion %2$s.</string>
+</resources>

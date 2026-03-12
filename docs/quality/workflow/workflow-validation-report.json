@@ -1,0 +1,26 @@
+{
+  "result": "passed",
+  "errorCount": 0,
+  "validatedWorkflows": [
+    "ci.yml",
+    "release.yml",
+    "schedule.yml",
+    "dependency-review.yml",
+    "codeql.yml",
+    "labeler.yml",
+    "stale.yml",
+    "pages.yml",
+    "setup-build/action.yml"
+  ],
+  "checks": [
+    "top-level permissions",
+    "top-level concurrency",
+    "expected jobs",
+    "job-level permissions",
+    "expected runner family",
+    "checkout persist-credentials=false",
+    "third-party action full SHA pinning",
+    "explicit unique workflow job names"
+  ],
+  "findings": []
+}

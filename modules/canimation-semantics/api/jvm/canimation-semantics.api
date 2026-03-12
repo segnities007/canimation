@@ -1,0 +1,229 @@
+public final class io/github/canimation/core/CanimationCost : java/lang/Enum {
+	public static final field Draw Lio/github/canimation/core/CanimationCost;
+	public static final field Layout Lio/github/canimation/core/CanimationCost;
+	public static final field Transform Lio/github/canimation/core/CanimationCost;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lio/github/canimation/core/CanimationCost;
+	public static fun values ()[Lio/github/canimation/core/CanimationCost;
+}
+
+public final class io/github/canimation/core/CanimationIntensity : java/lang/Enum {
+	public static final field Standard Lio/github/canimation/core/CanimationIntensity;
+	public static final field Strong Lio/github/canimation/core/CanimationIntensity;
+	public static final field Subtle Lio/github/canimation/core/CanimationIntensity;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lio/github/canimation/core/CanimationIntensity;
+	public static fun values ()[Lio/github/canimation/core/CanimationIntensity;
+}
+
+public final class io/github/canimation/core/CanimationIntent : java/lang/Enum {
+	public static final field Ambient Lio/github/canimation/core/CanimationIntent;
+	public static final field Content Lio/github/canimation/core/CanimationIntent;
+	public static final field Emphasis Lio/github/canimation/core/CanimationIntent;
+	public static final field Experimental Lio/github/canimation/core/CanimationIntent;
+	public static final field Feedback Lio/github/canimation/core/CanimationIntent;
+	public static final field Navigation Lio/github/canimation/core/CanimationIntent;
+	public static final field Recovery Lio/github/canimation/core/CanimationIntent;
+	public static final field Surface Lio/github/canimation/core/CanimationIntent;
+	public static final field Transition Lio/github/canimation/core/CanimationIntent;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lio/github/canimation/core/CanimationIntent;
+	public static fun values ()[Lio/github/canimation/core/CanimationIntent;
+}
+
+public final class io/github/canimation/core/CanimationRecipe {
+	public static final synthetic fun box-impl (Lio/github/canimation/core/CanimationRecipeDescriptor;)Lio/github/canimation/core/CanimationRecipe;
+	public static fun constructor-impl (Lio/github/canimation/core/CanimationRecipeDescriptor;)Lio/github/canimation/core/CanimationRecipeDescriptor;
+	public fun equals (Ljava/lang/Object;)Z
+	public static fun equals-impl (Lio/github/canimation/core/CanimationRecipeDescriptor;Ljava/lang/Object;)Z
+	public static final fun equals-impl0 (Lio/github/canimation/core/CanimationRecipeDescriptor;Lio/github/canimation/core/CanimationRecipeDescriptor;)Z
+	public final fun getDescriptor ()Lio/github/canimation/core/CanimationRecipeDescriptor;
+	public static final fun getId-PQFwi3Q (Lio/github/canimation/core/CanimationRecipeDescriptor;)Ljava/lang/String;
+	public fun hashCode ()I
+	public static fun hashCode-impl (Lio/github/canimation/core/CanimationRecipeDescriptor;)I
+	public fun toString ()Ljava/lang/String;
+	public static fun toString-impl (Lio/github/canimation/core/CanimationRecipeDescriptor;)Ljava/lang/String;
+	public final synthetic fun unbox-impl ()Lio/github/canimation/core/CanimationRecipeDescriptor;
+}
+
+public final class io/github/canimation/core/CanimationRecipeAccessibility {
+	public static final field $stable I
+	public fun <init> (Lio/github/canimation/core/CanimationReducedStrategy;ZLjava/lang/String;)V
+	public synthetic fun <init> (Lio/github/canimation/core/CanimationReducedStrategy;ZLjava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Lio/github/canimation/core/CanimationReducedStrategy;
+	public final fun component2 ()Z
+	public final fun component3 ()Ljava/lang/String;
+	public final fun copy (Lio/github/canimation/core/CanimationReducedStrategy;ZLjava/lang/String;)Lio/github/canimation/core/CanimationRecipeAccessibility;
+	public static synthetic fun copy$default (Lio/github/canimation/core/CanimationRecipeAccessibility;Lio/github/canimation/core/CanimationReducedStrategy;ZLjava/lang/String;ILjava/lang/Object;)Lio/github/canimation/core/CanimationRecipeAccessibility;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getNotes ()Ljava/lang/String;
+	public final fun getReducedStrategy ()Lio/github/canimation/core/CanimationReducedStrategy;
+	public final fun getSupportsOff ()Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class io/github/canimation/core/CanimationRecipeDescriptor {
+	public static final field $stable I
+	public synthetic fun <init> (Ljava/lang/String;Lio/github/canimation/core/CanimationRecipeSemantic;Lio/github/canimation/core/CanimationRecipeAccessibility;Lio/github/canimation/core/CanimationRecipePerformance;Lio/github/canimation/core/CanimationRecipeDocs;Lio/github/canimation/core/CanimationRecipeSpecSet;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1-PQFwi3Q ()Ljava/lang/String;
+	public final fun component2 ()Lio/github/canimation/core/CanimationRecipeSemantic;
+	public final fun component3 ()Lio/github/canimation/core/CanimationRecipeAccessibility;
+	public final fun component4 ()Lio/github/canimation/core/CanimationRecipePerformance;
+	public final fun component5 ()Lio/github/canimation/core/CanimationRecipeDocs;
+	public final fun component6 ()Lio/github/canimation/core/CanimationRecipeSpecSet;
+	public final fun copy-3xffwL0 (Ljava/lang/String;Lio/github/canimation/core/CanimationRecipeSemantic;Lio/github/canimation/core/CanimationRecipeAccessibility;Lio/github/canimation/core/CanimationRecipePerformance;Lio/github/canimation/core/CanimationRecipeDocs;Lio/github/canimation/core/CanimationRecipeSpecSet;)Lio/github/canimation/core/CanimationRecipeDescriptor;
+	public static synthetic fun copy-3xffwL0$default (Lio/github/canimation/core/CanimationRecipeDescriptor;Ljava/lang/String;Lio/github/canimation/core/CanimationRecipeSemantic;Lio/github/canimation/core/CanimationRecipeAccessibility;Lio/github/canimation/core/CanimationRecipePerformance;Lio/github/canimation/core/CanimationRecipeDocs;Lio/github/canimation/core/CanimationRecipeSpecSet;ILjava/lang/Object;)Lio/github/canimation/core/CanimationRecipeDescriptor;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAccessibility ()Lio/github/canimation/core/CanimationRecipeAccessibility;
+	public final fun getDocs ()Lio/github/canimation/core/CanimationRecipeDocs;
+	public final fun getId-PQFwi3Q ()Ljava/lang/String;
+	public final fun getPerformance ()Lio/github/canimation/core/CanimationRecipePerformance;
+	public final fun getSemantic ()Lio/github/canimation/core/CanimationRecipeSemantic;
+	public final fun getSpecs ()Lio/github/canimation/core/CanimationRecipeSpecSet;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class io/github/canimation/core/CanimationRecipeDocs {
+	public static final field $stable I
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/Set;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/Set;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun component5 ()Ljava/util/Set;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/Set;)Lio/github/canimation/core/CanimationRecipeDocs;
+	public static synthetic fun copy$default (Lio/github/canimation/core/CanimationRecipeDocs;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/Set;ILjava/lang/Object;)Lio/github/canimation/core/CanimationRecipeDocs;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getDoNotUseWhen ()Ljava/lang/String;
+	public final fun getRelatedRecipeIds ()Ljava/util/Set;
+	public final fun getSummary ()Ljava/lang/String;
+	public final fun getTitle ()Ljava/lang/String;
+	public final fun getUsageGuidance ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class io/github/canimation/core/CanimationRecipeId {
+	public static final synthetic fun box-impl (Ljava/lang/String;)Lio/github/canimation/core/CanimationRecipeId;
+	public static fun constructor-impl (Ljava/lang/String;)Ljava/lang/String;
+	public fun equals (Ljava/lang/Object;)Z
+	public static fun equals-impl (Ljava/lang/String;Ljava/lang/Object;)Z
+	public static final fun equals-impl0 (Ljava/lang/String;Ljava/lang/String;)Z
+	public final fun getValue ()Ljava/lang/String;
+	public fun hashCode ()I
+	public static fun hashCode-impl (Ljava/lang/String;)I
+	public fun toString ()Ljava/lang/String;
+	public static fun toString-impl (Ljava/lang/String;)Ljava/lang/String;
+	public final synthetic fun unbox-impl ()Ljava/lang/String;
+}
+
+public final class io/github/canimation/core/CanimationRecipePerformance {
+	public static final field $stable I
+	public fun <init> (Lio/github/canimation/core/CanimationCost;ZZLjava/lang/String;)V
+	public synthetic fun <init> (Lio/github/canimation/core/CanimationCost;ZZLjava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Lio/github/canimation/core/CanimationCost;
+	public final fun component2 ()Z
+	public final fun component3 ()Z
+	public final fun component4 ()Ljava/lang/String;
+	public final fun copy (Lio/github/canimation/core/CanimationCost;ZZLjava/lang/String;)Lio/github/canimation/core/CanimationRecipePerformance;
+	public static synthetic fun copy$default (Lio/github/canimation/core/CanimationRecipePerformance;Lio/github/canimation/core/CanimationCost;ZZLjava/lang/String;ILjava/lang/Object;)Lio/github/canimation/core/CanimationRecipePerformance;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getBenchmarkRequired ()Z
+	public final fun getCost ()Lio/github/canimation/core/CanimationCost;
+	public final fun getListSafe ()Z
+	public final fun getNotes ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class io/github/canimation/core/CanimationRecipeRegistry {
+	public static final field $stable I
+	public static final field Companion Lio/github/canimation/core/CanimationRecipeRegistry$Companion;
+	public fun <init> (Ljava/util/Map;)V
+	public final fun all ()Ljava/util/Collection;
+	public final fun descriptorFor-65P_IqM (Ljava/lang/String;)Lio/github/canimation/core/CanimationRecipeDescriptor;
+	public final fun getValue-65P_IqM (Ljava/lang/String;)Lio/github/canimation/core/CanimationRecipeDescriptor;
+	public final fun ids ()Ljava/util/Set;
+	public final fun merge (Lio/github/canimation/core/CanimationRecipeRegistry;Lio/github/canimation/core/CanimationRecipeRegistryMergePolicy;)Lio/github/canimation/core/CanimationRecipeRegistry;
+	public static synthetic fun merge$default (Lio/github/canimation/core/CanimationRecipeRegistry;Lio/github/canimation/core/CanimationRecipeRegistry;Lio/github/canimation/core/CanimationRecipeRegistryMergePolicy;ILjava/lang/Object;)Lio/github/canimation/core/CanimationRecipeRegistry;
+	public final fun resolve-wXCIb0g (Lio/github/canimation/core/CanimationRecipeDescriptor;)Lio/github/canimation/core/CanimationRecipeDescriptor;
+	public final fun withDescriptor (Lio/github/canimation/core/CanimationRecipeDescriptor;)Lio/github/canimation/core/CanimationRecipeRegistry;
+	public final fun withDescriptors (Ljava/lang/Iterable;)Lio/github/canimation/core/CanimationRecipeRegistry;
+}
+
+public final class io/github/canimation/core/CanimationRecipeRegistry$Companion {
+	public final fun getEmpty ()Lio/github/canimation/core/CanimationRecipeRegistry;
+}
+
+public final class io/github/canimation/core/CanimationRecipeRegistryMergePolicy : java/lang/Enum {
+	public static final field Fail Lio/github/canimation/core/CanimationRecipeRegistryMergePolicy;
+	public static final field PreferExtension Lio/github/canimation/core/CanimationRecipeRegistryMergePolicy;
+	public static final field PreferHost Lio/github/canimation/core/CanimationRecipeRegistryMergePolicy;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lio/github/canimation/core/CanimationRecipeRegistryMergePolicy;
+	public static fun values ()[Lio/github/canimation/core/CanimationRecipeRegistryMergePolicy;
+}
+
+public final class io/github/canimation/core/CanimationRecipeSemantic {
+	public static final field $stable I
+	public fun <init> (Lio/github/canimation/core/CanimationIntent;Lio/github/canimation/core/CanimationSurfaceRole;Lio/github/canimation/core/CanimationIntensity;Ljava/lang/String;Ljava/util/Set;)V
+	public synthetic fun <init> (Lio/github/canimation/core/CanimationIntent;Lio/github/canimation/core/CanimationSurfaceRole;Lio/github/canimation/core/CanimationIntensity;Ljava/lang/String;Ljava/util/Set;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Lio/github/canimation/core/CanimationIntent;
+	public final fun component2 ()Lio/github/canimation/core/CanimationSurfaceRole;
+	public final fun component3 ()Lio/github/canimation/core/CanimationIntensity;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun component5 ()Ljava/util/Set;
+	public final fun copy (Lio/github/canimation/core/CanimationIntent;Lio/github/canimation/core/CanimationSurfaceRole;Lio/github/canimation/core/CanimationIntensity;Ljava/lang/String;Ljava/util/Set;)Lio/github/canimation/core/CanimationRecipeSemantic;
+	public static synthetic fun copy$default (Lio/github/canimation/core/CanimationRecipeSemantic;Lio/github/canimation/core/CanimationIntent;Lio/github/canimation/core/CanimationSurfaceRole;Lio/github/canimation/core/CanimationIntensity;Ljava/lang/String;Ljava/util/Set;ILjava/lang/Object;)Lio/github/canimation/core/CanimationRecipeSemantic;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getFamily ()Ljava/lang/String;
+	public final fun getIntensity ()Lio/github/canimation/core/CanimationIntensity;
+	public final fun getIntent ()Lio/github/canimation/core/CanimationIntent;
+	public final fun getSurfaceRole ()Lio/github/canimation/core/CanimationSurfaceRole;
+	public final fun getTags ()Ljava/util/Set;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class io/github/canimation/core/CanimationRecipeSpecSet {
+	public static final field $stable I
+	public fun <init> (Lio/github/canimation/core/CanimationSpec;Lio/github/canimation/core/CanimationSpec;Lio/github/canimation/core/CanimationSpec;)V
+	public final fun component1 ()Lio/github/canimation/core/CanimationSpec;
+	public final fun component2 ()Lio/github/canimation/core/CanimationSpec;
+	public final fun component3 ()Lio/github/canimation/core/CanimationSpec;
+	public final fun copy (Lio/github/canimation/core/CanimationSpec;Lio/github/canimation/core/CanimationSpec;Lio/github/canimation/core/CanimationSpec;)Lio/github/canimation/core/CanimationRecipeSpecSet;
+	public static synthetic fun copy$default (Lio/github/canimation/core/CanimationRecipeSpecSet;Lio/github/canimation/core/CanimationSpec;Lio/github/canimation/core/CanimationSpec;Lio/github/canimation/core/CanimationSpec;ILjava/lang/Object;)Lio/github/canimation/core/CanimationRecipeSpecSet;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getFull ()Lio/github/canimation/core/CanimationSpec;
+	public final fun getOff ()Lio/github/canimation/core/CanimationSpec;
+	public final fun getReduced ()Lio/github/canimation/core/CanimationSpec;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class io/github/canimation/core/CanimationReducedStrategy : java/lang/Enum {
+	public static final field Alternative Lio/github/canimation/core/CanimationReducedStrategy;
+	public static final field Compress Lio/github/canimation/core/CanimationReducedStrategy;
+	public static final field FadeOnly Lio/github/canimation/core/CanimationReducedStrategy;
+	public static final field Snap Lio/github/canimation/core/CanimationReducedStrategy;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lio/github/canimation/core/CanimationReducedStrategy;
+	public static fun values ()[Lio/github/canimation/core/CanimationReducedStrategy;
+}
+
+public final class io/github/canimation/core/CanimationSurfaceRole : java/lang/Enum {
+	public static final field Container Lio/github/canimation/core/CanimationSurfaceRole;
+	public static final field Control Lio/github/canimation/core/CanimationSurfaceRole;
+	public static final field Decoration Lio/github/canimation/core/CanimationSurfaceRole;
+	public static final field Inline Lio/github/canimation/core/CanimationSurfaceRole;
+	public static final field Item Lio/github/canimation/core/CanimationSurfaceRole;
+	public static final field Overlay Lio/github/canimation/core/CanimationSurfaceRole;
+	public static final field Page Lio/github/canimation/core/CanimationSurfaceRole;
+	public static final field Text Lio/github/canimation/core/CanimationSurfaceRole;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lio/github/canimation/core/CanimationSurfaceRole;
+	public static fun values ()[Lio/github/canimation/core/CanimationSurfaceRole;
+}

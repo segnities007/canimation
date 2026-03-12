@@ -1,0 +1,54 @@
+name: Feature request
+description: Propose a new capability aligned with the product scope.
+title: "feature: "
+labels:
+  - type:feature
+body:
+  - type: checkboxes
+    id: search
+    attributes:
+      label: Existing issue check
+      options:
+        - label: I searched existing issues, docs, and non-goals first
+          required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What user problem should this solve?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposal
+      description: Describe the desired API, motion behavior, or workflow.
+    validations:
+      required: true
+  - type: textarea
+    id: semantics
+    attributes:
+      label: Semantic fit
+      description: Which intent, surface, intensity, and accessibility contract should this belong to?
+  - type: textarea
+    id: implementation-reality
+    attributes:
+      label: Current implementation fit
+      description: How should this fit the current module map and migration path without assuming unsupported architecture?
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Existing recipe, extension, workaround, or non-goal considerations.
+  - type: textarea
+    id: compatibility
+    attributes:
+      label: Compatibility and migration impact
+      description: Describe any stable API, compatibility-layer, or support-policy impact.
+  - type: checkboxes
+    id: conduct
+    attributes:
+      label: Code of Conduct
+      options:
+        - label: I agree to follow this project's Code of Conduct
+          required: true

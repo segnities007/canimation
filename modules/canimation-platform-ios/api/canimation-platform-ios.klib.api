@@ -1,0 +1,38 @@
+// Klib ABI Dump
+// Targets: [iosArm64, iosSimulatorArm64]
+// Rendering settings:
+// - Signature version: 2
+// - Show manifest properties: true
+// - Show declarations: true
+
+// Library unique name: <io.github.canimation:canimation-platform-ios>
+final class io.github.canimation.platform.ios/IosMotionPreferenceDataSource : io.github.canimation.a11y/MotionPreferenceDataSource { // io.github.canimation.platform.ios/IosMotionPreferenceDataSource|null[0]
+    constructor <init>() // io.github.canimation.platform.ios/IosMotionPreferenceDataSource.<init>|<init>(){}[0]
+
+    final fun currentPreference(): io.github.canimation.a11y/SystemMotionPreference // io.github.canimation.platform.ios/IosMotionPreferenceDataSource.currentPreference|currentPreference(){}[0]
+    final fun observePreference(): kotlinx.coroutines.flow/Flow<io.github.canimation.a11y/SystemMotionPreference> // io.github.canimation.platform.ios/IosMotionPreferenceDataSource.observePreference|observePreference(){}[0]
+    final fun refresh() // io.github.canimation.platform.ios/IosMotionPreferenceDataSource.refresh|refresh(){}[0]
+}
+
+final object io.github.canimation.platform.ios/IosFrameMetricsCollector : io.github.canimation.diagnostics/DiagnosticsCollector, io.github.canimation.diagnostics/DiagnosticsCollectorAvailabilityProvider { // io.github.canimation.platform.ios/IosFrameMetricsCollector|null[0]
+    final val availability // io.github.canimation.platform.ios/IosFrameMetricsCollector.availability|{}availability[0]
+        final fun <get-availability>(): io.github.canimation.diagnostics/DiagnosticsCollectorAvailability // io.github.canimation.platform.ios/IosFrameMetricsCollector.availability.<get-availability>|<get-availability>(){}[0]
+
+    final fun currentMetrics(): io.github.canimation.diagnostics/FrameMetrics // io.github.canimation.platform.ios/IosFrameMetricsCollector.currentMetrics|currentMetrics(){}[0]
+    final fun observeMetrics(): kotlinx.coroutines.flow/Flow<io.github.canimation.diagnostics/FrameMetrics> // io.github.canimation.platform.ios/IosFrameMetricsCollector.observeMetrics|observeMetrics(){}[0]
+    final fun start() // io.github.canimation.platform.ios/IosFrameMetricsCollector.start|start(){}[0]
+    final fun stop() // io.github.canimation.platform.ios/IosFrameMetricsCollector.stop|stop(){}[0]
+}
+
+final object io.github.canimation.platform.ios/IosMotionPreferenceFallback : io.github.canimation.a11y/MotionPreferenceDataSource { // io.github.canimation.platform.ios/IosMotionPreferenceFallback|null[0]
+    final fun currentPreference(): io.github.canimation.a11y/SystemMotionPreference // io.github.canimation.platform.ios/IosMotionPreferenceFallback.currentPreference|currentPreference(){}[0]
+    final fun observePreference(): kotlinx.coroutines.flow/Flow<io.github.canimation.a11y/SystemMotionPreference> // io.github.canimation.platform.ios/IosMotionPreferenceFallback.observePreference|observePreference(){}[0]
+}
+
+final val io.github.canimation.platform.ios/io_github_canimation_platform_ios_IosFrameMetricsCollector$stableprop // io.github.canimation.platform.ios/io_github_canimation_platform_ios_IosFrameMetricsCollector$stableprop|#static{}io_github_canimation_platform_ios_IosFrameMetricsCollector$stableprop[0]
+final val io.github.canimation.platform.ios/io_github_canimation_platform_ios_IosMotionPreferenceDataSource$stableprop // io.github.canimation.platform.ios/io_github_canimation_platform_ios_IosMotionPreferenceDataSource$stableprop|#static{}io_github_canimation_platform_ios_IosMotionPreferenceDataSource$stableprop[0]
+final val io.github.canimation.platform.ios/io_github_canimation_platform_ios_IosMotionPreferenceFallback$stableprop // io.github.canimation.platform.ios/io_github_canimation_platform_ios_IosMotionPreferenceFallback$stableprop|#static{}io_github_canimation_platform_ios_IosMotionPreferenceFallback$stableprop[0]
+
+final fun io.github.canimation.platform.ios/io_github_canimation_platform_ios_IosFrameMetricsCollector$stableprop_getter(): kotlin/Int // io.github.canimation.platform.ios/io_github_canimation_platform_ios_IosFrameMetricsCollector$stableprop_getter|io_github_canimation_platform_ios_IosFrameMetricsCollector$stableprop_getter(){}[0]
+final fun io.github.canimation.platform.ios/io_github_canimation_platform_ios_IosMotionPreferenceDataSource$stableprop_getter(): kotlin/Int // io.github.canimation.platform.ios/io_github_canimation_platform_ios_IosMotionPreferenceDataSource$stableprop_getter|io_github_canimation_platform_ios_IosMotionPreferenceDataSource$stableprop_getter(){}[0]
+final fun io.github.canimation.platform.ios/io_github_canimation_platform_ios_IosMotionPreferenceFallback$stableprop_getter(): kotlin/Int // io.github.canimation.platform.ios/io_github_canimation_platform_ios_IosMotionPreferenceFallback$stableprop_getter|io_github_canimation_platform_ios_IosMotionPreferenceFallback$stableprop_getter(){}[0]

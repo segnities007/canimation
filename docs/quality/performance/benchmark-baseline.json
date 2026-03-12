@@ -1,0 +1,13 @@
+{
+  "startedAtUtc": "2026-03-10T07:40:34Z",
+  "completedAtUtc": "2026-03-10T07:40:45Z",
+  "benchmarkRuns": 1,
+  "averageSeconds": 11.0,
+  "minSeconds": 11,
+  "maxSeconds": 11,
+  "averageThresholdSeconds": 600.0,
+  "gradleCommand": "./gradlew :canimation-core:jvmTest :canimation-presets:jvmTest :canimation-diagnostics:jvmTest",
+  "runSeconds": [
+    11
+  ]
+}

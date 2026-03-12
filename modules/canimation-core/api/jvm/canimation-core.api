@@ -1,0 +1,208 @@
+public final class io/github/canimation/core/CanimationContext {
+	public static final field $stable I
+	public static final field Companion Lio/github/canimation/core/CanimationContext$Companion;
+	public fun <init> (Lio/github/canimation/core/CanimationTokens;Lio/github/canimation/core/CanimationLevel;Lio/github/canimation/core/PresetRegistry;Lio/github/canimation/core/CanimationRecipeRegistry;Lkotlin/jvm/functions/Function0;)V
+	public synthetic fun <init> (Lio/github/canimation/core/CanimationTokens;Lio/github/canimation/core/CanimationLevel;Lio/github/canimation/core/PresetRegistry;Lio/github/canimation/core/CanimationRecipeRegistry;Lkotlin/jvm/functions/Function0;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Lio/github/canimation/core/CanimationTokens;
+	public final fun component2 ()Lio/github/canimation/core/CanimationLevel;
+	public final fun component3 ()Lio/github/canimation/core/PresetRegistry;
+	public final fun component4 ()Lio/github/canimation/core/CanimationRecipeRegistry;
+	public final fun component5 ()Lkotlin/jvm/functions/Function0;
+	public final fun copy (Lio/github/canimation/core/CanimationTokens;Lio/github/canimation/core/CanimationLevel;Lio/github/canimation/core/PresetRegistry;Lio/github/canimation/core/CanimationRecipeRegistry;Lkotlin/jvm/functions/Function0;)Lio/github/canimation/core/CanimationContext;
+	public static synthetic fun copy$default (Lio/github/canimation/core/CanimationContext;Lio/github/canimation/core/CanimationTokens;Lio/github/canimation/core/CanimationLevel;Lio/github/canimation/core/PresetRegistry;Lio/github/canimation/core/CanimationRecipeRegistry;Lkotlin/jvm/functions/Function0;ILjava/lang/Object;)Lio/github/canimation/core/CanimationContext;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getLevel ()Lio/github/canimation/core/CanimationLevel;
+	public final fun getPresetRegistry ()Lio/github/canimation/core/PresetRegistry;
+	public final fun getRecipeRegistry ()Lio/github/canimation/core/CanimationRecipeRegistry;
+	public final fun getTimeSourceMillis ()Lkotlin/jvm/functions/Function0;
+	public final fun getTokens ()Lio/github/canimation/core/CanimationTokens;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class io/github/canimation/core/CanimationContext$Companion {
+	public final fun getDefault ()Lio/github/canimation/core/CanimationContext;
+}
+
+public final class io/github/canimation/core/CanimationEmphasizeModifierKt {
+	public static final fun canimationEmphasize (Landroidx/compose/ui/Modifier;ZLio/github/canimation/core/CanimationPreset;)Landroidx/compose/ui/Modifier;
+	public static synthetic fun canimationEmphasize$default (Landroidx/compose/ui/Modifier;ZLio/github/canimation/core/CanimationPreset;ILjava/lang/Object;)Landroidx/compose/ui/Modifier;
+}
+
+public final class io/github/canimation/core/CanimationEnterModifierKt {
+	public static final fun canimationEnter (Landroidx/compose/ui/Modifier;ZLio/github/canimation/core/CanimationPreset;)Landroidx/compose/ui/Modifier;
+	public static final fun canimationEnter (Landroidx/compose/ui/Modifier;ZLio/github/canimation/core/CanimationSpec;)Landroidx/compose/ui/Modifier;
+	public static final fun canimationEnter (Landroidx/compose/ui/Modifier;ZLio/github/canimation/core/CanimationSpec;Lio/github/canimation/core/CanimationSpec;)Landroidx/compose/ui/Modifier;
+	public static synthetic fun canimationEnter$default (Landroidx/compose/ui/Modifier;ZLio/github/canimation/core/CanimationPreset;ILjava/lang/Object;)Landroidx/compose/ui/Modifier;
+	public static synthetic fun canimationEnter$default (Landroidx/compose/ui/Modifier;ZLio/github/canimation/core/CanimationSpec;Lio/github/canimation/core/CanimationSpec;ILjava/lang/Object;)Landroidx/compose/ui/Modifier;
+}
+
+public final class io/github/canimation/core/CanimationExitModifierKt {
+	public static final fun canimationExit (Landroidx/compose/ui/Modifier;ZLio/github/canimation/core/CanimationPreset;)Landroidx/compose/ui/Modifier;
+	public static final fun canimationExit (Landroidx/compose/ui/Modifier;ZLio/github/canimation/core/CanimationSpec;)Landroidx/compose/ui/Modifier;
+	public static final fun canimationExit (Landroidx/compose/ui/Modifier;ZLio/github/canimation/core/CanimationSpec;Lio/github/canimation/core/CanimationSpec;)Landroidx/compose/ui/Modifier;
+	public static synthetic fun canimationExit$default (Landroidx/compose/ui/Modifier;ZLio/github/canimation/core/CanimationPreset;ILjava/lang/Object;)Landroidx/compose/ui/Modifier;
+	public static synthetic fun canimationExit$default (Landroidx/compose/ui/Modifier;ZLio/github/canimation/core/CanimationSpec;Lio/github/canimation/core/CanimationSpec;ILjava/lang/Object;)Landroidx/compose/ui/Modifier;
+}
+
+public final class io/github/canimation/core/CanimationModifierKt {
+	public static final fun canimation (Landroidx/compose/ui/Modifier;ZLio/github/canimation/core/CanimationEffect;)Landroidx/compose/ui/Modifier;
+	public static final fun canimation-c9Nv6k4 (Landroidx/compose/ui/Modifier;Lio/github/canimation/core/CanimationRecipeDescriptor;Z)Landroidx/compose/ui/Modifier;
+	public static synthetic fun canimation-c9Nv6k4$default (Landroidx/compose/ui/Modifier;Lio/github/canimation/core/CanimationRecipeDescriptor;ZILjava/lang/Object;)Landroidx/compose/ui/Modifier;
+	public static final fun canimationTransition (Landroidx/compose/ui/Modifier;ZLio/github/canimation/core/CanimationEffect;Lio/github/canimation/core/CanimationEffect;)Landroidx/compose/ui/Modifier;
+	public static synthetic fun canimationTransition$default (Landroidx/compose/ui/Modifier;ZLio/github/canimation/core/CanimationEffect;Lio/github/canimation/core/CanimationEffect;ILjava/lang/Object;)Landroidx/compose/ui/Modifier;
+	public static final fun canimationTransition-LDiUoWE (Landroidx/compose/ui/Modifier;ZLio/github/canimation/core/CanimationRecipeDescriptor;Lio/github/canimation/core/CanimationRecipeDescriptor;)Landroidx/compose/ui/Modifier;
+	public static synthetic fun canimationTransition-LDiUoWE$default (Landroidx/compose/ui/Modifier;ZLio/github/canimation/core/CanimationRecipeDescriptor;Lio/github/canimation/core/CanimationRecipeDescriptor;ILjava/lang/Object;)Landroidx/compose/ui/Modifier;
+}
+
+public final class io/github/canimation/core/CanimationPreset : java/lang/Enum {
+	public static final field BackInDown Lio/github/canimation/core/CanimationPreset;
+	public static final field BackInLeft Lio/github/canimation/core/CanimationPreset;
+	public static final field BackInRight Lio/github/canimation/core/CanimationPreset;
+	public static final field BackInUp Lio/github/canimation/core/CanimationPreset;
+	public static final field Bounce Lio/github/canimation/core/CanimationPreset;
+	public static final field BounceIn Lio/github/canimation/core/CanimationPreset;
+	public static final field BounceInDown Lio/github/canimation/core/CanimationPreset;
+	public static final field BounceInLeft Lio/github/canimation/core/CanimationPreset;
+	public static final field BounceInRight Lio/github/canimation/core/CanimationPreset;
+	public static final field BounceInUp Lio/github/canimation/core/CanimationPreset;
+	public static final field DropIn Lio/github/canimation/core/CanimationPreset;
+	public static final field ElevateIn Lio/github/canimation/core/CanimationPreset;
+	public static final field EmphasizedEntry Lio/github/canimation/core/CanimationPreset;
+	public static final field Expand Lio/github/canimation/core/CanimationPreset;
+	public static final field Fade Lio/github/canimation/core/CanimationPreset;
+	public static final field FadeBig Lio/github/canimation/core/CanimationPreset;
+	public static final field FadeDown Lio/github/canimation/core/CanimationPreset;
+	public static final field FadeDownRight Lio/github/canimation/core/CanimationPreset;
+	public static final field FadeInBottomLeft Lio/github/canimation/core/CanimationPreset;
+	public static final field FadeInBottomRight Lio/github/canimation/core/CanimationPreset;
+	public static final field FadeInDownBig Lio/github/canimation/core/CanimationPreset;
+	public static final field FadeInLeft Lio/github/canimation/core/CanimationPreset;
+	public static final field FadeInLeftBig Lio/github/canimation/core/CanimationPreset;
+	public static final field FadeInRight Lio/github/canimation/core/CanimationPreset;
+	public static final field FadeInRightBig Lio/github/canimation/core/CanimationPreset;
+	public static final field FadeInTopLeft Lio/github/canimation/core/CanimationPreset;
+	public static final field FadeInTopRight Lio/github/canimation/core/CanimationPreset;
+	public static final field FadeInUpBig Lio/github/canimation/core/CanimationPreset;
+	public static final field FadeSmall Lio/github/canimation/core/CanimationPreset;
+	public static final field FadeThrough Lio/github/canimation/core/CanimationPreset;
+	public static final field FadeUp Lio/github/canimation/core/CanimationPreset;
+	public static final field FadeUpLeft Lio/github/canimation/core/CanimationPreset;
+	public static final field Flash Lio/github/canimation/core/CanimationPreset;
+	public static final field FlipDown Lio/github/canimation/core/CanimationPreset;
+	public static final field FlipIn Lio/github/canimation/core/CanimationPreset;
+	public static final field FlipInY Lio/github/canimation/core/CanimationPreset;
+	public static final field FlipUp Lio/github/canimation/core/CanimationPreset;
+	public static final field GentleFade Lio/github/canimation/core/CanimationPreset;
+	public static final field HeadShake Lio/github/canimation/core/CanimationPreset;
+	public static final field HeartBeat Lio/github/canimation/core/CanimationPreset;
+	public static final field JackInTheBox Lio/github/canimation/core/CanimationPreset;
+	public static final field Jello Lio/github/canimation/core/CanimationPreset;
+	public static final field LightSpeedInLeft Lio/github/canimation/core/CanimationPreset;
+	public static final field LightSpeedInRight Lio/github/canimation/core/CanimationPreset;
+	public static final field Pop Lio/github/canimation/core/CanimationPreset;
+	public static final field Pulse Lio/github/canimation/core/CanimationPreset;
+	public static final field RollIn Lio/github/canimation/core/CanimationPreset;
+	public static final field RotateClockwise Lio/github/canimation/core/CanimationPreset;
+	public static final field RotateIn Lio/github/canimation/core/CanimationPreset;
+	public static final field RotateInDownLeft Lio/github/canimation/core/CanimationPreset;
+	public static final field RotateInDownRight Lio/github/canimation/core/CanimationPreset;
+	public static final field RotateInUpLeft Lio/github/canimation/core/CanimationPreset;
+	public static final field RotateInUpRight Lio/github/canimation/core/CanimationPreset;
+	public static final field RotateScale Lio/github/canimation/core/CanimationPreset;
+	public static final field RubberBand Lio/github/canimation/core/CanimationPreset;
+	public static final field ScaleIn Lio/github/canimation/core/CanimationPreset;
+	public static final field ScaleUp Lio/github/canimation/core/CanimationPreset;
+	public static final field ShakeX Lio/github/canimation/core/CanimationPreset;
+	public static final field ShakeY Lio/github/canimation/core/CanimationPreset;
+	public static final field SharedAxisX Lio/github/canimation/core/CanimationPreset;
+	public static final field SharedAxisY Lio/github/canimation/core/CanimationPreset;
+	public static final field ShrinkIn Lio/github/canimation/core/CanimationPreset;
+	public static final field SlideDown Lio/github/canimation/core/CanimationPreset;
+	public static final field SlideLeft Lio/github/canimation/core/CanimationPreset;
+	public static final field SlideRight Lio/github/canimation/core/CanimationPreset;
+	public static final field SlideUp Lio/github/canimation/core/CanimationPreset;
+	public static final field Snap Lio/github/canimation/core/CanimationPreset;
+	public static final field SpinIn Lio/github/canimation/core/CanimationPreset;
+	public static final field SpringFadeIn Lio/github/canimation/core/CanimationPreset;
+	public static final field SpringIn Lio/github/canimation/core/CanimationPreset;
+	public static final field SpringSlideUp Lio/github/canimation/core/CanimationPreset;
+	public static final field Swing Lio/github/canimation/core/CanimationPreset;
+	public static final field SwingIn Lio/github/canimation/core/CanimationPreset;
+	public static final field Tada Lio/github/canimation/core/CanimationPreset;
+	public static final field TiltIn Lio/github/canimation/core/CanimationPreset;
+	public static final field UpBig Lio/github/canimation/core/CanimationPreset;
+	public static final field Wobble Lio/github/canimation/core/CanimationPreset;
+	public static final field ZoomIn Lio/github/canimation/core/CanimationPreset;
+	public static final field ZoomInDown Lio/github/canimation/core/CanimationPreset;
+	public static final field ZoomInLeft Lio/github/canimation/core/CanimationPreset;
+	public static final field ZoomInRight Lio/github/canimation/core/CanimationPreset;
+	public static final field ZoomInUp Lio/github/canimation/core/CanimationPreset;
+	public static final field ZoomOut Lio/github/canimation/core/CanimationPreset;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lio/github/canimation/core/CanimationPreset;
+	public static fun values ()[Lio/github/canimation/core/CanimationPreset;
+}
+
+public final class io/github/canimation/core/CanimationPresetSpec {
+	public static final field $stable I
+	public fun <init> (Lio/github/canimation/core/CanimationSpec;Lio/github/canimation/core/CanimationSpec;Lio/github/canimation/core/CanimationSpec;Lio/github/canimation/core/CanimationSpec;)V
+	public final fun component1 ()Lio/github/canimation/core/CanimationSpec;
+	public final fun component2 ()Lio/github/canimation/core/CanimationSpec;
+	public final fun component3 ()Lio/github/canimation/core/CanimationSpec;
+	public final fun component4 ()Lio/github/canimation/core/CanimationSpec;
+	public final fun copy (Lio/github/canimation/core/CanimationSpec;Lio/github/canimation/core/CanimationSpec;Lio/github/canimation/core/CanimationSpec;Lio/github/canimation/core/CanimationSpec;)Lio/github/canimation/core/CanimationPresetSpec;
+	public static synthetic fun copy$default (Lio/github/canimation/core/CanimationPresetSpec;Lio/github/canimation/core/CanimationSpec;Lio/github/canimation/core/CanimationSpec;Lio/github/canimation/core/CanimationSpec;Lio/github/canimation/core/CanimationSpec;ILjava/lang/Object;)Lio/github/canimation/core/CanimationPresetSpec;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getFullEnter ()Lio/github/canimation/core/CanimationSpec;
+	public final fun getFullExit ()Lio/github/canimation/core/CanimationSpec;
+	public final fun getReducedEnter ()Lio/github/canimation/core/CanimationSpec;
+	public final fun getReducedExit ()Lio/github/canimation/core/CanimationSpec;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class io/github/canimation/core/CanimationProviderKt {
+	public static final fun CanimationProvider (Lio/github/canimation/core/CanimationTokens;Lio/github/canimation/core/CanimationPolicy;Lio/github/canimation/core/PresetRegistry;Lio/github/canimation/core/CanimationRecipeRegistry;Ljava/lang/Boolean;Lkotlin/jvm/functions/Function2;Landroidx/compose/runtime/Composer;II)V
+}
+
+public final class io/github/canimation/core/CanimationSemanticTransitionKt {
+	public static final fun CanimationTransition-11IUL7g (ZLio/github/canimation/core/CanimationRecipeDescriptor;Lio/github/canimation/core/CanimationRecipeDescriptor;Landroidx/compose/ui/Modifier;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;II)V
+	public static final fun CanimationTransition-Bz3IXIE (ZLio/github/canimation/core/CanimationRecipeDescriptor;Landroidx/compose/ui/Modifier;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;II)V
+	public static final synthetic fun CanimationTransition-oAI07pY (ZLio/github/canimation/core/CanimationRecipeDescriptor;Lio/github/canimation/core/CanimationRecipeDescriptor;Landroidx/compose/ui/Modifier;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;II)V
+}
+
+public final class io/github/canimation/core/CanimationTransitionModifierKt {
+	public static final fun canimationTransition (Landroidx/compose/ui/Modifier;ZLio/github/canimation/core/CanimationPreset;Lio/github/canimation/core/CanimationPreset;)Landroidx/compose/ui/Modifier;
+	public static final fun canimationTransition (Landroidx/compose/ui/Modifier;ZLio/github/canimation/core/CanimationSpec;)Landroidx/compose/ui/Modifier;
+	public static final fun canimationTransition (Landroidx/compose/ui/Modifier;ZLio/github/canimation/core/CanimationSpec;Lio/github/canimation/core/CanimationSpec;Lio/github/canimation/core/CanimationSpec;Lio/github/canimation/core/CanimationSpec;)Landroidx/compose/ui/Modifier;
+	public static synthetic fun canimationTransition$default (Landroidx/compose/ui/Modifier;ZLio/github/canimation/core/CanimationPreset;Lio/github/canimation/core/CanimationPreset;ILjava/lang/Object;)Landroidx/compose/ui/Modifier;
+	public static synthetic fun canimationTransition$default (Landroidx/compose/ui/Modifier;ZLio/github/canimation/core/CanimationSpec;Lio/github/canimation/core/CanimationSpec;Lio/github/canimation/core/CanimationSpec;Lio/github/canimation/core/CanimationSpec;ILjava/lang/Object;)Landroidx/compose/ui/Modifier;
+}
+
+public final class io/github/canimation/core/CanimationVisibilityKt {
+	public static final fun CanimationVisibility (ZLio/github/canimation/core/CanimationPreset;Lio/github/canimation/core/CanimationPreset;Lkotlin/jvm/functions/Function2;Landroidx/compose/runtime/Composer;II)V
+	public static final fun CanimationVisibility (ZLio/github/canimation/core/CanimationSpec;Lio/github/canimation/core/CanimationSpec;Lio/github/canimation/core/CanimationSpec;Lio/github/canimation/core/CanimationSpec;Lkotlin/jvm/functions/Function2;Landroidx/compose/runtime/Composer;II)V
+	public static final fun CanimationVisibility (ZLio/github/canimation/core/CanimationSpec;Lkotlin/jvm/functions/Function2;Landroidx/compose/runtime/Composer;I)V
+	public static final fun CanimationVisibility-y6VYVj4 (ZLio/github/canimation/core/CanimationRecipeDescriptor;Lkotlin/jvm/functions/Function2;Landroidx/compose/runtime/Composer;I)V
+}
+
+public final class io/github/canimation/core/LocalCanimationContextKt {
+	public static final fun getLocalCanimationContext ()Landroidx/compose/runtime/ProvidableCompositionLocal;
+}
+
+public final class io/github/canimation/core/PresetRegistry {
+	public static final field $stable I
+	public static final field Companion Lio/github/canimation/core/PresetRegistry$Companion;
+	public synthetic fun <init> (Ljava/util/Map;Lio/github/canimation/core/PresetRegistry;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun resolve (Lio/github/canimation/core/CanimationPreset;Lio/github/canimation/core/CanimationLevel;Lio/github/canimation/core/AnimationDirection;)Lio/github/canimation/core/CanimationSpec;
+	public final fun withOverrides (Ljava/util/Map;)Lio/github/canimation/core/PresetRegistry;
+	public final fun withPreset (Lio/github/canimation/core/CanimationPreset;Lio/github/canimation/core/CanimationPresetSpec;)Lio/github/canimation/core/PresetRegistry;
+}
+
+public final class io/github/canimation/core/PresetRegistry$Companion {
+	public final fun builtIns (Ljava/util/Map;)Lio/github/canimation/core/PresetRegistry;
+	public final fun create (Ljava/util/Map;)Lio/github/canimation/core/PresetRegistry;
+	public final fun getDefault ()Lio/github/canimation/core/PresetRegistry;
+	public final fun installBuiltIns (Lio/github/canimation/core/PresetRegistry;)V
+}

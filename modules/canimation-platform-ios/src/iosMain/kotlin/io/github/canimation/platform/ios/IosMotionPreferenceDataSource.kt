@@ -19,16 +19,10 @@ class IosMotionPreferenceDataSource : MotionPreferenceDataSource {
 
     override fun observePreference(): Flow<SystemMotionPreference> = preferenceFlow
 
-    private fun readPreference(): SystemMotionPreference {
-        return try {
-            if (UIAccessibilityIsReduceMotionEnabled()) {
-                SystemMotionPreference.ReduceMotion
-            } else {
-                SystemMotionPreference.NoPreference
-            }
-        } catch (_: Exception) {
-            SystemMotionPreference.ReduceMotion
-        }
+    private fun readPreference(): SystemMotionPreference = if (UIAccessibilityIsReduceMotionEnabled()) {
+        SystemMotionPreference.ReduceMotion
+    } else {
+        SystemMotionPreference.NoPreference
     }
 
     /** Call when accessibility settings change to update observers. */

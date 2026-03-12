@@ -1,11 +1,7 @@
-<p align="center">
-  <img src="docs/logo.png" alt="canimation" width="120" />
-</p>
-
 <h1 align="center">canimation</h1>
 
 <p align="center">
-  <strong>Accessibility-first animation library for Compose Multiplatform</strong>
+  <strong>Accessibility-first semantic motion system for Compose Multiplatform</strong>
 </p>
 
 <p align="center">
@@ -17,10 +13,12 @@
 <p align="center">
   <a href="#setup">Setup</a> •
   <a href="#quick-start">Quick Start</a> •
-  <a href="#canimation-namespace">Effects</a> •
-  <a href="#presets">Presets</a> •
+  <a href="#architecture">Architecture</a> •
+  <a href="#semantic-api">Semantic API</a> •
+  <a href="#compatibility-api">Compatibility API</a> •
   <a href="#accessibility">Accessibility</a> •
   <a href="#modules">Modules</a> •
+  <a href="#validation">Validation</a> •
   <a href="#documentation">Documentation</a>
 </p>
 
@@ -28,24 +26,79 @@
 
 ## What is canimation?
 
-**canimation** is an effect-driven animation library for Compose Multiplatform.
-Use the `Canimation.*` namespace to pick from **190+ named effects** across 31 categories,
-combine them with the `+` operator, and apply them with `Modifier.canimation(visible, effect)`.
-The library automatically adapts between **Full**, **Reduced**, and **Off** motion levels
-based on system accessibility settings via `CanimationProvider`.
+**canimation** is an accessibility-first semantic motion system for Compose Multiplatform.
+Use semantic recipes to choose motion by UI meaning, then apply them through a small stable runtime API.
+The library adapts between **Full**, **Reduced**, and **Off** motion levels
+through `CanimationProvider` and its accessibility policy contract.
 
 ```
 Android • iOS • Desktop (JVM) • Web (JS / WasmJs)
 ```
 
+## Product Direction
+
+- semantic motion library first
+- accessibility contract first
+- effect catalog second
+- compatibility migration instead of abrupt rewrite
+
+The long-term stable path is `semantics-first`:
+
+- choose by intent
+- preserve meaning in reduced/off modes
+- keep recipe metadata, docs metadata, and runtime spec in one SSoT
+
+## Scope and Non-Goals
+
+`canimation` is a semantic motion library for Compose Multiplatform.
+The project is intentionally optimized for reusable library behavior, accessibility-aware motion policy, and a documented migration path from effect-first APIs.
+
+Current non-goals:
+
+- becoming a generic design-system or component-kit replacement
+- supporting every possible animation style as stable public API
+- promising long-term maintenance for abandoned release lines
+- accepting architecture rewrites that bypass the documented migration path
+
+When a request is better handled by a wrapper, extension, fork, or showcase-only experiment, maintainers may direct it there instead of expanding the stable core.
+
+## Current Repository Status
+
+This README describes the implementation that exists in the repository today.
+
+- The current consumer-facing implementation is still centered on `canimation-core`.
+- The repository itself is intentionally multi-module: presets, accessibility bridges,
+  diagnostics, test helpers, and platform adapters are split so the implementation stays
+  maintainable.
+- The target-state owner modules now physically exist for tokens, primitives, semantics,
+  recipes, and runtime, while support surfaces such as `canimation-presets`,
+  `canimation-a11y`, `canimation-diagnostics`, `canimation-test`, `canimation-test-kit`,
+  `canimation-compat`, `canimation-experimental`, and `canimation-platform-*` are already
+  isolated as separate modules.
+- The target architecture is stronger than the current implementation and is documented in
+  `docs/reference/architecture/ideal-architecture-blueprint.md` and `guideline/18-target-state-architecture-and-package-topology.md`.
+
 ## Setup
 
-### Version Catalog
+### Local repository development
+
+```kotlin
+// build.gradle.kts
+kotlin {
+    sourceSets {
+        commonMain.dependencies {
+            implementation(project(":canimation-core"))
+        }
+    }
+}
+```
+
+### External dependency shape
 
 ```toml
 # gradle/libs.versions.toml
 [versions]
-canimation = "0.1.0"
+canimation = "<latest-version>"
 
 [libraries]
 canimation-core = { module = "io.github.canimation:canimation-core", version.ref = "canimation" }
@@ -64,22 +117,119 @@ kotlin {
 }
 ```
 
-> **Note:** All APIs — effects, presets, accessibility, modifiers — live in `canimation-core`.
+> **Note:** The current implementation surface is centered on `canimation-core`.
+> Inside this repository, the showcase app also uses internal modules such as
+> `canimation-presets`, `canimation-a11y`, `canimation-diagnostics`, and the test/support
+> modules that back local verification and showcase development.
+> The target-state surfaces `canimation-tokens`, `canimation-primitives`, `canimation-semantics`,
+> `canimation-recipes`, and `canimation-runtime` are now real modules and can be adopted incrementally.
 
 ## Quick Start
+
+These examples show the semantic-first direction that is now available in the runtime.
+The repository is still in migration, but the semantics-first recipe surface exists and is
+meant to become the long-term first docs path.
 
 ### 1. Provide animation context
 
 ```kotlin
 @Composable
 fun App() {
-    CanimationProvider(policy = CanimationPolicy.SystemAware) {
+    CanimationProvider(
+        policy = CanimationPolicy.SystemAware,
+        recipeRegistry = DefaultCanimationRecipeRegistry,
+    ) {
         MyContent()
     }
 }
 ```
 
-### 2. Animate with effects (recommended)
+### 2. Animate with semantic recipes (target stable path)
+
+```kotlin
+Box(
+    modifier = Modifier.canimation(
+        visible = true,
+        recipe = Canimation.Content.EnterSubtle,
+    )
+) {
+    Text("Hello, canimation!")
+}
+```
+
+```kotlin
+CanimationVisibility(
+    visible = isExpanded,
+    recipe = Canimation.Surface.DialogReveal,
+) {
+    DetailContent()
+}
+```
+
+```kotlin
+CanimationProvider(
+    recipeRegistry = DefaultCanimationRecipeRegistry,
+) {
+    ScreenContent()
+}
+```
+
+## Architecture
+
+The ideal architecture is top-down and semantics-first.
+
+- product identity: semantic motion system
+- stable core: tokens -> primitives -> semantics -> recipes -> runtime -> a11y
+- isolated tiers: diagnostics / compat / experimental / test-kit / platform adapters
+- docs and rules are also structured as SSoT
+
+Read:
+
+- `docs/reference/architecture/ideal-architecture-blueprint.md`
+- `guideline/18-target-state-architecture-and-package-topology.md`
+- `guideline/21-semantic-taxonomy-and-stability-tiering.md`
+- `guideline/22-recipe-descriptor-registry-and-extension-model.md`
+
+## Semantic API
+
+The stable semantic direction is:
+
+- `Canimation.Content`
+- `Canimation.Feedback`
+- `Canimation.Navigation`
+- `Canimation.Surface`
+- `Canimation.Emphasis`
+- `Canimation.Transition`
+- `Canimation.Ambient`
+- `Canimation.Recovery`
+
+Current built-in semantic recipes include:
+
+- `Canimation.Content.EnterSubtle`
+- `Canimation.Content.EnterStandard`
+- `Canimation.Feedback.Press`
+- `Canimation.Feedback.SelectionPulse`
+- `Canimation.Navigation.Forward`
+- `Canimation.Navigation.Backward`
+- `Canimation.Surface.DialogReveal`
+- `Canimation.Surface.SheetReveal`
+- `Canimation.Emphasis.CallToAction`
+- `Canimation.Transition.ContentSwap`
+- `Canimation.Ambient.Highlight`
+- `Canimation.Recovery.ErrorShake`
+
+Read:
+
+- `docs/reference/semantics/taxonomy.md`
+- `docs/reference/recipes/descriptor-schema.md`
+- `docs/reference/api/migration-policy.md`
+
+## Compatibility API
+
+The repository still contains effect-first and preset-first APIs during migration.
+They remain useful for the current implementation, but they are not the long-term first docs path.
+
+### Current effect-based examples
 
 ```kotlin
 // Use named effects from the Canimation.* namespace
@@ -114,7 +264,7 @@ Card(
 )
 ```
 
-### 3. Other APIs
+### Other current APIs
 
 ```kotlin
 // Preset-based enter animation
@@ -162,9 +312,28 @@ Box(
 )
 ```
 
-## Canimation.* Namespace
+## Implementation Overview
 
-The `Canimation` object provides **31 categories** of named effects. Each effect is a `CanimationEffect`
+### Runtime flow
+
+1. `CanimationProvider` resolves a `CanimationContext` from tokens, policy,
+   preset registry, and the platform's motion preference.
+2. `CanimationPolicyResolver` maps the system preference to `CanimationLevel`
+   (`SystemAware` falls back to `Reduced` when the preference cannot be determined).
+3. `PresetRegistry` resolves enter/exit specs from the preset SSoT
+   (`CanimationPresetSpec` -> full / reduced / off behavior).
+4. `Modifier.canimation*` APIs convert effects or presets into `CanimationSpec`
+   and apply them with draw-phase-friendly `graphicsLayer` transforms.
+5. The showcase app keeps screen state in `*StateHolder` + reducer pairs so the
+   same public runtime APIs are exercised from real UI flows.
+
+For the current implementation walkthrough, see `docs/explanation/architecture/implementation-overview.md`.
+
+For the target architecture, see `docs/reference/architecture/ideal-architecture-blueprint.md`.
+
+## Effect Namespace
+
+The `Canimation` object provides **30 categories** of named effects. Each effect is a `CanimationEffect`
 that can be used directly or combined with `+`.
 
 | Category | Examples |
@@ -202,14 +371,14 @@ that can be used directly or combined with `+`.
 
 ## Presets
 
-112 built-in presets (via `CanimationPreset`) inspired by leading animation libraries and design systems.
-Each preset provides **Full** and **Reduced** motion variants derived automatically.
+83 built-in presets (via `CanimationPreset`) inspired by leading animation libraries and design systems.
+Each preset defines **Full** and **Reduced** enter/exit specs in the preset registry SSoT.
 
 > **Tip:** For new code, prefer the `Canimation.*` effect namespace with `Modifier.canimation()`.
 > Presets remain fully supported and work with `Modifier.canimationEnter()` and `CanimationVisibility`.
 
 <details>
-<summary>All 83 Original Presets (CanimationPreset)</summary>
+<summary>All 83 Built-in Presets (CanimationPreset)</summary>
 
 | Preset | Source | Description |
 |--------|--------|-------------|
@@ -317,45 +486,139 @@ CanimationProvider(policy = CanimationPolicy.AlwaysOff) { ... }
 | Level | Behavior |
 |-------|----------|
 | **Full** | All animation properties play with full spec values |
-| **Reduced** | Alpha-only emphasis, ≤120ms duration, minimal offset |
+| **Reduced** | ≤120ms duration, alpha preserved, and motion channels compressed instead of removed |
 | **Off** | Instant snap — zero duration on all animations |
+
+Implementation notes:
+
+- `CanimationPolicyResolver` treats an unknown system preference as `Reduced`.
+- `CanimationSpec.toReduced()` compresses duration to the short token (`120ms`) and
+  scales offset / scale / rotation channels down instead of dropping semantics entirely.
+- `PresetIntegrityAuditTest` verifies that reduced specs do not amplify motion.
+
+## Stability and Support Tiers
+
+Stable first-path surfaces:
+
+- `canimation-core`
+- `canimation-runtime`
+- `canimation-semantics`
+- `canimation-recipes`
+- `canimation-a11y`
+
+Lifecycle-isolated surfaces:
+
+- `canimation-compat` for migration and deprecation paths
+- `canimation-experimental` for opt-in unstable APIs
+- `canimation-diagnostics` and platform adapter modules for advanced or boundary-specific integration
+
+Operational support is strongest on `main` and the latest release tag.
+See [SUPPORT.md](SUPPORT.md) for supported lines, tooling baseline, and support expectations.
 
 ## Modules
 
 | Module | Description |
 |--------|-------------|
-| `canimation-core` | All library APIs — Provider, Modifiers, Effects, Presets, Accessibility, Token system |
-| `composeApp` | Interactive showcase / demo website (Desktop + Web targets) |
-
-> **Note:** All functionality (effects, presets, accessibility, diagnostics) is shipped in
-> `canimation-core`. The other module directories in the repository are scaffolding for
-> planned future extraction and are not published separately.
+| `canimation-core` | Public runtime primitives: provider, context, effect DSL, modifiers, spec resolution, tokens |
+| `canimation-tokens` | Target-state token surface for duration, easing, distance, and spring tokens |
+| `canimation-primitives` | Target-state primitive motion surface for effects and specs |
+| `canimation-semantics` | Target-state semantic descriptor and registry surface |
+| `canimation-recipes` | Target-state first-party semantic recipe catalog |
+| `canimation-runtime` | Target-state provider / modifier / visibility / transition surface |
+| `canimation-presets` | Built-in preset SSoT and registry installation |
+| `canimation-a11y` | Motion preference contracts and policy bridge helpers |
+| `canimation-diagnostics` | Debug overlay and frame-metrics support |
+| `canimation-test` | Shared test clock and test host utilities |
+| `canimation-test-kit` | Target-state test-facing package for deterministic runtime tests |
+| `canimation-compat` | Compatibility layer for effect-first and preset-first migration |
+| `canimation-experimental` | Opt-in experimental surface isolated from stable semantic APIs |
+| `canimation-platform-android` | Android motion-preference and diagnostics adapters |
+| `canimation-platform-desktop` | Desktop motion-preference and diagnostics adapters |
+| `canimation-platform-ios` | iOS motion-preference and diagnostics adapters |
+| `canimation-platform-web` | Web motion-preference adapters and web diagnostics fallback |
+| `composeApp` | Interactive showcase / docs / gallery app for Desktop, Web, Android, and iOS hosts |
+| `androidApp` | Thin Android application wrapper around `composeApp` |
+| `iosApp` | Thin SwiftUI host around the Compose iOS entry point |
 
 ## Showcase App
 
-The `composeApp` module is an interactive showcase with **290+ gallery examples** and
-**123 rich component demos**, organized in an Atomic Design hierarchy (Atoms, Molecules, Organisms).
+The `composeApp` module is an interactive showcase with **379 gallery examples**
+currently defined in `ExampleData*.kt`, a **36-entry API reference catalog**, and
+component demos organized in an Atomic Design hierarchy (Atoms, Molecules, Organisms).
 
 ```bash
 ./gradlew :composeApp:run                              # Desktop
 ./gradlew :composeApp:wasmJsBrowserDevelopmentRun      # Web (WasmJs)
 ./gradlew :androidApp:assembleDebug                    # Android
-bash scripts/security-audit.sh                         # Security baseline audit
 ```
+
+## Validation
+
+The repository's current baseline validation is centered on the same commands used in CI:
+
+```bash
+./gradlew allTests --max-workers=2 --no-daemon
+./gradlew :koverHtmlReport :koverXmlReport --max-workers=2 --no-daemon
+./gradlew compileLibraryAndroid compileLibraryJvm :androidApp:assembleDebug :composeApp:compileKotlinJvm --max-workers=2 --no-daemon
+./gradlew compileLibraryApple :composeApp:packageDistributionForCurrentOS :composeApp:linkDebugFrameworkIosSimulatorArm64 --max-workers=2 --no-daemon
+./gradlew compileLibraryWeb :composeApp:compileKotlinWasmJs --max-workers=2 --no-daemon
+./gradlew releaseReadiness --max-workers=2 --no-daemon
+bash scripts/security-audit.sh
+bash scripts/validate-workflows.sh
+bash scripts/validate-governance-docs.sh
+```
+
+> **Note:** Kotlin Gradle Plugin 2.3.0 currently emits JS/Wasm npm aggregation warnings during
+> configuration. These warnings come from upstream Kotlin/Gradle integration rather than this
+> repository's custom build logic, so treat them as known tooling noise unless a normal validation
+> command starts failing.
+>
+> CI intentionally runs `:koverHtmlReport` and `:koverXmlReport` in a separate Gradle invocation
+> from `allTests` to keep the current KMP/Android validation graph stable.
+
+When an intentional public library API change is accepted, refresh the checked ABI dumps:
+
+```bash
+./gradlew updateLibraryAbi --max-workers=2 --no-daemon
+```
+
+See `.github/workflows/ci.yml` for the current validation shape.
 
 ## Documentation
 
 | Document | Description |
 |----------|-------------|
+| [Documentation Index](docs/README.md) | Stable documentation entry |
+| [Ideal Architecture Blueprint](docs/reference/architecture/ideal-architecture-blueprint.md) | Top-down target-state architecture |
+| [Implementation Overview](docs/explanation/architecture/implementation-overview.md) | Current repository architecture and runtime flow |
 | [Changelog](CHANGELOG.md) | Version history |
-| [A11y Tier 1 Validation](docs/a11y-tier1-validation.md) | Policy level validation matrix |
-| [A11y Tier 2 Compatibility](docs/a11y-tier2-compatibility.md) | Platform-specific a11y integration |
-| [Release Versioning Policy](docs/release-versioning-policy.md) | SemVer & release tag conventions |
-| [Release Note Draft](docs/release-note-draft.md) | v0.1.0 release notes |
+| [Semantic Taxonomy](docs/reference/semantics/taxonomy.md) | Stable motion classification |
+| [Descriptor Schema](docs/reference/recipes/descriptor-schema.md) | Recipe SSoT schema |
+| [API Migration Policy](docs/reference/api/migration-policy.md) | Stable path and compatibility migration |
+| [Triage And Label Taxonomy](docs/reference/governance/triage-and-label-taxonomy.md) | Intake paths, label classes, and triage baseline |
+| [Consumer App Structure](docs/reference/showcase/consumer-app-structure.md) | Showcase and consumer-app conventions |
+| [A11y Tier 1 Validation](docs/quality/accessibility/tier-1-validation.md) | Policy level validation matrix |
+| [A11y Tier 2 Compatibility](docs/quality/accessibility/tier-2-platform-compatibility.md) | Platform-specific a11y integration |
+| [Guideline Index](guideline/README.md) | Repository-wide implementation and review rules |
+| [Release Versioning Policy](docs/reference/release/versioning-policy.md) | SemVer & release tag conventions |
+| [Repository Protection Baseline](docs/reference/release/repository-protection-baseline.md) | Expected ruleset, owner-review, and required-check baseline |
+| [Contributing Guide](CONTRIBUTING.md) | Development flow, validation commands, and PR expectations |
+| [Maintainers](MAINTAINERS.md) | Maintainer roles, review ownership, and public follow-up expectations |
+| [Code of Conduct](CODE_OF_CONDUCT.md) | Community participation expectations |
+| [Security Policy](SECURITY.md) | Vulnerability reporting and support policy |
+| [Support Policy](SUPPORT.md) | Supported lines, expectations, and support boundaries |
+| [CODEOWNERS](.github/CODEOWNERS) | Review ownership for architecture, workflow, and governance changes |
+| [Issue Templates](.github/ISSUE_TEMPLATE/) | Bug, feature, docs, and question intake |
+| [License](LICENSE) | Apache License 2.0 text |
 
 ## Contributing
 
-Contributions are welcome! Please read the documentation in `docs/` before submitting a PR.
+Contributions are welcome. Start with [CONTRIBUTING.md](CONTRIBUTING.md), then read
+`docs/README.md`, `docs/reference/architecture/ideal-architecture-blueprint.md`, and `guideline/README.md` before making structural changes.
+Use [SECURITY.md](SECURITY.md) for sensitive reports and follow [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) in all project spaces.
+
+Operational support boundaries are documented in [SUPPORT.md](SUPPORT.md).
+Maintainer review ownership and roles are documented in [MAINTAINERS.md](MAINTAINERS.md).
 
 ## Acknowledgements
 

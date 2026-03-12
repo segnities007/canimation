@@ -1,0 +1,15 @@
+{
+  "result": "passed",
+  "errorCount": 0,
+  "auditedScopes": [
+    "dependency repositories",
+    "dependabot coverage",
+    "workflow security posture",
+    "Gradle verification metadata",
+    "Android manifest hardening",
+    "web security headers",
+    "secret pattern scan"
+  ],
+  "highRiskFindings": [],
+  "findings": []
+}

@@ -1,0 +1,40 @@
+labels:
+  - name: type:bug
+    color: d73a4a
+    description: Reproducible defect in library, docs, workflow, or showcase behavior.
+  - name: type:feature
+    color: 0e8a16
+    description: Proposed capability or architecture-significant enhancement.
+  - name: type:docs
+    color: 1d76db
+    description: Documentation drift, missing guidance, or navigation work.
+  - name: type:question
+    color: 5319e7
+    description: Usage, migration, or support question within project scope.
+  - name: type:security
+    color: b60205
+    description: Security-sensitive issue tracked through the approved security path.
+  - name: status:needs-info
+    color: fbca04
+    description: Maintainers need more information before they can triage or act.
+  - name: status:blocked
+    color: d4c5f9
+    description: Work is blocked on an external dependency, decision, or follow-up.
+  - name: status:accepted
+    color: 0e8a16
+    description: Maintainers accepted the issue or proposal into active scope.
+  - name: priority:high
+    color: b60205
+    description: High-priority issue due to compatibility, accessibility, or security impact.
+  - name: good first issue
+    color: 7057ff
+    description: Bounded issue appropriate for a first contribution.
+  - name: documentation
+    color: 1d76db
+    description: Pull request touches docs, guidelines, or repository policy text.
+  - name: ci
+    color: 0052cc
+    description: Pull request touches workflows, scripts, or CI automation.
+  - name: architecture
+    color: 5319e7
+    description: Pull request touches architecture-significant modules or build boundaries.

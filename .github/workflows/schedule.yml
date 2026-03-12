@@ -8,20 +8,51 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: schedule-${{ github.workflow }}
+  cancel-in-progress: true
+
 jobs:
   flake-scan:
+    name: Schedule / flake-scan
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
         with:
           persist-credentials: false
-      - uses: ./.github/actions/setup-build
+      - name: Set up build environment
+        uses: ./.github/actions/setup-build
       - name: Run flake scan
         run: bash scripts/measure-flake-rate.sh
       - name: Upload flake report
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         if: always()
         with:
           name: flake-report
-          path: docs/quality/flake-rate.json
+          path: docs/quality/workflow/flake-rate.json
+          retention-days: 90
+
+  benchmark-scan:
+    name: Schedule / benchmark-scan
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+        with:
+          persist-credentials: false
+      - name: Set up build environment
+        uses: ./.github/actions/setup-build
+      - name: Run benchmark baseline
+        run: bash scripts/measure-benchmark-baseline.sh
+      - name: Upload benchmark report
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        if: always()
+        with:
+          name: benchmark-baseline
+          path: docs/quality/performance/benchmark-baseline.json
           retention-days: 90

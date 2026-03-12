@@ -10,37 +10,46 @@ permissions:
   pages: write
   id-token: write
 
+concurrency:
+  group: pages-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   build:
+    name: Pages / build
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
         with:
           persist-credentials: false
-      - uses: ./.github/actions/setup-build
+      - name: Set up build environment
+        uses: ./.github/actions/setup-build
       - name: Log build start
         run: date -u '+%Y-%m-%dT%H:%M:%SZ'
-      - name: Compile Wasm production executable
-        run: ./gradlew :composeApp:compileProductionExecutableKotlinWasmJsOptimize --info
-      - name: Bundle production webpack output
-        run: ./gradlew :composeApp:jsBrowserProductionWebpack --info
-      - name: Assemble Wasm browser distribution
-        run: ./gradlew :composeApp:wasmJsBrowserDistribution --info
+      - name: Build production web artifacts
+        run: ./gradlew :composeApp:compileProductionExecutableKotlinWasmJsOptimize :composeApp:jsBrowserProductionWebpack :composeApp:wasmJsBrowserDistribution --max-workers=2 --no-daemon --info
       - name: Log build end
         if: always()
         run: date -u '+%Y-%m-%dT%H:%M:%SZ'
       - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # v3
         with:
           path: composeApp/build/dist/wasmJs/productionExecutable
 
   deploy:
+    name: Pages / deploy
     needs: build
     runs-on: ubuntu-24.04
+    permissions:
+      pages: write
+      id-token: write
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Deploy to GitHub Pages
+      - name: Deploy Pages site
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4

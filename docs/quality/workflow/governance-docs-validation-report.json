@@ -1,0 +1,28 @@
+{
+  "result": "passed",
+  "errorCount": 0,
+  "validatedDocs": [
+    "README.md",
+    "CONTRIBUTING.md",
+    "SUPPORT.md",
+    "SECURITY.md",
+    "MAINTAINERS.md",
+    "CODE_OF_CONDUCT.md",
+    ".github/labels.yml",
+    ".github/CODEOWNERS",
+    ".github/PULL_REQUEST_TEMPLATE.md",
+    ".github/ISSUE_TEMPLATE/architecture-proposal.yml",
+    "docs/reference/governance/triage-and-label-taxonomy.md",
+    "docs/explanation/architecture/implementation-overview.md"
+  ],
+  "checks": [
+    "required governance files exist",
+    "validation commands stay aligned across README, CONTRIBUTING, and implementation overview",
+    "SUPPORT.md tooling baseline matches repository sources",
+    "CODEOWNERS covers required architecture and governance paths",
+    "issue templates cover architecture intake and code of conduct acknowledgements",
+    "label taxonomy stays aligned across labels, issue forms, and labeler automation",
+    "pull request template includes regression, ADR, and contract review prompts"
+  ],
+  "findings": []
+}

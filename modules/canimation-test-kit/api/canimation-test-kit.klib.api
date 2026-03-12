@@ -1,0 +1,22 @@
+// Klib ABI Dump
+// Targets: [iosArm64, iosSimulatorArm64, js, wasmJs]
+// Rendering settings:
+// - Signature version: 2
+// - Show manifest properties: true
+// - Show declarations: true
+
+// Library unique name: <io.github.canimation:canimation-test-kit>
+final val io.github.canimation.testkit/DefaultCanimationRecipeRegistry // io.github.canimation.testkit/DefaultCanimationRecipeRegistry|{}DefaultCanimationRecipeRegistry[0]
+    final fun <get-DefaultCanimationRecipeRegistry>(): io.github.canimation.core/CanimationRecipeRegistry // io.github.canimation.testkit/DefaultCanimationRecipeRegistry.<get-DefaultCanimationRecipeRegistry>|<get-DefaultCanimationRecipeRegistry>(){}[0]
+final val io.github.canimation.testkit/DefaultCanimationTestComposition // io.github.canimation.testkit/DefaultCanimationTestComposition|{}DefaultCanimationTestComposition[0]
+    final fun <get-DefaultCanimationTestComposition>(): io.github.canimation.test/CanimationTestComposition // io.github.canimation.testkit/DefaultCanimationTestComposition.<get-DefaultCanimationTestComposition>|<get-DefaultCanimationTestComposition>(){}[0]
+final val io.github.canimation.testkit/DefaultCanimationTestPresetRegistry // io.github.canimation.testkit/DefaultCanimationTestPresetRegistry|{}DefaultCanimationTestPresetRegistry[0]
+    final fun <get-DefaultCanimationTestPresetRegistry>(): io.github.canimation.core/PresetRegistry // io.github.canimation.testkit/DefaultCanimationTestPresetRegistry.<get-DefaultCanimationTestPresetRegistry>|<get-DefaultCanimationTestPresetRegistry>(){}[0]
+final val io.github.canimation.testkit/DefaultCanimationTestRecipeRegistry // io.github.canimation.testkit/DefaultCanimationTestRecipeRegistry|{}DefaultCanimationTestRecipeRegistry[0]
+    final fun <get-DefaultCanimationTestRecipeRegistry>(): io.github.canimation.core/CanimationRecipeRegistry // io.github.canimation.testkit/DefaultCanimationTestRecipeRegistry.<get-DefaultCanimationTestRecipeRegistry>|<get-DefaultCanimationTestRecipeRegistry>(){}[0]
+
+final fun (io.github.canimation.test/CanimationTestClock).io.github.canimation.testkit/advanceByFrame(kotlin/Long = ...) // io.github.canimation.testkit/advanceByFrame|advanceByFrame@io.github.canimation.test.CanimationTestClock(kotlin.Long){}[0]
+final fun (io.github.canimation.test/CanimationTestClock).io.github.canimation.testkit/advanceByFrames(kotlin/Int, kotlin/Long = ...) // io.github.canimation.testkit/advanceByFrames|advanceByFrames@io.github.canimation.test.CanimationTestClock(kotlin.Int;kotlin.Long){}[0]
+final fun io.github.canimation.testkit/CanimationTestHost(io.github.canimation.test/CanimationTestClock, io.github.canimation.core/CanimationLevel?, io.github.canimation.core/CanimationTokens?, io.github.canimation.core/PresetRegistry?, io.github.canimation.core/CanimationRecipeRegistry?, kotlin/Function2<androidx.compose.runtime/Composer, kotlin/Int, kotlin/Unit>, androidx.compose.runtime/Composer?, kotlin/Int, kotlin/Int) // io.github.canimation.testkit/CanimationTestHost|CanimationTestHost(io.github.canimation.test.CanimationTestClock;io.github.canimation.core.CanimationLevel?;io.github.canimation.core.CanimationTokens?;io.github.canimation.core.PresetRegistry?;io.github.canimation.core.CanimationRecipeRegistry?;kotlin.Function2<androidx.compose.runtime.Composer,kotlin.Int,kotlin.Unit>;androidx.compose.runtime.Composer?;kotlin.Int;kotlin.Int){}[0]
+final fun io.github.canimation.testkit/CanimationTestHost(io.github.canimation.test/CanimationTestClock, io.github.canimation.test/CanimationTestComposition, kotlin/Function2<androidx.compose.runtime/Composer, kotlin/Int, kotlin/Unit>, androidx.compose.runtime/Composer?, kotlin/Int) // io.github.canimation.testkit/CanimationTestHost|CanimationTestHost(io.github.canimation.test.CanimationTestClock;io.github.canimation.test.CanimationTestComposition;kotlin.Function2<androidx.compose.runtime.Composer,kotlin.Int,kotlin.Unit>;androidx.compose.runtime.Composer?;kotlin.Int){}[0]
+final fun io.github.canimation.testkit/canimationTestClock(kotlin/Long = ...): io.github.canimation.test/CanimationTestClock // io.github.canimation.testkit/canimationTestClock|canimationTestClock(kotlin.Long){}[0]

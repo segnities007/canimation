@@ -1,0 +1,25 @@
+# Default ownership
+* @segnities007
+
+# Governance and repository policy
+/.github/CODEOWNERS @segnities007
+/.github/workflows/ @segnities007
+/build-logic/ @segnities007
+/guideline/ @segnities007
+/SECURITY.md @segnities007
+/SUPPORT.md @segnities007
+/MAINTAINERS.md @segnities007
+/CONTRIBUTING.md @segnities007
+/README.md @segnities007
+
+# Architecture-significant library surfaces
+/modules/canimation-runtime/ @segnities007
+/modules/canimation-semantics/ @segnities007
+/modules/canimation-recipes/ @segnities007
+/modules/canimation-a11y/ @segnities007
+
+# Release and published artifact surface
+/build.gradle.kts @segnities007
+/settings.gradle.kts @segnities007
+/gradle/ @segnities007
+/CHANGELOG.md @segnities007

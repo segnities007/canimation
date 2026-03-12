@@ -1,6 +1,7 @@
 package io.github.canimation.core
 
 import androidx.compose.animation.core.CubicBezierEasing
+import androidx.compose.animation.core.LinearEasing
 import androidx.compose.ui.unit.dp
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -10,6 +11,18 @@ import kotlin.test.assertNull
 
 class CanimationSpecTest {
     private val standardEasing = CubicBezierEasing(0.2f, 0.0f, 0.0f, 1.0f)
+    private val customTokens = CanimationTokens(
+        duration = DurationTokens.Default.copy(short = DurationTokens.Default.short / 2),
+        easing = EasingTokens(
+            standard = standardEasing,
+            emphasizedDecelerate = standardEasing,
+            emphasizedAccelerate = standardEasing,
+            decelerate = LinearEasing,
+            accelerate = CubicBezierEasing(0.4f, 0.0f, 1.0f, 1.0f),
+        ),
+        distance = DistanceTokens.Default,
+        spring = SpringTokens.Default,
+    )
 
     @Test
     fun validSpecDoesNotThrow() {
@@ -89,6 +102,19 @@ class CanimationSpecTest {
     }
 
     @Test
+    fun toReducedUsesProvidedTokens() {
+        val spec = CanimationSpec(
+            durationMs = 220,
+            easing = standardEasing,
+            alpha = CanimationRange(0f, 1f),
+        )
+        val reduced = spec.toReduced(customTokens)
+
+        assertEquals(customTokens.duration.shortMs, reduced.durationMs)
+        assertEquals(customTokens.easing.decelerate, reduced.easing)
+    }
+
+    @Test
     fun reversedSwapsFromTo() {
         val spec = CanimationSpec(
             durationMs = 220,
@@ -112,6 +138,16 @@ class CanimationSpecTest {
             easing = standardEasing,
         )
         assertEquals(350, spec.reversed().durationMs)
+    }
+
+    @Test
+    fun reversedUsesProvidedTokens() {
+        val spec = CanimationSpec(
+            durationMs = 350,
+            easing = standardEasing,
+        )
+
+        assertEquals(customTokens.easing.accelerate, spec.reversed(customTokens).easing)
     }
 
     @Test

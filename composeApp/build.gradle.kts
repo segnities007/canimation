@@ -11,39 +11,47 @@ plugins {
     alias(libs.plugins.kotlinSerialization)
 }
 
+val desktopDistributionVersion = "1.0.0"
+
 kotlin {
     androidLibrary {
         namespace = "com.segnities007.canimation.shared"
-        compileSdk = libs.versions.android.compileSdk.get().toInt()
-        minSdk = libs.versions.android.minSdk.get().toInt()
+        compileSdk =
+            libs.versions.android.compileSdk
+                .get()
+                .toInt()
+        minSdk =
+            libs.versions.android.minSdk
+                .get()
+                .toInt()
         compilerOptions {
             jvmTarget.set(JvmTarget.JVM_11)
         }
     }
-    
+
     listOf(
         iosArm64(),
-        iosSimulatorArm64()
+        iosSimulatorArm64(),
     ).forEach { iosTarget ->
         iosTarget.binaries.framework {
             baseName = "ComposeApp"
             isStatic = true
         }
     }
-    
+
     jvm()
-    
+
     js {
         browser()
         binaries.executable()
     }
-    
+
     @OptIn(ExperimentalWasmDsl::class)
     wasmJs {
         browser()
         binaries.executable()
     }
-    
+
     sourceSets {
         androidMain.dependencies {
             implementation(project(":canimation-platform-android"))
@@ -83,7 +91,9 @@ kotlin {
     }
 }
 
-
+compose.resources {
+    packageOfResClass = "canimation.composeapp.generated.resources"
+}
 
 compose.desktop {
     application {
@@ -92,7 +102,7 @@ compose.desktop {
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
             packageName = "com.segnities007.canimation"
-            packageVersion = "1.0.0"
+            packageVersion = desktopDistributionVersion
         }
     }
 }

@@ -1,0 +1,23 @@
+documentation:
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'docs/**'
+          - 'guideline/**'
+          - 'README.md'
+          - 'CONTRIBUTING.md'
+          - 'SECURITY.md'
+          - 'SUPPORT.md'
+          - 'MAINTAINERS.md'
+          - 'CODE_OF_CONDUCT.md'
+ci:
+  - changed-files:
+      - any-glob-to-any-file:
+          - '.github/**'
+          - 'scripts/**'
+architecture:
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'modules/**'
+          - 'build-logic/**'
+          - 'settings.gradle.kts'
+          - 'build.gradle.kts'

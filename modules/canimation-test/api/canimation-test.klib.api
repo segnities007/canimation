@@ -1,0 +1,54 @@
+// Klib ABI Dump
+// Targets: [iosArm64, iosSimulatorArm64, js, wasmJs]
+// Rendering settings:
+// - Signature version: 2
+// - Show manifest properties: true
+// - Show declarations: true
+
+// Library unique name: <io.github.canimation:canimation-test>
+final class io.github.canimation.test/CanimationTestClock { // io.github.canimation.test/CanimationTestClock|null[0]
+    constructor <init>(kotlin/Long = ...) // io.github.canimation.test/CanimationTestClock.<init>|<init>(kotlin.Long){}[0]
+
+    final val currentTimeMillis // io.github.canimation.test/CanimationTestClock.currentTimeMillis|{}currentTimeMillis[0]
+        final fun <get-currentTimeMillis>(): kotlin/Long // io.github.canimation.test/CanimationTestClock.currentTimeMillis.<get-currentTimeMillis>|<get-currentTimeMillis>(){}[0]
+
+    final fun advanceBy(kotlin/Long) // io.github.canimation.test/CanimationTestClock.advanceBy|advanceBy(kotlin.Long){}[0]
+    final fun advanceTo(kotlin/Long) // io.github.canimation.test/CanimationTestClock.advanceTo|advanceTo(kotlin.Long){}[0]
+    final fun reset() // io.github.canimation.test/CanimationTestClock.reset|reset(){}[0]
+}
+
+final class io.github.canimation.test/CanimationTestComposition { // io.github.canimation.test/CanimationTestComposition|null[0]
+    constructor <init>(io.github.canimation.core/PresetRegistry, io.github.canimation.core/CanimationRecipeRegistry, io.github.canimation.core/CanimationLevel = ..., io.github.canimation.core/CanimationTokens = ...) // io.github.canimation.test/CanimationTestComposition.<init>|<init>(io.github.canimation.core.PresetRegistry;io.github.canimation.core.CanimationRecipeRegistry;io.github.canimation.core.CanimationLevel;io.github.canimation.core.CanimationTokens){}[0]
+
+    final val level // io.github.canimation.test/CanimationTestComposition.level|{}level[0]
+        final fun <get-level>(): io.github.canimation.core/CanimationLevel // io.github.canimation.test/CanimationTestComposition.level.<get-level>|<get-level>(){}[0]
+    final val presetRegistry // io.github.canimation.test/CanimationTestComposition.presetRegistry|{}presetRegistry[0]
+        final fun <get-presetRegistry>(): io.github.canimation.core/PresetRegistry // io.github.canimation.test/CanimationTestComposition.presetRegistry.<get-presetRegistry>|<get-presetRegistry>(){}[0]
+    final val recipeRegistry // io.github.canimation.test/CanimationTestComposition.recipeRegistry|{}recipeRegistry[0]
+        final fun <get-recipeRegistry>(): io.github.canimation.core/CanimationRecipeRegistry // io.github.canimation.test/CanimationTestComposition.recipeRegistry.<get-recipeRegistry>|<get-recipeRegistry>(){}[0]
+    final val tokens // io.github.canimation.test/CanimationTestComposition.tokens|{}tokens[0]
+        final fun <get-tokens>(): io.github.canimation.core/CanimationTokens // io.github.canimation.test/CanimationTestComposition.tokens.<get-tokens>|<get-tokens>(){}[0]
+
+    final fun component1(): io.github.canimation.core/PresetRegistry // io.github.canimation.test/CanimationTestComposition.component1|component1(){}[0]
+    final fun component2(): io.github.canimation.core/CanimationRecipeRegistry // io.github.canimation.test/CanimationTestComposition.component2|component2(){}[0]
+    final fun component3(): io.github.canimation.core/CanimationLevel // io.github.canimation.test/CanimationTestComposition.component3|component3(){}[0]
+    final fun component4(): io.github.canimation.core/CanimationTokens // io.github.canimation.test/CanimationTestComposition.component4|component4(){}[0]
+    final fun copy(io.github.canimation.core/PresetRegistry = ..., io.github.canimation.core/CanimationRecipeRegistry = ..., io.github.canimation.core/CanimationLevel = ..., io.github.canimation.core/CanimationTokens = ...): io.github.canimation.test/CanimationTestComposition // io.github.canimation.test/CanimationTestComposition.copy|copy(io.github.canimation.core.PresetRegistry;io.github.canimation.core.CanimationRecipeRegistry;io.github.canimation.core.CanimationLevel;io.github.canimation.core.CanimationTokens){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // io.github.canimation.test/CanimationTestComposition.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // io.github.canimation.test/CanimationTestComposition.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // io.github.canimation.test/CanimationTestComposition.toString|toString(){}[0]
+}
+
+final val io.github.canimation.test/DefaultCanimationTestComposition // io.github.canimation.test/DefaultCanimationTestComposition|{}DefaultCanimationTestComposition[0]
+    final fun <get-DefaultCanimationTestComposition>(): io.github.canimation.test/CanimationTestComposition // io.github.canimation.test/DefaultCanimationTestComposition.<get-DefaultCanimationTestComposition>|<get-DefaultCanimationTestComposition>(){}[0]
+final val io.github.canimation.test/DefaultCanimationTestPresetRegistry // io.github.canimation.test/DefaultCanimationTestPresetRegistry|{}DefaultCanimationTestPresetRegistry[0]
+    final fun <get-DefaultCanimationTestPresetRegistry>(): io.github.canimation.core/PresetRegistry // io.github.canimation.test/DefaultCanimationTestPresetRegistry.<get-DefaultCanimationTestPresetRegistry>|<get-DefaultCanimationTestPresetRegistry>(){}[0]
+final val io.github.canimation.test/DefaultCanimationTestRecipeRegistry // io.github.canimation.test/DefaultCanimationTestRecipeRegistry|{}DefaultCanimationTestRecipeRegistry[0]
+    final fun <get-DefaultCanimationTestRecipeRegistry>(): io.github.canimation.core/CanimationRecipeRegistry // io.github.canimation.test/DefaultCanimationTestRecipeRegistry.<get-DefaultCanimationTestRecipeRegistry>|<get-DefaultCanimationTestRecipeRegistry>(){}[0]
+final val io.github.canimation.test/io_github_canimation_test_CanimationTestClock$stableprop // io.github.canimation.test/io_github_canimation_test_CanimationTestClock$stableprop|#static{}io_github_canimation_test_CanimationTestClock$stableprop[0]
+final val io.github.canimation.test/io_github_canimation_test_CanimationTestComposition$stableprop // io.github.canimation.test/io_github_canimation_test_CanimationTestComposition$stableprop|#static{}io_github_canimation_test_CanimationTestComposition$stableprop[0]
+
+final fun io.github.canimation.test/CanimationTestHost(io.github.canimation.test/CanimationTestClock, io.github.canimation.core/CanimationLevel?, io.github.canimation.core/CanimationTokens?, io.github.canimation.core/PresetRegistry?, io.github.canimation.core/CanimationRecipeRegistry?, kotlin/Function2<androidx.compose.runtime/Composer, kotlin/Int, kotlin/Unit>, androidx.compose.runtime/Composer?, kotlin/Int, kotlin/Int) // io.github.canimation.test/CanimationTestHost|CanimationTestHost(io.github.canimation.test.CanimationTestClock;io.github.canimation.core.CanimationLevel?;io.github.canimation.core.CanimationTokens?;io.github.canimation.core.PresetRegistry?;io.github.canimation.core.CanimationRecipeRegistry?;kotlin.Function2<androidx.compose.runtime.Composer,kotlin.Int,kotlin.Unit>;androidx.compose.runtime.Composer?;kotlin.Int;kotlin.Int){}[0]
+final fun io.github.canimation.test/CanimationTestHost(io.github.canimation.test/CanimationTestClock, io.github.canimation.test/CanimationTestComposition, kotlin/Function2<androidx.compose.runtime/Composer, kotlin/Int, kotlin/Unit>, androidx.compose.runtime/Composer?, kotlin/Int) // io.github.canimation.test/CanimationTestHost|CanimationTestHost(io.github.canimation.test.CanimationTestClock;io.github.canimation.test.CanimationTestComposition;kotlin.Function2<androidx.compose.runtime.Composer,kotlin.Int,kotlin.Unit>;androidx.compose.runtime.Composer?;kotlin.Int){}[0]
+final fun io.github.canimation.test/io_github_canimation_test_CanimationTestClock$stableprop_getter(): kotlin/Int // io.github.canimation.test/io_github_canimation_test_CanimationTestClock$stableprop_getter|io_github_canimation_test_CanimationTestClock$stableprop_getter(){}[0]
+final fun io.github.canimation.test/io_github_canimation_test_CanimationTestComposition$stableprop_getter(): kotlin/Int // io.github.canimation.test/io_github_canimation_test_CanimationTestComposition$stableprop_getter|io_github_canimation_test_CanimationTestComposition$stableprop_getter(){}[0]

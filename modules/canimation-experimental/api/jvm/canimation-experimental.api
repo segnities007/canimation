@@ -1,0 +1,7 @@
+public final class io/github/canimation/experimental/CanimationExperimentalExportsKt {
+	public static final fun experimentalRecipeRegistry (Ljava/lang/Iterable;)Lio/github/canimation/core/CanimationRecipeRegistry;
+	public static final fun experimentalRecipeRegistry ([Lio/github/canimation/core/CanimationRecipeDescriptor;)Lio/github/canimation/core/CanimationRecipeRegistry;
+}
+
+public abstract interface annotation class io/github/canimation/experimental/ExperimentalCanimationApi : java/lang/annotation/Annotation {
+}

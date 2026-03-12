@@ -1,0 +1,169 @@
+// Klib ABI Dump
+// Targets: [iosArm64, iosSimulatorArm64, js, wasmJs]
+// Rendering settings:
+// - Signature version: 2
+// - Show manifest properties: true
+// - Show declarations: true
+
+// Library unique name: <io.github.canimation:canimation-tokens>
+final class io.github.canimation.core/CanimationTokens { // io.github.canimation.core/CanimationTokens|null[0]
+    constructor <init>(io.github.canimation.core/DurationTokens, io.github.canimation.core/EasingTokens, io.github.canimation.core/DistanceTokens, io.github.canimation.core/SpringTokens) // io.github.canimation.core/CanimationTokens.<init>|<init>(io.github.canimation.core.DurationTokens;io.github.canimation.core.EasingTokens;io.github.canimation.core.DistanceTokens;io.github.canimation.core.SpringTokens){}[0]
+
+    final val distance // io.github.canimation.core/CanimationTokens.distance|{}distance[0]
+        final fun <get-distance>(): io.github.canimation.core/DistanceTokens // io.github.canimation.core/CanimationTokens.distance.<get-distance>|<get-distance>(){}[0]
+    final val duration // io.github.canimation.core/CanimationTokens.duration|{}duration[0]
+        final fun <get-duration>(): io.github.canimation.core/DurationTokens // io.github.canimation.core/CanimationTokens.duration.<get-duration>|<get-duration>(){}[0]
+    final val easing // io.github.canimation.core/CanimationTokens.easing|{}easing[0]
+        final fun <get-easing>(): io.github.canimation.core/EasingTokens // io.github.canimation.core/CanimationTokens.easing.<get-easing>|<get-easing>(){}[0]
+    final val spring // io.github.canimation.core/CanimationTokens.spring|{}spring[0]
+        final fun <get-spring>(): io.github.canimation.core/SpringTokens // io.github.canimation.core/CanimationTokens.spring.<get-spring>|<get-spring>(){}[0]
+
+    final fun component1(): io.github.canimation.core/DurationTokens // io.github.canimation.core/CanimationTokens.component1|component1(){}[0]
+    final fun component2(): io.github.canimation.core/EasingTokens // io.github.canimation.core/CanimationTokens.component2|component2(){}[0]
+    final fun component3(): io.github.canimation.core/DistanceTokens // io.github.canimation.core/CanimationTokens.component3|component3(){}[0]
+    final fun component4(): io.github.canimation.core/SpringTokens // io.github.canimation.core/CanimationTokens.component4|component4(){}[0]
+    final fun copy(io.github.canimation.core/DurationTokens = ..., io.github.canimation.core/EasingTokens = ..., io.github.canimation.core/DistanceTokens = ..., io.github.canimation.core/SpringTokens = ...): io.github.canimation.core/CanimationTokens // io.github.canimation.core/CanimationTokens.copy|copy(io.github.canimation.core.DurationTokens;io.github.canimation.core.EasingTokens;io.github.canimation.core.DistanceTokens;io.github.canimation.core.SpringTokens){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // io.github.canimation.core/CanimationTokens.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // io.github.canimation.core/CanimationTokens.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // io.github.canimation.core/CanimationTokens.toString|toString(){}[0]
+
+    final object Companion { // io.github.canimation.core/CanimationTokens.Companion|null[0]
+        final val Default // io.github.canimation.core/CanimationTokens.Companion.Default|{}Default[0]
+            final fun <get-Default>(): io.github.canimation.core/CanimationTokens // io.github.canimation.core/CanimationTokens.Companion.Default.<get-Default>|<get-Default>(){}[0]
+    }
+}
+
+final class io.github.canimation.core/DistanceTokens { // io.github.canimation.core/DistanceTokens|null[0]
+    constructor <init>(androidx.compose.ui.unit/Dp, androidx.compose.ui.unit/Dp, androidx.compose.ui.unit/Dp) // io.github.canimation.core/DistanceTokens.<init>|<init>(androidx.compose.ui.unit.Dp;androidx.compose.ui.unit.Dp;androidx.compose.ui.unit.Dp){}[0]
+
+    final val large // io.github.canimation.core/DistanceTokens.large|{}large[0]
+        final fun <get-large>(): androidx.compose.ui.unit/Dp // io.github.canimation.core/DistanceTokens.large.<get-large>|<get-large>(){}[0]
+    final val medium // io.github.canimation.core/DistanceTokens.medium|{}medium[0]
+        final fun <get-medium>(): androidx.compose.ui.unit/Dp // io.github.canimation.core/DistanceTokens.medium.<get-medium>|<get-medium>(){}[0]
+    final val small // io.github.canimation.core/DistanceTokens.small|{}small[0]
+        final fun <get-small>(): androidx.compose.ui.unit/Dp // io.github.canimation.core/DistanceTokens.small.<get-small>|<get-small>(){}[0]
+
+    final fun component1(): androidx.compose.ui.unit/Dp // io.github.canimation.core/DistanceTokens.component1|component1(){}[0]
+    final fun component2(): androidx.compose.ui.unit/Dp // io.github.canimation.core/DistanceTokens.component2|component2(){}[0]
+    final fun component3(): androidx.compose.ui.unit/Dp // io.github.canimation.core/DistanceTokens.component3|component3(){}[0]
+    final fun copy(androidx.compose.ui.unit/Dp = ..., androidx.compose.ui.unit/Dp = ..., androidx.compose.ui.unit/Dp = ...): io.github.canimation.core/DistanceTokens // io.github.canimation.core/DistanceTokens.copy|copy(androidx.compose.ui.unit.Dp;androidx.compose.ui.unit.Dp;androidx.compose.ui.unit.Dp){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // io.github.canimation.core/DistanceTokens.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // io.github.canimation.core/DistanceTokens.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // io.github.canimation.core/DistanceTokens.toString|toString(){}[0]
+
+    final object Companion { // io.github.canimation.core/DistanceTokens.Companion|null[0]
+        final val Default // io.github.canimation.core/DistanceTokens.Companion.Default|{}Default[0]
+            final fun <get-Default>(): io.github.canimation.core/DistanceTokens // io.github.canimation.core/DistanceTokens.Companion.Default.<get-Default>|<get-Default>(){}[0]
+    }
+}
+
+final class io.github.canimation.core/DurationTokens { // io.github.canimation.core/DurationTokens|null[0]
+    constructor <init>(kotlin.time/Duration, kotlin.time/Duration, kotlin.time/Duration) // io.github.canimation.core/DurationTokens.<init>|<init>(kotlin.time.Duration;kotlin.time.Duration;kotlin.time.Duration){}[0]
+
+    final val long // io.github.canimation.core/DurationTokens.long|{}long[0]
+        final fun <get-long>(): kotlin.time/Duration // io.github.canimation.core/DurationTokens.long.<get-long>|<get-long>(){}[0]
+    final val longMs // io.github.canimation.core/DurationTokens.longMs|{}longMs[0]
+        final fun <get-longMs>(): kotlin/Int // io.github.canimation.core/DurationTokens.longMs.<get-longMs>|<get-longMs>(){}[0]
+    final val medium // io.github.canimation.core/DurationTokens.medium|{}medium[0]
+        final fun <get-medium>(): kotlin.time/Duration // io.github.canimation.core/DurationTokens.medium.<get-medium>|<get-medium>(){}[0]
+    final val mediumMs // io.github.canimation.core/DurationTokens.mediumMs|{}mediumMs[0]
+        final fun <get-mediumMs>(): kotlin/Int // io.github.canimation.core/DurationTokens.mediumMs.<get-mediumMs>|<get-mediumMs>(){}[0]
+    final val short // io.github.canimation.core/DurationTokens.short|{}short[0]
+        final fun <get-short>(): kotlin.time/Duration // io.github.canimation.core/DurationTokens.short.<get-short>|<get-short>(){}[0]
+    final val shortMs // io.github.canimation.core/DurationTokens.shortMs|{}shortMs[0]
+        final fun <get-shortMs>(): kotlin/Int // io.github.canimation.core/DurationTokens.shortMs.<get-shortMs>|<get-shortMs>(){}[0]
+
+    final fun component1(): kotlin.time/Duration // io.github.canimation.core/DurationTokens.component1|component1(){}[0]
+    final fun component2(): kotlin.time/Duration // io.github.canimation.core/DurationTokens.component2|component2(){}[0]
+    final fun component3(): kotlin.time/Duration // io.github.canimation.core/DurationTokens.component3|component3(){}[0]
+    final fun copy(kotlin.time/Duration = ..., kotlin.time/Duration = ..., kotlin.time/Duration = ...): io.github.canimation.core/DurationTokens // io.github.canimation.core/DurationTokens.copy|copy(kotlin.time.Duration;kotlin.time.Duration;kotlin.time.Duration){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // io.github.canimation.core/DurationTokens.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // io.github.canimation.core/DurationTokens.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // io.github.canimation.core/DurationTokens.toString|toString(){}[0]
+
+    final object Companion { // io.github.canimation.core/DurationTokens.Companion|null[0]
+        final val Default // io.github.canimation.core/DurationTokens.Companion.Default|{}Default[0]
+            final fun <get-Default>(): io.github.canimation.core/DurationTokens // io.github.canimation.core/DurationTokens.Companion.Default.<get-Default>|<get-Default>(){}[0]
+    }
+}
+
+final class io.github.canimation.core/EasingTokens { // io.github.canimation.core/EasingTokens|null[0]
+    constructor <init>(androidx.compose.animation.core/Easing, androidx.compose.animation.core/Easing, androidx.compose.animation.core/Easing, androidx.compose.animation.core/Easing, androidx.compose.animation.core/Easing) // io.github.canimation.core/EasingTokens.<init>|<init>(androidx.compose.animation.core.Easing;androidx.compose.animation.core.Easing;androidx.compose.animation.core.Easing;androidx.compose.animation.core.Easing;androidx.compose.animation.core.Easing){}[0]
+
+    final val accelerate // io.github.canimation.core/EasingTokens.accelerate|{}accelerate[0]
+        final fun <get-accelerate>(): androidx.compose.animation.core/Easing // io.github.canimation.core/EasingTokens.accelerate.<get-accelerate>|<get-accelerate>(){}[0]
+    final val decelerate // io.github.canimation.core/EasingTokens.decelerate|{}decelerate[0]
+        final fun <get-decelerate>(): androidx.compose.animation.core/Easing // io.github.canimation.core/EasingTokens.decelerate.<get-decelerate>|<get-decelerate>(){}[0]
+    final val emphasizedAccelerate // io.github.canimation.core/EasingTokens.emphasizedAccelerate|{}emphasizedAccelerate[0]
+        final fun <get-emphasizedAccelerate>(): androidx.compose.animation.core/Easing // io.github.canimation.core/EasingTokens.emphasizedAccelerate.<get-emphasizedAccelerate>|<get-emphasizedAccelerate>(){}[0]
+    final val emphasizedDecelerate // io.github.canimation.core/EasingTokens.emphasizedDecelerate|{}emphasizedDecelerate[0]
+        final fun <get-emphasizedDecelerate>(): androidx.compose.animation.core/Easing // io.github.canimation.core/EasingTokens.emphasizedDecelerate.<get-emphasizedDecelerate>|<get-emphasizedDecelerate>(){}[0]
+    final val standard // io.github.canimation.core/EasingTokens.standard|{}standard[0]
+        final fun <get-standard>(): androidx.compose.animation.core/Easing // io.github.canimation.core/EasingTokens.standard.<get-standard>|<get-standard>(){}[0]
+
+    final fun component1(): androidx.compose.animation.core/Easing // io.github.canimation.core/EasingTokens.component1|component1(){}[0]
+    final fun component2(): androidx.compose.animation.core/Easing // io.github.canimation.core/EasingTokens.component2|component2(){}[0]
+    final fun component3(): androidx.compose.animation.core/Easing // io.github.canimation.core/EasingTokens.component3|component3(){}[0]
+    final fun component4(): androidx.compose.animation.core/Easing // io.github.canimation.core/EasingTokens.component4|component4(){}[0]
+    final fun component5(): androidx.compose.animation.core/Easing // io.github.canimation.core/EasingTokens.component5|component5(){}[0]
+    final fun copy(androidx.compose.animation.core/Easing = ..., androidx.compose.animation.core/Easing = ..., androidx.compose.animation.core/Easing = ..., androidx.compose.animation.core/Easing = ..., androidx.compose.animation.core/Easing = ...): io.github.canimation.core/EasingTokens // io.github.canimation.core/EasingTokens.copy|copy(androidx.compose.animation.core.Easing;androidx.compose.animation.core.Easing;androidx.compose.animation.core.Easing;androidx.compose.animation.core.Easing;androidx.compose.animation.core.Easing){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // io.github.canimation.core/EasingTokens.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // io.github.canimation.core/EasingTokens.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // io.github.canimation.core/EasingTokens.toString|toString(){}[0]
+
+    final object Companion { // io.github.canimation.core/EasingTokens.Companion|null[0]
+        final val Default // io.github.canimation.core/EasingTokens.Companion.Default|{}Default[0]
+            final fun <get-Default>(): io.github.canimation.core/EasingTokens // io.github.canimation.core/EasingTokens.Companion.Default.<get-Default>|<get-Default>(){}[0]
+    }
+}
+
+final class io.github.canimation.core/SpringSpec { // io.github.canimation.core/SpringSpec|null[0]
+    constructor <init>(kotlin/Float, kotlin/Float) // io.github.canimation.core/SpringSpec.<init>|<init>(kotlin.Float;kotlin.Float){}[0]
+
+    final val dampingRatio // io.github.canimation.core/SpringSpec.dampingRatio|{}dampingRatio[0]
+        final fun <get-dampingRatio>(): kotlin/Float // io.github.canimation.core/SpringSpec.dampingRatio.<get-dampingRatio>|<get-dampingRatio>(){}[0]
+    final val stiffness // io.github.canimation.core/SpringSpec.stiffness|{}stiffness[0]
+        final fun <get-stiffness>(): kotlin/Float // io.github.canimation.core/SpringSpec.stiffness.<get-stiffness>|<get-stiffness>(){}[0]
+
+    final fun component1(): kotlin/Float // io.github.canimation.core/SpringSpec.component1|component1(){}[0]
+    final fun component2(): kotlin/Float // io.github.canimation.core/SpringSpec.component2|component2(){}[0]
+    final fun copy(kotlin/Float = ..., kotlin/Float = ...): io.github.canimation.core/SpringSpec // io.github.canimation.core/SpringSpec.copy|copy(kotlin.Float;kotlin.Float){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // io.github.canimation.core/SpringSpec.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // io.github.canimation.core/SpringSpec.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // io.github.canimation.core/SpringSpec.toString|toString(){}[0]
+}
+
+final class io.github.canimation.core/SpringTokens { // io.github.canimation.core/SpringTokens|null[0]
+    constructor <init>(io.github.canimation.core/SpringSpec, io.github.canimation.core/SpringSpec) // io.github.canimation.core/SpringTokens.<init>|<init>(io.github.canimation.core.SpringSpec;io.github.canimation.core.SpringSpec){}[0]
+
+    final val gentle // io.github.canimation.core/SpringTokens.gentle|{}gentle[0]
+        final fun <get-gentle>(): io.github.canimation.core/SpringSpec // io.github.canimation.core/SpringTokens.gentle.<get-gentle>|<get-gentle>(){}[0]
+    final val snappy // io.github.canimation.core/SpringTokens.snappy|{}snappy[0]
+        final fun <get-snappy>(): io.github.canimation.core/SpringSpec // io.github.canimation.core/SpringTokens.snappy.<get-snappy>|<get-snappy>(){}[0]
+
+    final fun component1(): io.github.canimation.core/SpringSpec // io.github.canimation.core/SpringTokens.component1|component1(){}[0]
+    final fun component2(): io.github.canimation.core/SpringSpec // io.github.canimation.core/SpringTokens.component2|component2(){}[0]
+    final fun copy(io.github.canimation.core/SpringSpec = ..., io.github.canimation.core/SpringSpec = ...): io.github.canimation.core/SpringTokens // io.github.canimation.core/SpringTokens.copy|copy(io.github.canimation.core.SpringSpec;io.github.canimation.core.SpringSpec){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // io.github.canimation.core/SpringTokens.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // io.github.canimation.core/SpringTokens.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // io.github.canimation.core/SpringTokens.toString|toString(){}[0]
+
+    final object Companion { // io.github.canimation.core/SpringTokens.Companion|null[0]
+        final val Default // io.github.canimation.core/SpringTokens.Companion.Default|{}Default[0]
+            final fun <get-Default>(): io.github.canimation.core/SpringTokens // io.github.canimation.core/SpringTokens.Companion.Default.<get-Default>|<get-Default>(){}[0]
+    }
+}
+
+final val io.github.canimation.core/io_github_canimation_core_CanimationTokens$stableprop // io.github.canimation.core/io_github_canimation_core_CanimationTokens$stableprop|#static{}io_github_canimation_core_CanimationTokens$stableprop[0]
+final val io.github.canimation.core/io_github_canimation_core_DistanceTokens$stableprop // io.github.canimation.core/io_github_canimation_core_DistanceTokens$stableprop|#static{}io_github_canimation_core_DistanceTokens$stableprop[0]
+final val io.github.canimation.core/io_github_canimation_core_DurationTokens$stableprop // io.github.canimation.core/io_github_canimation_core_DurationTokens$stableprop|#static{}io_github_canimation_core_DurationTokens$stableprop[0]
+final val io.github.canimation.core/io_github_canimation_core_EasingTokens$stableprop // io.github.canimation.core/io_github_canimation_core_EasingTokens$stableprop|#static{}io_github_canimation_core_EasingTokens$stableprop[0]
+final val io.github.canimation.core/io_github_canimation_core_SpringSpec$stableprop // io.github.canimation.core/io_github_canimation_core_SpringSpec$stableprop|#static{}io_github_canimation_core_SpringSpec$stableprop[0]
+final val io.github.canimation.core/io_github_canimation_core_SpringTokens$stableprop // io.github.canimation.core/io_github_canimation_core_SpringTokens$stableprop|#static{}io_github_canimation_core_SpringTokens$stableprop[0]
+
+final fun io.github.canimation.core/io_github_canimation_core_CanimationTokens$stableprop_getter(): kotlin/Int // io.github.canimation.core/io_github_canimation_core_CanimationTokens$stableprop_getter|io_github_canimation_core_CanimationTokens$stableprop_getter(){}[0]
+final fun io.github.canimation.core/io_github_canimation_core_DistanceTokens$stableprop_getter(): kotlin/Int // io.github.canimation.core/io_github_canimation_core_DistanceTokens$stableprop_getter|io_github_canimation_core_DistanceTokens$stableprop_getter(){}[0]
+final fun io.github.canimation.core/io_github_canimation_core_DurationTokens$stableprop_getter(): kotlin/Int // io.github.canimation.core/io_github_canimation_core_DurationTokens$stableprop_getter|io_github_canimation_core_DurationTokens$stableprop_getter(){}[0]
+final fun io.github.canimation.core/io_github_canimation_core_EasingTokens$stableprop_getter(): kotlin/Int // io.github.canimation.core/io_github_canimation_core_EasingTokens$stableprop_getter|io_github_canimation_core_EasingTokens$stableprop_getter(){}[0]
+final fun io.github.canimation.core/io_github_canimation_core_SpringSpec$stableprop_getter(): kotlin/Int // io.github.canimation.core/io_github_canimation_core_SpringSpec$stableprop_getter|io_github_canimation_core_SpringSpec$stableprop_getter(){}[0]
+final fun io.github.canimation.core/io_github_canimation_core_SpringTokens$stableprop_getter(): kotlin/Int // io.github.canimation.core/io_github_canimation_core_SpringTokens$stableprop_getter|io_github_canimation_core_SpringTokens$stableprop_getter(){}[0]

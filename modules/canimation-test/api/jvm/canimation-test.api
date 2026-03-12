@@ -1,0 +1,40 @@
+public final class io/github/canimation/test/CanimationTestClock {
+	public static final field $stable I
+	public fun <init> ()V
+	public fun <init> (J)V
+	public synthetic fun <init> (JILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun advanceBy (J)V
+	public final fun advanceTo (J)V
+	public final fun getCurrentTimeMillis ()J
+	public final fun reset ()V
+}
+
+public final class io/github/canimation/test/CanimationTestComposition {
+	public static final field $stable I
+	public fun <init> (Lio/github/canimation/core/PresetRegistry;Lio/github/canimation/core/CanimationRecipeRegistry;Lio/github/canimation/core/CanimationLevel;Lio/github/canimation/core/CanimationTokens;)V
+	public synthetic fun <init> (Lio/github/canimation/core/PresetRegistry;Lio/github/canimation/core/CanimationRecipeRegistry;Lio/github/canimation/core/CanimationLevel;Lio/github/canimation/core/CanimationTokens;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Lio/github/canimation/core/PresetRegistry;
+	public final fun component2 ()Lio/github/canimation/core/CanimationRecipeRegistry;
+	public final fun component3 ()Lio/github/canimation/core/CanimationLevel;
+	public final fun component4 ()Lio/github/canimation/core/CanimationTokens;
+	public final fun copy (Lio/github/canimation/core/PresetRegistry;Lio/github/canimation/core/CanimationRecipeRegistry;Lio/github/canimation/core/CanimationLevel;Lio/github/canimation/core/CanimationTokens;)Lio/github/canimation/test/CanimationTestComposition;
+	public static synthetic fun copy$default (Lio/github/canimation/test/CanimationTestComposition;Lio/github/canimation/core/PresetRegistry;Lio/github/canimation/core/CanimationRecipeRegistry;Lio/github/canimation/core/CanimationLevel;Lio/github/canimation/core/CanimationTokens;ILjava/lang/Object;)Lio/github/canimation/test/CanimationTestComposition;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getLevel ()Lio/github/canimation/core/CanimationLevel;
+	public final fun getPresetRegistry ()Lio/github/canimation/core/PresetRegistry;
+	public final fun getRecipeRegistry ()Lio/github/canimation/core/CanimationRecipeRegistry;
+	public final fun getTokens ()Lio/github/canimation/core/CanimationTokens;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class io/github/canimation/test/CanimationTestCompositionKt {
+	public static final fun getDefaultCanimationTestComposition ()Lio/github/canimation/test/CanimationTestComposition;
+	public static final fun getDefaultCanimationTestPresetRegistry ()Lio/github/canimation/core/PresetRegistry;
+	public static final fun getDefaultCanimationTestRecipeRegistry ()Lio/github/canimation/core/CanimationRecipeRegistry;
+}
+
+public final class io/github/canimation/test/CanimationTestHostKt {
+	public static final fun CanimationTestHost (Lio/github/canimation/test/CanimationTestClock;Lio/github/canimation/core/CanimationLevel;Lio/github/canimation/core/CanimationTokens;Lio/github/canimation/core/PresetRegistry;Lio/github/canimation/core/CanimationRecipeRegistry;Lkotlin/jvm/functions/Function2;Landroidx/compose/runtime/Composer;II)V
+	public static final fun CanimationTestHost (Lio/github/canimation/test/CanimationTestClock;Lio/github/canimation/test/CanimationTestComposition;Lkotlin/jvm/functions/Function2;Landroidx/compose/runtime/Composer;I)V
+}

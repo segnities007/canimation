@@ -5,8 +5,9 @@ import androidx.compose.runtime.Stable
 /**
  * Registry mapping [CanimationPreset] to their [CanimationPresetSpec].
  *
- * The [Default] instance contains built-in presets with values from the spec.
- * Users can create custom registries to override or extend preset definitions.
+ * [Default] starts from a safe fallback registry and may be replaced through legacy installation
+ * hooks. Higher-level modules such as `canimation-presets` or `canimation-runtime` should prefer
+ * explicit preset registry injection over hidden global mutation.
  */
 @Stable
 class PresetRegistry private constructor(
@@ -26,10 +27,11 @@ class PresetRegistry private constructor(
     ): CanimationSpec {
         if (level == CanimationLevel.Off) {
             val base = resolvePresetSpec(preset)
-            val spec = when (direction) {
-                AnimationDirection.Enter -> base.fullEnter
-                AnimationDirection.Exit -> base.fullExit
-            }
+            val spec =
+                when (direction) {
+                    AnimationDirection.Enter -> base.fullEnter
+                    AnimationDirection.Exit -> base.fullExit
+                }
             return spec.copy(durationMs = 0)
         }
 
@@ -43,74 +45,106 @@ class PresetRegistry private constructor(
         }
     }
 
-    private fun resolvePresetSpec(preset: CanimationPreset): CanimationPresetSpec {
-        return specs[preset]
-            ?: fallback?.specs?.get(preset)
+    private fun resolvePresetSpec(preset: CanimationPreset): CanimationPresetSpec =
+        specs[preset]
             ?: specs[CanimationPreset.Fade]
+            ?: fallback?.specs?.get(preset)
+            ?: fallback?.resolvePresetSpec(CanimationPreset.Fade)
             ?: FALLBACK_PRESET_SPEC
-    }
 
     /**
      * Creates a new [PresetRegistry] with additional or overridden preset specs.
      */
-    fun withOverrides(overrides: Map<CanimationPreset, CanimationPresetSpec>): PresetRegistry {
-        return PresetRegistry(specs = specs + overrides, fallback = fallback)
-    }
+    fun withOverrides(overrides: Map<CanimationPreset, CanimationPresetSpec>): PresetRegistry =
+        PresetRegistry(specs = specs + overrides, fallback = fallback)
 
     /**
      * Creates a new [PresetRegistry] registering a single preset spec.
      */
-    fun withPreset(preset: CanimationPreset, spec: CanimationPresetSpec): PresetRegistry {
-        return PresetRegistry(specs = specs + (preset to spec), fallback = fallback)
-    }
+    fun withPreset(
+        preset: CanimationPreset,
+        spec: CanimationPresetSpec,
+    ): PresetRegistry = PresetRegistry(specs = specs + (preset to spec), fallback = fallback)
 
     companion object {
-        private val FALLBACK_PRESET_SPEC = CanimationPresetSpec(
-            fullEnter = CanimationSpec(
-                durationMs = 0,
-                easing = EasingTokens.Default.standard,
-            ),
-            fullExit = CanimationSpec(
-                durationMs = 0,
-                easing = EasingTokens.Default.standard,
-            ),
-            reducedEnter = CanimationSpec(
-                durationMs = 0,
-                easing = EasingTokens.Default.standard,
-            ),
-            reducedExit = CanimationSpec(
-                durationMs = 0,
-                easing = EasingTokens.Default.standard,
-            ),
-        )
+        private val FALLBACK_PRESET_SPEC =
+            CanimationPresetSpec(
+                fullEnter =
+                    CanimationSpec(
+                        durationMs = 0,
+                        easing = EasingTokens.Default.standard,
+                    ),
+                fullExit =
+                    CanimationSpec(
+                        durationMs = 0,
+                        easing = EasingTokens.Default.standard,
+                    ),
+                reducedEnter =
+                    CanimationSpec(
+                        durationMs = 0,
+                        easing = EasingTokens.Default.standard,
+                    ),
+                reducedExit =
+                    CanimationSpec(
+                        durationMs = 0,
+                        easing = EasingTokens.Default.standard,
+                    ),
+            )
 
-        private var defaultRegistry: PresetRegistry = PresetRegistry(
-            specs = mapOf(CanimationPreset.Fade to FALLBACK_PRESET_SPEC),
-        )
+        private val fallbackRegistry: PresetRegistry =
+            PresetRegistry(
+                specs = mapOf(CanimationPreset.Fade to FALLBACK_PRESET_SPEC),
+            )
+
+        private var builtInRegistry: PresetRegistry = fallbackRegistry
 
         /**
-         * Default registry containing built-in presets.
+         * Default registry used by low-level core entry points.
+         *
+         * This starts from a safe fallback registry and can be overridden through
+         * [installBuiltIns] for legacy compatibility.
          */
         val Default: PresetRegistry
-            get() = defaultRegistry
+            get() = builtInRegistry
 
         /**
-         * Installs built-in preset definitions from an external SSoT module.
+         * Creates a registry containing built-in preset definitions from an external SSoT module.
          *
          * The provided map must include [CanimationPreset.Fade] to preserve fallback behavior.
          */
-        fun installDefaults(specs: Map<CanimationPreset, CanimationPresetSpec>) {
+        fun builtIns(specs: Map<CanimationPreset, CanimationPresetSpec>): PresetRegistry {
             require(specs.containsKey(CanimationPreset.Fade)) {
                 "Preset defaults must contain CanimationPreset.Fade"
             }
-            defaultRegistry = PresetRegistry(specs = specs.toMap())
+            return PresetRegistry(specs = specs.toMap())
+        }
+
+        /**
+         * Legacy compatibility hook for code that still installs built-in presets globally.
+         *
+         * Prefer passing a registry explicitly from higher-level modules instead of relying on this
+         * hidden global mutation path.
+         */
+        fun installBuiltIns(registry: PresetRegistry) {
+            builtInRegistry = registry
         }
 
         /**
          * Creates a new [PresetRegistry] from the given specs, falling back to [Default].
          */
-        fun create(specs: Map<CanimationPreset, CanimationPresetSpec>): PresetRegistry {
-            return PresetRegistry(specs = specs, fallback = Default)
+        fun create(specs: Map<CanimationPreset, CanimationPresetSpec>): PresetRegistry = PresetRegistry(specs = specs, fallback = Default)
+
+        internal fun withBuiltInsForTest(
+            specs: Map<CanimationPreset, CanimationPresetSpec>,
+            block: () -> Unit,
+        ) {
+            val previous = builtInRegistry
+            builtInRegistry = builtIns(specs)
+            try {
+                block()
+            } finally {
+                builtInRegistry = previous
+            }
         }
     }
 }

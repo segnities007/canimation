@@ -9,6 +9,14 @@ import androidx.compose.ui.composed
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.platform.debugInspectorInfo
 
+internal data class ResolvedAnimationTargets(
+    val alpha: Float,
+    val offsetX: Float,
+    val offsetY: Float,
+    val scale: Float,
+    val rotation: Float,
+)
+
 /**
  * Applies an enter animation to this composable based on [visible] state.
  *
@@ -34,6 +42,31 @@ fun Modifier.canimationEnter(
         level = context.level,
         direction = AnimationDirection.Enter,
         registry = context.presetRegistry,
+    )
+    applyAnimationSpec(visible = visible, spec = spec)
+}
+
+/**
+ * Applies an enter animation using custom specs and context-derived reduced-motion defaults.
+ *
+ * @param visible Whether the composable should be visible.
+ * @param fullSpec The full-motion animation spec.
+ */
+fun Modifier.canimationEnter(
+    visible: Boolean,
+    fullSpec: CanimationSpec,
+): Modifier = composed(
+    inspectorInfo = debugInspectorInfo {
+        name = "canimationEnter"
+        properties["visible"] = visible
+    },
+) {
+    val context = LocalCanimationContext.current
+    val spec = CanimationSpecResolver.resolveCustom(
+        level = context.level,
+        direction = AnimationDirection.Enter,
+        fullSpec = fullSpec,
+        reducedSpec = fullSpec.toReduced(context.tokens),
     )
     applyAnimationSpec(visible = visible, spec = spec)
 }
@@ -78,29 +111,33 @@ internal fun Modifier.applyAnimationSpec(
         durationMillis = spec.durationMs,
         easing = spec.easing,
     )
+    val targets = resolveAnimationTargets(
+        visible = visible,
+        spec = spec,
+    )
 
     val animatedAlpha by animateFloatAsState(
-        targetValue = if (visible) spec.alpha?.to ?: 1f else spec.alpha?.from ?: 0f,
+        targetValue = targets.alpha,
         animationSpec = tweenSpec,
         label = "canimation_alpha",
     )
     val animatedOffsetX by animateFloatAsState(
-        targetValue = if (visible) spec.offsetX?.to?.value ?: 0f else spec.offsetX?.from?.value ?: 0f,
+        targetValue = targets.offsetX,
         animationSpec = tweenSpec,
         label = "canimation_offsetX",
     )
     val animatedOffsetY by animateFloatAsState(
-        targetValue = if (visible) spec.offsetY?.to?.value ?: 0f else spec.offsetY?.from?.value ?: 0f,
+        targetValue = targets.offsetY,
         animationSpec = tweenSpec,
         label = "canimation_offsetY",
     )
     val animatedScale by animateFloatAsState(
-        targetValue = if (visible) spec.scale?.to ?: 1f else spec.scale?.from ?: 1f,
+        targetValue = targets.scale,
         animationSpec = tweenSpec,
         label = "canimation_scale",
     )
     val animatedRotation by animateFloatAsState(
-        targetValue = if (visible) spec.rotation?.to ?: 0f else spec.rotation?.from ?: 0f,
+        targetValue = targets.rotation,
         animationSpec = tweenSpec,
         label = "canimation_rotation",
     )
@@ -114,3 +151,14 @@ internal fun Modifier.applyAnimationSpec(
         rotationZ = animatedRotation
     }
 }
+
+internal fun resolveAnimationTargets(
+    visible: Boolean,
+    spec: CanimationSpec,
+): ResolvedAnimationTargets = ResolvedAnimationTargets(
+    alpha = if (visible) spec.alpha?.to ?: 1f else spec.alpha?.from ?: 0f,
+    offsetX = if (visible) spec.offsetX?.to?.value ?: 0f else spec.offsetX?.from?.value ?: 0f,
+    offsetY = if (visible) spec.offsetY?.to?.value ?: 0f else spec.offsetY?.from?.value ?: 0f,
+    scale = if (visible) spec.scale?.to ?: 1f else spec.scale?.from ?: 1f,
+    rotation = if (visible) spec.rotation?.to ?: 0f else spec.rotation?.from ?: 0f,
+)

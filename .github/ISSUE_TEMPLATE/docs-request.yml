@@ -1,0 +1,44 @@
+name: Documentation request
+description: Report documentation drift, missing guidance, or navigation problems.
+title: "docs: "
+labels:
+  - type:docs
+body:
+  - type: checkboxes
+    id: search
+    attributes:
+      label: Existing issue check
+      options:
+        - label: I searched existing issues and the docs index first
+          required: true
+  - type: textarea
+    id: gap
+    attributes:
+      label: Documentation gap
+      description: What is missing, misleading, stale, or hard to navigate?
+    validations:
+      required: true
+  - type: textarea
+    id: path
+    attributes:
+      label: Affected path
+      description: Which document or section is involved?
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected guidance
+      description: What would make the path clearer or more accurate?
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence
+      description: Link related docs, code paths, release notes, or screenshots if relevant.
+  - type: checkboxes
+    id: conduct
+    attributes:
+      label: Code of Conduct
+      options:
+        - label: I agree to follow this project's Code of Conduct
+          required: true

@@ -1,0 +1,552 @@
+public final class io/github/canimation/core/AnimationDirection : java/lang/Enum {
+	public static final field Enter Lio/github/canimation/core/AnimationDirection;
+	public static final field Exit Lio/github/canimation/core/AnimationDirection;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lio/github/canimation/core/AnimationDirection;
+	public static fun values ()[Lio/github/canimation/core/AnimationDirection;
+}
+
+public final class io/github/canimation/core/Canimation {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/core/Canimation;
+	public final fun getAttention ()Lio/github/canimation/core/CanimationAttention;
+	public final fun getBlur ()Lio/github/canimation/core/CanimationBlur;
+	public final fun getBounce ()Lio/github/canimation/core/CanimationBounce;
+	public final fun getCinematic ()Lio/github/canimation/core/CanimationCinematic;
+	public final fun getDiagonal ()Lio/github/canimation/core/CanimationDiagonal;
+	public final fun getDrop ()Lio/github/canimation/core/CanimationDrop;
+	public final fun getElastic ()Lio/github/canimation/core/CanimationElastic;
+	public final fun getEntrance ()Lio/github/canimation/core/CanimationEntrance;
+	public final fun getFade ()Lio/github/canimation/core/CanimationFade;
+	public final fun getFlip ()Lio/github/canimation/core/CanimationFlip;
+	public final fun getFloat ()Lio/github/canimation/core/CanimationFloat;
+	public final fun getGlitch ()Lio/github/canimation/core/CanimationGlitch;
+	public final fun getMaterial ()Lio/github/canimation/core/CanimationMaterial;
+	public final fun getMicro ()Lio/github/canimation/core/CanimationMicro;
+	public final fun getMorph ()Lio/github/canimation/core/CanimationMorph;
+	public final fun getPage ()Lio/github/canimation/core/CanimationPage;
+	public final fun getPlayful ()Lio/github/canimation/core/CanimationPlayful;
+	public final fun getReveal ()Lio/github/canimation/core/CanimationReveal;
+	public final fun getRise ()Lio/github/canimation/core/CanimationRise;
+	public final fun getRotate ()Lio/github/canimation/core/CanimationRotate;
+	public final fun getScale ()Lio/github/canimation/core/CanimationScale;
+	public final fun getShrink ()Lio/github/canimation/core/CanimationShrink;
+	public final fun getSlide ()Lio/github/canimation/core/CanimationSlide;
+	public final fun getSpring ()Lio/github/canimation/core/CanimationSpring;
+	public final fun getStagger ()Lio/github/canimation/core/CanimationStagger;
+	public final fun getStretch ()Lio/github/canimation/core/CanimationStretch;
+	public final fun getSwipe ()Lio/github/canimation/core/CanimationSwipe;
+	public final fun getTilt ()Lio/github/canimation/core/CanimationTilt;
+	public final fun getWave ()Lio/github/canimation/core/CanimationWave;
+	public final fun getZoom ()Lio/github/canimation/core/CanimationZoom;
+}
+
+public final class io/github/canimation/core/CanimationAttention {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/core/CanimationAttention;
+	public final fun getFlash ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getGlow ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getHeadShake ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getHeartBeat ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getJello ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getPulse ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getRing ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getRubberBand ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getShakeX ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getShakeY ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getSwing ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getTada ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getWobble ()Lio/github/canimation/core/CanimationEffect;
+}
+
+public final class io/github/canimation/core/CanimationBlur {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/core/CanimationBlur;
+	public final fun getIn ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getOut ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getSoft ()Lio/github/canimation/core/CanimationEffect;
+}
+
+public final class io/github/canimation/core/CanimationBounce {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/core/CanimationBounce;
+	public final fun getDown ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getIn ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getLeft ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getRight ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getUp ()Lio/github/canimation/core/CanimationEffect;
+}
+
+public final class io/github/canimation/core/CanimationCinematic {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/core/CanimationCinematic;
+	public final fun getCurtain ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getDolly ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getDramatic ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getFadeToBlack ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getReveal ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getZoomPan ()Lio/github/canimation/core/CanimationEffect;
+}
+
+public final class io/github/canimation/core/CanimationDiagonal {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/core/CanimationDiagonal;
+	public final fun getBottomLeft ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getBottomRight ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getSubtle ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getTopLeft ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getTopRight ()Lio/github/canimation/core/CanimationEffect;
+}
+
+public final class io/github/canimation/core/CanimationDpRange {
+	public static final field $stable I
+	public synthetic fun <init> (FFLkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1-D9Ej5fM ()F
+	public final fun component2-D9Ej5fM ()F
+	public final fun copy-YgX7TsA (FF)Lio/github/canimation/core/CanimationDpRange;
+	public static synthetic fun copy-YgX7TsA$default (Lio/github/canimation/core/CanimationDpRange;FFILjava/lang/Object;)Lio/github/canimation/core/CanimationDpRange;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getFrom-D9Ej5fM ()F
+	public final fun getTo-D9Ej5fM ()F
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class io/github/canimation/core/CanimationDrop {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/core/CanimationDrop;
+	public final fun getHeavy ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getIn ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getLight ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getRotate ()Lio/github/canimation/core/CanimationEffect;
+}
+
+public final class io/github/canimation/core/CanimationEffect {
+	public static final field $stable I
+	public static final field Companion Lio/github/canimation/core/CanimationEffect$Companion;
+	public fun <init> ()V
+	public fun <init> (Lio/github/canimation/core/CanimationRange;Lio/github/canimation/core/CanimationDpRange;Lio/github/canimation/core/CanimationDpRange;Lio/github/canimation/core/CanimationRange;Lio/github/canimation/core/CanimationRange;ILandroidx/compose/animation/core/Easing;)V
+	public synthetic fun <init> (Lio/github/canimation/core/CanimationRange;Lio/github/canimation/core/CanimationDpRange;Lio/github/canimation/core/CanimationDpRange;Lio/github/canimation/core/CanimationRange;Lio/github/canimation/core/CanimationRange;ILandroidx/compose/animation/core/Easing;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Lio/github/canimation/core/CanimationRange;
+	public final fun component2 ()Lio/github/canimation/core/CanimationDpRange;
+	public final fun component3 ()Lio/github/canimation/core/CanimationDpRange;
+	public final fun component4 ()Lio/github/canimation/core/CanimationRange;
+	public final fun component5 ()Lio/github/canimation/core/CanimationRange;
+	public final fun component6 ()I
+	public final fun component7 ()Landroidx/compose/animation/core/Easing;
+	public final fun copy (Lio/github/canimation/core/CanimationRange;Lio/github/canimation/core/CanimationDpRange;Lio/github/canimation/core/CanimationDpRange;Lio/github/canimation/core/CanimationRange;Lio/github/canimation/core/CanimationRange;ILandroidx/compose/animation/core/Easing;)Lio/github/canimation/core/CanimationEffect;
+	public static synthetic fun copy$default (Lio/github/canimation/core/CanimationEffect;Lio/github/canimation/core/CanimationRange;Lio/github/canimation/core/CanimationDpRange;Lio/github/canimation/core/CanimationDpRange;Lio/github/canimation/core/CanimationRange;Lio/github/canimation/core/CanimationRange;ILandroidx/compose/animation/core/Easing;ILjava/lang/Object;)Lio/github/canimation/core/CanimationEffect;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAlpha ()Lio/github/canimation/core/CanimationRange;
+	public final fun getDurationMs ()I
+	public final fun getEasing ()Landroidx/compose/animation/core/Easing;
+	public final fun getOffsetX ()Lio/github/canimation/core/CanimationDpRange;
+	public final fun getOffsetY ()Lio/github/canimation/core/CanimationDpRange;
+	public final fun getRotation ()Lio/github/canimation/core/CanimationRange;
+	public final fun getScale ()Lio/github/canimation/core/CanimationRange;
+	public fun hashCode ()I
+	public final fun plus (Lio/github/canimation/core/CanimationEffect;)Lio/github/canimation/core/CanimationEffect;
+	public final fun toEnterSpec (Landroidx/compose/animation/core/Easing;I)Lio/github/canimation/core/CanimationSpec;
+	public final fun toEnterSpec (Lio/github/canimation/core/CanimationTokens;)Lio/github/canimation/core/CanimationSpec;
+	public static synthetic fun toEnterSpec$default (Lio/github/canimation/core/CanimationEffect;Landroidx/compose/animation/core/Easing;IILjava/lang/Object;)Lio/github/canimation/core/CanimationSpec;
+	public final fun toExitSpec (Landroidx/compose/animation/core/Easing;I)Lio/github/canimation/core/CanimationSpec;
+	public final fun toExitSpec (Lio/github/canimation/core/CanimationTokens;)Lio/github/canimation/core/CanimationSpec;
+	public static synthetic fun toExitSpec$default (Lio/github/canimation/core/CanimationEffect;Landroidx/compose/animation/core/Easing;IILjava/lang/Object;)Lio/github/canimation/core/CanimationSpec;
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class io/github/canimation/core/CanimationEffect$Companion {
+	public final fun bounce ()Lio/github/canimation/core/CanimationEffect;
+	public final fun duration (I)Lio/github/canimation/core/CanimationEffect;
+	public final fun easing (Landroidx/compose/animation/core/Easing;)Lio/github/canimation/core/CanimationEffect;
+	public final fun fade (FF)Lio/github/canimation/core/CanimationEffect;
+	public static synthetic fun fade$default (Lio/github/canimation/core/CanimationEffect$Companion;FFILjava/lang/Object;)Lio/github/canimation/core/CanimationEffect;
+	public final fun pop (FF)Lio/github/canimation/core/CanimationEffect;
+	public static synthetic fun pop$default (Lio/github/canimation/core/CanimationEffect$Companion;FFILjava/lang/Object;)Lio/github/canimation/core/CanimationEffect;
+	public final fun rotate (FF)Lio/github/canimation/core/CanimationEffect;
+	public static synthetic fun rotate$default (Lio/github/canimation/core/CanimationEffect$Companion;FFILjava/lang/Object;)Lio/github/canimation/core/CanimationEffect;
+	public final fun scale (FF)Lio/github/canimation/core/CanimationEffect;
+	public static synthetic fun scale$default (Lio/github/canimation/core/CanimationEffect$Companion;FFILjava/lang/Object;)Lio/github/canimation/core/CanimationEffect;
+	public final fun slideDown-0680j_4 (F)Lio/github/canimation/core/CanimationEffect;
+	public static synthetic fun slideDown-0680j_4$default (Lio/github/canimation/core/CanimationEffect$Companion;FILjava/lang/Object;)Lio/github/canimation/core/CanimationEffect;
+	public final fun slideLeft-0680j_4 (F)Lio/github/canimation/core/CanimationEffect;
+	public static synthetic fun slideLeft-0680j_4$default (Lio/github/canimation/core/CanimationEffect$Companion;FILjava/lang/Object;)Lio/github/canimation/core/CanimationEffect;
+	public final fun slideRight-0680j_4 (F)Lio/github/canimation/core/CanimationEffect;
+	public static synthetic fun slideRight-0680j_4$default (Lio/github/canimation/core/CanimationEffect$Companion;FILjava/lang/Object;)Lio/github/canimation/core/CanimationEffect;
+	public final fun slideUp-0680j_4 (F)Lio/github/canimation/core/CanimationEffect;
+	public static synthetic fun slideUp-0680j_4$default (Lio/github/canimation/core/CanimationEffect$Companion;FILjava/lang/Object;)Lio/github/canimation/core/CanimationEffect;
+	public final fun spin (F)Lio/github/canimation/core/CanimationEffect;
+	public static synthetic fun spin$default (Lio/github/canimation/core/CanimationEffect$Companion;FILjava/lang/Object;)Lio/github/canimation/core/CanimationEffect;
+	public final fun zoom (F)Lio/github/canimation/core/CanimationEffect;
+	public static synthetic fun zoom$default (Lio/github/canimation/core/CanimationEffect$Companion;FILjava/lang/Object;)Lio/github/canimation/core/CanimationEffect;
+}
+
+public final class io/github/canimation/core/CanimationElastic {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/core/CanimationElastic;
+	public final fun getIn ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getSnap ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getSquash ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getStretch ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getWobble ()Lio/github/canimation/core/CanimationEffect;
+}
+
+public final class io/github/canimation/core/CanimationEntrance {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/core/CanimationEntrance;
+	public final fun getBackInDown ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getBackInLeft ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getBackInRight ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getBackInUp ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getDrop ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getElevate ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getEmerge ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getJackInTheBox ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getLightSpeedLeft ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getLightSpeedRight ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getRise ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getRollIn ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getShrinkIn ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getSnap ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getSwingIn ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getTiltIn ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getUnfold ()Lio/github/canimation/core/CanimationEffect;
+}
+
+public final class io/github/canimation/core/CanimationFade {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/core/CanimationFade;
+	public final fun getBig ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getBottomLeft ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getBottomRight ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getDown ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getDownBig ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getGentle ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getIn ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getLeft ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getLeftBig ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getOut ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getQuick ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getRight ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getRightBig ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getSmall ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getTopLeft ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getTopRight ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getUp ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getUpBig ()Lio/github/canimation/core/CanimationEffect;
+}
+
+public final class io/github/canimation/core/CanimationFlip {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/core/CanimationFlip;
+	public final fun getDown ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getIn ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getUp ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getX ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getY ()Lio/github/canimation/core/CanimationEffect;
+}
+
+public final class io/github/canimation/core/CanimationFloat {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/core/CanimationFloat;
+	public final fun getDown ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getGentle ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getScaleUp ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getUp ()Lio/github/canimation/core/CanimationEffect;
+}
+
+public final class io/github/canimation/core/CanimationGlitch {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/core/CanimationGlitch;
+	public final fun getDistort ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getFlicker ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getIn ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getShake ()Lio/github/canimation/core/CanimationEffect;
+}
+
+public final class io/github/canimation/core/CanimationLevel : java/lang/Enum {
+	public static final field Full Lio/github/canimation/core/CanimationLevel;
+	public static final field Off Lio/github/canimation/core/CanimationLevel;
+	public static final field Reduced Lio/github/canimation/core/CanimationLevel;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lio/github/canimation/core/CanimationLevel;
+	public static fun values ()[Lio/github/canimation/core/CanimationLevel;
+}
+
+public final class io/github/canimation/core/CanimationMaterial {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/core/CanimationMaterial;
+	public final fun getContainerTransform ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getEmphasized ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getFadeThrough ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getSharedAxisX ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getSharedAxisY ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getSharedAxisZ ()Lio/github/canimation/core/CanimationEffect;
+}
+
+public final class io/github/canimation/core/CanimationMicro {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/core/CanimationMicro;
+	public final fun getNudgeDown ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getNudgeUp ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getPress ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getPulse ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getWiggle ()Lio/github/canimation/core/CanimationEffect;
+}
+
+public final class io/github/canimation/core/CanimationMorph {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/core/CanimationMorph;
+	public final fun getCollapse ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getExpand ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getScaleUp ()Lio/github/canimation/core/CanimationEffect;
+}
+
+public final class io/github/canimation/core/CanimationPage {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/core/CanimationPage;
+	public final fun getBottomSheet ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getCoverUp ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getCrossfade ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getPushLeft ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getPushRight ()Lio/github/canimation/core/CanimationEffect;
+}
+
+public final class io/github/canimation/core/CanimationPlayful {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/core/CanimationPlayful;
+	public final fun getBoing ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getHop ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getPop ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getSpin ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getTwirl ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getWiggle ()Lio/github/canimation/core/CanimationEffect;
+}
+
+public abstract interface class io/github/canimation/core/CanimationPolicy {
+}
+
+public final class io/github/canimation/core/CanimationPolicy$AlwaysFull : io/github/canimation/core/CanimationPolicy {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/core/CanimationPolicy$AlwaysFull;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class io/github/canimation/core/CanimationPolicy$AlwaysOff : io/github/canimation/core/CanimationPolicy {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/core/CanimationPolicy$AlwaysOff;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class io/github/canimation/core/CanimationPolicy$AlwaysReduced : io/github/canimation/core/CanimationPolicy {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/core/CanimationPolicy$AlwaysReduced;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class io/github/canimation/core/CanimationPolicy$SystemAware : io/github/canimation/core/CanimationPolicy {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/core/CanimationPolicy$SystemAware;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class io/github/canimation/core/CanimationRange {
+	public static final field $stable I
+	public fun <init> (FF)V
+	public final fun component1 ()F
+	public final fun component2 ()F
+	public final fun copy (FF)Lio/github/canimation/core/CanimationRange;
+	public static synthetic fun copy$default (Lio/github/canimation/core/CanimationRange;FFILjava/lang/Object;)Lio/github/canimation/core/CanimationRange;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getFrom ()F
+	public final fun getTo ()F
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class io/github/canimation/core/CanimationReveal {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/core/CanimationReveal;
+	public final fun getBottom ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getCenter ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getDramatic ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getTop ()Lio/github/canimation/core/CanimationEffect;
+}
+
+public final class io/github/canimation/core/CanimationRise {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/core/CanimationRise;
+	public final fun getIn ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getRotate ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getScale ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getSlow ()Lio/github/canimation/core/CanimationEffect;
+}
+
+public final class io/github/canimation/core/CanimationRotate {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/core/CanimationRotate;
+	public final fun getClockwise ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getClockwiseFade ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getDownLeft ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getDownRight ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getFadeIn ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getHalf ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getIn ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getQuarter ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getScaleIn ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getSpin ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getSpinFade ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getUpLeft ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getUpRight ()Lio/github/canimation/core/CanimationEffect;
+}
+
+public final class io/github/canimation/core/CanimationScale {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/core/CanimationScale;
+	public final fun getDown ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getDownFade ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getExpand ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getFadeIn ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getIn ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getPop ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getShrink ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getSubtle ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getUp ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getUpFade ()Lio/github/canimation/core/CanimationEffect;
+}
+
+public final class io/github/canimation/core/CanimationShrink {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/core/CanimationShrink;
+	public final fun getFadeDown ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getOut ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getRotate ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getSubtle ()Lio/github/canimation/core/CanimationEffect;
+}
+
+public final class io/github/canimation/core/CanimationSlide {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/core/CanimationSlide;
+	public final fun getDown ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getDownBig ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getDownSubtle ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getLeft ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getLeftBig ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getLeftSubtle ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getRight ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getRightBig ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getRightSubtle ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getUp ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getUpBig ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getUpSubtle ()Lio/github/canimation/core/CanimationEffect;
+}
+
+public final class io/github/canimation/core/CanimationSpec {
+	public static final field $stable I
+	public fun <init> (ILandroidx/compose/animation/core/Easing;Lio/github/canimation/core/CanimationRange;Lio/github/canimation/core/CanimationDpRange;Lio/github/canimation/core/CanimationDpRange;Lio/github/canimation/core/CanimationRange;Lio/github/canimation/core/CanimationRange;)V
+	public synthetic fun <init> (ILandroidx/compose/animation/core/Easing;Lio/github/canimation/core/CanimationRange;Lio/github/canimation/core/CanimationDpRange;Lio/github/canimation/core/CanimationDpRange;Lio/github/canimation/core/CanimationRange;Lio/github/canimation/core/CanimationRange;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()I
+	public final fun component2 ()Landroidx/compose/animation/core/Easing;
+	public final fun component3 ()Lio/github/canimation/core/CanimationRange;
+	public final fun component4 ()Lio/github/canimation/core/CanimationDpRange;
+	public final fun component5 ()Lio/github/canimation/core/CanimationDpRange;
+	public final fun component6 ()Lio/github/canimation/core/CanimationRange;
+	public final fun component7 ()Lio/github/canimation/core/CanimationRange;
+	public final fun copy (ILandroidx/compose/animation/core/Easing;Lio/github/canimation/core/CanimationRange;Lio/github/canimation/core/CanimationDpRange;Lio/github/canimation/core/CanimationDpRange;Lio/github/canimation/core/CanimationRange;Lio/github/canimation/core/CanimationRange;)Lio/github/canimation/core/CanimationSpec;
+	public static synthetic fun copy$default (Lio/github/canimation/core/CanimationSpec;ILandroidx/compose/animation/core/Easing;Lio/github/canimation/core/CanimationRange;Lio/github/canimation/core/CanimationDpRange;Lio/github/canimation/core/CanimationDpRange;Lio/github/canimation/core/CanimationRange;Lio/github/canimation/core/CanimationRange;ILjava/lang/Object;)Lio/github/canimation/core/CanimationSpec;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAlpha ()Lio/github/canimation/core/CanimationRange;
+	public final fun getDurationMs ()I
+	public final fun getEasing ()Landroidx/compose/animation/core/Easing;
+	public final fun getOffsetX ()Lio/github/canimation/core/CanimationDpRange;
+	public final fun getOffsetY ()Lio/github/canimation/core/CanimationDpRange;
+	public final fun getRotation ()Lio/github/canimation/core/CanimationRange;
+	public final fun getScale ()Lio/github/canimation/core/CanimationRange;
+	public fun hashCode ()I
+	public final fun reversed (Lio/github/canimation/core/CanimationTokens;)Lio/github/canimation/core/CanimationSpec;
+	public static synthetic fun reversed$default (Lio/github/canimation/core/CanimationSpec;Lio/github/canimation/core/CanimationTokens;ILjava/lang/Object;)Lio/github/canimation/core/CanimationSpec;
+	public final fun toReduced (Lio/github/canimation/core/CanimationTokens;)Lio/github/canimation/core/CanimationSpec;
+	public static synthetic fun toReduced$default (Lio/github/canimation/core/CanimationSpec;Lio/github/canimation/core/CanimationTokens;ILjava/lang/Object;)Lio/github/canimation/core/CanimationSpec;
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class io/github/canimation/core/CanimationSpring {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/core/CanimationSpring;
+	public final fun getBounce ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getDown ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getIn ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getLeft ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getPop ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getRight ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getUp ()Lio/github/canimation/core/CanimationEffect;
+}
+
+public final class io/github/canimation/core/CanimationStagger {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/core/CanimationStagger;
+	public static final field Normal I
+	public static final field Quick I
+	public static final field Relaxed I
+	public static final field Slow I
+}
+
+public final class io/github/canimation/core/CanimationStretch {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/core/CanimationStretch;
+	public final fun getBoth ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getHorizontal ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getSnap ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getVertical ()Lio/github/canimation/core/CanimationEffect;
+}
+
+public final class io/github/canimation/core/CanimationSwipe {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/core/CanimationSwipe;
+	public final fun getDown ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getFlingLeft ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getFlingRight ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getLeft ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getRight ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getUp ()Lio/github/canimation/core/CanimationEffect;
+}
+
+public final class io/github/canimation/core/CanimationTilt {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/core/CanimationTilt;
+	public final fun getDown ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getLeft ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getRight ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getSwing ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getUp ()Lio/github/canimation/core/CanimationEffect;
+}
+
+public final class io/github/canimation/core/CanimationWave {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/core/CanimationWave;
+	public final fun getDrift ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getFloat ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getGentle ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getRipple ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getStrong ()Lio/github/canimation/core/CanimationEffect;
+}
+
+public final class io/github/canimation/core/CanimationZoom {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/canimation/core/CanimationZoom;
+	public final fun getDramatic ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getIn ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getInDown ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getInLeft ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getInRight ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getInUp ()Lio/github/canimation/core/CanimationEffect;
+	public final fun getOut ()Lio/github/canimation/core/CanimationEffect;
+}

@@ -1,0 +1,111 @@
+// Klib ABI Dump
+// Targets: [iosArm64, iosSimulatorArm64, js, wasmJs]
+// Rendering settings:
+// - Signature version: 2
+// - Show manifest properties: true
+// - Show declarations: true
+
+// Library unique name: <io.github.canimation:canimation-recipes>
+final object io.github.canimation.core/CanimationAmbientRecipes { // io.github.canimation.core/CanimationAmbientRecipes|null[0]
+    final val Highlight // io.github.canimation.core/CanimationAmbientRecipes.Highlight|{}Highlight[0]
+        final fun <get-Highlight>(): io.github.canimation.core/CanimationRecipe // io.github.canimation.core/CanimationAmbientRecipes.Highlight.<get-Highlight>|<get-Highlight>(){}[0]
+}
+
+final object io.github.canimation.core/CanimationContentRecipes { // io.github.canimation.core/CanimationContentRecipes|null[0]
+    final val EnterStandard // io.github.canimation.core/CanimationContentRecipes.EnterStandard|{}EnterStandard[0]
+        final fun <get-EnterStandard>(): io.github.canimation.core/CanimationRecipe // io.github.canimation.core/CanimationContentRecipes.EnterStandard.<get-EnterStandard>|<get-EnterStandard>(){}[0]
+    final val EnterSubtle // io.github.canimation.core/CanimationContentRecipes.EnterSubtle|{}EnterSubtle[0]
+        final fun <get-EnterSubtle>(): io.github.canimation.core/CanimationRecipe // io.github.canimation.core/CanimationContentRecipes.EnterSubtle.<get-EnterSubtle>|<get-EnterSubtle>(){}[0]
+}
+
+final object io.github.canimation.core/CanimationEmphasisRecipes { // io.github.canimation.core/CanimationEmphasisRecipes|null[0]
+    final val CallToAction // io.github.canimation.core/CanimationEmphasisRecipes.CallToAction|{}CallToAction[0]
+        final fun <get-CallToAction>(): io.github.canimation.core/CanimationRecipe // io.github.canimation.core/CanimationEmphasisRecipes.CallToAction.<get-CallToAction>|<get-CallToAction>(){}[0]
+}
+
+final object io.github.canimation.core/CanimationFeedbackRecipes { // io.github.canimation.core/CanimationFeedbackRecipes|null[0]
+    final val Press // io.github.canimation.core/CanimationFeedbackRecipes.Press|{}Press[0]
+        final fun <get-Press>(): io.github.canimation.core/CanimationRecipe // io.github.canimation.core/CanimationFeedbackRecipes.Press.<get-Press>|<get-Press>(){}[0]
+    final val SelectionPulse // io.github.canimation.core/CanimationFeedbackRecipes.SelectionPulse|{}SelectionPulse[0]
+        final fun <get-SelectionPulse>(): io.github.canimation.core/CanimationRecipe // io.github.canimation.core/CanimationFeedbackRecipes.SelectionPulse.<get-SelectionPulse>|<get-SelectionPulse>(){}[0]
+}
+
+final object io.github.canimation.core/CanimationNavigationRecipes { // io.github.canimation.core/CanimationNavigationRecipes|null[0]
+    final val Backward // io.github.canimation.core/CanimationNavigationRecipes.Backward|{}Backward[0]
+        final fun <get-Backward>(): io.github.canimation.core/CanimationRecipe // io.github.canimation.core/CanimationNavigationRecipes.Backward.<get-Backward>|<get-Backward>(){}[0]
+    final val Forward // io.github.canimation.core/CanimationNavigationRecipes.Forward|{}Forward[0]
+        final fun <get-Forward>(): io.github.canimation.core/CanimationRecipe // io.github.canimation.core/CanimationNavigationRecipes.Forward.<get-Forward>|<get-Forward>(){}[0]
+}
+
+final object io.github.canimation.core/CanimationRecoveryRecipes { // io.github.canimation.core/CanimationRecoveryRecipes|null[0]
+    final val ErrorShake // io.github.canimation.core/CanimationRecoveryRecipes.ErrorShake|{}ErrorShake[0]
+        final fun <get-ErrorShake>(): io.github.canimation.core/CanimationRecipe // io.github.canimation.core/CanimationRecoveryRecipes.ErrorShake.<get-ErrorShake>|<get-ErrorShake>(){}[0]
+}
+
+final object io.github.canimation.core/CanimationSurfaceRecipes { // io.github.canimation.core/CanimationSurfaceRecipes|null[0]
+    final val DialogReveal // io.github.canimation.core/CanimationSurfaceRecipes.DialogReveal|{}DialogReveal[0]
+        final fun <get-DialogReveal>(): io.github.canimation.core/CanimationRecipe // io.github.canimation.core/CanimationSurfaceRecipes.DialogReveal.<get-DialogReveal>|<get-DialogReveal>(){}[0]
+    final val SheetReveal // io.github.canimation.core/CanimationSurfaceRecipes.SheetReveal|{}SheetReveal[0]
+        final fun <get-SheetReveal>(): io.github.canimation.core/CanimationRecipe // io.github.canimation.core/CanimationSurfaceRecipes.SheetReveal.<get-SheetReveal>|<get-SheetReveal>(){}[0]
+}
+
+final object io.github.canimation.core/CanimationTransitionRecipes { // io.github.canimation.core/CanimationTransitionRecipes|null[0]
+    final val ContentSwap // io.github.canimation.core/CanimationTransitionRecipes.ContentSwap|{}ContentSwap[0]
+        final fun <get-ContentSwap>(): io.github.canimation.core/CanimationRecipe // io.github.canimation.core/CanimationTransitionRecipes.ContentSwap.<get-ContentSwap>|<get-ContentSwap>(){}[0]
+}
+
+final val io.github.canimation.core/Ambient // io.github.canimation.core/Ambient|@io.github.canimation.core.Canimation{}Ambient[0]
+    final fun (io.github.canimation.core/Canimation).<get-Ambient>(): io.github.canimation.core/CanimationAmbientRecipes // io.github.canimation.core/Ambient.<get-Ambient>|<get-Ambient>@io.github.canimation.core.Canimation(){}[0]
+final val io.github.canimation.core/Content // io.github.canimation.core/Content|@io.github.canimation.core.Canimation{}Content[0]
+    final fun (io.github.canimation.core/Canimation).<get-Content>(): io.github.canimation.core/CanimationContentRecipes // io.github.canimation.core/Content.<get-Content>|<get-Content>@io.github.canimation.core.Canimation(){}[0]
+final val io.github.canimation.core/DefaultCanimationRecipeRegistry // io.github.canimation.core/DefaultCanimationRecipeRegistry|{}DefaultCanimationRecipeRegistry[0]
+    final fun <get-DefaultCanimationRecipeRegistry>(): io.github.canimation.core/CanimationRecipeRegistry // io.github.canimation.core/DefaultCanimationRecipeRegistry.<get-DefaultCanimationRecipeRegistry>|<get-DefaultCanimationRecipeRegistry>(){}[0]
+final val io.github.canimation.core/Emphasis // io.github.canimation.core/Emphasis|@io.github.canimation.core.Canimation{}Emphasis[0]
+    final fun (io.github.canimation.core/Canimation).<get-Emphasis>(): io.github.canimation.core/CanimationEmphasisRecipes // io.github.canimation.core/Emphasis.<get-Emphasis>|<get-Emphasis>@io.github.canimation.core.Canimation(){}[0]
+final val io.github.canimation.core/Feedback // io.github.canimation.core/Feedback|@io.github.canimation.core.Canimation{}Feedback[0]
+    final fun (io.github.canimation.core/Canimation).<get-Feedback>(): io.github.canimation.core/CanimationFeedbackRecipes // io.github.canimation.core/Feedback.<get-Feedback>|<get-Feedback>@io.github.canimation.core.Canimation(){}[0]
+final val io.github.canimation.core/Navigation // io.github.canimation.core/Navigation|@io.github.canimation.core.Canimation{}Navigation[0]
+    final fun (io.github.canimation.core/Canimation).<get-Navigation>(): io.github.canimation.core/CanimationNavigationRecipes // io.github.canimation.core/Navigation.<get-Navigation>|<get-Navigation>@io.github.canimation.core.Canimation(){}[0]
+final val io.github.canimation.core/Recovery // io.github.canimation.core/Recovery|@io.github.canimation.core.Canimation{}Recovery[0]
+    final fun (io.github.canimation.core/Canimation).<get-Recovery>(): io.github.canimation.core/CanimationRecoveryRecipes // io.github.canimation.core/Recovery.<get-Recovery>|<get-Recovery>@io.github.canimation.core.Canimation(){}[0]
+final val io.github.canimation.core/Surface // io.github.canimation.core/Surface|@io.github.canimation.core.Canimation{}Surface[0]
+    final fun (io.github.canimation.core/Canimation).<get-Surface>(): io.github.canimation.core/CanimationSurfaceRecipes // io.github.canimation.core/Surface.<get-Surface>|<get-Surface>@io.github.canimation.core.Canimation(){}[0]
+final val io.github.canimation.core/Transition // io.github.canimation.core/Transition|@io.github.canimation.core.Canimation{}Transition[0]
+    final fun (io.github.canimation.core/Canimation).<get-Transition>(): io.github.canimation.core/CanimationTransitionRecipes // io.github.canimation.core/Transition.<get-Transition>|<get-Transition>@io.github.canimation.core.Canimation(){}[0]
+final val io.github.canimation.core/io_github_canimation_core_CanimationAmbientRecipes$stableprop // io.github.canimation.core/io_github_canimation_core_CanimationAmbientRecipes$stableprop|#static{}io_github_canimation_core_CanimationAmbientRecipes$stableprop[0]
+final val io.github.canimation.core/io_github_canimation_core_CanimationContentRecipes$stableprop // io.github.canimation.core/io_github_canimation_core_CanimationContentRecipes$stableprop|#static{}io_github_canimation_core_CanimationContentRecipes$stableprop[0]
+final val io.github.canimation.core/io_github_canimation_core_CanimationEmphasisRecipes$stableprop // io.github.canimation.core/io_github_canimation_core_CanimationEmphasisRecipes$stableprop|#static{}io_github_canimation_core_CanimationEmphasisRecipes$stableprop[0]
+final val io.github.canimation.core/io_github_canimation_core_CanimationFeedbackRecipes$stableprop // io.github.canimation.core/io_github_canimation_core_CanimationFeedbackRecipes$stableprop|#static{}io_github_canimation_core_CanimationFeedbackRecipes$stableprop[0]
+final val io.github.canimation.core/io_github_canimation_core_CanimationNavigationRecipes$stableprop // io.github.canimation.core/io_github_canimation_core_CanimationNavigationRecipes$stableprop|#static{}io_github_canimation_core_CanimationNavigationRecipes$stableprop[0]
+final val io.github.canimation.core/io_github_canimation_core_CanimationRecoveryRecipes$stableprop // io.github.canimation.core/io_github_canimation_core_CanimationRecoveryRecipes$stableprop|#static{}io_github_canimation_core_CanimationRecoveryRecipes$stableprop[0]
+final val io.github.canimation.core/io_github_canimation_core_CanimationSurfaceRecipes$stableprop // io.github.canimation.core/io_github_canimation_core_CanimationSurfaceRecipes$stableprop|#static{}io_github_canimation_core_CanimationSurfaceRecipes$stableprop[0]
+final val io.github.canimation.core/io_github_canimation_core_CanimationTransitionRecipes$stableprop // io.github.canimation.core/io_github_canimation_core_CanimationTransitionRecipes$stableprop|#static{}io_github_canimation_core_CanimationTransitionRecipes$stableprop[0]
+final val io.github.canimation.recipes/Ambient // io.github.canimation.recipes/Ambient|@io.github.canimation.core.Canimation{}Ambient[0]
+    final fun (io.github.canimation.core/Canimation).<get-Ambient>(): io.github.canimation.core/CanimationAmbientRecipes // io.github.canimation.recipes/Ambient.<get-Ambient>|<get-Ambient>@io.github.canimation.core.Canimation(){}[0]
+final val io.github.canimation.recipes/Content // io.github.canimation.recipes/Content|@io.github.canimation.core.Canimation{}Content[0]
+    final fun (io.github.canimation.core/Canimation).<get-Content>(): io.github.canimation.core/CanimationContentRecipes // io.github.canimation.recipes/Content.<get-Content>|<get-Content>@io.github.canimation.core.Canimation(){}[0]
+final val io.github.canimation.recipes/DefaultCanimationRecipeRegistry // io.github.canimation.recipes/DefaultCanimationRecipeRegistry|{}DefaultCanimationRecipeRegistry[0]
+    final fun <get-DefaultCanimationRecipeRegistry>(): io.github.canimation.core/CanimationRecipeRegistry // io.github.canimation.recipes/DefaultCanimationRecipeRegistry.<get-DefaultCanimationRecipeRegistry>|<get-DefaultCanimationRecipeRegistry>(){}[0]
+final val io.github.canimation.recipes/Emphasis // io.github.canimation.recipes/Emphasis|@io.github.canimation.core.Canimation{}Emphasis[0]
+    final fun (io.github.canimation.core/Canimation).<get-Emphasis>(): io.github.canimation.core/CanimationEmphasisRecipes // io.github.canimation.recipes/Emphasis.<get-Emphasis>|<get-Emphasis>@io.github.canimation.core.Canimation(){}[0]
+final val io.github.canimation.recipes/Feedback // io.github.canimation.recipes/Feedback|@io.github.canimation.core.Canimation{}Feedback[0]
+    final fun (io.github.canimation.core/Canimation).<get-Feedback>(): io.github.canimation.core/CanimationFeedbackRecipes // io.github.canimation.recipes/Feedback.<get-Feedback>|<get-Feedback>@io.github.canimation.core.Canimation(){}[0]
+final val io.github.canimation.recipes/Navigation // io.github.canimation.recipes/Navigation|@io.github.canimation.core.Canimation{}Navigation[0]
+    final fun (io.github.canimation.core/Canimation).<get-Navigation>(): io.github.canimation.core/CanimationNavigationRecipes // io.github.canimation.recipes/Navigation.<get-Navigation>|<get-Navigation>@io.github.canimation.core.Canimation(){}[0]
+final val io.github.canimation.recipes/Recovery // io.github.canimation.recipes/Recovery|@io.github.canimation.core.Canimation{}Recovery[0]
+    final fun (io.github.canimation.core/Canimation).<get-Recovery>(): io.github.canimation.core/CanimationRecoveryRecipes // io.github.canimation.recipes/Recovery.<get-Recovery>|<get-Recovery>@io.github.canimation.core.Canimation(){}[0]
+final val io.github.canimation.recipes/Surface // io.github.canimation.recipes/Surface|@io.github.canimation.core.Canimation{}Surface[0]
+    final fun (io.github.canimation.core/Canimation).<get-Surface>(): io.github.canimation.core/CanimationSurfaceRecipes // io.github.canimation.recipes/Surface.<get-Surface>|<get-Surface>@io.github.canimation.core.Canimation(){}[0]
+final val io.github.canimation.recipes/Transition // io.github.canimation.recipes/Transition|@io.github.canimation.core.Canimation{}Transition[0]
+    final fun (io.github.canimation.core/Canimation).<get-Transition>(): io.github.canimation.core/CanimationTransitionRecipes // io.github.canimation.recipes/Transition.<get-Transition>|<get-Transition>@io.github.canimation.core.Canimation(){}[0]
+
+final fun io.github.canimation.core/io_github_canimation_core_CanimationAmbientRecipes$stableprop_getter(): kotlin/Int // io.github.canimation.core/io_github_canimation_core_CanimationAmbientRecipes$stableprop_getter|io_github_canimation_core_CanimationAmbientRecipes$stableprop_getter(){}[0]
+final fun io.github.canimation.core/io_github_canimation_core_CanimationContentRecipes$stableprop_getter(): kotlin/Int // io.github.canimation.core/io_github_canimation_core_CanimationContentRecipes$stableprop_getter|io_github_canimation_core_CanimationContentRecipes$stableprop_getter(){}[0]
+final fun io.github.canimation.core/io_github_canimation_core_CanimationEmphasisRecipes$stableprop_getter(): kotlin/Int // io.github.canimation.core/io_github_canimation_core_CanimationEmphasisRecipes$stableprop_getter|io_github_canimation_core_CanimationEmphasisRecipes$stableprop_getter(){}[0]
+final fun io.github.canimation.core/io_github_canimation_core_CanimationFeedbackRecipes$stableprop_getter(): kotlin/Int // io.github.canimation.core/io_github_canimation_core_CanimationFeedbackRecipes$stableprop_getter|io_github_canimation_core_CanimationFeedbackRecipes$stableprop_getter(){}[0]
+final fun io.github.canimation.core/io_github_canimation_core_CanimationNavigationRecipes$stableprop_getter(): kotlin/Int // io.github.canimation.core/io_github_canimation_core_CanimationNavigationRecipes$stableprop_getter|io_github_canimation_core_CanimationNavigationRecipes$stableprop_getter(){}[0]
+final fun io.github.canimation.core/io_github_canimation_core_CanimationRecoveryRecipes$stableprop_getter(): kotlin/Int // io.github.canimation.core/io_github_canimation_core_CanimationRecoveryRecipes$stableprop_getter|io_github_canimation_core_CanimationRecoveryRecipes$stableprop_getter(){}[0]
+final fun io.github.canimation.core/io_github_canimation_core_CanimationSurfaceRecipes$stableprop_getter(): kotlin/Int // io.github.canimation.core/io_github_canimation_core_CanimationSurfaceRecipes$stableprop_getter|io_github_canimation_core_CanimationSurfaceRecipes$stableprop_getter(){}[0]
+final fun io.github.canimation.core/io_github_canimation_core_CanimationTransitionRecipes$stableprop_getter(): kotlin/Int // io.github.canimation.core/io_github_canimation_core_CanimationTransitionRecipes$stableprop_getter|io_github_canimation_core_CanimationTransitionRecipes$stableprop_getter(){}[0]
+final fun io.github.canimation.recipes/defaultCanimationRecipeRegistry(kotlin.collections/Iterable<io.github.canimation.core/CanimationRecipeRegistry>, io.github.canimation.core/CanimationRecipeRegistryMergePolicy = ...): io.github.canimation.core/CanimationRecipeRegistry // io.github.canimation.recipes/defaultCanimationRecipeRegistry|defaultCanimationRecipeRegistry(kotlin.collections.Iterable<io.github.canimation.core.CanimationRecipeRegistry>;io.github.canimation.core.CanimationRecipeRegistryMergePolicy){}[0]
+final fun io.github.canimation.recipes/defaultCanimationRecipeRegistry(kotlin/Array<out io.github.canimation.core/CanimationRecipeRegistry>..., io.github.canimation.core/CanimationRecipeRegistryMergePolicy = ...): io.github.canimation.core/CanimationRecipeRegistry // io.github.canimation.recipes/defaultCanimationRecipeRegistry|defaultCanimationRecipeRegistry(kotlin.Array<out|io.github.canimation.core.CanimationRecipeRegistry>...;io.github.canimation.core.CanimationRecipeRegistryMergePolicy){}[0]

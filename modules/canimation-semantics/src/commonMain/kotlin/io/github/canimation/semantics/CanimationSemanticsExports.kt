@@ -1,0 +1,33 @@
+package io.github.canimation.semantics
+
+import io.github.canimation.core.CanimationCost as CoreCanimationCost
+import io.github.canimation.core.CanimationIntensity as CoreCanimationIntensity
+import io.github.canimation.core.CanimationIntent as CoreCanimationIntent
+import io.github.canimation.core.CanimationRecipe as CoreCanimationRecipe
+import io.github.canimation.core.CanimationRecipeAccessibility as CoreCanimationRecipeAccessibility
+import io.github.canimation.core.CanimationRecipeDescriptor as CoreCanimationRecipeDescriptor
+import io.github.canimation.core.CanimationRecipeDocs as CoreCanimationRecipeDocs
+import io.github.canimation.core.CanimationRecipeId as CoreCanimationRecipeId
+import io.github.canimation.core.CanimationRecipePerformance as CoreCanimationRecipePerformance
+import io.github.canimation.core.CanimationRecipeRegistry as CoreCanimationRecipeRegistry
+import io.github.canimation.core.CanimationRecipeRegistryMergePolicy as CoreCanimationRecipeRegistryMergePolicy
+import io.github.canimation.core.CanimationRecipeSemantic as CoreCanimationRecipeSemantic
+import io.github.canimation.core.CanimationRecipeSpecSet as CoreCanimationRecipeSpecSet
+import io.github.canimation.core.CanimationReducedStrategy as CoreCanimationReducedStrategy
+import io.github.canimation.core.CanimationSurfaceRole as CoreCanimationSurfaceRole
+
+typealias CanimationIntent = CoreCanimationIntent
+typealias CanimationSurfaceRole = CoreCanimationSurfaceRole
+typealias CanimationIntensity = CoreCanimationIntensity
+typealias CanimationCost = CoreCanimationCost
+typealias CanimationReducedStrategy = CoreCanimationReducedStrategy
+typealias CanimationRecipe = CoreCanimationRecipe
+typealias CanimationRecipeId = CoreCanimationRecipeId
+typealias CanimationRecipeSemantic = CoreCanimationRecipeSemantic
+typealias CanimationRecipeAccessibility = CoreCanimationRecipeAccessibility
+typealias CanimationRecipePerformance = CoreCanimationRecipePerformance
+typealias CanimationRecipeDocs = CoreCanimationRecipeDocs
+typealias CanimationRecipeSpecSet = CoreCanimationRecipeSpecSet
+typealias CanimationRecipeDescriptor = CoreCanimationRecipeDescriptor
+typealias CanimationRecipeRegistry = CoreCanimationRecipeRegistry
+typealias CanimationRecipeRegistryMergePolicy = CoreCanimationRecipeRegistryMergePolicy

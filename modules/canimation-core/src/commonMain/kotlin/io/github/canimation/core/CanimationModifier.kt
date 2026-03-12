@@ -25,23 +25,49 @@ import androidx.compose.ui.platform.debugInspectorInfo
 fun Modifier.canimation(
     visible: Boolean,
     effect: CanimationEffect,
-): Modifier = composed(
-    inspectorInfo = debugInspectorInfo {
-        name = "canimation"
-        properties["visible"] = visible
-        properties["effect"] = effect
-    },
-) {
-    val context = LocalCanimationContext.current
-    val defaultEasing = EasingTokens.Default.standard
-
-    val spec = when (context.level) {
-        CanimationLevel.Full -> effect.toEnterSpec(defaultEasing)
-        CanimationLevel.Reduced -> effect.toEnterSpec(defaultEasing).toReduced()
-        CanimationLevel.Off -> effect.toEnterSpec(defaultEasing).copy(durationMs = 0)
+): Modifier =
+    composed(
+        inspectorInfo =
+            debugInspectorInfo {
+                name = "canimation"
+                properties["visible"] = visible
+                properties["effect"] = effect
+            },
+    ) {
+        val context = LocalCanimationContext.current
+        val spec =
+            CanimationSpecResolver.resolveEffect(
+                effect = effect,
+                level = context.level,
+                tokens = context.tokens,
+            )
+        applyAnimationSpec(visible = visible, spec = spec)
     }
-    applyAnimationSpec(visible = visible, spec = spec)
-}
+
+/**
+ * Semantics-first modifier API backed by a [CanimationRecipe].
+ */
+fun Modifier.canimation(
+    recipe: CanimationRecipe,
+    visible: Boolean = true,
+): Modifier =
+    composed(
+        inspectorInfo =
+            debugInspectorInfo {
+                name = "canimation"
+                properties["visible"] = visible
+                properties["recipe"] = recipe.id.value
+            },
+    ) {
+        val context = LocalCanimationContext.current
+        val spec =
+            CanimationSpecResolver.resolveRecipe(
+                recipe = recipe,
+                level = context.level,
+                registry = context.recipeRegistry,
+            )
+        applyAnimationSpec(visible = visible, spec = spec)
+    }
 
 /**
  * Transition modifier using [CanimationEffect] for both enter and exit.
@@ -62,24 +88,49 @@ fun Modifier.canimationTransition(
     visible: Boolean,
     enter: CanimationEffect,
     exit: CanimationEffect? = null,
-): Modifier = composed(
-    inspectorInfo = debugInspectorInfo {
-        name = "canimationTransition"
-        properties["visible"] = visible
-    },
-) {
-    val context = LocalCanimationContext.current
-    val defaultEasing = EasingTokens.Default.standard
-
-    val enterSpec = enter.toEnterSpec(defaultEasing)
-    val exitSpec = exit?.toEnterSpec(defaultEasing) ?: enterSpec.reversed()
-
-    val spec = when {
-        context.level == CanimationLevel.Off -> enterSpec.copy(durationMs = 0)
-        context.level == CanimationLevel.Reduced && visible -> enterSpec.toReduced()
-        context.level == CanimationLevel.Reduced && !visible -> exitSpec.toReduced()
-        visible -> enterSpec
-        else -> exitSpec
+): Modifier =
+    composed(
+        inspectorInfo =
+            debugInspectorInfo {
+                name = "canimationTransition"
+                properties["visible"] = visible
+            },
+    ) {
+        val context = LocalCanimationContext.current
+        val spec =
+            CanimationSpecResolver.resolveTransitionEffect(
+                visible = visible,
+                level = context.level,
+                enter = enter,
+                exit = exit,
+                tokens = context.tokens,
+            )
+        applyAnimationSpec(visible = visible, spec = spec)
     }
-    applyAnimationSpec(visible = visible, spec = spec)
-}
+
+/**
+ * Semantics-first transition modifier using recipe descriptors.
+ */
+fun Modifier.canimationTransition(
+    visible: Boolean,
+    enter: CanimationRecipe,
+    exit: CanimationRecipe = enter,
+): Modifier =
+    composed(
+        inspectorInfo =
+            debugInspectorInfo {
+                name = "canimationTransition"
+                properties["visible"] = visible
+                properties["enterRecipe"] = enter.id.value
+                properties["exitRecipe"] = exit.id.value
+            },
+    ) {
+        val context = LocalCanimationContext.current
+        val spec =
+            CanimationSpecResolver.resolveRecipe(
+                recipe = if (visible) enter else exit,
+                level = context.level,
+                registry = context.recipeRegistry,
+            )
+        applyAnimationSpec(visible = visible, spec = spec)
+    }

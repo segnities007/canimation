@@ -1,0 +1,605 @@
+// Klib ABI Dump
+// Targets: [iosArm64, iosSimulatorArm64, js, wasmJs]
+// Rendering settings:
+// - Signature version: 2
+// - Show manifest properties: true
+// - Show declarations: true
+
+// Library unique name: <io.github.canimation:canimation-presets>
+final object io.github.canimation.presets/BackInDownPreset { // io.github.canimation.presets/BackInDownPreset|null[0]
+    final val spec // io.github.canimation.presets/BackInDownPreset.spec|{}spec[0]
+        final fun <get-spec>(): io.github.canimation.core/CanimationPresetSpec // io.github.canimation.presets/BackInDownPreset.spec.<get-spec>|<get-spec>(){}[0]
+}
+
+final object io.github.canimation.presets/BackInLeftPreset { // io.github.canimation.presets/BackInLeftPreset|null[0]
+    final val spec // io.github.canimation.presets/BackInLeftPreset.spec|{}spec[0]
+        final fun <get-spec>(): io.github.canimation.core/CanimationPresetSpec // io.github.canimation.presets/BackInLeftPreset.spec.<get-spec>|<get-spec>(){}[0]
+}
+
+final object io.github.canimation.presets/BackInRightPreset { // io.github.canimation.presets/BackInRightPreset|null[0]
+    final val spec // io.github.canimation.presets/BackInRightPreset.spec|{}spec[0]
+        final fun <get-spec>(): io.github.canimation.core/CanimationPresetSpec // io.github.canimation.presets/BackInRightPreset.spec.<get-spec>|<get-spec>(){}[0]
+}
+
+final object io.github.canimation.presets/BackInUpPreset { // io.github.canimation.presets/BackInUpPreset|null[0]
+    final val spec // io.github.canimation.presets/BackInUpPreset.spec|{}spec[0]
+        final fun <get-spec>(): io.github.canimation.core/CanimationPresetSpec // io.github.canimation.presets/BackInUpPreset.spec.<get-spec>|<get-spec>(){}[0]
+}
+
+final object io.github.canimation.presets/BounceInDownPreset { // io.github.canimation.presets/BounceInDownPreset|null[0]
+    final val spec // io.github.canimation.presets/BounceInDownPreset.spec|{}spec[0]
+        final fun <get-spec>(): io.github.canimation.core/CanimationPresetSpec // io.github.canimation.presets/BounceInDownPreset.spec.<get-spec>|<get-spec>(){}[0]
+}
+
+final object io.github.canimation.presets/BounceInLeftPreset { // io.github.canimation.presets/BounceInLeftPreset|null[0]
+    final val spec // io.github.canimation.presets/BounceInLeftPreset.spec|{}spec[0]
+        final fun <get-spec>(): io.github.canimation.core/CanimationPresetSpec // io.github.canimation.presets/BounceInLeftPreset.spec.<get-spec>|<get-spec>(){}[0]
+}
+
+final object io.github.canimation.presets/BounceInPreset { // io.github.canimation.presets/BounceInPreset|null[0]
+    final val spec // io.github.canimation.presets/BounceInPreset.spec|{}spec[0]
+        final fun <get-spec>(): io.github.canimation.core/CanimationPresetSpec // io.github.canimation.presets/BounceInPreset.spec.<get-spec>|<get-spec>(){}[0]
+}
+
+final object io.github.canimation.presets/BounceInRightPreset { // io.github.canimation.presets/BounceInRightPreset|null[0]
+    final val spec // io.github.canimation.presets/BounceInRightPreset.spec|{}spec[0]
+        final fun <get-spec>(): io.github.canimation.core/CanimationPresetSpec // io.github.canimation.presets/BounceInRightPreset.spec.<get-spec>|<get-spec>(){}[0]
+}
+
+final object io.github.canimation.presets/BounceInUpPreset { // io.github.canimation.presets/BounceInUpPreset|null[0]
+    final val spec // io.github.canimation.presets/BounceInUpPreset.spec|{}spec[0]
+        final fun <get-spec>(): io.github.canimation.core/CanimationPresetSpec // io.github.canimation.presets/BounceInUpPreset.spec.<get-spec>|<get-spec>(){}[0]
+}
+
+final object io.github.canimation.presets/BouncePreset { // io.github.canimation.presets/BouncePreset|null[0]
+    final val spec // io.github.canimation.presets/BouncePreset.spec|{}spec[0]
+        final fun <get-spec>(): io.github.canimation.core/CanimationPresetSpec // io.github.canimation.presets/BouncePreset.spec.<get-spec>|<get-spec>(){}[0]
+}
+
+final object io.github.canimation.presets/DropInPreset { // io.github.canimation.presets/DropInPreset|null[0]
+    final val spec // io.github.canimation.presets/DropInPreset.spec|{}spec[0]
+        final fun <get-spec>(): io.github.canimation.core/CanimationPresetSpec // io.github.canimation.presets/DropInPreset.spec.<get-spec>|<get-spec>(){}[0]
+}
+
+final object io.github.canimation.presets/ElevateInPreset { // io.github.canimation.presets/ElevateInPreset|null[0]
+    final val spec // io.github.canimation.presets/ElevateInPreset.spec|{}spec[0]
+        final fun <get-spec>(): io.github.canimation.core/CanimationPresetSpec // io.github.canimation.presets/ElevateInPreset.spec.<get-spec>|<get-spec>(){}[0]
+}
+
+final object io.github.canimation.presets/EmphasizedEntryPreset { // io.github.canimation.presets/EmphasizedEntryPreset|null[0]
+    final val spec // io.github.canimation.presets/EmphasizedEntryPreset.spec|{}spec[0]
+        final fun <get-spec>(): io.github.canimation.core/CanimationPresetSpec // io.github.canimation.presets/EmphasizedEntryPreset.spec.<get-spec>|<get-spec>(){}[0]
+}
+
+final object io.github.canimation.presets/ExpandPreset { // io.github.canimation.presets/ExpandPreset|null[0]
+    final val spec // io.github.canimation.presets/ExpandPreset.spec|{}spec[0]
+        final fun <get-spec>(): io.github.canimation.core/CanimationPresetSpec // io.github.canimation.presets/ExpandPreset.spec.<get-spec>|<get-spec>(){}[0]
+}
+
+final object io.github.canimation.presets/FadeBigPreset { // io.github.canimation.presets/FadeBigPreset|null[0]
+    final val spec // io.github.canimation.presets/FadeBigPreset.spec|{}spec[0]
+        final fun <get-spec>(): io.github.canimation.core/CanimationPresetSpec // io.github.canimation.presets/FadeBigPreset.spec.<get-spec>|<get-spec>(){}[0]
+}
+
+final object io.github.canimation.presets/FadeDownPreset { // io.github.canimation.presets/FadeDownPreset|null[0]
+    final val spec // io.github.canimation.presets/FadeDownPreset.spec|{}spec[0]
+        final fun <get-spec>(): io.github.canimation.core/CanimationPresetSpec // io.github.canimation.presets/FadeDownPreset.spec.<get-spec>|<get-spec>(){}[0]
+}
+
+final object io.github.canimation.presets/FadeDownRightPreset { // io.github.canimation.presets/FadeDownRightPreset|null[0]
+    final val spec // io.github.canimation.presets/FadeDownRightPreset.spec|{}spec[0]
+        final fun <get-spec>(): io.github.canimation.core/CanimationPresetSpec // io.github.canimation.presets/FadeDownRightPreset.spec.<get-spec>|<get-spec>(){}[0]
+}
+
+final object io.github.canimation.presets/FadeInBottomLeftPreset { // io.github.canimation.presets/FadeInBottomLeftPreset|null[0]
+    final val spec // io.github.canimation.presets/FadeInBottomLeftPreset.spec|{}spec[0]
+        final fun <get-spec>(): io.github.canimation.core/CanimationPresetSpec // io.github.canimation.presets/FadeInBottomLeftPreset.spec.<get-spec>|<get-spec>(){}[0]
+}
+
+final object io.github.canimation.presets/FadeInBottomRightPreset { // io.github.canimation.presets/FadeInBottomRightPreset|null[0]
+    final val spec // io.github.canimation.presets/FadeInBottomRightPreset.spec|{}spec[0]
+        final fun <get-spec>(): io.github.canimation.core/CanimationPresetSpec // io.github.canimation.presets/FadeInBottomRightPreset.spec.<get-spec>|<get-spec>(){}[0]
+}
+
+final object io.github.canimation.presets/FadeInDownBigPreset { // io.github.canimation.presets/FadeInDownBigPreset|null[0]
+    final val spec // io.github.canimation.presets/FadeInDownBigPreset.spec|{}spec[0]
+        final fun <get-spec>(): io.github.canimation.core/CanimationPresetSpec // io.github.canimation.presets/FadeInDownBigPreset.spec.<get-spec>|<get-spec>(){}[0]
+}
+
+final object io.github.canimation.presets/FadeInLeftBigPreset { // io.github.canimation.presets/FadeInLeftBigPreset|null[0]
+    final val spec // io.github.canimation.presets/FadeInLeftBigPreset.spec|{}spec[0]
+        final fun <get-spec>(): io.github.canimation.core/CanimationPresetSpec // io.github.canimation.presets/FadeInLeftBigPreset.spec.<get-spec>|<get-spec>(){}[0]
+}
+
+final object io.github.canimation.presets/FadeInLeftPreset { // io.github.canimation.presets/FadeInLeftPreset|null[0]
+    final val spec // io.github.canimation.presets/FadeInLeftPreset.spec|{}spec[0]
+        final fun <get-spec>(): io.github.canimation.core/CanimationPresetSpec // io.github.canimation.presets/FadeInLeftPreset.spec.<get-spec>|<get-spec>(){}[0]
+}
+
+final object io.github.canimation.presets/FadeInRightBigPreset { // io.github.canimation.presets/FadeInRightBigPreset|null[0]
+    final val spec // io.github.canimation.presets/FadeInRightBigPreset.spec|{}spec[0]
+        final fun <get-spec>(): io.github.canimation.core/CanimationPresetSpec // io.github.canimation.presets/FadeInRightBigPreset.spec.<get-spec>|<get-spec>(){}[0]
+}
+
+final object io.github.canimation.presets/FadeInRightPreset { // io.github.canimation.presets/FadeInRightPreset|null[0]
+    final val spec // io.github.canimation.presets/FadeInRightPreset.spec|{}spec[0]
+        final fun <get-spec>(): io.github.canimation.core/CanimationPresetSpec // io.github.canimation.presets/FadeInRightPreset.spec.<get-spec>|<get-spec>(){}[0]
+}
+
+final object io.github.canimation.presets/FadeInTopLeftPreset { // io.github.canimation.presets/FadeInTopLeftPreset|null[0]
+    final val spec // io.github.canimation.presets/FadeInTopLeftPreset.spec|{}spec[0]
+        final fun <get-spec>(): io.github.canimation.core/CanimationPresetSpec // io.github.canimation.presets/FadeInTopLeftPreset.spec.<get-spec>|<get-spec>(){}[0]
+}
+
+final object io.github.canimation.presets/FadeInTopRightPreset { // io.github.canimation.presets/FadeInTopRightPreset|null[0]
+    final val spec // io.github.canimation.presets/FadeInTopRightPreset.spec|{}spec[0]
+        final fun <get-spec>(): io.github.canimation.core/CanimationPresetSpec // io.github.canimation.presets/FadeInTopRightPreset.spec.<get-spec>|<get-spec>(){}[0]
+}
+
+final object io.github.canimation.presets/FadeInUpBigPreset { // io.github.canimation.presets/FadeInUpBigPreset|null[0]
+    final val spec // io.github.canimation.presets/FadeInUpBigPreset.spec|{}spec[0]
+        final fun <get-spec>(): io.github.canimation.core/CanimationPresetSpec // io.github.canimation.presets/FadeInUpBigPreset.spec.<get-spec>|<get-spec>(){}[0]
+}
+
+final object io.github.canimation.presets/FadePreset { // io.github.canimation.presets/FadePreset|null[0]
+    final val spec // io.github.canimation.presets/FadePreset.spec|{}spec[0]
+        final fun <get-spec>(): io.github.canimation.core/CanimationPresetSpec // io.github.canimation.presets/FadePreset.spec.<get-spec>|<get-spec>(){}[0]
+}
+
+final object io.github.canimation.presets/FadeSmallPreset { // io.github.canimation.presets/FadeSmallPreset|null[0]
+    final val spec // io.github.canimation.presets/FadeSmallPreset.spec|{}spec[0]
+        final fun <get-spec>(): io.github.canimation.core/CanimationPresetSpec // io.github.canimation.presets/FadeSmallPreset.spec.<get-spec>|<get-spec>(){}[0]
+}
+
+final object io.github.canimation.presets/FadeThroughPreset { // io.github.canimation.presets/FadeThroughPreset|null[0]
+    final val spec // io.github.canimation.presets/FadeThroughPreset.spec|{}spec[0]
+        final fun <get-spec>(): io.github.canimation.core/CanimationPresetSpec // io.github.canimation.presets/FadeThroughPreset.spec.<get-spec>|<get-spec>(){}[0]
+}
+
+final object io.github.canimation.presets/FadeUpLeftPreset { // io.github.canimation.presets/FadeUpLeftPreset|null[0]
+    final val spec // io.github.canimation.presets/FadeUpLeftPreset.spec|{}spec[0]
+        final fun <get-spec>(): io.github.canimation.core/CanimationPresetSpec // io.github.canimation.presets/FadeUpLeftPreset.spec.<get-spec>|<get-spec>(){}[0]
+}
+
+final object io.github.canimation.presets/FadeUpPreset { // io.github.canimation.presets/FadeUpPreset|null[0]
+    final val spec // io.github.canimation.presets/FadeUpPreset.spec|{}spec[0]
+        final fun <get-spec>(): io.github.canimation.core/CanimationPresetSpec // io.github.canimation.presets/FadeUpPreset.spec.<get-spec>|<get-spec>(){}[0]
+}
+
+final object io.github.canimation.presets/FlashPreset { // io.github.canimation.presets/FlashPreset|null[0]
+    final val spec // io.github.canimation.presets/FlashPreset.spec|{}spec[0]
+        final fun <get-spec>(): io.github.canimation.core/CanimationPresetSpec // io.github.canimation.presets/FlashPreset.spec.<get-spec>|<get-spec>(){}[0]
+}
+
+final object io.github.canimation.presets/FlipDownPreset { // io.github.canimation.presets/FlipDownPreset|null[0]
+    final val spec // io.github.canimation.presets/FlipDownPreset.spec|{}spec[0]
+        final fun <get-spec>(): io.github.canimation.core/CanimationPresetSpec // io.github.canimation.presets/FlipDownPreset.spec.<get-spec>|<get-spec>(){}[0]
+}
+
+final object io.github.canimation.presets/FlipInPreset { // io.github.canimation.presets/FlipInPreset|null[0]
+    final val spec // io.github.canimation.presets/FlipInPreset.spec|{}spec[0]
+        final fun <get-spec>(): io.github.canimation.core/CanimationPresetSpec // io.github.canimation.presets/FlipInPreset.spec.<get-spec>|<get-spec>(){}[0]
+}
+
+final object io.github.canimation.presets/FlipInYPreset { // io.github.canimation.presets/FlipInYPreset|null[0]
+    final val spec // io.github.canimation.presets/FlipInYPreset.spec|{}spec[0]
+        final fun <get-spec>(): io.github.canimation.core/CanimationPresetSpec // io.github.canimation.presets/FlipInYPreset.spec.<get-spec>|<get-spec>(){}[0]
+}
+
+final object io.github.canimation.presets/FlipUpPreset { // io.github.canimation.presets/FlipUpPreset|null[0]
+    final val spec // io.github.canimation.presets/FlipUpPreset.spec|{}spec[0]
+        final fun <get-spec>(): io.github.canimation.core/CanimationPresetSpec // io.github.canimation.presets/FlipUpPreset.spec.<get-spec>|<get-spec>(){}[0]
+}
+
+final object io.github.canimation.presets/GentleFadePreset { // io.github.canimation.presets/GentleFadePreset|null[0]
+    final val spec // io.github.canimation.presets/GentleFadePreset.spec|{}spec[0]
+        final fun <get-spec>(): io.github.canimation.core/CanimationPresetSpec // io.github.canimation.presets/GentleFadePreset.spec.<get-spec>|<get-spec>(){}[0]
+}
+
+final object io.github.canimation.presets/HeadShakePreset { // io.github.canimation.presets/HeadShakePreset|null[0]
+    final val spec // io.github.canimation.presets/HeadShakePreset.spec|{}spec[0]
+        final fun <get-spec>(): io.github.canimation.core/CanimationPresetSpec // io.github.canimation.presets/HeadShakePreset.spec.<get-spec>|<get-spec>(){}[0]
+}
+
+final object io.github.canimation.presets/HeartBeatPreset { // io.github.canimation.presets/HeartBeatPreset|null[0]
+    final val spec // io.github.canimation.presets/HeartBeatPreset.spec|{}spec[0]
+        final fun <get-spec>(): io.github.canimation.core/CanimationPresetSpec // io.github.canimation.presets/HeartBeatPreset.spec.<get-spec>|<get-spec>(){}[0]
+}
+
+final object io.github.canimation.presets/JackInTheBoxPreset { // io.github.canimation.presets/JackInTheBoxPreset|null[0]
+    final val spec // io.github.canimation.presets/JackInTheBoxPreset.spec|{}spec[0]
+        final fun <get-spec>(): io.github.canimation.core/CanimationPresetSpec // io.github.canimation.presets/JackInTheBoxPreset.spec.<get-spec>|<get-spec>(){}[0]
+}
+
+final object io.github.canimation.presets/JelloPreset { // io.github.canimation.presets/JelloPreset|null[0]
+    final val spec // io.github.canimation.presets/JelloPreset.spec|{}spec[0]
+        final fun <get-spec>(): io.github.canimation.core/CanimationPresetSpec // io.github.canimation.presets/JelloPreset.spec.<get-spec>|<get-spec>(){}[0]
+}
+
+final object io.github.canimation.presets/LightSpeedInLeftPreset { // io.github.canimation.presets/LightSpeedInLeftPreset|null[0]
+    final val spec // io.github.canimation.presets/LightSpeedInLeftPreset.spec|{}spec[0]
+        final fun <get-spec>(): io.github.canimation.core/CanimationPresetSpec // io.github.canimation.presets/LightSpeedInLeftPreset.spec.<get-spec>|<get-spec>(){}[0]
+}
+
+final object io.github.canimation.presets/LightSpeedInRightPreset { // io.github.canimation.presets/LightSpeedInRightPreset|null[0]
+    final val spec // io.github.canimation.presets/LightSpeedInRightPreset.spec|{}spec[0]
+        final fun <get-spec>(): io.github.canimation.core/CanimationPresetSpec // io.github.canimation.presets/LightSpeedInRightPreset.spec.<get-spec>|<get-spec>(){}[0]
+}
+
+final object io.github.canimation.presets/PopPreset { // io.github.canimation.presets/PopPreset|null[0]
+    final val spec // io.github.canimation.presets/PopPreset.spec|{}spec[0]
+        final fun <get-spec>(): io.github.canimation.core/CanimationPresetSpec // io.github.canimation.presets/PopPreset.spec.<get-spec>|<get-spec>(){}[0]
+}
+
+final object io.github.canimation.presets/PresetsExtensionRegistry { // io.github.canimation.presets/PresetsExtensionRegistry|null[0]
+    final val allPresetSpecs // io.github.canimation.presets/PresetsExtensionRegistry.allPresetSpecs|{}allPresetSpecs[0]
+        final fun <get-allPresetSpecs>(): kotlin.collections/Map<io.github.canimation.core/CanimationPreset, io.github.canimation.core/CanimationPresetSpec> // io.github.canimation.presets/PresetsExtensionRegistry.allPresetSpecs.<get-allPresetSpecs>|<get-allPresetSpecs>(){}[0]
+    final val allRecipeDescriptors // io.github.canimation.presets/PresetsExtensionRegistry.allRecipeDescriptors|{}allRecipeDescriptors[0]
+        final fun <get-allRecipeDescriptors>(): kotlin.collections/Map<io.github.canimation.core/CanimationPreset, io.github.canimation.core/CanimationRecipeDescriptor> // io.github.canimation.presets/PresetsExtensionRegistry.allRecipeDescriptors.<get-allRecipeDescriptors>|<get-allRecipeDescriptors>(){}[0]
+    final val recipeRegistry // io.github.canimation.presets/PresetsExtensionRegistry.recipeRegistry|{}recipeRegistry[0]
+        final fun <get-recipeRegistry>(): io.github.canimation.core/CanimationRecipeRegistry // io.github.canimation.presets/PresetsExtensionRegistry.recipeRegistry.<get-recipeRegistry>|<get-recipeRegistry>(){}[0]
+
+    final fun createExtendedRegistry(kotlin.collections/Map<io.github.canimation.core/CanimationPreset, io.github.canimation.core/CanimationPresetSpec> = ...): io.github.canimation.core/PresetRegistry // io.github.canimation.presets/PresetsExtensionRegistry.createExtendedRegistry|createExtendedRegistry(kotlin.collections.Map<io.github.canimation.core.CanimationPreset,io.github.canimation.core.CanimationPresetSpec>){}[0]
+    final fun descriptorFor(io.github.canimation.core/CanimationPreset): io.github.canimation.core/CanimationRecipeDescriptor // io.github.canimation.presets/PresetsExtensionRegistry.descriptorFor|descriptorFor(io.github.canimation.core.CanimationPreset){}[0]
+    final fun specFor(io.github.canimation.core/CanimationPreset): io.github.canimation.core/CanimationPresetSpec // io.github.canimation.presets/PresetsExtensionRegistry.specFor|specFor(io.github.canimation.core.CanimationPreset){}[0]
+}
+
+final object io.github.canimation.presets/PulsePreset { // io.github.canimation.presets/PulsePreset|null[0]
+    final val spec // io.github.canimation.presets/PulsePreset.spec|{}spec[0]
+        final fun <get-spec>(): io.github.canimation.core/CanimationPresetSpec // io.github.canimation.presets/PulsePreset.spec.<get-spec>|<get-spec>(){}[0]
+}
+
+final object io.github.canimation.presets/RollInPreset { // io.github.canimation.presets/RollInPreset|null[0]
+    final val spec // io.github.canimation.presets/RollInPreset.spec|{}spec[0]
+        final fun <get-spec>(): io.github.canimation.core/CanimationPresetSpec // io.github.canimation.presets/RollInPreset.spec.<get-spec>|<get-spec>(){}[0]
+}
+
+final object io.github.canimation.presets/RotateClockwisePreset { // io.github.canimation.presets/RotateClockwisePreset|null[0]
+    final val spec // io.github.canimation.presets/RotateClockwisePreset.spec|{}spec[0]
+        final fun <get-spec>(): io.github.canimation.core/CanimationPresetSpec // io.github.canimation.presets/RotateClockwisePreset.spec.<get-spec>|<get-spec>(){}[0]
+}
+
+final object io.github.canimation.presets/RotateInDownLeftPreset { // io.github.canimation.presets/RotateInDownLeftPreset|null[0]
+    final val spec // io.github.canimation.presets/RotateInDownLeftPreset.spec|{}spec[0]
+        final fun <get-spec>(): io.github.canimation.core/CanimationPresetSpec // io.github.canimation.presets/RotateInDownLeftPreset.spec.<get-spec>|<get-spec>(){}[0]
+}
+
+final object io.github.canimation.presets/RotateInDownRightPreset { // io.github.canimation.presets/RotateInDownRightPreset|null[0]
+    final val spec // io.github.canimation.presets/RotateInDownRightPreset.spec|{}spec[0]
+        final fun <get-spec>(): io.github.canimation.core/CanimationPresetSpec // io.github.canimation.presets/RotateInDownRightPreset.spec.<get-spec>|<get-spec>(){}[0]
+}
+
+final object io.github.canimation.presets/RotateInPreset { // io.github.canimation.presets/RotateInPreset|null[0]
+    final val spec // io.github.canimation.presets/RotateInPreset.spec|{}spec[0]
+        final fun <get-spec>(): io.github.canimation.core/CanimationPresetSpec // io.github.canimation.presets/RotateInPreset.spec.<get-spec>|<get-spec>(){}[0]
+}
+
+final object io.github.canimation.presets/RotateInUpLeftPreset { // io.github.canimation.presets/RotateInUpLeftPreset|null[0]
+    final val spec // io.github.canimation.presets/RotateInUpLeftPreset.spec|{}spec[0]
+        final fun <get-spec>(): io.github.canimation.core/CanimationPresetSpec // io.github.canimation.presets/RotateInUpLeftPreset.spec.<get-spec>|<get-spec>(){}[0]
+}
+
+final object io.github.canimation.presets/RotateInUpRightPreset { // io.github.canimation.presets/RotateInUpRightPreset|null[0]
+    final val spec // io.github.canimation.presets/RotateInUpRightPreset.spec|{}spec[0]
+        final fun <get-spec>(): io.github.canimation.core/CanimationPresetSpec // io.github.canimation.presets/RotateInUpRightPreset.spec.<get-spec>|<get-spec>(){}[0]
+}
+
+final object io.github.canimation.presets/RotateScalePreset { // io.github.canimation.presets/RotateScalePreset|null[0]
+    final val spec // io.github.canimation.presets/RotateScalePreset.spec|{}spec[0]
+        final fun <get-spec>(): io.github.canimation.core/CanimationPresetSpec // io.github.canimation.presets/RotateScalePreset.spec.<get-spec>|<get-spec>(){}[0]
+}
+
+final object io.github.canimation.presets/RubberBandPreset { // io.github.canimation.presets/RubberBandPreset|null[0]
+    final val spec // io.github.canimation.presets/RubberBandPreset.spec|{}spec[0]
+        final fun <get-spec>(): io.github.canimation.core/CanimationPresetSpec // io.github.canimation.presets/RubberBandPreset.spec.<get-spec>|<get-spec>(){}[0]
+}
+
+final object io.github.canimation.presets/ScaleInPreset { // io.github.canimation.presets/ScaleInPreset|null[0]
+    final val spec // io.github.canimation.presets/ScaleInPreset.spec|{}spec[0]
+        final fun <get-spec>(): io.github.canimation.core/CanimationPresetSpec // io.github.canimation.presets/ScaleInPreset.spec.<get-spec>|<get-spec>(){}[0]
+}
+
+final object io.github.canimation.presets/ScaleUpPreset { // io.github.canimation.presets/ScaleUpPreset|null[0]
+    final val spec // io.github.canimation.presets/ScaleUpPreset.spec|{}spec[0]
+        final fun <get-spec>(): io.github.canimation.core/CanimationPresetSpec // io.github.canimation.presets/ScaleUpPreset.spec.<get-spec>|<get-spec>(){}[0]
+}
+
+final object io.github.canimation.presets/ShakeXPreset { // io.github.canimation.presets/ShakeXPreset|null[0]
+    final val spec // io.github.canimation.presets/ShakeXPreset.spec|{}spec[0]
+        final fun <get-spec>(): io.github.canimation.core/CanimationPresetSpec // io.github.canimation.presets/ShakeXPreset.spec.<get-spec>|<get-spec>(){}[0]
+}
+
+final object io.github.canimation.presets/ShakeYPreset { // io.github.canimation.presets/ShakeYPreset|null[0]
+    final val spec // io.github.canimation.presets/ShakeYPreset.spec|{}spec[0]
+        final fun <get-spec>(): io.github.canimation.core/CanimationPresetSpec // io.github.canimation.presets/ShakeYPreset.spec.<get-spec>|<get-spec>(){}[0]
+}
+
+final object io.github.canimation.presets/SharedAxisXPreset { // io.github.canimation.presets/SharedAxisXPreset|null[0]
+    final val spec // io.github.canimation.presets/SharedAxisXPreset.spec|{}spec[0]
+        final fun <get-spec>(): io.github.canimation.core/CanimationPresetSpec // io.github.canimation.presets/SharedAxisXPreset.spec.<get-spec>|<get-spec>(){}[0]
+}
+
+final object io.github.canimation.presets/SharedAxisYPreset { // io.github.canimation.presets/SharedAxisYPreset|null[0]
+    final val spec // io.github.canimation.presets/SharedAxisYPreset.spec|{}spec[0]
+        final fun <get-spec>(): io.github.canimation.core/CanimationPresetSpec // io.github.canimation.presets/SharedAxisYPreset.spec.<get-spec>|<get-spec>(){}[0]
+}
+
+final object io.github.canimation.presets/ShrinkInPreset { // io.github.canimation.presets/ShrinkInPreset|null[0]
+    final val spec // io.github.canimation.presets/ShrinkInPreset.spec|{}spec[0]
+        final fun <get-spec>(): io.github.canimation.core/CanimationPresetSpec // io.github.canimation.presets/ShrinkInPreset.spec.<get-spec>|<get-spec>(){}[0]
+}
+
+final object io.github.canimation.presets/SlideDownPreset { // io.github.canimation.presets/SlideDownPreset|null[0]
+    final val spec // io.github.canimation.presets/SlideDownPreset.spec|{}spec[0]
+        final fun <get-spec>(): io.github.canimation.core/CanimationPresetSpec // io.github.canimation.presets/SlideDownPreset.spec.<get-spec>|<get-spec>(){}[0]
+}
+
+final object io.github.canimation.presets/SlideLeftPreset { // io.github.canimation.presets/SlideLeftPreset|null[0]
+    final val spec // io.github.canimation.presets/SlideLeftPreset.spec|{}spec[0]
+        final fun <get-spec>(): io.github.canimation.core/CanimationPresetSpec // io.github.canimation.presets/SlideLeftPreset.spec.<get-spec>|<get-spec>(){}[0]
+}
+
+final object io.github.canimation.presets/SlideRightPreset { // io.github.canimation.presets/SlideRightPreset|null[0]
+    final val spec // io.github.canimation.presets/SlideRightPreset.spec|{}spec[0]
+        final fun <get-spec>(): io.github.canimation.core/CanimationPresetSpec // io.github.canimation.presets/SlideRightPreset.spec.<get-spec>|<get-spec>(){}[0]
+}
+
+final object io.github.canimation.presets/SlideUpPreset { // io.github.canimation.presets/SlideUpPreset|null[0]
+    final val spec // io.github.canimation.presets/SlideUpPreset.spec|{}spec[0]
+        final fun <get-spec>(): io.github.canimation.core/CanimationPresetSpec // io.github.canimation.presets/SlideUpPreset.spec.<get-spec>|<get-spec>(){}[0]
+}
+
+final object io.github.canimation.presets/SnapPreset { // io.github.canimation.presets/SnapPreset|null[0]
+    final val spec // io.github.canimation.presets/SnapPreset.spec|{}spec[0]
+        final fun <get-spec>(): io.github.canimation.core/CanimationPresetSpec // io.github.canimation.presets/SnapPreset.spec.<get-spec>|<get-spec>(){}[0]
+}
+
+final object io.github.canimation.presets/SpinInPreset { // io.github.canimation.presets/SpinInPreset|null[0]
+    final val spec // io.github.canimation.presets/SpinInPreset.spec|{}spec[0]
+        final fun <get-spec>(): io.github.canimation.core/CanimationPresetSpec // io.github.canimation.presets/SpinInPreset.spec.<get-spec>|<get-spec>(){}[0]
+}
+
+final object io.github.canimation.presets/SpringFadeInPreset { // io.github.canimation.presets/SpringFadeInPreset|null[0]
+    final val spec // io.github.canimation.presets/SpringFadeInPreset.spec|{}spec[0]
+        final fun <get-spec>(): io.github.canimation.core/CanimationPresetSpec // io.github.canimation.presets/SpringFadeInPreset.spec.<get-spec>|<get-spec>(){}[0]
+}
+
+final object io.github.canimation.presets/SpringInPreset { // io.github.canimation.presets/SpringInPreset|null[0]
+    final val spec // io.github.canimation.presets/SpringInPreset.spec|{}spec[0]
+        final fun <get-spec>(): io.github.canimation.core/CanimationPresetSpec // io.github.canimation.presets/SpringInPreset.spec.<get-spec>|<get-spec>(){}[0]
+}
+
+final object io.github.canimation.presets/SpringSlideUpPreset { // io.github.canimation.presets/SpringSlideUpPreset|null[0]
+    final val spec // io.github.canimation.presets/SpringSlideUpPreset.spec|{}spec[0]
+        final fun <get-spec>(): io.github.canimation.core/CanimationPresetSpec // io.github.canimation.presets/SpringSlideUpPreset.spec.<get-spec>|<get-spec>(){}[0]
+}
+
+final object io.github.canimation.presets/SwingInPreset { // io.github.canimation.presets/SwingInPreset|null[0]
+    final val spec // io.github.canimation.presets/SwingInPreset.spec|{}spec[0]
+        final fun <get-spec>(): io.github.canimation.core/CanimationPresetSpec // io.github.canimation.presets/SwingInPreset.spec.<get-spec>|<get-spec>(){}[0]
+}
+
+final object io.github.canimation.presets/SwingPreset { // io.github.canimation.presets/SwingPreset|null[0]
+    final val spec // io.github.canimation.presets/SwingPreset.spec|{}spec[0]
+        final fun <get-spec>(): io.github.canimation.core/CanimationPresetSpec // io.github.canimation.presets/SwingPreset.spec.<get-spec>|<get-spec>(){}[0]
+}
+
+final object io.github.canimation.presets/TadaPreset { // io.github.canimation.presets/TadaPreset|null[0]
+    final val spec // io.github.canimation.presets/TadaPreset.spec|{}spec[0]
+        final fun <get-spec>(): io.github.canimation.core/CanimationPresetSpec // io.github.canimation.presets/TadaPreset.spec.<get-spec>|<get-spec>(){}[0]
+}
+
+final object io.github.canimation.presets/TiltInPreset { // io.github.canimation.presets/TiltInPreset|null[0]
+    final val spec // io.github.canimation.presets/TiltInPreset.spec|{}spec[0]
+        final fun <get-spec>(): io.github.canimation.core/CanimationPresetSpec // io.github.canimation.presets/TiltInPreset.spec.<get-spec>|<get-spec>(){}[0]
+}
+
+final object io.github.canimation.presets/UpBigPreset { // io.github.canimation.presets/UpBigPreset|null[0]
+    final val spec // io.github.canimation.presets/UpBigPreset.spec|{}spec[0]
+        final fun <get-spec>(): io.github.canimation.core/CanimationPresetSpec // io.github.canimation.presets/UpBigPreset.spec.<get-spec>|<get-spec>(){}[0]
+}
+
+final object io.github.canimation.presets/WobblePreset { // io.github.canimation.presets/WobblePreset|null[0]
+    final val spec // io.github.canimation.presets/WobblePreset.spec|{}spec[0]
+        final fun <get-spec>(): io.github.canimation.core/CanimationPresetSpec // io.github.canimation.presets/WobblePreset.spec.<get-spec>|<get-spec>(){}[0]
+}
+
+final object io.github.canimation.presets/ZoomInDownPreset { // io.github.canimation.presets/ZoomInDownPreset|null[0]
+    final val spec // io.github.canimation.presets/ZoomInDownPreset.spec|{}spec[0]
+        final fun <get-spec>(): io.github.canimation.core/CanimationPresetSpec // io.github.canimation.presets/ZoomInDownPreset.spec.<get-spec>|<get-spec>(){}[0]
+}
+
+final object io.github.canimation.presets/ZoomInLeftPreset { // io.github.canimation.presets/ZoomInLeftPreset|null[0]
+    final val spec // io.github.canimation.presets/ZoomInLeftPreset.spec|{}spec[0]
+        final fun <get-spec>(): io.github.canimation.core/CanimationPresetSpec // io.github.canimation.presets/ZoomInLeftPreset.spec.<get-spec>|<get-spec>(){}[0]
+}
+
+final object io.github.canimation.presets/ZoomInPreset { // io.github.canimation.presets/ZoomInPreset|null[0]
+    final val spec // io.github.canimation.presets/ZoomInPreset.spec|{}spec[0]
+        final fun <get-spec>(): io.github.canimation.core/CanimationPresetSpec // io.github.canimation.presets/ZoomInPreset.spec.<get-spec>|<get-spec>(){}[0]
+}
+
+final object io.github.canimation.presets/ZoomInRightPreset { // io.github.canimation.presets/ZoomInRightPreset|null[0]
+    final val spec // io.github.canimation.presets/ZoomInRightPreset.spec|{}spec[0]
+        final fun <get-spec>(): io.github.canimation.core/CanimationPresetSpec // io.github.canimation.presets/ZoomInRightPreset.spec.<get-spec>|<get-spec>(){}[0]
+}
+
+final object io.github.canimation.presets/ZoomInUpPreset { // io.github.canimation.presets/ZoomInUpPreset|null[0]
+    final val spec // io.github.canimation.presets/ZoomInUpPreset.spec|{}spec[0]
+        final fun <get-spec>(): io.github.canimation.core/CanimationPresetSpec // io.github.canimation.presets/ZoomInUpPreset.spec.<get-spec>|<get-spec>(){}[0]
+}
+
+final object io.github.canimation.presets/ZoomOutPreset { // io.github.canimation.presets/ZoomOutPreset|null[0]
+    final val spec // io.github.canimation.presets/ZoomOutPreset.spec|{}spec[0]
+        final fun <get-spec>(): io.github.canimation.core/CanimationPresetSpec // io.github.canimation.presets/ZoomOutPreset.spec.<get-spec>|<get-spec>(){}[0]
+}
+
+final val io.github.canimation.presets/io_github_canimation_presets_BackInDownPreset$stableprop // io.github.canimation.presets/io_github_canimation_presets_BackInDownPreset$stableprop|#static{}io_github_canimation_presets_BackInDownPreset$stableprop[0]
+final val io.github.canimation.presets/io_github_canimation_presets_BackInLeftPreset$stableprop // io.github.canimation.presets/io_github_canimation_presets_BackInLeftPreset$stableprop|#static{}io_github_canimation_presets_BackInLeftPreset$stableprop[0]
+final val io.github.canimation.presets/io_github_canimation_presets_BackInRightPreset$stableprop // io.github.canimation.presets/io_github_canimation_presets_BackInRightPreset$stableprop|#static{}io_github_canimation_presets_BackInRightPreset$stableprop[0]
+final val io.github.canimation.presets/io_github_canimation_presets_BackInUpPreset$stableprop // io.github.canimation.presets/io_github_canimation_presets_BackInUpPreset$stableprop|#static{}io_github_canimation_presets_BackInUpPreset$stableprop[0]
+final val io.github.canimation.presets/io_github_canimation_presets_BounceInDownPreset$stableprop // io.github.canimation.presets/io_github_canimation_presets_BounceInDownPreset$stableprop|#static{}io_github_canimation_presets_BounceInDownPreset$stableprop[0]
+final val io.github.canimation.presets/io_github_canimation_presets_BounceInLeftPreset$stableprop // io.github.canimation.presets/io_github_canimation_presets_BounceInLeftPreset$stableprop|#static{}io_github_canimation_presets_BounceInLeftPreset$stableprop[0]
+final val io.github.canimation.presets/io_github_canimation_presets_BounceInPreset$stableprop // io.github.canimation.presets/io_github_canimation_presets_BounceInPreset$stableprop|#static{}io_github_canimation_presets_BounceInPreset$stableprop[0]
+final val io.github.canimation.presets/io_github_canimation_presets_BounceInRightPreset$stableprop // io.github.canimation.presets/io_github_canimation_presets_BounceInRightPreset$stableprop|#static{}io_github_canimation_presets_BounceInRightPreset$stableprop[0]
+final val io.github.canimation.presets/io_github_canimation_presets_BounceInUpPreset$stableprop // io.github.canimation.presets/io_github_canimation_presets_BounceInUpPreset$stableprop|#static{}io_github_canimation_presets_BounceInUpPreset$stableprop[0]
+final val io.github.canimation.presets/io_github_canimation_presets_BouncePreset$stableprop // io.github.canimation.presets/io_github_canimation_presets_BouncePreset$stableprop|#static{}io_github_canimation_presets_BouncePreset$stableprop[0]
+final val io.github.canimation.presets/io_github_canimation_presets_DropInPreset$stableprop // io.github.canimation.presets/io_github_canimation_presets_DropInPreset$stableprop|#static{}io_github_canimation_presets_DropInPreset$stableprop[0]
+final val io.github.canimation.presets/io_github_canimation_presets_ElevateInPreset$stableprop // io.github.canimation.presets/io_github_canimation_presets_ElevateInPreset$stableprop|#static{}io_github_canimation_presets_ElevateInPreset$stableprop[0]
+final val io.github.canimation.presets/io_github_canimation_presets_EmphasizedEntryPreset$stableprop // io.github.canimation.presets/io_github_canimation_presets_EmphasizedEntryPreset$stableprop|#static{}io_github_canimation_presets_EmphasizedEntryPreset$stableprop[0]
+final val io.github.canimation.presets/io_github_canimation_presets_ExpandPreset$stableprop // io.github.canimation.presets/io_github_canimation_presets_ExpandPreset$stableprop|#static{}io_github_canimation_presets_ExpandPreset$stableprop[0]
+final val io.github.canimation.presets/io_github_canimation_presets_FadeBigPreset$stableprop // io.github.canimation.presets/io_github_canimation_presets_FadeBigPreset$stableprop|#static{}io_github_canimation_presets_FadeBigPreset$stableprop[0]
+final val io.github.canimation.presets/io_github_canimation_presets_FadeDownPreset$stableprop // io.github.canimation.presets/io_github_canimation_presets_FadeDownPreset$stableprop|#static{}io_github_canimation_presets_FadeDownPreset$stableprop[0]
+final val io.github.canimation.presets/io_github_canimation_presets_FadeDownRightPreset$stableprop // io.github.canimation.presets/io_github_canimation_presets_FadeDownRightPreset$stableprop|#static{}io_github_canimation_presets_FadeDownRightPreset$stableprop[0]
+final val io.github.canimation.presets/io_github_canimation_presets_FadeInBottomLeftPreset$stableprop // io.github.canimation.presets/io_github_canimation_presets_FadeInBottomLeftPreset$stableprop|#static{}io_github_canimation_presets_FadeInBottomLeftPreset$stableprop[0]
+final val io.github.canimation.presets/io_github_canimation_presets_FadeInBottomRightPreset$stableprop // io.github.canimation.presets/io_github_canimation_presets_FadeInBottomRightPreset$stableprop|#static{}io_github_canimation_presets_FadeInBottomRightPreset$stableprop[0]
+final val io.github.canimation.presets/io_github_canimation_presets_FadeInDownBigPreset$stableprop // io.github.canimation.presets/io_github_canimation_presets_FadeInDownBigPreset$stableprop|#static{}io_github_canimation_presets_FadeInDownBigPreset$stableprop[0]
+final val io.github.canimation.presets/io_github_canimation_presets_FadeInLeftBigPreset$stableprop // io.github.canimation.presets/io_github_canimation_presets_FadeInLeftBigPreset$stableprop|#static{}io_github_canimation_presets_FadeInLeftBigPreset$stableprop[0]
+final val io.github.canimation.presets/io_github_canimation_presets_FadeInLeftPreset$stableprop // io.github.canimation.presets/io_github_canimation_presets_FadeInLeftPreset$stableprop|#static{}io_github_canimation_presets_FadeInLeftPreset$stableprop[0]
+final val io.github.canimation.presets/io_github_canimation_presets_FadeInRightBigPreset$stableprop // io.github.canimation.presets/io_github_canimation_presets_FadeInRightBigPreset$stableprop|#static{}io_github_canimation_presets_FadeInRightBigPreset$stableprop[0]
+final val io.github.canimation.presets/io_github_canimation_presets_FadeInRightPreset$stableprop // io.github.canimation.presets/io_github_canimation_presets_FadeInRightPreset$stableprop|#static{}io_github_canimation_presets_FadeInRightPreset$stableprop[0]
+final val io.github.canimation.presets/io_github_canimation_presets_FadeInTopLeftPreset$stableprop // io.github.canimation.presets/io_github_canimation_presets_FadeInTopLeftPreset$stableprop|#static{}io_github_canimation_presets_FadeInTopLeftPreset$stableprop[0]
+final val io.github.canimation.presets/io_github_canimation_presets_FadeInTopRightPreset$stableprop // io.github.canimation.presets/io_github_canimation_presets_FadeInTopRightPreset$stableprop|#static{}io_github_canimation_presets_FadeInTopRightPreset$stableprop[0]
+final val io.github.canimation.presets/io_github_canimation_presets_FadeInUpBigPreset$stableprop // io.github.canimation.presets/io_github_canimation_presets_FadeInUpBigPreset$stableprop|#static{}io_github_canimation_presets_FadeInUpBigPreset$stableprop[0]
+final val io.github.canimation.presets/io_github_canimation_presets_FadePreset$stableprop // io.github.canimation.presets/io_github_canimation_presets_FadePreset$stableprop|#static{}io_github_canimation_presets_FadePreset$stableprop[0]
+final val io.github.canimation.presets/io_github_canimation_presets_FadeSmallPreset$stableprop // io.github.canimation.presets/io_github_canimation_presets_FadeSmallPreset$stableprop|#static{}io_github_canimation_presets_FadeSmallPreset$stableprop[0]
+final val io.github.canimation.presets/io_github_canimation_presets_FadeThroughPreset$stableprop // io.github.canimation.presets/io_github_canimation_presets_FadeThroughPreset$stableprop|#static{}io_github_canimation_presets_FadeThroughPreset$stableprop[0]
+final val io.github.canimation.presets/io_github_canimation_presets_FadeUpLeftPreset$stableprop // io.github.canimation.presets/io_github_canimation_presets_FadeUpLeftPreset$stableprop|#static{}io_github_canimation_presets_FadeUpLeftPreset$stableprop[0]
+final val io.github.canimation.presets/io_github_canimation_presets_FadeUpPreset$stableprop // io.github.canimation.presets/io_github_canimation_presets_FadeUpPreset$stableprop|#static{}io_github_canimation_presets_FadeUpPreset$stableprop[0]
+final val io.github.canimation.presets/io_github_canimation_presets_FlashPreset$stableprop // io.github.canimation.presets/io_github_canimation_presets_FlashPreset$stableprop|#static{}io_github_canimation_presets_FlashPreset$stableprop[0]
+final val io.github.canimation.presets/io_github_canimation_presets_FlipDownPreset$stableprop // io.github.canimation.presets/io_github_canimation_presets_FlipDownPreset$stableprop|#static{}io_github_canimation_presets_FlipDownPreset$stableprop[0]
+final val io.github.canimation.presets/io_github_canimation_presets_FlipInPreset$stableprop // io.github.canimation.presets/io_github_canimation_presets_FlipInPreset$stableprop|#static{}io_github_canimation_presets_FlipInPreset$stableprop[0]
+final val io.github.canimation.presets/io_github_canimation_presets_FlipInYPreset$stableprop // io.github.canimation.presets/io_github_canimation_presets_FlipInYPreset$stableprop|#static{}io_github_canimation_presets_FlipInYPreset$stableprop[0]
+final val io.github.canimation.presets/io_github_canimation_presets_FlipUpPreset$stableprop // io.github.canimation.presets/io_github_canimation_presets_FlipUpPreset$stableprop|#static{}io_github_canimation_presets_FlipUpPreset$stableprop[0]
+final val io.github.canimation.presets/io_github_canimation_presets_GentleFadePreset$stableprop // io.github.canimation.presets/io_github_canimation_presets_GentleFadePreset$stableprop|#static{}io_github_canimation_presets_GentleFadePreset$stableprop[0]
+final val io.github.canimation.presets/io_github_canimation_presets_HeadShakePreset$stableprop // io.github.canimation.presets/io_github_canimation_presets_HeadShakePreset$stableprop|#static{}io_github_canimation_presets_HeadShakePreset$stableprop[0]
+final val io.github.canimation.presets/io_github_canimation_presets_HeartBeatPreset$stableprop // io.github.canimation.presets/io_github_canimation_presets_HeartBeatPreset$stableprop|#static{}io_github_canimation_presets_HeartBeatPreset$stableprop[0]
+final val io.github.canimation.presets/io_github_canimation_presets_JackInTheBoxPreset$stableprop // io.github.canimation.presets/io_github_canimation_presets_JackInTheBoxPreset$stableprop|#static{}io_github_canimation_presets_JackInTheBoxPreset$stableprop[0]
+final val io.github.canimation.presets/io_github_canimation_presets_JelloPreset$stableprop // io.github.canimation.presets/io_github_canimation_presets_JelloPreset$stableprop|#static{}io_github_canimation_presets_JelloPreset$stableprop[0]
+final val io.github.canimation.presets/io_github_canimation_presets_LightSpeedInLeftPreset$stableprop // io.github.canimation.presets/io_github_canimation_presets_LightSpeedInLeftPreset$stableprop|#static{}io_github_canimation_presets_LightSpeedInLeftPreset$stableprop[0]
+final val io.github.canimation.presets/io_github_canimation_presets_LightSpeedInRightPreset$stableprop // io.github.canimation.presets/io_github_canimation_presets_LightSpeedInRightPreset$stableprop|#static{}io_github_canimation_presets_LightSpeedInRightPreset$stableprop[0]
+final val io.github.canimation.presets/io_github_canimation_presets_PopPreset$stableprop // io.github.canimation.presets/io_github_canimation_presets_PopPreset$stableprop|#static{}io_github_canimation_presets_PopPreset$stableprop[0]
+final val io.github.canimation.presets/io_github_canimation_presets_PresetsExtensionRegistry$stableprop // io.github.canimation.presets/io_github_canimation_presets_PresetsExtensionRegistry$stableprop|#static{}io_github_canimation_presets_PresetsExtensionRegistry$stableprop[0]
+final val io.github.canimation.presets/io_github_canimation_presets_PulsePreset$stableprop // io.github.canimation.presets/io_github_canimation_presets_PulsePreset$stableprop|#static{}io_github_canimation_presets_PulsePreset$stableprop[0]
+final val io.github.canimation.presets/io_github_canimation_presets_RollInPreset$stableprop // io.github.canimation.presets/io_github_canimation_presets_RollInPreset$stableprop|#static{}io_github_canimation_presets_RollInPreset$stableprop[0]
+final val io.github.canimation.presets/io_github_canimation_presets_RotateClockwisePreset$stableprop // io.github.canimation.presets/io_github_canimation_presets_RotateClockwisePreset$stableprop|#static{}io_github_canimation_presets_RotateClockwisePreset$stableprop[0]
+final val io.github.canimation.presets/io_github_canimation_presets_RotateInDownLeftPreset$stableprop // io.github.canimation.presets/io_github_canimation_presets_RotateInDownLeftPreset$stableprop|#static{}io_github_canimation_presets_RotateInDownLeftPreset$stableprop[0]
+final val io.github.canimation.presets/io_github_canimation_presets_RotateInDownRightPreset$stableprop // io.github.canimation.presets/io_github_canimation_presets_RotateInDownRightPreset$stableprop|#static{}io_github_canimation_presets_RotateInDownRightPreset$stableprop[0]
+final val io.github.canimation.presets/io_github_canimation_presets_RotateInPreset$stableprop // io.github.canimation.presets/io_github_canimation_presets_RotateInPreset$stableprop|#static{}io_github_canimation_presets_RotateInPreset$stableprop[0]
+final val io.github.canimation.presets/io_github_canimation_presets_RotateInUpLeftPreset$stableprop // io.github.canimation.presets/io_github_canimation_presets_RotateInUpLeftPreset$stableprop|#static{}io_github_canimation_presets_RotateInUpLeftPreset$stableprop[0]
+final val io.github.canimation.presets/io_github_canimation_presets_RotateInUpRightPreset$stableprop // io.github.canimation.presets/io_github_canimation_presets_RotateInUpRightPreset$stableprop|#static{}io_github_canimation_presets_RotateInUpRightPreset$stableprop[0]
+final val io.github.canimation.presets/io_github_canimation_presets_RotateScalePreset$stableprop // io.github.canimation.presets/io_github_canimation_presets_RotateScalePreset$stableprop|#static{}io_github_canimation_presets_RotateScalePreset$stableprop[0]
+final val io.github.canimation.presets/io_github_canimation_presets_RubberBandPreset$stableprop // io.github.canimation.presets/io_github_canimation_presets_RubberBandPreset$stableprop|#static{}io_github_canimation_presets_RubberBandPreset$stableprop[0]
+final val io.github.canimation.presets/io_github_canimation_presets_ScaleInPreset$stableprop // io.github.canimation.presets/io_github_canimation_presets_ScaleInPreset$stableprop|#static{}io_github_canimation_presets_ScaleInPreset$stableprop[0]
+final val io.github.canimation.presets/io_github_canimation_presets_ScaleUpPreset$stableprop // io.github.canimation.presets/io_github_canimation_presets_ScaleUpPreset$stableprop|#static{}io_github_canimation_presets_ScaleUpPreset$stableprop[0]
+final val io.github.canimation.presets/io_github_canimation_presets_ShakeXPreset$stableprop // io.github.canimation.presets/io_github_canimation_presets_ShakeXPreset$stableprop|#static{}io_github_canimation_presets_ShakeXPreset$stableprop[0]
+final val io.github.canimation.presets/io_github_canimation_presets_ShakeYPreset$stableprop // io.github.canimation.presets/io_github_canimation_presets_ShakeYPreset$stableprop|#static{}io_github_canimation_presets_ShakeYPreset$stableprop[0]
+final val io.github.canimation.presets/io_github_canimation_presets_SharedAxisXPreset$stableprop // io.github.canimation.presets/io_github_canimation_presets_SharedAxisXPreset$stableprop|#static{}io_github_canimation_presets_SharedAxisXPreset$stableprop[0]
+final val io.github.canimation.presets/io_github_canimation_presets_SharedAxisYPreset$stableprop // io.github.canimation.presets/io_github_canimation_presets_SharedAxisYPreset$stableprop|#static{}io_github_canimation_presets_SharedAxisYPreset$stableprop[0]
+final val io.github.canimation.presets/io_github_canimation_presets_ShrinkInPreset$stableprop // io.github.canimation.presets/io_github_canimation_presets_ShrinkInPreset$stableprop|#static{}io_github_canimation_presets_ShrinkInPreset$stableprop[0]
+final val io.github.canimation.presets/io_github_canimation_presets_SlideDownPreset$stableprop // io.github.canimation.presets/io_github_canimation_presets_SlideDownPreset$stableprop|#static{}io_github_canimation_presets_SlideDownPreset$stableprop[0]
+final val io.github.canimation.presets/io_github_canimation_presets_SlideLeftPreset$stableprop // io.github.canimation.presets/io_github_canimation_presets_SlideLeftPreset$stableprop|#static{}io_github_canimation_presets_SlideLeftPreset$stableprop[0]
+final val io.github.canimation.presets/io_github_canimation_presets_SlideRightPreset$stableprop // io.github.canimation.presets/io_github_canimation_presets_SlideRightPreset$stableprop|#static{}io_github_canimation_presets_SlideRightPreset$stableprop[0]
+final val io.github.canimation.presets/io_github_canimation_presets_SlideUpPreset$stableprop // io.github.canimation.presets/io_github_canimation_presets_SlideUpPreset$stableprop|#static{}io_github_canimation_presets_SlideUpPreset$stableprop[0]
+final val io.github.canimation.presets/io_github_canimation_presets_SnapPreset$stableprop // io.github.canimation.presets/io_github_canimation_presets_SnapPreset$stableprop|#static{}io_github_canimation_presets_SnapPreset$stableprop[0]
+final val io.github.canimation.presets/io_github_canimation_presets_SpinInPreset$stableprop // io.github.canimation.presets/io_github_canimation_presets_SpinInPreset$stableprop|#static{}io_github_canimation_presets_SpinInPreset$stableprop[0]
+final val io.github.canimation.presets/io_github_canimation_presets_SpringFadeInPreset$stableprop // io.github.canimation.presets/io_github_canimation_presets_SpringFadeInPreset$stableprop|#static{}io_github_canimation_presets_SpringFadeInPreset$stableprop[0]
+final val io.github.canimation.presets/io_github_canimation_presets_SpringInPreset$stableprop // io.github.canimation.presets/io_github_canimation_presets_SpringInPreset$stableprop|#static{}io_github_canimation_presets_SpringInPreset$stableprop[0]
+final val io.github.canimation.presets/io_github_canimation_presets_SpringSlideUpPreset$stableprop // io.github.canimation.presets/io_github_canimation_presets_SpringSlideUpPreset$stableprop|#static{}io_github_canimation_presets_SpringSlideUpPreset$stableprop[0]
+final val io.github.canimation.presets/io_github_canimation_presets_SwingInPreset$stableprop // io.github.canimation.presets/io_github_canimation_presets_SwingInPreset$stableprop|#static{}io_github_canimation_presets_SwingInPreset$stableprop[0]
+final val io.github.canimation.presets/io_github_canimation_presets_SwingPreset$stableprop // io.github.canimation.presets/io_github_canimation_presets_SwingPreset$stableprop|#static{}io_github_canimation_presets_SwingPreset$stableprop[0]
+final val io.github.canimation.presets/io_github_canimation_presets_TadaPreset$stableprop // io.github.canimation.presets/io_github_canimation_presets_TadaPreset$stableprop|#static{}io_github_canimation_presets_TadaPreset$stableprop[0]
+final val io.github.canimation.presets/io_github_canimation_presets_TiltInPreset$stableprop // io.github.canimation.presets/io_github_canimation_presets_TiltInPreset$stableprop|#static{}io_github_canimation_presets_TiltInPreset$stableprop[0]
+final val io.github.canimation.presets/io_github_canimation_presets_UpBigPreset$stableprop // io.github.canimation.presets/io_github_canimation_presets_UpBigPreset$stableprop|#static{}io_github_canimation_presets_UpBigPreset$stableprop[0]
+final val io.github.canimation.presets/io_github_canimation_presets_WobblePreset$stableprop // io.github.canimation.presets/io_github_canimation_presets_WobblePreset$stableprop|#static{}io_github_canimation_presets_WobblePreset$stableprop[0]
+final val io.github.canimation.presets/io_github_canimation_presets_ZoomInDownPreset$stableprop // io.github.canimation.presets/io_github_canimation_presets_ZoomInDownPreset$stableprop|#static{}io_github_canimation_presets_ZoomInDownPreset$stableprop[0]
+final val io.github.canimation.presets/io_github_canimation_presets_ZoomInLeftPreset$stableprop // io.github.canimation.presets/io_github_canimation_presets_ZoomInLeftPreset$stableprop|#static{}io_github_canimation_presets_ZoomInLeftPreset$stableprop[0]
+final val io.github.canimation.presets/io_github_canimation_presets_ZoomInPreset$stableprop // io.github.canimation.presets/io_github_canimation_presets_ZoomInPreset$stableprop|#static{}io_github_canimation_presets_ZoomInPreset$stableprop[0]
+final val io.github.canimation.presets/io_github_canimation_presets_ZoomInRightPreset$stableprop // io.github.canimation.presets/io_github_canimation_presets_ZoomInRightPreset$stableprop|#static{}io_github_canimation_presets_ZoomInRightPreset$stableprop[0]
+final val io.github.canimation.presets/io_github_canimation_presets_ZoomInUpPreset$stableprop // io.github.canimation.presets/io_github_canimation_presets_ZoomInUpPreset$stableprop|#static{}io_github_canimation_presets_ZoomInUpPreset$stableprop[0]
+final val io.github.canimation.presets/io_github_canimation_presets_ZoomOutPreset$stableprop // io.github.canimation.presets/io_github_canimation_presets_ZoomOutPreset$stableprop|#static{}io_github_canimation_presets_ZoomOutPreset$stableprop[0]
+
+final fun io.github.canimation.presets/io_github_canimation_presets_BackInDownPreset$stableprop_getter(): kotlin/Int // io.github.canimation.presets/io_github_canimation_presets_BackInDownPreset$stableprop_getter|io_github_canimation_presets_BackInDownPreset$stableprop_getter(){}[0]
+final fun io.github.canimation.presets/io_github_canimation_presets_BackInLeftPreset$stableprop_getter(): kotlin/Int // io.github.canimation.presets/io_github_canimation_presets_BackInLeftPreset$stableprop_getter|io_github_canimation_presets_BackInLeftPreset$stableprop_getter(){}[0]
+final fun io.github.canimation.presets/io_github_canimation_presets_BackInRightPreset$stableprop_getter(): kotlin/Int // io.github.canimation.presets/io_github_canimation_presets_BackInRightPreset$stableprop_getter|io_github_canimation_presets_BackInRightPreset$stableprop_getter(){}[0]
+final fun io.github.canimation.presets/io_github_canimation_presets_BackInUpPreset$stableprop_getter(): kotlin/Int // io.github.canimation.presets/io_github_canimation_presets_BackInUpPreset$stableprop_getter|io_github_canimation_presets_BackInUpPreset$stableprop_getter(){}[0]
+final fun io.github.canimation.presets/io_github_canimation_presets_BounceInDownPreset$stableprop_getter(): kotlin/Int // io.github.canimation.presets/io_github_canimation_presets_BounceInDownPreset$stableprop_getter|io_github_canimation_presets_BounceInDownPreset$stableprop_getter(){}[0]
+final fun io.github.canimation.presets/io_github_canimation_presets_BounceInLeftPreset$stableprop_getter(): kotlin/Int // io.github.canimation.presets/io_github_canimation_presets_BounceInLeftPreset$stableprop_getter|io_github_canimation_presets_BounceInLeftPreset$stableprop_getter(){}[0]
+final fun io.github.canimation.presets/io_github_canimation_presets_BounceInPreset$stableprop_getter(): kotlin/Int // io.github.canimation.presets/io_github_canimation_presets_BounceInPreset$stableprop_getter|io_github_canimation_presets_BounceInPreset$stableprop_getter(){}[0]
+final fun io.github.canimation.presets/io_github_canimation_presets_BounceInRightPreset$stableprop_getter(): kotlin/Int // io.github.canimation.presets/io_github_canimation_presets_BounceInRightPreset$stableprop_getter|io_github_canimation_presets_BounceInRightPreset$stableprop_getter(){}[0]
+final fun io.github.canimation.presets/io_github_canimation_presets_BounceInUpPreset$stableprop_getter(): kotlin/Int // io.github.canimation.presets/io_github_canimation_presets_BounceInUpPreset$stableprop_getter|io_github_canimation_presets_BounceInUpPreset$stableprop_getter(){}[0]
+final fun io.github.canimation.presets/io_github_canimation_presets_BouncePreset$stableprop_getter(): kotlin/Int // io.github.canimation.presets/io_github_canimation_presets_BouncePreset$stableprop_getter|io_github_canimation_presets_BouncePreset$stableprop_getter(){}[0]
+final fun io.github.canimation.presets/io_github_canimation_presets_DropInPreset$stableprop_getter(): kotlin/Int // io.github.canimation.presets/io_github_canimation_presets_DropInPreset$stableprop_getter|io_github_canimation_presets_DropInPreset$stableprop_getter(){}[0]
+final fun io.github.canimation.presets/io_github_canimation_presets_ElevateInPreset$stableprop_getter(): kotlin/Int // io.github.canimation.presets/io_github_canimation_presets_ElevateInPreset$stableprop_getter|io_github_canimation_presets_ElevateInPreset$stableprop_getter(){}[0]
+final fun io.github.canimation.presets/io_github_canimation_presets_EmphasizedEntryPreset$stableprop_getter(): kotlin/Int // io.github.canimation.presets/io_github_canimation_presets_EmphasizedEntryPreset$stableprop_getter|io_github_canimation_presets_EmphasizedEntryPreset$stableprop_getter(){}[0]
+final fun io.github.canimation.presets/io_github_canimation_presets_ExpandPreset$stableprop_getter(): kotlin/Int // io.github.canimation.presets/io_github_canimation_presets_ExpandPreset$stableprop_getter|io_github_canimation_presets_ExpandPreset$stableprop_getter(){}[0]
+final fun io.github.canimation.presets/io_github_canimation_presets_FadeBigPreset$stableprop_getter(): kotlin/Int // io.github.canimation.presets/io_github_canimation_presets_FadeBigPreset$stableprop_getter|io_github_canimation_presets_FadeBigPreset$stableprop_getter(){}[0]
+final fun io.github.canimation.presets/io_github_canimation_presets_FadeDownPreset$stableprop_getter(): kotlin/Int // io.github.canimation.presets/io_github_canimation_presets_FadeDownPreset$stableprop_getter|io_github_canimation_presets_FadeDownPreset$stableprop_getter(){}[0]
+final fun io.github.canimation.presets/io_github_canimation_presets_FadeDownRightPreset$stableprop_getter(): kotlin/Int // io.github.canimation.presets/io_github_canimation_presets_FadeDownRightPreset$stableprop_getter|io_github_canimation_presets_FadeDownRightPreset$stableprop_getter(){}[0]
+final fun io.github.canimation.presets/io_github_canimation_presets_FadeInBottomLeftPreset$stableprop_getter(): kotlin/Int // io.github.canimation.presets/io_github_canimation_presets_FadeInBottomLeftPreset$stableprop_getter|io_github_canimation_presets_FadeInBottomLeftPreset$stableprop_getter(){}[0]
+final fun io.github.canimation.presets/io_github_canimation_presets_FadeInBottomRightPreset$stableprop_getter(): kotlin/Int // io.github.canimation.presets/io_github_canimation_presets_FadeInBottomRightPreset$stableprop_getter|io_github_canimation_presets_FadeInBottomRightPreset$stableprop_getter(){}[0]
+final fun io.github.canimation.presets/io_github_canimation_presets_FadeInDownBigPreset$stableprop_getter(): kotlin/Int // io.github.canimation.presets/io_github_canimation_presets_FadeInDownBigPreset$stableprop_getter|io_github_canimation_presets_FadeInDownBigPreset$stableprop_getter(){}[0]
+final fun io.github.canimation.presets/io_github_canimation_presets_FadeInLeftBigPreset$stableprop_getter(): kotlin/Int // io.github.canimation.presets/io_github_canimation_presets_FadeInLeftBigPreset$stableprop_getter|io_github_canimation_presets_FadeInLeftBigPreset$stableprop_getter(){}[0]
+final fun io.github.canimation.presets/io_github_canimation_presets_FadeInLeftPreset$stableprop_getter(): kotlin/Int // io.github.canimation.presets/io_github_canimation_presets_FadeInLeftPreset$stableprop_getter|io_github_canimation_presets_FadeInLeftPreset$stableprop_getter(){}[0]
+final fun io.github.canimation.presets/io_github_canimation_presets_FadeInRightBigPreset$stableprop_getter(): kotlin/Int // io.github.canimation.presets/io_github_canimation_presets_FadeInRightBigPreset$stableprop_getter|io_github_canimation_presets_FadeInRightBigPreset$stableprop_getter(){}[0]
+final fun io.github.canimation.presets/io_github_canimation_presets_FadeInRightPreset$stableprop_getter(): kotlin/Int // io.github.canimation.presets/io_github_canimation_presets_FadeInRightPreset$stableprop_getter|io_github_canimation_presets_FadeInRightPreset$stableprop_getter(){}[0]
+final fun io.github.canimation.presets/io_github_canimation_presets_FadeInTopLeftPreset$stableprop_getter(): kotlin/Int // io.github.canimation.presets/io_github_canimation_presets_FadeInTopLeftPreset$stableprop_getter|io_github_canimation_presets_FadeInTopLeftPreset$stableprop_getter(){}[0]
+final fun io.github.canimation.presets/io_github_canimation_presets_FadeInTopRightPreset$stableprop_getter(): kotlin/Int // io.github.canimation.presets/io_github_canimation_presets_FadeInTopRightPreset$stableprop_getter|io_github_canimation_presets_FadeInTopRightPreset$stableprop_getter(){}[0]
+final fun io.github.canimation.presets/io_github_canimation_presets_FadeInUpBigPreset$stableprop_getter(): kotlin/Int // io.github.canimation.presets/io_github_canimation_presets_FadeInUpBigPreset$stableprop_getter|io_github_canimation_presets_FadeInUpBigPreset$stableprop_getter(){}[0]
+final fun io.github.canimation.presets/io_github_canimation_presets_FadePreset$stableprop_getter(): kotlin/Int // io.github.canimation.presets/io_github_canimation_presets_FadePreset$stableprop_getter|io_github_canimation_presets_FadePreset$stableprop_getter(){}[0]
+final fun io.github.canimation.presets/io_github_canimation_presets_FadeSmallPreset$stableprop_getter(): kotlin/Int // io.github.canimation.presets/io_github_canimation_presets_FadeSmallPreset$stableprop_getter|io_github_canimation_presets_FadeSmallPreset$stableprop_getter(){}[0]
+final fun io.github.canimation.presets/io_github_canimation_presets_FadeThroughPreset$stableprop_getter(): kotlin/Int // io.github.canimation.presets/io_github_canimation_presets_FadeThroughPreset$stableprop_getter|io_github_canimation_presets_FadeThroughPreset$stableprop_getter(){}[0]
+final fun io.github.canimation.presets/io_github_canimation_presets_FadeUpLeftPreset$stableprop_getter(): kotlin/Int // io.github.canimation.presets/io_github_canimation_presets_FadeUpLeftPreset$stableprop_getter|io_github_canimation_presets_FadeUpLeftPreset$stableprop_getter(){}[0]
+final fun io.github.canimation.presets/io_github_canimation_presets_FadeUpPreset$stableprop_getter(): kotlin/Int // io.github.canimation.presets/io_github_canimation_presets_FadeUpPreset$stableprop_getter|io_github_canimation_presets_FadeUpPreset$stableprop_getter(){}[0]
+final fun io.github.canimation.presets/io_github_canimation_presets_FlashPreset$stableprop_getter(): kotlin/Int // io.github.canimation.presets/io_github_canimation_presets_FlashPreset$stableprop_getter|io_github_canimation_presets_FlashPreset$stableprop_getter(){}[0]
+final fun io.github.canimation.presets/io_github_canimation_presets_FlipDownPreset$stableprop_getter(): kotlin/Int // io.github.canimation.presets/io_github_canimation_presets_FlipDownPreset$stableprop_getter|io_github_canimation_presets_FlipDownPreset$stableprop_getter(){}[0]
+final fun io.github.canimation.presets/io_github_canimation_presets_FlipInPreset$stableprop_getter(): kotlin/Int // io.github.canimation.presets/io_github_canimation_presets_FlipInPreset$stableprop_getter|io_github_canimation_presets_FlipInPreset$stableprop_getter(){}[0]
+final fun io.github.canimation.presets/io_github_canimation_presets_FlipInYPreset$stableprop_getter(): kotlin/Int // io.github.canimation.presets/io_github_canimation_presets_FlipInYPreset$stableprop_getter|io_github_canimation_presets_FlipInYPreset$stableprop_getter(){}[0]
+final fun io.github.canimation.presets/io_github_canimation_presets_FlipUpPreset$stableprop_getter(): kotlin/Int // io.github.canimation.presets/io_github_canimation_presets_FlipUpPreset$stableprop_getter|io_github_canimation_presets_FlipUpPreset$stableprop_getter(){}[0]
+final fun io.github.canimation.presets/io_github_canimation_presets_GentleFadePreset$stableprop_getter(): kotlin/Int // io.github.canimation.presets/io_github_canimation_presets_GentleFadePreset$stableprop_getter|io_github_canimation_presets_GentleFadePreset$stableprop_getter(){}[0]
+final fun io.github.canimation.presets/io_github_canimation_presets_HeadShakePreset$stableprop_getter(): kotlin/Int // io.github.canimation.presets/io_github_canimation_presets_HeadShakePreset$stableprop_getter|io_github_canimation_presets_HeadShakePreset$stableprop_getter(){}[0]
+final fun io.github.canimation.presets/io_github_canimation_presets_HeartBeatPreset$stableprop_getter(): kotlin/Int // io.github.canimation.presets/io_github_canimation_presets_HeartBeatPreset$stableprop_getter|io_github_canimation_presets_HeartBeatPreset$stableprop_getter(){}[0]
+final fun io.github.canimation.presets/io_github_canimation_presets_JackInTheBoxPreset$stableprop_getter(): kotlin/Int // io.github.canimation.presets/io_github_canimation_presets_JackInTheBoxPreset$stableprop_getter|io_github_canimation_presets_JackInTheBoxPreset$stableprop_getter(){}[0]
+final fun io.github.canimation.presets/io_github_canimation_presets_JelloPreset$stableprop_getter(): kotlin/Int // io.github.canimation.presets/io_github_canimation_presets_JelloPreset$stableprop_getter|io_github_canimation_presets_JelloPreset$stableprop_getter(){}[0]
+final fun io.github.canimation.presets/io_github_canimation_presets_LightSpeedInLeftPreset$stableprop_getter(): kotlin/Int // io.github.canimation.presets/io_github_canimation_presets_LightSpeedInLeftPreset$stableprop_getter|io_github_canimation_presets_LightSpeedInLeftPreset$stableprop_getter(){}[0]
+final fun io.github.canimation.presets/io_github_canimation_presets_LightSpeedInRightPreset$stableprop_getter(): kotlin/Int // io.github.canimation.presets/io_github_canimation_presets_LightSpeedInRightPreset$stableprop_getter|io_github_canimation_presets_LightSpeedInRightPreset$stableprop_getter(){}[0]
+final fun io.github.canimation.presets/io_github_canimation_presets_PopPreset$stableprop_getter(): kotlin/Int // io.github.canimation.presets/io_github_canimation_presets_PopPreset$stableprop_getter|io_github_canimation_presets_PopPreset$stableprop_getter(){}[0]
+final fun io.github.canimation.presets/io_github_canimation_presets_PresetsExtensionRegistry$stableprop_getter(): kotlin/Int // io.github.canimation.presets/io_github_canimation_presets_PresetsExtensionRegistry$stableprop_getter|io_github_canimation_presets_PresetsExtensionRegistry$stableprop_getter(){}[0]
+final fun io.github.canimation.presets/io_github_canimation_presets_PulsePreset$stableprop_getter(): kotlin/Int // io.github.canimation.presets/io_github_canimation_presets_PulsePreset$stableprop_getter|io_github_canimation_presets_PulsePreset$stableprop_getter(){}[0]
+final fun io.github.canimation.presets/io_github_canimation_presets_RollInPreset$stableprop_getter(): kotlin/Int // io.github.canimation.presets/io_github_canimation_presets_RollInPreset$stableprop_getter|io_github_canimation_presets_RollInPreset$stableprop_getter(){}[0]
+final fun io.github.canimation.presets/io_github_canimation_presets_RotateClockwisePreset$stableprop_getter(): kotlin/Int // io.github.canimation.presets/io_github_canimation_presets_RotateClockwisePreset$stableprop_getter|io_github_canimation_presets_RotateClockwisePreset$stableprop_getter(){}[0]
+final fun io.github.canimation.presets/io_github_canimation_presets_RotateInDownLeftPreset$stableprop_getter(): kotlin/Int // io.github.canimation.presets/io_github_canimation_presets_RotateInDownLeftPreset$stableprop_getter|io_github_canimation_presets_RotateInDownLeftPreset$stableprop_getter(){}[0]
+final fun io.github.canimation.presets/io_github_canimation_presets_RotateInDownRightPreset$stableprop_getter(): kotlin/Int // io.github.canimation.presets/io_github_canimation_presets_RotateInDownRightPreset$stableprop_getter|io_github_canimation_presets_RotateInDownRightPreset$stableprop_getter(){}[0]
+final fun io.github.canimation.presets/io_github_canimation_presets_RotateInPreset$stableprop_getter(): kotlin/Int // io.github.canimation.presets/io_github_canimation_presets_RotateInPreset$stableprop_getter|io_github_canimation_presets_RotateInPreset$stableprop_getter(){}[0]
+final fun io.github.canimation.presets/io_github_canimation_presets_RotateInUpLeftPreset$stableprop_getter(): kotlin/Int // io.github.canimation.presets/io_github_canimation_presets_RotateInUpLeftPreset$stableprop_getter|io_github_canimation_presets_RotateInUpLeftPreset$stableprop_getter(){}[0]
+final fun io.github.canimation.presets/io_github_canimation_presets_RotateInUpRightPreset$stableprop_getter(): kotlin/Int // io.github.canimation.presets/io_github_canimation_presets_RotateInUpRightPreset$stableprop_getter|io_github_canimation_presets_RotateInUpRightPreset$stableprop_getter(){}[0]
+final fun io.github.canimation.presets/io_github_canimation_presets_RotateScalePreset$stableprop_getter(): kotlin/Int // io.github.canimation.presets/io_github_canimation_presets_RotateScalePreset$stableprop_getter|io_github_canimation_presets_RotateScalePreset$stableprop_getter(){}[0]
+final fun io.github.canimation.presets/io_github_canimation_presets_RubberBandPreset$stableprop_getter(): kotlin/Int // io.github.canimation.presets/io_github_canimation_presets_RubberBandPreset$stableprop_getter|io_github_canimation_presets_RubberBandPreset$stableprop_getter(){}[0]
+final fun io.github.canimation.presets/io_github_canimation_presets_ScaleInPreset$stableprop_getter(): kotlin/Int // io.github.canimation.presets/io_github_canimation_presets_ScaleInPreset$stableprop_getter|io_github_canimation_presets_ScaleInPreset$stableprop_getter(){}[0]
+final fun io.github.canimation.presets/io_github_canimation_presets_ScaleUpPreset$stableprop_getter(): kotlin/Int // io.github.canimation.presets/io_github_canimation_presets_ScaleUpPreset$stableprop_getter|io_github_canimation_presets_ScaleUpPreset$stableprop_getter(){}[0]
+final fun io.github.canimation.presets/io_github_canimation_presets_ShakeXPreset$stableprop_getter(): kotlin/Int // io.github.canimation.presets/io_github_canimation_presets_ShakeXPreset$stableprop_getter|io_github_canimation_presets_ShakeXPreset$stableprop_getter(){}[0]
+final fun io.github.canimation.presets/io_github_canimation_presets_ShakeYPreset$stableprop_getter(): kotlin/Int // io.github.canimation.presets/io_github_canimation_presets_ShakeYPreset$stableprop_getter|io_github_canimation_presets_ShakeYPreset$stableprop_getter(){}[0]
+final fun io.github.canimation.presets/io_github_canimation_presets_SharedAxisXPreset$stableprop_getter(): kotlin/Int // io.github.canimation.presets/io_github_canimation_presets_SharedAxisXPreset$stableprop_getter|io_github_canimation_presets_SharedAxisXPreset$stableprop_getter(){}[0]
+final fun io.github.canimation.presets/io_github_canimation_presets_SharedAxisYPreset$stableprop_getter(): kotlin/Int // io.github.canimation.presets/io_github_canimation_presets_SharedAxisYPreset$stableprop_getter|io_github_canimation_presets_SharedAxisYPreset$stableprop_getter(){}[0]
+final fun io.github.canimation.presets/io_github_canimation_presets_ShrinkInPreset$stableprop_getter(): kotlin/Int // io.github.canimation.presets/io_github_canimation_presets_ShrinkInPreset$stableprop_getter|io_github_canimation_presets_ShrinkInPreset$stableprop_getter(){}[0]
+final fun io.github.canimation.presets/io_github_canimation_presets_SlideDownPreset$stableprop_getter(): kotlin/Int // io.github.canimation.presets/io_github_canimation_presets_SlideDownPreset$stableprop_getter|io_github_canimation_presets_SlideDownPreset$stableprop_getter(){}[0]
+final fun io.github.canimation.presets/io_github_canimation_presets_SlideLeftPreset$stableprop_getter(): kotlin/Int // io.github.canimation.presets/io_github_canimation_presets_SlideLeftPreset$stableprop_getter|io_github_canimation_presets_SlideLeftPreset$stableprop_getter(){}[0]
+final fun io.github.canimation.presets/io_github_canimation_presets_SlideRightPreset$stableprop_getter(): kotlin/Int // io.github.canimation.presets/io_github_canimation_presets_SlideRightPreset$stableprop_getter|io_github_canimation_presets_SlideRightPreset$stableprop_getter(){}[0]
+final fun io.github.canimation.presets/io_github_canimation_presets_SlideUpPreset$stableprop_getter(): kotlin/Int // io.github.canimation.presets/io_github_canimation_presets_SlideUpPreset$stableprop_getter|io_github_canimation_presets_SlideUpPreset$stableprop_getter(){}[0]
+final fun io.github.canimation.presets/io_github_canimation_presets_SnapPreset$stableprop_getter(): kotlin/Int // io.github.canimation.presets/io_github_canimation_presets_SnapPreset$stableprop_getter|io_github_canimation_presets_SnapPreset$stableprop_getter(){}[0]
+final fun io.github.canimation.presets/io_github_canimation_presets_SpinInPreset$stableprop_getter(): kotlin/Int // io.github.canimation.presets/io_github_canimation_presets_SpinInPreset$stableprop_getter|io_github_canimation_presets_SpinInPreset$stableprop_getter(){}[0]
+final fun io.github.canimation.presets/io_github_canimation_presets_SpringFadeInPreset$stableprop_getter(): kotlin/Int // io.github.canimation.presets/io_github_canimation_presets_SpringFadeInPreset$stableprop_getter|io_github_canimation_presets_SpringFadeInPreset$stableprop_getter(){}[0]
+final fun io.github.canimation.presets/io_github_canimation_presets_SpringInPreset$stableprop_getter(): kotlin/Int // io.github.canimation.presets/io_github_canimation_presets_SpringInPreset$stableprop_getter|io_github_canimation_presets_SpringInPreset$stableprop_getter(){}[0]
+final fun io.github.canimation.presets/io_github_canimation_presets_SpringSlideUpPreset$stableprop_getter(): kotlin/Int // io.github.canimation.presets/io_github_canimation_presets_SpringSlideUpPreset$stableprop_getter|io_github_canimation_presets_SpringSlideUpPreset$stableprop_getter(){}[0]
+final fun io.github.canimation.presets/io_github_canimation_presets_SwingInPreset$stableprop_getter(): kotlin/Int // io.github.canimation.presets/io_github_canimation_presets_SwingInPreset$stableprop_getter|io_github_canimation_presets_SwingInPreset$stableprop_getter(){}[0]
+final fun io.github.canimation.presets/io_github_canimation_presets_SwingPreset$stableprop_getter(): kotlin/Int // io.github.canimation.presets/io_github_canimation_presets_SwingPreset$stableprop_getter|io_github_canimation_presets_SwingPreset$stableprop_getter(){}[0]
+final fun io.github.canimation.presets/io_github_canimation_presets_TadaPreset$stableprop_getter(): kotlin/Int // io.github.canimation.presets/io_github_canimation_presets_TadaPreset$stableprop_getter|io_github_canimation_presets_TadaPreset$stableprop_getter(){}[0]
+final fun io.github.canimation.presets/io_github_canimation_presets_TiltInPreset$stableprop_getter(): kotlin/Int // io.github.canimation.presets/io_github_canimation_presets_TiltInPreset$stableprop_getter|io_github_canimation_presets_TiltInPreset$stableprop_getter(){}[0]
+final fun io.github.canimation.presets/io_github_canimation_presets_UpBigPreset$stableprop_getter(): kotlin/Int // io.github.canimation.presets/io_github_canimation_presets_UpBigPreset$stableprop_getter|io_github_canimation_presets_UpBigPreset$stableprop_getter(){}[0]
+final fun io.github.canimation.presets/io_github_canimation_presets_WobblePreset$stableprop_getter(): kotlin/Int // io.github.canimation.presets/io_github_canimation_presets_WobblePreset$stableprop_getter|io_github_canimation_presets_WobblePreset$stableprop_getter(){}[0]
+final fun io.github.canimation.presets/io_github_canimation_presets_ZoomInDownPreset$stableprop_getter(): kotlin/Int // io.github.canimation.presets/io_github_canimation_presets_ZoomInDownPreset$stableprop_getter|io_github_canimation_presets_ZoomInDownPreset$stableprop_getter(){}[0]
+final fun io.github.canimation.presets/io_github_canimation_presets_ZoomInLeftPreset$stableprop_getter(): kotlin/Int // io.github.canimation.presets/io_github_canimation_presets_ZoomInLeftPreset$stableprop_getter|io_github_canimation_presets_ZoomInLeftPreset$stableprop_getter(){}[0]
+final fun io.github.canimation.presets/io_github_canimation_presets_ZoomInPreset$stableprop_getter(): kotlin/Int // io.github.canimation.presets/io_github_canimation_presets_ZoomInPreset$stableprop_getter|io_github_canimation_presets_ZoomInPreset$stableprop_getter(){}[0]
+final fun io.github.canimation.presets/io_github_canimation_presets_ZoomInRightPreset$stableprop_getter(): kotlin/Int // io.github.canimation.presets/io_github_canimation_presets_ZoomInRightPreset$stableprop_getter|io_github_canimation_presets_ZoomInRightPreset$stableprop_getter(){}[0]
+final fun io.github.canimation.presets/io_github_canimation_presets_ZoomInUpPreset$stableprop_getter(): kotlin/Int // io.github.canimation.presets/io_github_canimation_presets_ZoomInUpPreset$stableprop_getter|io_github_canimation_presets_ZoomInUpPreset$stableprop_getter(){}[0]
+final fun io.github.canimation.presets/io_github_canimation_presets_ZoomOutPreset$stableprop_getter(): kotlin/Int // io.github.canimation.presets/io_github_canimation_presets_ZoomOutPreset$stableprop_getter|io_github_canimation_presets_ZoomOutPreset$stableprop_getter(){}[0]
