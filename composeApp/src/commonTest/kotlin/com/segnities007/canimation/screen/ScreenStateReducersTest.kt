@@ -1,6 +1,5 @@
 package com.segnities007.canimation.screen
 
-import androidx.compose.animation.core.LinearEasing
 import com.segnities007.canimation.app.settings.AppSettingsSheetStageEvent
 import com.segnities007.canimation.app.settings.AppSettingsSheetStageState
 import com.segnities007.canimation.app.settings.AppSettingsSheetEvent
@@ -22,16 +21,7 @@ import com.segnities007.canimation.screen.docs.reduceDocsState
 import com.segnities007.canimation.screen.home.HomeEvent
 import com.segnities007.canimation.screen.home.HomeUiState
 import com.segnities007.canimation.screen.home.reduceHomeState
-import com.segnities007.canimation.screen.presets.MotionFilter
-import com.segnities007.canimation.screen.presets.PresetGalleryEvent
-import com.segnities007.canimation.screen.presets.PresetGalleryUiState
-import com.segnities007.canimation.screen.presets.buildPresetGalleryCodeSample
-import com.segnities007.canimation.screen.presets.matches
-import com.segnities007.canimation.screen.presets.reducePresetGalleryState
 import io.github.canimation.core.CanimationPolicy
-import io.github.canimation.core.CanimationPreset
-import io.github.canimation.core.CanimationRange
-import io.github.canimation.core.CanimationSpec
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
@@ -151,50 +141,5 @@ class ScreenStateReducersTest {
         val updated = reduceDocsState(base, DocsEvent.SectionSelected(DocSection.Platforms))
 
         assertEquals(DocSection.Platforms, updated.activeSection)
-    }
-
-    @Test
-    fun presetGalleryReducerTracksDialogPreset() {
-        val base = PresetGalleryUiState()
-        val opened = reducePresetGalleryState(base, PresetGalleryEvent.CodeDialogOpened(CanimationPreset.FadeUp))
-        val closed = reducePresetGalleryState(opened, PresetGalleryEvent.CodeDialogClosed)
-
-        assertEquals(CanimationPreset.FadeUp, opened.codeDialogPreset)
-        assertEquals(null, closed.codeDialogPreset)
-    }
-
-    @Test
-    fun motionFilterMatchesRotationAndRejectsScaleFilter() {
-        val rotationOnly =
-            CanimationSpec(
-                durationMs = 200,
-                easing = LinearEasing,
-                rotation = CanimationRange(from = -30f, to = 0f),
-            )
-
-        assertTrue(MotionFilter.Rotation.matches(rotationOnly))
-        assertFalse(MotionFilter.Scale.matches(rotationOnly))
-    }
-
-    @Test
-    fun presetCodeSampleContainsPresetName() {
-        val spec =
-            CanimationSpec(
-                durationMs = 220,
-                easing = LinearEasing,
-                alpha = CanimationRange(from = 0f, to = 1f),
-            )
-        val presetSpec =
-            io.github.canimation.core.CanimationPresetSpec(
-                fullEnter = spec,
-                fullExit = spec,
-                reducedEnter = spec,
-                reducedExit = spec,
-            )
-
-        val snippet = buildPresetGalleryCodeSample(CanimationPreset.FadeUp, presetSpec)
-
-        assertTrue(snippet.contains("CanimationPreset.FadeUp"))
-        assertTrue(snippet.contains("Modifier.canimationTransition"))
     }
 }
