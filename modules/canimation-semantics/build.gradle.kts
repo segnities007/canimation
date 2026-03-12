@@ -1,5 +1,5 @@
 plugins {
-    id("canimation.multiplatform.library")
+    id("canimation.compose.multiplatform.library")
 }
 
 kotlin {
